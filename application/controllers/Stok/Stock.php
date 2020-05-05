@@ -35,7 +35,7 @@ class stock extends CI_Controller
 	function history($barang_id)
 	{
 		if ($this->session->userdata('akses') == 3 && $this->session->userdata('masuk') == true) {
-			$y['title'] = "Stock";
+			$y['title'] = "Stock Masuk";
 			$status='2';
 			$x['stock'] = $this->m_barang-> getHistoryStock($barang_id,$status);
 			$this->load->view('v_header', $y);
@@ -49,12 +49,12 @@ class stock extends CI_Controller
 	function history_stok_keluar($barang_id)
 	{
 		if ($this->session->userdata('akses') == 3 && $this->session->userdata('masuk') == true) {
-			$y['title'] = "Stock";
+			$y['title'] = "Stock Keluar";
 			$status='1';
 			$x['stock'] = $this->m_barang-> getHistoryStock($barang_id,$status);
 			$this->load->view('v_header', $y);
 			$this->load->view('stok/v_sidebar');
-			$this->load->view('stok/v_history_stock', $x);
+			$this->load->view('stok/v_history_stock', $x );
 		} else {
 			redirect('Login');
 		}
