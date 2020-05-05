@@ -66,6 +66,7 @@ class Pemesanan extends CI_Controller
 		$alamat = $this->input->post('alamat');
 		$asal_transaksi = $this->input->post('at');
 		$kurir = $this->input->post('kurir');
+		$resi = $this->input->post('no_resi');
 		$metpem = $this->input->post('metpem');
 		$tanggal = $this->input->post('tanggal');
 		$diskon = $this->input->post('diskon');
@@ -78,7 +79,7 @@ class Pemesanan extends CI_Controller
 		$email_pemesanan = $this->input->post('email_pemesanan');
 		$note = $this->input->post('note');
 		$status = 0;
-		$pemesanan_id = $this->m_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
+		$pemesanan_id = $this->m_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir,$resi, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
 
 
 		$size = sizeof($barang_id);
@@ -435,6 +436,7 @@ class Pemesanan extends CI_Controller
 		$alamat = $this->input->post('alamat');
 		$asal_transaksi = $this->input->post('at');
 		$kurir = $this->input->post('kurir');
+		$resi = $this->input->post('no_resi');
 		$metpem = $this->input->post('metpem');
 		$tanggal = $this->input->post('tanggal');
 		$diskon = $this->input->post('diskon');
@@ -447,7 +449,7 @@ class Pemesanan extends CI_Controller
 		$email_pemesanan = $this->input->post('email_pemesanan');
 		$note = $this->input->post('note');
 		$status = 0;
-		$pemesanan_id = $this->m_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
+		$pemesanan_id = $this->m_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir,$resi, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
 		$size = sizeof($barang_id);
 
 		for ($i = 0; $i < $size; $i++) {
