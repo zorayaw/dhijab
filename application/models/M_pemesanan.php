@@ -384,6 +384,11 @@
 			return $this->db->query("UPDATE pemesanan SET status_eks = '$status_eks' WHERE pemesanan_id = '$pemesanan_id'");
 		
 	}
+
+		function get_total_pemesanan($pemesanan_id){
+			return $this->db->query("SELECT harga FROM list_barang WHERE pemesanan_id = $pemesanan_id")->result_array();
+			
+		}
 	
 	}
 ?>

@@ -8,11 +8,11 @@ class Login extends CI_Controller
     }
     function index()
     {
-        if ($this->session->userdata('masuk') == 1 && $this->session->userdata('akses') == 1) {
+        if ($this->session->userdata('masuk') == true && $this->session->userdata('akses') == 1) {
             redirect("Owner/Barang");
-        } else if ($this->session->userdata('masuk') == 1 && $this->session->userdata('akses') == 2) {
+        } else if ($this->session->userdata('masuk') == true && $this->session->userdata('akses') == 2) {
             redirect("Admin/Pemesanan");
-        } else if ($this->session->userdata('masuk') == 1 && $this->session->userdata('akses') == 3) {
+        } else if ($this->session->userdata('masuk') == true && $this->session->userdata('akses') == 3) {
             redirect("Stok/Stock");
         } else {
             $this->load->view('v_login');

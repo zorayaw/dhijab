@@ -22,37 +22,37 @@
       <div class="card card-statistics h-100">
         <div class="card-body">
           <div class="col-xl-12 mb-10" style="display: flex">
-            <div class="col-md-3">
+            <div class="col-md-4">
               <a href="" data-toggle="modal" data-target="#tambah-pesanan-non-reseller" class="btn btn-primary btn-block ripple m-t-10">
                 <i class="fa fa-plus pr-2"></i> Tambah Pemesanan Customer
               </a>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <a href="" data-toggle="modal" data-target="#reseller" class="btn btn-primary btn-block ripple m-t-10">
                 <i class="fa fa-plus pr-2"></i> Tambah Pemesanan Reseller
               </a>
             </div>
 
-              <div class="col-md-3">
+            <div class="col-md-4">
               <a href="" data-toggle="modal" data-target="#produksi" class="btn btn-primary btn-block ripple m-t-20">
                 <i class="fa fa-plus pr-2"></i> Tambah Pemesanan Produksi
               </a>
             </div>
-            <div class="col-md-3">
+            <!-- <div class="col-md-3">
               <a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi" target="blank" class="btn btn-success btn-block ripple m-t-20">
                 <i class="fa fa-print pr-2"></i> Cetak
               </a>
-            </div>
+            </div> -->
           </div>
           <div class="table-responsive">
             <table id="datatable" class="table table-striped table-bordered p-0">
               <thead>
                 <tr>
-                  <th >No</th>
-                  <th >Nomor Order</th>
+                  <th>No</th>
+                  <th>Nomor Order</th>
                   <th>Nama Pemesan</th>
                   <th>Nama Akun</th>
-                  <th >Tanggal Pesanan</th>
+                  <th>Tanggal Pesanan</th>
                   <th>No HP</th>
                   <th>Alamat</th>
                   <th>Email </th>
@@ -67,8 +67,8 @@
                   <th>Diskon</th>
                   <th>Uang Kembalian</th>
                   <th>Total Harga</th>
-                  
-                  <th >
+
+                  <th>
                     <center>Aksi</center>
                   </th>
                 </tr>
@@ -82,13 +82,13 @@
                 }
 
                 $no = 0;
-                $total=0;
+                $total = 0;
                 foreach ($datapesanan->result_array() as $i) :
                   $no++;
 
                   $pemesanan_id = $i['pemesanan_id'];
                   $pemesanan_nama = $i['pemesanan_nama'];
-                   $nama_akun = $i['pemesanan_nama_akun'];
+                  $nama_akun = $i['pemesanan_nama_akun'];
                   $tanggal = $i['tanggal'];
                   $hp = $i['pemesanan_hp'];
                   $alamat = $i['pemesanan_alamat'];
@@ -107,24 +107,24 @@
                   $uang = $i['uang_kembalian'];
                   $note = $i['note'];
 
-                    $q = $this->db->query("SELECT SUM(lb_qty * harga)AS total_keseluruhan from list_barang where pemesanan_id=' $pemesanan_id'");
-                    $c = $q->row_array();
-                    $jumlah = $c['total_keseluruhan']+$ongkir-($diskon+$biaya_admin+$uang) ;
-                  
+                  $q = $this->db->query("SELECT SUM(lb_qty * harga)AS total_keseluruhan from list_barang where pemesanan_id=' $pemesanan_id'");
+                  $c = $q->row_array();
+                  $jumlah = $c['total_keseluruhan'] + $ongkir - ($diskon + $biaya_admin + $uang);
 
 
-                  ?>
+
+                ?>
                   <tr>
                     <td>
                       <center><?php echo $no ?></center>
                     </td>
                     <td><?php echo $pemesanan_id ?></td>
                     <td><?php echo $pemesanan_nama ?></td>
-                     <td><?php echo $nama_akun ?></td>
+                    <td><?php echo $nama_akun ?></td>
                     <td><?php echo $tanggal ?></td>
                     <td><?php echo $hp ?></td>
                     <td><?php echo $alamat ?></td>
-                      <td><?php echo $email ?></td>
+                    <td><?php echo $email ?></td>
                     <td><?php echo $kurir_nama ?></td>
                     <td><?php echo $ongkir ?></td>
                     <td><?php echo $at_nama ?></td>
@@ -142,22 +142,21 @@
                       <?php } elseif ($status == 2) {
                       ?>
                         <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#selesai<?= $pemesanan_id ?>" style="margin-right: 20px">Dikirim </button>
-                      <?php }
-                       else {
+                      <?php } else {
                       ?>
-                        <button  class="btn btn-success" style="margin-right: 20px">Selesai</button>
+                        <button class="btn btn-success" style="margin-right: 20px">Selesai</button>
                       <?php
-                    }
-                    ?>
+                      }
+                      ?>
                     </td>
                     <td><?php echo $note ?></td>
                     <td><?php echo rupiah($biaya_admin) ?></td>
                     <td><?php echo rupiah($diskon) ?></td>
                     <td><?php echo rupiah($uang) ?></td>
                     <td><?php echo rupiah($jumlah) ?></td>
-                    
-                    <?php 
-                      $total=$total+$jumlah;
+
+                    <?php
+                    $total = $total + $jumlah;
                     ?>
                     <td>
                       <a href="#" style="margin-right: 10px; margin-left: 10px;" data-toggle="modal" data-target="#editdata<?php echo $pemesanan_id ?>"><span class="ti-pencil"></span></a>
@@ -165,12 +164,14 @@
                     </td>
                   </tr>
                 <?php endforeach; ?>
-                
+
               </tbody>
               <tr>
-                      <th colspan="18"><center>Jumlah</center></th>
-                      <th colspan="2"><?php echo rupiah($total)?></th>
-                    </tr>
+                <th colspan="18">
+                  <center>Jumlah</center>
+                </th>
+                <th colspan="2"><?php echo rupiah($total) ?></th>
+              </tr>
             </table>
           </div>
         </div>
@@ -208,11 +209,11 @@
                   <label class="control-label">Alamat</label>
                   <input class="form-control form-white" type="text" name="alamat" required />
                 </div>
-                 <div class="col-md-12">
+                <div class="col-md-12">
                   <label class="control-label">Biaya Admin</label>
                   <input class="form-control form-white" type="text" name="biaya_admin" required />
                 </div>
-                 <div class="col-md-12">
+                <div class="col-md-12">
                   <label class="control-label">Diskon</label>
                   <input class="form-control form-white" type="text" name="diskon" required />
                 </div>
@@ -229,7 +230,7 @@
                       $at_id = $i['at_id'];
                       $at_nama = $i['at_nama'];
                       $at_tanggal = $i['at_tanggal'];
-                      ?>
+                    ?>
                       <option value="<?php echo $at_id ?>"><?php echo $at_nama ?></option>
                     <?php endforeach; ?>
                   </select>
@@ -243,11 +244,12 @@
                       $kurir_id = $i['kurir_id'];
                       $kurir_nama = $i['kurir_nama'];
                       $kurir_tanggal = $i['kurir_tanggal'];
-                      ?>
+                    ?>
                       <option value="<?php echo $kurir_id ?>"><?php echo $kurir_nama ?></option>
                     <?php endforeach; ?>
                   </select>
                 </div>
+
                 <div class="col-md-12">
                   <label class="control-label">Biaya Ongkir</label>
                   <input class="form-control form-white" type="text" name="biaya_ongkir" required />
@@ -261,7 +263,7 @@
                       $mp_id = $i['mp_id'];
                       $mp_nama = $i['mp_nama'];
                       $mp_tanggal = $i['mp_tanggal'];
-                      ?>
+                    ?>
                       <option value="<?php echo $mp_id ?>"><?php echo $mp_nama ?></option>
                     <?php endforeach; ?>
                   </select>
@@ -271,7 +273,7 @@
                   <input class="form-control form-white" type="text" name="note" required />
                 </div>
 
-                
+
                 <div class="form-group col-md-12 mt-10" id="dynamic_field">
                   <div class="row">
                     <div class="col-md-8">
@@ -282,7 +284,7 @@
                         foreach ($nonreseller->result_array() as $i) :
                           $barang_id = $i['barang_id'];
                           $barang_nama = $i['barang_nama'];
-                          ?>
+                        ?>
                           <option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option>
                         <?php endforeach; ?>
                       </select>
@@ -309,10 +311,10 @@
 
     <!-- Modal Pesanan Reseller-->
     <div class="modal" tabindex="-1" role="dialog" id="reseller">
-       <div class="modal-dialog modal-lg">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Tambah Pesanan  Reseller</h5>
+            <h5 class="modal-title">Tambah Pesanan Reseller</h5>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <form action="<?php echo base_url() ?>Admin/Pemesanan/savepemesananR" method="post" enctype="multipart/form-data">
@@ -342,11 +344,11 @@
                   <label class="control-label">Alamat</label>
                   <input class="form-control form-white" type="text" name="alamat" required />
                 </div>
-                 <div class="col-md-12">
+                <div class="col-md-12">
                   <label class="control-label">Biaya Admin</label>
                   <input class="form-control form-white" type="text" name="biaya_admin" required />
                 </div>
-                 <div class="col-md-12">
+                <div class="col-md-12">
                   <label class="control-label">Diskon</label>
                   <input class="form-control form-white" type="text" name="diskon" required />
                 </div>
@@ -363,7 +365,7 @@
                       $at_id = $i['at_id'];
                       $at_nama = $i['at_nama'];
                       $at_tanggal = $i['at_tanggal'];
-                      ?>
+                    ?>
                       <option value="<?php echo $at_id ?>"><?php echo $at_nama ?></option>
                     <?php endforeach; ?>
                   </select>
@@ -377,7 +379,7 @@
                       $kurir_id = $i['kurir_id'];
                       $kurir_nama = $i['kurir_nama'];
                       $kurir_tanggal = $i['kurir_tanggal'];
-                      ?>
+                    ?>
                       <option value="<?php echo $kurir_id ?>"><?php echo $kurir_nama ?></option>
                     <?php endforeach; ?>
                   </select>
@@ -395,7 +397,7 @@
                       $mp_id = $i['mp_id'];
                       $mp_nama = $i['mp_nama'];
                       $mp_tanggal = $i['mp_tanggal'];
-                      ?>
+                    ?>
                       <option value="<?php echo $mp_id ?>"><?php echo $mp_nama ?></option>
                     <?php endforeach; ?>
                   </select>
@@ -405,7 +407,7 @@
                   <input class="form-control form-white" type="text" name="note" required />
                 </div>
 
-                
+
                 <div class="form-group col-md-12 mt-10" id="dynamic_field1">
                   <div class="row">
                     <div class="col-md-8">
@@ -416,7 +418,7 @@
                         foreach ($nonreseller->result_array() as $i) :
                           $barang_id = $i['barang_id'];
                           $barang_nama = $i['barang_nama'];
-                          ?>
+                        ?>
                           <option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option>
                         <?php endforeach; ?>
                       </select>
@@ -442,31 +444,31 @@
     </div>
 
 
-     <!-- Modal Pesanan Produksi-->
+    <!-- Modal Pesanan Produksi-->
     <div class="modal" tabindex="-1" role="dialog" id="produksi">
-       <div class="modal-dialog modal-lg">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Tambah Pesanan  Produksi</h5>
+            <h5 class="modal-title">Tambah Pesanan Produksi</h5>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <form action="<?php echo base_url() ?>Admin/Pemesanan/savepemesananP" method="post" enctype="multipart/form-data">
             <div class="modal-body p-20">
               <div class="row">
-              
-               
+
+
                 <div class="col-md-12">
                   <label class="control-label">Tanggal</label>
                   <input class="form-control form-white" type="date" name="tanggal" required />
                 </div>
-              
-              
+
+
                 <div class="col-md-12">
                   <label class="control-label">Note</label>
                   <input class="form-control form-white" type="text" name="note" required />
                 </div>
 
-                
+
                 <div class="form-group col-md-12 mt-10" id="dynamic_field2">
                   <div class="row">
                     <div class="col-md-8">
@@ -477,7 +479,7 @@
                         foreach ($produksi->result_array() as $i) :
                           $barang_id = $i['barang_id'];
                           $barang_nama = $i['barang_nama'];
-                          ?>
+                        ?>
                           <option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option>
                         <?php endforeach; ?>
                       </select>
@@ -524,7 +526,7 @@
       $at_nama = $i['at_nama'];
       $mp_id1 = $i['mp_id'];
       $mp_nama = $i['mp_nama'];
-      ?>
+    ?>
       <!-- Modal edit Data -->
       <div class="modal" tabindex="-1" role="dialog" id="editdata<?php echo $pemesanan_id ?>">
         <div class="modal-dialog modal-lg">
@@ -625,7 +627,7 @@
     foreach ($datapesanan->result_array() as $i) :
       $no++;
       $pemesanan_id = $i['pemesanan_id'];
-      ?>
+    ?>
 
       <div class="modal" tabindex="-1" role="dialog" id="hapusdata<?php echo $pemesanan_id ?>">
         <div class="modal-dialog">
@@ -662,7 +664,7 @@
     $no++;
     $pemesanan_id = $i['pemesanan_id'];
     $status_pemesanan = $i['status_pemesanan'];
-    ?>
+  ?>
 
     <div class="modal" tabindex="-1" role="dialog" id="bayar<?= $pemesanan_id ?>">
       <div class="modal-dialog">
@@ -690,61 +692,61 @@
       </div>
     </div>
 
-  </div>
-  <div class="modal" tabindex="-1" role="dialog" id="selesai<?= $pemesanan_id ?>">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Ganti Status</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        </div>
-        <div class="modal-body p-20">
-          <form action="<?php echo base_url() ?>Admin/Pemesanan/status" method="POST">
-            <div class="row">
-              <div class="col-md-12">
-                <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
-                <input type="hidden" name="jumlah" value="<?php echo $jumlah ?>" />
-                <input type="hidden" name="status_pemesanan" value="2" />
-                <p>Apakah kamu yakin ingin mengganti status data ini?</i></b></p>
-              </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Tidak</button>
-          <button type="submit" class="btn btn-success ripple save-category">Ya</button>
-        </div>
-        </form>
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="selesai<?= $pemesanan_id ?>">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Ganti Status</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
       </div>
+      <div class="modal-body p-20">
+        <form action="<?php echo base_url() ?>Admin/Pemesanan/status" method="POST">
+          <div class="row">
+            <div class="col-md-12">
+              <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
+              <input type="hidden" name="jumlah" value="<?php echo $jumlah ?>" />
+              <input type="hidden" name="status_pemesanan" value="2" />
+              <p>Apakah kamu yakin ingin mengganti status data ini?</i></b></p>
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Tidak</button>
+        <button type="submit" class="btn btn-success ripple save-category">Ya</button>
+      </div>
+      </form>
     </div>
   </div>
-  <div class="modal" tabindex="-1" role="dialog" id="kirim<?= $pemesanan_id ?>">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Ganti Status</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        </div>
-        <div class="modal-body p-20">
-          <form action="<?php echo base_url() ?>Admin/Pemesanan/status" method="POST">
-            <div class="row">
-              <div class="col-md-12">
-                <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
-                <input type="hidden" name="jumlah" value="<?php echo $jumlah ?>" />
-                <input type="hidden" name="status_pemesanan" value="1" />
-                <p>Apakah kamu yakin ingin mengganti status data ini?</i></b></p>
-              </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Tidak</button>
-          <button type="submit" class="btn btn-success ripple save-category">Ya</button>
-        </div>
-        </form>
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="kirim<?= $pemesanan_id ?>">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Ganti Status</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
       </div>
+      <div class="modal-body p-20">
+        <form action="<?php echo base_url() ?>Admin/Pemesanan/status" method="POST">
+          <div class="row">
+            <div class="col-md-12">
+              <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
+              <input type="hidden" name="jumlah" value="<?php echo $jumlah ?>" />
+              <input type="hidden" name="status_pemesanan" value="1" />
+              <p>Apakah kamu yakin ingin mengganti status data ini?</i></b></p>
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Tidak</button>
+        <button type="submit" class="btn btn-success ripple save-category">Ya</button>
+      </div>
+      </form>
     </div>
   </div>
+</div>
 
-  </div>
+</div>
 
 
 <?php endforeach; ?>
@@ -787,16 +789,16 @@
 
 <!--=================================
  jquery -->
- <!--Data Table-->
-    <script type="text/javascript"  src=" https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript"  src=" https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+<!--Data Table-->
+<script type="text/javascript" src=" https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src=" https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
 
-    <!--Export table buttons-->
-    <script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-    <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js" ></script>
-    <script type="text/javascript"  src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.print.min.js"></script>
+<!--Export table buttons-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.print.min.js"></script>
 
 <!--Export table button CSS-->
 
@@ -805,52 +807,54 @@
 <!-- jquery -->
 
 <!-- plugins-jquery -->
-<script src="<?php echo base_url()?>assets/admin/js/plugins-jquery.js"></script>
+<script src="<?php echo base_url() ?>assets/admin/js/plugins-jquery.js"></script>
 
 <!-- plugin_path -->
-<script>var plugin_path = '<?php echo base_url()?>assets/admin/js/';</script>
+<script>
+  var plugin_path = '<?php echo base_url() ?>assets/admin/js/';
+</script>
 
 <!-- chart -->
-<script src="<?php echo base_url()?>assets/admin/js/chart-init.js"></script>
+<script src="<?php echo base_url() ?>assets/admin/js/chart-init.js"></script>
 
 <!-- calendar -->
-<script src="<?php echo base_url()?>assets/admin/js/calendar.init.js"></script>
+<script src="<?php echo base_url() ?>assets/admin/js/calendar.init.js"></script>
 
 <!-- charts sparkline -->
-<script src="<?php echo base_url()?>assets/admin/js/sparkline.init.js"></script>
+<script src="<?php echo base_url() ?>assets/admin/js/sparkline.init.js"></script>
 
 <!-- charts morris -->
-<script src="<?php echo base_url()?>assets/admin/js/morris.init.js"></script>
+<script src="<?php echo base_url() ?>assets/admin/js/morris.init.js"></script>
 
 <!-- datepicker -->
-<script src="<?php echo base_url()?>assets/admin/js/datepicker.js"></script>
+<script src="<?php echo base_url() ?>assets/admin/js/datepicker.js"></script>
 
 <!-- sweetalert2 -->
-<script src="<?php echo base_url()?>assets/admin/js/sweetalert2.js"></script>
+<script src="<?php echo base_url() ?>assets/admin/js/sweetalert2.js"></script>
 
 <!-- toastr -->
-<script src="<?php echo base_url().'assets/admin/js/jquery.toast.min.js'?>"></script>
+<script src="<?php echo base_url() . 'assets/admin/js/jquery.toast.min.js' ?>"></script>
 
 <!-- validation -->
-<script src="<?php echo base_url()?>assets/admin/js/validation.js"></script>
+<script src="<?php echo base_url() ?>assets/admin/js/validation.js"></script>
 
 <!-- lobilist -->
-<script src="<?php echo base_url()?>assets/admin/js/lobilist.js"></script>
- 
+<script src="<?php echo base_url() ?>assets/admin/js/lobilist.js"></script>
+
 <!-- custom -->
-<script src="<?php echo base_url()?>assets/admin/js/custom.js"></script>
-  
+<script src="<?php echo base_url() ?>assets/admin/js/custom.js"></script>
+
 <!-- mask -->
-<script src="<?php echo base_url()?>assets/admin/js/jquery.mask.min.js"></script>
+<script src="<?php echo base_url() ?>assets/admin/js/jquery.mask.min.js"></script>
 
 </body>
 
 </html>
 <script type="text/javascript">
-  $(document).ready(function () {
-      $('select').selectize({
-          sortField: 'text'
-      });
+  $(document).ready(function() {
+    $('select').selectize({
+      sortField: 'text'
+    });
   });
 </script>
 <script type="text/javascript">
@@ -867,20 +871,18 @@
   $(document).ready(function() {
     var i = 1;
     $('#add').click(function() {
-      i++;
-      $('#dynamic_field').append('<div class="row" id="row' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($nonreseller->result_array() as $i) : $barang_id = $i['barang_id'];
-                                                                                                                                                                                                                              $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>')
-      ;
-      $('select').selectize({
+        i++;
+        $('#dynamic_field').append('<div class="row" id="row' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($nonreseller->result_array() as $i) : $barang_id = $i['barang_id']; $barang_nama = $i['barang_nama']; ?> <option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
+        $('select').selectize({
           sortField: 'text'
-      });
-    }
+        });
+      }
 
 
     );
-     $('select').selectize({
-          sortField: 'text'
-      });
+    $('select').selectize({
+      sortField: 'text'
+    });
 
     $(document).on('click', '.btn_remove', function() {
       var button_id = $(this).attr("id");
@@ -896,11 +898,9 @@
     var i = 1;
     $('#add1').click(function() {
       i++;
-      $('#dynamic_field1').append('<div class="row" id="roww' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($reseller->result_array() as $i) : $barang_id = $i['barang_id'];
-                                                                                                                                                                                                                             $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>')
-      ;
-       $('select').selectize({
-          sortField: 'text'
+      $('#dynamic_field1').append('<div class="row" id="roww' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($reseller->result_array() as $i) : $barang_id = $i['barang_id'];$barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?></select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>');
+      $('select').selectize({
+        sortField: 'text'
       });
     });
 
@@ -919,11 +919,10 @@
     var i = 1;
     $('#add3').click(function() {
       i++;
-      $('#dynamic_field2').append('<div class="row" id="rowww' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($produksi->result_array() as $i) : $barang_id = $i['barang_id'];
-                                                                                                                                                                                                                             $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>')
-      ;
-       $('select').selectize({
-          sortField: 'text'
+      $('#dynamic_field2').append('<div class="row" id="rowww' + i +
+        '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($produksi->result_array() as $i) : $barang_id = $i['barang_id']; $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>');
+      $('select').selectize({
+        sortField: 'text'
       });
     });
 
