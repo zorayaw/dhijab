@@ -392,8 +392,19 @@
 
 		function get_total_pemesanan($pemesanan_id){
 			return $this->db->query("SELECT harga FROM list_barang WHERE pemesanan_id = $pemesanan_id")->result_array();
-			
 		}
+
+		function getPemesananByTanggal($start, $end){
+		$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE (a.pemesanan_tanggal BETWEEN '$start' AND '$end') AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal ASC");
+		return $hasil;
+		}
+
+		function getPemesananByBulanIni(){
+			$bulan = date('m');
+			$tahun = date('Y');
+			$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE month(a.pemesanan_tanggal) = $bulan AND year(a.pemesanan_tanggal) = $tahun AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal ASC");
+			return $hasil;
+			}
 	
 	}
 ?>

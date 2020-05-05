@@ -22,27 +22,27 @@
       <div class="card card-statistics h-100">
         <div class="card-body">
           <div class="col-xl-12 mb-10" style="display: flex">
-            <div class="col-md-4">
+            <div class="col-md-3">
               <a href="" data-toggle="modal" data-target="#tambah-pesanan-non-reseller" class="btn btn-primary btn-block ripple m-t-10">
-                <i class="fa fa-plus pr-2"></i> Tambah Pemesanan Customer
+                <i class="fa fa-plus pr-2"></i>Pemesanan Customer
               </a>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
               <a href="" data-toggle="modal" data-target="#reseller" class="btn btn-primary btn-block ripple m-t-10">
-                <i class="fa fa-plus pr-2"></i> Tambah Pemesanan Reseller
+                <i class="fa fa-plus pr-2"></i>Pemesanan Reseller
               </a>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
               <a href="" data-toggle="modal" data-target="#produksi" class="btn btn-primary btn-block ripple m-t-20">
-                <i class="fa fa-plus pr-2"></i> Tambah Pemesanan Produksi
+                <i class="fa fa-plus pr-2"></i>Pemesanan Produksi
               </a>
             </div>
-            <!-- <div class="col-md-3">
-              <a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi" target="blank" class="btn btn-success btn-block ripple m-t-20">
+            <div class="col-md-3">
+              <a href="" data-toggle="modal" data-target="#Cetak-Pesanan" class="btn btn-success btn-block ripple m-t-20">
                 <i class="fa fa-print pr-2"></i> Cetak
               </a>
-            </div> -->
+            </div>
           </div>
           <div class="table-responsive">
             <table id="datatable" class="table table-striped table-bordered p-0">
@@ -177,6 +177,7 @@
         </div>
       </div>
     </div>
+
 
     <!-- Modal Pesanan NonReseller-->
     <div class="modal" tabindex="-1" role="dialog" id="tambah-pesanan-non-reseller">
@@ -505,8 +506,88 @@
     </div>
 
 
+    <!-- Modal Cetak-->
+    <?php date_default_timezone_set("Asia/Jakarta");
+    ?>
 
-
+    <div class="modal" tabindex="-1" role="dialog" id="Cetak-Pesanan">
+      <div class="modal-dialog modal-lg-10">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Cetak Pesanan</h5>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                <a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                  <i class="fa fa-print pr-2"></i>Cetak Pemesanan Hari Ini (<?= date('d')?> <?php 
+                  switch (date('m')){
+                    case 1 : echo "Januari"; break;
+                    case 2 : echo "Februari"; break;
+                    case 3 : echo "Maret"; break;
+                    case 4 : echo "April"; break;
+                    case 5 : echo "May"; break;
+                    case 6 : echo "Juni"; break;
+                    case 7 : echo "Juli"; break;
+                    case 8 : echo "Agustus"; break;
+                    case 9 : echo "September"; break;
+                    case 10 : echo "Oktober"; break;
+                    case 11 : echo "November"; break;
+                    case 12 : echo "Desember"; break;
+                  }
+                  ?>
+                  <?= date('Y')?>)
+                </a>
+                <br>
+              </div>
+              <div class="col-md-12">
+                <a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiByBulanIni" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                  <i class="fa fa-print pr-2"></i>Cetak pemesanan Bulan Ini (<?php 
+                  switch (date('m')){
+                    case 1 : echo "Januari"; break;
+                    case 2 : echo "Februari"; break;
+                    case 3 : echo "Maret"; break;
+                    case 4 : echo "April"; break;
+                    case 5 : echo "May"; break;
+                    case 6 : echo "Juni"; break;
+                    case 7 : echo "Juli"; break;
+                    case 8 : echo "Agustus"; break;
+                    case 9 : echo "September"; break;
+                    case 10 : echo "Oktober"; break;
+                    case 11 : echo "November"; break;
+                    case 12 : echo "Desember"; break;
+                  }
+                  ?> <?= date('Y')?>) 
+                </a>
+                <br>
+                <br>
+              </div>
+              <div class="col-md-12"><h6>Cetak Berdasarkan Tanggal:</h6></div>
+               <form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiBytanggal" target="_blank" method="post" enctype="multipart/form-data">
+            <div class="modal-body p-20">
+              <div class="row">
+              <div class="col-md-4">
+                <label class="control-label">Start date:</label>
+                <input class="form-control form-white" type="date" name="start_date" required/>
+              </div>
+              <div class="col-md-4">
+                <label class="control-label">End date:</label>
+                <input class="form-control form-white" type="date" name="end_date" required/>
+              </div>
+              <div class="col-md-4">
+               <button type="submit" class="btn btn-success btn-block ripple m-t-10">
+                  <i class="fa fa-print pr-2"></i>Cetak<br>pemesanan</a>
+            </div>
+              </div>
+            </div>
+               </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
 
@@ -872,7 +953,7 @@
     var i = 1;
     $('#add').click(function() {
         i++;
-        $('#dynamic_field').append('<div class="row" id="row' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($nonreseller->result_array() as $i) : $barang_id = $i['barang_id']; $barang_nama = $i['barang_nama']; ?> <option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
+        $('#dynamic_field').append('<div class="row" id="row' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($nonreseller->result_array() as $i) : $barang_id = $i['barang_id'];$barang_nama = $i['barang_nama']; ?> <option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
         $('select').selectize({
           sortField: 'text'
         });

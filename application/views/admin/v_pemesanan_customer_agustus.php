@@ -6,7 +6,7 @@
   <div class="page-title">
     <div class="row">
       <div class="col-sm-6">
-        <h4 class="mb-0">Data Daftar Barang</h4>
+        <h4 class="mb-0">Data Daftar Barang </h4>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
@@ -22,14 +22,14 @@
       <div class="card card-statistics h-100">
         <div class="card-body">
           <div class="col-xl-12 mb-10" style="display: flex">
-            <div class="col-md-3">
+            <div class="col-md-6">
               <a href="" data-toggle="modal" data-target="#tambah-pesanan-non-reseller" class="btn btn-primary btn-block ripple m-t-10">
                 <i class="fa fa-plus pr-2"></i> Tambah Pemesanan Customer
               </a>
             </div>
             
              
-            <div class="col-md-3">
+            <div class="col-md-6">
               <a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi" target="blank" class="btn btn-success btn-block ripple m-t-20">
                 <i class="fa fa-print pr-2"></i> Cetak
               </a>

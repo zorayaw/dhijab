@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Laporan Transaksi Perhari</title>
+  <title>Laporan Transaksi Bulanan</title>
 </head>
 <!-- Favicon -->
 <link rel="shortcut icon" href="<?php echo base_url()?>assets/images/logo.png" />
@@ -9,13 +9,12 @@
 <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <body>
-<?php date_default_timezone_set("Asia/Jakarta");
-$cur_date = date("d-m-Y");?>
+<?php date_default_timezone_set("Asia/Jakarta");?>
      <div>
           
           <div class="col-xl-12">
             <center><h1>Laporan Transaksi</h1></center>
-            <center><h4>(<?= date('d')?> <?php 
+            <center><h4>(<?php 
                   switch (date('m')){
                     case 1 : echo "Januari"; break;
                     case 2 : echo "Februari"; break;

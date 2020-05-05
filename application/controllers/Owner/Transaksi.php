@@ -138,7 +138,9 @@
 			  $a = $this->m_pemesanan->getPemesananCurdate();
 			  $modal = 0;
 		       $total_u = 0;
-		       $total_o = 0;
+			   $total_o = 0;
+			   $total_untung = 0;
+			   $total_omset = 0;
 		       foreach ($a->result_array() as $i) {
 		       	$pemesanan_id = $i['pemesanan_id'];
 				   $level = $i['status_customer'];
@@ -169,10 +171,94 @@
 	  		$this->load->view('v_cetak_perhari',$x);
 	  	}
 	
+		  function cetakTransaksiByTanggal(){
+			$start = $this->input->post('start_date');
+			$end = $this->input->post('end_date');
+			$x['data'] = $this->m_pemesanan->getPemesananByTanggal($start,$end);
+			$x['start'] = $start;
+			$x['end'] = $end;
+			$a = $this->m_pemesanan->getPemesananByTanggal($start,$end);
+			$modal = 0;
+			$total_u = 0;
+			$total_o = 0;
+	
+			$total_untung = 0;
+			$total_omset =0;
+	
+	
+			
+			foreach ($a->result_array() as $i) {
+				$pemesanan_id = $i['pemesanan_id'];
+				$level = $i['status_customer'];
+				$b = $this->m_pemesanan->getHargaModal($pemesanan_id, $level);
+				foreach ($b as $temp) {
+					$modal = $modal + $temp['harga'];
+				}
+				if ($level == 1) {
+					$t = $this->db->query("SELECT SUM(a.lb_qty * d.br_harga) AS total_omset, (SUM(a.lb_qty * d.br_harga))-(SUM(a.lb_qty * $modal)) AS total_untung FROM list_barang a, pemesanan b, barang c, barang_reseller d WHERE b.pemesanan_id = '$pemesanan_id' AND a.lb_qty = d.br_kuantitas AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id");
+					$d = $t->row_array();
+					$total_untung = $d['total_untung'];
+					$total_omset = $d['total_omset'];
+				} elseif ($level == 2) {
+					$t = $this->db->query("SELECT SUM(a.lb_qty * d.bnr_harga) AS total_omset, (SUM(a.lb_qty * d.bnr_harga))-(SUM(a.lb_qty * $modal)) AS total_untung FROM list_barang a, pemesanan b, barang c, barang_non_reseller d WHERE b.pemesanan_id = '$pemesanan_id' AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id");
+					$d = $t->row_array();
+					$total_untung = $d['total_untung'];
+					$total_omset = $d['total_omset'];
+				}
+	
+				$total_u = $total_u + $total_untung;
+				$total_o = $total_o + $total_omset;
+			}
+	
+			$total_untung = $total_u;
+			$total_omset = $total_o;
+			$x['total_untung'] = $total_untung;
+			$x['total_omset'] = $total_omset;
+			$this->load->view('v_cetak_by_tanggal', $x);
+		}
 
-function cetak_seluruh(){
-
-}
+		function cetakTransaksiByBulanIni(){
+			$x['data'] = $this->m_pemesanan->getPemesananByBulanIni();
+			$a = $this->m_pemesanan->getPemesananByBulanIni();
+			$modal = 0;
+			$total_u = 0;
+			$total_o = 0;
+	
+			$total_untung = 0;
+			$total_omset =0;
+	
+	
+			
+			foreach ($a->result_array() as $i) {
+				$pemesanan_id = $i['pemesanan_id'];
+				$level = $i['status_customer'];
+				$b = $this->m_pemesanan->getHargaModal($pemesanan_id, $level);
+				foreach ($b as $temp) {
+					$modal = $modal + $temp['harga'];
+				}
+				if ($level == 1) {
+					$t = $this->db->query("SELECT SUM(a.lb_qty * d.br_harga) AS total_omset, (SUM(a.lb_qty * d.br_harga))-(SUM(a.lb_qty * $modal)) AS total_untung FROM list_barang a, pemesanan b, barang c, barang_reseller d WHERE b.pemesanan_id = '$pemesanan_id' AND a.lb_qty = d.br_kuantitas AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id");
+					$d = $t->row_array();
+					$total_untung = $d['total_untung'];
+					$total_omset = $d['total_omset'];
+				} elseif ($level == 2) {
+					$t = $this->db->query("SELECT SUM(a.lb_qty * d.bnr_harga) AS total_omset, (SUM(a.lb_qty * d.bnr_harga))-(SUM(a.lb_qty * $modal)) AS total_untung FROM list_barang a, pemesanan b, barang c, barang_non_reseller d WHERE b.pemesanan_id = '$pemesanan_id' AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id");
+					$d = $t->row_array();
+					$total_untung = $d['total_untung'];
+					$total_omset = $d['total_omset'];
+				}
+	
+				$total_u = $total_u + $total_untung;
+				$total_o = $total_o + $total_omset;
+			}
+	
+			$total_untung = $total_u;
+			$total_omset = $total_o;
+			$x['total_untung'] = $total_untung;
+			$x['total_omset'] = $total_omset;
+			$this->load->view('v_cetak_by_bulan_ini', $x);
+		}
 	}
+	
 
 ?>
