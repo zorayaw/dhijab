@@ -28,7 +28,7 @@
 		       $x['nonreseller'] = $this->m_barang->getDataNonReseller1();
 		        $x['produksi'] = $this->m_barang->getdataProduksi();
 		       $x['reseller'] = $this->m_barang->getAllBarangR();
-		       $x['datapesanan'] = $this->m_pemesanan->getPemesananBulanApr();
+		       $x['datapesanan'] = $this->m_pemesanan->getPemesananBulanMei(); 
 		       $this->load->view('v_header',$y);
 		       $this->load->view('admin/v_sidebar');
 		       $this->load->view('admin/v_pemesanan_all_mei',$x);
