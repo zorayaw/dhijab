@@ -9,10 +9,13 @@
 <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <body>
+<?php date_default_timezone_set("Asia/Jakarta");
+$cur_date = date("d-m-Y");?>
      <div>
           
           <div class="col-xl-12">
             <center><h1>Laporan Transaksi</h1></center>
+            <center><h3><?= $cur_date ?></h3></center>
           </div>
           <hr style="margin-left:10px;margin-right:10px;">
           <hr>
@@ -35,6 +38,7 @@
                     }
 
                     $no = 0 ;
+                  $modal = 0;
                     foreach($data->result_array() as $i) :
                       $no++;
                       $pemesanan_id = $i['pemesanan_id'];
@@ -43,18 +47,22 @@
                       $hp = $i['pemesanan_hp'];
                       $alamat = $i['pemesanan_alamat'];
                       $kurir_id = $i['kurir_id'];
-                      $level = $i['level'];
+                      $level = $i['status_customer'];
                       $kurir_nama = $i['kurir_nama'];
                       $at_id = $i['at_id'];
                       $at_nama = $i['at_nama'];
-
+                      $b = $this->m_pemesanan->getHargaModal($pemesanan_id, $level);
+                      foreach ($b as $temp) {
+                        $modal = $modal + $temp['harga'];
+                    }
+                    echo $modal;
                       if($level == 1){
-                        $q=$this->db->query("SELECT SUM(a.lb_qty * d.br_harga) AS total_keseluruhan, ((SUM(a.lb_qty * d.br_harga))-SUM(a.lb_qty * c.barang_harga_modal)) AS total FROM list_barang a, pemesanan b, barang c, barang_reseller d WHERE a.pemesanan_id = '$pemesanan_id' AND a.lb_qty = d.br_kuantitas AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id"); 
+                        $q=$this->db->query("SELECT SUM(a.lb_qty * d.br_harga) AS total_keseluruhan, ((SUM(a.lb_qty * d.br_harga))-SUM(a.lb_qty *$modal)) AS total FROM list_barang a, pemesanan b, barang c, barang_reseller d WHERE a.pemesanan_id = '$pemesanan_id' AND a.lb_qty = d.br_kuantitas AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id"); 
                         $c=$q->row_array();
                         $omset = $c['total_keseluruhan'];
                         $untung = $c['total'];
                       }elseif($level == 2){
-                        $q=$this->db->query("SELECT SUM(a.lb_qty * d.bnr_harga) AS total_keseluruhan, (SUM(a.lb_qty * d.bnr_harga))-(SUM(a.lb_qty * c.barang_harga_modal)) AS total FROM list_barang a, pemesanan b, barang c, barang_non_reseller d WHERE a.pemesanan_id = '$pemesanan_id' AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id");
+                        $q=$this->db->query("SELECT SUM(a.lb_qty * d.bnr_harga) AS total_keseluruhan, (SUM(a.lb_qty * d.bnr_harga))-(SUM(a.lb_qty * $modal)) AS total FROM list_barang a, pemesanan b, barang c, barang_non_reseller d WHERE a.pemesanan_id = '$pemesanan_id' AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id");
                         $c=$q->row_array();
                         $omset = $c['total_keseluruhan'];
                         $untung = $c['total'];

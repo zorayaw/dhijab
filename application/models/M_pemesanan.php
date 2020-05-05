@@ -250,6 +250,11 @@
         	return $hasil;
 		}
 
+		function getHargaModal($barang_id, $lvl){
+			return $this->db->query("SELECT list_barang.harga FROM list_barang WHERE barang_id = $barang_id && lb_lvl = $lvl")->result_array();
+			
+		}
+
 		function getPemesananMonth($dari,$ke){
 			$hasil=$this->db->query("SELECT a.*,b.*,c.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c WHERE (a.pemesanan_tanggal BETWEEN '$dari' AND '$ke') AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id ORDER BY a.pemesanan_id DESC");
         	return $hasil;
