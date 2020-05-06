@@ -521,6 +521,7 @@
       $hp = $i['pemesanan_hp'];
       $alamat = $i['pemesanan_alamat'];
       $kurir_id1 = $i['kurir_id'];
+      $resi=$i['no_resi'];
       $level = $i['status_customer'];
       $kurir_nama = $i['kurir_nama'];
       $at_id1 = $i['at_id'];
@@ -577,7 +578,7 @@
                   </div>
                   <div class="col-md-12">
                     <label class="control-label">Kurir</label>
-                    <select class="form-control" name="kurir" required>
+                    <select class="form-control" name="kurir" id="editr<?=$pemesanan_id?>" onchange="editresi(<?=$pemesanan_id?>)" required>
                       <option selected value="">Pilih</option>
                       <?php
                       foreach ($kurir->result_array() as $i) :
@@ -586,12 +587,30 @@
                         $kurir_tanggal = $i['kurir_tanggal'];
                         if ($kurir_id1 == $kurir_id) {
                           echo "<option selected value='$kurir_id'>$kurir_nama</option>";
+                          $kn = $kurir_id;
                         } else {
                           echo "<option value='$kurir_id'>$kurir_nama</option>";
                         }
                       endforeach;
                       ?>
                     </select>
+
+                    <?php if($kn == 1):?>
+                          <div class="col-md-12 resi" id="c">
+                              <br>
+                              <label class="control-label">Nomor Resi</label>
+                              <input value="<?php echo $resi ?>" class="form-control form-white" type="text" name="no_resi" required />
+                              <br>
+                          </div>
+                    <?php elseif($kn == 2):?>
+                          <div class="col-md-12 resi" id="d">
+                              <br>
+                              <label class="control-label">Nomor Resi</label>
+                              <input value="<?php echo $resi ?>" class="form-control form-white" type="text" name="no_resi" required />
+                              <br>
+                          </div>
+                    <?php endif; ?>
+
                   </div>
                   <div class="col-md-12">
                     <label class="control-label">Metode Pembayaran</label>
@@ -849,6 +868,46 @@
 </body>
 
 </html>
+
+
+<script type="text/javascript">
+  function editresi(num){
+      var e = document.getElementById("editr"+num);
+      var krr = e.options[e.selectedIndex].value;
+        if(krr == 1) {
+            $("#editr"+num).after(`
+                      <div class="col-md-12 resi${num}" id="a${num}">
+                        <br>
+                        <label class="control-label">Nomor Resi</label>
+                        <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" required />
+                        <br>
+                      </div>
+            `);
+            $("#b"+num).remove();
+            $("#c").remove();
+            $("#d").remove();
+          }
+        
+        else if(krr == 2) {
+          $("#editr"+num).after(`
+                    <div class="col-md-12 resi${num}" id="b${num}">
+                      <br>
+                      <label class="control-label">Nomor Resi</label>
+                      <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" required />
+                      <br>
+                    </div>
+          `);
+          $("#a"+num).remove();
+          $("#c").remove();
+          $("#d").remove();
+        }
+        else{
+          $(".resi"+num).remove();
+        }
+  }
+
+</script>
+
 
 <script type="text/javascript">
   function noresiCus(){
