@@ -280,7 +280,7 @@
         	return $hsl;
 		}
 
-		function hapus_pesanan($pemesanan_id){
+		function hapus_pesanan($pemesanan_id){ 
 			$this->db->trans_start();
 				$this->db->query("UPDATE pemesanan SET status_pemesanan=4 WHERE pemesanan_id='$pemesanan_id'");
 

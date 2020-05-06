@@ -93,7 +93,7 @@ class Pemesanan extends CI_Controller
 	}
 
 	function hapus_pesananCustomer()
-	{
+	{ 
 		$pemesanan_id = $this->input->post('pemesanan_id');
 		$this->m_pemesanan->hapus_pesanan($pemesanan_id);
 		echo $this->session->set_flashdata('msg', 'hapus');

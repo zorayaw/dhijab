@@ -99,7 +99,7 @@
 		function hapus_list_barang($pemesanan_id,$lb_id,$qty,$barang_id){
 			$this->db->trans_start();
 				$this->db->query("DELETE FROM list_barang WHERE lb_id='$lb_id'");
-				$this->db->query("UPDATE barang SET barang_stock_akhir = barang_stock_akhir+'$qty' WHERE barang_id = '$barang_id'");
+				$this->db->query("UPDATE barang SET barang_stok = barang_stok+'$qty' WHERE barang_id = '$barang_id'");
 				$this->db->query("DELETE FROM history_stock_barang WHERE pemesanan_id='$pemesanan_id' AND barang_id = '$barang_id'");
 	      	$this->db->trans_complete();
 	        if($this->db->trans_status()==true)
