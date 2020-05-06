@@ -25,7 +25,7 @@
            
             <div class="col-md-3">
               <a href="" data-toggle="modal" data-target="#reseller" class="btn btn-primary btn-block ripple m-t-10">
-                <i class="fa fa-plus pr-2"></i> Tambah Pemesanan Reseller
+                <i class="fa fa-plus pr-2"></i>Pemesanan Reseller
               </a>
             </div>
 
@@ -49,6 +49,7 @@
                   <th>Alamat</th>
                   <th>Email </th>
                   <th>Ekspedisi</th>
+                  <th>Nomor resi</th>
                   <th>Biaya Ongkir</th>
                   <th>Asal Transaksi</th>
                   <th>Metode Pembayaran</th>
@@ -86,6 +87,7 @@
                   $alamat = $i['pemesanan_alamat'];
                   $email = $i['email_pemesan'];
                   $kurir_id = $i['kurir_id'];
+                  $resi = $i['no_resi'];
                   $ongkir = $i['biaya_ongkir'];
                   $mp_id1 = $i['mp_id'];
                   $mp_nama = $i['mp_nama'];
@@ -118,6 +120,7 @@
                     <td><?php echo $alamat ?></td>
                       <td><?php echo $email ?></td>
                     <td><?php echo $kurir_nama ?></td>
+                    <td><?php echo $resi ?></td>
                     <td><?php echo $ongkir ?></td>
                     <td><?php echo $at_nama ?></td>
                     <td><?php echo $mp_nama ?></td>
@@ -234,7 +237,7 @@
                 </div>
                 <div class="col-md-12">
                   <label class="control-label">Jenis Ekspedisi</label>
-                  <select class="form-control" name="kurir" required>
+                  <select class="form-control" name="kurir" onchange="noresiRes()" id="expres" required>
                     <option selected value="">Pilih</option>
                     <?php
                     foreach ($kurir->result_array() as $i) :
@@ -652,6 +655,44 @@
 </body>
 
 </html>
+
+
+<script type="text/javascript">
+  function noresiRes(){
+      var e = document.getElementById("expres");
+      var krr = e.options[e.selectedIndex].value;
+        if(krr == 1) {
+            $("#expres").after(`
+                      <div class="col-md-12 resi" id="a">
+                        <br>
+                        <label class="control-label">Nomor Resi</label>
+                        <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" required />
+                        <br>
+                      </div>
+            `);
+            $("#b").remove();
+          }
+        
+        else if(krr == 2) {
+          $("#expres").after(`
+                    <div class="col-md-12 resi" id="b">
+                      <br>
+                      <label class="control-label">Nomor Resi</label>
+                      <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" required />
+                      <br>
+                    </div>
+          `);
+          $("#a").remove();
+        }
+        else{
+          $(".resi").remove();
+        }
+  }
+
+</script>
+
+
+
 <script type="text/javascript">
   $(document).ready(function () {
       $('select').selectize({

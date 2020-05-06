@@ -26,7 +26,7 @@
 
               <div class="col-md-3">
               <a href="" data-toggle="modal" data-target="#produksi" class="btn btn-primary btn-block ripple m-t-20">
-                <i class="fa fa-plus pr-2"></i> Tambah Pemesanan Produksi
+                <i class="fa fa-plus pr-2"></i>Pemesanan Produksi
               </a>
             </div>
             <div class="col-md-3">
