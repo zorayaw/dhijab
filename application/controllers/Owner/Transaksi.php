@@ -314,8 +314,8 @@
 			$x['bulan'] = $bulan;
 			$x['awal'] = $awal;
 			$x['akhir'] = $akhir;
-			$x['data'] = $this->m_pemesanan->getPemesananByBulanTanpaTahun($bulan);
-			$a = $this->m_pemesanan->getPemesananByBulanTanpaTahun($bulan);
+			$x['data'] = $this->m_pemesanan->getPemesananByBulanTanpaTahun($bulan, $awal, $akhir);
+			$a = $this->m_pemesanan->getPemesananByBulanTanpaTahun($bulan, $awal, $akhir);
 			$modal = 0;
 			$total_u = 0;
 			$total_o = 0;
