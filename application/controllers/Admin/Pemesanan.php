@@ -616,14 +616,14 @@ class Pemesanan extends CI_Controller
 		}
 	}
 
-	function Cetak_Invoice($pemesanan_id)
+	function Cetak_Invoice($pemesanan_id) 
 	{
 		$level = $this->uri->segment(5);
 		if ($level == 1) {
 			$y['title'] = "Cetak Invoice id: " . $pemesanan_id;
 			$x['p_id'] = $pemesanan_id;
 			$x['lvl'] = $level;
-			$x['listbarang'] = $this->m_list_barang->getLBRbyid($pemesanan_id);
+			$x['listbarang'] = $this->m_list_barang->get_list_barang($pemesanan_id);
 			$x['pemesan'] = $this->m_pemesanan->getIdbyid($pemesanan_id);
 			$a = $this->m_pemesanan->getIdbyid($pemesanan_id)->row_array();
 			$x['kurir'] = $a['kurir_nama'];
@@ -634,7 +634,7 @@ class Pemesanan extends CI_Controller
 			$y['title'] = "Cetak Invoice id: " . $pemesanan_id;
 			$x['p_id'] = $pemesanan_id;
 			$x['lvl'] = $level;
-			$x['listbarang'] = $this->m_list_barang->getLBNRbyid($pemesanan_id);
+			$x['listbarang'] = $this->m_list_barang->get_list_barang($pemesanan_id);
 			$x['pemesan'] = $this->m_pemesanan->getIdbyid($pemesanan_id);
 			$a = $this->m_pemesanan->getIdbyid($pemesanan_id)->row_array();
 			$x['kurir'] = $a['kurir_nama'];

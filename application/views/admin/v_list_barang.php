@@ -52,7 +52,7 @@
                       return $hasil_rupiah;
                     }
 
-                    $no = 0 ;
+                    $no = 0 ; 
                     foreach($listbarang->result_array() as $i) :
                       $no++;
                       $lb_id = $i['lb_id'];
