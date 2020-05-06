@@ -87,7 +87,7 @@
 		}
 
 		function getAllBarang(){
-			$hasil=$this->db->query("SELECT barang.barang_id,barang.barang_nama,barang.barang_stok,kategori_barang.nama_kategori FROM barang,kategori_barang WHERE barang_stok > 0 and kategori_barang.id_kategori_barang=barang.id_kategori_barang ORDER BY barang_nama");
+			$hasil=$this->db->query("SELECT barang.barang_id,barang.barang_nama,barang.barang_stok, barang.id_kategori_barang ,kategori_barang.nama_kategori FROM barang,kategori_barang WHERE barang_stok > 0 and kategori_barang.id_kategori_barang=barang.id_kategori_barang ORDER BY barang_nama");
         	return $hasil;
 		}
 		function getAllBarangR(){

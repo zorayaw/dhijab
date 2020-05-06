@@ -13,9 +13,9 @@
      <div>
           
           <div class="col-xl-12">
-            <center><h1>Laporan Transaksi</h1></center>
-            <center><h4>(<?php 
-                  switch (date('m')){
+            <center><h1>Laporan Transaksi Tahunan</h1></center>
+            <center><h4><?php 
+                  switch ($bulan){
                     case 1 : echo "Januari"; break;
                     case 2 : echo "Februari"; break;
                     case 3 : echo "Maret"; break;
@@ -29,7 +29,7 @@
                     case 11 : echo "November"; break;
                     case 12 : echo "Desember"; break;
                   }
-                  ?> <?= date('Y')?>) </h4></center>
+                  ?> <?= $awal." - ".$akhir?></h4></center>
           </div>
           <hr style="margin-left:10px;margin-right:10px;">
           <hr>

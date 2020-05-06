@@ -87,7 +87,7 @@
         </div>   
       </div>
 
-       <!-- Modal Add Barang Reseller-->
+       <!-- Modal Add Barang Non Reseller-->
         <div class="modal" tabindex="-1" role="dialog" id="kurir">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">

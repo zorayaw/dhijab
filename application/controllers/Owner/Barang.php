@@ -27,7 +27,7 @@ class Barang extends CI_Controller
 			$x['kategori_barang'] = $this->m_barang->getkategori_barang();
 			$this->load->view('v_header', $y);
 			$this->load->view('owner/v_sidebar');
-			$this->load->view('owner/v_barang_non_reseller', $x);
+			$this->load->view('owner/v_seluruh_barang', $x);
 		} else {
 			redirect('Login');
 		}

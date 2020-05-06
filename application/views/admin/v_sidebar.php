@@ -28,7 +28,7 @@
               <a href="<?php echo base_url()?>Admin/PemesananAllMar"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Maret</span> </a>
             </li>
             <li>
-              <a href="<?php echo base_url()?>Admin/PemesananAllApr"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering April</span> </a>
+              <a href="<?php echo base_url()?>Admin/PemesananAllApril"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering April</span> </a>
             </li>
             <li>
               <a href="<?php echo base_url()?>Admin/PemesananAllMei"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Mei</span> </a>
