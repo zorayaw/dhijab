@@ -165,40 +165,40 @@
               <a href="<?php echo base_url()?>Admin/PemesananProduksi/"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi </span> </a>
             </li>
             <li>
-              <a href="<?php echo base_url()?>Admin/PemesananProduksiJanuari"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi Januari</span> </a>
+              <a href="<?php echo base_url()?>Admin/PemesananProduksiByBulan/viewPemesananByBulan/1"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi Januari</span> </a>
             </li>
             <li>
-              <a href="<?php echo base_url()?>Admin/PemesananProduksiFebruari"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi Februari</span> </a>
+              <a href="<?php echo base_url()?>Admin/PemesananProduksiByBulan/viewPemesananByBulan/2"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi Februari</span> </a>
             </li>
             <li>
-              <a href="<?php echo base_url()?>Admin/PemesananProduksiMaret"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi Maret</span> </a>
+              <a href="<?php echo base_url()?>Admin/PemesananProduksiByBulan/viewPemesananByBulan/3"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi Maret</span> </a>
             </li>
             <li>
-              <a href="<?php echo base_url()?>Admin/PemesananProduksiApril"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi April</span> </a>
+              <a href="<?php echo base_url()?>Admin/PemesananProduksiByBulan/viewPemesananByBulan/4"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi April</span> </a>
             </li>
             <li>
-              <a href="<?php echo base_url()?>Admin/PemesananProduksiMei"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi Mei</span> </a>
+              <a href="<?php echo base_url()?>Admin/PemesananProduksiByBulan/viewPemesananByBulan/5"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi Mei</span> </a>
             </li>
             <li>
-              <a href="<?php echo base_url()?>Admin/PemesananProduksiJuni"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi Juni</span> </a>
+              <a href="<?php echo base_url()?>Admin/PemesananProduksiByBulan/viewPemesananByBulan/6"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi Juni</span> </a>
             </li>
             <li>
-              <a href="<?php echo base_url()?>Admin/PemesananProduksiJuli"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi Juli</span> </a>
+              <a href="<?php echo base_url()?>Admin/PemesananProduksiByBulan/viewPemesananByBulan/7"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi Juli</span> </a>
             </li>
             <li>
-              <a href="<?php echo base_url()?>Admin/PemesananProduksiAgustus"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi Agustus</span> </a>
+              <a href="<?php echo base_url()?>Admin/PemesananProduksiByBulan/viewPemesananByBulan/8"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi Agustus</span> </a>
             </li>
             <li>
-              <a href="<?php echo base_url()?>Admin/PemesananProduksiSeptember"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi September</span> </a>
+              <a href="<?php echo base_url()?>Admin/PemesananProduksiByBulan/viewPemesananByBulan/9"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi September</span> </a>
             </li>
             <li>
-              <a href="<?php echo base_url()?>Admin/PemesananProduksiOktober"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi Oktober</span> </a>
+              <a href="<?php echo base_url()?>Admin/PemesananProduksiByBulan/viewPemesananByBulan/10"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi Oktober</span> </a>
             </li>
             <li>
-              <a href="<?php echo base_url()?>Admin/PemesananProduksiNovember"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi November</span> </a>
+              <a href="<?php echo base_url()?>Admin/PemesananProduksiByBulan/viewPemesananByBulan/11"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi November</span> </a>
             </li>
             <li>
-              <a href="<?php echo base_url()?>Admin/PemesananProduksiDesember"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi Desember</span> </a>
+              <a href="<?php echo base_url()?>Admin/PemesananProduksiByBulan/viewPemesananByBulan/12"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Produksi Desember</span> </a>
             </li>
         </ul>
       </li>
