@@ -39,6 +39,73 @@ class Pemesanan extends CI_Controller
 		}
 	}
 
+	function convertExcel(){
+		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
+			$y['title'] = "Pemesanan";
+			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+			$x['kurir'] = $this->m_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+			$x['produksi'] = $this->m_barang->getdataProduksi();
+			$x['reseller'] = $this->m_barang->getAllBarangR();
+			$x['datapesanan'] = $this->m_pemesanan->getPemesanan();
+			$this->load->view('admin/laporan_excel', $x);
+		} else {
+			redirect('Login');
+		}
+	}
+
+	function convertExcelPerhari(){
+		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
+			$y['title'] = "Pemesanan";
+			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+			$x['kurir'] = $this->m_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+			$x['produksi'] = $this->m_barang->getdataProduksi();
+			$x['reseller'] = $this->m_barang->getAllBarangR();
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananCurdate();
+			$this->load->view('admin/laporan_excel', $x);
+		} else {
+			redirect('Login');
+		}
+	}	
+
+	function convertExcelPerbulan(){
+		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
+			$y['title'] = "Pemesanan";
+			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+			$x['kurir'] = $this->m_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+			$x['produksi'] = $this->m_barang->getdataProduksi();
+			$x['reseller'] = $this->m_barang->getAllBarangR();
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananByBulanIni();
+			$this->load->view('admin/laporan_excel', $x);
+		} else {
+			redirect('Login');
+		}
+	}
+
+	function convertExcelByTanggal(){
+		$start = $this->input->post('start_date');
+		$end = $this->input->post('end_date');
+		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
+			$y['title'] = "Pemesanan";
+			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+			$x['kurir'] = $this->m_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+			$x['produksi'] = $this->m_barang->getdataProduksi();
+			$x['reseller'] = $this->m_barang->getAllBarangR();
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananByTanggal($start, $end);
+			$this->load->view('admin/laporan_excel', $x);
+		} else {
+			redirect('Login');
+		}
+	}
+
+
 	function customer()
 	{
 		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
