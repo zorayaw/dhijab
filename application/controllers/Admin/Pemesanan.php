@@ -798,25 +798,26 @@ class Pemesanan extends CI_Controller
 	}
 
 	function viewPemesananByBulan($bulan){
-		switch ($bulan){
-			case 1 : $x['namaBulan'] = "Januari"; $x['tanggalAkhir'] = 31; break;
-			case 2 : $x['namaBulan'] =  "Februari"; 
-			switch(date('Y')%4) {
-				case 0 : $x['tanggalAkhir'] = 29; break;
-				case 1 : $x['tanggalAkhir'] = 28; break;
-			}break;
-			case 3 : $x['namaBulan'] =  "Maret"; $x['tanggalAkhir'] = 31; break;
-			case 4 : $x['namaBulan'] =  "April"; $x['tanggalAkhir'] = 30; break;
-			case 5 : $x['namaBulan'] =  "May"; $x['tanggalAkhir'] = 31; break;
-			case 6 : $x['namaBulan'] =  "Juni"; $x['tanggalAkhir'] = 30;break;
-			case 7 : $x['namaBulan'] =  "Juli"; $x['tanggalAkhir'] = 31; break;
-			case 8 : $x['namaBulan'] =  "Agustus"; $x['tanggalAkhir'] = 31; break;
-			case 9 : $x['namaBulan'] =  "September"; $x['tanggalAkhir'] = 30;break;
-			case 10 : $x['namaBulan'] =  "Oktober"; $x['tanggalAkhir'] = 31; break;
-			case 11 : $x['namaBulan'] =  "November"; $x['tanggalAkhir'] = 30;break;
-			case 12 : $x['namaBulan'] =  "Desember"; $x['tanggalAkhir'] = 31; break;
-		  }
 		if($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true){
+			switch ($bulan){
+				case 1 : $x['namaBulan'] = "Januari"; $x['tanggalAkhir'] = 31; break;
+				case 2 : $x['namaBulan'] =  "Februari"; 
+				switch(date('Y')%4) {
+					case 0 : $x['tanggalAkhir'] = 29; break;
+					case 1 : $x['tanggalAkhir'] = 28; break;
+				}break;
+				case 3 : $x['namaBulan'] =  "Maret"; $x['tanggalAkhir'] = 31; break;
+				case 4 : $x['namaBulan'] =  "April"; $x['tanggalAkhir'] = 30; break;
+				case 5 : $x['namaBulan'] =  "May"; $x['tanggalAkhir'] = 31; break;
+				case 6 : $x['namaBulan'] =  "Juni"; $x['tanggalAkhir'] = 30;break;
+				case 7 : $x['namaBulan'] =  "Juli"; $x['tanggalAkhir'] = 31; break;
+				case 8 : $x['namaBulan'] =  "Agustus"; $x['tanggalAkhir'] = 31; break;
+				case 9 : $x['namaBulan'] =  "September"; $x['tanggalAkhir'] = 30;break;
+				case 10 : $x['namaBulan'] =  "Oktober"; $x['tanggalAkhir'] = 31; break;
+				case 11 : $x['namaBulan'] =  "November"; $x['tanggalAkhir'] = 30;break;
+				case 12 : $x['namaBulan'] =  "Desember"; $x['tanggalAkhir'] = 31; break;
+			  }
+
 			$namaBulan = $x['namaBulan'];
 			$x['bulan'] = $bulan;
 			$y['title'] = "Pemesanan Bulan $namaBulan";
