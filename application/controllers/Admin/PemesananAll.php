@@ -170,7 +170,7 @@
 	  		echo $this->session->set_flashdata('msg','update');
 	       	redirect('Admin/PemesananAll');	
 	  	}
-
+ 
 	  	function hapus_pesanan(){
 	  		$pemesanan_id = $this->input->post('pemesanan_id');
 	  		$this->m_pemesanan->hapus_pesanan($pemesanan_id);

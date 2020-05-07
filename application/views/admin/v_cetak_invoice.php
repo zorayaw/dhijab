@@ -33,7 +33,7 @@
         <p style="font-size: 12px;margin-bottom: 0;"><b>Bukalapak</b> : Msglow Palembang</p>
       </div>
     </div>
-    <div class="col-md-5" style="margin-top: 20px">
+    <div class="col-md-5" style="margin-top: 20px"> 
       <h5>Kepada : </h5>
       <?php
       foreach ($pemesan->result_array() as $i) :
@@ -71,7 +71,63 @@
 
     </div>
   </div>
+  <div class="row">   
+      <div class="col-xl-12 mb-30">     
+        <div class="card card-statistics h-100"> 
+          <div class="card-body">
+            <div class="table-responsive">
+            <table id="datatable" class="table table-striped table-bordered p-0">
+              <thead>
+                  <tr>
+                      <th width="20">No</th>
+                      <th>Barang Nama</th>
+                      <th>Jumlah Barang</th>
+                      <th>Harga per item</th>
+                      <th>Total Harga</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <?php
+                      $jumlah=0;
+                    function rupiah($angka){
+                      $hasil_rupiah = "Rp " . number_format($angka,0,',','.');
+                      return $hasil_rupiah;
+                    }
+
+                    $no = 0 ; 
+                    foreach($listbarang->result_array() as $i) :
+                      $no++;
+                      $lb_id = $i['lb_id'];
+                      $pemesanan_nama = $i['pemesanan_nama'];
+                      $pemesanan_id = $i['pemesanan_id'];
+                      $barang_id = $i['barang_id'];
+                      $qty = $i['lb_qty'];
+                      $barang_nama = $i['barang_nama'];
+                      $bnr_harga = $i['bnr_harga'];
+                      $total = $i['total'];
+                      $jumlah=$total+$jumlah;
+                  ?>
+                    <tr>
+                     <td><center><?php echo $no?></center></td>
+                      <td><?php echo $barang_nama?></td>
+                      <td><?php echo $qty?></td>
+                      <td><?php echo rupiah($bnr_harga)?></td>
+                      <td><?php echo rupiah($total)?></td>
+                    </tr>
+                    <?php endforeach;?>
+                    <tr>
+                      <th colspan="4"><center>Jumlah</center></th>
+                      <th><?php echo rupiah($jumlah)?></th>
+                    </tr>
+              </tbody>
+           </table>
+          </div>
+          </div>
+        </div>   
+      </div>
+  </div>
   <hr style="color: black;margin-top: 10px;margin-bottom: 10px; border-color: black;width: 100%;">
+
 
 </body>
 

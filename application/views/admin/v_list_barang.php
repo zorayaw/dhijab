@@ -52,7 +52,7 @@
                       return $hasil_rupiah;
                     }
 
-                    $no = 0 ;
+                    $no = 0 ; 
                     foreach($listbarang->result_array() as $i) :
                       $no++;
                       $lb_id = $i['lb_id'];
@@ -61,7 +61,7 @@
                       $barang_id = $i['barang_id'];
                       $qty = $i['lb_qty'];
                       $barang_nama = $i['barang_nama'];
-                      $bnr_harga = $i['bnr_harga'];
+                      $bnr_harga = $i['bnr_harga']; 
                       $total = $i['total'];
                       $jumlah=$total+$jumlah;
                   ?>
