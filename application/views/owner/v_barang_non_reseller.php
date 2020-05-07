@@ -158,16 +158,8 @@
         <?php endforeach;?>
 
         <?php foreach($nonreseller->result_array() as $i) :
-          $gambar = $i['barang_foto'];
           $barang_id = $i['barang_id'];
           $barang_nama = $i['barang_nama'];
-          $barang_stock_awal = $i['barang_stock_awal'];
-          $barang_stock_akhir = $i['barang_stock_akhir'];
-          $barang_harga_modal = $i['barang_harga_modal'];
-          $barang_level = $i['barang_level'];
-          $tanggal = $i['tanggal'];
-          $bnr_id = $i['bnr_id'];
-          $harga_normal = $i['bnr_harga'];
         ?>
         <div class="modal" tabindex="-1" role="dialog" id="hapusdata<?php echo $barang_id?>">
             <div class="modal-dialog">
@@ -181,7 +173,6 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <input type="hidden" name="barang_id" value="<?php echo $barang_id?>"/> 
-                                    <input type="hidden" name="barang_foto" value="<?php echo $gambar?>"/>
                                     <input type="hidden" name="bnr_id" value="bnr_id">
                                     <p>Apakah kamu yakin ingin menghapus data ini?</i></b></p>
                                 </div>
