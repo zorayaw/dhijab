@@ -63,7 +63,8 @@
 	  		$no_hp = $this->input->post('hp');
 	  		$alamat = $this->input->post('alamat');
 	  		$asal_transaksi = $this->input->post('at');
-	  		$kurir = $this->input->post('kurir');
+			  $kurir = $this->input->post('kurir');
+			  $resi = $this->input->post('no_resi');
 	  		$metpem = $this->input->post('metpem');
 			$tanggal = $this->input->post('tanggal');
 			$diskon = $this->input->post('diskon');
@@ -77,7 +78,7 @@
 	  		$note=$this->input->post('note');
 	  		$status=0;
 	  		$level = 2;
-	  		$pemesanan_id=$this->m_pemesanan->save_pesanan($nama_pemesan,$tanggal,$no_hp,$alamat,$level,$kurir,$asal_transaksi,$metpem,$uang,$biaya_ongkir,$email_pemesanan,$note,$status,$biaya_admin,$diskon,$nama_akun_pemesan);
+	  		$pemesanan_id=$this->m_pemesanan->save_pesanan($nama_pemesan,$tanggal,$no_hp,$alamat,$level,$kurir,$resi,$asal_transaksi,$metpem,$uang,$biaya_ongkir,$email_pemesanan,$note,$status,$biaya_admin,$diskon,$nama_akun_pemesan);
 			
 	  		$size = sizeof($barang_id);
 
@@ -125,11 +126,12 @@
 	  		$no_hp = $this->input->post('hp');
 	  		$alamat = $this->input->post('alamat');
 	  		$asal_transaksi = $this->input->post('at');
-	  		$kurir = $this->input->post('kurir');
+			  $kurir = $this->input->post('kurir');
+			  $resi = $this->input->post('no_resi');
 	  		$metode_pembayaran = $this->input->post('mp');
 	  		// $tanggal = $this->input->post('tanggal');
 
-	  		$this->m_pemesanan->edit_pesanan($pemesanan_id,$nama_pemesan,$no_hp,$alamat,$kurir,$asal_transaksi,$metode_pembayaran);
+	  		$this->m_pemesanan->edit_pesanan($pemesanan_id,$nama_pemesan,$no_hp,$alamat,$kurir,$resi,$asal_transaksi,$metode_pembayaran);
 	  		echo $this->session->set_flashdata('msg','update');
 	       	redirect('Admin/PemesananResellerNovember');	
 	  	}

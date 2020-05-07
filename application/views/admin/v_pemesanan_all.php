@@ -25,18 +25,18 @@
           <div class="col-xl-12 mb-10" style="display: flex">
             <div class="col-md-3">
               <a href="" data-toggle="modal" data-target="#tambah-pesanan-non-reseller" class="btn btn-primary btn-block ripple m-t-10">
-                <i class="fa fa-plus pr-2"></i> Tambah Pemesanan Customer
+                <i class="fa fa-plus pr-2"></i>Pemesanan Customer
               </a>
             </div>
             <div class="col-md-3">
               <a href="" data-toggle="modal" data-target="#reseller" class="btn btn-primary btn-block ripple m-t-10">
-                <i class="fa fa-plus pr-2"></i> Tambah Pemesanan Reseller
+                <i class="fa fa-plus pr-2"></i>Pemesanan Reseller
               </a>
             </div>
 
               <div class="col-md-3">
               <a href="" data-toggle="modal" data-target="#produksi" class="btn btn-primary btn-block ripple m-t-20">
-                <i class="fa fa-plus pr-2"></i> Tambah Pemesanan Produksi
+                <i class="fa fa-plus pr-2"></i>Pemesanan Produksi
               </a>
             </div>
             <div class="col-md-3">
@@ -59,6 +59,7 @@
                   <th>Alamat</th>
                   <th>Email </th>
                   <th>Ekspedisi</th>
+                  <th>Nomor Resi</th>
                   <th>Biaya Ongkir</th>
                   <th>Asal Transaksi</th>
                   <th>Metode Pembayaran</th>
@@ -97,6 +98,7 @@
                   $alamat = $i['pemesanan_alamat'];
                   $email = $i['email_pemesan'];
                   $kurir_id = $i['kurir_id'];
+                  $resi = $i['no_resi'];
                   $ongkir = $i['biaya_ongkir'];
                   $mp_id1 = $i['mp_id'];
                   $mp_nama = $i['mp_nama'];
@@ -142,6 +144,7 @@
                     <td><?php echo $alamat ?></td>
                       <td><?php echo $email ?></td>
                     <td><?php echo $kurir_nama ?></td>
+                    <td><?php echo $resi ?></td>
                     <td><?php echo $ongkir ?></td>
                     <td><?php echo $at_nama ?></td>
                     <td><?php echo $mp_nama ?></td>
@@ -253,7 +256,7 @@
                 </div>
                 <div class="col-md-12">
                   <label class="control-label">Jenis Ekspedisi</label>
-                  <select class="form-control" name="kurir" required>
+                  <select class="form-control" name="kurir" onchange="noresiCus()" id="expcus" required>
                     <option selected value="">Pilih</option>
                     <?php
                     foreach ($kurir->result_array() as $i) :
@@ -387,7 +390,7 @@
                 </div>
                 <div class="col-md-12">
                   <label class="control-label">Jenis Ekspedisi</label>
-                  <select class="form-control" name="kurir" required>
+                  <select class="form-control" name="kurir" onchange="noresiRes()" id="expres" required>
                     <option selected value="">Pilih</option>
                     <?php
                     foreach ($kurir->result_array() as $i) :
@@ -535,6 +538,7 @@
       $hp = $i['pemesanan_hp'];
       $alamat = $i['pemesanan_alamat'];
       $kurir_id1 = $i['kurir_id'];
+      $resi = $i['no_resi'];
       $level = $i['status_customer'];
       $kurir_nama = $i['kurir_nama'];
       $at_id1 = $i['at_id'];
@@ -562,10 +566,6 @@
                     <label class="control-label">No HP</label>
                     <input class="form-control form-white" type="number" name="hp" value="<?php echo $hp ?>" required />
                   </div>
-                  <!--                                <div class="col-md-12">
-                                                  <label class="control-label">Tanggal</label>
-                                                  <input class="form-control form-white" type="date" name="tanggal"/>
-                                              </div> -->
                   <div class="col-md-12">
                     <label class="control-label">Alamat</label>
                     <input class="form-control form-white" type="text" name="alamat" value="<?php echo $alamat ?>" required />
@@ -591,7 +591,7 @@
                   </div>
                   <div class="col-md-12">
                     <label class="control-label">Kurir</label>
-                    <select class="form-control" name="kurir" required>
+                    <select class="form-control" id="editr<?=$pemesanan_id?>" onchange="editresi(<?=$pemesanan_id?>)" name="kurir" required>
                       <option selected value="">Pilih</option>
                       <?php
                       foreach ($kurir->result_array() as $i) :
@@ -600,12 +600,30 @@
                         $kurir_tanggal = $i['kurir_tanggal'];
                         if ($kurir_id1 == $kurir_id) {
                           echo "<option selected value='$kurir_id'>$kurir_nama</option>";
+                          $kn = $kurir_id; 
                         } else {
                           echo "<option value='$kurir_id'>$kurir_nama</option>";
                         }
                       endforeach;
                       ?>
                     </select>
+                    <?php if($kn == 1):?>
+                          <div class="col-md-12 resi<?=$pemesanan_id?>" id="c">
+                              <br>
+                              <label class="control-label">Nomor Resi</label>
+                              <input value="<?php echo $resi ?>" class="form-control form-white" type="text" name="no_resi" required />
+                              <br>
+                          </div>
+                    <?php endif; ?>
+                    <?php if($kn == 2):?>
+                          <div class="col-md-12 resi<?=$pemesanan_id?>" id="d">
+                              <br>
+                              <label class="control-label">Nomor Resi</label>
+                              <input value="<?php echo $resi ?>" class="form-control form-white" type="text" name="no_resi" required />
+                              <br>
+                          </div>
+                    <?php endif; ?>
+
                   </div>
                   <div class="col-md-12">
                     <label class="control-label">Metode Pembayaran</label>
@@ -863,6 +881,114 @@
 </body>
 
 </html>
+
+<script type="text/javascript">
+  function editresi(num){
+      var e = document.getElementById("editr"+num);
+      var krr = e.options[e.selectedIndex].value;
+        if(krr == 1) {
+            $("#editr"+num).after(`
+                      <div class="col-md-12 resi${num}" id="a${num}">
+                        <br>
+                        <label class="control-label">Nomor Resi</label>
+                        <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" required />
+                        <br>
+                      </div>
+            `);
+            $("#b"+num).remove();
+            $("#c").remove();
+            $("#d").remove();
+          }
+        
+        else if(krr == 2) {
+          $("#editr"+num).after(`
+                    <div class="col-md-12 resi${num}" id="b${num}">
+                      <br>
+                      <label class="control-label">Nomor Resi</label>
+                      <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" required />
+                      <br>
+                    </div>
+          `);
+          $("#a"+num).remove();
+          $("#c").remove();
+          $("#d").remove();
+        }
+        else{
+          $(".resi"+num).remove();
+        }
+  }
+
+</script>
+
+
+<script type="text/javascript">
+  function noresiCus(){
+      var e = document.getElementById("expcus");
+      var krr = e.options[e.selectedIndex].value;
+        if(krr == 1) {
+            $("#expcus").after(`
+                      <div class="col-md-12 resi" id="a">
+                        <br>
+                        <label class="control-label">Nomor Resi</label>
+                        <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" required />
+                        <br>
+                      </div>
+            `);
+            $("#b").remove();
+          }
+        
+        else if(krr == 2) {
+          $("#expcus").after(`
+                    <div class="col-md-12 resi" id="b">
+                      <br>
+                      <label class="control-label">Nomor Resi</label>
+                      <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" required />
+                      <br>
+                    </div>
+          `);
+          $("#a").remove();
+        }
+        else{
+          $(".resi").remove();
+        }
+  }
+
+</script>
+
+<script type="text/javascript">
+  function noresiRes(){
+      var e = document.getElementById("expres");
+      var krr = e.options[e.selectedIndex].value;
+        if(krr == 1) {
+            $("#expres").after(`
+                      <div class="col-md-12 resi" id="a">
+                        <br>
+                        <label class="control-label">Nomor Resi</label>
+                        <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" required />
+                        <br>
+                      </div>
+            `);
+            $("#b").remove();
+          }
+        
+        else if(krr == 2) {
+          $("#expres").after(`
+                    <div class="col-md-12 resi" id="b">
+                      <br>
+                      <label class="control-label">Nomor Resi</label>
+                      <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" required />
+                      <br>
+                    </div>
+          `);
+          $("#a").remove();
+        }
+        else{
+          $(".resi").remove();
+        }
+  }
+</script>
+
+
 <script type="text/javascript">
   $(document).ready(function () {
       $('select').selectize({
@@ -885,8 +1011,7 @@
     var i = 1;
     $('#add').click(function() {
       i++;
-      $('#dynamic_field').append('<div class="row" id="row' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($nonreseller->result_array() as $i) : $barang_id = $i['barang_id'];
-                                                                                                                                                                                                                              $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>')
+      $('#dynamic_field').append('<div class="row" id="row' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($nonreseller->result_array() as $i) : $barang_id = $i['barang_id'];                                                                                                     $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>')
       ;
       $('select').selectize({
           sortField: 'text'
@@ -913,8 +1038,7 @@
     var i = 1;
     $('#add1').click(function() {
       i++;
-      $('#dynamic_field1').append('<div class="row" id="roww' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($reseller->result_array() as $i) : $barang_id = $i['barang_id'];
-                                                                                                                                                                                                                             $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>')
+      $('#dynamic_field1').append('<div class="row" id="roww' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($reseller->result_array() as $i) : $barang_id = $i['barang_id'];                                                                                                     $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>')
       ;
        $('select').selectize({
           sortField: 'text'
@@ -936,8 +1060,7 @@
     var i = 1;
     $('#add3').click(function() {
       i++;
-      $('#dynamic_field2').append('<div class="row" id="rowww' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($produksi->result_array() as $i) : $barang_id = $i['barang_id'];
-                                                                                                                                                                                                                             $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>')
+      $('#dynamic_field2').append('<div class="row" id="rowww' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($produksi->result_array() as $i) : $barang_id = $i['barang_id'];                                                                                                      $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>')
       ;
        $('select').selectize({
           sortField: 'text'
