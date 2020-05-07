@@ -772,7 +772,7 @@
                     case 2 : echo "Februari"; break;
                     case 3 : echo "Maret"; break;
                     case 4 : echo "April"; break;
-                    case 5 : echo "May"; break;
+                    case 5 : echo "Mei"; break;
                     case 6 : echo "Juni"; break;
                     case 7 : echo "Juli"; break;
                     case 8 : echo "Agustus"; break;

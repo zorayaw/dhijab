@@ -188,12 +188,12 @@
 	  	}
 	
 		  function cetakTransaksiByTanggal(){
-			$statusc = $this->input->post('status');
+			$statusc = $this->input->get('status');
 			$start = $this->input->post('start_date');
 			$end = $this->input->post('end_date');
 			$x['start'] = $start;
 			$x['end'] = $end;
-
+			
 			if($statusc==0){
 				$x['data'] = $this->m_pemesanan->getPemesananByTanggal($start,$end);
 				$a = $this->m_pemesanan->getPemesananByTanggal($start,$end);

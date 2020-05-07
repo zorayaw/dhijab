@@ -808,7 +808,7 @@ class Pemesanan extends CI_Controller
 				}break;
 				case 3 : $x['namaBulan'] =  "Maret"; $x['tanggalAkhir'] = 31; break;
 				case 4 : $x['namaBulan'] =  "April"; $x['tanggalAkhir'] = 30; break;
-				case 5 : $x['namaBulan'] =  "May"; $x['tanggalAkhir'] = 31; break;
+				case 5 : $x['namaBulan'] =  "Mei"; $x['tanggalAkhir'] = 31; break;
 				case 6 : $x['namaBulan'] =  "Juni"; $x['tanggalAkhir'] = 30;break;
 				case 7 : $x['namaBulan'] =  "Juli"; $x['tanggalAkhir'] = 31; break;
 				case 8 : $x['namaBulan'] =  "Agustus"; $x['tanggalAkhir'] = 31; break;
