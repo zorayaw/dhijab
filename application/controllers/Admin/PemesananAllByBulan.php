@@ -237,6 +237,7 @@ class PemesananAllByBulan extends CI_Controller
 	}
 
 	function viewPemesananByBulan($bulan){
+		$x['namaBulan'] = " ";
 		switch ($bulan){
 			case 1 : $x['namaBulan'] = "Januari"; $x['tanggalAkhir'] = 31; break;
 			case 2 : $x['namaBulan'] =  "Februari"; 
@@ -255,6 +256,7 @@ class PemesananAllByBulan extends CI_Controller
 			case 11 : $x['namaBulan'] =  "November"; $x['tanggalAkhir'] = 30;break;
 			case 12 : $x['namaBulan'] =  "Desember"; $x['tanggalAkhir'] = 31; break;
 		  }
+		  
 		if($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true){
 			$namaBulan = $x['namaBulan'];
 			$x['bulan'] = $bulan;

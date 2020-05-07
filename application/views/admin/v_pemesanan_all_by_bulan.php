@@ -199,7 +199,7 @@
             <h5 class="modal-title">Tambah Pesanan Customer</h5>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
-          <form action="<?php echo base_url() ?>Admin/PemesananAllByBulan/savepemesananNR?bulan=<?$bulan?>" method="post" enctype="multipart/form-data">
+          <form action="<?php echo base_url() ?>Admin/PemesananAllByBulan/savepemesananNR?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
             <div class="modal-body p-20">
               <div class="row">
                 <div class="col-md-12">
@@ -330,7 +330,7 @@
             <h5 class="modal-title">Tambah Pesanan Reseller</h5>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
-          <form action="<?php echo base_url() ?>Admin/PemesananAllByBulan/savepemesananR?bulan=<?$bulan?>" method="post" enctype="multipart/form-data">
+          <form action="<?php echo base_url() ?>Admin/PemesananAllByBulan/savepemesananR?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
             <div class="modal-body p-20">
               <div class="row">
                 <div class="col-md-12">
@@ -466,7 +466,7 @@
             <h5 class="modal-title">Tambah Pesanan  Produksi</h5>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
-          <form action="<?php echo base_url() ?>Admin/PemesananAllByBulan/savepemesananP?bulan=<?$bulan?>" method="post" enctype="multipart/form-data">
+          <form action="<?php echo base_url() ?>Admin/PemesananAllByBulan/savepemesananP?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
             <div class="modal-body p-20">
               <div class="row">
               
@@ -549,7 +549,7 @@
               <h5 class="modal-title">Edit Data</h5>
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
-            <form action="<?php echo base_url() ?>Admin/PemesananAllByBulan/edit_pesanan?bulan=<?$bulan?>" method="post" enctype="multipart/form-data">
+            <form action="<?php echo base_url() ?>Admin/PemesananAllByBulan/edit_pesanan?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
               <div class="modal-body p-20">
                 <div class="row">
                   <div class="col-md-12">
