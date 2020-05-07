@@ -57,7 +57,7 @@
 		    }
 	  	}
 
-	  	function savepemesananreseller(){
+	  	function savepemesananR(){
 	  		$nama_pemesan = $this->input->post('nama_pemesan');
 	  		$nama_akun_pemesan = $this->input->post('nama_akun_pemesan');
 	  		$no_hp = $this->input->post('hp');
@@ -90,14 +90,8 @@
 	       	redirect('Admin/PemesananReseller');		  	
  	  	}
 
- 	  	function hapus_pesananreseller(){
-	  		$pemesanan_id = $this->input->post('pemesanan_id');
-	  		$this->m_pemesanan->hapus_pesanan($pemesanan_id);
-	  		echo $this->session->set_flashdata('msg','hapus');
-	       	redirect('Admin/PemesananReseller');	
-	  	}
 
-	  	function statusreseller(){
+	  	function status(){
             $pemesanan_id = $this->input->post('pemesanan_id');
             $status_pemesanan=$this->input->post('status_pemesanan');
             $jumlah=$this->input->post('jumlah');

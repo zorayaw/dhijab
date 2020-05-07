@@ -3,7 +3,7 @@
 /**
  * 
  */
-class PemesananAllByBulan extends CI_Controller
+class PemesananResellerByBulan extends CI_Controller
 {
 
 	function __construct()
@@ -23,17 +23,7 @@ class PemesananAllByBulan extends CI_Controller
 	function index()
 	{
 		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
-			$y['title'] = "Pemesanan";
-			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
-			$x['kurir'] = $this->m_pemesanan->getAllkurir();
-			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
-			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
-			$x['produksi'] = $this->m_barang->getdataProduksi();
-			$x['reseller'] = $this->m_barang->getAllBarangR();
-			$x['datapesanan'] = $this->m_pemesanan->getPemesanan();
-			$this->load->view('v_header', $y);
-			$this->load->view('admin/v_sidebar');
-			$this->load->view('admin/v_pemesanan', $x);
+			$this->viewPemesananByBulan(date('m'));
 		} else {
 			redirect('Login');
 		}
@@ -41,6 +31,7 @@ class PemesananAllByBulan extends CI_Controller
 	
 	function savepemesananNR()
 	{
+		$bulan = $this->input->get('bulan');
 		$nama_pemesan = $this->input->post('nama_pemesan');
 		$nama_akun_pemesan = "-";
 		$no_hp = $this->input->post('hp');
@@ -68,7 +59,7 @@ class PemesananAllByBulan extends CI_Controller
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect('Admin/Pemesanan');
+		redirect('Admin/PemesananResellerByBulan/viewPemesananByBulan/'.$bulan);
 	}
 
 	function hapus_pesanan()
@@ -77,7 +68,7 @@ class PemesananAllByBulan extends CI_Controller
 		$pemesanan_id = $this->input->post('pemesanan_id');
 		$this->m_pemesanan->hapus_pesanan($pemesanan_id);
 		echo $this->session->set_flashdata('msg', 'hapus');
-		redirect('Admin/PemesananAllByBulan/viewPemesananByBulan/'.$bulan);
+		redirect('Admin/PemesananResellerByBulan/viewPemesananByBulan/'.$bulan);
 	}
 
 	function savepemesananR()
@@ -112,7 +103,7 @@ class PemesananAllByBulan extends CI_Controller
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect('Admin/PemesananAllByBulan/viewPemesananByBulan/'.$bulan);
+		redirect('Admin/PemesananResellerByBulan/viewPemesananByBulan/'.$bulan);
 	}
 	
 
@@ -147,7 +138,7 @@ class PemesananAllByBulan extends CI_Controller
 		$jumlah = $a['total_keseluruhan'];
 		$this->m_pemesanan->insert_uang_masuk($pemesanan_id, $jumlah);
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect('Admin/PemesananAllByBulan/viewPemesananByBulan/'.$bulan);
+		redirect('Admin/PemesananResellerByBulan/viewPemesananByBulan/'.$bulan);
 	}
 	
 
@@ -165,7 +156,7 @@ class PemesananAllByBulan extends CI_Controller
 
 		$this->m_pemesanan->edit_pesanan($pemesanan_id, $nama_pemesan, $no_hp, $alamat, $kurir, $asal_transaksi, $metode_pembayaran);
 		echo $this->session->set_flashdata('msg', 'update');
-		redirect('Admin/PemesananAllByBulan/viewPemesananByBulan/'.$bulan);
+		redirect('Admin/PemesananResellerByBulan/viewPemesananByBulan/'.$bulan);
 	}
 
 	function list_barang($pemesanan_id)
@@ -233,31 +224,30 @@ class PemesananAllByBulan extends CI_Controller
 			$this->m_pemesanan->insert_uang_masuk($pemesanan_id, $jumlah);
 			$this->m_pemesanan->status_pesanan($pemesanan_id, $status_pemesanan);
 		}
-		redirect('Admin/Pemesanan/viewPemesananByBulan/'.$bulan);
+		redirect('Admin/PemesananResellerByBulan/viewPemesananByBulan/'.$bulan);
 	}
 
 	function viewPemesananByBulan($bulan){
-		$x['namaBulan'] = " ";
-		switch ($bulan){
-			case 1 : $x['namaBulan'] = "Januari"; $x['tanggalAkhir'] = 31; break;
-			case 2 : $x['namaBulan'] =  "Februari"; 
-			switch(date('Y')%4) {
-				case 0 : $x['tanggalAkhir'] = 29; break;
-				case 1 : $x['tanggalAkhir'] = 28; break;
-			}break;
-			case 3 : $x['namaBulan'] =  "Maret"; $x['tanggalAkhir'] = 31; break;
-			case 4 : $x['namaBulan'] =  "April"; $x['tanggalAkhir'] = 30; break;
-			case 5 : $x['namaBulan'] =  "Mei"; $x['tanggalAkhir'] = 31; break;
-			case 6 : $x['namaBulan'] =  "Juni"; $x['tanggalAkhir'] = 30;break;
-			case 7 : $x['namaBulan'] =  "Juli"; $x['tanggalAkhir'] = 31; break;
-			case 8 : $x['namaBulan'] =  "Agustus"; $x['tanggalAkhir'] = 31; break;
-			case 9 : $x['namaBulan'] =  "September"; $x['tanggalAkhir'] = 30;break;
-			case 10 : $x['namaBulan'] =  "Oktober"; $x['tanggalAkhir'] = 31; break;
-			case 11 : $x['namaBulan'] =  "November"; $x['tanggalAkhir'] = 30;break;
-			case 12 : $x['namaBulan'] =  "Desember"; $x['tanggalAkhir'] = 31; break;
-		  }
-		  
 		if($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true){
+			switch ($bulan){
+				case 1 : $x['namaBulan'] = "Januari"; $x['tanggalAkhir'] = 31; break;
+				case 2 : $x['namaBulan'] =  "Februari"; 
+				switch(date('Y')%4) {
+					case 0 : $x['tanggalAkhir'] = 29; break;
+					case 1 : $x['tanggalAkhir'] = 28; break;
+				}break;
+				case 3 : $x['namaBulan'] =  "Maret"; $x['tanggalAkhir'] = 31; break;
+				case 4 : $x['namaBulan'] =  "April"; $x['tanggalAkhir'] = 30; break;
+				case 5 : $x['namaBulan'] =  "Mei"; $x['tanggalAkhir'] = 31; break;
+				case 6 : $x['namaBulan'] =  "Juni"; $x['tanggalAkhir'] = 30;break;
+				case 7 : $x['namaBulan'] =  "Juli"; $x['tanggalAkhir'] = 31; break;
+				case 8 : $x['namaBulan'] =  "Agustus"; $x['tanggalAkhir'] = 31; break;
+				case 9 : $x['namaBulan'] =  "September"; $x['tanggalAkhir'] = 30;break;
+				case 10 : $x['namaBulan'] =  "Oktober"; $x['tanggalAkhir'] = 31; break;
+				case 11 : $x['namaBulan'] =  "November"; $x['tanggalAkhir'] = 30;break;
+				case 12 : $x['namaBulan'] =  "Desember"; $x['tanggalAkhir'] = 31; break;
+			  }
+
 			$namaBulan = $x['namaBulan'];
 			$x['bulan'] = $bulan;
 			$y['title'] = "Pemesanan Bulan $namaBulan";
@@ -267,10 +257,10 @@ class PemesananAllByBulan extends CI_Controller
 			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
 			 $x['produksi'] = $this->m_barang->getdataProduksi();
 			$x['reseller'] = $this->m_barang->getAllBarangR();
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananAllbyBulan($bulan, date('Y'));
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananResellerbyBulan($bulan, date('Y'));
 			$this->load->view('v_header',$y);
 			$this->load->view('admin/v_sidebar');
-			$this->load->view('admin/v_pemesanan_all_by_bulan',$x);
+			$this->load->view('admin/v_pemesanan_Reseller_by_bulan',$x);
 		 }
 		 else{
 			redirect('Login');

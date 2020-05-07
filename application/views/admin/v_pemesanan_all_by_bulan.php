@@ -6,7 +6,7 @@
   <div class="page-title">
     <div class="row">
       <div class="col-sm-6">
-        <h4 class="mb-0">Data Semua Pesanan Bulan <?=$namaBulan." ".date('Y')?></h4>
+        <h4 class="mb-0">Data Semua Pemesanan Bulan <?=$namaBulan." ".date('Y')?></h4>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
@@ -780,20 +780,20 @@
           <div class="modal-body">
             <div class="row">
               <div class="col-md-12">
-                <a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
+                <a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi?status=0" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
                   <i class="fa fa-print pr-2"></i>Cetak Pemesanan Hari Ini (<?= date('d')." ".$namaBulan." ".date('Y')?>)
                 </a>
                 <br>
               </div>
 
               <div class="col-md-12">
-                <a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiByBulan?bulan=<?=$bulan?>&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
-                  <i class="fa fa-print pr-2"></i>Cetak Pemesanan Bulan (<?=$namaBulan." ".date('Y')?>
+                <a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiByBulan?status=0&bulan=<?=$bulan?>&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                  <i class="fa fa-print pr-2"></i>Cetak Pemesanan Bulan (<?=$namaBulan." ".date('Y')?>)
                 </a>
                 <br>
               </div>
 
-              <form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiByBulanTanpaTahun?bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
+              <form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiByBulanTanpaTahun?status=0&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
               <div class="col-md-12"><h6>Cetak Pemesanan Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
@@ -841,7 +841,7 @@
                 <br>
               </div> -->
               <div class="col-md-12"><h6>Cetak Berdasarkan Tanggal (<?=$namaBulan." ".date('Y')?>):</h6></div>
-               <form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiBytanggal" target="_blank" method="post" enctype="multipart/form-data">
+               <form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiBytanggal?status=0" target="_blank" method="post" enctype="multipart/form-data">
             <div class="modal-body p-20">
               <div class="row">
               <div class="col-md-4">
