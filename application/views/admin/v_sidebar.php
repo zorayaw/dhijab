@@ -16,7 +16,7 @@
           </a>
           <ul id="historyordersemua" class="collapse" data-parent="#sidebarnav">
             <li>
-              <a href="<?php echo base_url()?>Admin/PemesananAll"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Semua</span> </a>
+              <a href="<?php echo base_url()?>Admin/Pemesanan"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Semua</span> </a>
             </li>
             <li>
               <a href="<?php echo base_url()?>Admin/PemesananAllByBulan/viewPemesananByBulan/1"><i class="ti-calendar"></i><span class="right-nav-text">History Ordering Januari</span> </a>

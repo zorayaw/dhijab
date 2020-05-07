@@ -6,7 +6,7 @@
   <div class="page-title">
     <div class="row">
       <div class="col-sm-6">
-        <h4 class="mb-0">Data Daftar Barang</h4>
+        <h4 class="mb-0">Data Semua Pemesanan</h4>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
@@ -21,6 +21,9 @@
     <div class="col-xl-12 mb-30">
       <div class="card card-statistics h-100">
         <div class="card-body">
+        <div class="col-xl-12 mb-10">
+        <h6 class="mb-0">Tambah Pemesanan: </h6>
+      </div>
           <div class="col-xl-12 mb-10" style="display: flex">
             <div class="col-md-3">
               <a href="" data-toggle="modal" data-target="#tambah-pesanan-non-reseller" class="btn btn-primary btn-block ripple m-t-10">
@@ -191,7 +194,7 @@
           <div class="modal-body">
             <div class="row">
               <div class="col-md-12">
-                <a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                <a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi?status=0" target="_blank" class="btn btn-success btn-block ripple m-t-10">
                   <i class="fa fa-print pr-2"></i>Cetak Pemesanan Hari Ini (<?= date('d')?> <?php 
                   switch (date('m')){
                     case 1 : echo "Januari"; break;
@@ -214,7 +217,7 @@
               </div>
 
               <div class="col-md-12">
-                <a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiByBulan?bulan=<?= date('m')?>&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                <a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiByBulan?status=0&bulan=<?= date('m')?>&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
                   <i class="fa fa-print pr-2"></i>Cetak Pemesanan Bulan Ini (<?php 
                   switch (date('m')){
                     case 1 : echo "Januari"; break;
@@ -236,7 +239,7 @@
               </div>
 
               <div class="col-md-12">
-                <a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiByTahun?tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                <a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiByTahun?status=0&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
                   <i class="fa fa-print pr-2"></i>Cetak Pemesanan Tahun Ini (<?= date('Y')?>) 
                 </a>
                 <br>
@@ -244,7 +247,7 @@
               </div>
 
               <div class="col-md-12"><h6>Cetak Berdasarkan Tanggal:</h6></div>
-               <form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiBytanggal" target="_blank" method="post" enctype="multipart/form-data">
+               <form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiBytanggal?status=0" target="_blank" method="post" enctype="multipart/form-data">
             <div class="modal-body p-20">
               <div class="row">
               <div class="col-md-4">
