@@ -86,7 +86,7 @@ $cur_date = date("d-m-Y");?>
                       <td><center><?php echo $no?></center></td>
                       <td><?php echo $pemesanan_nama?></td>
                       <td><?php echo $tanggal?></td>
-                      <td><?php $status?></td>
+                      <td><?php echo $status?></td>
                       <td><?php echo $hp?></td>
                       <td><?php echo $alamat?></td>
                       <td><?php echo $kurir_nama?></td>
