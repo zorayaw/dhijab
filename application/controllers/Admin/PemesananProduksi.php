@@ -57,7 +57,7 @@
 		    }
 	  	}
 
-	  	function savepemesananproduksi(){
+	  	function savepemesananP(){
 	  		$nama_pemesan = "admin";
 	  		$nama_akun_pemesan ="-";
 	  		$no_hp = "-";
@@ -89,14 +89,8 @@
 	       	redirect('Admin/PemesananProduksi');		  	
  	  	}
 
- 	  	function hapus_pesananproduksi(){
-	  		$pemesanan_id = $this->input->post('pemesanan_id');
-	  		$this->m_pemesanan->hapus_pesanan($pemesanan_id);
-	  		echo $this->session->set_flashdata('msg','hapus');
-	       	redirect('Admin/PemesananProduksi');	
-	  	}
 
-	  	function statusproduksi(){
+	  	function status(){
             $pemesanan_id = $this->input->post('pemesanan_id');
             $status_pemesanan=$this->input->post('status_pemesanan');
             $jumlah=$this->input->post('jumlah');
