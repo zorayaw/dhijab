@@ -961,7 +961,7 @@
       </div>
     </div>
 
-  </div>
+
   <div class="modal" tabindex="-1" role="dialog" id="selesai<?= $pemesanan_id ?>">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -1015,7 +1015,6 @@
     </div>
   </div>
 
-  </div>
 
 
 <?php endforeach; ?>
@@ -1121,7 +1120,7 @@
         </div>
       </div>
     </div>
-</div>
+
 
 
 <!--=================================

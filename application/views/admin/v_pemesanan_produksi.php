@@ -541,8 +541,7 @@
       </div>
     </div>
 </div>
-  </div>
-</div>
+
     <!-- Modal Pesanan NonReseller-->
     <!-- <div class="modal" tabindex="-1" role="dialog" id="tambah-pesanan-non-reseller">
       <div class="modal-dialog modal-lg">
@@ -1017,7 +1016,6 @@
       </div>
     <?php endforeach; ?>
 
-  </div>
 
   <!-- Modal Status -->
   <?php
@@ -1054,7 +1052,6 @@
       </div>
     </div>
 
-</div>
 <div class="modal" tabindex="-1" role="dialog" id="selesai<?= $pemesanan_id ?>">
   <div class="modal-dialog">
     <div class="modal-content">

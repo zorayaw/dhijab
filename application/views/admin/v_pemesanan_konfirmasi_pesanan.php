@@ -886,7 +886,7 @@
       </div>
     <?php endforeach; ?>
 
-  </div>
+  
 
   <!-- Modal Status -->
   <?php
@@ -924,7 +924,7 @@
       </div>
     </div>
 
-</div>
+
 <div class="modal" tabindex="-1" role="dialog" id="kirim<?= $pemesanan_id ?>">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -979,7 +979,7 @@
   </div>
 </div>
 
-</div>
+
 
 
 <?php endforeach; ?>
