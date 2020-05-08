@@ -21,25 +21,25 @@
     <div class="col-xl-12 mb-30">
       <div class="card card-statistics h-100">
         <div class="card-body">
-          <div class="col-xl-12 mb-10" style="display: flex">
+        <div class="col-xl-12 mb-10" style="display: flex">
             <div class="col-md-3">
-              <a href="" data-toggle="modal" data-target="#tambah-pesanan-non-reseller" class="btn btn-priApry btn-block ripple m-t-10">
-                <i class="fa fa-plus pr-2"></i> Tambah Pemesanan Customer
+              <a href="" data-toggle="modal" data-target="#tambah-pesanan-non-reseller" class="btn btn-primary btn-block ripple m-t-10">
+                <i class="fa fa-plus pr-2"></i>Pemesanan Customer
               </a>
             </div>
             <div class="col-md-3">
-              <a href="" data-toggle="modal" data-target="#reseller" class="btn btn-priApry btn-block ripple m-t-10">
-                <i class="fa fa-plus pr-2"></i> Tambah Pemesanan Reseller
+              <a href="" data-toggle="modal" data-target="#reseller" class="btn btn-primary btn-block ripple m-t-10">
+                <i class="fa fa-plus pr-2"></i>Pemesanan Reseller
               </a>
             </div>
 
-              <div class="col-md-3">
-              <a href="" data-toggle="modal" data-target="#produksi" class="btn btn-priApry btn-block ripple m-t-20">
-                <i class="fa fa-plus pr-2"></i> Tambah Pemesanan Produksi
+            <div class="col-md-3">
+              <a href="" data-toggle="modal" data-target="#produksi" class="btn btn-primary btn-block ripple m-t-20">
+                <i class="fa fa-plus pr-2"></i>Pemesanan Produksi
               </a>
             </div>
             <div class="col-md-3">
-              <a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi" target="blank" class="btn btn-success btn-block ripple m-t-20">
+              <a href="" data-toggle="modal" data-target="#Cetak-Pesanan" class="btn btn-success btn-block ripple m-t-20">
                 <i class="fa fa-print pr-2"></i> Cetak
               </a>
             </div>
@@ -130,22 +130,22 @@
                     <td><?php echo $at_nama ?></td>
                     <td><?php echo $mp_nama ?></td>
 
-                    <td><a href="<?php echo base_url() ?>Admin/PemesananAllJuli/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>" target="_blank" class="btn btn-priApry">List Barang</a></td>
+                    <td><a href="<?php echo base_url() ?>Admin/PemesananAllJuli/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>" target="_blank" class="btn btn-primary">List Barang</a></td>
                     <td>
 
                       <?php
                       if ($status == 0) { ?>
-                        <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#bayar<?= $pemesanan_id ?>" style="Aprgin-right: 20px">Belum Bayar</button>
+                        <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#bayar<?= $pemesanan_id ?>" style="margin-right: 20px">Belum Bayar</button>
                       <?php } elseif ($status == 1) {
                       ?>
-                        <button type="submit" class="btn btn-priApry" data-toggle="modal" data-target="#kirim<?= $pemesanan_id ?>" style="Aprgin-right: 20px">Dibayar </button>
+                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#kirim<?= $pemesanan_id ?>" style="margin-right: 20px">Dibayar </button>
                       <?php } elseif ($status == 2) {
                       ?>
-                        <button type="submit" class="btn btn-priApry" data-toggle="modal" data-target="#selesai<?= $pemesanan_id ?>" style="Aprgin-right: 20px">Dikirim </button>
+                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#selesai<?= $pemesanan_id ?>" style="margin-right: 20px">Dikirim </button>
                       <?php }
                        else {
                       ?>
-                        <button  class="btn btn-success" style="Aprgin-right: 20px">Selesai</button>
+                        <button  class="btn btn-success" style="margin-right: 20px">Selesai</button>
                       <?php
                     }
                     ?>
@@ -160,8 +160,8 @@
                       $total=$total+$jumlah;
                     ?>
                     <td>
-                      <a href="#" style="Aprgin-right: 10px; Aprgin-left: 10px;" data-toggle="modal" data-target="#editdata<?php echo $pemesanan_id ?>"><span class="ti-pencil"></span></a>
-                      <a href="#" style="Aprgin-right: 10px" data-toggle="modal" data-target="#hapusdata<?php echo $pemesanan_id ?>"><span class="ti-trash"></span></a>
+                      <a href="#" style="margin-right: 10px; margin-left: 10px;" data-toggle="modal" data-target="#editdata<?php echo $pemesanan_id ?>"><span class="ti-pencil"></span></a>
+                      <a href="#" style="margin-right: 10px" data-toggle="modal" data-target="#hapusdata<?php echo $pemesanan_id ?>"><span class="ti-trash"></span></a>
                     </td>
                   </tr>
                 <?php endforeach; ?>
@@ -868,8 +868,7 @@
     var i = 1;
     $('#add').click(function() {
       i++;
-      $('#dynamic_field').append('<div class="row" id="row' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($nonreseller->result_array() as $i) : $barang_id = $i['barang_id'];
-                                                                                                                                                                                                                              $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>')
+      $('#dynamic_field').append('<div class="row" id="row' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($nonreseller->result_array() as $i) : $barang_id = $i['barang_id']; $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>')
       ;
       $('select').selectize({
           sortField: 'text'
@@ -896,8 +895,7 @@
     var i = 1;
     $('#add1').click(function() {
       i++;
-      $('#dynamic_field1').append('<div class="row" id="roww' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($reseller->result_array() as $i) : $barang_id = $i['barang_id'];
-                                                                                                                                                                                                                             $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>')
+      $('#dynamic_field1').append('<div class="row" id="roww' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($reseller->result_array() as $i) : $barang_id = $i['barang_id']; $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>')
       ;
        $('select').selectize({
           sortField: 'text'
@@ -919,8 +917,7 @@
     var i = 1;
     $('#add3').click(function() {
       i++;
-      $('#dynamic_field2').append('<div class="row" id="rowww' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($produksi->result_array() as $i) : $barang_id = $i['barang_id'];
-                                                                                                                                                                                                                             $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>')
+      $('#dynamic_field2').append('<div class="row" id="rowww' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($produksi->result_array() as $i) : $barang_id = $i['barang_id']; $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>')
       ;
        $('select').selectize({
           sortField: 'text'

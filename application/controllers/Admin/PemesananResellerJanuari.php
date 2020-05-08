@@ -31,7 +31,7 @@
 		       $x['datapesanan'] = $this->m_pemesanan->getPemesananresellerJanuari();
 		       $this->load->view('v_header',$y);
 		       $this->load->view('admin/v_sidebar');
-		       $this->load->view('admin/v_pemesanan_reseller_januari',$x);
+		       $this->load->view('admin/v_pemesanan_reseller_Januari',$x);
 		    }
 		    else{
 		       redirect('Login');
@@ -50,7 +50,7 @@
 		       $x['datapesanan'] = $this->m_pemesanan->getPemesananresellerJanuari();
 		       $this->load->view('v_header',$y);
 		       $this->load->view('admin/v_sidebar');
-		       $this->load->view('admin/v_pemesanan_reseller_januari',$x);
+		       $this->load->view('admin/v_pemesanan_reseller_Januari',$x);
 		    }
 		    else{
 		       redirect('Login');

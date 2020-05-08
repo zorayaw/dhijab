@@ -2,7 +2,7 @@
 	/**
 	 * 
 	 */
-	class PemesananAllAgustus extends CI_Controller
+	class PemesananAllApr extends CI_Controller
 	{
 		
 		function __construct()
@@ -28,10 +28,10 @@
 		       $x['nonreseller'] = $this->m_barang->getDataNonReseller1();
 		        $x['produksi'] = $this->m_barang->getdataProduksi();
 		       $x['reseller'] = $this->m_barang->getAllBarangR();
-		       $x['datapesanan'] = $this->m_pemesanan->getPemesananBulanAgustus();
+		       $x['datapesanan'] = $this->m_pemesanan->getPemesananByBulan(4, date('Y'));
 		       $this->load->view('v_header',$y);
 		       $this->load->view('admin/v_sidebar');
-		       $this->load->view('admin/v_pemesanan_all_agustus',$x);
+		       $this->load->view('admin/v_pemesanan_all_Apr',$x);
 		    }
 		    else{
 		       redirect('Login');
@@ -66,7 +66,7 @@
 	  		}
 
 	  		echo $this->session->set_flashdata('msg','success');
-	       	redirect('Admin/PemesananAllAgustus');		  	
+	       	redirect('Admin/PemesananAllApr');		  	
  	  	}
 
 	  	
@@ -100,7 +100,7 @@
 	  		}
 
 	  		echo $this->session->set_flashdata('msg','success');
-	       	redirect('Admin/PemesananAllAgustus');		  	
+	       	redirect('Admin/PemesananAllApr');		  	
  	  	}
 
  	  	function savepemesananP(){
@@ -132,7 +132,7 @@
 	  		$jumlah=$a['total_keseluruhan'];
 	  		$this->m_pemesanan->insert_uang_masuk($pemesanan_id,$jumlah);
 	  		echo $this->session->set_flashdata('msg','success');
-	       	redirect('Admin/PemesananAllAgustus');		  	
+	       	redirect('Admin/PemesananAllApr');		  	
  	  	}
 
 
@@ -168,14 +168,14 @@
 
 	  		$this->m_pemesanan->edit_pesanan($pemesanan_id,$nama_pemesan,$no_hp,$alamat,$kurir,$asal_transaksi,$metode_pembayaran);
 	  		echo $this->session->set_flashdata('msg','update');
-	       	redirect('Admin/PemesananAllAgustus');	
+	       	redirect('Admin/PemesananAllApr');	
 	  	}
 
 	  	function hapus_pesanan(){
 	  		$pemesanan_id = $this->input->post('pemesanan_id');
 	  		$this->m_pemesanan->hapus_pesanan($pemesanan_id);
 	  		echo $this->session->set_flashdata('msg','hapus');
-	       	redirect('Admin/PemesananAllAgustus');	
+	       	redirect('Admin/PemesananAllApr');	
 	  	}
 
 
@@ -198,7 +198,7 @@
              $this->m_pemesanan->insert_uang_masuk($pemesanan_id,$jumlah);
             $this->m_pemesanan->status_pesanan($pemesanan_id,$status_pemesanan);
             }
-             redirect('Admin/PemesananAllAgustus');	
+             redirect('Admin/PemesananAllApr');	
         
         }
 	}

@@ -6,11 +6,11 @@
   <div class="page-title">
     <div class="row">
       <div class="col-sm-6">
-        <h4 class="mb-0">Data Daftar Barang</h4>
+        <h4 class="mb-0">Data Pemesanan Produksi Bulan <?=$namaBulan." ".date('Y')?></h4>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-          <li class="breadcrumb-item"><a href="<?php echo base_url() ?>Admin/PemesananAllJuni" class="default-color">Home</a></li>
+          <li class="breadcrumb-item"><a href="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/viewPemesananByBulan/<?=$bulan?>" class="default-color">Home</a></li>
           <li class="breadcrumb-item active">Daftar Barang</li>
         </ol>
       </div>
@@ -21,26 +21,29 @@
     <div class="col-xl-12 mb-30">
       <div class="card card-statistics h-100">
         <div class="card-body">
+        <div class="col-xl-12 mb-10">
+        <h6 class="mb-0">Tambah Pemesanan Bulan <?=$namaBulan." ".date('Y')?> :</h6>
+      </div>
         <div class="col-xl-12 mb-10" style="display: flex">
-            <div class="col-md-3">
-              <a href="" data-toggle="modal" data-target="#tambah-pesanan-non-reseller" class="btn btn-primary btn-block ripple m-t-10">
+            <!-- <div class="col-md-6">
+              <a href="" data-toggle="modal" data-target="#tambah-pesanan-non-Produksi" class="btn btn-primary btn-block ripple m-t-10">
                 <i class="fa fa-plus pr-2"></i>Pemesanan Customer
               </a>
-            </div>
-            <div class="col-md-3">
+            </div> -->
+            <!-- <div class="col-md-6">
               <a href="" data-toggle="modal" data-target="#reseller" class="btn btn-primary btn-block ripple m-t-10">
                 <i class="fa fa-plus pr-2"></i>Pemesanan Reseller
               </a>
-            </div>
+            </div> -->
 
-            <div class="col-md-3">
+            <div class="col-md-6">
               <a href="" data-toggle="modal" data-target="#produksi" class="btn btn-primary btn-block ripple m-t-20">
                 <i class="fa fa-plus pr-2"></i>Pemesanan Produksi
               </a>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-6">
               <a href="" data-toggle="modal" data-target="#Cetak-Pesanan" class="btn btn-success btn-block ripple m-t-20">
-                <i class="fa fa-print pr-2"></i> Cetak
+                <i class="fa fa-print pr-2"></i> Cetak Pemesanan
               </a>
             </div>
           </div>
@@ -52,7 +55,7 @@
                   <th >Nomor Order</th>
                   <th>Nama Pemesan</th>
                   <th>Nama Akun</th>
-                  <th >Tanggal Pesanan</th>
+                  <th >Tanggal Pemesanan</th>
                   <th>No HP</th>
                   <th>Alamat</th>
                   <th>Email </th>
@@ -130,7 +133,7 @@
                     <td><?php echo $at_nama ?></td>
                     <td><?php echo $mp_nama ?></td>
 
-                    <td><a href="<?php echo base_url() ?>Admin/PemesananAllJuni/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>" target="_blank" class="btn btn-primary">List Barang</a></td>
+                    <td><a href="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>" target="_blank" class="btn btn-primary">List Barang</a></td>
                     <td>
 
                       <?php
@@ -176,8 +179,19 @@
         </div>
       </div>
     </div>
-
+    
+    <?php 
+    if($bulan<10){
+        $tglawal = date('Y')."-0".$bulan."-01";
+        $tglakhir = date('Y')."-0".$bulan."-".$tanggalAkhir;
+    }
+    else{
+        $tglawal = date('Y')."-".$bulan."-01";
+        $tglakhir = date('Y')."-".$bulan."-".$tanggalAkhir;
+    }
+    ?>
     <!-- Modal Pesanan NonReseller-->
+    <!-- 
     <div class="modal" tabindex="-1" role="dialog" id="tambah-pesanan-non-reseller">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -185,7 +199,7 @@
             <h5 class="modal-title">Tambah Pesanan Customer</h5>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
-          <form action="<?php echo base_url() ?>Admin/PemesananAllJuni/savepemesananNR" method="post" enctype="multipart/form-data">
+          <form action="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/savepemesananNR?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
             <div class="modal-body p-20">
               <div class="row">
                 <div class="col-md-12">
@@ -202,7 +216,7 @@
                 </div>
                 <div class="col-md-12">
                   <label class="control-label">Tanggal</label>
-                  <input class="form-control form-white" type="date" name="tanggal" required />
+                  <input class="form-control form-white" type="date" name="tanggal" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>"  required />
                 </div>
                 <div class="col-md-12">
                   <label class="control-label">Alamat</label>
@@ -289,7 +303,7 @@
                     </div>
                     <div class="col-md-2">
                       <label class="control-label" for="harga">Kuantitas</label>
-                      <input class="form-control" type="number" name="qty[]" required>
+                      <input class="form-control" type="number" name="qty[]" min = 1 required>
                     </div>
                   </div>
                 </div>
@@ -305,17 +319,18 @@
           </form>
         </div>
       </div>
-    </div>
+    </div>  -->
 
     <!-- Modal Pesanan Reseller-->
-    <div class="modal" tabindex="-1" role="dialog" id="reseller">
+   
+    <!-- <div class="modal" tabindex="-1" role="dialog" id="reseller">
        <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Tambah Pesanan  Reseller</h5>
+            <h5 class="modal-title">Tambah Pesanan Reseller</h5>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
-          <form action="<?php echo base_url() ?>Admin/PemesananAllJuni/savepemesananR" method="post" enctype="multipart/form-data">
+          <form action="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/savepemesananR?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
             <div class="modal-body p-20">
               <div class="row">
                 <div class="col-md-12">
@@ -336,7 +351,7 @@
                 </div>
                 <div class="col-md-12">
                   <label class="control-label">Tanggal</label>
-                  <input class="form-control form-white" type="date" name="tanggal" required />
+                  <input class="form-control form-white" type="date" name="tanggal" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required />
                 </div>
                 <div class="col-md-12">
                   <label class="control-label">Alamat</label>
@@ -423,7 +438,7 @@
                     </div>
                     <div class="col-md-2">
                       <label class="control-label" for="harga">Kuantitas</label>
-                      <input class="form-control" type="number" name="qty[]" required>
+                      <input class="form-control" type="number" name="qty[]" min = 1 required>
                     </div>
                   </div>
                 </div>
@@ -439,10 +454,11 @@
           </form>
         </div>
       </div>
-    </div>
+    </div> -->
 
 
      <!-- Modal Pesanan Produksi-->
+     
     <div class="modal" tabindex="-1" role="dialog" id="produksi">
        <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -450,14 +466,14 @@
             <h5 class="modal-title">Tambah Pesanan  Produksi</h5>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
-          <form action="<?php echo base_url() ?>Admin/PemesananAllJuni/savepemesananP" method="post" enctype="multipart/form-data">
+          <form action="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/savepemesananP?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
             <div class="modal-body p-20">
               <div class="row">
               
                
                 <div class="col-md-12">
                   <label class="control-label">Tanggal</label>
-                  <input class="form-control form-white" type="date" name="tanggal" required />
+                  <input class="form-control form-white" type="date" name="tanggal" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required />
                 </div>
               
               
@@ -484,7 +500,7 @@
                     </div>
                     <div class="col-md-2">
                       <label class="control-label" for="harga">Kuantitas</label>
-                      <input class="form-control" type="number" name="qty[]" required>
+                      <input class="form-control" type="number" name="qty[]" min = 1 required>
                     </div>
                   </div>
                 </div>
@@ -533,7 +549,7 @@
               <h5 class="modal-title">Edit Data</h5>
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
-            <form action="<?php echo base_url() ?>Admin/PemesananAllJuni/edit_pesanan" method="post" enctype="multipart/form-data">
+            <form action="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/edit_pesanan?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
               <div class="modal-body p-20">
                 <div class="row">
                   <div class="col-md-12">
@@ -635,7 +651,7 @@
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body p-20">
-              <form action="<?php echo base_url() ?>Admin/PemesananAllJuni/hapus_pesanan" method="post">
+              <form action="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/hapus_pesanan?bulan=<?=$bulan?>" method="post">
                 <div class="row">
                   <div class="col-md-12">
                     <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
@@ -672,7 +688,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body p-20">
-            <form action="<?php echo base_url() ?>Admin/PemesananAllJuni/status" method="POST">
+            <form action="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/status?bulan=<?=$bulan?>" method="POST">
               <div class="row">
                 <div class="col-md-12">
                   <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
@@ -699,7 +715,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         </div>
         <div class="modal-body p-20">
-          <form action="<?php echo base_url() ?>Admin/PemesananAllJuni/status" method="POST">
+          <form action="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/status?bulan=<?=$bulan?>" method="POST">
             <div class="row">
               <div class="col-md-12">
                 <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
@@ -725,7 +741,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         </div>
         <div class="modal-body p-20">
-          <form action="<?php echo base_url() ?>Admin/PemesananAllJuni/status" method="POST">
+          <form action="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/status?bulan=<?=$bulan?>" method="POST">
             <div class="row">
               <div class="col-md-12">
                 <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
@@ -749,6 +765,108 @@
 
 <?php endforeach; ?>
 
+
+<!-- Modal Cetak-->
+
+<?php date_default_timezone_set("Asia/Jakarta");
+    ?>
+
+    <div class="modal" tabindex="-1" role="dialog" id="Cetak-Pesanan">
+      <div class="modal-dialog modal-lg-10">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Cetak Pemesanan Produksi Bulan <?=$namaBulan?></h5>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                <a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi?status=3" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
+                  <i class="fa fa-print pr-2"></i>Cetak Pemesanan Hari Ini (<?= date('d')." ".$namaBulan." ".date('Y')?>)
+                </a>
+                <br>
+              </div>
+
+              <div class="col-md-12">
+                <a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiByBulan?status=3&bulan=<?=$bulan?>&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                  <i class="fa fa-print pr-2"></i>Cetak Pemesanan Bulan (<?=$namaBulan." ".date('Y')?>)
+                </a>
+                <br>
+              </div>
+
+              <form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiByBulanTanpaTahun?status=3&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
+              <div class="col-md-12"><h6>Cetak Pemesanan Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
+               
+            <div class="modal-body p-20">
+              <div class="row">
+              <div class="col-lg-6">
+              <label class="control-label">Dari tahun:</label>
+              <select class="form-control" name="start_year" required>
+                    <option selected value="">Pilih</option>
+                    <?php
+                for ($x = 2017; $x <= date('Y'); $x++) :
+                ?>
+                    <option value="<?php echo $x ?>"><?php echo $x ?></option>
+                <?php endfor ?>
+              </select>
+              </div>
+              
+              <div class="col-lg-6">
+              <label class="control-label">Sampai tahun:</label>
+              <select class="form-control" name="end_year" required>
+                    <option selected value="">Pilih</option>
+                    <?php
+                for ($x = 2017; $x <= date('Y'); $x++) :
+                ?>
+                    <option value="<?php echo $x ?>"><?php echo $x ?></option>
+                <?php endfor ?>
+              </select>
+               </div> 
+              </div>
+            </div>
+              </div>
+               
+               <div class="col-md-12">
+               <button type="submit" class="btn btn-success btn-block ripple m-t-10">
+                  <i class="fa fa-print pr-2"></i>Cetak Pemesanan</button>
+                  <br>
+                   </div>
+                  </form>
+              
+<!-- 
+              <div class="col-md-12">
+                <a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiByTahun?tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                  <i class="fa fa-print pr-2"></i>Cetak Pemesanan Tahun Ini (<?= date('Y')?>) 
+                </a>
+                <br>
+                <br>
+              </div> -->
+              <div class="col-md-12"><h6>Cetak Berdasarkan Tanggal (<?=$namaBulan." ".date('Y')?>):</h6></div>
+               <form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiBytanggal?status=3" target="_blank" method="post" enctype="multipart/form-data">
+            <div class="modal-body p-20">
+              <div class="row">
+              <div class="col-md-4">
+                <label class="control-label">Dari tanggal:</label>
+                <input class="form-control form-white" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>"required/>
+              </div>
+              <div class="col-md-4">
+                <label class="control-label">Sampai tanggal:</label>
+                <input class="form-control form-white" type="date" name="end_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+              </div>
+              <div class="col-md-4">
+               <button type="submit" class="btn btn-success btn-block ripple m-t-10">
+                  <i class="fa fa-print pr-2"></i>Cetak<br>pemesanan</button>
+            </div>
+              </div>
+            </div>
+               </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
 
 
 <!--=================================
@@ -868,7 +986,7 @@
     var i = 1;
     $('#add').click(function() {
       i++;
-      $('#dynamic_field').append('<div class="row" id="row' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($nonreseller->result_array() as $i) : $barang_id = $i['barang_id'];$barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>')
+      $('#dynamic_field').append('<div class="row" id="row' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($nonreseller->result_array() as $i) : $barang_id = $i['barang_id']; $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>')
       ;
       $('select').selectize({
           sortField: 'text'
