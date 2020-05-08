@@ -303,7 +303,7 @@
                     </div>
                     <div class="col-md-2">
                       <label class="control-label" for="harga">Kuantitas</label>
-                      <input class="form-control" type="number" name="qty[]" required>
+                      <input class="form-control" type="number" name="qty[]" min = 1 required>
                     </div>
                   </div>
                 </div>
@@ -438,7 +438,7 @@
                     </div>
                     <div class="col-md-2">
                       <label class="control-label" for="harga">Kuantitas</label>
-                      <input class="form-control" type="number" name="qty[]" required>
+                      <input class="form-control" type="number" name="qty[]" min = 1 required>
                     </div>
                   </div>
                 </div>
@@ -500,7 +500,7 @@
                     </div>
                     <div class="col-md-2">
                       <label class="control-label" for="harga">Kuantitas</label>
-                      <input class="form-control" type="number" name="qty[]" required>
+                      <input class="form-control" type="number" name="qty[]" min = 1 required>
                     </div>
                   </div>
                 </div>
