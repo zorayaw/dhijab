@@ -281,6 +281,17 @@ class PemesananAllByBulan extends CI_Controller
 		 }
 	   }
 
+	   function pemesananByTahun($tahun){
+		   $bulan = $this->input->get('bulan');
+		$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+		$x['kurir'] = $this->m_pemesanan->getAllkurir();
+		$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+		$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+		 $x['produksi'] = $this->m_barang->getdataProduksi();
+		$x['reseller'] = $this->m_barang->getAllBarangR();
+		$x['datapesanan'] = $this->m_pemesanan->getPemesananbyBulan($bulan, $tahun);
+	   }
+
 	}
 
 
