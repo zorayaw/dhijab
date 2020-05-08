@@ -9,7 +9,6 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Nomor Order</th>
                   <th>Nama Pemesan</th>
                   <th>Nama Akun</th>
                   <th>Tanggal Pesanan</th>
@@ -21,6 +20,7 @@
                   <th>Biaya Ongkir</th>
                   <th>Asal Transaksi</th>
                   <th>Metode Pembayaran</th>
+                  <th>List Barang</th>
                   <th>Note</th>
                   <th>Biaya Admin</th>
                   <th>Diskon</th>
@@ -78,7 +78,6 @@
                     <td>
                       <center><?php echo $no ?></center>
                     </td>
-                    <td><?php echo $pemesanan_id ?></td>
                     <td><?php echo $pemesanan_nama ?></td>
                     <td><?php echo $nama_akun ?></td>
                     <td><?php echo $tanggal ?></td>
@@ -90,6 +89,8 @@
                     <td><?php echo $ongkir ?></td>
                     <td><?php echo $at_nama ?></td>
                     <td><?php echo $mp_nama ?></td>
+
+                    <td><a href="" target="_blank" class="btn btn-primary">List Barang</a></td>
 
                    
                     <td><?php echo $note ?></td>
@@ -110,7 +111,7 @@
 
               </tbody>
               <tr>
-                <th colspan="18">
+                <th colspan="17">
                   <center>Jumlah</center>
                 </th>
                 <th colspan="2"><?php echo rupiah($total) ?></th>
