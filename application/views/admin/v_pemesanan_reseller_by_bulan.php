@@ -55,7 +55,7 @@
                   <th >Nomor Order</th>
                   <th>Nama Pemesan</th>
                   <th>Nama Akun</th>
-                  <th >Tanggal Pesanan</th>
+                  <th >Tanggal Pemesanan</th>
                   <th>No HP</th>
                   <th>Alamat</th>
                   <th>Email </th>
@@ -775,7 +775,7 @@
       <div class="modal-dialog modal-lg-10">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Cetak Pesanan</h5>
+            <h5 class="modal-title">Cetak Pemesanan Reseller Bulan <?=$namaBulan?></h5>
           </div>
           <div class="modal-body">
             <div class="row">
