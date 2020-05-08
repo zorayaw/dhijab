@@ -73,7 +73,7 @@
                         </a>
                 </div>
                 <div class="col-md-12 mt-4">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertWord" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertWord?status=3" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
                           <i class="fa fa-print pr-2"></i>Convert PDF
                         </a>
                 </div>
@@ -104,13 +104,13 @@
                     <div class="row">
 
                     <div class="col-md-12">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcel" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcel?status=3" target="_blank" class="btn btn-success btn-block ripple m-t-10">
                           <i class="fa fa-print pr-2"></i>Convert Seluruh Pemesanan</a>
                         </a>
                       </div>
 
                       <div class="col-md-12 mt-4">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerhari" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerhari?status=3" target="_blank" class="btn btn-success btn-block ripple m-t-10">
                           <i class="fa fa-print pr-2"></i>Convert Pemesanan Hari Ini (<?= date('d')?> <?php 
                             switch (date('m')){
                               case 1 : echo "Januari"; break;
@@ -133,7 +133,7 @@
                       </div>
 
                       <div class="col-md-12 mt-4">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerbulan" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerbulan?status=3" target="_blank" class="btn btn-success btn-block ripple m-t-10">
                           <i class="fa fa-print pr-2"></i>Convert Pemesanan Bulan Ini (<?php 
                             switch (date('m')){
                               case 1 : echo "Januari"; break;
@@ -155,7 +155,7 @@
                         </a>
                       </div>
                       <div class="col-md-12 mt-4"><h6>Convert Berdasarkan Tanggal:</h6></div>
-                        <form action="<?php echo base_url() ?>admin/Pemesanan/convertExcelBytanggal" target="_blank" method="post" enctype="multipart/form-data">
+                        <form action="<?php echo base_url() ?>admin/Pemesanan/convertExcelBytanggal?status=3" target="_blank" method="post" enctype="multipart/form-data">
                       <div class="modal-body p-20">
                         <div class="row">
                         <div class="col-md-4">
@@ -197,13 +197,13 @@
                     <div class="row">
 
                     <div class="col-md-12">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertWord" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertWord?status=3" target="_blank" class="btn btn-success btn-block ripple m-t-10">
                           <i class="fa fa-print pr-2"></i>Convert Seluruh Pemesanan</a>
                         </a>
                       </div>
 
                       <div class="col-md-12 mt-4">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertWordPerhari" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertWordPerhari?status=3" target="_blank" class="btn btn-success btn-block ripple m-t-10">
                           <i class="fa fa-print pr-2"></i>Convert Pemesanan Hari Ini (<?= date('d')?> <?php 
                             switch (date('m')){
                               case 1 : echo "Januari"; break;
@@ -226,7 +226,7 @@
                       </div>
 
                       <div class="col-md-12 mt-4">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertWordPerbulan" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertWordPerbulan?status=3" target="_blank" class="btn btn-success btn-block ripple m-t-10">
                           <i class="fa fa-print pr-2"></i>Convert Pemesanan Bulan Ini (<?php 
                             switch (date('m')){
                               case 1 : echo "Januari"; break;
@@ -248,7 +248,7 @@
                         </a>
                       </div>
                       <div class="col-md-12 mt-4"><h6>Convert Berdasarkan Tanggal:</h6></div>
-                        <form action="<?php echo base_url() ?>admin/Pemesanan/convertWordPertanggal" target="_blank" method="post" enctype="multipart/form-data">
+                        <form action="<?php echo base_url() ?>admin/Pemesanan/convertWordPertanggal?status=3" target="_blank" method="post" enctype="multipart/form-data">
                       <div class="modal-body p-20">
                         <div class="row">
                         <div class="col-md-4">
