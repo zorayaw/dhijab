@@ -16,19 +16,12 @@
         	return $hasil;
 		}
 
-	
-
 		function getPemesanan(){
 			$hasil=$this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_id DESC");
         	return $hasil;
 		}
 
-		// function getPemesananAllByBulan($bulan){
-		// 	$tahun = date('Y');
-		// 	$hasil=$this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE month(a.pemesanan_tanggal) = $bulan AND year(a.pemesanan_tanggal) = $tahun AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4 and pemesanan_tanggal BETWEEN '2020-01-01' AND '2020-01-31' ORDER BY a.pemesanan_id DESC");
-        // 	return $hasil;
-		//}
-
+	
 		function getPemesananBulanJan(){
 			$hasil=$this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4 and pemesanan_tanggal BETWEEN '2020-01-01' AND '2020-01-31' ORDER BY a.pemesanan_id DESC");
         	return $hasil;
