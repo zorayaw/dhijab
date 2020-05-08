@@ -55,7 +55,7 @@
                   <th>Nomor Order</th>
                   <th>Nama Pemesan</th>
                   <th>Nama Akun</th>
-                  <th>Tanggal Pesanan</th>
+                  <th>Tanggal Pemesanan</th>
                   <th>No HP</th>
                   <th>Alamat</th>
                   <th>Email </th>
@@ -189,7 +189,7 @@
       <div class="modal-dialog modal-lg-10">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Cetak Pesanan</h5>
+            <h5 class="modal-title">Cetak Seluruh Pemesanan Customer</h5>
           </div>
           <div class="modal-body">
             <div class="row">
@@ -238,13 +238,44 @@
                 <br>
               </div>
 
-              <div class="col-md-12">
-                <a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiByTahun?status=1&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
-                  <i class="fa fa-print pr-2"></i>Cetak Pemesanan Tahun Ini (<?= date('Y')?>) 
-                </a>
-                <br>
-                <br>
+              <form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiByTahun?status=1" target="_blank" method="post" enctype="multipart/form-data">
+              <div class="col-md-12"><h6>Cetak Pemesanan Berdasarkan Tahun: </h6></div>
+               
+            <div class="modal-body p-20">
+              <div class="row">
+              <div class="col-lg-6">
+              <label class="control-label">Dari tahun:</label>
+              <select class="form-control" name="start_year" required>
+                    <option selected value="">Pilih</option>
+                    <?php
+                for ($x = 2017; $x <= date('Y'); $x++) :
+                ?>
+                    <option value="<?php echo $x ?>"><?php echo $x ?></option>
+                <?php endfor ?>
+              </select>
               </div>
+              
+              <div class="col-lg-6">
+              <label class="control-label">Sampai tahun:</label>
+              <select class="form-control" name="end_year" required>
+                    <option selected value="">Pilih</option>
+                    <?php
+                for ($x = 2017; $x <= date('Y'); $x++) :
+                ?>
+                    <option value="<?php echo $x ?>"><?php echo $x ?></option>
+                <?php endfor ?>
+              </select>
+               </div> 
+              </div>
+            </div>
+              </div>
+               
+               <div class="col-md-12">
+               <button type="submit" class="btn btn-success btn-block ripple m-t-10">
+                  <i class="fa fa-print pr-2"></i>Cetak Pemesanan</button>
+                  <br>
+                   </div>
+                  </form>
 
               <div class="col-md-12"><h6>Cetak Berdasarkan Tanggal:</h6></div>
                <form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiBytanggal?status=1" target="_blank" method="post" enctype="multipart/form-data">

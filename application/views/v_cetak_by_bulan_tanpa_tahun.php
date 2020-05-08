@@ -11,25 +11,29 @@
 <body>
 <?php date_default_timezone_set("Asia/Jakarta");?>
      <div>
-          
-          <div class="col-xl-12">
-            <center><h1>Laporan Transaksi Tahunan</h1></center>
-            <center><h4><?php 
+          <?php 
                   switch ($bulan){
-                    case 1 : echo "Januari"; break;
-                    case 2 : echo "Februari"; break;
-                    case 3 : echo "Maret"; break;
-                    case 4 : echo "April"; break;
-                    case 5 : echo "Mei"; break;
-                    case 6 : echo "Juni"; break;
-                    case 7 : echo "Juli"; break;
-                    case 8 : echo "Agustus"; break;
-                    case 9 : echo "September"; break;
-                    case 10 : echo "Oktober"; break;
-                    case 11 : echo "November"; break;
-                    case 12 : echo "Desember"; break;
+                    case 1 : $nbulan = "Januari"; break;
+                    case 2 : $nbulan = "Februari"; break;
+                    case 3 : $nbulan = "Maret"; break;
+                    case 4 : $nbulan = "April"; break;
+                    case 5 : $nbulan = "Mei"; break;
+                    case 6 : $nbulan = "Juni"; break;
+                    case 7 : $nbulan = "Juli"; break;
+                    case 8 : $nbulan = "Agustus"; break;
+                    case 9 : $nbulan = "September"; break;
+                    case 10 : $nbulan = "Oktober"; break;
+                    case 11 : $nbulan = "November"; break;
+                    case 12 : $nbulan = "Desember"; break;
                   }
-                  ?> <?= $awal." - ".$akhir?></h4></center>
+                  ?>
+          <div class="col-xl-12">
+          <?php if($numstat == 0) : ?>
+            <center><h1>Laporan Tahunan <?=$stat?> Transaksi untuk Bulan <?=$nbulan?></h1></center>
+            <?php else : ?>
+              <center><h1>Laporan Tahunan Transaksi <?=$stat?> untuk Bulan <?=$nbulan?></h1></center>
+              <?php endif?>
+            <center><h4> <?= $awal." - ".$akhir?></h4></center>
           </div>
           <hr style="margin-left:10px;margin-right:10px;">
           <hr>

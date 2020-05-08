@@ -13,8 +13,17 @@
      <div>
           
           <div class="col-xl-12">
-            <center><h1>Laporan Transaksi</h1></center>
-            <center><h4>(<?=$tahun?>) </h4></center>
+          <?php if($numstat == 0) : ?>
+            <center><h1>Laporan Tahunan <?=$stat?> Transaksi</h1></center>
+            <?php else : ?>
+              <center><h1>Laporan Tahunan Transaksi <?=$stat?></h1></center>
+              <?php endif?>
+
+              <?php if($awal == $akhir) : ?>
+                <center><h4>(<?=$awal?>) </h4></center>
+                <?php else : ?>
+            <center><h4>(<?=$awal." - ". $akhir?>) </h4></center>
+                <?php endif; ?>
           </div>
           <hr style="margin-left:10px;margin-right:10px;">
           <hr>
