@@ -115,6 +115,7 @@ class PemesananProduksiByBulan extends CI_Controller
 		$no_hp = "-";
 		$alamat = "-";
 		$asal_transaksi = "6";
+		$resi = "-";
 		$kurir = "6";
 		$metpem = "1";
 		$tanggal = $this->input->post('tanggal');
@@ -128,7 +129,7 @@ class PemesananProduksiByBulan extends CI_Controller
 		$status = 3;
 		$diskon = 0;
 		$biaya_admin = 0;
-		$pemesanan_id = $this->m_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
+		$pemesanan_id = $this->m_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir, $resi, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
 		$size = sizeof($barang_id);
 		for ($i = 0; $i < $size; $i++) {
 			$this->m_list_barang->save_list_barangP($pemesanan_id, $qty[$i], $barang_id[$i], $level);
