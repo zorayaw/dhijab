@@ -160,11 +160,11 @@
                         <div class="row">
                         <div class="col-md-4">
                           <label class="control-label">Start date:</label>
-                          <input class="form-control form-white" type="date" name="start_date" required/>
+                          <input class="form-control form-white" id="startdateexcel" type="date" name="start_date" required/>
                         </div>
                         <div class="col-md-4">
                           <label class="control-label">End date:</label>
-                          <input class="form-control form-white" type="date" name="end_date" required/>
+                          <input class="form-control form-white" id="enddateexcel" type="date" name="end_date" required/>
                         </div>
                         <div class="col-md-4">
                         <button type="submit" class="btn btn-info btn-block ripple m-t-10">
@@ -253,11 +253,11 @@
                         <div class="row">
                         <div class="col-md-4">
                           <label class="control-label">Start date:</label>
-                          <input class="form-control form-white" type="date" name="start_date" required/>
+                          <input class="form-control form-white" id="startdateword" type="date" name="start_date" required/>
                         </div>
                         <div class="col-md-4">
                           <label class="control-label">End date:</label>
-                          <input class="form-control form-white" type="date" name="end_date" required/>
+                          <input class="form-control form-white" id="enddateword" type="date" name="end_date" required/>
                         </div>
                         <div class="col-md-4">
                         <button type="submit" class="btn btn-info btn-block ripple m-t-10">
@@ -481,7 +481,7 @@
               <div class="row">
               <div class="col-lg-6">
               <label class="control-label">Dari tahun:</label>
-              <select class="form-control" name="start_year" required>
+              <select class="form-control" id="syear" name="start_year" required>
                     <option selected value="">Pilih</option>
                     <?php
                 for ($x = 2017; $x <= date('Y'); $x++) :
@@ -493,7 +493,7 @@
               
               <div class="col-lg-6">
               <label class="control-label">Sampai tahun:</label>
-              <select class="form-control" name="end_year" required>
+              <select class="form-control" id="eyear" name="end_year" required>
                     <option selected value="">Pilih</option>
                     <?php
                 for ($x = 2017; $x <= date('Y'); $x++) :
@@ -519,11 +519,11 @@
               <div class="row">
               <div class="col-md-4">
                 <label class="control-label">Dari tanggal:</label>
-                <input class="form-control form-white" type="date" name="start_date" required/>
+                <input class="form-control form-white" id="startdatecetak" type="date" name="start_date" required/>
               </div>
               <div class="col-md-4">
                 <label class="control-label">Sampai tanggal:</label>
-                <input class="form-control form-white" type="date" name="end_date" required/>
+                <input class="form-control form-white" id="enddatecetak" type="date" name="end_date" required/>
               </div>
               <div class="col-md-4">
                <button type="submit" class="btn btn-success btn-block ripple m-t-10">
@@ -1230,6 +1230,123 @@
 </body>
 
 </html>
+
+
+<script type="text/javascript">
+
+    var e = document.getElementById("syear");
+        $('#syear').on('change', function(){
+        var date = new Date($('#syear').val());
+        years = date.getFullYear();
+    });
+
+    var e = document.getElementById("endyear");
+        $('#eyear').on('change', function(){
+        var date = new Date($('#eyear').val());
+        yeare = date.getFullYear();
+        if(years > yeare){
+          alert("Tahun tidak valid (Start Year > End Year)");
+          // $('#eyear').remove();
+        }
+    });
+
+</script>
+
+<script type="text/javascript">
+
+    var e = document.getElementById("startdatecetak");
+        $('#startdatecetak').on('change', function(){
+        var date = new Date($('#startdatecetak').val());
+        days = date.getDate();
+        months = date.getMonth() + 1;
+        years = date.getFullYear();
+    });
+
+    var e = document.getElementById("enddatecetak");
+        $('#enddatecetak').on('change', function(){
+        var date = new Date($('#enddatecetak').val());
+        daye = date.getDate();
+        monthe = date.getMonth() + 1;
+        yeare = date.getFullYear();
+        if(years > yeare){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddatecetak').val('');
+        }
+        else if ((years == yeare) && (months > monthe)){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddatecetak').val('');
+        }
+        else if ((days > daye) && (years == yeare) && (months == monthe)){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddatecetak').val('');
+        }
+    });
+
+</script>
+
+<script type="text/javascript">
+
+    var e = document.getElementById("startdateexcel");
+        $('#startdateexcel').on('change', function(){
+        var date = new Date($('#startdateexcel').val());
+        days = date.getDate();
+        months = date.getMonth() + 1;
+        years = date.getFullYear();
+    });
+
+    var e = document.getElementById("enddateexcel");
+        $('#enddateexcel').on('change', function(){
+        var date = new Date($('#enddateexcel').val());
+        daye = date.getDate();
+        monthe = date.getMonth() + 1;
+        yeare = date.getFullYear();
+        if(years > yeare){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddateexcel').val('');
+        }
+        else if ((years == yeare) && (months > monthe)){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddateexcel').val('');
+        }
+        else if ((days > daye) && (years == yeare) && (months == monthe)){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddateexcel').val('');
+        }
+    });
+
+</script>
+
+<script type="text/javascript">
+
+    var e = document.getElementById("startdateword");
+        $('#startdateword').on('change', function(){
+        var date = new Date($('#startdateword').val());
+        days = date.getDate();
+        months = date.getMonth() + 1;
+        years = date.getFullYear();
+    });
+
+    var e = document.getElementById("enddateword");
+        $('#enddateword').on('change', function(){
+        var date = new Date($('#enddateword').val());
+        daye = date.getDate();
+        monthe = date.getMonth() + 1;
+        yeare = date.getFullYear();
+        if(years > yeare){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddateword').val('');
+        }
+        else if ((years == yeare) && (months > monthe)){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddateword').val('');
+        }
+        else if ((days > daye) && (years == yeare) && (months == monthe)){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddateword').val('');
+        }
+    });
+
+</script>
 
 
 <script type="text/javascript">
