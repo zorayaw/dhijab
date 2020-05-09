@@ -1294,7 +1294,8 @@ class Pemesanan extends CI_Controller
 	   }
 	   
 	   function pemesananByTahun(){
-		   $tahun = intVal($this->input->post('thn'));
+
+		$tahun = intVal($this->input->post('thn'));
 		$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
 		$x['kurir'] = $this->m_pemesanan->getAllkurir();
 		$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
@@ -1303,6 +1304,7 @@ class Pemesanan extends CI_Controller
 		$x['reseller'] = $this->m_barang->getAllBarangR();
 		$x['datapesanan'] = $this->m_pemesanan->getPemesananby1Tahun($tahun);
 		$this->load->view('admin/v_pemesanan_by_tahun', $x);
+		
 	   }
 
 	}

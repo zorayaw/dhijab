@@ -55,6 +55,15 @@
                 <i class="fa fa-print pr-2"></i> Convert
               </a>
             </div>
+
+            <?php 
+            $curyear = date('Y');
+            $earlyyear = 2015;
+            foreach(range($curyear, $earlyyear) as $r ) {
+              print '<button onclick="cyear('.$r.')" id="changeYear'.$r.'" style="margin-right: 10px; margin-bottom:10px" > '.$r.' </button>';
+            }
+          ?>
+         
           
           <!-- Modal -->
           <div class="modal fade" id="pilihan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -279,6 +288,9 @@
 
 <!-- end convert -->
 
+<div id="sukses"></div>
+  
+  <div id="hapus">
 
           <div class="table-responsive">
             <table id="datatable" class="table table-striped table-bordered p-0">
@@ -555,6 +567,7 @@
           </form>
         </div>
       </div>
+    </div>
     </div>
 
     <!-- Modal Pesanan Reseller-->
@@ -1228,6 +1241,23 @@
 
 </html>
 
+<script>
+    function cyear(num){
+        let value = parseInt($('#changeYear'+num).html())
+        $.ajax({
+            method: "POST",
+            url: "http://localhost/dhijab/admin/Pemesanan/PemesananByTahun",
+            data: {
+              thn: parseInt($('#changeYear'+num).html())
+            },
+            success: function (result) {
+              $('#sukses').html(result)
+              $('#hapus').remove() 
+              
+            }
+			});
+    }
+</script>
 
 <script type="text/javascript">
 

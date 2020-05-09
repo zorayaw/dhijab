@@ -1204,8 +1204,9 @@
               thn: parseInt($('#changeYear'+num).html())
             },
             success: function (result) {
+              $('#datatable').html("")
               $('#sukses').html(result)
-              
+            
             }
 			});
     }

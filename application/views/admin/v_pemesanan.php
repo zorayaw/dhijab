@@ -290,6 +290,7 @@
  
   <div id="sukses"></div>
   
+  <div id="hapus">
           <div class="table-responsive">
             <table id="datatable" class="table table-striped table-bordered p-0">
               <thead>
@@ -427,7 +428,7 @@
         </div>
       </div>
     </div>
-
+    </div>
  <!-- Modal Cetak-->
  <?php date_default_timezone_set("Asia/Jakarta");
     ?>
@@ -1260,6 +1261,7 @@
             },
             success: function (result) {
               $('#sukses').html(result)
+              $('#hapus').remove() 
               
             }
 			});

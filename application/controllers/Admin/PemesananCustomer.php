@@ -155,7 +155,8 @@
 		    }
 		   }
 		   
-		   function pemesananByTahun($tahun){
+		function pemesananByTahun(){
+			$tahun = intVal($this->input->post('thn'));
 			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
 			$x['kurir'] = $this->m_pemesanan->getAllkurir();
 			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
