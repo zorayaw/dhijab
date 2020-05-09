@@ -59,9 +59,9 @@
 
 	  	function savepemesananP(){
 	  		$nama_pemesan = "admin";
-	  		$nama_akun_pemesan ="-";
-	  		$no_hp = "-";
-	  		$alamat = "-";
+			$nama_akun_pemesan ="-";
+			$no_hp = $this->input->post('hp');
+			$alamat = $this->input->post('alamat');
 	  		$asal_transaksi = "6";
 			  $kurir ="6";
 			  $resi = "-";

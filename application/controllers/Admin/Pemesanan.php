@@ -39,141 +39,451 @@ class Pemesanan extends CI_Controller
 		}
 	}
 
-	
+
+	// function index()
+	// {
+	// 	$tahun = intVal($this->input->post('thn'));
+
+	// 	if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
+	// 		$y['title'] = "Pemesanan";
+	// 		$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+	// 		$x['kurir'] = $this->m_pemesanan->getAllkurir();
+	// 		$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+	// 		$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+	// 		$x['produksi'] = $this->m_barang->getdataProduksi();
+	// 		$x['reseller'] = $this->m_barang->getAllBarangR();
+	// 		$x['datapesanan'] = $this->m_pemesanan->getPemesananSesuaiTahun($tahun);
+	// 		$this->load->view('v_header', $y);
+	// 		$this->load->view('admin/v_sidebar');
+	// 		$this->load->view('admin/v_pemesanan', $x);
+	// 	} else {
+	// 		redirect('Login');
+	// 	}
+	// }
+
+		
 	function convertWord(){
-		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
-			$y['title'] = "Pemesanan";
-			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
-			$x['kurir'] = $this->m_pemesanan->getAllkurir();
-			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
-			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
-			$x['produksi'] = $this->m_barang->getdataProduksi();
-			$x['reseller'] = $this->m_barang->getAllBarangR();
-			$x['datapesanan'] = $this->m_pemesanan->getPemesanan();
-			$this->load->view('admin/laporan_word', $x);
-		} else {
-			redirect('Login');
-		}
+		$statusc = $this->input->get('status');
+		$x['numstat'] = $statusc;
+			if($statusc==0){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesanan();
+				$this->load->view('admin/laporan_word', $x);
+			}
+			else if($statusc==1){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomer();
+				$this->load->view('admin/laporan_word', $x);
+			}
+			else if($statusc==2){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananreseller();
+				$this->load->view('admin/laporan_word', $x);
+			}
+			else if($statusc==3){
+
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananproduksi();
+				$this->load->view('admin/laporan_word', $x);
+			}
+		
 	}
 
 	function convertWordPerhari(){
-		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
-			$y['title'] = "Pemesanan";
-			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
-			$x['kurir'] = $this->m_pemesanan->getAllkurir();
-			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
-			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
-			$x['produksi'] = $this->m_barang->getdataProduksi();
-			$x['reseller'] = $this->m_barang->getAllBarangR();
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananCurdate();
-			$this->load->view('admin/laporan_word', $x);
-		} else {
-			redirect('Login');
-		}
+		$statusc = $this->input->get('status');
+		$x['numstat'] = $statusc;
+			if($statusc==0){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananCurdate();
+				$this->load->view('admin/laporan_word', $x);
+			}
+			else if($statusc==1){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomerCurdate();
+				$this->load->view('admin/laporan_word', $x);
+			}
+			else if($statusc==2){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananResellerCurdate();
+				$this->load->view('admin/laporan_word', $x);
+			}
+			else if($statusc==3){
+
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananProduksiCurdate();
+				$this->load->view('admin/laporan_word', $x);
+			}
+		
 	}
 
 	function convertWordPerbulan(){
-		$bulan = date('m');
-		$tahun = date('Y');
-		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
-			$y['title'] = "Pemesanan";
-			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
-			$x['kurir'] = $this->m_pemesanan->getAllkurir();
-			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
-			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
-			$x['produksi'] = $this->m_barang->getdataProduksi();
-			$x['reseller'] = $this->m_barang->getAllBarangR();
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananByBulan($bulan, $tahun);
-			$this->load->view('admin/laporan_word', $x);
-		} else {
-			redirect('Login');
-		}
+			$statusc = $this->input->get('status');
+			$bulan = $this->input->get('bulan');
+			$tahun = $this->input->get('tahun');
+			$x['numstat'] = $statusc;
+			$x['bulan'] = $bulan;
+			$x['tahun'] = $tahun;
+			if($statusc==0){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananByBulan($bulan,$tahun);
+				$this->load->view('admin/laporan_word', $x);
+			}
+			else if($statusc==1){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomerByBulan($bulan,$tahun);
+				$this->load->view('admin/laporan_word', $x);
+				}
+			else if($statusc==2){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananResellerByBulan($bulan, $tahun);
+				$this->load->view('admin/laporan_word', $x);
+			}
+			else if($statusc==3){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananProduksiByBulan($bulan, $tahun);
+				$this->load->view('admin/laporan_word', $x);
+			}
 	}
 
 	function convertWordPertanggal(){
-		$start = $this->input->post('start_date');
-		$end = $this->input->post('end_date');
-		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
-			$y['title'] = "Pemesanan";
-			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
-			$x['kurir'] = $this->m_pemesanan->getAllkurir();
-			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
-			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
-			$x['produksi'] = $this->m_barang->getdataProduksi();
-			$x['reseller'] = $this->m_barang->getAllBarangR();
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananByTanggal($start, $end);
-			$this->load->view('admin/laporan_word', $x);
-		} else {
-			redirect('Login');
-		}
+		$statusc = $this->input->get('status');
+			$start = $this->input->post('start_date');
+			$end = $this->input->post('end_date');
+			$x['numstat'] = $statusc;
+			$x['start'] = $start;
+			$x['end'] = $end;
+			
+			if($statusc==0){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananByTanggal($start, $end);
+				$this->load->view('admin/laporan_word', $x);
+			}
+			else if($statusc==1){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomerByTanggal($start, $end);
+				$this->load->view('admin/laporan_word', $x);
+			}
+			else if($statusc==2){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananResellerByTanggal($start, $end);
+				$this->load->view('admin/laporan_word', $x);
+	
+			}
+			else if($statusc==3){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananProduksiByTanggal($start, $end);
+				$this->load->view('admin/laporan_word', $x);
+			}
+	
 	}
 
 	function convertExcel(){
-		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
-			$y['title'] = "Pemesanan";
-			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
-			$x['kurir'] = $this->m_pemesanan->getAllkurir();
-			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
-			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
-			$x['produksi'] = $this->m_barang->getdataProduksi();
-			$x['reseller'] = $this->m_barang->getAllBarangR();
-			$x['datapesanan'] = $this->m_pemesanan->getPemesanan();
-			$this->load->view('admin/laporan_excel', $x);
-		} else {
-			redirect('Login');
-		}
+		$statusc = $this->input->get('status');
+		$x['numstat'] = $statusc;
+			if($statusc==0){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesanan();
+				$this->load->view('admin/laporan_excel', $x);
+			}
+			else if($statusc==1){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomer();
+				$this->load->view('admin/laporan_excel', $x);
+			}
+			else if($statusc==2){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananreseller();
+				$this->load->view('admin/laporan_excel', $x);
+			}
+			else if($statusc==3){
+
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananproduksi();
+				$this->load->view('admin/laporan_excel', $x);
+			}
+		
 	}
 
 	function convertExcelPerhari(){
-		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
-			$y['title'] = "Pemesanan";
-			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
-			$x['kurir'] = $this->m_pemesanan->getAllkurir();
-			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
-			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
-			$x['produksi'] = $this->m_barang->getdataProduksi();
-			$x['reseller'] = $this->m_barang->getAllBarangR();
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananCurdate();
-			$this->load->view('admin/laporan_excel', $x);
-		} else {
-			redirect('Login');
-		}
+
+		$statusc = $this->input->get('status');
+		$x['numstat'] = $statusc;
+			if($statusc==0){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananCurdate();
+				$this->load->view('admin/laporan_excel', $x);
+			}
+			else if($statusc==1){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomerCurdate();
+				$this->load->view('admin/laporan_excel', $x);
+			}
+			else if($statusc==2){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananResellerCurdate();
+				$this->load->view('admin/laporan_excel', $x);
+			}
+			else if($statusc==3){
+
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananProduksiCurdate();
+				$this->load->view('admin/laporan_excel', $x);
+			}
+					
 	}	
 
 	function convertExcelPerbulan(){
-		$bulan = date('m');
-		$tahun = date('Y');
-		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
-			$y['title'] = "Pemesanan";
-			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
-			$x['kurir'] = $this->m_pemesanan->getAllkurir();
-			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
-			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
-			$x['produksi'] = $this->m_barang->getdataProduksi();
-			$x['reseller'] = $this->m_barang->getAllBarangR();
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananByBulan($bulan, $tahun);
-			$this->load->view('admin/laporan_excel', $x);
-		} else {
-			redirect('Login');
-		}
+			$statusc = $this->input->get('status');
+			$bulan = $this->input->get('bulan');
+			$tahun = $this->input->get('tahun');
+			$x['numstat'] = $statusc;
+			$x['bulan'] = $bulan;
+			$x['tahun'] = $tahun;
+			if($statusc==0){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananByBulan($bulan,$tahun);
+				$this->load->view('admin/laporan_excel', $x);
+			}
+			else if($statusc==1){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomerByBulan($bulan,$tahun);
+				$this->load->view('admin/laporan_excel', $x);
+				}
+			else if($statusc==2){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananResellerByBulan($bulan, $tahun);
+				$this->load->view('admin/laporan_excel', $x);
+			}
+			else if($statusc==3){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananProduksiByBulan($bulan, $tahun);
+				$this->load->view('admin/laporan_excel', $x);
+			}
 	}
 
 	function convertExcelByTanggal(){
-		$start = $this->input->post('start_date');
-		$end = $this->input->post('end_date');
-		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
-			$y['title'] = "Pemesanan";
-			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
-			$x['kurir'] = $this->m_pemesanan->getAllkurir();
-			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
-			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
-			$x['produksi'] = $this->m_barang->getdataProduksi();
-			$x['reseller'] = $this->m_barang->getAllBarangR();
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananByTanggal($start, $end);
-			$this->load->view('admin/laporan_excel', $x);
-		} else {
-			redirect('Login');
-		}
+
+		$statusc = $this->input->get('status');
+			$start = $this->input->post('start_date');
+			$end = $this->input->post('end_date');
+			$x['numstat'] = $statusc;
+			$x['start'] = $start;
+			$x['end'] = $end;
+			
+			if($statusc==0){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananByTanggal($start, $end);
+				$this->load->view('admin/laporan_excel', $x);
+			}
+			else if($statusc==1){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomerByTanggal($start, $end);
+				$this->load->view('admin/laporan_excel', $x);
+			}
+			else if($statusc==2){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananResellerByTanggal($start, $end);
+				$this->load->view('admin/laporan_excel', $x);
+	
+			}
+			else if($statusc==3){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananProduksiByTanggal($start, $end);
+				$this->load->view('admin/laporan_excel', $x);
+			}
+	
 	}
 
 
@@ -363,8 +673,8 @@ class Pemesanan extends CI_Controller
 	{
 		$nama_pemesan = "admin";
 		$nama_akun_pemesan = "-";
-		$no_hp = "-";
-		$alamat = "-";
+		$no_hp = $this->input->post('hp');
+		$alamat = $this->input->post('alamat');
 		$asal_transaksi = "6";
 		$kurir = "6";
 		$resi = "-";
@@ -696,8 +1006,8 @@ class Pemesanan extends CI_Controller
 	{
 		$nama_pemesan = "admin";
 		$nama_akun_pemesan = "-";
-		$no_hp = "-";
-		$alamat = "-";
+		$no_hp = $this->input->post('hp');
+		$alamat = $this->input->post('alamat');
 		$asal_transaksi = "6";
 		$kurir = "6";
 		$resi = "-";

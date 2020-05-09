@@ -56,11 +56,20 @@
               </a>
             </div>
           
+          <!-- <?php 
+            $curyear = date('Y');
+            $earlyyear = 2015;
+            foreach(range($curyear, $earlyyear) as $r ) {
+              print '<button onclick="cyear('.$r.')" id="changeYear'.$r.'" style="margin-right: 10px; margin-bottom:10px" > '.$r.' </button>';
+            }
+          ?>
+           -->
+
           <!-- Modal -->
           <div class="modal fade" id="pilihan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="margin-right: 5px" >
                   <h5 class="modal-title" id="exampleModalLabel">Pilihan</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -104,13 +113,13 @@
                     <div class="row">
 
                     <div class="col-md-12">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcel" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcel?status=0" target="_blank" class="btn btn-success btn-block ripple m-t-10">
                           <i class="fa fa-print pr-2"></i>Convert Seluruh Pemesanan</a>
                         </a>
                       </div>
 
                       <div class="col-md-12 mt-4">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerhari" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerhari?status=0" target="_blank" class="btn btn-success btn-block ripple m-t-10">
                           <i class="fa fa-print pr-2"></i>Convert Pemesanan Hari Ini (<?= date('d')?> <?php 
                             switch (date('m')){
                               case 1 : echo "Januari"; break;
@@ -133,7 +142,7 @@
                       </div>
 
                       <div class="col-md-12 mt-4">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerbulan" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerbulan?status=0&bulan=<?= date('m')?>&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
                           <i class="fa fa-print pr-2"></i>Convert Pemesanan Bulan Ini (<?php 
                             switch (date('m')){
                               case 1 : echo "Januari"; break;
@@ -155,16 +164,16 @@
                         </a>
                       </div>
                       <div class="col-md-12 mt-4"><h6>Convert Berdasarkan Tanggal:</h6></div>
-                        <form action="<?php echo base_url() ?>admin/Pemesanan/convertExcelBytanggal" target="_blank" method="post" enctype="multipart/form-data">
+                        <form action="<?php echo base_url() ?>admin/Pemesanan/convertExcelBytanggal?status=0" target="_blank" method="post" enctype="multipart/form-data">
                       <div class="modal-body p-20">
                         <div class="row">
                         <div class="col-md-4">
                           <label class="control-label">Start date:</label>
-                          <input class="form-control form-white" type="date" name="start_date" required/>
+                          <input class="form-control form-white" id="startdateexcel" type="date" name="start_date" required/>
                         </div>
                         <div class="col-md-4">
                           <label class="control-label">End date:</label>
-                          <input class="form-control form-white" type="date" name="end_date" required/>
+                          <input class="form-control form-white" id="enddateexcel" type="date" name="end_date" required/>
                         </div>
                         <div class="col-md-4">
                         <button type="submit" class="btn btn-info btn-block ripple m-t-10">
@@ -197,13 +206,13 @@
                     <div class="row">
 
                     <div class="col-md-12">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertWord" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertWord?status=0" target="_blank" class="btn btn-success btn-block ripple m-t-10">
                           <i class="fa fa-print pr-2"></i>Convert Seluruh Pemesanan</a>
                         </a>
                       </div>
 
                       <div class="col-md-12 mt-4">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertWordPerhari" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertWordPerhari?status=0" target="_blank" class="btn btn-success btn-block ripple m-t-10">
                           <i class="fa fa-print pr-2"></i>Convert Pemesanan Hari Ini (<?= date('d')?> <?php 
                             switch (date('m')){
                               case 1 : echo "Januari"; break;
@@ -226,7 +235,7 @@
                       </div>
 
                       <div class="col-md-12 mt-4">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertWordPerbulan" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertWordPerbulan?status=0&bulan=<?= date('m')?>&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
                           <i class="fa fa-print pr-2"></i>Convert Pemesanan Bulan Ini (<?php 
                             switch (date('m')){
                               case 1 : echo "Januari"; break;
@@ -248,16 +257,16 @@
                         </a>
                       </div>
                       <div class="col-md-12 mt-4"><h6>Convert Berdasarkan Tanggal:</h6></div>
-                        <form action="<?php echo base_url() ?>admin/Pemesanan/convertWordPertanggal" target="_blank" method="post" enctype="multipart/form-data">
+                        <form action="<?php echo base_url() ?>admin/Pemesanan/convertWordPertanggal?status=0" target="_blank" method="post" enctype="multipart/form-data">
                       <div class="modal-body p-20">
                         <div class="row">
                         <div class="col-md-4">
                           <label class="control-label">Start date:</label>
-                          <input class="form-control form-white" type="date" name="start_date" required/>
+                          <input class="form-control form-white" id="startdateword" type="date" name="start_date" required/>
                         </div>
                         <div class="col-md-4">
                           <label class="control-label">End date:</label>
-                          <input class="form-control form-white" type="date" name="end_date" required/>
+                          <input class="form-control form-white" id="enddateword" type="date" name="end_date" required/>
                         </div>
                         <div class="col-md-4">
                         <button type="submit" class="btn btn-info btn-block ripple m-t-10">
@@ -279,6 +288,7 @@
 
 <!-- end convert -->
 
+  <div id="sukses"></div>
 
           <div class="table-responsive">
             <table id="datatable" class="table table-striped table-bordered p-0">
@@ -311,6 +321,7 @@
                 </tr>
               </thead>
               <tbody>
+                
                 <?php
                 function rupiah($angka)
                 {
@@ -349,9 +360,8 @@
                   $c = $q->row_array();
                   $jumlah = $c['total_keseluruhan'] + $ongkir - ($diskon + $biaya_admin + $uang);
 
-
-
                 ?>
+
                   <tr>
                     <td>
                       <center><?php echo $no ?></center>
@@ -403,7 +413,7 @@
                     </td>
                   </tr>
                 <?php endforeach; ?>
-
+              
               </tbody>
               <tr>
                 <th colspan="18">
@@ -411,6 +421,7 @@
                 </th>
                 <th colspan="2"><?php echo rupiah($total) ?></th>
               </tr>
+            
             </table>
           </div>
         </div>
@@ -481,24 +492,24 @@
               <div class="row">
               <div class="col-lg-6">
               <label class="control-label">Dari tahun:</label>
-              <select class="form-control" name="start_year" required>
+              <select class="form-control" id="syear" name="start_year" required>
                     <option selected value="">Pilih</option>
                     <?php
                 for ($x = 2017; $x <= date('Y'); $x++) :
                 ?>
-                    <option value="<?php echo $x ?>"><?php echo $x ?></option>
+                    <option id="enddate" value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
               </select>
               </div>
               
               <div class="col-lg-6">
               <label class="control-label">Sampai tahun:</label>
-              <select class="form-control" name="end_year" required>
+              <select class="form-control" id="eyear" name="end_year" required>
                     <option selected value="">Pilih</option>
                     <?php
                 for ($x = 2017; $x <= date('Y'); $x++) :
                 ?>
-                    <option value="<?php echo $x ?>"><?php echo $x ?></option>
+                    <option id="endyear" value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
               </select>
                </div> 
@@ -520,11 +531,11 @@
               <div class="row">
               <div class="col-md-4">
                 <label class="control-label">Dari tanggal:</label>
-                <input class="form-control form-white" type="date" name="start_date" required/>
+                <input class="form-control form-white" type="date" id="startdatecetak" name="start_date" required/>
               </div>
               <div class="col-md-4">
                 <label class="control-label">Sampai tanggal:</label>
-                <input class="form-control form-white" type="date" name="end_date" required/>
+                <input class="form-control form-white" type="date" id="enddatecetak" name="end_date" required/>
               </div>
               <div class="col-md-4">
                <button type="submit" class="btn btn-success btn-block ripple m-t-10">
@@ -825,6 +836,15 @@
                   <input class="form-control form-white" type="date" name="tanggal" required />
                 </div>
 
+                <div class="col-md-12">
+                  <label class="control-label">No HP</label>
+                  <input class="form-control form-white" type="number" name="hp" required />
+                </div>
+
+                <div class="col-md-12">
+                  <label class="control-label">Alamat</label>
+                  <input class="form-control form-white" type="text" name="alamat" required />
+                </div>
 
                 <div class="col-md-12">
                   <label class="control-label">Note</label>
@@ -1228,6 +1248,141 @@
 </body>
 
 </html>
+
+<script>
+    function cyear(num){
+        let value = parseInt($('#changeYear'+num).html())
+        $.ajax({
+            method: "POST",
+            url: "http://localhost/dhijab/admin/Pemesanan",
+            data: {
+              thn: parseInt($('#changeYear'+num).html())
+            },
+            success: function (result) {
+              $('#sukses').html(result)
+              
+            }
+			});
+    }
+</script>
+
+
+<script type="text/javascript">
+
+    var e = document.getElementById("syear");
+        $('#syear').on('change', function(){
+        var date = new Date($('#syear').val());
+        years = date.getFullYear();
+    });
+
+    var e = document.getElementById("endyear");
+        $('#eyear').on('change', function(){
+        var date = new Date($('#eyear').val());
+        yeare = date.getFullYear();
+        if(years > yeare){
+          alert("Tahun tidak valid (Start Year > End Year)");
+          // $('#eyear').remove();
+        }
+    });
+
+</script>
+
+<script type="text/javascript">
+
+    var e = document.getElementById("startdatecetak");
+        $('#startdatecetak').on('change', function(){
+        var date = new Date($('#startdatecetak').val());
+        days = date.getDate();
+        months = date.getMonth() + 1;
+        years = date.getFullYear();
+    });
+
+    var e = document.getElementById("enddatecetak");
+        $('#enddatecetak').on('change', function(){
+        var date = new Date($('#enddatecetak').val());
+        daye = date.getDate();
+        monthe = date.getMonth() + 1;
+        yeare = date.getFullYear();
+        if(years > yeare){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddatecetak').val('');
+        }
+        else if ((years == yeare) && (months > monthe)){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddatecetak').val('');
+        }
+        else if ((days > daye) && (years == yeare) && (months == monthe)){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddatecetak').val('');
+        }
+    });
+
+</script>
+
+<script type="text/javascript">
+
+    var e = document.getElementById("startdateexcel");
+        $('#startdateexcel').on('change', function(){
+        var date = new Date($('#startdateexcel').val());
+        days = date.getDate();
+        months = date.getMonth() + 1;
+        years = date.getFullYear();
+    });
+
+    var e = document.getElementById("enddateexcel");
+        $('#enddateexcel').on('change', function(){
+        var date = new Date($('#enddateexcel').val());
+        daye = date.getDate();
+        monthe = date.getMonth() + 1;
+        yeare = date.getFullYear();
+        if(years > yeare){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddateexcel').val('');
+        }
+        else if ((years == yeare) && (months > monthe)){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddateexcel').val('');
+        }
+        else if ((days > daye) && (years == yeare) && (months == monthe)){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddateexcel').val('');
+        }
+    });
+
+</script>
+
+<script type="text/javascript">
+
+    var e = document.getElementById("startdateword");
+        $('#startdateword').on('change', function(){
+        var date = new Date($('#startdateword').val());
+        days = date.getDate();
+        months = date.getMonth() + 1;
+        years = date.getFullYear();
+    });
+
+    var e = document.getElementById("enddateword");
+        $('#enddateword').on('change', function(){
+        var date = new Date($('#enddateword').val());
+        daye = date.getDate();
+        monthe = date.getMonth() + 1;
+        yeare = date.getFullYear();
+        if(years > yeare){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddateword').val('');
+        }
+        else if ((years == yeare) && (months > monthe)){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddateword').val('');
+        }
+        else if ((days > daye) && (years == yeare) && (months == monthe)){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddateword').val('');
+        }
+    });
+
+</script>
+
 
 <script type="text/javascript">
   $("#excel").click(function(){
