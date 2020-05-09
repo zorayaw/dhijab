@@ -42,7 +42,6 @@ class Pemesanan extends CI_Controller
 	
 	function convertWord(){
 		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
-			$statusc=$this->input->get('status');
 			$y['title'] = "Pemesanan";
 			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
 			$x['kurir'] = $this->m_pemesanan->getAllkurir();
@@ -50,14 +49,7 @@ class Pemesanan extends CI_Controller
 			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
 			$x['produksi'] = $this->m_barang->getdataProduksi();
 			$x['reseller'] = $this->m_barang->getAllBarangR();
-			if($statusc==0)
 			$x['datapesanan'] = $this->m_pemesanan->getPemesanan();
-			elseif($statusc==1)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomer();
-			elseif($statusc==2)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananReseller();
-			elseif($statusc==3)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananProduksi();
 			$this->load->view('admin/laporan_word', $x);
 		} else {
 			redirect('Login');
@@ -65,7 +57,6 @@ class Pemesanan extends CI_Controller
 	}
 
 	function convertWordPerhari(){
-		$statusc = $this->input->get('status');
 		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
 			$y['title'] = "Pemesanan";
 			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
@@ -74,15 +65,7 @@ class Pemesanan extends CI_Controller
 			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
 			$x['produksi'] = $this->m_barang->getdataProduksi();
 			$x['reseller'] = $this->m_barang->getAllBarangR();
-			if($statusc==0)
 			$x['datapesanan'] = $this->m_pemesanan->getPemesananCurdate();
-			elseif($statusc==1)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomerCurdate();
-			elseif($statusc==2)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananResellerCurdate();
-			elseif($statusc==3)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananProduksiCurdate();
-			
 			$this->load->view('admin/laporan_word', $x);
 		} else {
 			redirect('Login');
@@ -90,7 +73,6 @@ class Pemesanan extends CI_Controller
 	}
 
 	function convertWordPerbulan(){
-		$statusc = $this->input->get('status');
 		$bulan = date('m');
 		$tahun = date('Y');
 		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
@@ -101,14 +83,7 @@ class Pemesanan extends CI_Controller
 			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
 			$x['produksi'] = $this->m_barang->getdataProduksi();
 			$x['reseller'] = $this->m_barang->getAllBarangR();
-			if($statusc==0)
 			$x['datapesanan'] = $this->m_pemesanan->getPemesananByBulan($bulan, $tahun);
-			elseif($statusc==1)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomerByBulan($bulan, $tahun);
-			elseif($statusc==2)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananResellerByBulan($bulan, $tahun);
-			elseif($statusc==3)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananProduksiByBulan($bulan, $tahun);
 			$this->load->view('admin/laporan_word', $x);
 		} else {
 			redirect('Login');
@@ -116,7 +91,6 @@ class Pemesanan extends CI_Controller
 	}
 
 	function convertWordPertanggal(){
-		$statusc = $this->input->get('status');
 		$start = $this->input->post('start_date');
 		$end = $this->input->post('end_date');
 		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
@@ -127,14 +101,7 @@ class Pemesanan extends CI_Controller
 			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
 			$x['produksi'] = $this->m_barang->getdataProduksi();
 			$x['reseller'] = $this->m_barang->getAllBarangR();
-			if($statusc==0)
 			$x['datapesanan'] = $this->m_pemesanan->getPemesananByTanggal($start, $end);
-			elseif($statusc==1)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomerByTanggal($start, $end);
-			elseif($statusc==2)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananResellerByTanggal($start, $end);
-			elseif($statusc==3)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananProduksiByTanggal($start, $end);
 			$this->load->view('admin/laporan_word', $x);
 		} else {
 			redirect('Login');
@@ -142,7 +109,6 @@ class Pemesanan extends CI_Controller
 	}
 
 	function convertExcel(){
-		$statusc = $this->input->get('status');
 		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
 			$y['title'] = "Pemesanan";
 			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
@@ -151,14 +117,7 @@ class Pemesanan extends CI_Controller
 			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
 			$x['produksi'] = $this->m_barang->getdataProduksi();
 			$x['reseller'] = $this->m_barang->getAllBarangR();
-			if($statusc==0)
 			$x['datapesanan'] = $this->m_pemesanan->getPemesanan();
-			elseif($statusc==1)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomer();
-			elseif($statusc==2)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananReseller();
-			elseif($statusc==3)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananProduksi();
 			$this->load->view('admin/laporan_excel', $x);
 		} else {
 			redirect('Login');
@@ -166,7 +125,6 @@ class Pemesanan extends CI_Controller
 	}
 
 	function convertExcelPerhari(){
-		$statusc = $this->input->get('status');
 		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
 			$y['title'] = "Pemesanan";
 			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
@@ -175,14 +133,7 @@ class Pemesanan extends CI_Controller
 			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
 			$x['produksi'] = $this->m_barang->getdataProduksi();
 			$x['reseller'] = $this->m_barang->getAllBarangR();
-			if($statusc==0)
 			$x['datapesanan'] = $this->m_pemesanan->getPemesananCurdate();
-			elseif($statusc==1)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomerCurdate();
-			elseif($statusc==2)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananResellerCurdate();
-			elseif($statusc==3)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananProduksiCurdate();
 			$this->load->view('admin/laporan_excel', $x);
 		} else {
 			redirect('Login');
@@ -190,7 +141,6 @@ class Pemesanan extends CI_Controller
 	}	
 
 	function convertExcelPerbulan(){
-		$statusc = $this->input->get('status');
 		$bulan = date('m');
 		$tahun = date('Y');
 		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
@@ -201,14 +151,7 @@ class Pemesanan extends CI_Controller
 			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
 			$x['produksi'] = $this->m_barang->getdataProduksi();
 			$x['reseller'] = $this->m_barang->getAllBarangR();
-			if($statusc==0)
 			$x['datapesanan'] = $this->m_pemesanan->getPemesananByBulan($bulan, $tahun);
-			elseif($statusc==1)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomerByBulan($bulan, $tahun);
-			elseif($statusc==2)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananResellerByBulan($bulan, $tahun);
-			elseif($statusc==3)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananProduksiByBulan($bulan, $tahun);
 			$this->load->view('admin/laporan_excel', $x);
 		} else {
 			redirect('Login');
@@ -216,7 +159,6 @@ class Pemesanan extends CI_Controller
 	}
 
 	function convertExcelByTanggal(){
-		$statusc = $this->input->get('status');
 		$start = $this->input->post('start_date');
 		$end = $this->input->post('end_date');
 		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
@@ -227,14 +169,7 @@ class Pemesanan extends CI_Controller
 			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
 			$x['produksi'] = $this->m_barang->getdataProduksi();
 			$x['reseller'] = $this->m_barang->getAllBarangR();
-			if($statusc==0)
 			$x['datapesanan'] = $this->m_pemesanan->getPemesananByTanggal($start, $end);
-			elseif($statusc==1)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomerByTanggal($start, $end);
-			elseif($statusc==2)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananResellerByTanggal($start, $end);
-			elseif($statusc==3)
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananProduksiByTanggal($start, $end);
 			$this->load->view('admin/laporan_excel', $x);
 		} else {
 			redirect('Login');
