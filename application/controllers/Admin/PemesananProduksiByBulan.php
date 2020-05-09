@@ -268,15 +268,19 @@ class PemesananProduksiByBulan extends CI_Controller
 			redirect('Login');
 		 }
 	   }
-	   function pemesananByTahun($tahun){
-		$bulan = $this->input->get('bulan');
-	 $x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
-	 $x['kurir'] = $this->m_pemesanan->getAllkurir();
-	 $x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
-	 $x['nonreseller'] = $this->m_barang->getDataNonReseller1();
-	  $x['produksi'] = $this->m_barang->getdataProduksi();
-	 $x['reseller'] = $this->m_barang->getAllBarangR();
-	 $x['datapesanan'] = $this->m_pemesanan->getPemesananProduksibyBulan($bulan, $tahun);
+	   function pemesananByTahun(){
+		$tahun = intVal($this->input->post('thn'));
+		   $bulan = $this->input->get('bulan');
+		   $x['stsp'] = 3;
+		   $x['bulan'] = $bulan;
+		$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+		$x['kurir'] = $this->m_pemesanan->getAllkurir();
+		$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+		$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+		 $x['produksi'] = $this->m_barang->getdataProduksi();
+		$x['reseller'] = $this->m_barang->getAllBarangR();
+		$x['datapesanan'] = $this->m_pemesanan->getPemesananProduksiByBulan($bulan, $tahun);
+		$this->load->view('admin/v_pemesanan_by_tahun', $x);
 	   }
 
 	}
