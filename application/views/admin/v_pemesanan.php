@@ -1262,6 +1262,7 @@
             },
             success: function (result) {
               $('#sukses').html(result)
+              
             }
 			});
     }

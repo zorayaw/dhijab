@@ -22,8 +22,6 @@ class Pemesanan extends CI_Controller
 
 	function index()
 	{
-		$tahun = intVal($this->input->post('thn'));
-
 		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
 			$y['title'] = "Pemesanan";
 			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
@@ -32,7 +30,7 @@ class Pemesanan extends CI_Controller
 			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
 			$x['produksi'] = $this->m_barang->getdataProduksi();
 			$x['reseller'] = $this->m_barang->getAllBarangR();
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananSesuaiTahun($tahun);
+			$x['datapesanan'] = $this->m_pemesanan->getPemesanan();
 			$this->load->view('v_header', $y);
 			$this->load->view('admin/v_sidebar');
 			$this->load->view('admin/v_pemesanan', $x);
@@ -40,6 +38,28 @@ class Pemesanan extends CI_Controller
 			redirect('Login');
 		}
 	}
+
+
+	// function index()
+	// {
+	// 	$tahun = intVal($this->input->post('thn'));
+
+	// 	if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
+	// 		$y['title'] = "Pemesanan";
+	// 		$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+	// 		$x['kurir'] = $this->m_pemesanan->getAllkurir();
+	// 		$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+	// 		$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+	// 		$x['produksi'] = $this->m_barang->getdataProduksi();
+	// 		$x['reseller'] = $this->m_barang->getAllBarangR();
+	// 		$x['datapesanan'] = $this->m_pemesanan->getPemesananSesuaiTahun($tahun);
+	// 		$this->load->view('v_header', $y);
+	// 		$this->load->view('admin/v_sidebar');
+	// 		$this->load->view('admin/v_pemesanan', $x);
+	// 	} else {
+	// 		redirect('Login');
+	// 	}
+	// }
 
 		
 	function convertWord(){
