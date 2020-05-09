@@ -56,11 +56,20 @@
               </a>
             </div>
           
+          <!-- <?php 
+            $curyear = date('Y');
+            $earlyyear = 2015;
+            foreach(range($curyear, $earlyyear) as $r ) {
+              print '<button onclick="cyear('.$r.')" id="changeYear'.$r.'" style="margin-right: 10px; margin-bottom:10px" > '.$r.' </button>';
+            }
+          ?>
+           -->
+
           <!-- Modal -->
           <div class="modal fade" id="pilihan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="margin-right: 5px" >
                   <h5 class="modal-title" id="exampleModalLabel">Pilihan</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -279,6 +288,7 @@
 
 <!-- end convert -->
 
+  <div id="sukses"></div>
 
           <div class="table-responsive">
             <table id="datatable" class="table table-striped table-bordered p-0">
@@ -311,6 +321,7 @@
                 </tr>
               </thead>
               <tbody>
+                
                 <?php
                 function rupiah($angka)
                 {
@@ -349,9 +360,8 @@
                   $c = $q->row_array();
                   $jumlah = $c['total_keseluruhan'] + $ongkir - ($diskon + $biaya_admin + $uang);
 
-
-
                 ?>
+
                   <tr>
                     <td>
                       <center><?php echo $no ?></center>
@@ -403,7 +413,7 @@
                     </td>
                   </tr>
                 <?php endforeach; ?>
-
+              
               </tbody>
               <tr>
                 <th colspan="18">
@@ -411,6 +421,7 @@
                 </th>
                 <th colspan="2"><?php echo rupiah($total) ?></th>
               </tr>
+            
             </table>
           </div>
         </div>
@@ -827,6 +838,15 @@
                   <input class="form-control form-white" type="date" name="tanggal" required />
                 </div>
 
+                <div class="col-md-12">
+                  <label class="control-label">No HP</label>
+                  <input class="form-control form-white" type="number" name="hp" required />
+                </div>
+
+                <div class="col-md-12">
+                  <label class="control-label">Alamat</label>
+                  <input class="form-control form-white" type="text" name="alamat" required />
+                </div>
 
                 <div class="col-md-12">
                   <label class="control-label">Note</label>
@@ -1230,6 +1250,22 @@
 </body>
 
 </html>
+
+<script>
+    function cyear(num){
+        let value = parseInt($('#changeYear'+num).html())
+        $.ajax({
+            method: "POST",
+            url: "http://localhost/dhijab/admin/Pemesanan",
+            data: {
+              thn: parseInt($('#changeYear'+num).html())
+            },
+            success: function (result) {
+              $('#sukses').html(result)
+            }
+			});
+    }
+</script>
 
 
 <script type="text/javascript">

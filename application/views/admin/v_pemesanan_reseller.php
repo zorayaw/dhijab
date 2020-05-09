@@ -104,7 +104,7 @@
                     <div class="row">
 
                     <div class="col-md-12">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcel?status=2 target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcel?status=2" target="_blank" class="btn btn-success btn-block ripple m-t-10">
                           <i class="fa fa-print pr-2"></i>Convert Seluruh Pemesanan</a>
                         </a>
                       </div>
@@ -826,6 +826,15 @@
                   <input class="form-control form-white" type="date" name="tanggal" required />
                 </div>
 
+                <div class="col-md-12">
+                  <label class="control-label">No HP</label>
+                  <input class="form-control form-white" type="number" name="hp" required />
+                </div>
+
+                <div class="col-md-12">
+                  <label class="control-label">Alamat</label>
+                  <input class="form-control form-white" type="text" name="alamat" required />
+                </div>
 
                 <div class="col-md-12">
                   <label class="control-label">Note</label>

@@ -713,6 +713,15 @@
                   <input class="form-control form-white" type="date" name="tanggal" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required />
                 </div>
               
+                <div class="col-md-12">
+                  <label class="control-label">No HP</label>
+                  <input class="form-control form-white" type="number" name="hp" required />
+                </div>
+
+                <div class="col-md-12">
+                  <label class="control-label">Alamat</label>
+                  <input class="form-control form-white" type="text" name="alamat" required />
+                </div>
               
                 <div class="col-md-12">
                   <label class="control-label">Note</label>

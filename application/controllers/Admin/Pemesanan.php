@@ -22,6 +22,8 @@ class Pemesanan extends CI_Controller
 
 	function index()
 	{
+		$tahun = intVal($this->input->post('thn'));
+
 		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
 			$y['title'] = "Pemesanan";
 			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
@@ -30,7 +32,7 @@ class Pemesanan extends CI_Controller
 			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
 			$x['produksi'] = $this->m_barang->getdataProduksi();
 			$x['reseller'] = $this->m_barang->getAllBarangR();
-			$x['datapesanan'] = $this->m_pemesanan->getPemesanan();
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananSesuaiTahun($tahun);
 			$this->load->view('v_header', $y);
 			$this->load->view('admin/v_sidebar');
 			$this->load->view('admin/v_pemesanan', $x);
@@ -655,8 +657,8 @@ class Pemesanan extends CI_Controller
 	{
 		$nama_pemesan = "admin";
 		$nama_akun_pemesan = "-";
-		$no_hp = "-";
-		$alamat = "-";
+		$no_hp = $this->input->post('hp');
+		$alamat = $this->input->post('alamat');
 		$asal_transaksi = "6";
 		$kurir = "6";
 		$resi = "-";
@@ -988,8 +990,8 @@ class Pemesanan extends CI_Controller
 	{
 		$nama_pemesan = "admin";
 		$nama_akun_pemesan = "-";
-		$no_hp = "-";
-		$alamat = "-";
+		$no_hp = $this->input->post('hp');
+		$alamat = $this->input->post('alamat');
 		$asal_transaksi = "6";
 		$kurir = "6";
 		$resi = "-";
