@@ -22,35 +22,27 @@
       <div class="card card-statistics h-100">
         <div class="card-body">
           <div class="col-xl-12 mb-10" style="display: flex">
-            <!-- <div class="col-md-3">
+            <div class="col-md-3">
               <a href="" data-toggle="modal" data-target="#tambah-pesanan-non-reseller" class="btn btn-primary btn-block ripple m-t-10">
                 <i class="fa fa-plus pr-2"></i> Tambah Pemesanan Customer
               </a>
-            </div> -->
-            <!-- <div class="col-md-3">
+            </div>
+            <div class="col-md-3">
               <a href="" data-toggle="modal" data-target="#reseller" class="btn btn-primary btn-block ripple m-t-10">
                 <i class="fa fa-plus pr-2"></i> Tambah Pemesanan Reseller
               </a>
-            </div> -->
+            </div>
 
-            <!-- <div class="col-md-3">
+            <div class="col-md-3">
               <a href="" data-toggle="modal" data-target="#produksi" class="btn btn-primary btn-block ripple m-t-20">
                 <i class="fa fa-plus pr-2"></i> Tambah Pemesanan Produksi
               </a>
-            </div> -->
-            <div class="col-md-6">
-              <a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiBerjalan" target="blank" class="btn btn-success btn-block ripple m-t-20">
+            </div>
+            <div class="col-md-3">
+              <a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi" target="blank" class="btn btn-success btn-block ripple m-t-20">
                 <i class="fa fa-print pr-2"></i> Cetak
               </a>
             </div>
-               <!-- convert -->
-           <div class="col-md-6">
-              <a href="<?= base_url() ?>admin/Pemesanan/convertExcel" data-toggle="modal" data-target="#pilihan"  class="btn btn-dark btn-block ripple m-t-20">
-                <i class="fa fa-save pr-2"></i> Convert
-              </a>
-            </div>
-          </div>
-          
           </div>
           <div class="table-responsive">
             <table id="datatable" class="table table-striped table-bordered p-0">
@@ -186,230 +178,6 @@
       </div>
     </div>
 
- 
-          <!-- Modal -->
-          <div class="modal fade" id="pilihan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Pilihan</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                <div class="col-md-12 mt-4">
-                        <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="excel" data-toggle="modal" data-target="#export" >
-                          <i class="fa fa-save pr-2"></i>Convert Excel
-                        </a>
-                </div>
-                <div class="col-md-12 mt-4">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertWord" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
-                          <i class="fa fa-save pr-2"></i>Convert PDF
-                        </a>
-                </div>
-                <div class="col-md-12 mt-4 mb-4">
-                        <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="words" data-toggle="modal" data-target="#word" >
-                          <i class="fa fa-save pr-2"></i>Convert Word
-                        </a>
-                </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        <!-- Modal Excel -->
-              <div class="modal fade" id="export" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Convert Data Pemesanan</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                    <div class="row">
-
-                    <div class="col-md-12">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcel" target="_blank" class="btn btn-success btn-block ripple m-t-10">
-                          <i class="fa fa-save pr-2"></i>Convert Seluruh Pemesanan</a>
-                        </a>
-                      </div>
-
-                      <div class="col-md-12 mt-4">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerhari" target="_blank" class="btn btn-success btn-block ripple m-t-10">
-                          <i class="fa fa-save pr-2"></i>Convert Pemesanan Hari Ini (<?= date('d')?> <?php 
-                            switch (date('m')){
-                              case 1 : echo "Januari"; break;
-                              case 2 : echo "Februari"; break;
-                              case 3 : echo "Maret"; break;
-                              case 4 : echo "April"; break;
-                              case 5 : echo "May"; break;
-                              case 6 : echo "Juni"; break;
-                              case 7 : echo "Juli"; break;
-                              case 8 : echo "Agustus"; break;
-                              case 9 : echo "September"; break;
-                              case 10 : echo "Oktober"; break;
-                              case 11 : echo "November"; break;
-                              case 12 : echo "Desember"; break;
-                            }
-                            ?>
-                            <?= date('Y')?>)
-                          </a>
-                        </a>
-                      </div>
-
-                      <div class="col-md-12 mt-4">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerbulan" target="_blank" class="btn btn-success btn-block ripple m-t-10">
-                          <i class="fa fa-save pr-2"></i>Convert Pemesanan Bulan Ini (<?php 
-                            switch (date('m')){
-                              case 1 : echo "Januari"; break;
-                              case 2 : echo "Februari"; break;
-                              case 3 : echo "Maret"; break;
-                              case 4 : echo "April"; break;
-                              case 5 : echo "May"; break;
-                              case 6 : echo "Juni"; break;
-                              case 7 : echo "Juli"; break;
-                              case 8 : echo "Agustus"; break;
-                              case 9 : echo "September"; break;
-                              case 10 : echo "Oktober"; break;
-                              case 11 : echo "November"; break;
-                              case 12 : echo "Desember"; break;
-                            }
-                            ?>
-                            <?= date('Y')?>)
-                          </a>
-                        </a>
-                      </div>
-                      <div class="col-md-12 mt-4"><h6>Convert Berdasarkan Tanggal:</h6></div>
-                        <form action="<?php echo base_url() ?>admin/Pemesanan/convertExcelBytanggal" target="_blank" method="post" enctype="multipart/form-data">
-                      <div class="modal-body p-20">
-                        <div class="row">
-                        <div class="col-md-4">
-                          <label class="control-label">Start date:</label>
-                          <input class="form-control form-white" type="date" name="start_date" required/>
-                        </div>
-                        <div class="col-md-4">
-                          <label class="control-label">End date:</label>
-                          <input class="form-control form-white" type="date" name="end_date" required/>
-                        </div>
-                        <div class="col-md-4">
-                        <button type="submit" class="btn btn-info btn-block ripple m-t-10">
-                            <i class="fa fa-save pr-2"></i>Convert<br>Pemesanan</a>
-                      </div>
-                        </div>
-                      </div>
-                        </form>
-                    </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-         <!-- end modal excel -->
-
-         <!-- modal word -->
-            <div class="modal fade" id="word" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Convert Data Pemesanan</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                    <div class="row">
-
-                    <div class="col-md-12">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertWord" target="_blank" class="btn btn-success btn-block ripple m-t-10">
-                          <i class="fa fa-save pr-2"></i>Convert Seluruh Pemesanan</a>
-                        </a>
-                      </div>
-
-                      <div class="col-md-12 mt-4">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertWordPerhari" target="_blank" class="btn btn-success btn-block ripple m-t-10">
-                          <i class="fa fa-save pr-2"></i>Convert Pemesanan Hari Ini (<?= date('d')?> <?php 
-                            switch (date('m')){
-                              case 1 : echo "Januari"; break;
-                              case 2 : echo "Februari"; break;
-                              case 3 : echo "Maret"; break;
-                              case 4 : echo "April"; break;
-                              case 5 : echo "May"; break;
-                              case 6 : echo "Juni"; break;
-                              case 7 : echo "Juli"; break;
-                              case 8 : echo "Agustus"; break;
-                              case 9 : echo "September"; break;
-                              case 10 : echo "Oktober"; break;
-                              case 11 : echo "November"; break;
-                              case 12 : echo "Desember"; break;
-                            }
-                            ?>
-                            <?= date('Y')?>)
-                          </a>
-                        </a>
-                      </div>
-
-                      <div class="col-md-12 mt-4">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertWordPerbulan" target="_blank" class="btn btn-success btn-block ripple m-t-10">
-                          <i class="fa fa-save pr-2"></i>Convert Pemesanan Bulan Ini (<?php 
-                            switch (date('m')){
-                              case 1 : echo "Januari"; break;
-                              case 2 : echo "Februari"; break;
-                              case 3 : echo "Maret"; break;
-                              case 4 : echo "April"; break;
-                              case 5 : echo "May"; break;
-                              case 6 : echo "Juni"; break;
-                              case 7 : echo "Juli"; break;
-                              case 8 : echo "Agustus"; break;
-                              case 9 : echo "September"; break;
-                              case 10 : echo "Oktober"; break;
-                              case 11 : echo "November"; break;
-                              case 12 : echo "Desember"; break;
-                            }
-                            ?>
-                            <?= date('Y')?>)
-                          </a>
-                        </a>
-                      </div>
-                      <div class="col-md-12 mt-4"><h6>Convert Berdasarkan Tanggal:</h6></div>
-                        <form action="<?php echo base_url() ?>admin/Pemesanan/convertWordPertanggal" target="_blank" method="post" enctype="multipart/form-data">
-                      <div class="modal-body p-20">
-                        <div class="row">
-                        <div class="col-md-4">
-                          <label class="control-label">Start date:</label>
-                          <input class="form-control form-white" type="date" name="start_date" required/>
-                        </div>
-                        <div class="col-md-4">
-                          <label class="control-label">End date:</label>
-                          <input class="form-control form-white" type="date" name="end_date" required/>
-                        </div>
-                        <div class="col-md-4">
-                        <button type="submit" class="btn btn-info btn-block ripple m-t-10">
-                            <i class="fa fa-save pr-2"></i>Convert<br>Pemesanan</a>
-                      </div>
-                        </div>
-                      </div>
-                        </form>
-                    </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-                            
-         <!-- end modal word -->
-
-<!-- end convert -->
-
     <!-- Modal Pesanan NonReseller-->
     <div class="modal" tabindex="-1" role="dialog" id="tambah-pesanan-non-reseller">
       <div class="modal-dialog modal-lg">
@@ -522,7 +290,7 @@
                     </div>
                     <div class="col-md-2">
                       <label class="control-label" for="harga">Kuantitas</label>
-                      <input class="form-control" type="number" name="qty[]" min = 1 required>
+                      <input class="form-control" type="number" name="qty[]" required>
                     </div>
                   </div>
                 </div>
@@ -656,7 +424,7 @@
                     </div>
                     <div class="col-md-2">
                       <label class="control-label" for="harga">Kuantitas</label>
-                      <input class="form-control" type="number" name="qty[]" min = 1 required>
+                      <input class="form-control" type="number" name="qty[]" required>
                     </div>
                   </div>
                 </div>
@@ -693,16 +461,6 @@
                   <input class="form-control form-white" type="date" name="tanggal" required />
                 </div>
 
-                <div class="col-md-12">
-                  <label class="control-label">No HP</label>
-                  <input class="form-control form-white" type="number" name="hp" required />
-                </div>
-
-                <div class="col-md-12">
-                  <label class="control-label">Alamat</label>
-                  <input class="form-control form-white" type="text" name="alamat" required />
-                </div>
-
 
                 <div class="col-md-12">
                   <label class="control-label">Note</label>
@@ -727,7 +485,7 @@
                     </div>
                     <div class="col-md-2">
                       <label class="control-label" for="harga">Kuantitas</label>
-                      <input class="form-control" type="number" name="qty[]" min = 1 required>
+                      <input class="form-control" type="number" name="qty[]" required>
                     </div>
                   </div>
                 </div>
@@ -896,7 +654,7 @@
       </div>
     <?php endforeach; ?>
 
-  
+  </div>
 
   <!-- Modal Status -->
   <?php
@@ -934,7 +692,7 @@
       </div>
     </div>
 
-
+</div>
 <div class="modal" tabindex="-1" role="dialog" id="kirim<?= $pemesanan_id ?>">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -989,7 +747,7 @@
   </div>
 </div>
 
-
+</div>
 
 
 <?php endforeach; ?>
@@ -1099,9 +857,7 @@
     var i = 1;
     $('#add').click(function() {
         i++;
-
-        $('#dynamic_field').append('<div class="row" id="row' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($nonreseller->result_array() as $i) : $barang_id = $i['barang_id'];                                                                                                             $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
-
+        $('#dynamic_field').append('<div class="row" id="row' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($nonreseller->result_array() as $i) : $barang_id = $i['barang_id'];                                                                                                                                                                                                                          $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
         $('select').selectize({
           sortField: 'text'
         });
@@ -1127,11 +883,7 @@
     var i = 1;
     $('#add1').click(function() {
       i++;
-
-
-      $('#dynamic_field1').append('<div class="row" id="roww' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($reseller->result_array() as $i) : $barang_id = $i['barang_id'];                                                                                                       $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>');
-
-
+      $('#dynamic_field1').append('<div class="row" id="roww' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($reseller->result_array() as $i) : $barang_id = $i['barang_id'];                                                                                                                                                                                                                            $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>');
       $('select').selectize({
         sortField: 'text'
       });
@@ -1152,10 +904,7 @@
     var i = 1;
     $('#add3').click(function() {
       i++;
-
-
-      $('#dynamic_field2').append('<div class="row" id="rowww' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($produksi->result_array() as $i) : $barang_id = $i['barang_id'];                                                                                                   $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>');
-
+      $('#dynamic_field2').append('<div class="row" id="rowww' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($produksi->result_array() as $i) : $barang_id = $i['barang_id'];                                                                                                                                                                                                                             $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>');
       $('select').selectize({
         sortField: 'text'
       });

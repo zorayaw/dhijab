@@ -28,7 +28,7 @@
                   </th>
                 
                   
-                  <th width="70">
+                  <th width="100">
                     <center>Aksi</center>
                   </th>
                 </tr>
@@ -55,9 +55,9 @@
                       
                         <a href="#" style="margin-right: 20px" data-toggle="modal" data-target="#editdata<?php echo $barang_id ?>"><span class="ti-pencil"></span></a>
                       
-                      <a href="<?php echo base_url() ?>Stok/Stock/History/<?php echo $barang_id ?>" style="margin-right: 20px" data-toggle="tooltip" data-placement="top" title="Lihat History Stock Masuk"><i class="fa fa-arrow-circle-down"></i></a>
+                      <a href="<?php echo base_url() ?>Stok/Stock/History/<?php echo $barang_id ?>" data-toggle="tooltip" data-placement="top" title="Lihat History Stock Masuk"><span class="ti-eye"></span></a>
 
-                       <a href="<?php echo base_url() ?>Stok/Stock/history_stok_keluar/<?php echo $barang_id ?>" data-toggle="tooltip" data-placement="top" title="Lihat History Stock Keluar"><i class="fa fa-arrow-circle-up"></i></a>
+                       <a href="<?php echo base_url() ?>Stok/Stock/history_stok_keluar/<?php echo $barang_id ?>" data-toggle="tooltip" data-placement="top" title="Lihat History Stock Keluar"><span class="ti-eye"></span></a>
                     </td>
                   </tr>
                 <?php endforeach; ?>

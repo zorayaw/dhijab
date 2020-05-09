@@ -28,7 +28,7 @@
 		       $x['nonreseller'] = $this->m_barang->getDataNonReseller1();
 		        $x['produksi'] = $this->m_barang->getdataProduksi();
 		       $x['reseller'] = $this->m_barang->getAllBarangR();
-		       $x['datapesanan'] = $this->m_pemesanan->getPemesananproduksibyTahun2(date('Y'));
+		       $x['datapesanan'] = $this->m_pemesanan->getPemesananproduksi();
 		       $this->load->view('v_header',$y);
 		       $this->load->view('admin/v_sidebar');
 		       $this->load->view('admin/v_pemesanan_produksi',$x);
@@ -59,9 +59,9 @@
 
 	  	function savepemesananP(){
 	  		$nama_pemesan = "admin";
-			$nama_akun_pemesan ="-";
-			$no_hp = $this->input->post('hp');
-			$alamat = $this->input->post('alamat');
+	  		$nama_akun_pemesan ="-";
+	  		$no_hp = "-";
+	  		$alamat = "-";
 	  		$asal_transaksi = "6";
 			  $kurir ="6";
 			  $resi = "-";
@@ -154,19 +154,6 @@
 		    else{
 		       redirect('Login');
 		    }
-		   }
-		function pemesananByTahun(){
-			$tahun = intVal($this->input->post('thn'));
-			$x['stsp'] = 3;
-			$x['bulan'] = 0;
-			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
-			$x['kurir'] = $this->m_pemesanan->getAllkurir();
-			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
-			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
-			 $x['produksi'] = $this->m_barang->getdataProduksi();
-			$x['reseller'] = $this->m_barang->getAllBarangR();
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananProduksibyTahun2($tahun);
-			$this->load->view('admin/v_pemesanan_by_tahun', $x);
-		   }
+ 	  	}
 	}
 ?>
