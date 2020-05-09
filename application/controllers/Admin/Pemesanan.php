@@ -14,6 +14,7 @@ class Pemesanan extends CI_Controller
 			redirect($url);
 		};
 
+		$this->load->library('pdf');
 		$this->load->model('m_pemesanan');
 		$this->load->model('m_barang');
 		$this->load->model('m_list_barang');
@@ -39,6 +40,84 @@ class Pemesanan extends CI_Controller
 		}
 	}
 
+	function convertPDF(){
+		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
+			$y['title'] = "Pemesanan";
+			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+			$x['kurir'] = $this->m_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+			$x['produksi'] = $this->m_barang->getdataProduksi();
+			$x['reseller'] = $this->m_barang->getAllBarangR();
+			$x['datapesanan'] = $this->m_pemesanan->getPemesanan();
+
+			$this->pdf->setPaper('legal', 'landscape');
+			$this->pdf->filename = "laporan_pdf.pdf";
+			$this->pdf->load_view('admin/laporan_pdf', $x);
+
+		} else {
+			redirect('Login');
+		}
+	}
+
+	function convertPDFPerhari(){
+		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
+			$y['title'] = "Pemesanan";
+			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+			$x['kurir'] = $this->m_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+			$x['produksi'] = $this->m_barang->getdataProduksi();
+			$x['reseller'] = $this->m_barang->getAllBarangR();
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananCurdate();
+
+			$this->pdf->setPaper('legal', 'landscape');
+			$this->pdf->filename = "laporan_pdf.pdf";
+			$this->pdf->load_view('admin/laporan_pdf', $x);
+		} else {
+			redirect('Login');
+		}
+	}	
+
+	function convertPDFPerbulan(){
+		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
+			$y['title'] = "Pemesanan";
+			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+			$x['kurir'] = $this->m_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+			$x['produksi'] = $this->m_barang->getdataProduksi();
+			$x['reseller'] = $this->m_barang->getAllBarangR();
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananByBulanIni();
+
+			$this->pdf->setPaper('legal', 'landscape');
+			$this->pdf->filename = "laporan_pdf.pdf";
+			$this->pdf->load_view('admin/laporan_pdf', $x);
+		} else {
+			redirect('Login');
+		}
+	}
+
+	function convertPDFPerTanggal(){
+		$start = $this->input->post('start_date');
+		$end = $this->input->post('end_date');
+		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
+			$y['title'] = "Pemesanan";
+			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+			$x['kurir'] = $this->m_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+			$x['produksi'] = $this->m_barang->getdataProduksi();
+			$x['reseller'] = $this->m_barang->getAllBarangR();
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananByTanggal($start, $end);
+			
+			$this->pdf->setPaper('legal', 'landscape');
+			$this->pdf->filename = "laporan_pdf.pdf";
+			$this->pdf->load_view('admin/laporan_pdf', $x);
+		} else {
+			redirect('Login');
+		}
+	}
 	
 	function convertWord(){
 		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
