@@ -18,7 +18,13 @@
         <div class="card card-statistics h-100"> 
           <div class="card-body">
             <div class="col-xl-12 mb-10" style="display: flex;">
-              <div class="col-xl-12 mb-10" style="display: flex">
+            <?php if($lvl == 3) : ?>
+              <div class="col-md-12">
+                  <a href="" data-toggle="modal" data-target="#kurir" class="btn btn-primary btn-block ripple m-t-20">
+                    <i class="fa fa-plus pr-2"></i> Tambah List Barang
+                  </a>
+                </div>
+                <?php else : ?>
                 <div class="col-md-6">
                   <a href="" data-toggle="modal" data-target="#kurir" class="btn btn-primary btn-block ripple m-t-20">
                     <i class="fa fa-plus pr-2"></i> Tambah List Barang
@@ -29,9 +35,11 @@
                     <i class="fa fa-print pr-2"></i> Cetak Invoice
                   </a>
                 </div>
+                <?php endif; ?>
               </div>
+                
               
-            </div>
+
             <div class="table-responsive">
             <table id="datatable" class="table table-striped table-bordered p-0">
               <thead>

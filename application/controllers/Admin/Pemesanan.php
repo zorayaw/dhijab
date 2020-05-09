@@ -215,7 +215,6 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->m_pemesanan->getPemesananProduksiByBulan($bulan, $tahun);
 				$this->load->view('admin/laporan_word', $x);
 			}
-
 	}
 
 	function convertWordPertanggal(){
@@ -378,7 +377,6 @@ class Pemesanan extends CI_Controller
 	}	
 
 	function convertExcelPerbulan(){
-		
 			$statusc = $this->input->get('status');
 			$bulan = $this->input->get('bulan');
 			$tahun = $this->input->get('tahun');
@@ -429,8 +427,6 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->m_pemesanan->getPemesananProduksiByBulan($bulan, $tahun);
 				$this->load->view('admin/laporan_excel', $x);
 			}
-
-		
 	}
 
 	function convertExcelByTanggal(){
@@ -1295,6 +1291,16 @@ class Pemesanan extends CI_Controller
 		 else{
 			redirect('Login');
 		 }
+	   }
+	   
+	   function pemesananByTahun($tahun){
+		$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+		$x['kurir'] = $this->m_pemesanan->getAllkurir();
+		$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+		$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+		 $x['produksi'] = $this->m_barang->getdataProduksi();
+		$x['reseller'] = $this->m_barang->getAllBarangR();
+		$x['datapesanan'] = $this->m_pemesanan->getPemesananby1Tahun($tahun);
 	   }
 
 	}
