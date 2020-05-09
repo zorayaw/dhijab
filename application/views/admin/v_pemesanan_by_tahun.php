@@ -1193,7 +1193,8 @@
 </body>
 
 </html>
-
+<?php if(!$bulan == 0) : ?>
+<?php if($stsp == 0) : ?>
 <script>
     function cyear(num){
         let value = parseInt($('#changeYear'+num).html())
@@ -1211,6 +1212,67 @@
 			});
     }
 </script>
+
+  <?php elseif($stsp == 1) : ?>
+    <script>
+    function cyear(num){
+        let value = parseInt($('#changeYear'+num).html())
+        $.ajax({
+            method: "POST",
+            url: "http://localhost/dhijab/admin/PemesananCustomer/PemesananByTahun",
+            data: {
+              thn: parseInt($('#changeYear'+num).html())
+            },
+            success: function (result) {
+              $('#datatable').html("")
+              $('#sukses').html(result)
+            
+            }
+			});
+    }
+</script>
+
+<?php elseif($stsp == 2) : ?>
+    <script>
+    function cyear(num){
+        let value = parseInt($('#changeYear'+num).html())
+        $.ajax({
+            method: "POST",
+            url: "http://localhost/dhijab/admin/PemesananReseller/PemesananByTahun",
+            data: {
+              thn: parseInt($('#changeYear'+num).html())
+            },
+            success: function (result) {
+              $('#datatable').html("")
+              $('#sukses').html(result)
+            
+            }
+			});
+    }
+</script>
+
+<?php elseif($stsp == 3) : ?>
+    <script>
+    function cyear(num){
+        let value = parseInt($('#changeYear'+num).html())
+        $.ajax({
+            method: "POST",
+            url: "http://localhost/dhijab/admin/PemesananProduksi/PemesananByTahun",
+            data: {
+              thn: parseInt($('#changeYear'+num).html())
+            },
+            success: function (result) {
+              $('#datatable').html("")
+              $('#sukses').html(result)
+            
+            }
+			});
+    }
+</script>
+
+
+<?php endif?>
+<?php endif?>
 
 
 <script type="text/javascript">

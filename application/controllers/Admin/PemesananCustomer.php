@@ -28,7 +28,7 @@
 		       $x['nonreseller'] = $this->m_barang->getDataNonReseller1();
 		        $x['produksi'] = $this->m_barang->getdataProduksi();
 		       $x['reseller'] = $this->m_barang->getAllBarangR();
-		       $x['datapesanan'] = $this->m_pemesanan->getPemesananCustomer();
+		       $x['datapesanan'] = $this->m_pemesanan->getPemesananCustomerByTahun2(date('Y'));
 		       $this->load->view('v_header',$y);
 		       $this->load->view('admin/v_sidebar');
 		       $this->load->view('admin/v_pemesanan_customer',$x);
@@ -157,13 +157,16 @@
 		   
 		function pemesananByTahun(){
 			$tahun = intVal($this->input->post('thn'));
+			$x['stsp'] = 1;
+			$x['bulan'] = 0;
 			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
 			$x['kurir'] = $this->m_pemesanan->getAllkurir();
 			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
 			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
 			 $x['produksi'] = $this->m_barang->getdataProduksi();
 			$x['reseller'] = $this->m_barang->getAllBarangR();
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomerby1Tahun($tahun);
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomerbyTahun2($tahun);
+			$this->load->view('admin/v_pemesanan_by_tahun', $x);
 		   }
 	}
 ?>
