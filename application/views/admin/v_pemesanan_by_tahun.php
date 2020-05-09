@@ -1193,7 +1193,7 @@
 </body>
 
 </html>
-<?php if(!$bulan == 0) : ?>
+<?php if($bulan == 0) : ?>
 <?php if($stsp == 0) : ?>
 <script>
     function cyear(num){
