@@ -69,17 +69,17 @@
                 <div class="modal-body">
                 <div class="col-md-12 mt-4">
                         <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="excel" data-toggle="modal" data-target="#export" >
-                          <i class="fa fa-print pr-2"></i>Convert Excel
+                          <i class="fa fa-file-excel-o pr-2"></i>Convert Excel
                         </a>
                 </div>
                 <div class="col-md-12 mt-4">
                         <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="pdf" data-toggle="modal" data-target="#exportpdf">
-                          <i class="fa fa-print pr-2"></i>Convert PDF
+                          <i class="fa fa-file-pdf-o pr-2"></i>Convert PDF
                         </a>
                 </div>
                 <div class="col-md-12 mt-4 mb-4">
                         <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="words" data-toggle="modal" data-target="#word" >
-                          <i class="fa fa-print pr-2"></i>Convert Word
+                          <i class="fa fa-file-word-o pr-2"></i>Convert Word
                         </a>
                 </div>
                 </div>
@@ -292,14 +292,14 @@
 								<div class="row">
 
 									<div class="col-md-12">
-										<a href="<?= base_url() ?>admin/Pemesanan/convertPDF" target="_blank"
+										<a href="<?= base_url() ?>admin/Pemesanan/convertPDF?status=1" target="_blank"
 											class="btn btn-success btn-block ripple m-t-10">
 											<i class="fa fa-print pr-2"></i>Convert Seluruh Pemesanan</a>
 										</a>
 									</div>
 
 									<div class="col-md-12 mt-4">
-										<a href="<?= base_url() ?>admin/Pemesanan/convertPDFPerhari" target="_blank"
+										<a href="<?= base_url() ?>admin/Pemesanan/convertPDFPerhari?status=1" target="_blank"
 											class="btn btn-success btn-block ripple m-t-10">
 											<i class="fa fa-print pr-2"></i>Convert Pemesanan Hari Ini (<?= date('d')?> <?php 
                             switch (date('m')){
@@ -323,7 +323,7 @@
 									</div>
 
 									<div class="col-md-12 mt-4">
-										<a href="<?= base_url() ?>admin/Pemesanan/convertPDFPerbulan" target="_blank"
+										<a href="<?= base_url() ?>admin/Pemesanan/convertPDFPerbulan?status=1&bulan=<?= date('m')?>&tahun=<?= date("Y")?>" target="_blank"
 											class="btn btn-success btn-block ripple m-t-10">
 											<i class="fa fa-print pr-2"></i>Convert Pemesanan Bulan Ini (<?php 
                             switch (date('m')){
@@ -348,7 +348,7 @@
 									<div class="col-md-12 mt-4">
 										<h6>Convert Berdasarkan Tanggal:</h6>
 									</div>
-									<form action="<?php echo base_url() ?>admin/Pemesanan/convertPDFPertanggal" target="_blank"
+									<form action="<?php echo base_url() ?>admin/Pemesanan/convertPDFPertanggal?status=1" target="_blank"
 										method="post" enctype="multipart/form-data">
 										<div class="modal-body p-20">
 											<div class="row">
