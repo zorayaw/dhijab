@@ -2,67 +2,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
 
-<div class="content-wrapper">
-  <div class="page-title">
-    <div class="row">
-      <div class="col-sm-6">
-        <h4 class="mb-0">Data Semua Pemesanan</h4>
-      </div>
-      <div class="col-sm-6">
-        <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-          <li class="breadcrumb-item"><a href="<?php echo base_url() ?>Admin/Pemesanan" class="default-color">Home</a></li>
-          <li class="breadcrumb-item active">Daftar Barang</li>
-        </ol>
-      </div>
-    </div>
-  </div>
   <!-- main body -->
   <div class="row">
     <div class="col-xl-12 mb-30">
       <div class="card card-statistics h-100">
         <div class="card-body">
-        <div class="col-xl-12 mb-10">
-        <h6 class="mb-0">Tambah Pemesanan: </h6>
-      </div>
-          <div class="col-xl-12 mb-10" style="display: flex">
-            <div class="col-md-3">
-              <a href="" data-toggle="modal" data-target="#tambah-pesanan-non-reseller" class="btn btn-primary btn-block ripple m-t-10">
-                <i class="fa fa-plus pr-2"></i>Pemesanan Customer
-              </a>
-            </div>
-            <div class="col-md-3">
-              <a href="" data-toggle="modal" data-target="#reseller" class="btn btn-primary btn-block ripple m-t-10">
-                <i class="fa fa-plus pr-2"></i>Pemesanan Reseller
-              </a>
-            </div>
-
-            <div class="col-md-3">
-              <a href="" data-toggle="modal" data-target="#produksi" class="btn btn-primary btn-block ripple m-t-20">
-                <i class="fa fa-plus pr-2"></i>Pemesanan Produksi
-              </a>
-            </div>
-            <div class="col-md-3">
-              <a href="" data-toggle="modal" data-target="#Cetak-Pesanan" class="btn btn-success btn-block ripple m-t-20">
-                <i class="fa fa-print pr-2"></i> Cetak
-              </a>
-            </div>  
-          </div>
-
           <!-- convert -->
-
-          <div class="col-md-3 ml-3 mb-4">
-              <a href="<?= base_url() ?>admin/Pemesanan/convertExcel" data-toggle="modal" data-target="#pilihan"  class="btn btn-dark btn-block ripple m-t-20">
-                <i class="fa fa-print pr-2"></i> Convert
-              </a>
-            </div>
-          
-          <?php 
-            $curyear = date('Y');
-            $earlyyear = 2015;
-            foreach(range($curyear, $earlyyear) as $r ) {
-              print '<button onclick="cyear('.$r.')" id="changeYear'.$r.'" style="margin-right: 10px; margin-bottom:10px" > '.$r.' </button>';
-            }
-          ?>
            
 
           <!-- Modal -->
@@ -287,9 +232,9 @@
          <!-- end modal word -->
 
 <!-- end convert -->
- 
+
   <div id="sukses"></div>
-  
+
           <div class="table-responsive">
             <table id="datatable" class="table table-striped table-bordered p-0">
               <thead>
@@ -1154,7 +1099,7 @@
 <!--=================================
  footer -->
 
-<footer class="bg-white p-4">
+<!-- <footer class="bg-white p-4">
   <div class="row">
     <div class="col-md-6">
       <div class="text-center text-md-left">
@@ -1173,7 +1118,7 @@
       </ul>
     </div>
   </div>
-</footer>
+</footer> -->
 </div>
 </div>
 </div>

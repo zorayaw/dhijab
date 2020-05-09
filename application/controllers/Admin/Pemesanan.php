@@ -30,7 +30,7 @@ class Pemesanan extends CI_Controller
 			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
 			$x['produksi'] = $this->m_barang->getdataProduksi();
 			$x['reseller'] = $this->m_barang->getAllBarangR();
-			$x['datapesanan'] = $this->m_pemesanan->getPemesanan();
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananby1Tahun(date('Y'));
 			$this->load->view('v_header', $y);
 			$this->load->view('admin/v_sidebar');
 			$this->load->view('admin/v_pemesanan', $x);
@@ -1293,7 +1293,8 @@ class Pemesanan extends CI_Controller
 		 }
 	   }
 	   
-	   function pemesananByTahun($tahun){
+	   function pemesananByTahun(){
+		   $tahun = intVal($this->input->post('thn'));
 		$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
 		$x['kurir'] = $this->m_pemesanan->getAllkurir();
 		$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
@@ -1301,6 +1302,7 @@ class Pemesanan extends CI_Controller
 		 $x['produksi'] = $this->m_barang->getdataProduksi();
 		$x['reseller'] = $this->m_barang->getAllBarangR();
 		$x['datapesanan'] = $this->m_pemesanan->getPemesananby1Tahun($tahun);
+		$this->load->view('admin/v_pemesanan_by_tahun', $x);
 	   }
 
 	}
