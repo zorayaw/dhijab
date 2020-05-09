@@ -114,8 +114,8 @@ class PemesananCustomerByBulan extends CI_Controller
         $bulan = $this->input->get('bulan');
 		$nama_pemesan = "admin";
 		$nama_akun_pemesan = "-";
-		$no_hp = "-";
-		$alamat = "-";
+		$no_hp = $this->input->post('hp');
+		$alamat = $this->input->post('alamat');
 		$asal_transaksi = "6";
 		$kurir = "6";
 		$resi = "-";
@@ -270,8 +270,21 @@ class PemesananCustomerByBulan extends CI_Controller
 			redirect('Login');
 		 }
 	   }
-
-	}
+	   function pemesananByTahun(){
+		$tahun = intVal($this->input->post('thn'));
+		   $bulan = $this->input->get('bulan');
+		   $x['stsp'] = 1;
+		   $x['bulan'] = $bulan;
+		$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+		$x['kurir'] = $this->m_pemesanan->getAllkurir();
+		$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+		$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+		 $x['produksi'] = $this->m_barang->getdataProduksi();
+		$x['reseller'] = $this->m_barang->getAllBarangR();
+		$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomerbyBulan($bulan, $tahun);
+		$this->load->view('admin/v_pemesanan_by_tahun', $x);
+	   }
+}
 
 
 
