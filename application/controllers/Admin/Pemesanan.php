@@ -1323,7 +1323,7 @@ class Pemesanan extends CI_Controller
 		 }
 	   }
 	   
-	   function pemesananByTahun(){
+	function pemesananByTahun(){
 		$tahun = intVal($this->input->post('thn'));
 		$x ['stsp'] = 0;
 		$x['bulan'] = 0;
