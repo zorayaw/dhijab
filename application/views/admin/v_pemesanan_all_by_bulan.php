@@ -1013,7 +1013,6 @@
         </div>
       </div>
     </div>
-    </div>
 
     <!-- Modal Pesanan Reseller-->
    

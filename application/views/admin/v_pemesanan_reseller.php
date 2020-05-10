@@ -911,7 +911,7 @@ $status_pemesanan = $i['status_pemesanan'];
         </div>
       </div>
     </div>
-</div>
+
     <!-- Modal Pesanan NonReseller-->
     <div class="modal" tabindex="-1" role="dialog" id="tambah-pesanan-non-reseller">
       <div class="modal-dialog modal-lg">

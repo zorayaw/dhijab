@@ -866,7 +866,6 @@
   
   <?php endforeach; ?>
 
-</div>  
 
 
     
@@ -1434,7 +1433,7 @@
   });
 </script>
 
-
+<script type="text/javascript">
 function noresicus(checkbox){
       var isChecked = $('#checkboxcus').is(':checked'); 
         if(isChecked == true) {

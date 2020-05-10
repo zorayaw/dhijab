@@ -925,7 +925,6 @@
         </div>
       </div>
     </div>
-</div>
     <!-- Modal Pesanan NonReseller-->
     <div class="modal" tabindex="-1" role="dialog" id="tambah-pesanan-non-reseller">
       <div class="modal-dialog modal-lg">
@@ -1503,7 +1502,7 @@
     $("#pilihan").modal('hide');
   });
 </script>
-
+<script type="text/javascript">
 function noresicus(checkbox){
       var isChecked = $('#checkboxcus').is(':checked'); 
         if(isChecked == true) {

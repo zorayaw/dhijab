@@ -856,7 +856,6 @@ $status_pemesanan = $i['status_pemesanan'];
 <?php endforeach; ?>
 
 
-</div>
 
 
     

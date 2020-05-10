@@ -864,7 +864,7 @@
   
   <?php endforeach; ?>
 
-</div>  
+
 
 
 

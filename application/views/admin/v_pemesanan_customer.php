@@ -836,7 +836,7 @@ $status_pemesanan = $i['status_pemesanan'];
         </div>
       </div>
     </div>
-</div>
+
     <!-- Modal Pesanan NonReseller-->
     <div class="modal" tabindex="-1" role="dialog" id="tambah-pesanan-non-reseller">
       <div class="modal-dialog modal-lg">
@@ -1278,7 +1278,7 @@ $status_pemesanan = $i['status_pemesanan'];
         let value = parseInt($('#changeYear'+num).html())
         $.ajax({
             method: "POST",
-            url: "http://localhost/dhijab/admin/PemesananCustomer/pemesananByTahun",
+            url: "http://localhost/dhijab/admin/PemesananCustomer/PemesananByTahun",
             data: {
               thn: parseInt($('#changeYear'+num).html())
             },
@@ -1288,6 +1288,7 @@ $status_pemesanan = $i['status_pemesanan'];
 			});
     }
 </script>
+
 
 <script type="text/javascript">
 
@@ -1310,106 +1311,112 @@ $status_pemesanan = $i['status_pemesanan'];
 </script>
 
 <script type="text/javascript">
-	var e = document.getElementById("startdatecetak");
-	$('#startdatecetak').on('change', function () {
-		var date = new Date($('#startdatecetak').val());
-		days = date.getDate();
-		months = date.getMonth() + 1;
-		years = date.getFullYear();
-	});
 
-	var e = document.getElementById("enddatecetak");
-	$('#enddatecetak').on('change', function () {
-		var date = new Date($('#enddatecetak').val());
-		daye = date.getDate();
-		monthe = date.getMonth() + 1;
-		yeare = date.getFullYear();
-		if (years > yeare) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddatecetak').val('');
-		} else if ((years == yeare) && (months > monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddatecetak').val('');
-		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddatecetak').val('');
-		}
-	});
+    var e = document.getElementById("startdatecetak");
+        $('#startdatecetak').on('change', function(){
+        var date = new Date($('#startdatecetak').val());
+        days = date.getDate();
+        months = date.getMonth() + 1;
+        years = date.getFullYear();
+    });
 
-</script>
-
-<script type="text/javascript">
-	var e = document.getElementById("startdateexcel");
-	$('#startdateexcel').on('change', function () {
-		var date = new Date($('#startdateexcel').val());
-		days = date.getDate();
-		months = date.getMonth() + 1;
-		years = date.getFullYear();
-	});
-
-	var e = document.getElementById("enddateexcel");
-	$('#enddateexcel').on('change', function () {
-		var date = new Date($('#enddateexcel').val());
-		daye = date.getDate();
-		monthe = date.getMonth() + 1;
-		yeare = date.getFullYear();
-		if (years > yeare) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddateexcel').val('');
-		} else if ((years == yeare) && (months > monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddateexcel').val('');
-		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddateexcel').val('');
-		}
-	});
+    var e = document.getElementById("enddatecetak");
+        $('#enddatecetak').on('change', function(){
+        var date = new Date($('#enddatecetak').val());
+        daye = date.getDate();
+        monthe = date.getMonth() + 1;
+        yeare = date.getFullYear();
+        if(years > yeare){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddatecetak').val('');
+        }
+        else if ((years == yeare) && (months > monthe)){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddatecetak').val('');
+        }
+        else if ((days > daye) && (years == yeare) && (months == monthe)){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddatecetak').val('');
+        }
+    });
 
 </script>
 
 <script type="text/javascript">
-	var e = document.getElementById("startdateword");
-	$('#startdateword').on('change', function () {
-		var date = new Date($('#startdateword').val());
-		days = date.getDate();
-		months = date.getMonth() + 1;
-		years = date.getFullYear();
-	});
 
-	var e = document.getElementById("enddateword");
-	$('#enddateword').on('change', function () {
-		var date = new Date($('#enddateword').val());
-		daye = date.getDate();
-		monthe = date.getMonth() + 1;
-		yeare = date.getFullYear();
-		if (years > yeare) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddateword').val('');
-		} else if ((years == yeare) && (months > monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddateword').val('');
-		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddateword').val('');
-		}
-	});
+    var e = document.getElementById("startdateexcel");
+        $('#startdateexcel').on('change', function(){
+        var date = new Date($('#startdateexcel').val());
+        days = date.getDate();
+        months = date.getMonth() + 1;
+        years = date.getFullYear();
+    });
 
-</script>
-
-
-
-<script type="text/javascript">
-	$("#excel").click(function () {
-		$("#pilihan").modal('hide');
-	});
+    var e = document.getElementById("enddateexcel");
+        $('#enddateexcel').on('change', function(){
+        var date = new Date($('#enddateexcel').val());
+        daye = date.getDate();
+        monthe = date.getMonth() + 1;
+        yeare = date.getFullYear();
+        if(years > yeare){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddateexcel').val('');
+        }
+        else if ((years == yeare) && (months > monthe)){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddateexcel').val('');
+        }
+        else if ((days > daye) && (years == yeare) && (months == monthe)){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddateexcel').val('');
+        }
+    });
 
 </script>
 
 <script type="text/javascript">
-	$("#words").click(function () {
-		$("#pilihan").modal('hide');
-	});
 
+    var e = document.getElementById("startdateword");
+        $('#startdateword').on('change', function(){
+        var date = new Date($('#startdateword').val());
+        days = date.getDate();
+        months = date.getMonth() + 1;
+        years = date.getFullYear();
+    });
+
+    var e = document.getElementById("enddateword");
+        $('#enddateword').on('change', function(){
+        var date = new Date($('#enddateword').val());
+        daye = date.getDate();
+        monthe = date.getMonth() + 1;
+        yeare = date.getFullYear();
+        if(years > yeare){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddateword').val('');
+        }
+        else if ((years == yeare) && (months > monthe)){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddateword').val('');
+        }
+        else if ((days > daye) && (years == yeare) && (months == monthe)){
+          alert("Tanggal tidak valid (Start date > End date)");
+          $('#enddateword').val('');
+        }
+    });
+
+</script>
+
+
+<script type="text/javascript">
+  $("#excel").click(function(){
+    $("#pilihan").modal('hide');
+  });
+</script>
+
+<script type="text/javascript">
+  $("#words").click(function(){
+    $("#pilihan").modal('hide');
+  });
 </script>
 
 <script type="text/javascript">
@@ -1417,42 +1424,35 @@ $status_pemesanan = $i['status_pemesanan'];
     $("#pilihan").modal('hide');
   });
 </script>
-
-
 <script type="text/javascript">
 function noresicus(checkbox){
       var isChecked = $('#checkboxcus').is(':checked'); 
         if(isChecked == true) {
             $("#checkboxcus").after(`
                       <div class="col-md-12 resi" id="a">
-
                         <br>
                         <label class="control-label">Nomor Resi</label>
                         <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" />
                         <br>
                       </div>
             `);
-
           } 
           else {
             $("#a").remove();
           }
 }
 
-
 </script>
 
 <script type="text/javascript">
-
 function noresires(checkbox){
       var isChecked = $('#checkboxres').is(':checked'); 
         if(isChecked == true) {
             $("#checkboxres").after(`
-
                       <div class="col-md-12 resi" id="a">
                         <br>
                         <label class="control-label">Nomor Resi</label>
-                        <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" />
+                        <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi"/>
                         <br>
                       </div>
             `);
@@ -1461,36 +1461,31 @@ function noresires(checkbox){
             $("#a").remove();
           }
 }
-
-</script>
-
-
-<script type="text/javascript">
-	$(document).ready(function () {
-		$('select').selectize({
-			sortField: 'text'
-		});
-	});
-
-</script>
-<script type="text/javascript">
-	$(document).ready(function () {
-		// Format mata uang.
-		$('.money').mask('000.000.000.000.000', {
-			reverse: true
-		});
-
-	})
-
 </script>
 
 <script type="text/javascript">
+  $(document).ready(function() {
+    $('select').selectize({
+      sortField: 'text'
+    });
+  });
+</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    // Format mata uang.
+    $('.money').mask('000.000.000.000.000', {
+      reverse: true
+    });
 
+  })
+</script>
+
+<script type="text/javascript">
   $(document).ready(function() {
     var i = 1;
     $('#add').click(function() {
         i++;
-        $('#dynamic_field').append('<div class="row" id="row' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($nonreseller->result_array() as $i) : $barang_id = $i['barang_id'];$barang_nama = $i['barang_nama']; ?> <option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
+        $('#dynamic_field').append('<div class="row" id="row' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($nonreseller->result_array() as $i) : $barang_id = $i['barang_id'];$barang_nama = $i['barang_nama']; ?> <option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1 ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
         $('select').selectize({
           sortField: 'text'
         });
@@ -1506,50 +1501,33 @@ function noresires(checkbox){
       var button_id = $(this).attr("id");
       $('#row' + button_id + '').remove();
     });
+
+  });
 </script>
 
 <script type="text/javascript">
-	$(document).ready(function () {
+  $(document).ready(function() {
 
-		var i = 1;
-		$('#add1').click(function () {
-			i++;
-			$('#dynamic_field1').append('<div class="row" id="roww' + i +
-				'"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($reseller->result_array() as $i) : $barang_id = $i['
-				barang_id '];$barang_nama = $i['
-				barang_nama ']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?></select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1 ></div><div class="col-md-2 mt-30"><button type="button" id="' +
-				i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>');
-			$('select').selectize({
-				sortField: 'text'
-			});
-		});
+    var i = 1;
+    $('#add1').click(function() {
+      i++;
+      $('#dynamic_field1').append('<div class="row" id="roww' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($reseller->result_array() as $i) : $barang_id = $i['barang_id'];$barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?></select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1 ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>');
+      $('select').selectize({
+        sortField: 'text'
+      });
+    });
 
-		$(document).on('click', '.btn_remove1', function () {
-			var button_id = $(this).attr("id");
-			$('#roww' + button_id + '').remove();
-		});
+    $(document).on('click', '.btn_remove1', function() {
+      var button_id = $(this).attr("id");
+      $('#roww' + button_id + '').remove();
+    });
 
 
-	});
-
+  });
 </script>
 
 <script type="text/javascript">
-	$(document).ready(function () {
-
-		var i = 1;
-		$('#add3').click(function () {
-			i++;
-			$('#dynamic_field2').append('<div class="row" id="rowww' + i +
-				'"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($produksi->result_array() as $i) : $barang_id = $i['
-				barang_id ']; $barang_nama = $i['
-				barang_nama ']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[] min = 1" ></div><div class="col-md-2 mt-30"><button type="button" id="' +
-				i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>');
-			$('select').selectize({
-				sortField: 'text'
-			});
-		});
-
+  $(document).ready(function() {
 
     var i = 1;
     $('#add3').click(function() {
@@ -1561,95 +1539,92 @@ function noresires(checkbox){
       });
     });
 
+    $(document).on('click', '.btn_remove1', function() {
+      var button_id = $(this).attr("id");
+      $('#rowww' + button_id + '').remove();
+    });
 
 
-	});
-
+  });
 </script>
 
 <?php if ($this->session->flashdata('msg') == 'update') : ?>
-<script type="text/javascript">
-	$.toast({
-		heading: 'Update',
-		text: "Data Diupdate.",
-		showHideTransition: 'slide',
-		icon: 'success',
-		loader: true, // Change it to false to disable loader
-		loaderBg: '#ffffff',
-		position: 'top-right',
-		bgColor: '#00C9E6'
-	});
-
-</script>
+  <script type="text/javascript">
+    $.toast({
+      heading: 'Update',
+      text: "Data Diupdate.",
+      showHideTransition: 'slide',
+      icon: 'success',
+      loader: true, // Change it to false to disable loader
+      loaderBg: '#ffffff',
+      position: 'top-right',
+      bgColor: '#00C9E6'
+    });
+  </script>
 <?php elseif ($this->session->flashdata('msg') == 'success') : ?>
-<script type="text/javascript">
-	$.toast({
-		heading: 'Success',
-		text: "Berhasil tambah data",
-		showHideTransition: 'slide',
-		icon: 'info',
-		loader: true, // Change it to false to disable loader
-		loaderBg: '#ffffff',
-		position: 'top-right',
-		bgColor: '#7EC857'
-	});
-
-</script>
+  <script type="text/javascript">
+    $.toast({
+      heading: 'Success',
+      text: "Berhasil tambah data",
+      showHideTransition: 'slide',
+      icon: 'info',
+      loader: true, // Change it to false to disable loader
+      loaderBg: '#ffffff',
+      position: 'top-right',
+      bgColor: '#7EC857'
+    });
+  </script>
 <?php elseif ($this->session->flashdata('msg') == 'warning') : ?>
-<script type="text/javascript">
-	$.toast({
-		heading: 'Warning',
-		text: "Data gagal dimasukkan kedalam database",
-		showHideTransition: 'slide',
-		icon: 'info',
-		loader: true, // Change it to false to disable loader
-		loaderBg: '#ffffff',
-		position: 'top-right',
-		bgColor: '#orange'
-	});
-
-</script>
+  <script type="text/javascript">
+    $.toast({
+      heading: 'Warning',
+      text: "Data gagal dimasukkan kedalam database",
+      showHideTransition: 'slide',
+      icon: 'info',
+      loader: true, // Change it to false to disable loader
+      loaderBg: '#ffffff',
+      position: 'top-right',
+      bgColor: '#orange'
+    });
+  </script>
 <?php elseif ($this->session->flashdata('msg') == 'error') : ?>
-<script type="text/javascript">
-	$.toast({
-		heading: 'Error',
-		text: "Data gagal dimasukkan kedalam database",
-		showHideTransition: 'slide',
-		icon: 'error',
-		loader: true, // Change it to false to disable loader
-		loaderBg: '#ffffff',
-		position: 'top-right',
-		bgColor: '#orange'
-	});
-
-</script>
+  <script type="text/javascript">
+    $.toast({
+      heading: 'Error',
+      text: "Data gagal dimasukkan kedalam database",
+      showHideTransition: 'slide',
+      icon: 'error',
+      loader: true, // Change it to false to disable loader
+      loaderBg: '#ffffff',
+      position: 'top-right',
+      bgColor: '#orange'
+    });
+  </script>
 <?php elseif ($this->session->flashdata('msg') == 'success_non_reseller') : ?>
-<script type="text/javascript">
-	$.toast({
-		heading: 'Success',
-		text: "Berhasil tambah data barang reseller",
-		showHideTransition: 'slide',
-		icon: 'info',
-		loader: true, // Change it to false to disable loader
-		loaderBg: '#ffffff',
-		position: 'top-right',
-		bgColor: '#7EC857'
-	});
-
-</script>
+  <script type="text/javascript">
+    $.toast({
+      heading: 'Success',
+      text: "Berhasil tambah data barang reseller",
+      showHideTransition: 'slide',
+      icon: 'info',
+      loader: true, // Change it to false to disable loader
+      loaderBg: '#ffffff',
+      position: 'top-right',
+      bgColor: '#7EC857'
+    });
+  </script>
 <?php elseif ($this->session->flashdata('msg') == 'hapus') : ?>
-<script type="text/javascript">
-	$.toast({
-		heading: 'Delete',
-		text: "Data berhasil didelete",
-		showHideTransition: 'slide',
-		icon: 'info',
-		loader: true, // Change it to false to disable loader
-		loaderBg: '#ffffff',
-		position: 'top-right',
-		bgColor: 'red'
-	});
-
-</script>
+  <script type="text/javascript">
+    $.toast({
+      heading: 'Delete',
+      text: "Data berhasil didelete",
+      showHideTransition: 'slide',
+      icon: 'info',
+      loader: true, // Change it to false to disable loader
+      loaderBg: '#ffffff',
+      position: 'top-right',
+      bgColor: 'red'
+    });
+  </script>
 <?php else : ?>
 <?php endif; ?>
