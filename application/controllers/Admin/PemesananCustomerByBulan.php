@@ -272,7 +272,7 @@ class PemesananCustomerByBulan extends CI_Controller
 
 			$namaBulan = $x['namaBulan'];
 			$x['bulan'] = $bulan;
-			$y['title'] = "Pemesanan Bulan $namaBulan";
+			$y['title'] = "Pemesanan Customer Bulan $namaBulan";
 			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
 			$x['kurir'] = $this->m_pemesanan->getAllkurir();
 			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();

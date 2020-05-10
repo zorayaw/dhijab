@@ -282,7 +282,7 @@ class PemesananAllByBulan extends CI_Controller
 		if($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true){
 			$namaBulan = $x['namaBulan'];
 			$x['bulan'] = $bulan;
-			$y['title'] = "Pemesanan Bulan $namaBulan";
+			$y['title'] = " Seluruh Pemesanan Bulan $namaBulan";
 			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
 			$x['kurir'] = $this->m_pemesanan->getAllkurir();
 			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();

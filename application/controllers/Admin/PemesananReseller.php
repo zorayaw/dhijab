@@ -21,7 +21,7 @@
 
 	  	function index(){
 	  		if($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true){
-		       $y['title'] = "Pemesanan";
+		       $y['title'] = "Pemesanan Reseller";
 		       $x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
 		       $x['kurir'] = $this->m_pemesanan->getAllkurir();
 		       $x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();

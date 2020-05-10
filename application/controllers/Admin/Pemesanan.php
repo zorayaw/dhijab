@@ -23,7 +23,7 @@ class Pemesanan extends CI_Controller
 	function index()
 	{
 		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
-			$y['title'] = "Pemesanan";
+			$y['title'] = "Seluruh Pemesanan";
 			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
 			$x['kurir'] = $this->m_pemesanan->getAllkurir();
 			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
@@ -121,6 +121,21 @@ class Pemesanan extends CI_Controller
 				$this->pdf->filename = "laporan_pdf.pdf";
 				$this->pdf->load_view('admin/laporan_pdf', $x);
 			}		
+	}
+
+	function convertPDFPBerjalan(){
+		$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananKonfirmasi();
+
+				$this->pdf->setPaper('legal', 'landscape');
+				$this->pdf->filename = "laporan_pdf.pdf";
+				$this->pdf->load_view('admin/laporan_pdf', $x);
 	}
 
 	function convertPDFPerhari(){
@@ -367,6 +382,18 @@ class Pemesanan extends CI_Controller
 				$this->load->view('admin/laporan_word', $x);
 			}
 		
+	}
+
+	function convertWordPBerjalan(){
+		$y['title'] = "Pemesanan";
+		$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+		$x['kurir'] = $this->m_pemesanan->getAllkurir();
+		$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+		$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+		$x['produksi'] = $this->m_barang->getdataProduksi();
+		$x['reseller'] = $this->m_barang->getAllBarangR();
+		$x['datapesanan'] = $this->m_pemesanan->getPemesananKonfirmasi();
+		$this->load->view('admin/laporan_word', $x);
 	}
 
 	function convertWordPerhari(){
@@ -632,6 +659,18 @@ class Pemesanan extends CI_Controller
 			}
 		
 	}
+
+	function convertExcelPBerjalan(){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananKonfirmasi();
+				$this->load->view('admin/laporan_excel', $x);
+			}
 
 	function convertExcelPerhari(){
 
