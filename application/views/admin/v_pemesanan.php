@@ -56,15 +56,32 @@
               </a>
             </div>
           
-          <?php 
+          <!-- <?php 
             $curyear = date('Y');
             $earlyyear = 2015;
-            foreach(range($curyear, $earlyyear) as $r ) {
-              print '<button onclick="cyear('.$r.')" id="changeYear'.$r.'" style="margin-right: 10px; margin-bottom:10px" > '.$r.' </button>';
-            }
-          ?>
-           
+            print '<select onchange="cyear('.$r.')" id="changeYear'.$r.'">';
+              foreach(range($curyear, $earlyyear) as $r ) {
+              print  '<option value="'.$r.'"'.($r === $curyear ? ' selected="selected"' : '').'>'.$r.'</option>';
+              }
+            print '</select>';
+          ?> -->
 
+          <div class="btn-group">
+            <button type="button" class="btn btn-info dropdown-toggle mb-4 ml-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Filter Tahun
+            </button>
+            <?php 
+              $curyear = date('Y');
+              $earlyyear = 2015;
+            ?>
+            <div class="dropdown-menu">
+              <?php foreach(range($curyear, $earlyyear) as $r ) : ?>
+                <a class="dropdown-item" onclick="cyear(<?= $r ?>)" id="changeYear<?= $r ?>"><?= $r ?></a>
+              <?php endforeach; ?>
+            </div>
+          </div>
+
+ 
           <!-- Modal -->
           <div class="modal fade" id="pilihan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -1267,7 +1284,18 @@
 			});
     }
 </script>
+ 
+<script type="text/javascript">
+  $("#excel").click(function(){
+    $("#pilihan").modal('hide');
+  });
+</script>
 
+<script type="text/javascript">
+  $("#words").click(function(){
+    $("#pilihan").modal('hide');
+  });
+</script>
 
 <script type="text/javascript">
 
