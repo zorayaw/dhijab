@@ -556,7 +556,7 @@
                 </div>
                 <div class="col-md-12">
                   <label class="control-label">Jenis Ekspedisi</label>
-                  <select class="form-control" name="kurir" onchange="noresiCus()" id="expcus" required>
+                  <select class="form-control" name="kurir" required>
                     <option selected value="">Pilih</option>
                     <?php
                     foreach ($kurir->result_array() as $i) :
@@ -568,6 +568,13 @@
                     <?php endforeach; ?>
                   </select>
                 </div>
+
+                 
+                <div class="col-md-12 my-3">
+                  <label class="control-label">Nomor Resi : </label>
+                  <input type="checkbox" onchange='noresicus(this);' name="checkboxcus" id="checkboxcus" />
+                 </div>
+
 
                 <div class="col-md-12">
                   <label class="control-label">Biaya Ongkir</label>
@@ -703,6 +710,11 @@
                     <?php endforeach; ?>
                   </select>
                 </div>
+                <div class="col-md-12 my-3">
+                  <label class="control-label">Nomor Resi : </label>
+                  <input type="checkbox" onchange='noresires(this);' name="checkboxres" id="checkboxres" />
+                 </div>
+               
                 <div class="col-md-12">
                   <label class="control-label">Biaya Ongkir</label>
                   <input class="form-control form-white" type="text" name="biaya_ongkir" required />
@@ -901,7 +913,7 @@
                   </div>
                   <div class="col-md-12">
                     <label class="control-label">Kurir</label>
-                    <select class="form-control" name="kurir"  id="editr<?=$pemesanan_id?>" onchange="editresi(<?=$pemesanan_id?>)" required>
+                    <select class="form-control" name="kurir"  required>
                       <option selected value="">Pilih</option>
                       <?php
                       foreach ($kurir->result_array() as $i) :
@@ -917,23 +929,13 @@
                       endforeach;
                       ?>
                   </select>
-                  <?php if($kn == 1):?>
-                          <div class="col-md-12 resi<?=$pemesanan_id?>" id="c">
+                  <div class="col-md-12 resi<?=$pemesanan_id?>" id="c">
                               <br>
                               <label class="control-label">Nomor Resi</label>
-                              <input value="<?php echo $resi ?>" class="form-control form-white" type="text" name="no_resi" required />
+                              <input value="<?php echo $resi ?>" class="form-control form-white" type="text" name="no_resi" />
                               <br>
-                          </div>
-                    <?php endif; ?>
-                    <?php if($kn == 2):?>
-                          <div class="col-md-12 resi<?=$pemesanan_id?>" id="d">
-                              <br>
-                              <label class="control-label">Nomor Resi</label>
-                              <input value="<?php echo $resi ?>" class="form-control form-white" type="text" name="no_resi" required />
-                              <br>
-                          </div>
-                    <?php endif; ?>
-
+                  </div>
+                 
                   </div>
                   <div class="col-md-12">
                     <label class="control-label">Metode Pembayaran</label>
@@ -1466,7 +1468,6 @@
 
 </script>
 
-
 <script type="text/javascript">
   $("#excel").click(function(){
     $("#pilihan").modal('hide');
@@ -1480,125 +1481,45 @@
 </script>
 
 <script type="text/javascript">
-  function editresi(num){
-      var e = document.getElementById("editr"+num);
-      var krr = e.options[e.selectedIndex].value;
-        if(krr == 1) {
-            $("#editr"+num).after(`
-                      <div class="col-md-12 resi${num}" id="a${num}">
-                        <br>
-                        <label class="control-label">Nomor Resi</label>
-                        <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" required />
-                        <br>
-                      </div>
-            `);
-            $("#b"+num).remove();
-            $("#c").remove();
-            $("#d").remove();
-          }
-        
-        else if(krr == 2) {
-          $("#editr"+num).after(`
-                    <div class="col-md-12 resi${num}" id="b${num}">
-                      <br>
-                      <label class="control-label">Nomor Resi</label>
-                      <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" required />
-                      <br>
-                    </div>
-          `);
-          $("#a"+num).remove();
-          $("#c").remove();
-          $("#d").remove();
-        }
-        else{
-          $(".resi"+num).remove();
-          $("#editr"+num).after(`
-                    <div style="display: none" class="col-md-12 resi${num}" id="b${num}">
-                      <br>
-                      <label class="control-label">Nomor Resi</label>
-                      <input style="display: none" value="0" class="form-control form-white" type="text" name="no_resi" required />
-                      <br>
-                    </div>
-          `);
-        }
-  }
 
-</script>
-
-
-<script type="text/javascript">
-  function noresiCus(){
-      var e = document.getElementById("expcus");
-      var krr = e.options[e.selectedIndex].value;
-        if(krr == 1) {
-            $("#expcus").after(`
+function noresicus(checkbox){
+      var isChecked = $('#checkboxcus').is(':checked'); 
+        if(isChecked == true) {
+            $("#checkboxcus").after(`
                       <div class="col-md-12 resi" id="a">
                         <br>
                         <label class="control-label">Nomor Resi</label>
-                        <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" required />
+                        <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" />
                         <br>
                       </div>
             `);
-            $("#b").remove();
+          } 
+          else {
+            $("#a").remove();
           }
-        
-        else if(krr == 2) {
-          $("#expcus").after(`
-                    <div class="col-md-12 resi" id="b">
-                      <br>
-                      <label class="control-label">Nomor Resi</label>
-                      <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" required />
-                      <br>
-                    </div>
-          `);
-          $("#a").remove();
-        }
-        else{
-          $(".resi").remove();
-          $("#expcus").after(`
-              <input value="0" style="display: none" class="form-control form-white" type="text" name="no_resi" required />         
-          `);
-        }
-  }
+}
 
 </script>
 
 <script type="text/javascript">
-  function noresiRes(){
-      var e = document.getElementById("expres");
-      var krr = e.options[e.selectedIndex].value;
-        if(krr == 1) {
-            $("#expres").after(`
+function noresires(checkbox){
+      var isChecked = $('#checkboxres').is(':checked'); 
+        if(isChecked == true) {
+            $("#checkboxres").after(`
                       <div class="col-md-12 resi" id="a">
                         <br>
                         <label class="control-label">Nomor Resi</label>
-                        <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" required />
+                        <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" />
                         <br>
                       </div>
             `);
-            $("#b").remove();
+          } 
+          else {
+            $("#a").remove();
           }
-        
-        else if(krr == 2) {
-          $("#expres").after(`
-                    <div class="col-md-12 resi" id="b">
-                      <br>
-                      <label class="control-label">Nomor Resi</label>
-                      <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" required />
-                      <br>
-                    </div>
-          `);
-          $("#a").remove();
-        }
-        else{
-          $(".resi").remove();
-          $("#expres").after(`
-              <input value="0" style="display: none" class="form-control form-white" type="text" name="no_resi" required />         
-          `);
-        }
-  }
-
+}
 </script>
+
 
 <script type="text/javascript">
   $(document).ready(function() {

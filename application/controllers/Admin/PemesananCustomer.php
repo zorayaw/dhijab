@@ -64,6 +64,12 @@
 	  		$asal_transaksi = $this->input->post('at');
 			  $kurir = $this->input->post('kurir');
 			  $resi = $this->input->post('no_resi');
+			  if($resi == null){
+				$resi = "-";
+			}
+			else{
+				$resi = $this->input->post('no_resi');
+			}
 	  		$metpem = $this->input->post('metpem');
 			$tanggal = $this->input->post('tanggal');
 			$diskon = $this->input->post('diskon');
@@ -120,6 +126,12 @@
 	  		$asal_transaksi = $this->input->post('at');
 			  $kurir = $this->input->post('kurir');
 			  $resi = $this->input->post('no_resi');
+			  if($resi == null){
+				$resi = "-";
+			}
+			else{
+				$resi = $this->input->post('no_resi');
+			}
 	  		$metode_pembayaran = $this->input->post('mp');
 	  		// $tanggal = $this->input->post('tanggal');
 
