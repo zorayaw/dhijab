@@ -30,7 +30,7 @@
                 <i class="fa fa-plus pr-2"></i>Pemesanan Customer
               </a>
             </div>
-            <!-- <div class="col-md-3">
+            <!-- <div class="col-md-4">
               <a href="" data-toggle="modal" data-target="#reseller" class="btn btn-primary btn-block ripple m-t-10">
                 <i class="fa fa-plus pr-2"></i>Pemesanan Reseller
               </a>
@@ -47,15 +47,15 @@
               </a>
             </div>  
 
-<!-- convert -->
+             <!-- convert -->
 
-           <div class="col-md-4">
+             <div class="col-md-4">
               <a href="<?= base_url() ?>admin/Pemesanan/convertExcel" data-toggle="modal" data-target="#pilihan"  class="btn btn-dark btn-block ripple m-t-20">
                 <i class="fa fa-print pr-2"></i> Convert
               </a>
             </div>
           </div>
- 
+          
           <div class="btn-group">
             <button type="button" class="btn btn-info dropdown-toggle mb-4 ml-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Filter Tahun
@@ -70,7 +70,7 @@
               <?php endforeach; ?>
             </div>
           </div>
-  
+
           <!-- Modal -->
           <div class="modal fade" id="pilihan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -432,6 +432,8 @@
 </div>
 </div>
 </div>
+</div>
+
 
 <?php
 $no = 0;
@@ -498,7 +500,7 @@ $mp_nama = $i['mp_nama'];
 
             </select>
           </div>
-              
+          
           <div class="col-md-12">
             <label class="control-label">Kurir</label>
             <select class="form-control" name="kurir" required>
@@ -523,6 +525,9 @@ $mp_nama = $i['mp_nama'];
                       <input value="<?php echo $resi ?>" class="form-control form-white" type="text" name="no_resi" />
                       <br>
           </div>
+         
+          </div>
+
           <div class="col-md-12">
             <label class="control-label">Metode Pembayaran</label>
             <select class="form-control" name="mp" required>
@@ -587,98 +592,98 @@ $pemesanan_id = $i['pemesanan_id'];
 <?php endforeach; ?>
 
 
-</div>
 
-  <!-- Modal Status -->
-  <?php
-  $no = 0;
-  foreach ($datapesanan->result_array() as $i) :
-    $no++;
-    $pemesanan_id = $i['pemesanan_id'];
-    $status_pemesanan = $i['status_pemesanan'];
-  ?>
+<!-- Modal Status -->
+<?php
+$no = 0;
+foreach ($datapesanan->result_array() as $i) :
+$no++;
+$pemesanan_id = $i['pemesanan_id'];
+$status_pemesanan = $i['status_pemesanan'];
+?>
 
-    <div class="modal" tabindex="-1" role="dialog" id="bayar<?= $pemesanan_id ?>">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Ganti Status</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          </div>
-          <div class="modal-body p-20">
-            <form action="<?php echo base_url() ?>Admin/PemesananCustomer/status" method="POST">
-              <div class="row">
-                <div class="col-md-12">
-                  <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
-                  <input type="hidden" name="status_pemesanan" value="<?php echo $status_pemesanan ?>" />
-                  <p>Apakah kamu yakin ingin mengganti status data ini?</i></b></p>
-                </div>
-              </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Tidak</button>
-            <button type="submit" class="btn btn-success ripple save-category">Ya</button>
-          </div>
-          </form>
+<div class="modal" tabindex="-1" role="dialog" id="bayar<?= $pemesanan_id ?>">
+<div class="modal-dialog">
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">Ganti Status</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  </div>
+  <div class="modal-body p-20">
+    <form action="<?php echo base_url() ?>Admin/PemesananCustomer/status" method="POST">
+      <div class="row">
+        <div class="col-md-12">
+          <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
+          <input type="hidden" name="status_pemesanan" value="<?php echo $status_pemesanan ?>" />
+          <p>Apakah kamu yakin ingin mengganti status data ini?</i></b></p>
         </div>
       </div>
-    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Tidak</button>
+    <button type="submit" class="btn btn-success ripple save-category">Ya</button>
+  </div>
+  </form>
+</div>
+</div>
+</div>
 
 <div class="modal" tabindex="-1" role="dialog" id="selesai<?= $pemesanan_id ?>">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Ganti Status</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      </div>
-      <div class="modal-body p-20">
-        <form action="<?php echo base_url() ?>Admin/PemesananCustomer/status" method="POST">
-          <div class="row">
-            <div class="col-md-12">
-              <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
-              <input type="hidden" name="jumlah" value="<?php echo $jumlah ?>" />
-              <input type="hidden" name="status_pemesanan" value="2" />
-              <p>Apakah kamu yakin ingin mengganti status data ini?</i></b></p>
-            </div>
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Tidak</button>
-        <button type="submit" class="btn btn-success ripple save-category">Ya</button>
-      </div>
-      </form>
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title">Ganti Status</h5>
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+</div>
+<div class="modal-body p-20">
+<form action="<?php echo base_url() ?>Admin/PemesananCustomer/status" method="POST">
+  <div class="row">
+    <div class="col-md-12">
+      <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
+      <input type="hidden" name="jumlah" value="<?php echo $jumlah ?>" />
+      <input type="hidden" name="status_pemesanan" value="2" />
+      <p>Apakah kamu yakin ingin mengganti status data ini?</i></b></p>
     </div>
   </div>
 </div>
+<div class="modal-footer">
+<button type="button" class="btn btn-danger ripple" data-dismiss="modal">Tidak</button>
+<button type="submit" class="btn btn-success ripple save-category">Ya</button>
+</div>
+</form>
+</div>
+</div>
+</div>
 <div class="modal" tabindex="-1" role="dialog" id="kirim<?= $pemesanan_id ?>">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Ganti Status</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      </div>
-      <div class="modal-body p-20">
-        <form action="<?php echo base_url() ?>Admin/PemesananCustomer/status" method="POST">
-          <div class="row">
-            <div class="col-md-12">
-              <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
-              <input type="hidden" name="jumlah" value="<?php echo $jumlah ?>" />
-              <input type="hidden" name="status_pemesanan" value="1" />
-              <p>Apakah kamu yakin ingin mengganti status data ini?</i></b></p>
-            </div>
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Tidak</button>
-        <button type="submit" class="btn btn-success ripple save-category">Ya</button>
-      </div>
-      </form>
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title">Ganti Status</h5>
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+</div>
+<div class="modal-body p-20">
+<form action="<?php echo base_url() ?>Admin/PemesananCustomer/status" method="POST">
+  <div class="row">
+    <div class="col-md-12">
+      <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
+      <input type="hidden" name="jumlah" value="<?php echo $jumlah ?>" />
+      <input type="hidden" name="status_pemesanan" value="1" />
+      <p>Apakah kamu yakin ingin mengganti status data ini?</i></b></p>
     </div>
   </div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-danger ripple" data-dismiss="modal">Tidak</button>
+<button type="submit" class="btn btn-success ripple save-category">Ya</button>
+</div>
+</form>
+</div>
+</div>
 </div>
 
 <?php endforeach; ?>
 
+</div>
 
 
  <!-- Modal Cetak-->
@@ -689,7 +694,7 @@ $pemesanan_id = $i['pemesanan_id'];
       <div class="modal-dialog modal-lg-10">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Cetak Seluruh Pemesanan Customer</h5>
+            <h5 class="modal-title">Cetak Pemesanan Customer</h5>
           </div>
           <div class="modal-body">
             <div class="row">
@@ -804,8 +809,6 @@ $pemesanan_id = $i['pemesanan_id'];
       </div>
     </div>
 </div>
-  </div>
-
     <!-- Modal Pesanan NonReseller-->
     <div class="modal" tabindex="-1" role="dialog" id="tambah-pesanan-non-reseller">
       <div class="modal-dialog modal-lg">
@@ -877,7 +880,7 @@ $pemesanan_id = $i['pemesanan_id'];
                     <?php endforeach; ?>
                   </select>
                 </div>
-
+ 
                 <div class="col-md-12 my-3">
                   <label class="control-label">Nomor Resi : </label>
                   <input type="checkbox" onchange='noresicus(this);' name="checkboxcus" id="checkboxcus" />
@@ -943,7 +946,7 @@ $pemesanan_id = $i['pemesanan_id'];
     </div>
 
     <!-- Modal Pesanan Reseller-->
-    <!-- <div class="modal" tabindex="-1" role="dialog" id="reseller">
+    <div class="modal" tabindex="-1" role="dialog" id="reseller">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -1005,7 +1008,7 @@ $pemesanan_id = $i['pemesanan_id'];
                 </div>
                 <div class="col-md-12">
                   <label class="control-label">Jenis Ekspedisi</label>
-                  <select class="form-control" name="kurir" required>
+                  <select class="form-control" name="kurir" onchange="noresiRes()" id="expres" required>
                     <option selected value="">Pilih</option>
                     <?php
                     foreach ($kurir->result_array() as $i) :
@@ -1017,6 +1020,10 @@ $pemesanan_id = $i['pemesanan_id'];
                     <?php endforeach; ?>
                   </select>
                 </div>
+                <div class="col-md-12 my-3">
+                  <label class="control-label">Nomor Resi : </label>
+                  <input type="checkbox" onchange='noresires(this);' name="checkboxres" id="checkboxres" />
+                 </div>
                 <div class="col-md-12">
                   <label class="control-label">Biaya Ongkir</label>
                   <input class="form-control form-white" type="text" name="biaya_ongkir" required />
@@ -1075,10 +1082,10 @@ $pemesanan_id = $i['pemesanan_id'];
         </div>
       </div>
     </div>
- -->
+
 
     <!-- Modal Pesanan Produksi-->
-    <!-- <div class="modal" tabindex="-1" role="dialog" id="produksi">
+    <div class="modal" tabindex="-1" role="dialog" id="produksi">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -1095,6 +1102,15 @@ $pemesanan_id = $i['pemesanan_id'];
                   <input class="form-control form-white" type="date" name="tanggal" required />
                 </div>
 
+                <div class="col-md-12">
+                  <label class="control-label">No HP</label>
+                  <input class="form-control form-white" type="number" name="hp" required />
+                </div>
+
+                <div class="col-md-12">
+                  <label class="control-label">Alamat</label>
+                  <input class="form-control form-white" type="text" name="alamat" required />
+                </div>
 
                 <div class="col-md-12">
                   <label class="control-label">Note</label>
@@ -1136,7 +1152,6 @@ $pemesanan_id = $i['pemesanan_id'];
         </div>
       </div>
     </div>
- -->
 
 
 <!--=================================
@@ -1242,7 +1257,7 @@ $pemesanan_id = $i['pemesanan_id'];
         let value = parseInt($('#changeYear'+num).html())
         $.ajax({
             method: "POST",
-            url: "http://localhost/dhijab/admin/Pemesanan/PemesananByTahun",
+            url: "http://localhost/dhijab/admin/PemesananCustomer/pemesananByTahun",
             data: {
               thn: parseInt($('#changeYear'+num).html())
             },
@@ -1381,6 +1396,8 @@ $pemesanan_id = $i['pemesanan_id'];
 
 </script>
 
+
+
 <script type="text/javascript">
   $("#excel").click(function(){
     $("#pilihan").modal('hide');
@@ -1392,6 +1409,8 @@ $pemesanan_id = $i['pemesanan_id'];
     $("#pilihan").modal('hide');
   });
 </script>
+
+
 <script type="text/javascript">
 
 function noresicus(checkbox){
@@ -1412,6 +1431,26 @@ function noresicus(checkbox){
 }
 
 </script>
+
+<script type="text/javascript">
+function noresires(checkbox){
+      var isChecked = $('#checkboxres').is(':checked'); 
+        if(isChecked == true) {
+            $("#checkboxres").after(`
+                      <div class="col-md-12 resi" id="a">
+                        <br>
+                        <label class="control-label">Nomor Resi</label>
+                        <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" />
+                        <br>
+                      </div>
+            `);
+          } 
+          else {
+            $("#a").remove();
+          }
+}
+</script>
+
 
 <script type="text/javascript">
   $(document).ready(function() {
@@ -1435,7 +1474,7 @@ function noresicus(checkbox){
     var i = 1;
     $('#add').click(function() {
         i++;
-        $('#dynamic_field').append('<div class="row" id="row' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($nonreseller->result_array() as $i) : $barang_id = $i['barang_id'];$barang_nama = $i['barang_nama']; ?> <option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1 ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
+        $('#dynamic_field').append('<div class="row" id="row' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($nonreseller->result_array() as $i) : $barang_id = $i['barang_id'];$barang_nama = $i['barang_nama']; ?> <option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
         $('select').selectize({
           sortField: 'text'
         });
@@ -1483,7 +1522,7 @@ function noresicus(checkbox){
     $('#add3').click(function() {
       i++;
       $('#dynamic_field2').append('<div class="row" id="rowww' + i +
-        '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($produksi->result_array() as $i) : $barang_id = $i['barang_id']; $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[] min = 1" ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>');
+        '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($produksi->result_array() as $i) : $barang_id = $i['barang_id']; $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1 ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>');
       $('select').selectize({
         sortField: 'text'
       });

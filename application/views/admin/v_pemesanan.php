@@ -1279,25 +1279,6 @@
 			});
     }
 </script>
-
-
-<!-- <script>
-    function cyear(num){
-        let value = parseInt($('#changeYear'+num).html())
-        $.ajax({
-            method: "POST",
-            url: "http://localhost/dhijab/admin/Pemesanan/PemesananByTahun",
-            data: {
-              thn: parseInt($('#changeYear'+num).html())
-            },
-            success: function (result) {
-              $('#sukses').html(result)
-              $('#hapus').remove() 
-              
-            }
-			});
-    }
-</script> -->
  
 <script type="text/javascript">
   $("#excel").click(function(){

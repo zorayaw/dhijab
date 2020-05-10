@@ -295,7 +295,7 @@
 <!-- end convert -->
 
 <div id="parent">
-     
+
   <div class="table-responsive">
     <table id="datatable" class="table table-striped table-bordered p-0">
       <thead>
@@ -1257,7 +1257,7 @@ $status_pemesanan = $i['status_pemesanan'];
         let value = parseInt($('#changeYear'+num).html())
         $.ajax({
             method: "POST",
-            url: "http://localhost/dhijab/admin/Pemesanan/PemesananByTahun",
+            url: "http://localhost/dhijab/admin/PemesananReseller/PemesananByTahun",
             data: {
               thn: parseInt($('#changeYear'+num).html())
             },

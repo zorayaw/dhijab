@@ -1240,7 +1240,7 @@
         let value = parseInt($('#changeYear'+num).html())
         $.ajax({
             method: "POST",
-            url: "http://localhost/dhijab/admin/Pemesanan/PemesananByTahun",
+            url: "http://localhost/dhijab/admin/PemesananProduksi/pemesananByTahun",
             data: {
               thn: parseInt($('#changeYear'+num).html())
             },
