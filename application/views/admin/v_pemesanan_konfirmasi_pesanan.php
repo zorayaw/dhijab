@@ -584,6 +584,11 @@
                     <?php endforeach; ?>
                   </select>
                 </div>
+                <div class="col-md-12 my-3">
+                  <label class="control-label">Nomor Resi : </label>
+                  <input type="checkbox" onchange='noresicus(this);' name="checkboxcus" id="checkboxcus" />
+                 </div>
+
                 <div class="col-md-12">
                   <label class="control-label">Biaya Ongkir</label>
                   <input class="form-control form-white" type="text" name="biaya_ongkir" required />
@@ -718,6 +723,10 @@
                     <?php endforeach; ?>
                   </select>
                 </div>
+                <div class="col-md-12 my-3">
+                  <label class="control-label">Nomor Resi : </label>
+                  <input type="checkbox" onchange='noresires(this);' name="checkboxres" id="checkboxres" />
+                 </div>
                 <div class="col-md-12">
                   <label class="control-label">Biaya Ongkir</label>
                   <input class="form-control form-white" type="text" name="biaya_ongkir" required />
@@ -1180,6 +1189,49 @@
 </body>
 
 </html>
+
+
+<script type="text/javascript">
+
+function noresicus(checkbox){
+      var isChecked = $('#checkboxcus').is(':checked'); 
+        if(isChecked == true) {
+            $("#checkboxcus").after(`
+                      <div class="col-md-12 resi" id="a">
+                        <br>
+                        <label class="control-label">Nomor Resi</label>
+                        <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" required />
+                        <br>
+                      </div>
+            `);
+          } 
+          else {
+            $("#a").remove();
+          }
+}
+
+</script>
+
+<script type="text/javascript">
+function noresires(checkbox){
+      var isChecked = $('#checkboxres').is(':checked'); 
+        if(isChecked == true) {
+            $("#checkboxres").after(`
+                      <div class="col-md-12 resi" id="a">
+                        <br>
+                        <label class="control-label">Nomor Resi</label>
+                        <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" required />
+                        <br>
+                      </div>
+            `);
+          } 
+          else {
+            $("#a").remove();
+          }
+}
+</script>
+
+
 <script type="text/javascript">
   $(document).ready(function() {
     $('select').selectize({

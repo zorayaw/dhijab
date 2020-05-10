@@ -56,14 +56,21 @@
             </div>
           </div>
 
+            <div class="btn-group">
+            <button type="button" class="btn btn-info dropdown-toggle mb-4 ml-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Filter Tahun
+            </button>
             <?php 
-            $curyear = date('Y');
-            $earlyyear = 2015;
-            foreach(range($curyear, $earlyyear) as $r ) {
-              print '<button onclick="cyear('.$r.')" id="changeYear'.$r.'" style="margin-right: 10px; margin-bottom:10px" > '.$r.' </button>';
-            }
-          ?>
-         
+              $curyear = date('Y');
+              $earlyyear = 2015;
+            ?>
+            <div class="dropdown-menu">
+              <?php foreach(range($curyear, $earlyyear) as $r ) : ?>
+                <a class="dropdown-item" onclick="cyear(<?= $r ?>)" id="changeYear<?= $r ?>"><?= $r ?></a>
+              <?php endforeach; ?>
+            </div>
+          </div>
+     
           
           <!-- Modal -->
           <div class="modal fade" id="pilihan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -470,11 +477,8 @@
             <!-- end modal pdf -->
 <!-- end convert -->
 
-<div id="sukses"></div>
-  
-  <div id="hapus">
-
-          <div class="table-responsive">
+<div id="parent">
+  <div class="table-responsive">
             <table id="datatable" class="table table-striped table-bordered p-0">
               <thead>
                 <tr>
@@ -609,360 +613,8 @@
         </div>
       </div>
     </div>
+
     
-
-    <!-- Modal Pesanan NonReseller-->
-    <?php 
-    if($bulan<10){
-        $tglawal = date('Y')."-0".$bulan."-01";
-        $tglakhir = date('Y')."-0".$bulan."-".$tanggalAkhir;
-    }
-    else{
-        $tglawal = date('Y')."-".$bulan."-01";
-        $tglakhir = date('Y')."-".$bulan."-".$tanggalAkhir;
-    }
-    ?>
-    <div class="modal" tabindex="-1" role="dialog" id="tambah-pesanan-non-reseller">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Tambah Pesanan Customer</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          </div>
-          <form action="<?php echo base_url() ?>Admin/PemesananAllByBulan/savepemesananNR?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
-            <div class="modal-body p-20">
-              <div class="row">
-                <div class="col-md-12">
-                  <label class="control-label">Nama Pemesan</label>
-                  <input class="form-control form-white" type="text" name="nama_pemesan" required />
-                </div>
-                <div class="col-md-12">
-                  <label class="control-label">Email Pemesan</label>
-                  <input class="form-control form-white" type="text" name="email_pemesanan" required />
-                </div>
-                <div class="col-md-12">
-                  <label class="control-label">No HP</label>
-                  <input class="form-control form-white" type="number" name="hp" required />
-                </div>
-                <div class="col-md-12">
-                  <label class="control-label">Tanggal</label>
-                  <input class="form-control form-white" type="date" name="tanggal" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>"  required />
-                </div>
-                <div class="col-md-12">
-                  <label class="control-label">Alamat</label>
-                  <input class="form-control form-white" type="text" name="alamat" required />
-                </div>
-                 <div class="col-md-12">
-                  <label class="control-label">Biaya Admin</label>
-                  <input class="form-control form-white" type="text" name="biaya_admin" required />
-                </div>
-                 <div class="col-md-12">
-                  <label class="control-label">Diskon</label>
-                  <input class="form-control form-white" type="text" name="diskon" required />
-                </div>
-                <div class="col-md-12">
-                  <label class="control-label">Uang Kembalian</label>
-                  <input class="form-control form-white" type="text" name="uang" required />
-                </div>
-                <div class="col-md-12">
-                  <label class="control-label">Asal Transaksi</label>
-                  <select class="form-control" name="at" required>
-                    <option selected value="">Pilih</option>
-                    <?php
-                    foreach ($asal_transaksi->result_array() as $i) :
-                      $at_id = $i['at_id'];
-                      $at_nama = $i['at_nama'];
-                      $at_tanggal = $i['at_tanggal'];
-                      ?>
-                      <option value="<?php echo $at_id ?>"><?php echo $at_nama ?></option>
-                    <?php endforeach; ?>
-                  </select>
-                </div>
-                <div class="col-md-12">
-                  <label class="control-label">Jenis Ekspedisi</label>
-                  <select class="form-control" name="kurir" onchange="noresiCus()" id="expcus" required>
-                    <option selected value="">Pilih</option>
-                    <?php
-                    foreach ($kurir->result_array() as $i) :
-                      $kurir_id = $i['kurir_id'];
-                      $kurir_nama = $i['kurir_nama'];
-                      $kurir_tanggal = $i['kurir_tanggal'];
-                      ?>
-                      <option value="<?php echo $kurir_id ?>"><?php echo $kurir_nama ?></option>
-                    <?php endforeach; ?>
-                  </select>
-                </div>
-                <div class="col-md-12">
-                  <label class="control-label">Biaya Ongkir</label>
-                  <input class="form-control form-white" type="text" name="biaya_ongkir" required />
-                </div>
-                <div class="col-md-12">
-                  <label class="control-label">Jenis Pembayaran</label>
-                  <select class="form-control" name="metpem" required>
-                    <option selected value="">Pilih</option>
-                    <?php
-                    foreach ($metode_pembayaran->result_array() as $i) :
-                      $mp_id = $i['mp_id'];
-                      $mp_nama = $i['mp_nama'];
-                      $mp_tanggal = $i['mp_tanggal'];
-                      ?>
-                      <option value="<?php echo $mp_id ?>"><?php echo $mp_nama ?></option>
-                    <?php endforeach; ?>
-                  </select>
-                </div>
-                <div class="col-md-12">
-                  <label class="control-label">Note</label>
-                  <input class="form-control form-white" type="text" name="note" required />
-                </div>
-
-                
-                <div class="form-group col-md-12 mt-10" id="dynamic_field">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <label class="control-label">Barang</label>
-                      <select class="form-control" name="barang[]" required>
-                        <option selected value="">Pilih</option>
-                        <?php
-                        foreach ($nonreseller->result_array() as $i) :
-                          $barang_id = $i['barang_id'];
-                          $barang_nama = $i['barang_nama'];
-                          ?>
-                          <option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option>
-                        <?php endforeach; ?>
-                      </select>
-                    </div>
-                    <div class="col-md-2">
-                      <label class="control-label" for="harga">Kuantitas</label>
-                      <input class="form-control" type="number" name="qty[]" min = 1 required>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-12 mt-30">
-                  <input class="button" value="Add new" id="add" />
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-success ripple save-category" id="simpan">Save</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    </div>
-
-    <!-- Modal Pesanan Reseller-->
-   
-    <div class="modal" tabindex="-1" role="dialog" id="reseller">
-       <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Tambah Pesanan Reseller</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          </div>
-          <form action="<?php echo base_url() ?>Admin/PemesananAllByBulan/savepemesananR?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
-            <div class="modal-body p-20">
-              <div class="row">
-                <div class="col-md-12">
-                  <label class="control-label">Nama Pemesan</label>
-                  <input class="form-control form-white" type="text" name="nama_pemesan" required />
-                </div>
-                <div class="col-md-12">
-                  <label class="control-label">Nama Akun Pemesan</label>
-                  <input class="form-control form-white" type="text" name="nama_akun_pemesan" required />
-                </div>
-                <div class="col-md-12">
-                  <label class="control-label">Email Pemesan</label>
-                  <input class="form-control form-white" type="text" name="email_pemesanan" required />
-                </div>
-                <div class="col-md-12">
-                  <label class="control-label">No HP</label>
-                  <input class="form-control form-white" type="number" name="hp" required />
-                </div>
-                <div class="col-md-12">
-                  <label class="control-label">Tanggal</label>
-                  <input class="form-control form-white" type="date" name="tanggal" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required />
-                </div>
-                <div class="col-md-12">
-                  <label class="control-label">Alamat</label>
-                  <input class="form-control form-white" type="text" name="alamat" required />
-                </div>
-                 <div class="col-md-12">
-                  <label class="control-label">Biaya Admin</label>
-                  <input class="form-control form-white" type="text" name="biaya_admin" required />
-                </div>
-                 <div class="col-md-12">
-                  <label class="control-label">Diskon</label>
-                  <input class="form-control form-white" type="text" name="diskon" required />
-                </div>
-                <div class="col-md-12">
-                  <label class="control-label">Uang Kembalian</label>
-                  <input class="form-control form-white" type="text" name="uang" required />
-                </div>
-                <div class="col-md-12">
-                  <label class="control-label">Asal Transaksi</label>
-                  <select class="form-control" name="at" required>
-                    <option selected value="">Pilih</option>
-                    <?php
-                    foreach ($asal_transaksi->result_array() as $i) :
-                      $at_id = $i['at_id'];
-                      $at_nama = $i['at_nama'];
-                      $at_tanggal = $i['at_tanggal'];
-                      ?>
-                      <option value="<?php echo $at_id ?>"><?php echo $at_nama ?></option>
-                    <?php endforeach; ?>
-                  </select>
-                </div>
-                <div class="col-md-12">
-                  <label class="control-label">Jenis Ekspedisi</label>
-                  <select class="form-control" name="kurir" onchange="noresiRes()" id="expres" required>
-                    <option selected value="">Pilih</option>
-                    <?php
-                    foreach ($kurir->result_array() as $i) :
-                      $kurir_id = $i['kurir_id'];
-                      $kurir_nama = $i['kurir_nama'];
-                      $kurir_tanggal = $i['kurir_tanggal'];
-                      ?>
-                      <option value="<?php echo $kurir_id ?>"><?php echo $kurir_nama ?></option>
-                    <?php endforeach; ?>
-                  </select>
-                </div>
-                <div class="col-md-12">
-                  <label class="control-label">Biaya Ongkir</label>
-                  <input class="form-control form-white" type="text" name="biaya_ongkir" required />
-                </div>
-                <div class="col-md-12">
-                  <label class="control-label">Jenis Pembayaran</label>
-                  <select class="form-control" name="metpem" required>
-                    <option selected value="">Pilih</option>
-                    <?php
-                    foreach ($metode_pembayaran->result_array() as $i) :
-                      $mp_id = $i['mp_id'];
-                      $mp_nama = $i['mp_nama'];
-                      $mp_tanggal = $i['mp_tanggal'];
-                      ?>
-                      <option value="<?php echo $mp_id ?>"><?php echo $mp_nama ?></option>
-                    <?php endforeach; ?>
-                  </select>
-                </div>
-                <div class="col-md-12">
-                  <label class="control-label">Note</label>
-                  <input class="form-control form-white" type="text" name="note" required />
-                </div>
-
-                
-                <div class="form-group col-md-12 mt-10" id="dynamic_field1">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <label class="control-label">Barang</label>
-                      <select class="form-control" name="barang[]" required>
-                        <option selected value="">Pilih</option>
-                        <?php
-                        foreach ($nonreseller->result_array() as $i) :
-                          $barang_id = $i['barang_id'];
-                          $barang_nama = $i['barang_nama'];
-                          ?>
-                          <option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option>
-                        <?php endforeach; ?>
-                      </select>
-                    </div>
-                    <div class="col-md-2">
-                      <label class="control-label" for="harga">Kuantitas</label>
-                      <input class="form-control" type="number" name="qty[]" min = 1 required>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-12 mt-30">
-                  <input class="button" value="Add new" id="add1" />
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-success ripple save-category" id="simpan">Save</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-
-     <!-- Modal Pesanan Produksi-->
-     
-    <div class="modal" tabindex="-1" role="dialog" id="produksi">
-       <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Tambah Pesanan  Produksi</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          </div>
-          <form action="<?php echo base_url() ?>Admin/PemesananAllByBulan/savepemesananP?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
-            <div class="modal-body p-20">
-              <div class="row">
-              
-               
-                <div class="col-md-12">
-                  <label class="control-label">Tanggal</label>
-                  <input class="form-control form-white" type="date" name="tanggal" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required />
-                </div>
-              
-                <div class="col-md-12">
-                  <label class="control-label">No HP</label>
-                  <input class="form-control form-white" type="number" name="hp" required />
-                </div>
-
-                <div class="col-md-12">
-                  <label class="control-label">Alamat</label>
-                  <input class="form-control form-white" type="text" name="alamat" required />
-                </div>
-
-                <div class="col-md-12">
-                  <label class="control-label">Note</label>
-                  <input class="form-control form-white" type="text" name="note" required />
-                </div>
-
-                
-                <div class="form-group col-md-12 mt-10" id="dynamic_field2">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <label class="control-label">Barang</label>
-                      <select class="form-control" name="barang[]" required id="select-state" placeholder="Pick a state...">
-                        <option selected value="">Pilih</option>
-                        <?php
-                        foreach ($produksi->result_array() as $i) :
-                          $barang_id = $i['barang_id'];
-                          $barang_nama = $i['barang_nama'];
-                          ?>
-                          <option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option>
-                        <?php endforeach; ?>
-                      </select>
-                    </div>
-                    <div class="col-md-2">
-                      <label class="control-label" for="harga">Kuantitas</label>
-                      <input class="form-control" type="number" name="qty[]" min = 1 required>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-12 mt-30">
-                  <input class="button" value="Add new" id="add3" />
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-success ripple save-category" id="simpan">Save</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-
-
-
-
-
 
     <?php
     $no = 0;
@@ -1031,7 +683,7 @@
                   </div>
                   <div class="col-md-12">
                     <label class="control-label">Kurir</label>
-                    <select class="form-control" name="kurir"  id="editr<?=$pemesanan_id?>" onchange="editresi(<?=$pemesanan_id?>)" required>
+                    <select class="form-control" name="kurir" required>
                       <option selected value="">Pilih</option>
                       <?php
                       foreach ($kurir->result_array() as $i) :
@@ -1047,23 +699,13 @@
                       endforeach;
                       ?>
                   </select>
-                  <?php if($kn == 1):?>
-                          <div class="col-md-12 resi<?=$pemesanan_id?>" id="c">
+                  <div class="col-md-12 resi<?=$pemesanan_id?>" id="c">
                               <br>
                               <label class="control-label">Nomor Resi</label>
-                              <input value="<?php echo $resi ?>" class="form-control form-white" type="text" name="no_resi" required />
+                              <input value="<?php echo $resi ?>" class="form-control form-white" type="text" name="no_resi" />
                               <br>
-                          </div>
-                    <?php endif; ?>
-                    <?php if($kn == 2):?>
-                          <div class="col-md-12 resi<?=$pemesanan_id?>" id="d">
-                              <br>
-                              <label class="control-label">Nomor Resi</label>
-                              <input value="<?php echo $resi ?>" class="form-control form-white" type="text" name="no_resi" required />
-                              <br>
-                          </div>
-                    <?php endif; ?>
-
+                  </div>
+                 
                   </div>
                   <div class="col-md-12">
                     <label class="control-label">Metode Pembayaran</label>
@@ -1219,10 +861,369 @@
     </div>
   </div>
 
-
-
 <?php endforeach; ?>
 
+</div>
+
+
+    
+
+    <!-- Modal Pesanan NonReseller-->
+    <?php 
+    if($bulan<10){
+        $tglawal = date('Y')."-0".$bulan."-01";
+        $tglakhir = date('Y')."-0".$bulan."-".$tanggalAkhir;
+    }
+    else{
+        $tglawal = date('Y')."-".$bulan."-01";
+        $tglakhir = date('Y')."-".$bulan."-".$tanggalAkhir;
+    }
+    ?>
+    <div class="modal" tabindex="-1" role="dialog" id="tambah-pesanan-non-reseller">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Tambah Pesanan Customer</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <form action="<?php echo base_url() ?>Admin/PemesananAllByBulan/savepemesananNR?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
+            <div class="modal-body p-20">
+              <div class="row">
+                <div class="col-md-12">
+                  <label class="control-label">Nama Pemesan</label>
+                  <input class="form-control form-white" type="text" name="nama_pemesan" required />
+                </div>
+                <div class="col-md-12">
+                  <label class="control-label">Email Pemesan</label>
+                  <input class="form-control form-white" type="text" name="email_pemesanan" required />
+                </div>
+                <div class="col-md-12">
+                  <label class="control-label">No HP</label>
+                  <input class="form-control form-white" type="number" name="hp" required />
+                </div>
+                <div class="col-md-12">
+                  <label class="control-label">Tanggal</label>
+                  <input class="form-control form-white" type="date" name="tanggal" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>"  required />
+                </div>
+                <div class="col-md-12">
+                  <label class="control-label">Alamat</label>
+                  <input class="form-control form-white" type="text" name="alamat" required />
+                </div>
+                 <div class="col-md-12">
+                  <label class="control-label">Biaya Admin</label>
+                  <input class="form-control form-white" type="text" name="biaya_admin" required />
+                </div>
+                 <div class="col-md-12">
+                  <label class="control-label">Diskon</label>
+                  <input class="form-control form-white" type="text" name="diskon" required />
+                </div>
+                <div class="col-md-12">
+                  <label class="control-label">Uang Kembalian</label>
+                  <input class="form-control form-white" type="text" name="uang" required />
+                </div>
+                <div class="col-md-12">
+                  <label class="control-label">Asal Transaksi</label>
+                  <select class="form-control" name="at" required>
+                    <option selected value="">Pilih</option>
+                    <?php
+                    foreach ($asal_transaksi->result_array() as $i) :
+                      $at_id = $i['at_id'];
+                      $at_nama = $i['at_nama'];
+                      $at_tanggal = $i['at_tanggal'];
+                      ?>
+                      <option value="<?php echo $at_id ?>"><?php echo $at_nama ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+                <div class="col-md-12">
+                  <label class="control-label">Jenis Ekspedisi</label>
+                  <select class="form-control" name="kurir" required>
+                    <option selected value="">Pilih</option>
+                    <?php
+                    foreach ($kurir->result_array() as $i) :
+                      $kurir_id = $i['kurir_id'];
+                      $kurir_nama = $i['kurir_nama'];
+                      $kurir_tanggal = $i['kurir_tanggal'];
+                      ?>
+                      <option value="<?php echo $kurir_id ?>"><?php echo $kurir_nama ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+
+                <div class="col-md-12 my-3">
+                  <label class="control-label">Nomor Resi : </label>
+                  <input type="checkbox" onchange='noresicus(this);' name="checkboxcus" id="checkboxcus" />
+                 </div>
+
+                <div class="col-md-12">
+                  <label class="control-label">Biaya Ongkir</label>
+                  <input class="form-control form-white" type="text" name="biaya_ongkir" required />
+                </div>
+                <div class="col-md-12">
+                  <label class="control-label">Jenis Pembayaran</label>
+                  <select class="form-control" name="metpem" required>
+                    <option selected value="">Pilih</option>
+                    <?php
+                    foreach ($metode_pembayaran->result_array() as $i) :
+                      $mp_id = $i['mp_id'];
+                      $mp_nama = $i['mp_nama'];
+                      $mp_tanggal = $i['mp_tanggal'];
+                      ?>
+                      <option value="<?php echo $mp_id ?>"><?php echo $mp_nama ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+                <div class="col-md-12">
+                  <label class="control-label">Note</label>
+                  <input class="form-control form-white" type="text" name="note" required />
+                </div>
+
+                
+                <div class="form-group col-md-12 mt-10" id="dynamic_field">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label class="control-label">Barang</label>
+                      <select class="form-control" name="barang[]" required>
+                        <option selected value="">Pilih</option>
+                        <?php
+                        foreach ($nonreseller->result_array() as $i) :
+                          $barang_id = $i['barang_id'];
+                          $barang_nama = $i['barang_nama'];
+                          ?>
+                          <option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                    </div>
+                    <div class="col-md-2">
+                      <label class="control-label" for="harga">Kuantitas</label>
+                      <input class="form-control" type="number" name="qty[]" min = 1 required>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12 mt-30">
+                  <input class="button" value="Add new" id="add" />
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-success ripple save-category" id="simpan">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Modal Pesanan Reseller-->
+   
+    <div class="modal" tabindex="-1" role="dialog" id="reseller">
+       <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Tambah Pesanan Reseller</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <form action="<?php echo base_url() ?>Admin/PemesananAllByBulan/savepemesananR?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
+            <div class="modal-body p-20">
+              <div class="row">
+                <div class="col-md-12">
+                  <label class="control-label">Nama Pemesan</label>
+                  <input class="form-control form-white" type="text" name="nama_pemesan" required />
+                </div>
+                <div class="col-md-12">
+                  <label class="control-label">Nama Akun Pemesan</label>
+                  <input class="form-control form-white" type="text" name="nama_akun_pemesan" required />
+                </div>
+                <div class="col-md-12">
+                  <label class="control-label">Email Pemesan</label>
+                  <input class="form-control form-white" type="text" name="email_pemesanan" required />
+                </div>
+                <div class="col-md-12">
+                  <label class="control-label">No HP</label>
+                  <input class="form-control form-white" type="number" name="hp" required />
+                </div>
+                <div class="col-md-12">
+                  <label class="control-label">Tanggal</label>
+                  <input class="form-control form-white" type="date" name="tanggal" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required />
+                </div>
+                <div class="col-md-12">
+                  <label class="control-label">Alamat</label>
+                  <input class="form-control form-white" type="text" name="alamat" required />
+                </div>
+                 <div class="col-md-12">
+                  <label class="control-label">Biaya Admin</label>
+                  <input class="form-control form-white" type="text" name="biaya_admin" required />
+                </div>
+                 <div class="col-md-12">
+                  <label class="control-label">Diskon</label>
+                  <input class="form-control form-white" type="text" name="diskon" required />
+                </div>
+                <div class="col-md-12">
+                  <label class="control-label">Uang Kembalian</label>
+                  <input class="form-control form-white" type="text" name="uang" required />
+                </div>
+                <div class="col-md-12">
+                  <label class="control-label">Asal Transaksi</label>
+                  <select class="form-control" name="at" required>
+                    <option selected value="">Pilih</option>
+                    <?php
+                    foreach ($asal_transaksi->result_array() as $i) :
+                      $at_id = $i['at_id'];
+                      $at_nama = $i['at_nama'];
+                      $at_tanggal = $i['at_tanggal'];
+                      ?>
+                      <option value="<?php echo $at_id ?>"><?php echo $at_nama ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+                <div class="col-md-12">
+                  <label class="control-label">Jenis Ekspedisi</label>
+                  <select class="form-control" name="kurir" onchange="noresiRes()" id="expres" required>
+                    <option selected value="">Pilih</option>
+                    <?php
+                    foreach ($kurir->result_array() as $i) :
+                      $kurir_id = $i['kurir_id'];
+                      $kurir_nama = $i['kurir_nama'];
+                      $kurir_tanggal = $i['kurir_tanggal'];
+                      ?>
+                      <option value="<?php echo $kurir_id ?>"><?php echo $kurir_nama ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+                <div class="col-md-12 my-3">
+                  <label class="control-label">Nomor Resi : </label>
+                  <input type="checkbox" onchange='noresires(this);' name="checkboxres" id="checkboxres" />
+                 </div>
+                <div class="col-md-12">
+                  <label class="control-label">Biaya Ongkir</label>
+                  <input class="form-control form-white" type="text" name="biaya_ongkir" required />
+                </div>
+                <div class="col-md-12">
+                  <label class="control-label">Jenis Pembayaran</label>
+                  <select class="form-control" name="metpem" required>
+                    <option selected value="">Pilih</option>
+                    <?php
+                    foreach ($metode_pembayaran->result_array() as $i) :
+                      $mp_id = $i['mp_id'];
+                      $mp_nama = $i['mp_nama'];
+                      $mp_tanggal = $i['mp_tanggal'];
+                      ?>
+                      <option value="<?php echo $mp_id ?>"><?php echo $mp_nama ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+                <div class="col-md-12">
+                  <label class="control-label">Note</label>
+                  <input class="form-control form-white" type="text" name="note" required />
+                </div>
+
+                
+                <div class="form-group col-md-12 mt-10" id="dynamic_field1">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label class="control-label">Barang</label>
+                      <select class="form-control" name="barang[]" required>
+                        <option selected value="">Pilih</option>
+                        <?php
+                        foreach ($nonreseller->result_array() as $i) :
+                          $barang_id = $i['barang_id'];
+                          $barang_nama = $i['barang_nama'];
+                          ?>
+                          <option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                    </div>
+                    <div class="col-md-2">
+                      <label class="control-label" for="harga">Kuantitas</label>
+                      <input class="form-control" type="number" name="qty[]" min = 1 required>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12 mt-30">
+                  <input class="button" value="Add new" id="add1" />
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-success ripple save-category" id="simpan">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+     <!-- Modal Pesanan Produksi-->
+     
+    <div class="modal" tabindex="-1" role="dialog" id="produksi">
+       <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Tambah Pesanan  Produksi</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <form action="<?php echo base_url() ?>Admin/PemesananAllByBulan/savepemesananP?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
+            <div class="modal-body p-20">
+              <div class="row">
+              
+               
+                <div class="col-md-12">
+                  <label class="control-label">Tanggal</label>
+                  <input class="form-control form-white" type="date" name="tanggal" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required />
+                </div>
+              
+                <div class="col-md-12">
+                  <label class="control-label">No HP</label>
+                  <input class="form-control form-white" type="number" name="hp" required />
+                </div>
+
+                <div class="col-md-12">
+                  <label class="control-label">Alamat</label>
+                  <input class="form-control form-white" type="text" name="alamat" required />
+                </div>
+
+                <div class="col-md-12">
+                  <label class="control-label">Note</label>
+                  <input class="form-control form-white" type="text" name="note" required />
+                </div>
+
+                
+                <div class="form-group col-md-12 mt-10" id="dynamic_field2">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label class="control-label">Barang</label>
+                      <select class="form-control" name="barang[]" required id="select-state" placeholder="Pick a state...">
+                        <option selected value="">Pilih</option>
+                        <?php
+                        foreach ($produksi->result_array() as $i) :
+                          $barang_id = $i['barang_id'];
+                          $barang_nama = $i['barang_nama'];
+                          ?>
+                          <option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                    </div>
+                    <div class="col-md-2">
+                      <label class="control-label" for="harga">Kuantitas</label>
+                      <input class="form-control" type="number" name="qty[]" min = 1 required>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12 mt-30">
+                  <input class="button" value="Add new" id="add3" />
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-success ripple save-category" id="simpan">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
 <!-- Modal Cetak-->
 
@@ -1407,22 +1408,34 @@
 
 </html>
 
+
 <script>
     function cyear(num){
         let value = parseInt($('#changeYear'+num).html())
         $.ajax({
             method: "POST",
-            url: "http://localhost/dhijab/admin/PemesananAllByBulan/PemesananByTahun?bulan=<?=$bulan?>",
+            url: "http://localhost/dhijab/admin/PemesananAllByBulan/pemesananByTahun?bulan=<?= $bulan ?>",
             data: {
               thn: parseInt($('#changeYear'+num).html())
             },
             success: function (result) {
-              $('#sukses').html(result)
-              $('#hapus').remove() 
-              
+              $('#parent').html(result)          
             }
 			});
     }
+</script>
+
+
+<script type="text/javascript">
+  $("#excel").click(function(){
+    $("#pilihan").modal('hide');
+  });
+</script>
+
+<script type="text/javascript">
+  $("#words").click(function(){
+    $("#pilihan").modal('hide');
+  });
 </script>
 
 <script type="text/javascript">
@@ -1609,77 +1622,43 @@
 
 
 <script type="text/javascript">
-  function noresiCus(){
-      var e = document.getElementById("expcus");
-      var krr = e.options[e.selectedIndex].value;
-        if(krr == 1) {
-            $("#expcus").after(`
+
+function noresicus(checkbox){
+      var isChecked = $('#checkboxcus').is(':checked'); 
+        if(isChecked == true) {
+            $("#checkboxcus").after(`
                       <div class="col-md-12 resi" id="a">
                         <br>
                         <label class="control-label">Nomor Resi</label>
-                        <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" required />
+                        <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" />
                         <br>
                       </div>
             `);
-            $("#b").remove();
+          } 
+          else {
+            $("#a").remove();
           }
-        
-        else if(krr == 2) {
-          $("#expcus").after(`
-                    <div class="col-md-12 resi" id="b">
-                      <br>
-                      <label class="control-label">Nomor Resi</label>
-                      <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" required />
-                      <br>
-                    </div>
-          `);
-          $("#a").remove();
-        }
-        else{
-          $(".resi").remove();
-          $("#expcus").after(`
-              <input value="0" style="display: none" class="form-control form-white" type="text" name="no_resi" required />         
-          `);
-        }
-  }
+}
 
 </script>
 
 <script type="text/javascript">
-  function noresiRes(){
-      var e = document.getElementById("expres");
-      var krr = e.options[e.selectedIndex].value;
-        if(krr == 1) {
-            $("#expres").after(`
+function noresires(checkbox){
+      var isChecked = $('#checkboxres').is(':checked'); 
+        if(isChecked == true) {
+            $("#checkboxres").after(`
                       <div class="col-md-12 resi" id="a">
                         <br>
                         <label class="control-label">Nomor Resi</label>
-                        <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" required />
+                        <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" />
                         <br>
                       </div>
             `);
-            $("#b").remove();
+          } 
+          else {
+            $("#a").remove();
           }
-        
-        else if(krr == 2) {
-          $("#expres").after(`
-                    <div class="col-md-12 resi" id="b">
-                      <br>
-                      <label class="control-label">Nomor Resi</label>
-                      <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" required />
-                      <br>
-                    </div>
-          `);
-          $("#a").remove();
-        }
-        else{
-          $(".resi").remove();
-          $("#expres").after(`
-              <input value="0" style="display: none" class="form-control form-white" type="text" name="no_resi" required />         
-          `);
-        }
-  }
-
+}
 </script>
 
 
