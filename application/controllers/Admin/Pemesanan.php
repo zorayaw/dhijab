@@ -265,6 +265,75 @@ class Pemesanan extends CI_Controller
 		}		
 	}
 
+	function convertPDFByBulanTanpaTahun(){
+		$statusc = $this->input->get('status');
+		$bulan = $this->input->get('bulan');
+		$awal = $this->input->post('start_year');
+		$akhir = $this->input->post('end_year');
+		$x['numstat'] = $statusc;
+		$x['bulan'] = $bulan;
+		$x['awal'] = $awal;
+		$x['akhir'] = $akhir;
+
+		if($statusc==0){
+			$y['title'] = "Pemesanan";
+			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+			$x['kurir'] = $this->m_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+			$x['produksi'] = $this->m_barang->getdataProduksi();
+			$x['reseller'] = $this->m_barang->getAllBarangR();
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananByBulanTanpaTahun($bulan,$awal, $akhir);
+
+			$this->pdf->setPaper('legal', 'landscape');
+			$this->pdf->filename = "laporan_pdf.pdf";
+			$this->pdf->load_view('admin/laporan_pdf', $x);
+		}
+		else if($statusc==1){
+			$y['title'] = "Pemesanan";
+			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+			$x['kurir'] = $this->m_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+			$x['produksi'] = $this->m_barang->getdataProduksi();
+			$x['reseller'] = $this->m_barang->getAllBarangR();
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomerByBulanTanpaTahun($bulan,$awal, $akhir);
+
+
+			$this->pdf->setPaper('legal', 'landscape');
+			$this->pdf->filename = "laporan_pdf.pdf";
+			$this->pdf->load_view('admin/laporan_pdf', $x);
+			}
+		else if($statusc==2){
+			$y['title'] = "Pemesanan";
+			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+			$x['kurir'] = $this->m_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+			$x['produksi'] = $this->m_barang->getdataProduksi();
+			$x['reseller'] = $this->m_barang->getAllBarangR();
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananResellerByBulanTanpaTahun($bulan,$awal, $akhir);
+
+			$this->pdf->setPaper('legal', 'landscape');
+			$this->pdf->filename = "laporan_pdf.pdf";
+			$this->pdf->load_view('admin/laporan_pdf', $x);
+		}
+		else if($statusc==3){
+			$y['title'] = "Pemesanan";
+			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+			$x['kurir'] = $this->m_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+			$x['produksi'] = $this->m_barang->getdataProduksi();
+			$x['reseller'] = $this->m_barang->getAllBarangR();
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananProduksiByBulanTanpaTahun($bulan,$awal, $akhir);
+
+			$this->pdf->setPaper('legal', 'landscape');
+			$this->pdf->filename = "laporan_pdf.pdf";
+			$this->pdf->load_view('admin/laporan_pdf', $x);
+		}
+	}
+
 	function convertPDFPerTanggal(){
 		$statusc = $this->input->get('status');
 		$start = $this->input->post('start_date');
