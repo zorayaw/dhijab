@@ -1,6 +1,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"
+	integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css"
+	integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
 
 <div class="content-wrapper">
   <div class="page-title">
@@ -31,16 +34,18 @@
               </a>
             </div>
             <!-- <div class="col-md-4">
+
               <a href="" data-toggle="modal" data-target="#reseller" class="btn btn-primary btn-block ripple m-t-10">
                 <i class="fa fa-plus pr-2"></i>Pemesanan Reseller
               </a>
             </div> -->
 
-            <!-- <div class="col-md-3">
+						<!-- <div class="col-md-3">
               <a href="" data-toggle="modal" data-target="#produksi" class="btn btn-primary btn-block ripple m-t-20">
                 <i class="fa fa-plus pr-2"></i>Pemesanan Produksi
               </a>
             </div> -->
+
             <div class="col-md-4">
               <a href="" data-toggle="modal" data-target="#Cetak-Pesanan" class="btn btn-success btn-block ripple m-t-20">
                 <i class="fa fa-print pr-2"></i> Cetak
@@ -81,145 +86,59 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
+
                 <div class="modal-body">
-                <div class="col-md-12 mt-4">
-                        <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="excel" data-toggle="modal" data-target="#export" >
-                          <i class="fa fa-print pr-2"></i>Convert Excel
-                        </a>
-                </div>
-                <div class="col-md-12 mt-4">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertWord" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
-                          <i class="fa fa-print pr-2"></i>Convert PDF
-                        </a>
-                </div>
-                <div class="col-md-12 mt-4 mb-4">
-                        <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="words" data-toggle="modal" data-target="#word" >
-                          <i class="fa fa-print pr-2"></i>Convert Word
-                        </a>
-                </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        <!-- Modal Excel -->
-              <div class="modal fade" id="export" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Convert Data Pemesanan</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                    <div class="row">
-
-                    <div class="col-md-12">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcel?status=1" target="_blank" class="btn btn-success btn-block ripple m-t-10">
-                          <i class="fa fa-print pr-2"></i>Convert Seluruh Pemesanan</a>
-                        </a>
-                      </div>
-
-                      <div class="col-md-12 mt-4">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerhari?status=1" target="_blank" class="btn btn-success btn-block ripple m-t-10">
-                          <i class="fa fa-print pr-2"></i>Convert Pemesanan Hari Ini (<?= date('d')?> <?php 
-                            switch (date('m')){
-                              case 1 : echo "Januari"; break;
-                              case 2 : echo "Februari"; break;
-                              case 3 : echo "Maret"; break;
-                              case 4 : echo "April"; break;
-                              case 5 : echo "May"; break;
-                              case 6 : echo "Juni"; break;
-                              case 7 : echo "Juli"; break;
-                              case 8 : echo "Agustus"; break;
-                              case 9 : echo "September"; break;
-                              case 10 : echo "Oktober"; break;
-                              case 11 : echo "November"; break;
-                              case 12 : echo "Desember"; break;
-                            }
-                            ?>
-                            <?= date('Y')?>)
-                          </a>
-                        </a>
-                      </div>
-
-                      <div class="col-md-12 mt-4">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerbulan?status=1&bulan=<?= date('m')?>&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
-                          <i class="fa fa-print pr-2"></i>Convert Pemesanan Bulan Ini (<?php 
-                            switch (date('m')){
-                              case 1 : echo "Januari"; break;
-                              case 2 : echo "Februari"; break;
-                              case 3 : echo "Maret"; break;
-                              case 4 : echo "April"; break;
-                              case 5 : echo "May"; break;
-                              case 6 : echo "Juni"; break;
-                              case 7 : echo "Juli"; break;
-                              case 8 : echo "Agustus"; break;
-                              case 9 : echo "September"; break;
-                              case 10 : echo "Oktober"; break;
-                              case 11 : echo "November"; break;
-                              case 12 : echo "Desember"; break;
-                            }
-                            ?>
-                            <?= date('Y')?>)
-                          </a>
-                        </a>
-                      </div>
-                      <div class="col-md-12 mt-4"><h6>Convert Berdasarkan Tanggal:</h6></div>
-                        <form action="<?php echo base_url() ?>admin/Pemesanan/convertExcelBytanggal?status=1" target="_blank" method="post" enctype="multipart/form-data">
-                      <div class="modal-body p-20">
-                        <div class="row">
-                        <div class="col-md-4">
-                          <label class="control-label">Start date:</label>
-                          <input class="form-control form-white" id="startdateexcel" type="date" name="start_date" required/>
-                        </div>
-                        <div class="col-md-4">
-                          <label class="control-label">End date:</label>
-                          <input class="form-control form-white" id="enddateexcel" type="date" name="end_date" required/>
-                        </div>
-                        <div class="col-md-4">
-                        <button type="submit" class="btn btn-info btn-block ripple m-t-10">
-                            <i class="fa fa-print pr-2"></i>Convert<br>Pemesanan</a>
-                      </div>
-                        </div>
-                      </div>
-                        </form>
-                    </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    </div>
+                  <div class="col-md-12 mt-4">
+                      <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="excel"
+                          data-toggle="modal" data-target="#export">
+                          <i class="fa fa-file-excel-o pr-2"></i>Convert Excel
+                      </a>
+                  </div>
+                  <div class="col-md-12 mt-4">
+                      <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="pdf"
+                          data-toggle="modal" data-target="#exportpdf">
+                          <i class="fa fa-file-pdf-o pr-2"></i>Convert PDF
+                      </a>
+                  </div>
+                  <div class="col-md-12 mt-4 mb-4">
+                      <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="words"
+                          data-toggle="modal" data-target="#word">
+                          <i class="fa fa-file-word-o pr-2"></i>Convert Word
+                      </a>
                   </div>
                 </div>
-              </div>
-         <!-- end modal excel -->
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
 
-         <!-- modal word -->
-            <div class="modal fade" id="word" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Convert Data Pemesanan</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                    <div class="row">
+					<!-- Modal Excel -->
+					<div class="modal fade" id="export" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Convert Data Pemesanan</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="row">
 
-                    <div class="col-md-12">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertWord?status=1" target="_blank" class="btn btn-success btn-block ripple m-t-10">
-                          <i class="fa fa-print pr-2"></i>Convert Seluruh Pemesanan</a>
-                        </a>
-                      </div>
+										<div class="col-md-12">
+											<a href="<?= base_url() ?>admin/Pemesanan/convertExcel?status=1" target="_blank"
+												class="btn btn-success btn-block ripple m-t-10">
+												<i class="fa fa-print pr-2"></i>Convert Seluruh Pemesanan</a>
+											</a>
+										</div>
 
-                      <div class="col-md-12 mt-4">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertWordPerhari?status=1" target="_blank" class="btn btn-success btn-block ripple m-t-10">
-                          <i class="fa fa-print pr-2"></i>Convert Pemesanan Hari Ini (<?= date('d')?> <?php 
+										<div class="col-md-12 mt-4">
+											<a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerhari?status=1" target="_blank"
+												class="btn btn-success btn-block ripple m-t-10">
+												<i class="fa fa-print pr-2"></i>Convert Pemesanan Hari Ini (<?= date('d')?> <?php 
                             switch (date('m')){
                               case 1 : echo "Januari"; break;
                               case 2 : echo "Februari"; break;
@@ -235,14 +154,15 @@
                               case 12 : echo "Desember"; break;
                             }
                             ?>
-                            <?= date('Y')?>)
-                          </a>
-                        </a>
-                      </div>
+												<?= date('Y')?>)
+											</a>
+											</a>
+										</div>
 
-                      <div class="col-md-12 mt-4">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertWordPerbulan?status=1&bulan=<?= date('m')?>&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
-                          <i class="fa fa-print pr-2"></i>Convert Pemesanan Bulan Ini (<?php 
+										<div class="col-md-12 mt-4">
+											<a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerbulan?status=1&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
+												target="_blank" class="btn btn-success btn-block ripple m-t-10">
+												<i class="fa fa-print pr-2"></i>Convert Pemesanan Bulan Ini (<?php 
                             switch (date('m')){
                               case 1 : echo "Januari"; break;
                               case 2 : echo "Februari"; break;
@@ -258,6 +178,109 @@
                               case 12 : echo "Desember"; break;
                             }
                             ?>
+												<?= date('Y')?>)
+											</a>
+											</a>
+										</div>
+										<div class="col-md-12 mt-4">
+											<h6>Convert Berdasarkan Tanggal:</h6>
+										</div>
+										<form action="<?php echo base_url() ?>admin/Pemesanan/convertExcelBytanggal?status=1"
+											target="_blank" method="post" enctype="multipart/form-data">
+											<div class="modal-body p-20">
+												<div class="row">
+													<div class="col-md-4">
+														<label class="control-label">Start date:</label>
+														<input class="form-control form-white" id="startdateexcel" type="date" name="start_date"
+															required />
+													</div>
+													<div class="col-md-4">
+														<label class="control-label">End date:</label>
+														<input class="form-control form-white" id="enddateexcel" type="date" name="end_date"
+															required />
+													</div>
+													<div class="col-md-4">
+														<button type="submit" class="btn btn-info btn-block ripple m-t-10">
+															<i class="fa fa-print pr-2"></i>Convert<br>Pemesanan</a>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- end modal excel -->
+
+					<!-- modal word -->
+					<div class="modal fade" id="word" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Convert Data Pemesanan</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+
+										<div class="col-md-12">
+											<a href="<?= base_url() ?>admin/Pemesanan/convertWord?status=1" target="_blank"
+												class="btn btn-success btn-block ripple m-t-10">
+												<i class="fa fa-print pr-2"></i>Convert Seluruh Pemesanan</a>
+											</a>
+										</div>
+
+										<div class="col-md-12 mt-4">
+											<a href="<?= base_url() ?>admin/Pemesanan/convertWordPerhari?status=1" target="_blank"
+												class="btn btn-success btn-block ripple m-t-10">
+												<i class="fa fa-print pr-2"></i>Convert Pemesanan Hari Ini (<?= date('d')?> <?php 
+                            switch (date('m')){
+                              case 1 : echo "Januari"; break;
+                              case 2 : echo "Februari"; break;
+                              case 3 : echo "Maret"; break;
+                              case 4 : echo "April"; break;
+                              case 5 : echo "May"; break;
+                              case 6 : echo "Juni"; break;
+                              case 7 : echo "Juli"; break;
+                              case 8 : echo "Agustus"; break;
+                              case 9 : echo "September"; break;
+                              case 10 : echo "Oktober"; break;
+                              case 11 : echo "November"; break;
+                              case 12 : echo "Desember"; break;
+                            }
+                            ?>
+												<?= date('Y')?>)
+											</a>
+											</a>
+										</div>
+
+										<div class="col-md-12 mt-4">
+											<a href="<?= base_url() ?>admin/Pemesanan/convertWordPerbulan?status=1&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
+												target="_blank" class="btn btn-success btn-block ripple m-t-10">
+												<i class="fa fa-print pr-2"></i>Convert Pemesanan Bulan Ini (<?php 
+                            switch (date('m')){
+                              case 1 : echo "Januari"; break;
+                              case 2 : echo "Februari"; break;
+                              case 3 : echo "Maret"; break;
+                              case 4 : echo "April"; break;
+                              case 5 : echo "May"; break;
+                              case 6 : echo "Juni"; break;
+                              case 7 : echo "Juli"; break;
+                              case 8 : echo "Agustus"; break;
+                              case 9 : echo "September"; break;
+                              case 10 : echo "Oktober"; break;
+                              case 11 : echo "November"; break;
+                              case 12 : echo "Desember"; break;
+                            }
+                            ?>
+
                             <?= date('Y')?>)
                           </a>
                         </a>
@@ -716,14 +739,15 @@ $status_pemesanan = $i['status_pemesanan'];
                     case 12 : echo "Desember"; break;
                   }
                   ?>
-                  <?= date('Y')?>)
-                </a>
-                <br>
-              </div>
+										<?= date('Y')?>)
+									</a>
+									<br>
+								</div>
 
-              <div class="col-md-12">
-                <a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiByBulan?status=1&bulan=<?= date('m')?>&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
-                  <i class="fa fa-print pr-2"></i>Cetak Pemesanan Bulan Ini (<?php 
+								<div class="col-md-12">
+									<a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiByBulan?status=1&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
+										target="_blank" class="btn btn-success btn-block ripple m-t-10">
+										<i class="fa fa-print pr-2"></i>Cetak Pemesanan Bulan Ini (<?php 
                   switch (date('m')){
                     case 1 : echo "Januari"; break;
                     case 2 : echo "Februari"; break;
@@ -738,35 +762,39 @@ $status_pemesanan = $i['status_pemesanan'];
                     case 11 : echo "November"; break;
                     case 12 : echo "Desember"; break;
                   }
-                  ?> <?= date('Y')?>) 
-                </a>
-                <br>
-              </div>
+                  ?> <?= date('Y')?>)
+									</a>
+									<br>
+								</div>
 
-              <form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiByTahun?status=1" target="_blank" method="post" enctype="multipart/form-data">
-              <div class="col-md-12"><h6>Cetak Pemesanan Berdasarkan Tahun: </h6></div>
-               
-            <div class="modal-body p-20">
-              <div class="row">
-              <div class="col-lg-6">
-              <label class="control-label">Dari tahun:</label>
-              <select class="form-control" id="syear" name="start_year" required>
-                    <option selected value="">Pilih</option>
-                    <?php
+								<form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiByTahun?status=1" target="_blank"
+									method="post" enctype="multipart/form-data">
+									<div class="col-md-12">
+										<h6>Cetak Pemesanan Berdasarkan Tahun: </h6>
+									</div>
+
+									<div class="modal-body p-20">
+										<div class="row">
+											<div class="col-lg-6">
+												<label class="control-label">Dari tahun:</label>
+												<select class="form-control" id="syear" name="start_year" required>
+													<option selected value="">Pilih</option>
+													<?php
                 for ($x = 2017; $x <= date('Y'); $x++) :
                 ?>
-                    <option value="<?php echo $x ?>"><?php echo $x ?></option>
-                <?php endfor ?>
-              </select>
-              </div>
-              
-              <div class="col-lg-6">
-              <label class="control-label">Sampai tahun:</label>
-              <select class="form-control" id="eyear" name="end_year" required>
-                    <option selected value="">Pilih</option>
-                    <?php
+													<option value="<?php echo $x ?>"><?php echo $x ?></option>
+													<?php endfor ?>
+												</select>
+											</div>
+
+											<div class="col-lg-6">
+												<label class="control-label">Sampai tahun:</label>
+												<select class="form-control" id="eyear" name="end_year" required>
+													<option selected value="">Pilih</option>
+													<?php
                 for ($x = 2017; $x <= date('Y'); $x++) :
                 ?>
+
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
               </select>
@@ -871,11 +899,13 @@ $status_pemesanan = $i['status_pemesanan'];
                   <select class="form-control" name="kurir" required>
                     <option selected value="">Pilih</option>
                     <?php
+
                     foreach ($kurir->result_array() as $i) :
                       $kurir_id = $i['kurir_id'];
                       $kurir_nama = $i['kurir_nama'];
                       $kurir_tanggal = $i['kurir_tanggal'];
                     ?>
+
                       <option value="<?php echo $kurir_id ?>"><?php echo $kurir_nama ?></option>
                     <?php endforeach; ?>
                   </select>
@@ -895,32 +925,34 @@ $status_pemesanan = $i['status_pemesanan'];
                   <select class="form-control" name="metpem" required>
                     <option selected value="">Pilih</option>
                     <?php
+
                     foreach ($metode_pembayaran->result_array() as $i) :
                       $mp_id = $i['mp_id'];
                       $mp_nama = $i['mp_nama'];
                       $mp_tanggal = $i['mp_tanggal'];
                     ?>
-                      <option value="<?php echo $mp_id ?>"><?php echo $mp_nama ?></option>
-                    <?php endforeach; ?>
-                  </select>
-                </div>
-                <div class="col-md-12">
-                  <label class="control-label">Note</label>
-                  <input class="form-control form-white" type="text" name="note" required />
-                </div>
+									<option value="<?php echo $mp_id ?>"><?php echo $mp_nama ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+							<div class="col-md-12">
+								<label class="control-label">Note</label>
+								<input class="form-control form-white" type="text" name="note" required />
+							</div>
 
 
-                <div class="form-group col-md-12 mt-10" id="dynamic_field">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <label class="control-label">Barang</label>
-                      <select class="form-control" name="barang[]" required>
-                        <option selected value="">Pilih</option>
-                        <?php
+							<div class="form-group col-md-12 mt-10" id="dynamic_field">
+								<div class="row">
+									<div class="col-md-8">
+										<label class="control-label">Barang</label>
+										<select class="form-control" name="barang[]" required>
+											<option selected value="">Pilih</option>
+											<?php
                         foreach ($nonreseller->result_array() as $i) :
                           $barang_id = $i['barang_id'];
                           $barang_nama = $i['barang_nama'];
                         ?>
+
                           <option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option>
                         <?php endforeach; ?>
                       </select>
@@ -947,6 +979,7 @@ $status_pemesanan = $i['status_pemesanan'];
 
     <!-- Modal Pesanan Reseller-->
     <div class="modal" tabindex="-1" role="dialog" id="reseller">
+
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -1084,8 +1117,10 @@ $status_pemesanan = $i['status_pemesanan'];
     </div>
 
 
+
     <!-- Modal Pesanan Produksi-->
     <div class="modal" tabindex="-1" role="dialog" id="produksi">
+
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -1153,30 +1188,31 @@ $status_pemesanan = $i['status_pemesanan'];
       </div>
     </div>
 
-
 <!--=================================
+
  footer -->
 
-<footer class="bg-white p-4">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="text-center text-md-left">
-        <p class="mb-0"> &copy; Copyright <span id="copyright">
-            <script>
-              document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-            </script>
-          </span>. <a href="#"> Webmin </a> All Rights Reserved. </p>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <ul class="text-center text-md-right">
-        <li class="list-inline-item"><a href="#">Terms & Conditions </a> </li>
-        <li class="list-inline-item"><a href="#">API Use Policy </a> </li>
-        <li class="list-inline-item"><a href="#">Privacy Policy </a> </li>
-      </ul>
-    </div>
-  </div>
-</footer>
+	<footer class="bg-white p-4">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="text-center text-md-left">
+					<p class="mb-0"> &copy; Copyright <span id="copyright">
+							<script>
+								document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+
+							</script>
+						</span>. <a href="#"> Webmin </a> All Rights Reserved. </p>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<ul class="text-center text-md-right">
+					<li class="list-inline-item"><a href="#">Terms & Conditions </a> </li>
+					<li class="list-inline-item"><a href="#">API Use Policy </a> </li>
+					<li class="list-inline-item"><a href="#">Privacy Policy </a> </li>
+				</ul>
+			</div>
+		</div>
+	</footer>
 </div>
 </div>
 </div>
@@ -1190,29 +1226,14 @@ $status_pemesanan = $i['status_pemesanan'];
 
 <!--=================================
  jquery -->
-<!--Data Table-->
-<script type="text/javascript" src=" https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src=" https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
-
-<!--Export table buttons-->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-<script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"></script>
-<script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.print.min.js"></script>
-
-<!--Export table button CSS-->
-
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">
-<!-- jquery -->
 
 <!-- plugins-jquery -->
 <script src="<?php echo base_url() ?>assets/admin/js/plugins-jquery.js"></script>
 
 <!-- plugin_path -->
 <script>
-  var plugin_path = '<?php echo base_url() ?>assets/admin/js/';
+	var plugin_path = '<?php echo base_url() ?>assets/admin/js/';
+
 </script>
 
 <!-- chart -->
@@ -1269,18 +1290,6 @@ $status_pemesanan = $i['status_pemesanan'];
 </script>
 
 <script type="text/javascript">
-  $("#excel").click(function(){
-    $("#pilihan").modal('hide');
-  });
-</script>
-
-<script type="text/javascript">
-  $("#words").click(function(){
-    $("#pilihan").modal('hide');
-  });
-</script>
-
-<script type="text/javascript">
 
     var e = document.getElementById("syear");
         $('#syear').on('change', function(){
@@ -1301,142 +1310,145 @@ $status_pemesanan = $i['status_pemesanan'];
 </script>
 
 <script type="text/javascript">
+	var e = document.getElementById("startdatecetak");
+	$('#startdatecetak').on('change', function () {
+		var date = new Date($('#startdatecetak').val());
+		days = date.getDate();
+		months = date.getMonth() + 1;
+		years = date.getFullYear();
+	});
 
-    var e = document.getElementById("startdatecetak");
-        $('#startdatecetak').on('change', function(){
-        var date = new Date($('#startdatecetak').val());
-        days = date.getDate();
-        months = date.getMonth() + 1;
-        years = date.getFullYear();
-    });
-
-    var e = document.getElementById("enddatecetak");
-        $('#enddatecetak').on('change', function(){
-        var date = new Date($('#enddatecetak').val());
-        daye = date.getDate();
-        monthe = date.getMonth() + 1;
-        yeare = date.getFullYear();
-        if(years > yeare){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddatecetak').val('');
-        }
-        else if ((years == yeare) && (months > monthe)){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddatecetak').val('');
-        }
-        else if ((days > daye) && (years == yeare) && (months == monthe)){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddatecetak').val('');
-        }
-    });
+	var e = document.getElementById("enddatecetak");
+	$('#enddatecetak').on('change', function () {
+		var date = new Date($('#enddatecetak').val());
+		daye = date.getDate();
+		monthe = date.getMonth() + 1;
+		yeare = date.getFullYear();
+		if (years > yeare) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$('#enddatecetak').val('');
+		} else if ((years == yeare) && (months > monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$('#enddatecetak').val('');
+		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$('#enddatecetak').val('');
+		}
+	});
 
 </script>
 
 <script type="text/javascript">
+	var e = document.getElementById("startdateexcel");
+	$('#startdateexcel').on('change', function () {
+		var date = new Date($('#startdateexcel').val());
+		days = date.getDate();
+		months = date.getMonth() + 1;
+		years = date.getFullYear();
+	});
 
-    var e = document.getElementById("startdateexcel");
-        $('#startdateexcel').on('change', function(){
-        var date = new Date($('#startdateexcel').val());
-        days = date.getDate();
-        months = date.getMonth() + 1;
-        years = date.getFullYear();
-    });
-
-    var e = document.getElementById("enddateexcel");
-        $('#enddateexcel').on('change', function(){
-        var date = new Date($('#enddateexcel').val());
-        daye = date.getDate();
-        monthe = date.getMonth() + 1;
-        yeare = date.getFullYear();
-        if(years > yeare){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddateexcel').val('');
-        }
-        else if ((years == yeare) && (months > monthe)){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddateexcel').val('');
-        }
-        else if ((days > daye) && (years == yeare) && (months == monthe)){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddateexcel').val('');
-        }
-    });
+	var e = document.getElementById("enddateexcel");
+	$('#enddateexcel').on('change', function () {
+		var date = new Date($('#enddateexcel').val());
+		daye = date.getDate();
+		monthe = date.getMonth() + 1;
+		yeare = date.getFullYear();
+		if (years > yeare) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$('#enddateexcel').val('');
+		} else if ((years == yeare) && (months > monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$('#enddateexcel').val('');
+		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$('#enddateexcel').val('');
+		}
+	});
 
 </script>
 
 <script type="text/javascript">
+	var e = document.getElementById("startdateword");
+	$('#startdateword').on('change', function () {
+		var date = new Date($('#startdateword').val());
+		days = date.getDate();
+		months = date.getMonth() + 1;
+		years = date.getFullYear();
+	});
 
-    var e = document.getElementById("startdateword");
-        $('#startdateword').on('change', function(){
-        var date = new Date($('#startdateword').val());
-        days = date.getDate();
-        months = date.getMonth() + 1;
-        years = date.getFullYear();
-    });
-
-    var e = document.getElementById("enddateword");
-        $('#enddateword').on('change', function(){
-        var date = new Date($('#enddateword').val());
-        daye = date.getDate();
-        monthe = date.getMonth() + 1;
-        yeare = date.getFullYear();
-        if(years > yeare){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddateword').val('');
-        }
-        else if ((years == yeare) && (months > monthe)){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddateword').val('');
-        }
-        else if ((days > daye) && (years == yeare) && (months == monthe)){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddateword').val('');
-        }
-    });
+	var e = document.getElementById("enddateword");
+	$('#enddateword').on('change', function () {
+		var date = new Date($('#enddateword').val());
+		daye = date.getDate();
+		monthe = date.getMonth() + 1;
+		yeare = date.getFullYear();
+		if (years > yeare) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$('#enddateword').val('');
+		} else if ((years == yeare) && (months > monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$('#enddateword').val('');
+		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$('#enddateword').val('');
+		}
+	});
 
 </script>
 
 
 
 <script type="text/javascript">
-  $("#excel").click(function(){
+	$("#excel").click(function () {
+		$("#pilihan").modal('hide');
+	});
+
+</script>
+
+<script type="text/javascript">
+	$("#words").click(function () {
+		$("#pilihan").modal('hide');
+	});
+
+</script>
+
+<script type="text/javascript">
+  $("#pdf").click(function(){
     $("#pilihan").modal('hide');
   });
 </script>
 
-<script type="text/javascript">
-  $("#words").click(function(){
-    $("#pilihan").modal('hide');
-  });
-</script>
-
 
 <script type="text/javascript">
-
 function noresicus(checkbox){
       var isChecked = $('#checkboxcus').is(':checked'); 
         if(isChecked == true) {
             $("#checkboxcus").after(`
                       <div class="col-md-12 resi" id="a">
+
                         <br>
                         <label class="control-label">Nomor Resi</label>
                         <input placeholder="Input Nomor Resi" class="form-control form-white" type="text" name="no_resi" />
                         <br>
                       </div>
             `);
+
           } 
           else {
             $("#a").remove();
           }
 }
 
+
 </script>
 
 <script type="text/javascript">
+
 function noresires(checkbox){
       var isChecked = $('#checkboxres').is(':checked'); 
         if(isChecked == true) {
             $("#checkboxres").after(`
+
                       <div class="col-md-12 resi" id="a">
                         <br>
                         <label class="control-label">Nomor Resi</label>
@@ -1449,27 +1461,31 @@ function noresires(checkbox){
             $("#a").remove();
           }
 }
+
 </script>
 
 
 <script type="text/javascript">
-  $(document).ready(function() {
-    $('select').selectize({
-      sortField: 'text'
-    });
-  });
+	$(document).ready(function () {
+		$('select').selectize({
+			sortField: 'text'
+		});
+	});
+
 </script>
 <script type="text/javascript">
-  $(document).ready(function() {
-    // Format mata uang.
-    $('.money').mask('000.000.000.000.000', {
-      reverse: true
-    });
+	$(document).ready(function () {
+		// Format mata uang.
+		$('.money').mask('000.000.000.000.000', {
+			reverse: true
+		});
 
-  })
+	})
+
 </script>
 
 <script type="text/javascript">
+
   $(document).ready(function() {
     var i = 1;
     $('#add').click(function() {
@@ -1490,33 +1506,50 @@ function noresires(checkbox){
       var button_id = $(this).attr("id");
       $('#row' + button_id + '').remove();
     });
-
-  });
 </script>
 
 <script type="text/javascript">
-  $(document).ready(function() {
+	$(document).ready(function () {
 
-    var i = 1;
-    $('#add1').click(function() {
-      i++;
-      $('#dynamic_field1').append('<div class="row" id="roww' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($reseller->result_array() as $i) : $barang_id = $i['barang_id'];$barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?></select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1 ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>');
-      $('select').selectize({
-        sortField: 'text'
-      });
-    });
+		var i = 1;
+		$('#add1').click(function () {
+			i++;
+			$('#dynamic_field1').append('<div class="row" id="roww' + i +
+				'"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($reseller->result_array() as $i) : $barang_id = $i['
+				barang_id '];$barang_nama = $i['
+				barang_nama ']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?></select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1 ></div><div class="col-md-2 mt-30"><button type="button" id="' +
+				i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>');
+			$('select').selectize({
+				sortField: 'text'
+			});
+		});
 
-    $(document).on('click', '.btn_remove1', function() {
-      var button_id = $(this).attr("id");
-      $('#roww' + button_id + '').remove();
-    });
+		$(document).on('click', '.btn_remove1', function () {
+			var button_id = $(this).attr("id");
+			$('#roww' + button_id + '').remove();
+		});
 
 
-  });
+	});
+
 </script>
 
 <script type="text/javascript">
-  $(document).ready(function() {
+	$(document).ready(function () {
+
+		var i = 1;
+		$('#add3').click(function () {
+			i++;
+			$('#dynamic_field2').append('<div class="row" id="rowww' + i +
+				'"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($produksi->result_array() as $i) : $barang_id = $i['
+				barang_id ']; $barang_nama = $i['
+				barang_nama ']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[] min = 1" ></div><div class="col-md-2 mt-30"><button type="button" id="' +
+				i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>');
+			$('select').selectize({
+				sortField: 'text'
+			});
+		});
+
 
     var i = 1;
     $('#add3').click(function() {
@@ -1528,92 +1561,95 @@ function noresires(checkbox){
       });
     });
 
-    $(document).on('click', '.btn_remove1', function() {
-      var button_id = $(this).attr("id");
-      $('#rowww' + button_id + '').remove();
-    });
 
 
-  });
+	});
+
 </script>
 
 <?php if ($this->session->flashdata('msg') == 'update') : ?>
-  <script type="text/javascript">
-    $.toast({
-      heading: 'Update',
-      text: "Data Diupdate.",
-      showHideTransition: 'slide',
-      icon: 'success',
-      loader: true, // Change it to false to disable loader
-      loaderBg: '#ffffff',
-      position: 'top-right',
-      bgColor: '#00C9E6'
-    });
-  </script>
+<script type="text/javascript">
+	$.toast({
+		heading: 'Update',
+		text: "Data Diupdate.",
+		showHideTransition: 'slide',
+		icon: 'success',
+		loader: true, // Change it to false to disable loader
+		loaderBg: '#ffffff',
+		position: 'top-right',
+		bgColor: '#00C9E6'
+	});
+
+</script>
 <?php elseif ($this->session->flashdata('msg') == 'success') : ?>
-  <script type="text/javascript">
-    $.toast({
-      heading: 'Success',
-      text: "Berhasil tambah data",
-      showHideTransition: 'slide',
-      icon: 'info',
-      loader: true, // Change it to false to disable loader
-      loaderBg: '#ffffff',
-      position: 'top-right',
-      bgColor: '#7EC857'
-    });
-  </script>
+<script type="text/javascript">
+	$.toast({
+		heading: 'Success',
+		text: "Berhasil tambah data",
+		showHideTransition: 'slide',
+		icon: 'info',
+		loader: true, // Change it to false to disable loader
+		loaderBg: '#ffffff',
+		position: 'top-right',
+		bgColor: '#7EC857'
+	});
+
+</script>
 <?php elseif ($this->session->flashdata('msg') == 'warning') : ?>
-  <script type="text/javascript">
-    $.toast({
-      heading: 'Warning',
-      text: "Data gagal dimasukkan kedalam database",
-      showHideTransition: 'slide',
-      icon: 'info',
-      loader: true, // Change it to false to disable loader
-      loaderBg: '#ffffff',
-      position: 'top-right',
-      bgColor: '#orange'
-    });
-  </script>
+<script type="text/javascript">
+	$.toast({
+		heading: 'Warning',
+		text: "Data gagal dimasukkan kedalam database",
+		showHideTransition: 'slide',
+		icon: 'info',
+		loader: true, // Change it to false to disable loader
+		loaderBg: '#ffffff',
+		position: 'top-right',
+		bgColor: '#orange'
+	});
+
+</script>
 <?php elseif ($this->session->flashdata('msg') == 'error') : ?>
-  <script type="text/javascript">
-    $.toast({
-      heading: 'Error',
-      text: "Data gagal dimasukkan kedalam database",
-      showHideTransition: 'slide',
-      icon: 'error',
-      loader: true, // Change it to false to disable loader
-      loaderBg: '#ffffff',
-      position: 'top-right',
-      bgColor: '#orange'
-    });
-  </script>
+<script type="text/javascript">
+	$.toast({
+		heading: 'Error',
+		text: "Data gagal dimasukkan kedalam database",
+		showHideTransition: 'slide',
+		icon: 'error',
+		loader: true, // Change it to false to disable loader
+		loaderBg: '#ffffff',
+		position: 'top-right',
+		bgColor: '#orange'
+	});
+
+</script>
 <?php elseif ($this->session->flashdata('msg') == 'success_non_reseller') : ?>
-  <script type="text/javascript">
-    $.toast({
-      heading: 'Success',
-      text: "Berhasil tambah data barang reseller",
-      showHideTransition: 'slide',
-      icon: 'info',
-      loader: true, // Change it to false to disable loader
-      loaderBg: '#ffffff',
-      position: 'top-right',
-      bgColor: '#7EC857'
-    });
-  </script>
+<script type="text/javascript">
+	$.toast({
+		heading: 'Success',
+		text: "Berhasil tambah data barang reseller",
+		showHideTransition: 'slide',
+		icon: 'info',
+		loader: true, // Change it to false to disable loader
+		loaderBg: '#ffffff',
+		position: 'top-right',
+		bgColor: '#7EC857'
+	});
+
+</script>
 <?php elseif ($this->session->flashdata('msg') == 'hapus') : ?>
-  <script type="text/javascript">
-    $.toast({
-      heading: 'Delete',
-      text: "Data berhasil didelete",
-      showHideTransition: 'slide',
-      icon: 'info',
-      loader: true, // Change it to false to disable loader
-      loaderBg: '#ffffff',
-      position: 'top-right',
-      bgColor: 'red'
-    });
-  </script>
+<script type="text/javascript">
+	$.toast({
+		heading: 'Delete',
+		text: "Data berhasil didelete",
+		showHideTransition: 'slide',
+		icon: 'info',
+		loader: true, // Change it to false to disable loader
+		loaderBg: '#ffffff',
+		position: 'top-right',
+		bgColor: 'red'
+	});
+
+</script>
 <?php else : ?>
 <?php endif; ?>

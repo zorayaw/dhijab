@@ -82,21 +82,24 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                <div class="col-md-12 mt-4">
-                        <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="excel" data-toggle="modal" data-target="#export" >
-                          <i class="fa fa-print pr-2"></i>Convert Excel
-                        </a>
-                </div>
-                <div class="col-md-12 mt-4">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertWord" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
-                          <i class="fa fa-print pr-2"></i>Convert PDF
-                        </a>
-                </div>
-                <div class="col-md-12 mt-4 mb-4">
-                        <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="words" data-toggle="modal" data-target="#word" >
-                          <i class="fa fa-print pr-2"></i>Convert Word
-                        </a>
-                </div>
+                  <div class="col-md-12 mt-4">
+                      <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="excel"
+                          data-toggle="modal" data-target="#export">
+                          <i class="fa fa-file-excel-o pr-2"></i>Convert Excel
+                      </a>
+                  </div>
+                  <div class="col-md-12 mt-4">
+                      <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="pdf"
+                          data-toggle="modal" data-target="#exportpdf">
+                          <i class="fa fa-file-pdf-o pr-2"></i>Convert PDF
+                      </a>
+                  </div>
+                  <div class="col-md-12 mt-4 mb-4">
+                      <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="words"
+                          data-toggle="modal" data-target="#word">
+                          <i class="fa fa-file-word-o pr-2"></i>Convert Word
+                      </a>
+                  </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -288,9 +291,109 @@
                     </div>
                   </div>
                 </div>
-              </div>
+            </div>
                             
          <!-- end modal word -->
+
+					<!-- modal pdf -->
+					<div class="modal fade" id="exportpdf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Convert Data Pemesanan</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+
+										<div class="col-md-12">
+											<a href="<?= base_url() ?>admin/Pemesanan/convertPDF?status=2" target="_blank"
+												class="btn btn-success btn-block ripple m-t-10">
+												<i class="fa fa-print pr-2"></i>Convert Seluruh Pemesanan</a>
+											</a>
+										</div>
+
+										<div class="col-md-12 mt-4">
+											<a href="<?= base_url() ?>admin/Pemesanan/convertPDFPerhari?status=2" target="_blank"
+												class="btn btn-success btn-block ripple m-t-10">
+												<i class="fa fa-print pr-2"></i>Convert Pemesanan Hari Ini (<?= date('d')?> <?php 
+                        switch (date('m')){
+                            case 1 : echo "Januari"; break;
+                            case 2 : echo "Februari"; break;
+                            case 3 : echo "Maret"; break;
+                            case 4 : echo "April"; break;
+                            case 5 : echo "May"; break;
+                            case 6 : echo "Juni"; break;
+                            case 7 : echo "Juli"; break;
+                            case 8 : echo "Agustus"; break;
+                            case 9 : echo "September"; break;
+                            case 10 : echo "Oktober"; break;
+                            case 11 : echo "November"; break;
+                            case 12 : echo "Desember"; break;
+                        }
+                        ?>
+												<?= date('Y')?>)
+											</a>
+											</a>
+										</div>
+
+										<div class="col-md-12 mt-4">
+											<a href="<?= base_url() ?>admin/Pemesanan/convertPDFPerbulan?status=2&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
+												target="_blank" class="btn btn-success btn-block ripple m-t-10">
+												<i class="fa fa-print pr-2"></i>Convert Pemesanan Bulan Ini (<?php 
+                        switch (date('m')){
+                            case 1 : echo "Januari"; break;
+                            case 2 : echo "Februari"; break;
+                            case 3 : echo "Maret"; break;
+                            case 4 : echo "April"; break;
+                            case 5 : echo "May"; break;
+                            case 6 : echo "Juni"; break;
+                            case 7 : echo "Juli"; break;
+                            case 8 : echo "Agustus"; break;
+                            case 9 : echo "September"; break;
+                            case 10 : echo "Oktober"; break;
+                            case 11 : echo "November"; break;
+                            case 12 : echo "Desember"; break;
+                        }
+                        ?>
+												<?= date('Y')?>)
+											</a>
+											</a>
+										</div>
+										<div class="col-md-12 mt-4">
+											<h6>Convert Berdasarkan Tanggal:</h6>
+										</div>
+										<form action="<?php echo base_url() ?>admin/Pemesanan/convertPDFPertanggal?status=2" target="_blank"
+											method="post" enctype="multipart/form-data">
+											<div class="modal-body p-20">
+												<div class="row">
+													<div class="col-md-4">
+														<label class="control-label">Start date:</label>
+														<input class="form-control form-white" type="date" name="start_date" required />
+													</div>
+													<div class="col-md-4">
+														<label class="control-label">End date:</label>
+														<input class="form-control form-white" type="date" name="end_date" required />
+													</div>
+													<div class="col-md-4">
+														<button type="submit" class="btn btn-info btn-block ripple m-t-10">
+															<i class="fa fa-print pr-2"></i>Convert<br>Pemesanan</a>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- end modal pdf -->         
 
 <!-- end convert -->
 
@@ -1190,22 +1293,6 @@ $status_pemesanan = $i['status_pemesanan'];
 
 <!--=================================
  jquery -->
-<!--Data Table-->
-<script type="text/javascript" src=" https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src=" https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
-
-<!--Export table buttons-->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-<script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"></script>
-<script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.print.min.js"></script>
-
-<!--Export table button CSS-->
-
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">
-<!-- jquery -->
 
 <!-- plugins-jquery -->
 <script src="<?php echo base_url() ?>assets/admin/js/plugins-jquery.js"></script>
@@ -1406,6 +1493,12 @@ $status_pemesanan = $i['status_pemesanan'];
 
 <script type="text/javascript">
   $("#words").click(function(){
+    $("#pilihan").modal('hide');
+  });
+</script>
+
+<script type="text/javascript">
+  $("#pdf").click(function(){
     $("#pilihan").modal('hide');
   });
 </script>

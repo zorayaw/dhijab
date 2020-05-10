@@ -1,5 +1,5 @@
+
 <div id="parent">
-  
           <div class="table-responsive">
             <table id="datatable" class="table table-striped table-bordered p-0">
               <thead>
@@ -392,8 +392,6 @@
       $("#hapusd"+num).submit();
     }    
   </script>
-
-
 <script type="text/javascript">
     function form_submit_bayar(num) {
       $("#bayarr"+num).submit();
