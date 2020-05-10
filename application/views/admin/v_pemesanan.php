@@ -25,20 +25,20 @@
         <h6 class="mb-0">Tambah Pemesanan: </h6>
       </div>
           <div class="col-xl-12 mb-10" style="display: flex">
-            <div class="col-md-3">
+            <div class="col-md-2">
               <a href="" data-toggle="modal" data-target="#tambah-pesanan-non-reseller" class="btn btn-primary btn-block ripple m-t-10">
-                <i class="fa fa-plus pr-2"></i>Pemesanan Customer
+                <i class="fa fa-plus pr-2"></i>Customer
               </a>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
               <a href="" data-toggle="modal" data-target="#reseller" class="btn btn-primary btn-block ripple m-t-10">
-                <i class="fa fa-plus pr-2"></i>Pemesanan Reseller
+                <i class="fa fa-plus pr-2"></i>Reseller
               </a>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-2">
               <a href="" data-toggle="modal" data-target="#produksi" class="btn btn-primary btn-block ripple m-t-20">
-                <i class="fa fa-plus pr-2"></i>Pemesanan Produksi
+                <i class="fa fa-plus pr-2"></i>Produksi
               </a>
             </div>
             <div class="col-md-3">
@@ -46,7 +46,7 @@
                 <i class="fa fa-print pr-2"></i> Cetak
               </a>
             </div>  
-          </div>
+          
 
           <!-- convert -->
 
@@ -54,6 +54,7 @@
               <a href="<?= base_url() ?>admin/Pemesanan/convertExcel" data-toggle="modal" data-target="#pilihan"  class="btn btn-dark btn-block ripple m-t-20">
                 <i class="fa fa-print pr-2"></i> Convert
               </a>
+            </div>
             </div>
           
           <?php 
