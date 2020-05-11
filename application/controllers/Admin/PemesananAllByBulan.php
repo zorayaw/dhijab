@@ -9,7 +9,7 @@ class PemesananAllByBulan extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		if ($this->session->userdata('masuk') != TRUE) {
+		if ($this->session->userdata('masuk') != TRUE || ($this->session->userdata('akses') != 2 && $this->session->userdata('akses') != 1)) {
 			$url = base_url('Login');
 			redirect($url);
 		};
@@ -22,7 +22,6 @@ class PemesananAllByBulan extends CI_Controller
 
 	function index()
 	{
-		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
 			$y['title'] = "Pemesanan";
 			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
 			$x['kurir'] = $this->m_pemesanan->getAllkurir();
@@ -32,11 +31,14 @@ class PemesananAllByBulan extends CI_Controller
 			$x['reseller'] = $this->m_barang->getAllBarangR();
 			$x['datapesanan'] = $this->m_pemesanan->getPemesanan();
 			$this->load->view('v_header', $y);
-			$this->load->view('admin/v_sidebar');
+			if($this->session->userdata('akses') == 2){
+				$this->load->view('admin/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
 			$this->load->view('admin/v_pemesanan', $x);
-		} else {
-			redirect('Login');
-		}
+		
 	}
 	
 	function savepemesananNR()
@@ -192,8 +194,7 @@ class PemesananAllByBulan extends CI_Controller
 
 	function list_barang($pemesanan_id)
 	{
-		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
-			$level = $this->uri->segment(5);
+		$level = $this->uri->segment(5);
 			$y['title'] = "List Barang Pemesan";
 			$x['p_id'] = $pemesanan_id;
 			$x['lvl'] = $level;
@@ -202,11 +203,13 @@ class PemesananAllByBulan extends CI_Controller
 			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
 			$x['jumlah'] = $a['total_keseluruhan'];
 			$this->load->view('v_header', $y);
-			$this->load->view('admin/v_sidebar');
+			if($this->session->userdata('akses') == 2){
+				$this->load->view('admin/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
 			$this->load->view('admin/v_list_barang', $x);
-		} else {
-			redirect('Login');
-		}
 	}
 
 	function Cetak_Invoice($pemesanan_id)
@@ -279,10 +282,9 @@ class PemesananAllByBulan extends CI_Controller
 			case 12 : $x['namaBulan'] =  "Desember"; $x['tanggalAkhir'] = 31; break;
 		  }
 		  
-		if($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true){
 			$namaBulan = $x['namaBulan'];
 			$x['bulan'] = $bulan;
-			$y['title'] = "Pemesanan Bulan $namaBulan";
+			$y['title'] = " Seluruh Pemesanan Bulan $namaBulan";
 			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
 			$x['kurir'] = $this->m_pemesanan->getAllkurir();
 			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
@@ -291,12 +293,13 @@ class PemesananAllByBulan extends CI_Controller
 			$x['reseller'] = $this->m_barang->getAllBarangR();
 			$x['datapesanan'] = $this->m_pemesanan->getPemesananAllbyBulan($bulan, date('Y'));
 			$this->load->view('v_header',$y);
-			$this->load->view('admin/v_sidebar');
+			if($this->session->userdata('akses') == 2){
+				$this->load->view('admin/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
 			$this->load->view('admin/v_pemesanan_all_by_bulan',$x);
-		 }
-		 else{
-			redirect('Login');
-		 }
 	   }
 
 	   function pemesananByTahun(){

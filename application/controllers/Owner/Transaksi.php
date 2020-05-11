@@ -321,6 +321,9 @@
 	
 			$total_untung = $total_u;
 			$total_omset = $total_o;
+			// echo $total_omset;
+			// echo $total_untung;
+			// die;
 			$x['total_untung'] = $total_untung;
 			$x['total_omset'] = $total_omset;
 			$this->load->view('v_cetak_by_bulan', $x);
