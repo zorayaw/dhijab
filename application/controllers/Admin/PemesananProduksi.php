@@ -8,10 +8,10 @@
 		function __construct()
 	  	{
 		    parent:: __construct();
-		    if($this->session->userdata('masuk') !=TRUE){
-		      $url=base_url('Login');
-		      redirect($url);
-		    };
+		    if ($this->session->userdata('masuk') != TRUE || ($this->session->userdata('akses') != 2 && $this->session->userdata('akses') != 1)) {
+				$url = base_url('Login');
+				redirect($url);
+			};
 
 		    $this->load->model('m_pemesanan');
 		    $this->load->model('m_barang');
@@ -20,7 +20,6 @@
 	  	}
 
 	  	function index(){
-	  		if($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true){
 		       $y['title'] = "Pemesanan Produksi";
 		       $x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
 		       $x['kurir'] = $this->m_pemesanan->getAllkurir();
@@ -30,16 +29,16 @@
 		       $x['reseller'] = $this->m_barang->getAllBarangR();
 		       $x['datapesanan'] = $this->m_pemesanan->getPemesananproduksibyTahun2(date('Y'));
 		       $this->load->view('v_header',$y);
-		       $this->load->view('admin/v_sidebar');
+		       if($this->session->userdata('akses') == 2){
+				$this->load->view('admin/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
 		       $this->load->view('admin/v_pemesanan_produksi',$x);
-		    }
-		    else{
-		       redirect('Login');
-		    }
 	  	}
 
 	  	function produksi(){
-	  		if($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true){
 		       $y['title'] = "Pemesanan";
 		       $x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
 		       $x['kurir'] = $this->m_pemesanan->getAllkurir();
@@ -49,12 +48,13 @@
 		       $x['reseller'] = $this->m_barang->getAllBarangR();
 		       $x['datapesanan'] = $this->m_pemesanan->getPemesananproduksi();
 		       $this->load->view('v_header',$y);
-		       $this->load->view('admin/v_sidebar');
+			   if($this->session->userdata('akses') == 2){
+				$this->load->view('admin/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
 		       $this->load->view('admin/v_pemesanan_produksi',$x);
-		    }
-		    else{
-		       redirect('Login');
-		    }
 	  	}
 
 	  	function savepemesananP(){
@@ -143,8 +143,7 @@
 	  	}
 
 	  	function list_barang($pemesanan_id){
- 	  		if($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true){
- 	  		   $level = $this->uri->segment(5);
+			   $level = $this->uri->segment(5);
  	  		  		$y['title'] = "List Barang Pemesan";
  	  		   	   $x['p_id'] = $pemesanan_id;
  	  		   	   $x['lvl'] =$level;	
@@ -153,13 +152,14 @@
  	  		   	   $x['nonreseller'] = $this->m_barang->getDataNonReseller1();
  	  		   	   $x['jumlah'] = $a['total_keseluruhan'];
 			       $this->load->view('v_header',$y);
-			       $this->load->view('admin/v_sidebar');
+				   if($this->session->userdata('akses') == 2){
+					$this->load->view('admin/v_sidebar');
+				}
+				else if($this->session->userdata('akses') == 1){
+					$this->load->view('owner/v_sidebar');
+				}
 			       $this->load->view('admin/v_list_barang',$x);	
-		       
-		    }
-		    else{
-		       redirect('Login');
-		    }
+		    
 		   }
 		function pemesananByTahun(){
 			$tahun = intVal($this->input->post('thn'));
