@@ -9,7 +9,7 @@ class Pemesanan extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		if ($this->session->userdata('masuk') != TRUE) {
+		if ($this->session->userdata('masuk') != TRUE || ($this->session->userdata('akses') != 2 && $this->session->userdata('akses') != 1)) {
 			$url = base_url('Login');
 			redirect($url);
 		};
@@ -22,8 +22,7 @@ class Pemesanan extends CI_Controller
 
 	function index()
 	{
-		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
-			$y['title'] = "Pemesanan";
+			$y['title'] = "Seluruh Pemesanan";
 			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
 			$x['kurir'] = $this->m_pemesanan->getAllkurir();
 			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
@@ -32,11 +31,14 @@ class Pemesanan extends CI_Controller
 			$x['reseller'] = $this->m_barang->getAllBarangR();
 			$x['datapesanan'] = $this->m_pemesanan->getPemesananbyTahun2(date('Y'));
 			$this->load->view('v_header', $y);
-			$this->load->view('admin/v_sidebar');
+			if($this->session->userdata('akses') == 2){
+				$this->load->view('admin/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
+			
 			$this->load->view('admin/v_pemesanan', $x);
-		} else {
-			redirect('Login');
-		}
 	}
 
 
@@ -121,6 +123,21 @@ class Pemesanan extends CI_Controller
 				$this->pdf->filename = "laporan_pdf.pdf";
 				$this->pdf->load_view('admin/laporan_pdf', $x);
 			}		
+	}
+
+	function convertPDFPBerjalan(){
+		$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananKonfirmasi();
+
+				$this->pdf->setPaper('legal', 'landscape');
+				$this->pdf->filename = "laporan_pdf.pdf";
+				$this->pdf->load_view('admin/laporan_pdf', $x);
 	}
 
 	function convertPDFPerhari(){
@@ -250,6 +267,75 @@ class Pemesanan extends CI_Controller
 		}		
 	}
 
+	function convertPDFByBulanTanpaTahun(){
+		$statusc = $this->input->get('status');
+		$bulan = $this->input->get('bulan');
+		$awal = $this->input->post('start_year');
+		$akhir = $this->input->post('end_year');
+		$x['numstat'] = $statusc;
+		$x['bulan'] = $bulan;
+		$x['awal'] = $awal;
+		$x['akhir'] = $akhir;
+
+		if($statusc==0){
+			$y['title'] = "Pemesanan";
+			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+			$x['kurir'] = $this->m_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+			$x['produksi'] = $this->m_barang->getdataProduksi();
+			$x['reseller'] = $this->m_barang->getAllBarangR();
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananByBulanTanpaTahun($bulan,$awal, $akhir);
+
+			$this->pdf->setPaper('legal', 'landscape');
+			$this->pdf->filename = "laporan_pdf.pdf";
+			$this->pdf->load_view('admin/laporan_pdf', $x);
+		}
+		else if($statusc==1){
+			$y['title'] = "Pemesanan";
+			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+			$x['kurir'] = $this->m_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+			$x['produksi'] = $this->m_barang->getdataProduksi();
+			$x['reseller'] = $this->m_barang->getAllBarangR();
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomerByBulanTanpaTahun($bulan,$awal, $akhir);
+
+
+			$this->pdf->setPaper('legal', 'landscape');
+			$this->pdf->filename = "laporan_pdf.pdf";
+			$this->pdf->load_view('admin/laporan_pdf', $x);
+			}
+		else if($statusc==2){
+			$y['title'] = "Pemesanan";
+			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+			$x['kurir'] = $this->m_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+			$x['produksi'] = $this->m_barang->getdataProduksi();
+			$x['reseller'] = $this->m_barang->getAllBarangR();
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananResellerByBulanTanpaTahun($bulan,$awal, $akhir);
+
+			$this->pdf->setPaper('legal', 'landscape');
+			$this->pdf->filename = "laporan_pdf.pdf";
+			$this->pdf->load_view('admin/laporan_pdf', $x);
+		}
+		else if($statusc==3){
+			$y['title'] = "Pemesanan";
+			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+			$x['kurir'] = $this->m_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+			$x['produksi'] = $this->m_barang->getdataProduksi();
+			$x['reseller'] = $this->m_barang->getAllBarangR();
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananProduksiByBulanTanpaTahun($bulan,$awal, $akhir);
+
+			$this->pdf->setPaper('legal', 'landscape');
+			$this->pdf->filename = "laporan_pdf.pdf";
+			$this->pdf->load_view('admin/laporan_pdf', $x);
+		}
+	}
+
 	function convertPDFPerTanggal(){
 		$statusc = $this->input->get('status');
 		$start = $this->input->post('start_date');
@@ -367,6 +453,18 @@ class Pemesanan extends CI_Controller
 				$this->load->view('admin/laporan_word', $x);
 			}
 		
+	}
+
+	function convertWordPBerjalan(){
+		$y['title'] = "Pemesanan";
+		$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+		$x['kurir'] = $this->m_pemesanan->getAllkurir();
+		$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+		$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+		$x['produksi'] = $this->m_barang->getdataProduksi();
+		$x['reseller'] = $this->m_barang->getAllBarangR();
+		$x['datapesanan'] = $this->m_pemesanan->getPemesananKonfirmasi();
+		$this->load->view('admin/laporan_word', $x);
 	}
 
 	function convertWordPerhari(){
@@ -633,6 +731,18 @@ class Pemesanan extends CI_Controller
 		
 	}
 
+	function convertExcelPBerjalan(){
+				$y['title'] = "Pemesanan";
+				$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+				$x['kurir'] = $this->m_pemesanan->getAllkurir();
+				$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['produksi'] = $this->m_barang->getdataProduksi();
+				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['datapesanan'] = $this->m_pemesanan->getPemesananKonfirmasi();
+				$this->load->view('admin/laporan_excel', $x);
+			}
+
 	function convertExcelPerhari(){
 
 		$statusc = $this->input->get('status');
@@ -852,7 +962,6 @@ class Pemesanan extends CI_Controller
 
 	function customer()
 	{
-		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
 			$y['title'] = "Pemesanan";
 			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
 			$x['kurir'] = $this->m_pemesanan->getAllkurir();
@@ -862,11 +971,13 @@ class Pemesanan extends CI_Controller
 			$x['reseller'] = $this->m_barang->getAllBarangR();
 			$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomer();
 			$this->load->view('v_header', $y);
-			$this->load->view('admin/v_sidebar');
+			if($this->session->userdata('akses') == 2){
+				$this->load->view('admin/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
 			$this->load->view('admin/v_pemesanan_customer', $x);
-		} else {
-			redirect('Login');
-		}
 	}
 
 	function savepemesananCustomer()
@@ -939,7 +1050,6 @@ class Pemesanan extends CI_Controller
 
 	function reseller()
 	{
-		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
 			$y['title'] = "Pemesanan";
 			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
 			$x['kurir'] = $this->m_pemesanan->getAllkurir();
@@ -949,11 +1059,14 @@ class Pemesanan extends CI_Controller
 			$x['reseller'] = $this->m_barang->getAllBarangR();
 			$x['datapesanan'] = $this->m_pemesanan->getPemesananreseller();
 			$this->load->view('v_header', $y);
-			$this->load->view('admin/v_sidebar');
+			if($this->session->userdata('akses') == 2){
+				$this->load->view('admin/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
 			$this->load->view('admin/v_pemesanan_reseller', $x);
-		} else {
-			redirect('Login');
-		}
+		
 	}
 
 	function savepemesananreseller()
@@ -1026,7 +1139,7 @@ class Pemesanan extends CI_Controller
 
 	function produksi()
 	{
-		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
+		
 			$y['title'] = "Pemesanan";
 			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
 			$x['kurir'] = $this->m_pemesanan->getAllkurir();
@@ -1036,11 +1149,14 @@ class Pemesanan extends CI_Controller
 			$x['reseller'] = $this->m_barang->getAllBarangR();
 			$x['datapesanan'] = $this->m_pemesanan->getPemesananproduksi();
 			$this->load->view('v_header', $y);
-			$this->load->view('admin/v_sidebar');
+			if($this->session->userdata('akses') == 2){
+				$this->load->view('admin/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
 			$this->load->view('admin/v_pemesanan_produksi', $x);
-		} else {
-			redirect('Login');
-		}
+		
 	}
 
 	function savepemesananproduksi()
@@ -1107,7 +1223,6 @@ class Pemesanan extends CI_Controller
 
 	function konfirmasi_pesanan()
 	{
-		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
 			$y['title'] = "Pemesanan";
 			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
 			$x['kurir'] = $this->m_pemesanan->getAllkurir();
@@ -1117,11 +1232,14 @@ class Pemesanan extends CI_Controller
 			$x['reseller'] = $this->m_barang->getAllBarangR();
 			$x['datapesanan'] = $this->m_pemesanan->getPemesananKonfirmasi();
 			$this->load->view('v_header', $y);
-			$this->load->view('admin/v_sidebar');
+			if($this->session->userdata('akses') == 2){
+				$this->load->view('admin/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
 			$this->load->view('admin/v_pemesanan_konfirmasi_pesanan', $x);
-		} else {
-			redirect('Login');
-		}
+		
 	}
 
 	function savepemesanankonfirmasi_pesananCustomer()
@@ -1447,7 +1565,6 @@ class Pemesanan extends CI_Controller
 
 	function list_barang($pemesanan_id)
 	{
-		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
 			$level = $this->uri->segment(5);
 			$y['title'] = "List Barang Pemesan";
 			$x['p_id'] = $pemesanan_id;
@@ -1457,11 +1574,13 @@ class Pemesanan extends CI_Controller
 			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
 			$x['jumlah'] = $a['total_keseluruhan'];
 			$this->load->view('v_header', $y);
-			$this->load->view('admin/v_sidebar');
+			if($this->session->userdata('akses') == 2){
+				$this->load->view('admin/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
 			$this->load->view('admin/v_list_barang', $x);
-		} else {
-			redirect('Login');
-		}
 	}
 
 	function Cetak_Invoice($pemesanan_id) 
@@ -1494,15 +1613,17 @@ class Pemesanan extends CI_Controller
 
 	function asal_transaksi()
 	{
-		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
+		
 			$y['title'] = "Asal Transaksi";
 			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
 			$this->load->view('v_header', $y);
-			$this->load->view('admin/v_sidebar');
+			if($this->session->userdata('akses') == 2){
+				$this->load->view('admin/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
 			$this->load->view('admin/v_asal_transaksi', $x);
-		} else {
-			redirect('Login');
-		}
 	}
 
 	function saveAT()
@@ -1532,15 +1653,17 @@ class Pemesanan extends CI_Controller
 
 	function kurir()
 	{
-		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
 			$y['title'] = "Kurir";
 			$x['kurir'] = $this->m_pemesanan->getAllkurir();
 			$this->load->view('v_header', $y);
-			$this->load->view('admin/v_sidebar');
+			if($this->session->userdata('akses') == 2){
+				$this->load->view('admin/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
 			$this->load->view('admin/v_kurir', $x);
-		} else {
-			redirect('Login');
-		}
+		
 	}
 
 	function savekurir()
@@ -1570,15 +1693,18 @@ class Pemesanan extends CI_Controller
 
 	function metode_pembayaran()
 	{
-		if ($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true) {
+		
 			$y['title'] = "Metode Pembayaran";
 			$x['metpem'] = $this->m_pemesanan->getAllMetpem();
 			$this->load->view('v_header', $y);
-			$this->load->view('admin/v_sidebar');
+			if($this->session->userdata('akses') == 2){
+				$this->load->view('admin/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
 			$this->load->view('admin/v_metode_pembayaran', $x);
-		} else {
-			redirect('Login');
-		}
+		
 	}
 
 	function saveMetodePembayaran()
@@ -1646,7 +1772,7 @@ class Pemesanan extends CI_Controller
 	}
 
 	function viewPemesananByBulan($bulan){
-		if($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true){
+		
 			switch ($bulan){
 				case 1 : $x['namaBulan'] = "Januari"; $x['tanggalAkhir'] = 31; break;
 				case 2 : $x['namaBulan'] =  "Februari"; 
@@ -1677,12 +1803,14 @@ class Pemesanan extends CI_Controller
 			$x['reseller'] = $this->m_barang->getAllBarangR();
 			$x['datapesanan'] = $this->m_pemesanan->getPemesananAllbyBulan($bulan, date('Y'));
 			$this->load->view('v_header',$y);
-			$this->load->view('admin/v_sidebar');
+			if($this->session->userdata('akses') == 2){
+				$this->load->view('admin/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
 			$this->load->view('admin/v_pemesanan_all_by_bulan',$x);
-		 }
-		 else{
-			redirect('Login');
-		 }
+		 
 	   }
 	   
 	function pemesananByTahun(){

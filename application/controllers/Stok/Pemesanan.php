@@ -8,34 +8,20 @@
 		function __construct()
 	  	{
 		    parent:: __construct();
-		    if($this->session->userdata('masuk') !=TRUE){
-		      $url=base_url('Login');
-		      redirect($url);
-		    };
+			if ($this->session->userdata('masuk') != TRUE || ($this->session->userdata('akses') != 3 && $this->session->userdata('akses') != 1)) {
+				$url = base_url('Login');
+				redirect($url);
+			};
 
 		    $this->load->model('m_pemesanan');
-		    $this->load->model('m_barang');
+		    $this->load->model('m_barang');	
 		    $this->load->model('m_list_barang');
 		    $this->load->library('upload');
 	  	}
 
 	  	
 	  	function index(){
-			if($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true){
-			 $y['title'] = "Pemesanan";
-			 $x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
-			 $x['kurir'] = $this->m_pemesanan->getAllkurir();
-			 $x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
-			 $x['nonreseller'] = $this->m_barang->getDataNonReseller1();
-			 $x['reseller'] = $this->m_barang->getAllBarangR();
-			 $x['datapesanan'] = $this->m_pemesanan->getPemesanan();
-			 $this->load->view('v_header',$y);
-			 $this->load->view('admin/v_sidebar');
-			 $this->load->view('admin/v_pemesanan',$x);
-		  }
-		  else{
-			 redirect('Login');
-		  }
+			$this->kurir();
 		}
 
  	  	function Cetak_Invoice($pemesanan_id){
@@ -67,16 +53,11 @@
 
 
 	  	function kurir(){
-	  		if($this->session->userdata('akses') == 3 && $this->session->userdata('masuk') == true){
-		       $y['title'] = "Kurir";
+	  		$y['title'] = "Kurir";
 			   $x['datapesanan'] = $this->m_pemesanan->getPemesanan();
 		       $this->load->view('v_header',$y);
 		       $this->load->view('stok/v_sidebar');
 		       $this->load->view('stok/v_kurir',$x);
-		    }
-		    else{
-		       redirect('Login');
-		    }
 	  	}
 
 	  	function savekurir(){

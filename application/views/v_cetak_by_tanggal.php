@@ -45,6 +45,7 @@ $cur_date = date("d-m-Y");?>
                     $no = 0 ;
                   $modal = 0;
                   $omset = 0;
+                  $tot_omset = 0;
                     foreach($data->result_array() as $i) :
                       $no++;
                       $pemesanan_id = $i['pemesanan_id'];
@@ -61,19 +62,13 @@ $cur_date = date("d-m-Y");?>
                       foreach ($b as $temp) {
                         $modal = $modal + $temp['harga'];
                     }
-                      if($level == 1){
-                        $q=$this->db->query("SELECT SUM(a.lb_qty * d.br_harga) AS total_keseluruhan, ((SUM(a.lb_qty * d.br_harga))-SUM(a.lb_qty *$modal)) AS total FROM list_barang a, pemesanan b, barang c, barang_reseller d WHERE a.pemesanan_id = '$pemesanan_id' AND a.lb_qty = d.br_kuantitas AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id"); 
-                        $c=$q->row_array();
-                        $omset = $c['total_keseluruhan'];
-                        $untung = $c['total'];
-                      }elseif($level == 2){
-                        $q=$this->db->query("SELECT SUM(a.lb_qty * d.bnr_harga) AS total_keseluruhan, (SUM(a.lb_qty * d.bnr_harga))-(SUM(a.lb_qty * $modal)) AS total FROM list_barang a, pemesanan b, barang c, barang_non_reseller d WHERE a.pemesanan_id = '$pemesanan_id' AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id");
-                        $c=$q->row_array();
-                        $omset = $c['total_keseluruhan'];
-                        $untung = $c['total'];
-
-
-                      }
+                    $q = $this->db->query("SELECT a.lb_qty, a.harga, a.pemesanan_id, SUM(a.lb_qty * a.harga) as Total_keseluruhan, (SUM(a.lb_qty * a.harga))-(SUM(a.lb_qty * $modal)) AS total from list_barang a, pemesanan b WHERE a.pemesanan_id = $pemesanan_id AND b.pemesanan_id = $pemesanan_id");
+                    $c=$q->row_array();
+                    $omset = $c['Total_keseluruhan'];
+                    $untung = $c['total'];
+                 
+                    
+                  $tot_omset = $tot_omset + $omset;
 
                       
                   ?>
@@ -91,7 +86,7 @@ $cur_date = date("d-m-Y");?>
                   <tfoot>
                     <tr>
                       <th colspan="7"><center>Jumlah</center></th>
-                      <th><?php echo rupiah($total_omset)?></th>
+                      <th><?php echo rupiah($tot_omset)?></th>
                     </tr>
                   </tfoot>
              </table>
