@@ -211,6 +211,9 @@
             </li>
         </ul>
       </li>
+        <li>
+          <a href="<?php echo base_url()?>Stok/Stock"><i class="ti-calendar"></i><span class="right-nav-text">Stock</span> </a>
+        </li>
         <!-- <li>
           <a href="<?php echo base_url()?>Owner/Transaksi"><i class="ti-calendar"></i><span class="right-nav-text">History Transaksi</span> </a>
         </li>
