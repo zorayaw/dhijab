@@ -55,8 +55,13 @@
 	  	function kurir(){
 	  		$y['title'] = "Kurir";
 			   $x['datapesanan'] = $this->m_pemesanan->getPemesanan();
-		       $this->load->view('v_header',$y);
-		       $this->load->view('stok/v_sidebar');
+			   $this->load->view('v_header',$y);
+			   if($this->session->userdata('akses') == 3){
+				$this->load->view('stok/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
 		       $this->load->view('stok/v_kurir',$x);
 	  	}
 
