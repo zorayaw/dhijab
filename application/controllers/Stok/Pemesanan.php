@@ -108,8 +108,8 @@
             {
             $status_eks=1;
             $this->m_pemesanan->status_eks($pemesanan_id,$status_eks);
-					}
-             redirect('Stok/Pemesanan/Kurir');	
+			}
+            redirect('Stok/Pemesanan/Kurir');	
         
         }
 
