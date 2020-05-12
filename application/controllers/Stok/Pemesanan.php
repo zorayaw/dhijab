@@ -76,15 +76,10 @@
 
 
 	  	function kurir(){
-<<<<<<< HEAD
 	  		if($this->session->userdata('akses') == 3 && $this->session->userdata('masuk') == true){
 		       $y['title'] = "Kurir";
 			   $x['datapesanan'] = $this->m_pemesanan->getPemesananEkspedisi();
 			   $x['kurir'] = $this->m_pemesanan->getAllkurir();
-=======
-	  		$y['title'] = "Kurir";
-			   $x['datapesanan'] = $this->m_pemesanan->getPemesanan();
->>>>>>> ee545aa0164f6e45f30be6ef4c9cf0a47ad21875
 		       $this->load->view('v_header',$y);
 		       $this->load->view('stok/v_sidebar');
 		       $this->load->view('stok/v_kurir',$x);
@@ -130,4 +125,4 @@
         }
 
 }
-?>
+	}
