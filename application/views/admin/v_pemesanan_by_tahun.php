@@ -496,6 +496,46 @@
   
   <?php endforeach; ?>
 
+  
+<!-- plugins-jquery -->
+<script src="<?php echo base_url()?>assets/admin/js/plugins-jquery.js"></script>
+
+<!-- plugin_path -->
+<script>var plugin_path = '<?php echo base_url()?>assets/admin/js/';</script>
+
+<!-- chart -->
+<script src="<?php echo base_url()?>assets/admin/js/chart-init.js"></script>
+
+<!-- calendar -->
+<script src="<?php echo base_url()?>assets/admin/js/calendar.init.js"></script>
+
+<!-- charts sparkline -->
+<script src="<?php echo base_url()?>assets/admin/js/sparkline.init.js"></script>
+
+<!-- charts morris -->
+<script src="<?php echo base_url()?>assets/admin/js/morris.init.js"></script>
+
+<!-- datepicker -->
+<script src="<?php echo base_url()?>assets/admin/js/datepicker.js"></script>
+
+<!-- sweetalert2 -->
+<script src="<?php echo base_url()?>assets/admin/js/sweetalert2.js"></script>
+
+<!-- toastr -->
+<script src="<?php echo base_url().'assets/admin/js/jquery.toast.min.js'?>"></script>
+
+<!-- validation -->
+<script src="<?php echo base_url()?>assets/admin/js/validation.js"></script>
+
+<!-- lobilist -->
+<script src="<?php echo base_url()?>assets/admin/js/lobilist.js"></script>
+ 
+<!-- custom -->
+<script src="<?php echo base_url()?>assets/admin/js/custom.js"></script>
+  
+<!-- mask -->
+<script src="<?php echo base_url()?>assets/admin/js/jquery.mask.min.js"></script>
+
   <script type="text/javascript">
     function form_submit(num) {
       $("#hapusd"+num).submit();
