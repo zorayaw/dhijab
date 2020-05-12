@@ -63,7 +63,7 @@
             </button>
             <?php 
               $curyear = date('Y');
-              $earlyyear = 2015;
+              $earlyyear = $curyear-10;
             ?>
             <div class="dropdown-menu">
               <?php foreach(range($curyear, $earlyyear) as $r ) : ?>
@@ -1316,7 +1316,7 @@
               <select class="form-control" id="syear" name="start_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2017; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -1328,7 +1328,7 @@
               <select class="form-control" id="eyear" name="end_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2017; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>

@@ -21,6 +21,7 @@
     <div class="col-xl-12 mb-30">
       <div class="card card-statistics h-100">
         <div class="card-body">
+        <?php if($this->session->userdata('akses') == 2) : ?>
         <div class="col-xl-12 mb-10">
         <h6 class="mb-0">Tambah Pemesanan Bulan <?=$namaBulan." ".date('Y')?> :</h6>
       </div>
@@ -55,6 +56,7 @@
               </a>
             </div>
           </div>
+        <?php endif; ?>
 
           <div class="btn-group">
             <button type="button" class="btn btn-info dropdown-toggle mb-4 ml-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -62,7 +64,7 @@
             </button>
             <?php 
               $curyear = date('Y');
-              $earlyyear = 2015;
+              $earlyyear = $curyear-10;
             ?>
             <div class="dropdown-menu">
               <?php foreach(range($curyear, $earlyyear) as $r ) : ?>
@@ -613,7 +615,7 @@
                     <td><?php echo $at_nama ?></td>
                     <td><?php echo $mp_nama ?></td>
                     <?php if($this->session->userdata('akses') == 2) : ?>
-                    <td><a href="<?php echo base_url() ?>Admin/PemesananAllByBulan/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>" target="_blank" class="btn btn-primary">List Barang</a></td>
+                    <td><a href="<?php echo base_url() ?>Admin/PemesananCustomerbyBulan/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>" target="_blank" class="btn btn-primary">List Barang</a></td>
                     <?php else : ?>
                     <td><?php echo $nama_barang ?></td>
                     <?php endif;?>
@@ -658,11 +660,14 @@
                 <?php endforeach; ?>
                 
               </tbody>
-      <tr>
-              <th colspan="18"><center>Jumlah</center></th>
-              <th colspan="2"><?php echo rupiah($total)?></th>
-            </tr>
-    </table>
+              <tr>
+                <th colspan="18">
+                  <center>Jumlah</center>
+                </th>
+                <th colspan="2"><?php echo rupiah($total) ?></th>
+              </tr>
+            
+            </table>
   </div>
   </div>
   </div>
@@ -1305,7 +1310,7 @@
               <select class="form-control" id="syear" name="start_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2017; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -1317,7 +1322,7 @@
               <select class="form-control" id="eyear" name="end_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2017; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
