@@ -24,7 +24,8 @@
 							<table id="datatable" class="table table-striped table-bordered p-0">
 								<thead>
 									<tr>
-										<th width="5">No</th>
+                    <th width="5">No</th>
+                    <th>No order</th>
 										<th>Nama Pemesan</th>
 										<th width="10">Tanggal Pemesanan</th>
 										<th>No HP</th>
@@ -33,7 +34,7 @@
 										<th>Status Ekspedisi</th>
 										<th>Ongkos kirim</th>
 										<th>Total Harga</th>
-										<th>Note</th>
+										
 									</tr>
 								</thead>
 								<tbody>
@@ -77,7 +78,11 @@
 									<tr>
 										<td>
 											<center><?php echo $no ?></center>
-										</td>
+                    </td>
+                    </td>
+                    <td>
+											<center><?php echo $pemesanan_id ?></center>
+                    </td>
 										<td><?php echo $pemesanan_nama ?></td>
 										<td><?php echo $tanggal ?></td>
 										<td><?php echo $hp ?></td>
@@ -108,7 +113,6 @@
 
 										<td><?php echo rupiah($ongkir) ?></td>
 										<td><?php echo rupiah($jumlah) ?></td>
-										<td><?php echo $note ?></td>
 										<?php 
                     $total=$total+$jumlah;
                     ?>
