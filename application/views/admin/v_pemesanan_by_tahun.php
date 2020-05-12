@@ -88,8 +88,26 @@
                     <td><?php echo $ongkir ?></td>
                     <td><?php echo $at_nama ?></td>
                     <td><?php echo $mp_nama ?></td>
-  
+                   
+                    <?php if($bulan==0) { ?>
+                    <?php if($stsp==0) { ?>
                     <td><a href="<?php echo base_url() ?>Admin/Pemesanan/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>" target="_blank" class="btn btn-primary">List Barang</a></td>
+                    <?php }elseif($stsp==1) { ?>
+                    <td><a href="<?php echo base_url() ?>Admin/PemesananCustomer/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>" target="_blank" class="btn btn-primary">List Barang</a></td>
+                    <?php }elseif($stsp==2) { ?>
+                    <td><a href="<?php echo base_url() ?>Admin/PemesananReseller/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>" target="_blank" class="btn btn-primary">List Barang</a></td>
+                    <?php }elseif($stsp==3) { ?>
+                    <td><a href="<?php echo base_url() ?>Admin/PemesananProduksi/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>" target="_blank" class="btn btn-primary">List Barang</a></td>
+                    <?php }} else { ?>
+                      <?php if($stsp==0) { ?>
+                    <td><a href="<?php echo base_url() ?>Admin/PemesananAllByBulan/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>" target="_blank" class="btn btn-primary">List Barang</a></td>
+                      <?php } elseif($stsp==1) { ?>
+                    <td><a href="<?php echo base_url() ?>Admin/PemesananCustomerByBulan/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>" target="_blank" class="btn btn-primary">List Barang</a></td>
+                      <?php } elseif($stsp==2) { ?>
+                    <td><a href="<?php echo base_url() ?>Admin/PemesananResellerByBulan/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>" target="_blank" class="btn btn-primary">List Barang</a></td>
+                      <?php } elseif($stsp==3) { ?>
+                    <td><a href="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>" target="_blank" class="btn btn-primary">List Barang</a></td>
+                      <?php }} ?>
                     <td>
   
                       <?php
@@ -165,7 +183,25 @@
               <h5 class="modal-title">Edit Data</h5>
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
-            <form action="<?php echo base_url() ?>Admin/Pemesanan/edit_pesanan" method="post" enctype="multipart/form-data">
+            <?php if($bulan==0) { ?>
+                    <?php if($stsp==0) { ?>
+                    <form action="<?php echo base_url() ?>Admin/Pemesanan/edit_pesanan" method="post" enctype="multipart/form-data">
+                    <?php }elseif($stsp==1) { ?>
+                      <form action="<?php echo base_url() ?>Admin/PemesananCustomer/edit_pesanan" method="post" enctype="multipart/form-data">
+                    <?php }elseif($stsp==2) { ?>
+                      <form action="<?php echo base_url() ?>Admin/PemesananReseller/edit_pesanan" method="post" enctype="multipart/form-data">
+                      <?php }elseif($stsp==3) { ?>
+                        <form action="<?php echo base_url() ?>Admin/PemesananProduksi/edit_pesanan" method="post" enctype="multipart/form-data">
+                        <?php }} else { ?>
+                      <?php if($stsp==0) { ?>
+                        <form action="<?php echo base_url() ?>Admin/PemesananAllByBulan/edit_pesanan?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
+                        <?php } elseif($stsp==1) { ?>
+                          <form action="<?php echo base_url() ?>Admin/PemesananCustomerByBulan/edit_pesanan?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
+                          <?php } elseif($stsp==2) { ?>
+                            <form action="<?php echo base_url() ?>Admin/PemesananResellerByBulan/edit_pesanan?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
+                            <?php } elseif($stsp==3) { ?>
+                              <form action="<?php echo base_url() ?>Admin/PemesananProduksi/edit_pesanan?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
+                              <?php }} ?>
               <div class="modal-body p-20">
                 <div class="row">
                   <div class="col-md-12">
@@ -276,7 +312,25 @@
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body p-20">
-              <form action="<?php echo base_url() ?>Admin/Pemesanan/hapus_pesanan" method="post" id="hapusd<?php echo $pemesanan_id ?>" >
+            <?php if($bulan==0) { ?>
+                    <?php if($stsp==0) { ?>
+                      <form action="<?php echo base_url() ?>Admin/Pemesanan/hapus_pesanan" method="post" id="hapusd<?php echo $pemesanan_id ?>" >
+                      <?php }elseif($stsp==1) { ?>
+                        <form action="<?php echo base_url() ?>Admin/PemesananCustomer/hapus_pesanan" method="post" id="hapusd<?php echo $pemesanan_id ?>" >
+                        <?php }elseif($stsp==2) { ?>
+                          <form action="<?php echo base_url() ?>Admin/PemesananReseller/hapus_pesanan" method="post" id="hapusd<?php echo $pemesanan_id ?>" >
+                          <?php }elseif($stsp==3) { ?>
+                            <form action="<?php echo base_url() ?>Admin/PemesananProduksi/hapus_pesanan" method="post" id="hapusd<?php echo $pemesanan_id ?>" >
+                            <?php }} else { ?>
+                      <?php if($stsp==0) { ?>
+                        <form action="<?php echo base_url() ?>Admin/PemesananAllByBulan/hapus_pesanan?bulan=<?=$bulan?>" method="post" id="hapusd<?php echo $pemesanan_id ?>" >
+                        <?php } elseif($stsp==1) { ?>
+                          <form action="<?php echo base_url() ?>Admin/PemesananCustomerByBulan/hapus_pesanan?bulan=<?=$bulan?>" method="post" id="hapusd<?php echo $pemesanan_id ?>" >
+                          <?php } elseif($stsp==2) { ?>
+                            <form action="<?php echo base_url() ?>Admin/PemesananResellerByBulan/hapus_pesanan?bulan=<?=$bulan?>" method="post" id="hapusd<?php echo $pemesanan_id ?>" >
+                            <?php } elseif($stsp==3) { ?>
+                              <form action="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/hapus_pesanan?bulan=<?=$bulan?>" method="post" id="hapusd<?php echo $pemesanan_id ?>" >
+                              <?php }} ?>
                 <div class="row">
                   <div class="col-md-12">
                     <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
@@ -313,8 +367,26 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body p-20">
-            <form action="<?php echo base_url() ?>Admin/Pemesanan/status" id="bayarr<?= $pemesanan_id ?>" method="POST">
-              <div class="row">
+          <?php if($bulan==0) { ?>
+                    <?php if($stsp==0) { ?>
+                      <form action="<?php echo base_url() ?>Admin/Pemesanan/status" id="bayarr<?= $pemesanan_id ?>" method="POST">
+                      <?php }elseif($stsp==1) { ?>
+                        <form action="<?php echo base_url() ?>Admin/PemesananCustomer/status" id="bayarr<?= $pemesanan_id ?>" method="POST">
+                        <?php }elseif($stsp==2) { ?>
+                          <form action="<?php echo base_url() ?>Admin/PemesananReseller/status" id="bayarr<?= $pemesanan_id ?>" method="POST">
+                        <?php }elseif($stsp==3) { ?>
+                          <form action="<?php echo base_url() ?>Admin/PemesananProduksi/status" id="bayarr<?= $pemesanan_id ?>" method="POST">
+                        <?php }} else { ?>
+                      <?php if($stsp==0) { ?>
+                        <form action="<?php echo base_url() ?>Admin/PemesananAllByBulan/status?bulan=<?=$bulan?>" id="bayarr<?= $pemesanan_id ?>" method="POST">
+                        <?php } elseif($stsp==1) { ?>
+                          <form action="<?php echo base_url() ?>Admin/PemesananCustomerByBulan/status?bulan=<?=$bulan?>" id="bayarr<?= $pemesanan_id ?>" method="POST">
+                        <?php } elseif($stsp==2) { ?>
+                          <form action="<?php echo base_url() ?>Admin/PemesananResellerByBulan/status?bulan=<?=$bulan?>" id="bayarr<?= $pemesanan_id ?>" method="POST">
+                        <?php } elseif($stsp==3) { ?>
+                          <form action="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/status?bulan=<?=$bulan?>" id="bayarr<?= $pemesanan_id ?>" method="POST">
+                        <?php }} ?>
+             <div class="row">
                 <div class="col-md-12">
                   <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
                   <input type="hidden" name="status_pemesanan" value="<?php echo $status_pemesanan ?>" />
@@ -340,7 +412,25 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
       </div>
       <div class="modal-body p-20">
-        <form action="<?php echo base_url() ?>Admin/Pemesanan/status" id="selesaii<?= $pemesanan_id ?>" method="POST">
+      <?php if($bulan==0) { ?>
+                    <?php if($stsp==0) { ?>
+                      <form action="<?php echo base_url() ?>Admin/Pemesanan/status" id="selesaii<?= $pemesanan_id ?>" method="POST">
+                      <?php }elseif($stsp==1) { ?>
+                        <form action="<?php echo base_url() ?>Admin/PemesananCustomer/status" id="selesaii<?= $pemesanan_id ?>" method="POST">
+                      <?php }elseif($stsp==2) { ?>
+                        <form action="<?php echo base_url() ?>Admin/PemesananReseller/status" id="selesaii<?= $pemesanan_id ?>" method="POST">
+                      <?php }elseif($stsp==3) { ?>
+                        <form action="<?php echo base_url() ?>Admin/PemesananProduksi/status" id="selesaii<?= $pemesanan_id ?>" method="POST">
+                      <?php }} else { ?>
+                      <?php if($stsp==0) { ?>
+                        <form action="<?php echo base_url() ?>Admin/PemesananAllByBulan/status?bulan=<?=$bulan?>" id="selesaii<?= $pemesanan_id ?>" method="POST">
+                      <?php } elseif($stsp==1) { ?>
+                        <form action="<?php echo base_url() ?>Admin/PemesananCustomerByBulan/status?bulan=<?=$bulan?>" id="selesaii<?= $pemesanan_id ?>" method="POST">
+                      <?php } elseif($stsp==2) { ?>
+                        <form action="<?php echo base_url() ?>Admin/PemesananResellerByBulan/status?bulan=<?=$bulan?>" id="selesaii<?= $pemesanan_id ?>" method="POST">
+                      <?php } elseif($stsp==3) { ?>
+                        <form action="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/status?bulan=<?=$bulan?>" id="selesaii<?= $pemesanan_id ?>" method="POST">
+                      <?php }} ?>
           <div class="row">
             <div class="col-md-12">
               <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
@@ -366,7 +456,25 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
       </div>
       <div class="modal-body p-20">
-        <form action="<?php echo base_url() ?>Admin/Pemesanan/status" id="kirimm<?= $pemesanan_id ?>" method="POST">
+      <?php if($bulan==0) { ?>
+                    <?php if($stsp==0) { ?>
+                      <form action="<?php echo base_url() ?>Admin/Pemesanan/status" id="kirimm<?= $pemesanan_id ?>" method="POST">
+                      <?php }elseif($stsp==1) { ?>
+                        <form action="<?php echo base_url() ?>Admin/PemesananCustomer/status" id="kirimm<?= $pemesanan_id ?>" method="POST">
+                      <?php }elseif($stsp==2) { ?>
+                        <form action="<?php echo base_url() ?>Admin/PemesananReseller/status" id="kirimm<?= $pemesanan_id ?>" method="POST">
+                      <?php }elseif($stsp==3) { ?>
+                        <form action="<?php echo base_url() ?>Admin/PemesananProduksi/status" id="kirimm<?= $pemesanan_id ?>" method="POST">
+                      <?php }} else { ?>
+                      <?php if($stsp==0) { ?>
+                        <form action="<?php echo base_url() ?>Admin/PemesananAllByBulan/status?bulan=<?=$bulan?>" id="kirimm<?= $pemesanan_id ?>" method="POST">
+                      <?php } elseif($stsp==1) { ?>
+                        <form action="<?php echo base_url() ?>Admin/PemesananCustomerByBulan/status?bulan=<?=$bulan?>" id="kirimm<?= $pemesanan_id ?>" method="POST">
+                      <?php } elseif($stsp==2) { ?>
+                        <form action="<?php echo base_url() ?>Admin/PemesananResellerByBulan/status?bulan=<?=$bulan?>" id="kirimm<?= $pemesanan_id ?>" method="POST">
+                      <?php } elseif($stsp==3) { ?>
+                        <form action="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/status?bulan=<?=$bulan?>" id="kirimm<?= $pemesanan_id ?>" method="POST">
+                      <?php }} ?>
           <div class="row">
             <div class="col-md-12">
               <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />

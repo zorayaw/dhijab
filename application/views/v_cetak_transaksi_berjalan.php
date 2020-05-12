@@ -22,6 +22,7 @@ $cur_date = date("d-m-Y");?>
              <table border="1" cellpadding="7" width="100%" style="border-style: solid;border-width: thin;border-collapse: collapse;" >
               <tr>
                 <th width="5">No</th>
+                <th>No Order</th>
                       <th>Nama Pemesan</th>
                       <th>Tanggal Pemesanan</th>
                       <th>Status Pemesanan</th>
@@ -30,6 +31,7 @@ $cur_date = date("d-m-Y");?>
                       <th>Kurir</th>
                       <th>Asal Transaksi</th>
                       <th>Total Omset</th>
+                      <th>Untung</th>
               </tr>
                   <?php
                   
@@ -41,6 +43,8 @@ $cur_date = date("d-m-Y");?>
                     $no = 0 ;
                   $modal = 0;
                   $omset = 0;
+                  $tot_omset = 0;
+                  $tot_untung = 0;
                     foreach($data->result_array() as $i) :
                         if ($i['status_pemesanan'] == 0)
                         $status = "Belum Bayar";
@@ -61,29 +65,33 @@ $cur_date = date("d-m-Y");?>
                       $level = $i['status_customer'];
                       $kurir_nama = $i['kurir_nama'];
                       $at_id = $i['at_id'];
+                      $ongkir = $i['ongkir'];
+                      $diskon = $i['diskon'];
+                      $biaya_admin = $i['biaya_admin'];
+                      $uang = $i['uang_kembalian'];
                       $at_nama = $i['at_nama'];
-                      $b = $this->m_pemesanan->getHargaModal($pemesanan_id, $level);
-                      foreach ($b as $temp) {
-                        $modal = $modal + $temp['harga'];
+                    $M = $this->m_pemesanan->getHModal($pemesanan_id);
+                    $mod=$M->result_array();
+                    
+                    foreach($mod as $temp){
+                      $mdl = $temp['HPP'];
+                      echo $mdl;
+                      $q = $this->db->query("SELECT a.lb_qty, a.harga, a.pemesanan_id, SUM(a.lb_qty * a.harga) as Total_keseluruhan, (SUM(a.lb_qty * a.harga))-(SUM(a.lb_qty * $mdl))+($ongkir-($diskon+$biaya_admin+$uang)) AS total from list_barang a, pemesanan b WHERE a.pemesanan_id = $pemesanan_id AND b.pemesanan_id = $pemesanan_id");
+                      $c=$q->row_array();
+                      $omset = $c['Total_keseluruhan'];
+                      $untung = $c['total'];
+                   
                     }
-                      if($level == 1){
-                        $q=$this->db->query("SELECT SUM(a.lb_qty * d.br_harga) AS total_keseluruhan, ((SUM(a.lb_qty * d.br_harga))-SUM(a.lb_qty *$modal)) AS total FROM list_barang a, pemesanan b, barang c, barang_reseller d WHERE a.pemesanan_id = '$pemesanan_id' AND a.lb_qty = d.br_kuantitas AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id"); 
-                        $c=$q->row_array();
-                        $omset = $c['total_keseluruhan'];
-                        $untung = $c['total'];
-                      }elseif($level == 2){
-                        $q=$this->db->query("SELECT SUM(a.lb_qty * d.bnr_harga) AS total_keseluruhan, (SUM(a.lb_qty * d.bnr_harga))-(SUM(a.lb_qty * $modal)) AS total FROM list_barang a, pemesanan b, barang c, barang_non_reseller d WHERE a.pemesanan_id = '$pemesanan_id' AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id");
-                        $c=$q->row_array();
-                        $omset = $c['total_keseluruhan'];
-                        $untung = $c['total'];
-
-
-                      }
-
+                    
+                 
+                    
+                  $tot_omset = $tot_omset + $omset;
+                  $tot_untung = $tot_untung + $untung;
                       
                   ?>
                     <tr>
                       <td><center><?php echo $no?></center></td>
+                      <td><center><?php echo $pemesanan_id?></center></td>
                       <td><?php echo $pemesanan_nama?></td>
                       <td><?php echo $tanggal?></td>
                       <td><?php echo $status?></td>
@@ -92,12 +100,14 @@ $cur_date = date("d-m-Y");?>
                       <td><?php echo $kurir_nama?></td>
                       <td><?php echo $at_nama?></td>
                       <td><?php echo rupiah($omset)?></td>
+                      <td><?php echo rupiah($untung)?></td>
                     </tr>
                   <?php endforeach;?>
                   <tfoot>
                     <tr>
                       <th colspan="8"><center>Jumlah</center></th>
-                      <th><?php echo rupiah($total_omset)?></th>
+                      <th><?php echo rupiah($tot_omset)?></th>
+                      <th><?php echo rupiah($tot_untung)?></th>
                     </tr>
                   </tfoot>
              </table>
