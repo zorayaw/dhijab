@@ -69,7 +69,7 @@
 			   $metode_pembayaran = $this->input->post('mp');
 			   // $tanggal = $this->input->post('tanggal');
 	   
-			   $this->m_pemesanan->edit_pesanan($pemesanan_id, $nama_pemesan, $no_hp, $alamat, $kurir, $resi, $asal_transaksi, $metode_pembayaran);
+			   $this->M_pemesanan->edit_pesanan($pemesanan_id, $nama_pemesan, $no_hp, $alamat, $kurir, $resi, $asal_transaksi, $metode_pembayaran);
 			   echo $this->session->set_flashdata('msg', 'update');
 			   redirect('Stok/Pemesanan/kurir');
 		   }
@@ -77,8 +77,8 @@
 
 	  	function kurir(){
 	  		$y['title'] = "Kurir";
-			   $x['datapesanan'] = $this->m_pemesanan->getPemesananEkspedisi();
-			   $x['kurir'] = $this->m_pemesanan->getAllkurir();
+			   $x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisi();
+			   $x['kurir'] = $this->M_pemesanan->getAllkurir();
 			   $this->load->view('v_header',$y);
 			   if($this->session->userdata('akses') == 3){
 				$this->load->view('stok/v_sidebar');
@@ -116,13 +116,13 @@
             $status_eks=$this->input->post('status_eks');
 			if ($status_eks == 0) {
 				$status_eks = 1;
-				$this->m_pemesanan->status_eks($pemesanan_id, $status_eks);
+				$this->M_pemesanan->status_eks($pemesanan_id, $status_eks);
 			} else if ($status_eks == 1) {
 				$status_eks = 2;
-				$this->m_pemesanan->status_eks($pemesanan_id, $status_eks);
+				$this->M_pemesanan->status_eks($pemesanan_id, $status_eks);
 			} else if ($status_eks == 2) {
 				$status_eks = 3;
-				$this->m_pemesanan->status_eks($pemesanan_id, $status_eks);
+				$this->M_pemesanan->status_eks($pemesanan_id, $status_eks);
 			} 
             redirect('Stok/Pemesanan/Kurir');	
         }
