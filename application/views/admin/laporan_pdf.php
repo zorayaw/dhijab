@@ -45,14 +45,14 @@
                   $no++;
 
                   $pemesanan_id = $i['pemesanan_id'];
-                  $pemesanan_nama = $i['pemesanan_nama'];
+                  $pemesanan_nama = wordwrap($i['pemesanan_nama'] ,8, '<br>', true);
                   $nama_akun = $i['pemesanan_nama_akun'];
                   $tanggal = $i['tanggal'];
                   $hp = $i['pemesanan_hp'];
-                  $alamat = $i['pemesanan_alamat'];
-                  $email = $i['email_pemesan'];
+                  $alamat = wordwrap($i['pemesanan_alamat'] ,8, '<br>', true);
+                  $email = wordwrap($i['email_pemesan'] ,8, '<br>', true);
                   $kurir_id = $i['kurir_id'];
-                  $resi = $i['no_resi'];
+                  $resi = wordwrap($i['no_resi'] ,8, '<br>', true);
                   $ongkir = $i['biaya_ongkir'];
                   $mp_id1 = $i['mp_id'];
                   $mp_nama = $i['mp_nama'];
@@ -65,6 +65,8 @@
                   $diskon = $i['diskon'];
                   $uang = $i['uang_kembalian'];
                   $note = $i['note'];
+
+                  
 
                   $q = $this->db->query("SELECT SUM(lb_qty * harga)AS total_keseluruhan from list_barang where pemesanan_id=' $pemesanan_id'");
                   $c = $q->row_array();
