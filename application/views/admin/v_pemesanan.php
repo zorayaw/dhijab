@@ -458,8 +458,9 @@
 
                   $pemesanan_id = $i['pemesanan_id'];
                   $pemesanan_nama = $i['pemesanan_nama'];
-                   $nama_akun = $i['pemesanan_nama_akun'];
-                  $tanggal = $i['tanggal'];
+                  $nama_akun = $i['pemesanan_nama_akun'];
+                  $tanggal = $i['tanggal']; 
+
                   $hp = $i['pemesanan_hp'];
                   $alamat = $i['pemesanan_alamat'];
                   $email = $i['email_pemesan'];
@@ -797,6 +798,7 @@
     </div>
   </div>
   </div>
+  
   <div class="modal" tabindex="-1" role="dialog" id="kirim<?= $pemesanan_id ?>">
   <div class="modal-dialog">
     <div class="modal-content">
