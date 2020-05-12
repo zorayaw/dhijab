@@ -65,6 +65,7 @@
                   <th>Alamat</th>
                   <th>Email </th>
                   <th>Ekspedisi</th>
+                  <th>Nomor Resi</th>
                   <th>Biaya Ongkir</th>
                   <th>Asal Transaksi</th>
                   <th>Metode Pembayaran</th>
@@ -102,6 +103,7 @@
                   $alamat = $i['pemesanan_alamat'];
                   $email = $i['email_pemesan'];
                   $kurir_id = $i['kurir_id'];
+                  $resi = $i['no_resi'];
                   $ongkir = $i['biaya_ongkir'];
                   $mp_id1 = $i['mp_id'];
                   $mp_nama = $i['mp_nama'];
@@ -134,6 +136,7 @@
                     <td><?php echo $alamat ?></td>
                     <td><?php echo $email ?></td>
                     <td><?php echo $kurir_nama ?></td>
+                    <td><?php echo $resi ?></td>
                     <td><?php echo $ongkir ?></td>
                     <td><?php echo $at_nama ?></td>
                     <td><?php echo $mp_nama ?></td>
@@ -584,6 +587,7 @@
       $hp = $i['pemesanan_hp'];
       $alamat = $i['pemesanan_alamat'];
       $kurir_id1 = $i['kurir_id'];
+      $resi = $i['no_resi'];
       $level = $i['status_customer'];
       $kurir_nama = $i['kurir_nama'];
       $at_id1 = $i['at_id'];
@@ -655,6 +659,12 @@
                       endforeach;
                       ?>
                     </select>
+                  </div>
+                  <div class="col-md-12 resi<?=$pemesanan_id?>" id="c">
+                              <br>
+                              <label class="control-label">Nomor Resi</label>
+                              <input value="<?php echo $resi ?>" class="form-control form-white" type="text" name="no_resi" />
+                              <br>
                   </div>
                   <div class="col-md-12">
                     <label class="control-label">Metode Pembayaran</label>

@@ -674,6 +674,7 @@
             <form action="<?php echo base_url() ?>Admin/PemesananAllByBulan/edit_pesanan?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
               <div class="modal-body p-20">
                 <div class="row">
+                <input value="<?php echo $this->session->userdata('nama')?>" type="hidden" name="username" required />
                   <div class="col-md-12">
                     <label class="control-label">Nama Pemesan</label>
                     <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>">
@@ -918,6 +919,7 @@
           <form action="<?php echo base_url() ?>Admin/PemesananAllByBulan/savepemesananNR?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
             <div class="modal-body p-20">
               <div class="row">
+              <input value="<?php echo $this->session->userdata('nama')?>" type="hidden" name="username" required />
                 <div class="col-md-12">
                   <label class="control-label">Nama Pemesan</label>
                   <input class="form-control form-white" type="text" name="nama_pemesan" required />
@@ -1055,6 +1057,7 @@
           <form action="<?php echo base_url() ?>Admin/PemesananAllByBulan/savepemesananR?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
             <div class="modal-body p-20">
               <div class="row">
+              <input value="<?php echo $this->session->userdata('nama')?>" type="hidden" name="username" required />
                 <div class="col-md-12">
                   <label class="control-label">Nama Pemesan</label>
                   <input class="form-control form-white" type="text" name="nama_pemesan" required />
@@ -1196,6 +1199,7 @@
             <div class="modal-body p-20">
               <div class="row">
               
+              <input value="<?php echo $this->session->userdata('nama')?>" type="hidden" name="username" required />
                
                 <div class="col-md-12">
                   <label class="control-label">Tanggal</label>

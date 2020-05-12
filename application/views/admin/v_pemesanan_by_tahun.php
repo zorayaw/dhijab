@@ -204,6 +204,7 @@
                               <?php }} ?>
               <div class="modal-body p-20">
                 <div class="row">
+                <input value="<?php echo $this->session->userdata('nama')?>" type="hidden" name="username" required />
                   <div class="col-md-12">
                     <label class="control-label">Nama Pemesan</label>
                     <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>">

@@ -51,6 +51,48 @@ class Barang extends CI_Controller
 		}
 	}
 
+	function historyPemesananCustomer()
+	{
+		if ($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') == true) {
+			$y['title'] = "History Input Data Customer";
+			$x['title_view'] = "History Input Data Customer";
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomer();
+			$this->load->view('v_header', $y);
+			$this->load->view('owner/v_sidebar');
+			$this->load->view('owner/v_history_input_data',  $x);
+		} else {
+			redirect('Login');
+		}
+	}
+
+	function historyPemesananReseller()
+	{
+		if ($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') == true) {
+			$y['title'] = "History Input Data Reseller";
+			$x['title_view'] = "History Input Data Reseller";
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananReseller();
+			$this->load->view('v_header', $y);
+			$this->load->view('owner/v_sidebar');
+			$this->load->view('owner/v_history_input_data',  $x);
+		} else {
+			redirect('Login');
+		}
+	}
+
+	function historyPemesananProduksi()
+	{
+		if ($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') == true) {
+			$y['title'] = "History Input Data Produksi";
+			$x['title_view'] = "History Input Data Produksi";
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananProduksi();
+			$this->load->view('v_header', $y);
+			$this->load->view('owner/v_sidebar');
+			$this->load->view('owner/v_history_input_data',  $x);
+		} else {
+			redirect('Login');
+		}
+	}
+
 	function tambahpesananNR()
 	{
 		$pemesanan_id = $this->input->post('pemesanan_id');

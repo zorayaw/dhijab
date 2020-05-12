@@ -585,6 +585,7 @@ $mp_nama = $i['mp_nama'];
     <form action="<?php echo base_url() ?>Admin/PemesananCustomer/edit_pesanan" method="post" enctype="multipart/form-data">
       <div class="modal-body p-20">
         <div class="row">
+        <input value="<?php echo $this->session->userdata('nama')?>" type="hidden" name="username" required />
           <div class="col-md-12">
             <label class="control-label">Nama Pemesan</label>
             <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>">
@@ -945,6 +946,7 @@ $status_pemesanan = $i['status_pemesanan'];
           </div>
           <form action="<?php echo base_url() ?>Admin/PemesananCustomer/savepemesananNR" method="post" enctype="multipart/form-data">
             <div class="modal-body p-20">
+            <input value="<?php echo $this->session->userdata('nama')?>" type="hidden" name="username" required />
               <div class="row">
                 <div class="col-md-12">
                   <label class="control-label">Nama Pemesan</label>
@@ -1087,6 +1089,7 @@ $status_pemesanan = $i['status_pemesanan'];
           <form action="<?php echo base_url() ?>Admin/PemesananCustomer/savepemesananR" method="post" enctype="multipart/form-data">
             <div class="modal-body p-20">
               <div class="row">
+              <input value="<?php echo $this->session->userdata('nama')?>" type="hidden" name="username" required />
                 <div class="col-md-12">
                   <label class="control-label">Nama Pemesan</label>
                   <input class="form-control form-white" type="text" name="nama_pemesan" required />
@@ -1229,7 +1232,8 @@ $status_pemesanan = $i['status_pemesanan'];
             <div class="modal-body p-20">
               <div class="row">
 
-
+              <input value="<?php echo $this->session->userdata('nama')?>" type="hidden" name="username" required />
+             
                 <div class="col-md-12">
                   <label class="control-label">Tanggal</label>
                   <input class="form-control form-white" type="date" name="tanggal" required />
