@@ -13,8 +13,8 @@ class stock extends CI_Controller
 			redirect($url);
 		};
 
-		$this->load->model('m_pemesanan');
-		$this->load->model('m_barang');
+		$this->load->model('M_pemesanan');
+		$this->load->model('M_barang');
 		$this->load->model('m_list_barang');
 		$this->load->library('upload');
 	}
@@ -22,7 +22,7 @@ class stock extends CI_Controller
 	function index()
 	{
 		$y['title'] = "Stock";
-			$x['stock'] = $this->m_barang->getAllBarang();
+			$x['stock'] = $this->M_barang->getAllBarang();
 			$this->load->view('v_header', $y);
 			if($this->session->userdata('akses') == 3){
 				$this->load->view('stok/v_sidebar');
@@ -37,7 +37,7 @@ class stock extends CI_Controller
 	{
 		$y['title'] = "Stock Masuk";
 			$status='2';
-			$x['stock'] = $this->m_barang-> getHistoryStock($barang_id,$status);
+			$x['stock'] = $this->M_barang-> getHistoryStock($barang_id,$status);
 			$this->load->view('v_header', $y);
 			if($this->session->userdata('akses') == 3){
 				$this->load->view('stok/v_sidebar');
@@ -51,7 +51,7 @@ class stock extends CI_Controller
 	function history_stok_keluar($barang_id)
 	{$y['title'] = "Stock Keluar";
 			$status='1';
-			$x['stock'] = $this->m_barang-> getHistoryStock($barang_id,$status);
+			$x['stock'] = $this->M_barang-> getHistoryStock($barang_id,$status);
 			$this->load->view('v_header', $y);
 			if($this->session->userdata('akses') == 3){
 				$this->load->view('admin/v_sidebar');
@@ -67,7 +67,7 @@ class stock extends CI_Controller
 		$y['title'] = "Stock";
 			$stock = $this->input->post('stock');
 			$barang_id = $this->input->post('barang_id');
-			$this->m_barang->update_stock($barang_id,$stock);
+			$this->M_barang->update_stock($barang_id,$stock);
 			redirect('Stok/Stock');
 		
 	}

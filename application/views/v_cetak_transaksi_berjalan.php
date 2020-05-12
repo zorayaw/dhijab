@@ -70,7 +70,7 @@ $cur_date = date("d-m-Y");?>
                       $biaya_admin = $i['biaya_admin'];
                       $uang = $i['uang_kembalian'];
                       $at_nama = $i['at_nama'];
-                    $M = $this->m_pemesanan->getHModal($pemesanan_id);
+                    $M = $this->M_pemesanan->getHModal($pemesanan_id);
                     $mod=$M->result_array();
                     
                     foreach($mod as $temp){

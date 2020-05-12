@@ -21,6 +21,7 @@
     <div class="col-xl-12 mb-30">
       <div class="card card-statistics h-100">
         <div class="card-body">
+          <?php if($this->session->userdata('akses') == 2) : ?>
         <div class="col-xl-12 mb-10">
         <h6 class="mb-0">Tambah Pemesanan Bulan <?=$namaBulan." ".date('Y')?> :</h6>
       </div>
@@ -55,7 +56,7 @@
               </a>
             </div>
           </div>
-
+          <?php endif; ?>
             <div class="btn-group">
             <button type="button" class="btn btn-info dropdown-toggle mb-4 ml-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Filter Tahun
@@ -531,10 +532,11 @@
                   <th>Diskon</th>
                   <th>Uang Kembalian</th>
                   <th>Total Harga</th>
-                  
+                  <?php if($this->session->userdata('akses') == 2) : ?>
                   <th >
                     <center>Aksi</center>
                   </th>
+                  <?php endif; ?>
                 </tr>
               </thead>
               <tbody>
@@ -571,10 +573,26 @@
                   $diskon = $i['diskon'];
                   $uang = $i['uang_kembalian'];
                   $note = $i['note'];
+                  if($i['status_pemesanan'] == 0)
+                  $namstat = "Belum Bayar";
+                  elseif($i['status_pemesanan'] == 1)
+                  $namstat = "Dibayar";
+                  elseif($i['status_pemesanan'] == 2)
+                  $namstat = "Dikirim";
+                  elseif($i['status_pemesanan'] == 3)
+                  $namstat = "Selesai";
 
                     $q = $this->db->query("SELECT SUM(lb_qty * harga)AS total_keseluruhan from list_barang where pemesanan_id=' $pemesanan_id'");
                     $c = $q->row_array();
                     $jumlah = $c['total_keseluruhan']+$ongkir-($diskon+$biaya_admin+$uang) ;
+                    $q = $this->db->query("SELECT barang_nama,lb_qty from list_barang,barang where barang.barang_id=list_barang.barang_id and  pemesanan_id=' $pemesanan_id'");
+                  
+                    $nama_barang="";
+                    $nomor_barang=1;
+                    foreach ($q->result_array() as $k) :
+                      $nama_barang=$nama_barang.$nomor_barang.". ".$k['barang_nama'].": ".$k['lb_qty']."<br><br>";
+                        $nomor_barang++; 
+                    endforeach;
                   
 
 
@@ -595,10 +613,13 @@
                     <td><?php echo $ongkir ?></td>
                     <td><?php echo $at_nama ?></td>
                     <td><?php echo $mp_nama ?></td>
-
+                    <?php if($this->session->userdata('akses') == 2) : ?>
                     <td><a href="<?php echo base_url() ?>Admin/PemesananAllByBulan/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>" target="_blank" class="btn btn-primary">List Barang</a></td>
+                    <?php else : ?>
+                    <td><?php echo $nama_barang ?></td>
+                    <?php endif;?>
+                    <?php if($this->session->userdata('akses') == 2) : ?>
                     <td>
-
                       <?php
                       if ($status == 0) { ?>
                         <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#bayar<?= $pemesanan_id ?>" style="margin-right: 20px">Belum Bayar</button>
@@ -616,6 +637,9 @@
                     }
                     ?>
                     </td>
+                    <?php else : ?>
+                    <td><?php echo $namstat ?></td>
+                    <?php endif; ?>
                     <td><?php echo $note ?></td>
                     <td><?php echo rupiah($biaya_admin) ?></td>
                     <td><?php echo rupiah($diskon) ?></td>
@@ -625,10 +649,12 @@
                     <?php 
                       $total=$total+$jumlah;
                     ?>
+                    <?php if($this->session->userdata('akses') == 2) : ?>
                     <td>
                       <a href="#" style="margin-right: 10px; margin-left: 10px;" data-toggle="modal" data-target="#editdata<?php echo $pemesanan_id ?>"><span class="ti-pencil"></span></a>
                       <a href="#" style="margin-right: 10px" data-toggle="modal" data-target="#hapusdata<?php echo $pemesanan_id ?>"><span class="ti-trash"></span></a>
                     </td>
+                    <?php endif; ?>
                   </tr>
                 <?php endforeach; ?>
                 
