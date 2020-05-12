@@ -13,15 +13,15 @@
 		      redirect($url);
 		    };
 
-		    $this->load->model('m_pemesanan');
+		    $this->load->model('M_pemesanan');
 		    $this->load->library('upload');
 	  	}
 
 	  	function index(){
 	  		if($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') == true){
 		       $y['title'] = "Transaksi";
-		       $x['datapesanan'] = $this->m_pemesanan->getPemesanan();
-		       $a = $this->m_pemesanan->getPemesanan();
+		       $x['datapesanan'] = $this->M_pemesanan->getPemesanan();
+		       $a = $this->M_pemesanan->getPemesanan();
 		       $total_u = 0;
 		       $total_o = 0;
 		       foreach ($a->result_array() as $i) {
@@ -63,8 +63,8 @@
 		       $ke = $this->input->post('ketgl');
 		       $x['dari'] = $dari;
 		       $x['ke'] = $ke;
-		       $x['datapesanan'] = $this->m_pemesanan->getPemesananMonth($dari,$ke);
-		       $a = $this->m_pemesanan->getPemesananMonth($dari,$ke);
+		       $x['datapesanan'] = $this->M_pemesanan->getPemesananMonth($dari,$ke);
+		       $a = $this->M_pemesanan->getPemesananMonth($dari,$ke);
 		       $total_u = 0;
 		       $total_o = 0;
 		       foreach ($a->result_array() as $i) {
@@ -103,8 +103,8 @@
 		//     $ke = $this->input->post('ketgl');
 		//     $x['dari'] = $dari;
 		//     $x['ke'] = $ke;
-		//     $x['data'] = $this->m_pemesanan->getPemesananMonth($dari,$ke);
-	  	// 	$a = $this->m_pemesanan->getPemesananMonth($dari,$ke);
+		//     $x['data'] = $this->M_pemesanan->getPemesananMonth($dari,$ke);
+	  	// 	$a = $this->M_pemesanan->getPemesananMonth($dari,$ke);
 		//        $total_u = 0;
 		//        $total_o = 0;
 		//        foreach ($a->result_array() as $i) {
@@ -137,25 +137,25 @@
 			  $statusc = $this->input->get('status');
 			  $x['numstat'] = $statusc;
 			  if($statusc==0){
-				$x['data'] = $this->m_pemesanan->getPemesananCurdate();
+				$x['data'] = $this->M_pemesanan->getPemesananCurdate();
 				$x['stat'] = "Seluruh";
-				$a = $this->m_pemesanan->getPemesananCurdate();
+				$a = $this->M_pemesanan->getPemesananCurdate();
 
 			}
 			else if($statusc==1){
-				$x['data'] = $this->m_pemesanan->getPemesananCustomerCurdate();
+				$x['data'] = $this->M_pemesanan->getPemesananCustomerCurdate();
 				$x['stat'] = "Customer";
-			$a = $this->m_pemesanan->getPemesananCustomerCurdate();
+			$a = $this->M_pemesanan->getPemesananCustomerCurdate();
 			}
 			else if($statusc==2){
-				$x['data'] = $this->m_pemesanan->getPemesananResellerCurdate();
+				$x['data'] = $this->M_pemesanan->getPemesananResellerCurdate();
 				$x['stat'] = "Reseller";
-			$a = $this->m_pemesanan->getPemesananResellerCurdate();
+			$a = $this->M_pemesanan->getPemesananResellerCurdate();
 			}
 			else if($statusc==3){
-				$x['data'] = $this->m_pemesanan->getPemesananProduksiCurdate();
+				$x['data'] = $this->M_pemesanan->getPemesananProduksiCurdate();
 				$x['stat'] = "Produksi";
-			$a = $this->m_pemesanan->getPemesananProduksiCurdate();
+			$a = $this->M_pemesanan->getPemesananProduksiCurdate();
 			}
 			  $modal = 0;
 		       $total_u = 0;
@@ -165,7 +165,7 @@
 		       foreach ($a->result_array() as $i) {
 		       	$pemesanan_id = $i['pemesanan_id'];
 				   $level = $i['status_customer'];
-					$b = $this->m_pemesanan->getHargaModal($pemesanan_id, $level);
+					$b = $this->M_pemesanan->getHargaModal($pemesanan_id, $level);
 					foreach($b as $temp){
 						$modal = $modal + $temp['harga'];
 					}
@@ -201,24 +201,24 @@
 			$x['end'] = $end;
 			
 			if($statusc==0){
-				$x['data'] = $this->m_pemesanan->getPemesananByTanggal($start,$end);
+				$x['data'] = $this->M_pemesanan->getPemesananByTanggal($start,$end);
 				$x['stat'] = "Seluruh";
-				$a = $this->m_pemesanan->getPemesananByTanggal($start,$end);
+				$a = $this->M_pemesanan->getPemesananByTanggal($start,$end);
 			}
 			else if($statusc==1){
-				$x['data'] = $this->m_pemesanan->getPemesananCustomerByTanggal($start,$end);
+				$x['data'] = $this->M_pemesanan->getPemesananCustomerByTanggal($start,$end);
 				$x['stat'] = "Customer";
-				$a = $this->m_pemesanan->getPemesananCustomerByTanggal($start,$end);
+				$a = $this->M_pemesanan->getPemesananCustomerByTanggal($start,$end);
 			}
 			else if($statusc==2){
-				$x['data'] = $this->m_pemesanan->getPemesananResellerByTanggal($start,$end);
+				$x['data'] = $this->M_pemesanan->getPemesananResellerByTanggal($start,$end);
 				$x['stat'] = "Reseller";
-				$a = $this->m_pemesanan->getPemesananResellerByTanggal($start,$end);
+				$a = $this->M_pemesanan->getPemesananResellerByTanggal($start,$end);
 			}
 			else if($statusc==3){
-				$x['data'] = $this->m_pemesanan->getPemesananProduksiByTanggal($start,$end);
+				$x['data'] = $this->M_pemesanan->getPemesananProduksiByTanggal($start,$end);
 				$x['stat'] = "Produksi";
-				$a = $this->m_pemesanan->getPemesananProduksiByTanggal($start,$end);
+				$a = $this->M_pemesanan->getPemesananProduksiByTanggal($start,$end);
 			}
 			$modal = 0;
 			$total_u = 0;
@@ -232,7 +232,7 @@
 			foreach ($a->result_array() as $i) {
 				$pemesanan_id = $i['pemesanan_id'];
 				$level = $i['status_customer'];
-				$b = $this->m_pemesanan->getHargaModal($pemesanan_id, $level);
+				$b = $this->M_pemesanan->getHargaModal($pemesanan_id, $level);
 				foreach ($b as $temp) {
 					$modal = $modal + $temp['harga'];
 				}
@@ -267,24 +267,24 @@
 			$x['bulan'] = $bulan;
 			$x['tahun'] = $tahun;
 			if($statusc==0){
-				$x['data'] = $this->m_pemesanan->getPemesananByBulan($bulan, $tahun);
+				$x['data'] = $this->M_pemesanan->getPemesananByBulan($bulan, $tahun);
 				$x['stat'] = "Seluruh";
-				$a = $this->m_pemesanan->getPemesananByBulan($bulan, $tahun);
+				$a = $this->M_pemesanan->getPemesananByBulan($bulan, $tahun);
 			}
 			else if($statusc==1){
-				$x['data'] = $this->m_pemesanan->getPemesananCustomerByBulan($bulan, $tahun);
+				$x['data'] = $this->M_pemesanan->getPemesananCustomerByBulan($bulan, $tahun);
 				$x['stat'] = "Customer";
-			$a = $this->m_pemesanan->getPemesananCustomerByBulan($bulan, $tahun);
+			$a = $this->M_pemesanan->getPemesananCustomerByBulan($bulan, $tahun);
 			}
 			else if($statusc==2){
-				$x['data'] = $this->m_pemesanan->getPemesananResellerByBulan($bulan, $tahun);
+				$x['data'] = $this->M_pemesanan->getPemesananResellerByBulan($bulan, $tahun);
 				$x['stat'] = "Reseller";
-			$a = $this->m_pemesanan->getPemesananResellerByBulan($bulan, $tahun);
+			$a = $this->M_pemesanan->getPemesananResellerByBulan($bulan, $tahun);
 			}
 			else if($statusc==3){
-				$x['data'] = $this->m_pemesanan->getPemesananProduksiByBulan($bulan, $tahun);
+				$x['data'] = $this->M_pemesanan->getPemesananProduksiByBulan($bulan, $tahun);
 				$x['stat'] = "Produksi";
-			$a = $this->m_pemesanan->getPemesananProduksiByBulan($bulan, $tahun);
+			$a = $this->M_pemesanan->getPemesananProduksiByBulan($bulan, $tahun);
 			}
 			
 			$modal = 0;
@@ -299,7 +299,7 @@
 			foreach ($a->result_array() as $i) {
 				$pemesanan_id = $i['pemesanan_id'];
 				$level = $i['status_customer'];
-				$b = $this->m_pemesanan->getHargaModal($pemesanan_id, $level);
+				$b = $this->M_pemesanan->getHargaModal($pemesanan_id, $level);
 				foreach ($b as $temp) {
 					$modal = $modal + $temp['harga'];
 				}
@@ -338,24 +338,24 @@
 			$x['akhir'] = $akhir;
 
 			if($statusc==0){
-				$x['data'] = $this->m_pemesanan->getPemesananByTahun($awal, $akhir);
+				$x['data'] = $this->M_pemesanan->getPemesananByTahun($awal, $akhir);
 				$x['stat'] = "Seluruh";
-				$a = $this->m_pemesanan->getPemesananByTahun($awal, $akhir);
+				$a = $this->M_pemesanan->getPemesananByTahun($awal, $akhir);
 			}
 			else if($statusc==1){
-				$x['data'] = $this->m_pemesanan->getPemesananCustomerByTahun($awal, $akhir);
+				$x['data'] = $this->M_pemesanan->getPemesananCustomerByTahun($awal, $akhir);
 				$x['stat'] = "Customer";
-			$a = $this->m_pemesanan->getPemesananCustomerByTahun($awal, $akhir);
+			$a = $this->M_pemesanan->getPemesananCustomerByTahun($awal, $akhir);
 			}
 			else if($statusc==2){
-				$x['data'] = $this->m_pemesanan->getPemesananResellerByTahun($awal, $akhir);
+				$x['data'] = $this->M_pemesanan->getPemesananResellerByTahun($awal, $akhir);
 				$x['stat'] = "Reseller";
-			$a = $this->m_pemesanan->getPemesananResellerByTahun($awal, $akhir);
+			$a = $this->M_pemesanan->getPemesananResellerByTahun($awal, $akhir);
 			}
 			else if($statusc==3){
-				$x['data'] = $this->m_pemesanan->getPemesananProduksiByTahun($awal, $akhir);
+				$x['data'] = $this->M_pemesanan->getPemesananProduksiByTahun($awal, $akhir);
 				$x['stat'] = "Produksi";
-			$a = $this->m_pemesanan->getPemesananProduksiByTahun($awal, $akhir);
+			$a = $this->M_pemesanan->getPemesananProduksiByTahun($awal, $akhir);
 			}
 			$modal = 0;
 			$total_u = 0;
@@ -369,7 +369,7 @@
 			foreach ($a->result_array() as $i) {
 				$pemesanan_id = $i['pemesanan_id'];
 				$level = $i['status_customer'];
-				$b = $this->m_pemesanan->getHargaModal($pemesanan_id, $level);
+				$b = $this->M_pemesanan->getHargaModal($pemesanan_id, $level);
 				foreach ($b as $temp) {
 					$modal = $modal + $temp['harga'];
 				}
@@ -407,24 +407,24 @@
 			$x['akhir'] = $akhir;
 
 			if($statusc==0){
-				$x['data'] = $this->m_pemesanan->getPemesananByBulanTanpaTahun($bulan, $awal, $akhir);
+				$x['data'] = $this->M_pemesanan->getPemesananByBulanTanpaTahun($bulan, $awal, $akhir);
 				$x['stat'] = "Seluruh";
-			$a = $this->m_pemesanan->getPemesananByBulanTanpaTahun($bulan, $awal, $akhir);
+			$a = $this->M_pemesanan->getPemesananByBulanTanpaTahun($bulan, $awal, $akhir);
 			}
 			else if($statusc==1){
-				$x['data'] = $this->m_pemesanan->getPemesananCustomerByBulanTanpaTahun($bulan, $awal, $akhir);
+				$x['data'] = $this->M_pemesanan->getPemesananCustomerByBulanTanpaTahun($bulan, $awal, $akhir);
 				$x['stat'] = "Customer";
-			$a = $this->m_pemesanan->getPemesananCustomerByBulanTanpaTahun($bulan, $awal, $akhir);
+			$a = $this->M_pemesanan->getPemesananCustomerByBulanTanpaTahun($bulan, $awal, $akhir);
 			}
 			else if($statusc==2){
-				$x['data'] = $this->m_pemesanan->getPemesananResellerByBulanTanpaTahun($bulan, $awal, $akhir);
+				$x['data'] = $this->M_pemesanan->getPemesananResellerByBulanTanpaTahun($bulan, $awal, $akhir);
 				$x['stat'] = "Reseller";
-			$a = $this->m_pemesanan->getPemesananResellerByBulanTanpaTahun($bulan, $awal, $akhir);
+			$a = $this->M_pemesanan->getPemesananResellerByBulanTanpaTahun($bulan, $awal, $akhir);
 			}
 			else if($statusc==3){
-				$x['data'] = $this->m_pemesanan->getPemesananProduksiByBulanTanpaTahun($bulan, $awal, $akhir);
+				$x['data'] = $this->M_pemesanan->getPemesananProduksiByBulanTanpaTahun($bulan, $awal, $akhir);
 				$x['stat'] = "Produksi";
-			$a = $this->m_pemesanan->getPemesananProduksiByBulanTanpaTahun($bulan, $awal, $akhir);
+			$a = $this->M_pemesanan->getPemesananProduksiByBulanTanpaTahun($bulan, $awal, $akhir);
 			}
 			
 			$modal = 0;
@@ -439,7 +439,7 @@
 			foreach ($a->result_array() as $i) {
 				$pemesanan_id = $i['pemesanan_id'];
 				$level = $i['status_customer'];
-				$b = $this->m_pemesanan->getHargaModal($pemesanan_id, $level);
+				$b = $this->M_pemesanan->getHargaModal($pemesanan_id, $level);
 				foreach ($b as $temp) {
 					$modal = $modal + $temp['harga'];
 				}
@@ -469,8 +469,8 @@
 
 		function cetakTransaksiBerjalan(){
 
-			$x['data'] = $this->m_pemesanan->getPemesananKonfirmasi();
-			$a = $this->m_pemesanan->getPemesananKonfirmasi();
+			$x['data'] = $this->M_pemesanan->getPemesananKonfirmasi();
+			$a = $this->M_pemesanan->getPemesananKonfirmasi();
 			$modal = 0;
 			$total_u = 0;
 			$total_o = 0;
@@ -483,7 +483,7 @@
 			foreach ($a->result_array() as $i) {
 				$pemesanan_id = $i['pemesanan_id'];
 				$level = $i['status_customer'];
-				$b = $this->m_pemesanan->getHargaModal($pemesanan_id, $level);
+				$b = $this->M_pemesanan->getHargaModal($pemesanan_id, $level);
 				foreach ($b as $temp) {
 					$modal = $modal + $temp['harga'];
 				}

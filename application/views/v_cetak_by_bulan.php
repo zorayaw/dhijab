@@ -72,7 +72,7 @@
                       $kurir_nama = $i['kurir_nama'];
                       $at_id = $i['at_id'];
                       $at_nama = $i['at_nama'];
-                      $b = $this->m_pemesanan->getHargaModal($pemesanan_id, $level);
+                      $b = $this->M_pemesanan->getHargaModal($pemesanan_id, $level);
                       foreach ($b as $temp) {
                         $modal = $modal + $temp['harga'];
                     }

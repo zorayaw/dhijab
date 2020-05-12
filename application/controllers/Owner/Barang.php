@@ -13,8 +13,8 @@ class Barang extends CI_Controller
 			redirect($url);
 		};
 
-		$this->load->model('m_pemesanan');
-		$this->load->model('m_barang');
+		$this->load->model('M_pemesanan');
+		$this->load->model('M_barang');
 		$this->load->model('m_list_barang');
 		$this->load->library('upload');
 	}
@@ -23,8 +23,8 @@ class Barang extends CI_Controller
 	{
 		if ($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') == true) {
 			$y['title'] = "Barang Customer";
-			$x['nonreseller'] = $this->m_barang->getAllBarang();
-			$x['kategori_barang'] = $this->m_barang->getkategori_barang();
+			$x['nonreseller'] = $this->M_barang->getAllBarang();
+			$x['kategori_barang'] = $this->M_barang->getkategori_barang();
 			$this->load->view('v_header', $y);
 			$this->load->view('owner/v_sidebar');
 			$this->load->view('owner/v_seluruh_barang', $x);
@@ -37,12 +37,12 @@ class Barang extends CI_Controller
 	{
 		if ($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') == true) {
 			$y['title'] = "Pemesanan";
-			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
-			$x['kurir'] = $this->m_pemesanan->getAllkurir();
-			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
-			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
-			$x['reseller'] = $this->m_barang->getAllBarangR();
-			$x['datapesanan'] = $this->m_pemesanan->getPemesanan();
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesanan();
 			$this->load->view('v_header', $y);
 			$this->load->view('owner/v_sidebar');
 			$this->load->view('owner/v_pemesanan_o', $x);
@@ -153,8 +153,8 @@ class Barang extends CI_Controller
 		$barang_id = $this->input->post('barang');
 		$qty = $this->input->post('qty');
 
-		$this->m_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir, $asal_transaksi, $metpem);
-		$x = $this->m_pemesanan->getIdbyName($nama_pemesan);
+		$this->M_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir, $asal_transaksi, $metpem);
+		$x = $this->M_pemesanan->getIdbyName($nama_pemesan);
 		$z = $x->row_array();
 		$pemesanan_id = $z['pemesanan_id'];
 
@@ -181,8 +181,8 @@ class Barang extends CI_Controller
 		$barang_id = $this->input->post('barang');
 		$qty = $this->input->post('qty');
 
-		$this->m_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir, $asal_transaksi, $metpem);
-		$x = $this->m_pemesanan->getIdbyName($nama_pemesan);
+		$this->M_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir, $asal_transaksi, $metpem);
+		$x = $this->M_pemesanan->getIdbyName($nama_pemesan);
 		$z = $x->row_array();
 		$pemesanan_id = $z['pemesanan_id'];
 
@@ -207,7 +207,7 @@ class Barang extends CI_Controller
 		$metode_pembayaran = $this->input->post('mp');
 		$tanggal = $this->input->post('tanggal');
 
-		$this->m_pemesanan->edit_pesanan1($pemesanan_id, $nama_pemesan, $tanggal, $no_hp, $alamat, $kurir, $asal_transaksi, $metode_pembayaran);
+		$this->M_pemesanan->edit_pesanan1($pemesanan_id, $nama_pemesan, $tanggal, $no_hp, $alamat, $kurir, $asal_transaksi, $metode_pembayaran);
 		echo $this->session->set_flashdata('msg', 'update');
 		redirect('Owner/Barang/pemesanan');
 	}
@@ -215,7 +215,7 @@ class Barang extends CI_Controller
 	function hapus_pesanan()
 	{
 		$pemesanan_id = $this->input->post('pemesanan_id');
-		$this->m_pemesanan->hapus_pesanan($pemesanan_id);
+		$this->M_pemesanan->hapus_pesanan($pemesanan_id);
 		echo $this->session->set_flashdata('msg', 'hapus');
 		redirect('Owner/Barang/pemesanan');
 	}
@@ -229,7 +229,7 @@ class Barang extends CI_Controller
 				$x['lvl'] = $level;
 				$y['title'] = "List Barang Pemesan";
 				$x['listbarang'] = $this->m_list_barang->getLBRbyid($pemesanan_id);
-				$x['reseller'] = $this->m_barang->getAllBarangR();
+				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$a = $this->m_list_barang->SUMLBR($pemesanan_id)->row_array();
 				$x['jumlah'] = $a['total_keseluruhan'];
 				$this->load->view('v_header', $y);
@@ -241,7 +241,7 @@ class Barang extends CI_Controller
 				$x['lvl'] = $level;
 				$x['listbarang'] = $this->m_list_barang->getLBNRbyid($pemesanan_id);
 				$a = $this->m_list_barang->SUMLBNR($pemesanan_id)->row_array();
-				$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 				$x['jumlah'] = $a['total_keseluruhan'];
 				$this->load->view('v_header', $y);
 				$this->load->view('admin/v_sidebar');
@@ -258,7 +258,7 @@ class Barang extends CI_Controller
 	{
 		if ($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') == true) {
 			$y['title'] = "Barang Reseller";
-			$x['barang'] = $this->m_barang->getkategori_barang();
+			$x['barang'] = $this->M_barang->getkategori_barang();
 			$this->load->view('v_header', $y);
 			$this->load->view('owner/v_sidebar');
 			$this->load->view('owner/v_barang_reseller', $x);
@@ -271,7 +271,7 @@ class Barang extends CI_Controller
 	{
 		if ($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') == true) {
 			$y['title'] = "Harga Barang";
-			$x['harga'] = $this->m_barang->getHargaReseller($barang_id);
+			$x['harga'] = $this->M_barang->getHargaReseller($barang_id);
 			$this->load->view('v_header', $y);
 			$this->load->view('owner/v_sidebar');
 			$this->load->view('owner/v_harga_reseller', $x);
@@ -285,7 +285,7 @@ class Barang extends CI_Controller
 		$br_id = $this->input->post('br_id');
 		$barang_id = $this->input->post('barang_id');
 		$harga = str_replace(".", "", $this->input->post('harga'));
-		$this->m_barang->update_harga($br_id, $harga);
+		$this->M_barang->update_harga($br_id, $harga);
 		echo $this->session->set_flashdata('msg', 'update');
 		redirect("Owner/Barang/Harga_Reseller/$barang_id");
 	}
@@ -303,7 +303,7 @@ class Barang extends CI_Controller
 
 	
 
-		$this->m_barang->tambah_kategori($nama_kategori,$berat,$harga_ecer,$harga_grosir_3_11,$harga_grosir_12_29,$grosir_diatas_30,$reseller,$HPP);
+		$this->M_barang->tambah_kategori($nama_kategori,$berat,$harga_ecer,$harga_grosir_3_11,$harga_grosir_12_29,$grosir_diatas_30,$reseller,$HPP);
 		echo $this->session->set_flashdata('msg', 'success');
 		redirect('Owner/Barang/Reseller');
 	}
@@ -321,7 +321,7 @@ class Barang extends CI_Controller
 		$reseller = $this->input->post('reseller');
 		$HPP = $this->input->post('HPP');
 
-			$this->m_barang->update_kategori($barang_id,$nama_kategori,$berat,$harga_ecer,$harga_grosir_3_11,$harga_grosir_12_29,$grosir_diatas_30,$reseller,$HPP);
+			$this->M_barang->update_kategori($barang_id,$nama_kategori,$berat,$harga_ecer,$harga_grosir_3_11,$harga_grosir_12_29,$grosir_diatas_30,$reseller,$HPP);
 			
 			echo $this->session->set_flashdata('msg', 'success_non_reseller');
 			redirect('Owner/Barang/Reseller');
@@ -331,7 +331,7 @@ class Barang extends CI_Controller
 	function hapus_reseller()
 	{
 		$id_kategori_barang = $this->input->post('barang_id');
-		$this->m_barang->hapus_kategori_barang($id_kategori_barang);
+		$this->M_barang->hapus_kategori_barang($id_kategori_barang);
 		echo $this->session->set_flashdata('msg', 'delete');
 		redirect('Owner/Barang/Reseller');
 	}
@@ -345,7 +345,7 @@ class Barang extends CI_Controller
 				$kategori = $this->input->post('kategori');
 				$jenis_barang = $this->input->post('jenis_barang');
 
-				$this->m_barang->savebarang($nama_barang, $stock, $kategori, $jenis_barang);
+				$this->M_barang->savebarang($nama_barang, $stock, $kategori, $jenis_barang);
 				
 
 				echo $this->session->set_flashdata('msg', 'success_non_reseller');
@@ -361,7 +361,7 @@ class Barang extends CI_Controller
 			$nama_barang = $this->input->post('nama_barang');
 			$stock = $this->input->post('stock');
 			$barang_id = $this->input->post('barang_id');
-			$this->m_barang->update_barang($barang_id,$nama_barang, $stock);
+			$this->M_barang->update_barang($barang_id,$nama_barang, $stock);
 			echo $this->session->set_flashdata('msg', 'success_non_reseller');
 			redirect('Owner/Barang');
 		
@@ -373,7 +373,7 @@ class Barang extends CI_Controller
 		$images = $this->input->post('barang_foto');
 		$path = './assets/images/' . $images;
 		unlink($path);
-		$this->m_barang->hapus_barang_NR($barang_id);
+		$this->M_barang->hapus_barang_NR($barang_id);
 		echo $this->session->set_flashdata('msg', 'delete');
 		redirect('Owner/Barang');
 	}
@@ -382,7 +382,7 @@ class Barang extends CI_Controller
 	{
 		if ($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') == true) {
 			$y['title'] = "Stock";
-			$x['stock'] = $this->m_barang->getHistoryStock($barang_id, 1);
+			$x['stock'] = $this->M_barang->getHistoryStock($barang_id, 1);
 			$this->load->view('v_header', $y);
 			$this->load->view('owner/v_sidebar');
 			$this->load->view('owner/v_history_stock', $x);
@@ -396,10 +396,10 @@ class Barang extends CI_Controller
 		$status_pemesanan = $this->input->post('status_pemesanan');;
 		if ($status_pemesanan == 0) {
 			$status_pemesanan = 1;
-			$this->m_pemesanan->status_pesanan($pemesanan_id, $status_pemesanan);
+			$this->M_pemesanan->status_pesanan($pemesanan_id, $status_pemesanan);
 		} else if ($status_pemesanan == 1) {
 			$status_pemesanan = 2;
-			$this->m_pemesanan->status_pesanan($pemesanan_id, $status_pemesanan);
+			$this->M_pemesanan->status_pesanan($pemesanan_id, $status_pemesanan);
 		}
 		redirect('Owner/Barang/pemesanan');
 	}
