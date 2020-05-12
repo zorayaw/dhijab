@@ -606,6 +606,7 @@
             <form action="<?php echo base_url() ?>Admin/Pemesanan/edit_pesanan" method="post" enctype="multipart/form-data">
               <div class="modal-body p-20">
                 <div class="row">
+                <input value="<?php echo $this->session->userdata('nama')?>" type="hidden" name="username" required />
                   <div class="col-md-12">
                     <label class="control-label">Nama Pemesan</label>
                     <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>">
@@ -964,6 +965,7 @@
             <div class="modal-body p-20">
               <div class="row">
                 <div class="col-md-12">
+                <input value="<?php echo $this->session->userdata('nama')?>" type="hidden" name="username" required />
                   <label class="control-label">Nama Pemesan</label>
                   <input class="form-control form-white" type="text" name="nama_pemesan" required />
                 </div>
@@ -1099,6 +1101,7 @@
           <form action="<?php echo base_url() ?>Admin/Pemesanan/savepemesananR" method="post" enctype="multipart/form-data">
             <div class="modal-body p-20">
               <div class="row">
+              <input value="<?php echo $this->session->userdata('nama')?>" type="hidden" name="username" required />
                 <div class="col-md-12">
                   <label class="control-label">Nama Pemesan</label>
                   <input class="form-control form-white" type="text" name="nama_pemesan" required />
@@ -1239,7 +1242,8 @@
             <div class="modal-body p-20">
               <div class="row">
 
-
+              <input value="<?php echo $this->session->userdata('nama')?>" type="hidden" name="username" required />
+               
                 <div class="col-md-12">
                   <label class="control-label">Tanggal</label>
                   <input class="form-control form-white" type="date" name="tanggal" required />
@@ -1529,6 +1533,7 @@
     $("#pilihan").modal('hide');
   });
 </script>
+
 <script type="text/javascript">
 function noresicus(checkbox){
       var isChecked = $('#checkboxcus').is(':checked'); 

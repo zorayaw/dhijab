@@ -615,6 +615,7 @@
       $hp = $i['pemesanan_hp'];
       $alamat = $i['pemesanan_alamat'];
       $kurir_id1 = $i['kurir_id'];
+      $resi = $i['no_resi'];
       $level = $i['status_customer'];
       $kurir_nama = $i['kurir_nama'];
       $at_id1 = $i['at_id'];
@@ -686,6 +687,12 @@
                       endforeach;
                       ?>
                     </select>
+                  </div>
+                  <div class="col-md-12 resi<?=$pemesanan_id?>" id="c">
+                              <br>
+                              <label class="control-label">Nomor Resi</label>
+                              <input value="<?php echo $resi ?>" class="form-control form-white" type="text" name="no_resi" />
+                              <br>
                   </div>
                   <div class="col-md-12">
                     <label class="control-label">Metode Pembayaran</label>

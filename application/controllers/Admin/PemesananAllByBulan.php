@@ -56,6 +56,7 @@ class PemesananAllByBulan extends CI_Controller
 		else{
 			$resi = $this->input->post('no_resi');
 		}
+		$username = $this->input->post('username');
 		$metpem = $this->input->post('metpem');
 		$tanggal = $this->input->post('tanggal');
 		$diskon = $this->input->post('diskon');
@@ -68,7 +69,8 @@ class PemesananAllByBulan extends CI_Controller
 		$email_pemesanan = $this->input->post('email_pemesanan');
 		$note = $this->input->post('note');
 		$status = 0;
-		$pemesanan_id = $this->M_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir, $resi, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
+		$pemesanan_id = $this->m_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir, $resi,$username, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
+
 		$size = sizeof($barang_id);
 
 		for ($i = 0; $i < $size; $i++) {
@@ -105,6 +107,7 @@ class PemesananAllByBulan extends CI_Controller
 		else{
 			$resi = $this->input->post('no_resi');
 		}
+		$username = $this->input->post('username');
 		$metpem = $this->input->post('metpem');
 		$tanggal = $this->input->post('tanggal');
 		$diskon = $this->input->post('diskon');
@@ -118,7 +121,8 @@ class PemesananAllByBulan extends CI_Controller
 		$note = $this->input->post('note');
 		$status = 0;
 		$level = 2;
-		$pemesanan_id = $this->M_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir,$resi, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
+		$pemesanan_id = $this->m_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir,$resi,$username, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
+
 
 		$size = sizeof($barang_id);
 
@@ -142,6 +146,7 @@ class PemesananAllByBulan extends CI_Controller
 		$asal_transaksi = "6";
 		$kurir = "6";
 		$resi = "-";
+		$username = $this->input->post('username');
 		$metpem = "1";
 		$tanggal = $this->input->post('tanggal');
 		$uang = "0";
@@ -154,7 +159,8 @@ class PemesananAllByBulan extends CI_Controller
 		$status = 3;
 		$diskon = 0;
 		$biaya_admin = 0;
-		$pemesanan_id = $this->M_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir, $resi, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
+		$pemesanan_id = $this->m_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir, $resi,$username, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
+
 		$size = sizeof($barang_id);
 		for ($i = 0; $i < $size; $i++) {
 			$this->m_list_barang->save_list_barangP($pemesanan_id, $qty[$i], $barang_id[$i], $level);
@@ -177,6 +183,7 @@ class PemesananAllByBulan extends CI_Controller
 		$alamat = $this->input->post('alamat');
 		$asal_transaksi = $this->input->post('at');
 		$kurir = $this->input->post('kurir');
+		$username = $this->input->post('username');
 		$resi = $this->input->post('no_resi');
 		if($resi == null){
 			$resi = "-";
@@ -186,8 +193,8 @@ class PemesananAllByBulan extends CI_Controller
 		}
 		$metode_pembayaran = $this->input->post('mp');
 		// $tanggal = $this->input->post('tanggal');
+		$this->m_pemesanan->edit_pesanan($pemesanan_id, $nama_pemesan, $no_hp, $alamat, $kurir,$resi,$username, $asal_transaksi, $metode_pembayaran);
 
-		$this->M_pemesanan->edit_pesanan($pemesanan_id, $nama_pemesan, $no_hp, $alamat, $kurir,$resi, $asal_transaksi, $metode_pembayaran);
 		echo $this->session->set_flashdata('msg', 'update');
 		redirect('Admin/PemesananAllByBulan/viewPemesananByBulan/'.$bulan);
 	}
