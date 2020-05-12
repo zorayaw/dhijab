@@ -8,10 +8,10 @@
 		function __construct()
 	  	{
 		    parent:: __construct();
-		    if($this->session->userdata('masuk') !=TRUE){
-		      $url=base_url('Login');
-		      redirect($url);
-		    };
+			if ($this->session->userdata('masuk') != TRUE || ($this->session->userdata('akses') != 2 && $this->session->userdata('akses') != 1)) {
+				$url = base_url('Login');
+				redirect($url);
+			};
 
 		    $this->load->model('m_pemesanan');
 		    $this->load->model('m_barang');
@@ -24,7 +24,12 @@
 	  			$y['title'] = "Stock";
 	  			$x['stock'] = $this->m_barang->getAllBarang();
 		       	$this->load->view('v_header',$y);
-		       	$this->load->view('admin/v_sidebar');
+				   if($this->session->userdata('akses') == 2){
+					$this->load->view('admin/v_sidebar');
+				}
+				else if($this->session->userdata('akses') == 1){
+					$this->load->view('owner/v_sidebar');
+				}
 		       	$this->load->view('admin/v_stock',$x);
 		    }
 		    else{
@@ -35,9 +40,14 @@
 	  	function history($barang_id){
  	  		if($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true){
  	  			$y['title'] = "Stock";
-	 	  		   $x['stock'] = $this->m_barang->getHistoryStock($barang_id);	
+	 	  		   $x['stock'] = $this->m_barang->getHistoryStocks($barang_id);	
 			       $this->load->view('v_header',$y);
-			       $this->load->view('admin/v_sidebar');
+				   if($this->session->userdata('akses') == 2){
+					$this->load->view('admin/v_sidebar');
+				}
+				else if($this->session->userdata('akses') == 1){
+					$this->load->view('owner/v_sidebar');
+				}
 			       $this->load->view('admin/v_history_stock',$x);
 		       
 		    }

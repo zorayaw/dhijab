@@ -23,7 +23,7 @@
                   <tr>
                       <th width="10">No</th>
                       <th>Nama Barang</th>
-                      <th><center>Stock Berkurang</center></th>
+                      <th><center>Stock</center></th>
                       <th><center>Tanggal</center></th>
                   </tr>
               </thead>
@@ -40,7 +40,7 @@
                   <tr>
                       <td><center><?php echo $no?></center></td>
                       <td><?php echo $barang_nama?></td>
-                      <td><center><?php echo $stock_berkurang?></center></td>
+                      <td><center><?php echo $jumlah?></center></td>
                       <td><center><?php echo $tanggal?></center></td>
                     </tr>
                     <?php endforeach;?>

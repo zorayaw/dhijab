@@ -8,10 +8,10 @@
 		function __construct()
 	  	{
 		    parent:: __construct();
-		    if($this->session->userdata('masuk') !=TRUE){
-		      $url=base_url('Login');
-		      redirect($url);
-		    };
+		    if ($this->session->userdata('masuk') != TRUE || ($this->session->userdata('akses') != 2 && $this->session->userdata('akses') != 1)) {
+				$url = base_url('Login');
+				redirect($url);
+			};
 
 		    $this->load->model('m_pemesanan');
 		    $this->load->model('m_barang');
@@ -20,50 +20,57 @@
 	  	}
 
 	  	function index(){
-	  		if($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true){
-		       $y['title'] = "Pemesanan";
+	  		$y['title'] = "Pemesanan Reseller";
 		       $x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
 		       $x['kurir'] = $this->m_pemesanan->getAllkurir();
 		       $x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
 		       $x['nonreseller'] = $this->m_barang->getDataNonReseller1();
 		        $x['produksi'] = $this->m_barang->getdataProduksi();
 		       $x['reseller'] = $this->m_barang->getAllBarangR();
-		       $x['datapesanan'] = $this->m_pemesanan->getPemesananreseller();
+		       $x['datapesanan'] = $this->m_pemesanan->getPemesananresellerbyTahun2(date('Y'));
 		       $this->load->view('v_header',$y);
-		       $this->load->view('admin/v_sidebar');
+		       if($this->session->userdata('akses') == 2){
+				$this->load->view('admin/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
 		       $this->load->view('admin/v_pemesanan_reseller',$x);
-		    }
-		    else{
-		       redirect('Login');
-		    }
 	  	}
 
 	  	function reseller(){
-	  		if($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true){
-		       $y['title'] = "Pemesanan";
+	  		$y['title'] = "Pemesanan";
 		       $x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
 		       $x['kurir'] = $this->m_pemesanan->getAllkurir();
 		       $x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
 		       $x['nonreseller'] = $this->m_barang->getDataNonReseller1();
 		        $x['produksi'] = $this->m_barang->getdataProduksi();
 		       $x['reseller'] = $this->m_barang->getAllBarangR();
-		       $x['datapesanan'] = $this->m_pemesanan->getPemesananreseller();
+		       $x['datapesanan'] = $this->m_pemesanan->getPemesananresellerbyTahun2(date('Y'));
 		       $this->load->view('v_header',$y);
-		       $this->load->view('admin/v_sidebar');
+			   if($this->session->userdata('akses') == 2){
+				$this->load->view('admin/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
 		       $this->load->view('admin/v_pemesanan_reseller',$x);
-		    }
-		    else{
-		       redirect('Login');
-		    }
 	  	}
 
-	  	function savepemesananreseller(){
+	  	function savepemesananR(){
 	  		$nama_pemesan = $this->input->post('nama_pemesan');
 	  		$nama_akun_pemesan = $this->input->post('nama_akun_pemesan');
 	  		$no_hp = $this->input->post('hp');
 	  		$alamat = $this->input->post('alamat');
 	  		$asal_transaksi = $this->input->post('at');
-	  		$kurir = $this->input->post('kurir');
+			  $kurir = $this->input->post('kurir');
+			  $resi = $this->input->post('no_resi');
+			  if($resi == null){
+				$resi = "-";
+			}
+			else{
+				$resi = $this->input->post('no_resi');
+			}
 	  		$metpem = $this->input->post('metpem');
 			$tanggal = $this->input->post('tanggal');
 			$diskon = $this->input->post('diskon');
@@ -77,7 +84,7 @@
 	  		$note=$this->input->post('note');
 	  		$status=0;
 	  		$level = 2;
-	  		$pemesanan_id=$this->m_pemesanan->save_pesanan($nama_pemesan,$tanggal,$no_hp,$alamat,$level,$kurir,$asal_transaksi,$metpem,$uang,$biaya_ongkir,$email_pemesanan,$note,$status,$biaya_admin,$diskon,$nama_akun_pemesan);
+	  		$pemesanan_id=$this->m_pemesanan->save_pesanan($nama_pemesan,$tanggal,$no_hp,$alamat,$level,$kurir,$resi,$asal_transaksi,$metpem,$uang,$biaya_ongkir,$email_pemesanan,$note,$status,$biaya_admin,$diskon,$nama_akun_pemesan);
 			
 	  		$size = sizeof($barang_id);
 
@@ -90,14 +97,8 @@
 	       	redirect('Admin/PemesananReseller');		  	
  	  	}
 
- 	  	function hapus_pesananreseller(){
-	  		$pemesanan_id = $this->input->post('pemesanan_id');
-	  		$this->m_pemesanan->hapus_pesanan($pemesanan_id);
-	  		echo $this->session->set_flashdata('msg','hapus');
-	       	redirect('Admin/PemesananReseller');	
-	  	}
 
-	  	function statusreseller(){
+	  	function status(){
             $pemesanan_id = $this->input->post('pemesanan_id');
             $status_pemesanan=$this->input->post('status_pemesanan');
             $jumlah=$this->input->post('jumlah');
@@ -125,11 +126,18 @@
 	  		$no_hp = $this->input->post('hp');
 	  		$alamat = $this->input->post('alamat');
 	  		$asal_transaksi = $this->input->post('at');
-	  		$kurir = $this->input->post('kurir');
+			  $kurir = $this->input->post('kurir');
+			  $resi = $this->input->post('no_resi');
+			  if($resi == null){
+				$resi = "-";
+			}
+			else{
+				$resi = $this->input->post('no_resi');
+			}
 	  		$metode_pembayaran = $this->input->post('mp');
 	  		// $tanggal = $this->input->post('tanggal');
 
-	  		$this->m_pemesanan->edit_pesanan($pemesanan_id,$nama_pemesan,$no_hp,$alamat,$kurir,$asal_transaksi,$metode_pembayaran);
+	  		$this->m_pemesanan->edit_pesanan($pemesanan_id,$nama_pemesan,$no_hp,$alamat,$kurir,$resi,$asal_transaksi,$metode_pembayaran);
 	  		echo $this->session->set_flashdata('msg','update');
 	       	redirect('Admin/PemesananReseller');	
 	  	}
@@ -142,8 +150,7 @@
 	  	}
 
 	  	function list_barang($pemesanan_id){
- 	  		if($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true){
- 	  		   $level = $this->uri->segment(5);
+ 	  		 $level = $this->uri->segment(5);
  	  		  		$y['title'] = "List Barang Pemesan";
  	  		   	   $x['p_id'] = $pemesanan_id;
  	  		   	   $x['lvl'] =$level;	
@@ -152,13 +159,29 @@
  	  		   	   $x['nonreseller'] = $this->m_barang->getDataNonReseller1();
  	  		   	   $x['jumlah'] = $a['total_keseluruhan'];
 			       $this->load->view('v_header',$y);
-			       $this->load->view('admin/v_sidebar');
+			       if($this->session->userdata('akses') == 2){
+					$this->load->view('admin/v_sidebar');
+				}
+				else if($this->session->userdata('akses') == 1){
+					$this->load->view('owner/v_sidebar');
+				}
 			       $this->load->view('admin/v_list_barang',$x);	
-		       
-		    }
-		    else{
-		       redirect('Login');
-		    }
- 	  	}
+		    
+		   }
+
+		   function pemesananByTahun(){
+			   
+			$tahun = intVal($this->input->post('thn'));
+			$x['stsp'] = 2;
+			$x['bulan'] = 0;
+			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
+			$x['kurir'] = $this->m_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+			 $x['produksi'] = $this->m_barang->getdataProduksi();
+			$x['reseller'] = $this->m_barang->getAllBarangR();
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananResellerbyTahun2($tahun);
+			$this->load->view('admin/v_pemesanan_by_tahun', $x);
+		   }
 	}
 ?>
