@@ -22,7 +22,7 @@
 			  $statusc = $this->input->get('status');
 	  		if($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') == true){
 				  $x['st'] = $statusc;
-                $y['title'] = "Laporan Keuangan";
+                $y['title'] = "Data Keuangan";
                 $x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
                 $x['kurir'] = $this->M_pemesanan->getAllkurir();
                 $x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();

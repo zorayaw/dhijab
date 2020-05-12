@@ -7,9 +7,9 @@
     <div class="row">
       <div class="col-sm-6">
         <?php if ($st == 0) : ?>
-        <h4 class="mb-0">Laporan Keuangan</h4>
+        <h4 class="mb-0">Data Keuangan</h4>
         <?php else : ?>
-          <h4 class="mb-0">Laporan Keuangan <?= $stat ?></h4>
+          <h4 class="mb-0">Data Keuangan <?= $stat ?></h4>
         <?php endif;?>
           
       </div>
