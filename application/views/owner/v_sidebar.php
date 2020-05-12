@@ -229,6 +229,7 @@
           </li>
       </ul>
     </li>
+    <li>
       <a href="javascript:void(0);" data-toggle="collapse" data-target="#LaporanKeu">
             <div class="pull-left"><i class="ti-files"></i><span class="right-nav-text">Laporan Keuangan</span></div>
             <div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div>

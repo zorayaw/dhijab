@@ -9,7 +9,7 @@ class Pemesanan extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		if ($this->session->userdata('masuk') != TRUE || $this->session->userdata('akses') != 2) {
+		if ($this->session->userdata('masuk') != TRUE || ($this->session->userdata('akses') != 2 && $this->session->userdata('akses') !=1)) {
 			$url = base_url('Login');
 			redirect($url);
 		};
