@@ -31,24 +31,22 @@ $cur_date = date("d-m-Y");?>
 
           <table border="1" cellpadding="7" width="100%" style="border-style: solid;border-width: thin;border-collapse: collapse;" >
           <tr>
-										<th>No</th>
-										<th>Nomor Order</th>
-										<th>Nama Pemesan</th>
-										<th>Nama Akun</th>
-										<th>Tanggal Pemesanan</th>
-										<th>No HP</th>
-										<th>Alamat</th>
-										<th>Email </th>
-										<th>Ekspedisi</th>
-										<th>Nomor Resi</th>
-										<th>Asal Transaksi</th>
-										<th>Metode Pembayaran</th>
-										<th>List Barang</th>
-										<th>Status</th>
-										<th>Note</th>
-                    <th>Total Harga</th>
+                  <th>No</th>
+                  <th>Nomor Order</th>
+                  <th>Nama Pemesan</th>
+                  <th>Nama Akun</th>
+                  <th>Tanggal Pemesanan</th>
+                  <th>Metode Pembayaran</th>
+                  <th>Status Pemesanan</th>
+                  <th>Biaya Ongkir</th>
+                  <th>Biaya Admin</th>
+                  <th>Diskon</th>
+                  <th>Uang Kembalian</th>
+                  <th>Total Harga</th>
+                  <th>Omset</th>
                 </tr>
-              <?php
+                
+                <?php
                 function rupiah($angka)
                 {
                   $hasil_rupiah = "Rp " . number_format($angka, 0, ',', '.');
@@ -96,54 +94,48 @@ $cur_date = date("d-m-Y");?>
                 
                   
                   $q = $this->db->query("SELECT SUM(lb_qty * harga)AS total_keseluruhan from list_barang where pemesanan_id=' $pemesanan_id'");
-                    $c = $q->row_array();
-                    $jumlah = $c['total_keseluruhan']+$ongkir-($diskon+$biaya_admin+$uang) ;
-                    $q = $this->db->query("SELECT barang_nama,lb_qty from list_barang,barang where barang.barang_id=list_barang.barang_id and  pemesanan_id=' $pemesanan_id'");
-                  
-                    $nama_barang="";
-                    $nomor_barang=1;
-                    foreach ($q->result_array() as $k) :
-                      $nama_barang=$nama_barang.$nomor_barang.". ".$k['barang_nama'].": ".$k['lb_qty']."<br><br>";
-                        $nomor_barang++; 
-                    endforeach;
+                  $c = $q->row_array();
+                  $omset = $c['total_keseluruhan'];
+                  $jumlah = $c['total_keseluruhan'] + $ongkir - ($diskon + $biaya_admin + $uang);
+  
                 ?>
   
                   <tr>
-										<td>
-											<center><?php echo $no ?></center>
-										</td>
-										<td><?php echo $pemesanan_id ?></td>
-										<td><?php echo $pemesanan_nama ?></td>
-										<td><?php echo $nama_akun ?></td>
-										<td><?php echo $tanggal ?></td>
-										<td><?php echo $hp ?></td>
-										<td><?php echo $alamat ?></td>
-										<td><?php echo $email ?></td>
-										<td><?php echo $kurir_nama ?></td>
-										<td><?php echo $resi ?></td>
-										<td><?php echo $at_nama ?></td>
+                    <td>
+                      <center><?php echo $no ?></center>
+                    </td>
+                    <td><?php echo $pemesanan_id ?></td>
+                    <td><?php echo $pemesanan_nama ?></td>
+                    <td><?php echo $nama_akun ?></td>
+                    <td><?php echo $tanggal ?></td>
                     <td><?php echo $mp_nama ?></td>
-                    <td><?php echo $nama_barang ?></td>
                     <td><?php echo $status ?></td>
-										<td><?php echo $note ?></td>
+                    <td><?php echo $ongkir ?></td>
+                    <td><?php echo rupiah($biaya_admin) ?></td>
+                    <td><?php echo rupiah($diskon) ?></td>
+                    <td><?php echo rupiah($uang) ?></td>
                     <td><?php echo rupiah($jumlah) ?></td>
+                    <td><?php echo rupiah($omset) ?></td>
                     
   
                     <?php
+                    $tot_omset = $tot_omset + $omset;
                     $total = $total + $jumlah;
                     ?>
                   </tr>
                 <?php endforeach; ?>
+              
+              </tbody>
               <tr>
-                <th colspan="15">
+                <th colspan="11">
                   <center>Jumlah</center>
                 </th>
                 <th><?php echo rupiah($total) ?></th>
+                <th><?php echo rupiah($tot_omset) ?></th>
               </tr>
             
             </table>
       </div>
-
 </body>
 </html>
 

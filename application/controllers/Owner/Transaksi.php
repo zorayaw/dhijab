@@ -190,9 +190,9 @@
                $total_omset = $total_o;
                $x['total_untung'] = $total_untung;
 			   $x['total_omset'] = $total_omset;
-			   if($doc==1)
+			   if($doc==2)
 			  $this->load->view('v_cetak_perhari',$x);
-			  elseif($doc==2)
+			  elseif($doc==1)
 			  $this->load->view('v_cetakP_perhari',$x);
 
 	  	}
@@ -262,9 +262,9 @@
 			$total_omset = $total_o;
 			$x['total_untung'] = $total_untung;
 			$x['total_omset'] = $total_omset;
-			if($doc==1)
+			if($doc==2)
 			$this->load->view('v_cetak_by_tanggal', $x);
-			  elseif($doc==2)
+			  elseif($doc==1)
 			  $this->load->view('v_cetakP_by_tanggal', $x);
 			
 		}
@@ -337,9 +337,9 @@
 			// die;
 			$x['total_untung'] = $total_untung;
 			$x['total_omset'] = $total_omset;
-			if($doc==1)
+			if($doc==2)
 			$this->load->view('v_cetak_by_bulan', $x);
-			  elseif($doc==2)
+			  elseif($doc==1)
 			  $this->load->view('v_cetakP_by_bulan', $x);
 			
 		}
@@ -409,9 +409,9 @@
 			$total_omset = $total_o;
 			$x['total_untung'] = $total_untung;
 			$x['total_omset'] = $total_omset;
-			if($doc==1)
+			if($doc==2)
 			$this->load->view('v_cetak_by_Tahun', $x);
-			  elseif($doc==2)
+			  elseif($doc==1)
 			  $this->load->view('v_cetakP_by_Tahun', $x);
 			
 		}
@@ -484,11 +484,9 @@
 			$total_omset = $total_o;
 			$x['total_untung'] = $total_untung;
 			$x['total_omset'] = $total_omset;
-			if($doc==1)
-			
+			if($doc==2)
 			$this->load->view('v_cetak_by_bulan_tanpa_tahun', $x);
-			  elseif($doc==2)
-			 
+			  elseif($doc==1) 
 			$this->load->view('v_cetakP_by_bulan_tanpa_tahun', $x);
 			
 		}

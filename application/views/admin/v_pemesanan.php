@@ -30,39 +30,38 @@
 						<h6 class="mb-0">Tambah Pemesanan: </h6>
 					</div>
 					<div class="col-xl-12 mb-10" style="display: flex">
-						<div class="col-md-2">
+						<div class="col-md-4">
 							<a href="" data-toggle="modal" data-target="#tambah-pesanan-non-reseller"
 								class="btn btn-primary btn-block ripple m-t-10">
-								<i class="fa fa-plus pr-2"></i>Customer
+								<i class="fa fa-plus pr-2"></i>Pemesanan Customer
 							</a>
 						</div>
-						<div class="col-md-2">
+						<div class="col-md-4">
 							<a href="" data-toggle="modal" data-target="#reseller" class="btn btn-primary btn-block ripple m-t-10">
-								<i class="fa fa-plus pr-2"></i>Reseller
+								<i class="fa fa-plus pr-2"></i>Pemesanan Reseller
 							</a>
 						</div>
 
-						<div class="col-md-2">
+						<div class="col-md-4">
 							<a href="" data-toggle="modal" data-target="#produksi" class="btn btn-primary btn-block ripple m-t-20">
-								<i class="fa fa-plus pr-2"></i>Produksi
+								<i class="fa fa-plus pr-2"></i>Pemesanan Produksi
 							</a>
 						</div>
-						<div class="col-md-3">
-							<!-- <a href="" data-toggle="modal" data-target="#Cetak-Pesanan" class="btn btn-success btn-block ripple m-t-20">
+						<!-- <div class="col-md-3">
+							<a href="" data-toggle="modal" data-target="#Cetak-Pesanan" class="btn btn-success btn-block ripple m-t-20">
                 <i class="fa fa-print pr-2"></i> Cetak
-              </a> -->
-						</div>
+              </a>
+						</div> -->
 
 
 						<!-- convert -->
 
-						<div class="col-md-3 ml-3 mb-4">
-							<!-- <a href="<?= base_url() ?>admin/Pemesanan/convertExcel" data-toggle="modal" data-target="#pilihan"  class="btn btn-dark btn-block ripple m-t-20">
+						<!-- <div class="col-md-3 ml-3 mb-4">
+							<a href="<?= base_url() ?>admin/Pemesanan/convertExcel" data-toggle="modal" data-target="#pilihan"  class="btn btn-dark btn-block ripple m-t-20">
                 <i class="fa fa-print pr-2"></i> Convert
               </a>
             </div> -->
 							<!-- <div class="btn-group"> -->
-						</div>
           </div>
           <br>
 					<?php endif?>
@@ -102,7 +101,7 @@
 						</button>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="" data-toggle="modal" data-target="#Cetak-Pesanan" >Data Pemesanan</a>
-							<a class="dropdown-item" href="" data-toggle="modal" data-target="#produksi" >Data Keuangan</a>
+							<a class="dropdown-item" href="" data-toggle="modal" data-target="#Cetak-Transaksi" >Data Keuangan</a>
             </div>
           </div>
             
@@ -657,7 +656,7 @@
       $mp_nama = $i['mp_nama'];
     ?>
 		<!-- Modal edit Data -->
-		<div class="modal" tabindex="-1" role="dialog" id="editdata<?php echo $pemesanan_id ?>">
+		<div class="modal fade" tabindex="-1" role="dialog" id="editdata<?php echo $pemesanan_id ?>">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -771,7 +770,7 @@
       $pemesanan_id = $i['pemesanan_id'];
     ?>
 
-		<div class="modal" tabindex="-1" role="dialog" id="hapusdata<?php echo $pemesanan_id ?>">
+		<div class="modal fade" tabindex="-1" role="dialog" id="hapusdata<?php echo $pemesanan_id ?>">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -808,7 +807,7 @@
     $status_pemesanan = $i['status_pemesanan'];
   ?>
 
-		<div class="modal" tabindex="-1" role="dialog" id="bayar<?= $pemesanan_id ?>">
+		<div class="modal fade" tabindex="-1" role="dialog" id="bayar<?= $pemesanan_id ?>">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -835,7 +834,7 @@
 		</div>
 
 
-		<div class="modal" tabindex="-1" role="dialog" id="selesai<?= $pemesanan_id ?>">
+		<div class="modal fade" tabindex="-1" role="dialog" id="selesai<?= $pemesanan_id ?>">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -862,7 +861,7 @@
 			</div>
 		</div>
 
-		<div class="modal" tabindex="-1" role="dialog" id="kirim<?= $pemesanan_id ?>">
+		<div class="modal fade" tabindex="-1" role="dialog" id="kirim<?= $pemesanan_id ?>">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -895,11 +894,11 @@
 
 
 
-	<!-- Modal Cetak-->
+	<!-- Modal Cetak Pemesanan-->
 	<?php date_default_timezone_set("Asia/Jakarta");
     ?>
 
-	<div class="modal" tabindex="-1" role="dialog" id="Cetak-Pesanan">
+	<div class="modal fade" tabindex="-1" role="dialog" id="Cetak-Pesanan">
 		<div class="modal-dialog modal-lg-10">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -908,7 +907,7 @@
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-12">
-							<a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi?status=0" target="_blank"
+							<a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi?status=0&doc=1" target="_blank"
 								class="btn btn-success btn-block ripple m-t-10">
 								<i class="fa fa-print pr-2"></i>Cetak Pemesanan Hari Ini (<?= date('d')?> <?php 
                   switch (date('m')){
@@ -932,7 +931,7 @@
 						</div>
 
 						<div class="col-md-12">
-							<a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiByBulan?status=0&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
+							<a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiByBulan?status=0&doc=1&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
 								target="_blank" class="btn btn-success btn-block ripple m-t-10">
 								<i class="fa fa-print pr-2"></i>Cetak Pemesanan Bulan Ini (<?php 
                   switch (date('m')){
@@ -954,7 +953,7 @@
 							<br>
 						</div>
 
-						<form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiByTahun?status=0" target="_blank"
+						<form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiByTahun?status=0&doc=1" target="_blank"
 							method="post" enctype="multipart/form-data">
 							<div class="col-md-12">
 								<h6>Cetak Pemesanan Berdasarkan Tahun: </h6>
@@ -1000,7 +999,7 @@
 					<div class="col-md-12">
 						<h6>Cetak Berdasarkan Tanggal:</h6>
 					</div>
-					<form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiBytanggal?status=0" target="_blank"
+					<form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiBytanggal?status=0&doc=1" target="_blank"
 						method="post" enctype="multipart/form-data">
 						<div class="modal-body p-20">
 							<div class="row">
@@ -1026,8 +1025,142 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Modal Cetak Transaksi-->
+	<?php date_default_timezone_set("Asia/Jakarta");
+    ?>
+
+	<div class="modal fade" tabindex="-1" role="dialog" id="Cetak-Transaksi">
+		<div class="modal-dialog modal-lg-10">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Cetak Seluruh Transaksi</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+							<a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi?status=0&doc=2" target="_blank"
+								class="btn btn-success btn-block ripple m-t-10">
+								<i class="fa fa-print pr-2"></i>Cetak Transaksi Hari Ini (<?= date('d')?> <?php 
+                  switch (date('m')){
+                    case 1 : echo "Januari"; break;
+                    case 2 : echo "Februari"; break;
+                    case 3 : echo "Maret"; break;
+                    case 4 : echo "April"; break;
+                    case 5 : echo "Mei"; break;
+                    case 6 : echo "Juni"; break;
+                    case 7 : echo "Juli"; break;
+                    case 8 : echo "Agustus"; break;
+                    case 9 : echo "September"; break;
+                    case 10 : echo "Oktober"; break;
+                    case 11 : echo "November"; break;
+                    case 12 : echo "Desember"; break;
+                  }
+                  ?>
+								<?= date('Y')?>)
+							</a>
+							<br>
+						</div>
+
+						<div class="col-md-12">
+							<a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiByBulan?status=0&doc=2&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
+								target="_blank" class="btn btn-success btn-block ripple m-t-10">
+								<i class="fa fa-print pr-2"></i>Cetak Transaksi Bulan Ini (<?php 
+                  switch (date('m')){
+                    case 1 : echo "Januari"; break;
+                    case 2 : echo "Februari"; break;
+                    case 3 : echo "Maret"; break;
+                    case 4 : echo "April"; break;
+                    case 5 : echo "Mei"; break;
+                    case 6 : echo "Juni"; break;
+                    case 7 : echo "Juli"; break;
+                    case 8 : echo "Agustus"; break;
+                    case 9 : echo "September"; break;
+                    case 10 : echo "Oktober"; break;
+                    case 11 : echo "November"; break;
+                    case 12 : echo "Desember"; break;
+                  }
+                  ?> <?= date('Y')?>)
+							</a>
+							<br>
+						</div>
+
+						<form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiByTahun?status=0&doc=2" target="_blank"
+							method="post" enctype="multipart/form-data">
+							<div class="col-md-12">
+								<h6>Cetak Transaksi Berdasarkan Tahun: </h6>
+							</div>
+
+							<div class="modal-body p-20">
+								<div class="row">
+									<div class="col-lg-6">
+										<label class="control-label">Dari tahun:</label>
+										<select class="form-control" id="syear" name="start_year" required>
+											<option selected value="">Pilih</option>
+											<?php
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
+                ?>
+											<option id="enddate" value="<?php echo $x ?>"><?php echo $x ?></option>
+											<?php endfor ?>
+										</select>
+									</div>
+
+									<div class="col-lg-6">
+										<label class="control-label">Sampai tahun:</label>
+										<select class="form-control" id="eyear" name="end_year" required>
+											<option selected value="">Pilih</option>
+											<?php
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
+                ?>
+											<option id="endyear" value="<?php echo $x ?>"><?php echo $x ?></option>
+											<?php endfor ?>
+										</select>
+									</div>
+								</div>
+							</div>
+					</div>
+
+					<div class="col-md-12">
+						<button type="submit" class="btn btn-success btn-block ripple m-t-10">
+							<i class="fa fa-print pr-2"></i>Cetak Transaksi</button>
+						<br>
+					</div>
+					</form>
+
+
+					<div class="col-md-12">
+						<h6>Cetak Berdasarkan Tanggal:</h6>
+					</div>
+					<form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiBytanggal?status=0&doc=2" target="_blank"
+						method="post" enctype="multipart/form-data">
+						<div class="modal-body p-20">
+							<div class="row">
+								<div class="col-md-4">
+									<label class="control-label">Dari tanggal:</label>
+									<input class="form-control form-white" type="date" id="startdatecetak" name="start_date" required />
+								</div>
+								<div class="col-md-4">
+									<label class="control-label">Sampai tanggal:</label>
+									<input class="form-control form-white" type="date" id="enddatecetak" name="end_date" required />
+								</div>
+								<div class="col-md-4">
+									<button type="submit" class="btn btn-success btn-block ripple m-t-10">
+										<i class="fa fa-print pr-2"></i>Cetak<br>Transaksi</a>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger ripple" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 	<!-- Modal Pesanan NonReseller-->
-	<div class="modal" tabindex="-1" role="dialog" id="tambah-pesanan-non-reseller">
+	<div class="modal fade" tabindex="-1" role="dialog" id="tambah-pesanan-non-reseller">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -1165,7 +1298,7 @@
 	</div>
 
 	<!-- Modal Pesanan Reseller-->
-	<div class="modal" tabindex="-1" role="dialog" id="reseller">
+	<div class="modal fade" tabindex="-1" role="dialog" id="reseller">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -1306,7 +1439,7 @@
 
 
 	<!-- Modal Pesanan Produksi-->
-	<div class="modal" tabindex="-1" role="dialog" id="produksi">
+	<div class="modal fade" tabindex="-1" role="dialog" id="produksi">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -1698,10 +1831,7 @@
 		var i = 1;
 		$('#add1').click(function () {
 			i++;
-			$('#dynamic_field1').append('<div class="row" id="roww' + i +
-				'"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($reseller->result_array() as $i) : $barang_id = $i['
-				barang_id '];$barang_nama = $i['
-				barang_nama ']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?></select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1 ></div><div class="col-md-2 mt-30"><button type="button" id="' +
+			$('#dynamic_field1').append('<div class="row" id="roww' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($reseller->result_array() as $i) : $barang_id = $i['barang_id '];$barang_nama = $i['barang_nama ']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?></select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1 ></div><div class="col-md-2 mt-30"><button type="button" id="' +
 				i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>');
 			$('select').selectize({
 				sortField: 'text'
@@ -1724,10 +1854,7 @@
 		var i = 1;
 		$('#add3').click(function () {
 			i++;
-			$('#dynamic_field2').append('<div class="row" id="rowww' + i +
-				'"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($produksi->result_array() as $i) : $barang_id = $i['
-				barang_id ']; $barang_nama = $i['
-				barang_nama ']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1 ></div><div class="col-md-2 mt-30"><button type="button" id="' +
+			$('#dynamic_field2').append('<div class="row" id="rowww' + i +'"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($produksi->result_array() as $i) : $barang_id = $i['barang_id ']; $barang_nama = $i['barang_nama ']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1 ></div><div class="col-md-2 mt-30"><button type="button" id="' +
 				i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>');
 			$('select').selectize({
 				sortField: 'text'
