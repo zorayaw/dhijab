@@ -134,6 +134,7 @@
 	  	// }
 
 	  	function cetak_transaksi(){
+			  $doc = $this->input->get('doc');
 			  $statusc = $this->input->get('status');
 			  $x['numstat'] = $statusc;
 			  if($statusc==0){
@@ -188,11 +189,16 @@
                $total_untung = $total_u;
                $total_omset = $total_o;
                $x['total_untung'] = $total_untung;
-               $x['total_omset'] = $total_omset;
-	  		$this->load->view('v_cetak_perhari',$x);
+			   $x['total_omset'] = $total_omset;
+			   if($doc==1)
+			  $this->load->view('v_cetak_perhari',$x);
+			  elseif($doc==2)
+			  $this->load->view('v_cetakP_perhari',$x);
+
 	  	}
 	
 		  function cetakTransaksiByTanggal(){
+			$doc = $this->input->get('doc');
 			$statusc = $this->input->get('status');
 			$start = $this->input->post('start_date');
 			$end = $this->input->post('end_date');
@@ -256,10 +262,15 @@
 			$total_omset = $total_o;
 			$x['total_untung'] = $total_untung;
 			$x['total_omset'] = $total_omset;
+			if($doc==1)
 			$this->load->view('v_cetak_by_tanggal', $x);
+			  elseif($doc==2)
+			  $this->load->view('v_cetakP_by_tanggal', $x);
+			
 		}
 
 		function cetakTransaksiByBulan(){
+			$doc = $this->input->get('doc');
 			$statusc = $this->input->get('status');
 			$bulan = $this->input->get('bulan');
 			$tahun = $this->input->get('tahun');
@@ -326,10 +337,15 @@
 			// die;
 			$x['total_untung'] = $total_untung;
 			$x['total_omset'] = $total_omset;
+			if($doc==1)
 			$this->load->view('v_cetak_by_bulan', $x);
+			  elseif($doc==2)
+			  $this->load->view('v_cetakP_by_bulan', $x);
+			
 		}
 
 		function cetakTransaksiByTahun(){
+			$doc = $this->input->get('doc');
 			$statusc = $this->input->get('status');
 			$awal = $this->input->post('start_year');
 			$akhir = $this->input->post('end_year');
@@ -393,10 +409,15 @@
 			$total_omset = $total_o;
 			$x['total_untung'] = $total_untung;
 			$x['total_omset'] = $total_omset;
+			if($doc==1)
 			$this->load->view('v_cetak_by_Tahun', $x);
+			  elseif($doc==2)
+			  $this->load->view('v_cetakP_by_Tahun', $x);
+			
 		}
 
 		function cetakTransaksiByBulanTanpaTahun(){
+			$doc = $this->input->get('doc');
 			$statusc = $this->input->get('status');
 			$bulan = $this->input->get('bulan');
 			$awal = $this->input->post('start_year');
@@ -463,7 +484,13 @@
 			$total_omset = $total_o;
 			$x['total_untung'] = $total_untung;
 			$x['total_omset'] = $total_omset;
+			if($doc==1)
+			
 			$this->load->view('v_cetak_by_bulan_tanpa_tahun', $x);
+			  elseif($doc==2)
+			 
+			$this->load->view('v_cetakP_by_bulan_tanpa_tahun', $x);
+			
 		}
 		
 
