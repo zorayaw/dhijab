@@ -21,6 +21,7 @@
     <div class="col-xl-12 mb-30">
       <div class="card card-statistics h-100">
         <div class="card-body">
+        <?php if($this->session->userdata('akses') == 2) : ?>
         <div class="col-xl-12 mb-10">
         <h6 class="mb-0">Tambah Pemesanan: </h6>
       </div>
@@ -56,10 +57,10 @@
               </a>
             </div>
             </div>
-          
+          <?php endif?>
           <!-- <?php 
             $curyear = date('Y');
-            $earlyyear = 2015;
+            $earlyyear = $curyear-10;
             print '<select onchange="cyear('.$r.')" id="changeYear'.$r.'">';
               foreach(range($curyear, $earlyyear) as $r ) {
               print  '<option value="'.$r.'"'.($r === $curyear ? ' selected="selected"' : '').'>'.$r.'</option>';
@@ -73,7 +74,7 @@
             </button>
             <?php 
               $curyear = date('Y');
-              $earlyyear = 2015;
+              $earlyyear = $curyear-10;
             ?>
             <div class="dropdown-menu">
               <?php foreach(range($curyear, $earlyyear) as $r ) : ?>
@@ -413,13 +414,13 @@
   
           <div class="table-responsive">
             <table id="datatable" class="table table-striped table-bordered p-0">
-              <thead>
+            <thead>
                 <tr>
-                  <th>No</th>
-                  <th>Nomor Order</th>
+                  <th >No</th>
+                  <th >Nomor Order</th>
                   <th>Nama Pemesan</th>
                   <th>Nama Akun</th>
-                  <th>Tanggal Pemesanan</th>
+                  <th >Tanggal Pemesanan</th>
                   <th>No HP</th>
                   <th>Alamat</th>
                   <th>Email </th>
@@ -435,40 +436,41 @@
                   <th>Diskon</th>
                   <th>Uang Kembalian</th>
                   <th>Total Harga</th>
-  
-                  <th>
+                  <?php if($this->session->userdata('akses') == 2) : ?>
+                  <th >
                     <center>Aksi</center>
                   </th>
+                  <?php endif; ?>
                 </tr>
               </thead>
               <tbody>
-                
                 <?php
                 function rupiah($angka)
                 {
                   $hasil_rupiah = "Rp " . number_format($angka, 0, ',', '.');
                   return $hasil_rupiah;
                 }
-  
+
                 $no = 0;
-                $total = 0;
+                $total=0;
                 foreach ($datapesanan->result_array() as $i) :
                   $no++;
-  
+
                   $pemesanan_id = $i['pemesanan_id'];
                   $pemesanan_nama = $i['pemesanan_nama'];
                   $nama_akun = $i['pemesanan_nama_akun'];
                   $tanggal = $i['tanggal']; 
+
                   $hp = $i['pemesanan_hp'];
                   $alamat = $i['pemesanan_alamat'];
                   $email = $i['email_pemesan'];
                   $kurir_id = $i['kurir_id'];
+                  $resi = $i['no_resi'];
                   $ongkir = $i['biaya_ongkir'];
                   $mp_id1 = $i['mp_id'];
                   $mp_nama = $i['mp_nama'];
                   $level = $i['status_customer'];
                   $kurir_nama = $i['kurir_nama'];
-                  $resi = $i['no_resi'];
                   $at_id = $i['at_id'];
                   $at_nama = $i['at_nama'];
                   $status = $i['status_pemesanan'];
@@ -476,33 +478,53 @@
                   $diskon = $i['diskon'];
                   $uang = $i['uang_kembalian'];
                   $note = $i['note'];
-  
-                  $q = $this->db->query("SELECT SUM(lb_qty * harga)AS total_keseluruhan from list_barang where pemesanan_id=' $pemesanan_id'");
-                  $c = $q->row_array();
-                  $jumlah = $c['total_keseluruhan'] + $ongkir - ($diskon + $biaya_admin + $uang);
-  
-                ?>
-  
+                  if($i['status_pemesanan'] == 0)
+                  $namstat = "Belum Bayar";
+                  elseif($i['status_pemesanan'] == 1)
+                  $namstat = "Dibayar";
+                  elseif($i['status_pemesanan'] == 2)
+                  $namstat = "Dikirim";
+                  elseif($i['status_pemesanan'] == 3)
+                  $namstat = "Selesai";
+
+                    $q = $this->db->query("SELECT SUM(lb_qty * harga)AS total_keseluruhan from list_barang where pemesanan_id=' $pemesanan_id'");
+                    $c = $q->row_array();
+                    $jumlah = $c['total_keseluruhan']+$ongkir-($diskon+$biaya_admin+$uang) ;
+                    $q = $this->db->query("SELECT barang_nama,lb_qty from list_barang,barang where barang.barang_id=list_barang.barang_id and  pemesanan_id=' $pemesanan_id'");
+                  
+                    $nama_barang="";
+                    $nomor_barang=1;
+                    foreach ($q->result_array() as $k) :
+                      $nama_barang=$nama_barang.$nomor_barang.". ".$k['barang_nama'].": ".$k['lb_qty']."<br><br>";
+                        $nomor_barang++; 
+                    endforeach;
+                  
+
+
+                  ?>
                   <tr>
                     <td>
                       <center><?php echo $no ?></center>
                     </td>
                     <td><?php echo $pemesanan_id ?></td>
                     <td><?php echo $pemesanan_nama ?></td>
-                    <td><?php echo $nama_akun ?></td>
+                     <td><?php echo $nama_akun ?></td>
                     <td><?php echo $tanggal ?></td>
                     <td><?php echo $hp ?></td>
                     <td><?php echo $alamat ?></td>
-                    <td><?php echo $email ?></td>
+                      <td><?php echo $email ?></td>
                     <td><?php echo $kurir_nama ?></td>
                     <td><?php echo $resi ?></td>
                     <td><?php echo $ongkir ?></td>
                     <td><?php echo $at_nama ?></td>
                     <td><?php echo $mp_nama ?></td>
-  
+                    <?php if($this->session->userdata('akses') == 2) : ?>
                     <td><a href="<?php echo base_url() ?>Admin/Pemesanan/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>" target="_blank" class="btn btn-primary">List Barang</a></td>
+                    <?php else : ?>
+                    <td><?php echo $nama_barang ?></td>
+                    <?php endif;?>
+                    <?php if($this->session->userdata('akses') == 2) : ?>
                     <td>
-  
                       <?php
                       if ($status == 0) { ?>
                         <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#bayar<?= $pemesanan_id ?>" style="margin-right: 20px">Belum Bayar</button>
@@ -512,29 +534,35 @@
                       <?php } elseif ($status == 2) {
                       ?>
                         <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#selesai<?= $pemesanan_id ?>" style="margin-right: 20px">Dikirim </button>
-                      <?php } else {
+                      <?php }
+                       else {
                       ?>
-                        <button class="btn btn-success" style="margin-right: 20px">Selesai</button>
+                        <button  class="btn btn-success" style="margin-right: 20px">Selesai</button>
                       <?php
-                      }
-                      ?>
+                    }
+                    ?>
                     </td>
+                    <?php else : ?>
+                    <td><?php echo $namstat ?></td>
+                    <?php endif; ?>
                     <td><?php echo $note ?></td>
                     <td><?php echo rupiah($biaya_admin) ?></td>
                     <td><?php echo rupiah($diskon) ?></td>
                     <td><?php echo rupiah($uang) ?></td>
                     <td><?php echo rupiah($jumlah) ?></td>
-  
-                    <?php
-                    $total = $total + $jumlah;
+                    
+                    <?php 
+                      $total=$total+$jumlah;
                     ?>
+                    <?php if($this->session->userdata('akses') == 2) : ?>
                     <td>
                       <a href="#" style="margin-right: 10px; margin-left: 10px;" data-toggle="modal" data-target="#editdata<?php echo $pemesanan_id ?>"><span class="ti-pencil"></span></a>
                       <a href="#" style="margin-right: 10px" data-toggle="modal" data-target="#hapusdata<?php echo $pemesanan_id ?>"><span class="ti-trash"></span></a>
                     </td>
+                    <?php endif; ?>
                   </tr>
                 <?php endforeach; ?>
-              
+                
               </tbody>
               <tr>
                 <th colspan="18">
@@ -579,6 +607,7 @@
             <form action="<?php echo base_url() ?>Admin/Pemesanan/edit_pesanan" method="post" enctype="multipart/form-data">
               <div class="modal-body p-20">
                 <div class="row">
+                <input value="<?php echo $this->session->userdata('nama')?>" type="hidden" name="username" required />
                   <div class="col-md-12">
                     <label class="control-label">Nama Pemesan</label>
                     <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>">
@@ -870,7 +899,7 @@
               <select class="form-control" id="syear" name="start_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2017; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option id="enddate" value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -882,7 +911,7 @@
               <select class="form-control" id="eyear" name="end_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2017; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option id="endyear" value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -938,6 +967,7 @@
             <div class="modal-body p-20">
               <div class="row">
                 <div class="col-md-12">
+                <input value="<?php echo $this->session->userdata('nama')?>" type="hidden" name="username" required />
                   <label class="control-label">Nama Pemesan</label>
                   <input class="form-control form-white" type="text" name="nama_pemesan" required />
                 </div>
@@ -1073,6 +1103,7 @@
           <form action="<?php echo base_url() ?>Admin/Pemesanan/savepemesananR" method="post" enctype="multipart/form-data">
             <div class="modal-body p-20">
               <div class="row">
+              <input value="<?php echo $this->session->userdata('nama')?>" type="hidden" name="username" required />
                 <div class="col-md-12">
                   <label class="control-label">Nama Pemesan</label>
                   <input class="form-control form-white" type="text" name="nama_pemesan" required />
@@ -1213,7 +1244,8 @@
             <div class="modal-body p-20">
               <div class="row">
 
-
+              <input value="<?php echo $this->session->userdata('nama')?>" type="hidden" name="username" required />
+               
                 <div class="col-md-12">
                   <label class="control-label">Tanggal</label>
                   <input class="form-control form-white" type="date" name="tanggal" required />
@@ -1503,6 +1535,7 @@
     $("#pilihan").modal('hide');
   });
 </script>
+
 <script type="text/javascript">
 function noresicus(checkbox){
       var isChecked = $('#checkboxcus').is(':checked'); 

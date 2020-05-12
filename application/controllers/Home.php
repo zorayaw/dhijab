@@ -8,12 +8,12 @@
 		function __construct()
 	  	{
 		    parent:: __construct();
-		    $this->load->model('m_barang');
+		    $this->load->model('M_barang');
 	  	}
 
 	  	function index(){
 	  		$x['title'] = "MSGlow Palemabang";
-	  		$x['nonreseller'] = $this->m_barang->getDataNonReseller();
+	  		$x['nonreseller'] = $this->M_barang->getDataNonReseller();
 
 	  		$this->load->view('v_home',$x);
 	  	}

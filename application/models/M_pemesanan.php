@@ -5,10 +5,26 @@
 	class M_pemesanan extends CI_Model
 	{
 
-		function save_pesanan($nama_pemesan,$tanggal,$no_hp,$alamat,$level,$kurir_id,$resi,$at_id,$mp_id,$uang,$biaya_ongkir,$email_pemesanan,$note,$status,$biaya_admin,$diskon,$nama_akun_pemesan){
-			$this->db->query("INSERT INTO pemesanan(pemesanan_nama,pemesanan_tanggal,pemesanan_hp,pemesanan_alamat,status_customer,kurir_id,no_resi,at_id,mp_id,uang_kembalian,biaya_ongkir,email_pemesan,note,status_pemesanan,biaya_admin,diskon,pemesanan_nama_akun) VALUES ('$nama_pemesan','$tanggal','$no_hp','$alamat','$level','$kurir_id','$resi','$at_id','$mp_id','$uang','$biaya_ongkir','$email_pemesanan','$note','$status','$biaya_admin','$diskon','$nama_akun_pemesan')");
+		function save_pesanan($nama_pemesan,$tanggal,$no_hp,$alamat,$level,$kurir_id,$resi,$username,$at_id,$mp_id,$uang,$biaya_ongkir,$email_pemesanan,$note,$status,$biaya_admin,$diskon,$nama_akun_pemesan){
+			$this->db->query("INSERT INTO pemesanan(pemesanan_nama,pemesanan_tanggal,pemesanan_hp,pemesanan_alamat,status_customer,kurir_id,no_resi,at_id,mp_id,uang_kembalian,biaya_ongkir,email_pemesan,note,status_pemesanan,biaya_admin,diskon,pemesanan_nama_akun, username) VALUES ('$nama_pemesan','$tanggal','$no_hp','$alamat','$level','$kurir_id','$resi','$at_id','$mp_id','$uang','$biaya_ongkir','$email_pemesanan','$note','$status','$biaya_admin','$diskon','$nama_akun_pemesan', '$username')");
 			$hsl=$this->db->insert_id();
 			return $hsl;
+		}
+
+		function getPemesananresellerInput(){
+			$hasil=$this->db->query("SELECT a.*,b.*,c.*,d.*,e.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d, user e WHERE a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.username = e.user_nama and a.status_pemesanan!=4 and a.status_customer=2 ORDER BY a.pemesanan_id DESC");
+        	return $hasil;
+		}
+	
+ 
+		function getPemesananCustomerInput(){
+			$hasil=$this->db->query("SELECT a.*,b.*,c.*,d.*,e.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d, user e WHERE a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.username = e.user_nama  and a.status_pemesanan!=4 and a.status_customer=1 ORDER BY a.pemesanan_id DESC");
+        	return $hasil;
+		}
+
+		function getPemesananproduksiInput(){
+			$hasil=$this->db->query("SELECT a.*,b.*,c.*,d.*,e.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d, user e WHERE a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.username = e.user_nama and a.status_pemesanan!=4 and a.status_customer=3 ORDER BY a.pemesanan_id DESC");
+        	return $hasil;
 		}
 
 		function getPemesananSesuaiTahun($tahun){
@@ -95,10 +111,12 @@
         	return $hasil;
 		}
 
+	
 		function getPemesananCustomer(){
 			$hasil=$this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4 and a.status_customer=1 ORDER BY a.pemesanan_id DESC");
         	return $hasil;
 		}
+
 		function getPemesananCustomerJanuari(){
 			$hasil=$this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4 and a.status_customer=1 and pemesanan_tanggal BETWEEN '2020-01-01' AND '2020-01-31' ORDER BY a.pemesanan_id DESC");
         	return $hasil;
@@ -303,8 +321,8 @@
         	return $hasil;
 		}
 
-		function edit_pesanan($pemesanan_id,$nama,$no_hp,$alamat,$kurir_id, $resi,$at_id,$mp_id){
-			$hsl = $this->db->query("UPDATE pemesanan SET pemesanan_nama='$nama',pemesanan_hp='$no_hp',pemesanan_alamat='$alamat',kurir_id='$kurir_id',no_resi='$resi',at_id='$at_id',mp_id = '$mp_id' WHERE pemesanan_id='$pemesanan_id'");
+		function edit_pesanan($pemesanan_id,$nama,$no_hp,$alamat,$kurir_id, $resi,$username,$at_id,$mp_id){
+			$hsl = $this->db->query("UPDATE pemesanan SET pemesanan_nama='$nama',pemesanan_hp='$no_hp',pemesanan_alamat='$alamat',kurir_id='$kurir_id',no_resi='$resi',at_id='$at_id',mp_id = '$mp_id', username = '$username' WHERE pemesanan_id='$pemesanan_id'");
         	return $hsl;
 		}
 
