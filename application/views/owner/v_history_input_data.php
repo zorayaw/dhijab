@@ -50,8 +50,8 @@
                     else {
                         $status = "Selesai";
                     }
-                    $username = $i['username'];
-                   
+                    $username = $i['user_nama'];
+                    $id = $i['user_id'];
                   ?>
                   <tr>
                       <td><center><?= $no?></center></td>
@@ -59,7 +59,7 @@
                       <td><center><?= $pemesanan_nama ?></center></td>
                       <td><center><?= $tanggal?></center></td>
                       <td><center><?= $status?></center></td>
-                      <td><center><?= $username ?></center></td>
+                      <td><center><?= $username ?> ( ID = <?= $id ?>) </center></td>
                 </tr>
                     <?php endforeach;?>
               </tbody>

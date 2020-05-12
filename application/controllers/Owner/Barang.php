@@ -56,7 +56,7 @@ class Barang extends CI_Controller
 		if ($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') == true) {
 			$y['title'] = "History Input Data Customer";
 			$x['title_view'] = "History Input Data Customer";
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomer();
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananCustomerInput();
 			$this->load->view('v_header', $y);
 			$this->load->view('owner/v_sidebar');
 			$this->load->view('owner/v_history_input_data',  $x);
@@ -70,7 +70,7 @@ class Barang extends CI_Controller
 		if ($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') == true) {
 			$y['title'] = "History Input Data Reseller";
 			$x['title_view'] = "History Input Data Reseller";
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananReseller();
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananResellerInput();
 			$this->load->view('v_header', $y);
 			$this->load->view('owner/v_sidebar');
 			$this->load->view('owner/v_history_input_data',  $x);
@@ -84,7 +84,7 @@ class Barang extends CI_Controller
 		if ($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') == true) {
 			$y['title'] = "History Input Data Produksi";
 			$x['title_view'] = "History Input Data Produksi";
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananProduksi();
+			$x['datapesanan'] = $this->m_pemesanan->getPemesananProduksiInput();
 			$this->load->view('v_header', $y);
 			$this->load->view('owner/v_sidebar');
 			$this->load->view('owner/v_history_input_data',  $x);
