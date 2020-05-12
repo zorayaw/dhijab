@@ -44,7 +44,7 @@
                   <tr>
                       <th width="5">No</th>
                       <th>Nama Pemesan</th>
-                      <th width="10">Tanggal Pesanan</th>
+                      <th width="10">Tanggal Pemesanan</th>
                       <th>No HP</th>
                       <th>Alamat</th>
                       <th>Kurir</th>

@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Laporan Transaksi Perhari</title>
+  <title>Laporan Transaksi</title>
 </head>
 <!-- Favicon -->
 <link rel="shortcut icon" href="<?php echo base_url()?>assets/images/logo.png" />
@@ -14,28 +14,7 @@ $cur_date = date("d-m-Y");?>
      <div>
           
           <div class="col-xl-12">
-          <?php if($numstat == 0) : ?>
-            <center><h1>Laporan <?=$stat?> Transaksi</h1></center>
-            <?php else :?>
-              <center><h1>Laporan Transaksi <?=$stat?></h1></center>
-              <?php endif?>
-            <center><h4>(<?= date('d')?> <?php 
-                  switch (date('m')){
-                    case 1 : echo "Januari"; break;
-                    case 2 : echo "Februari"; break;
-                    case 3 : echo "Maret"; break;
-                    case 4 : echo "April"; break;
-                    case 5 : echo "Mei"; break;
-                    case 6 : echo "Juni"; break;
-                    case 7 : echo "Juli"; break;
-                    case 8 : echo "Agustus"; break;
-                    case 9 : echo "September"; break;
-                    case 10 : echo "Oktober"; break;
-                    case 11 : echo "November"; break;
-                    case 12 : echo "Desember"; break;
-                  }
-                  ?> <?= date('Y')?>) </h4></center>
-          </div>
+            <center><h1>Laporan Transaksi Berjalan</h1></center>
           <hr style="margin-left:10px;margin-right:10px;">
           <hr>
           <br>
@@ -43,15 +22,19 @@ $cur_date = date("d-m-Y");?>
              <table border="1" cellpadding="7" width="100%" style="border-style: solid;border-width: thin;border-collapse: collapse;" >
               <tr>
                 <th width="5">No</th>
+                <th>No Order</th>
                       <th>Nama Pemesan</th>
                       <th>Tanggal Pemesanan</th>
+                      <th>Status Pemesanan</th>
                       <th>No HP</th>
                       <th>Alamat</th>
                       <th>Kurir</th>
                       <th>Asal Transaksi</th>
                       <th>Total Omset</th>
+                      <th>Untung</th>
               </tr>
                   <?php
+                  
                     function rupiah($angka){
                       $hasil_rupiah = "Rp " . number_format($angka,0,',','.');
                       return $hasil_rupiah;
@@ -61,7 +44,17 @@ $cur_date = date("d-m-Y");?>
                   $modal = 0;
                   $omset = 0;
                   $tot_omset = 0;
+                  $tot_untung = 0;
                     foreach($data->result_array() as $i) :
+                        if ($i['status_pemesanan'] == 0)
+                        $status = "Belum Bayar";
+                        elseif ($i['status_pemesanan'] == 1)
+                        $status = "Dibayar";
+                        elseif ($i['status_pemesanan'] == 2)
+                        $status = "Dikirim";
+                        elseif($i['status_pemesanan'] == 3)
+                        $status = "Selesai";
+
                       $no++;
                       $pemesanan_id = $i['pemesanan_id'];
                       $pemesanan_nama = $i['pemesanan_nama'];
@@ -72,36 +65,49 @@ $cur_date = date("d-m-Y");?>
                       $level = $i['status_customer'];
                       $kurir_nama = $i['kurir_nama'];
                       $at_id = $i['at_id'];
+                      $ongkir = $i['ongkir'];
+                      $diskon = $i['diskon'];
+                      $biaya_admin = $i['biaya_admin'];
+                      $uang = $i['uang_kembalian'];
                       $at_nama = $i['at_nama'];
-                      $b = $this->m_pemesanan->getHargaModal($pemesanan_id, $level);
-                      foreach ($b as $temp) {
-                        $modal = $modal + $temp['harga'];
+                    $M = $this->m_pemesanan->getHModal($pemesanan_id);
+                    $mod=$M->result_array();
+                    
+                    foreach($mod as $temp){
+                      $mdl = $temp['HPP'];
+                      echo $mdl;
+                      $q = $this->db->query("SELECT a.lb_qty, a.harga, a.pemesanan_id, SUM(a.lb_qty * a.harga) as Total_keseluruhan, (SUM(a.lb_qty * a.harga))-(SUM(a.lb_qty * $mdl))+($ongkir-($diskon+$biaya_admin+$uang)) AS total from list_barang a, pemesanan b WHERE a.pemesanan_id = $pemesanan_id AND b.pemesanan_id = $pemesanan_id");
+                      $c=$q->row_array();
+                      $omset = $c['Total_keseluruhan'];
+                      $untung = $c['total'];
+                   
                     }
-                    $q = $this->db->query("SELECT a.lb_qty, a.harga, a.pemesanan_id, SUM(a.lb_qty * a.harga) as Total_keseluruhan, (SUM(a.lb_qty * a.harga))-(SUM(a.lb_qty * $modal)) AS total from list_barang a, pemesanan b WHERE a.pemesanan_id = $pemesanan_id AND b.pemesanan_id = $pemesanan_id");
-                    $c=$q->row_array();
-                    $omset = $c['Total_keseluruhan'];
-                    $untung = $c['total'];
+                    
                  
                     
                   $tot_omset = $tot_omset + $omset;
-
+                  $tot_untung = $tot_untung + $untung;
                       
                   ?>
                     <tr>
                       <td><center><?php echo $no?></center></td>
+                      <td><center><?php echo $pemesanan_id?></center></td>
                       <td><?php echo $pemesanan_nama?></td>
                       <td><?php echo $tanggal?></td>
+                      <td><?php echo $status?></td>
                       <td><?php echo $hp?></td>
                       <td><?php echo $alamat?></td>
                       <td><?php echo $kurir_nama?></td>
                       <td><?php echo $at_nama?></td>
                       <td><?php echo rupiah($omset)?></td>
+                      <td><?php echo rupiah($untung)?></td>
                     </tr>
                   <?php endforeach;?>
                   <tfoot>
                     <tr>
-                      <th colspan="7"><center>Jumlah</center></th>
+                      <th colspan="8"><center>Jumlah</center></th>
                       <th><?php echo rupiah($tot_omset)?></th>
+                      <th><?php echo rupiah($tot_untung)?></th>
                     </tr>
                   </tfoot>
              </table>

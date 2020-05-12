@@ -5,10 +5,17 @@
 	class M_pemesanan extends CI_Model
 	{
 
-		function save_pesanan($nama_pemesan,$tanggal,$no_hp,$alamat,$level,$kurir_id,$at_id,$mp_id,$uang,$biaya_ongkir,$email_pemesanan,$note,$status,$biaya_admin,$diskon,$nama_akun_pemesan){
-			$this->db->query("INSERT INTO pemesanan(pemesanan_nama,pemesanan_tanggal,pemesanan_hp,pemesanan_alamat,status_customer,kurir_id,at_id,mp_id,uang_kembalian,biaya_ongkir,email_pemesan,note,status_pemesanan,biaya_admin,diskon,pemesanan_nama_akun) VALUES ('$nama_pemesan','$tanggal','$no_hp','$alamat','$level','$kurir_id','$at_id','$mp_id','$uang','$biaya_ongkir','$email_pemesanan','$note','$status','$biaya_admin','$diskon','$nama_akun_pemesan')");
+		function save_pesanan($nama_pemesan,$tanggal,$no_hp,$alamat,$level,$kurir_id,$resi,$at_id,$mp_id,$uang,$biaya_ongkir,$email_pemesanan,$note,$status,$biaya_admin,$diskon,$nama_akun_pemesan){
+			$this->db->query("INSERT INTO pemesanan(pemesanan_nama,pemesanan_tanggal,pemesanan_hp,pemesanan_alamat,status_customer,kurir_id,no_resi,at_id,mp_id,uang_kembalian,biaya_ongkir,email_pemesan,note,status_pemesanan,biaya_admin,diskon,pemesanan_nama_akun) VALUES ('$nama_pemesan','$tanggal','$no_hp','$alamat','$level','$kurir_id','$resi','$at_id','$mp_id','$uang','$biaya_ongkir','$email_pemesanan','$note','$status','$biaya_admin','$diskon','$nama_akun_pemesan')");
 			$hsl=$this->db->insert_id();
 			return $hsl;
+		}
+
+		function getPemesananSesuaiTahun($tahun){
+			$date_start = $tahun."-01-01";
+			$date_end = $tahun."-12-31";
+			$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE year(a.pemesanan_tanggal) BETWEEN '$date_start' AND '$date_end' AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal DESC");
+			return $hasil;
 		}
 
 		function getPemesananKonfirmasi(){
@@ -16,13 +23,13 @@
         	return $hasil;
 		}
 
-	
-
 		function getPemesanan(){
 			$hasil=$this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_id DESC");
         	return $hasil;
 		}
+		
 
+	
 		function getPemesananBulanJan(){
 			$hasil=$this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4 and pemesanan_tanggal BETWEEN '2020-01-01' AND '2020-01-31' ORDER BY a.pemesanan_id DESC");
         	return $hasil;
@@ -250,6 +257,32 @@
         	return $hasil;
 		}
 
+		function getPemesananCustomerCurdate(){
+			date_default_timezone_set("Asia/Jakarta");
+        	$cur_date = date("Y-m-d");
+			$hasil=$this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE a.status_customer = 1 AND pemesanan_tanggal = '$cur_date' AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id ORDER BY a.pemesanan_id DESC");
+        	return $hasil;
+		}
+
+		function getPemesananResellerCurdate(){
+			date_default_timezone_set("Asia/Jakarta");
+        	$cur_date = date("Y-m-d");
+			$hasil=$this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE a.status_customer = 2 AND pemesanan_tanggal = '$cur_date' AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id ORDER BY a.pemesanan_id DESC");
+        	return $hasil;
+		}
+
+		function getPemesananProduksiCurdate(){
+			date_default_timezone_set("Asia/Jakarta");
+        	$cur_date = date("Y-m-d");
+			$hasil=$this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE a.status_customer = 3 AND pemesanan_tanggal = '$cur_date' AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id ORDER BY a.pemesanan_id DESC");
+        	return $hasil;
+		}
+
+		function getHargaModal($barang_id, $lvl){
+			return $this->db->query("SELECT list_barang.harga FROM list_barang WHERE barang_id = $barang_id && lb_lvl = $lvl")->result_array();
+			
+		}
+
 		function getPemesananMonth($dari,$ke){
 			$hasil=$this->db->query("SELECT a.*,b.*,c.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c WHERE (a.pemesanan_tanggal BETWEEN '$dari' AND '$ke') AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id ORDER BY a.pemesanan_id DESC");
         	return $hasil;
@@ -265,17 +298,17 @@
         	return $hasil;
 		}
 
-		function edit_pesanan($pemesanan_id,$nama,$no_hp,$alamat,$kurir_id,$at_id,$mp_id){
-			$hsl = $this->db->query("UPDATE pemesanan SET pemesanan_nama='$nama',pemesanan_hp='$no_hp',pemesanan_alamat='$alamat',kurir_id='$kurir_id',at_id='$at_id',mp_id = '$mp_id' WHERE pemesanan_id='$pemesanan_id'");
+		function edit_pesanan($pemesanan_id,$nama,$no_hp,$alamat,$kurir_id, $resi,$at_id,$mp_id){
+			$hsl = $this->db->query("UPDATE pemesanan SET pemesanan_nama='$nama',pemesanan_hp='$no_hp',pemesanan_alamat='$alamat',kurir_id='$kurir_id',no_resi='$resi',at_id='$at_id',mp_id = '$mp_id' WHERE pemesanan_id='$pemesanan_id'");
         	return $hsl;
 		}
 
-		function edit_pesanan1($pemesanan_id,$nama,$tanggal,$no_hp,$alamat,$kurir_id,$at_id,$mp_id){
-			$hsl = $this->db->query("UPDATE pemesanan SET pemesanan_nama='$nama',pemesanan_tanggal = '$tanggal',pemesanan_hp='$no_hp',pemesanan_alamat='$alamat',kurir_id='$kurir_id',at_id='$at_id',mp_id = '$mp_id' WHERE pemesanan_id='$pemesanan_id'");
+		function edit_pesanan1($pemesanan_id,$nama,$tanggal,$no_hp,$alamat,$kurir_id,$resi,$at_id,$mp_id){
+			$hsl = $this->db->query("UPDATE pemesanan SET pemesanan_nama='$nama',pemesanan_tanggal = '$tanggal',pemesanan_hp='$no_hp',pemesanan_alamat='$alamat',kurir_id='$kurir_id',no_resi='$resi',at_id='$at_id',mp_id = '$mp_id' WHERE pemesanan_id='$pemesanan_id'");
         	return $hsl;
 		}
 
-		function hapus_pesanan($pemesanan_id){
+		function hapus_pesanan($pemesanan_id){ 
 			$this->db->trans_start();
 				$this->db->query("UPDATE pemesanan SET status_pemesanan=4 WHERE pemesanan_id='$pemesanan_id'");
 
@@ -384,6 +417,166 @@
 			return $this->db->query("UPDATE pemesanan SET status_eks = '$status_eks' WHERE pemesanan_id = '$pemesanan_id'");
 		
 	}
-	
+
+		function get_total_pemesanan($pemesanan_id){
+			return $this->db->query("SELECT harga FROM list_barang WHERE pemesanan_id = $pemesanan_id")->result_array();
+		}
+
+		function getPemesananByTanggal($start, $end){
+		$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE (a.pemesanan_tanggal BETWEEN '$start' AND '$end') AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal ASC");
+		return $hasil;
+		}
+
+		function getPemesananCustomerByTanggal($start, $end){
+			$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE a.status_customer=1 AND (a.pemesanan_tanggal BETWEEN '$start' AND '$end') AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal ASC");
+			return $hasil;
+		}
+
+		function getPemesananResellerByTanggal($start, $end){
+			$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE a.status_customer=2 AND (a.pemesanan_tanggal BETWEEN '$start' AND '$end') AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal ASC");
+			return $hasil;
+		}
+
+		function getPemesananProduksiByTanggal($start, $end){
+			$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE a.status_customer=3 AND (a.pemesanan_tanggal BETWEEN '$start' AND '$end') AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal ASC");
+			return $hasil;
+		}
+
+		function getPemesananByBulan($bulan, $tahun){
+			$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE month(a.pemesanan_tanggal) = $bulan AND year(a.pemesanan_tanggal) = $tahun AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal ASC");
+			return $hasil;
+			}
+		
+		function getPemesananAllByBulan($bulan, $tahun){
+			$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE month(a.pemesanan_tanggal) = $bulan AND year(a.pemesanan_tanggal) = $tahun AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal ASC");
+			return $hasil;
+		}
+
+		function getPemesananCustomerByBulan($bulan, $tahun){
+			$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE month(a.pemesanan_tanggal) = $bulan AND year(a.pemesanan_tanggal) = $tahun AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id AND a.status_pemesanan!=4 AND a.status_customer=1 ORDER BY a.pemesanan_tanggal ASC");
+			return $hasil;
+		}
+
+		function getPemesananResellerByBulan($bulan, $tahun){
+			$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE month(a.pemesanan_tanggal) = $bulan AND year(a.pemesanan_tanggal) = $tahun AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id AND a.status_pemesanan!=4 AND a.status_customer=2 ORDER BY a.pemesanan_tanggal ASC");
+			return $hasil;
+		}
+
+		function getPemesananProduksiByBulan($bulan, $tahun){
+			$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE month(a.pemesanan_tanggal) = $bulan AND year(a.pemesanan_tanggal) = $tahun AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id AND a.status_pemesanan!=4 AND a.status_customer=3 ORDER BY a.pemesanan_tanggal ASC");
+			return $hasil;
+		} 
+
+		
+		function getPemesananByTahun($awal, $akhir){
+			$date_start = $awal."-01-01";
+			$date_end = $akhir."-12-31";
+			$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE year(a.pemesanan_tanggal) BETWEEN '$date_start' AND '$date_end' AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal ASC");
+			return $hasil;
+		}
+
+		function getPemesananCustomerByTahun($awal, $akhir){
+			$date_start = $awal."-01-01";
+			$date_end = $akhir."-12-31";
+			$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE a.status_customer=1 AND year(a.pemesanan_tanggal) BETWEEN '$date_start' AND '$date_end' AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal ASC");
+			return $hasil;
+		}
+
+		function getPemesananResellerByTahun($awal, $akhir){
+			$date_start = $awal."-01-01";
+			$date_end = $akhir."-12-31";
+			$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE a.status_customer=2 AND year(a.pemesanan_tanggal) BETWEEN '$date_start' AND '$date_end' AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal ASC");
+			return $hasil;
+		}
+
+		function getPemesananProduksiByTahun($awal, $akhir){
+			$date_start = $awal."-01-01";
+			$date_end = $akhir."-12-31";
+			$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE a.status_customer=3 AND year(a.pemesanan_tanggal) BETWEEN '$date_start' AND '$date_end' AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal ASC");
+			return $hasil;
+		}
+
+		function getPemesananByBulanTanpaTahun($bulan, $start, $end){
+			$date_start = $start."-01-01";
+			$date_end = $end."-12-31";
+			$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE month(a.pemesanan_tanggal) = $bulan AND year(pemesanan_tanggal) BETWEEN '$date_start' AND '$date_end' AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal ASC");
+			return $hasil;
+			}
+
+		function getPemesananCustomerByBulanTanpaTahun($bulan, $start, $end){
+			$date_start = $start."-01-01";
+			$date_end = $end."-12-31";
+			$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE a.status_customer=1 AND month(a.pemesanan_tanggal) = $bulan AND year(pemesanan_tanggal) BETWEEN '$date_start' AND '$date_end' AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal ASC");
+			return $hasil;
+		}
+		function getPemesananResellerByBulanTanpaTahun($bulan, $start, $end){
+			$date_start = $start."-01-01";
+			$date_end = $end."-12-31";
+			$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE a.status_customer=2 AND month(a.pemesanan_tanggal) = $bulan AND year(pemesanan_tanggal) BETWEEN '$date_start' AND '$date_end' AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal ASC");
+			return $hasil;
+			}
+		function getPemesananProduksiByBulanTanpaTahun($bulan, $start, $end){
+			$date_start = $start."-01-01";
+			$date_end = $end."-12-31";
+			$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE a.status_customer=3 AND month(a.pemesanan_tanggal) = $bulan AND year(pemesanan_tanggal) BETWEEN '$date_start' AND '$date_end' AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal ASC");
+			return $hasil;
+		}
+
+		function getPemesananByBulanIni(){
+				$bulan = date('m');
+				$tahun = date('Y');
+				$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE month(a.pemesanan_tanggal) = $bulan AND year(a.pemesanan_tanggal) = $tahun AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal ASC");
+				return $hasil;
+				}
+
+				function getPemesananByTahun2($tahun){
+					$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE year(a.pemesanan_tanggal) = $tahun AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal DESC");
+					return $hasil;
+				}
+		
+				function getPemesananCustomerByTahun2($tahun){
+					$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE a.status_customer=1 AND year(a.pemesanan_tanggal) = $tahun AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal DESC");
+					return $hasil;
+				}
+		
+				function getPemesananResellerByTahun2($tahun){
+					$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE a.status_customer=2 AND year(a.pemesanan_tanggal) = $tahun AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal DESC");
+					return $hasil;
+				}
+		
+				function getPemesananProduksiByTahun2($tahun){
+					$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE a.status_customer=3 AND year(a.pemesanan_tanggal) = $tahun AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal DESC");
+					return $hasil;
+				}
+
+				function getPemesananByBulan2($bulan, $tahun){
+					$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE month(a.pemesanan_tanggal) = $bulan AND year(a.pemesanan_tanggal) = $tahun AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal ASC");
+					return $hasil;
+					}
+				
+				function getPemesananAllByBulan2($bulan, $tahun){
+					$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE month(a.pemesanan_tanggal) = $bulan AND year(a.pemesanan_tanggal) = $tahun AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal ASC");
+					return $hasil;
+				}
+		
+				function getPemesananCustomerByBulan2($bulan, $tahun){
+					$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE month(a.pemesanan_tanggal) = $bulan AND year(a.pemesanan_tanggal) = $tahun AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id AND a.status_pemesanan!=4 AND a.status_customer=1 ORDER BY a.pemesanan_tanggal ASC");
+					return $hasil;
+				}
+		
+				function getPemesananResellerByBulan2($bulan, $tahun){
+					$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE month(a.pemesanan_tanggal) = $bulan AND year(a.pemesanan_tanggal) = $tahun AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id AND a.status_pemesanan!=4 AND a.status_customer=2 ORDER BY a.pemesanan_tanggal ASC");
+					return $hasil;
+				}
+		
+				function getPemesananProduksiByBulan2($bulan, $tahun){
+					$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE month(a.pemesanan_tanggal) = $bulan AND year(a.pemesanan_tanggal) = $tahun AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id AND a.status_pemesanan!=4 AND a.status_customer=3 ORDER BY a.pemesanan_tanggal ASC");
+					return $hasil;
+				} 
+				
+				function getHModal($pemesanan_id){
+					return $this->db->query("SELECT a.HPP FROM kategori_barang a, barang b, list_barang d WHERE d.pemesanan_id = $pemesanan_id AND d.barang_id = b.barang_id AND b.id_kategori_barang = a.id_kategori_barang");
+					
+				}
 	}
 ?>

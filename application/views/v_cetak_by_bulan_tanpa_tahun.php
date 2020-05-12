@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Laporan Transaksi Perhari</title>
+  <title>Laporan Transaksi Bulanan</title>
 </head>
 <!-- Favicon -->
 <link rel="shortcut icon" href="<?php echo base_url()?>assets/images/logo.png" />
@@ -9,32 +9,31 @@
 <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <body>
-<?php date_default_timezone_set("Asia/Jakarta");
-$cur_date = date("d-m-Y");?>
+<?php date_default_timezone_set("Asia/Jakarta");?>
      <div>
-          
+          <?php 
+                  switch ($bulan){
+                    case 1 : $nbulan = "Januari"; break;
+                    case 2 : $nbulan = "Februari"; break;
+                    case 3 : $nbulan = "Maret"; break;
+                    case 4 : $nbulan = "April"; break;
+                    case 5 : $nbulan = "Mei"; break;
+                    case 6 : $nbulan = "Juni"; break;
+                    case 7 : $nbulan = "Juli"; break;
+                    case 8 : $nbulan = "Agustus"; break;
+                    case 9 : $nbulan = "September"; break;
+                    case 10 : $nbulan = "Oktober"; break;
+                    case 11 : $nbulan = "November"; break;
+                    case 12 : $nbulan = "Desember"; break;
+                  }
+                  ?>
           <div class="col-xl-12">
           <?php if($numstat == 0) : ?>
-            <center><h1>Laporan <?=$stat?> Transaksi</h1></center>
-            <?php else :?>
-              <center><h1>Laporan Transaksi <?=$stat?></h1></center>
+            <center><h1>Laporan Tahunan <?=$stat?> Transaksi untuk Bulan <?=$nbulan?></h1></center>
+            <?php else : ?>
+              <center><h1>Laporan Tahunan Transaksi <?=$stat?> untuk Bulan <?=$nbulan?></h1></center>
               <?php endif?>
-            <center><h4>(<?= date('d')?> <?php 
-                  switch (date('m')){
-                    case 1 : echo "Januari"; break;
-                    case 2 : echo "Februari"; break;
-                    case 3 : echo "Maret"; break;
-                    case 4 : echo "April"; break;
-                    case 5 : echo "Mei"; break;
-                    case 6 : echo "Juni"; break;
-                    case 7 : echo "Juli"; break;
-                    case 8 : echo "Agustus"; break;
-                    case 9 : echo "September"; break;
-                    case 10 : echo "Oktober"; break;
-                    case 11 : echo "November"; break;
-                    case 12 : echo "Desember"; break;
-                  }
-                  ?> <?= date('Y')?>) </h4></center>
+            <center><h4> <?= $awal." - ".$akhir?></h4></center>
           </div>
           <hr style="margin-left:10px;margin-right:10px;">
           <hr>
@@ -73,18 +72,14 @@ $cur_date = date("d-m-Y");?>
                       $kurir_nama = $i['kurir_nama'];
                       $at_id = $i['at_id'];
                       $at_nama = $i['at_nama'];
-                      $b = $this->m_pemesanan->getHargaModal($pemesanan_id, $level);
-                      foreach ($b as $temp) {
-                        $modal = $modal + $temp['harga'];
-                    }
-                    $q = $this->db->query("SELECT a.lb_qty, a.harga, a.pemesanan_id, SUM(a.lb_qty * a.harga) as Total_keseluruhan, (SUM(a.lb_qty * a.harga))-(SUM(a.lb_qty * $modal)) AS total from list_barang a, pemesanan b WHERE a.pemesanan_id = $pemesanan_id AND b.pemesanan_id = $pemesanan_id");
-                    $c=$q->row_array();
-                    $omset = $c['Total_keseluruhan'];
-                    $untung = $c['total'];
-                 
-                    
-                  $tot_omset = $tot_omset + $omset;
-
+                      
+                      $q = $this->db->query("SELECT a.lb_qty, a.harga, a.pemesanan_id, SUM(a.lb_qty * a.harga) as Total_keseluruhan, (SUM(a.lb_qty * a.harga))-(SUM(a.lb_qty * $b )) AS total from list_barang a, pemesanan b WHERE a.pemesanan_id = $pemesanan_id AND b.pemesanan_id = $pemesanan_id");
+                        $c=$q->row_array();
+                        $omset = $c['Total_keseluruhan'];
+                        $untung = $c['total'];
+                     
+                        
+                      $tot_omset = $tot_omset + $omset;
                       
                   ?>
                     <tr>

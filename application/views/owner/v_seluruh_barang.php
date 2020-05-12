@@ -2,7 +2,7 @@
     <div class="page-title">
       <div class="row">
           <div class="col-sm-6">
-              <h4 class="mb-0">Data Daftar Barang</h4>              
+              <h4 class="mb-0">Data Daftar Seluruh Barang Barang</h4>              
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
@@ -17,9 +17,9 @@
       <div class="col-xl-12 mb-30">     
         <div class="card card-statistics h-100"> 
           <div class="card-body">
-            <div class="col-xl-12 mb-10">
-              <a href="" data-toggle="modal" data-target="#tambah-barang-reseller" class="btn btn-primary btn-block ripple m-t-20">
-                  <i class="fa fa-plus pr-2"></i> Tambah Kategori Barang
+            <div class="col-xl-12 mb-10" style="display: flex">
+              <a href="" data-toggle="modal" data-target="#tambah-barang-non-reseller" class="btn btn-primary btn-block ripple m-t-20">
+                <i class="fa fa-plus pr-2"></i> Tambah Barang
               </a>
             </div>
             <div class="table-responsive">
@@ -27,19 +27,14 @@
               <thead>
                   <tr>
                       <th width="10">No</th>
-                      <th>Nama Kategori</th>
-                      <th>Berat </th>
-                      <th>Harga Ecer</th>
-                      <th>Harga 3-11</th>
-                      <th>Harga 12-29</th>
-                      <th>Harga Diatas 30</th>
-                      <th>Harga Reseller</th> 
-                      <th>Harga Modal</th>
+                      <th>Nama Barang</th>
+                      <th>Kategori Barang</th>
+                      <th>Stock Barang</th>
                       <th width="100"><center>Aksi</center></th>
                   </tr>
               </thead>
               <tbody>
-                <?php 
+                  <?php 
                   $no = 0;
 
                   function rupiah($angka){
@@ -47,37 +42,32 @@
                     return $hasil_rupiah;
                   }
 
-                  foreach($barang->result_array() as $i) :
+                  foreach($nonreseller->result_array() as $i) :
                     $no++;
-                    $barang_id = $i['id_kategori_barang'];
-                    $nama_kategori = $i['nama_kategori'];
-                    $berat = $i['berat'];
-                    $harga_ecer = $i['harga_ecer'];
-                    $harga_grosir_3_11 = $i['harga_grosir_3_11'];
-                    $harga_grosir_12_29 = $i['harga_grosir_12_29'];
-                    $grosir_diatas_30 = $i['grosir_diatas_30'];
-                    $reseller = $i['reseller'];
-                    $hpp = $i['HPP'];
+                    $barang_nama = $i['barang_nama'];
+                    $barang_stok = $i['barang_stok'];
+                    $barang_id = $i['barang_id'];
+
+                    foreach($kategori_barang->result_array() as $j) :
+                        if($i['id_kategori_barang'] == $j['id_kategori_barang']) :
+                            $kat_barang = $j['nama_kategori'];
+                        
                   ?>
                   <tr>
-                     <td><center><?php echo $no?></center></td>
-                     
-                      <td><?php echo $nama_kategori?></td>
-                      <td><?php echo $berat?></td>
-                      <td><?php echo $harga_ecer?></td>
-                      <td><?php echo rupiah($harga_grosir_3_11)?></td>
-                      <td><?php echo $harga_grosir_12_29?></td>
-                       <td><?php echo $grosir_diatas_30?></td>
-                       <td><?php echo $reseller?></td>
-                      <td><?php echo $hpp?></td>
-<!--                           <a href="#" style="margin-right: 10px; margin-left: 10px;" data-toggle="modal" data-target="#editdata<?php echo $barang_id?>"><span class="ti-pencil"></span></a> -->
+                      <td><center><?php echo $no?></center></td>
+                      <td><?php echo $barang_nama?></td>
+                      <td><?php echo $kat_barang ?></td>
+                      <td><?php echo $barang_stok?></td>
+                      
                       <td>
-                          <a href="#" style="margin-right: 10px" data-toggle="modal" data-target="#editdata<?php echo $barang_id?>"><span class="ti-pencil"></span></a>
+                          <a href="#" style="margin-right: 10px; margin-left: 20px;" data-toggle="modal" data-target="#editdata<?php echo $barang_id?>"><span class="ti-pencil"></span></a>
                           <a href="#" style="margin-right: 10px" data-toggle="modal" data-target="#hapusdata<?php echo $barang_id?>"><span class="ti-trash"></span></a>
-
+                          <a href="<?php echo base_url()?>Owner/Barang/History/<?php echo $barang_id?>" data-toggle="tooltip" data-placement="top" title="Lihat History Stock"><span class="ti-eye"></span></a>
                       </td>
                     </tr>
-                  <?php endforeach;?>
+                    <?php endif ?>
+                    <?php endforeach ?>
+                    <?php endforeach;?>
               </tbody>
            </table>
           </div>
@@ -85,8 +75,136 @@
         </div>   
       </div>
 
-      <!-- Modal Add Barang Reseller-->
-        <div class="modal" tabindex="-1" role="dialog" id="tambah-barang-reseller">
+        <!-- Modal Add Barang Non Reseller-->
+        <div class="modal" tabindex="-1" role="dialog" id="tambah-barang-non-reseller">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Tambah Barang</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <form action="<?php echo base_url()?>Owner/Barang/tambah_barang" method="post" enctype="multipart/form-data">
+                    <div class="modal-body p-20">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="control-label">Nama Barang</label>
+                                    <input class="form-control form-white" type="text" name="nama_barang"  required="" />
+                                    
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="control-label">Stock </label>
+                                    <input class="form-control form-white" type="number" name="stock" required="" />
+                                </div>
+                                <div class="col-md-12">
+                  <label class="control-label">Kategori Barang</label>
+                  <select class="form-control" name="kategori" required>
+                    <option selected value="">Pilih</option>
+                    <?php
+                    foreach ($kategori_barang->result_array() as $i) :
+                      $id_kategori_barang = $i['id_kategori_barang'];
+                      $nama_kategori = $i['nama_kategori'];
+                      
+                      ?>
+                      <option value="<?php echo $id_kategori_barang ?>"><?php echo $nama_kategori ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+                                <div class="col-md-12">
+                                    <label class="control-label">Jenis Barang</label>
+                                    <select class="custom-select" name="jenis_barang">
+                                        <option selected>Pilih jenis barang</option>
+                                        <option value="1">Kain</option>
+                                        <option value="2">Jilbab</option>
+                                    </select>
+                                </div>
+                            </div>          
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success ripple save-category" id="simpan">Save</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>  
+  
+
+        <?php   foreach($nonreseller->result_array() as $i) :
+                    $barang_id = $i['barang_id'];
+                    $barang_nama = $i['barang_nama'];
+                    $barang_stok = $i['barang_stok'];
+                    $nama_kategori = $i['nama_kategori'];
+                  ?>
+                  
+        <!-- Modal edit Data -->
+          <div class="modal" tabindex="-1" role="dialog" id="editdata<?php echo $barang_id?>">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Barang</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <form action="<?php echo base_url()?>Owner/Barang/edit_barang" method="post" enctype="multipart/form-data">
+                    <div class="modal-body p-20">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="control-label">Nama Barang</label>
+                                    <input type="" name="barang_id" value="<?php echo $barang_id?>">
+                                     <input class="form-control form-white" type="text" name="nama_barang" placeholder="<?php echo $barang_nama?>" />
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="control-label">Stock  : <?= $barang_stok?> </label>
+                                    <input class="form-control form-white" type="number" name="stock" placeholder="<?= $barang_stok?> " />
+                                </div>
+                            </div>  
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success ripple save-category" id="simpan">Save</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <?php endforeach;?>
+
+        <?php foreach($nonreseller->result_array() as $i) :
+          $barang_id = $i['barang_id'];
+          $barang_nama = $i['barang_nama'];
+          ?>
+
+        <div class="modal" tabindex="-1" role="dialog" id="hapusdata<?php echo $barang_id?>">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Hapus Barang</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body p-20">
+                        <form action="<?php echo base_url()?>Owner/Barang/hapus_non_reseller" method="post">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="hidden" name="barang_id" value="<?php echo $barang_id?>"/> 
+                                    <!-- <input type="hidden" name="barang_foto" value="<?php echo $gambar?>"/> -->
+                                    <!-- <input type="hidden" name="bnr_id" value="bnr_id"> -->
+                                    <p>Apakah kamu yakin ingin menghapus data ini?</i></b></p>
+                                </div>
+                            </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Tidak</button>
+                        <button type="submit" class="btn btn-success ripple save-category">Ya</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <?php endforeach;?>
+  </div>
+
+  <!-- Modal Add Barang Reseller-->
+  <div class="modal" tabindex="-1" role="dialog" id="tambah-barang-reseller">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -140,109 +258,6 @@
             </div>
         </div>
 
-        <?php 
-                  $no = 0;
-
-                  
-
-                  foreach($barang->result_array() as $i) :
-                    $no++;
-                    $barang_id = $i['id_kategori_barang'];
-                    $nama_kategori = $i['nama_kategori'];
-                    $berat = $i['berat'];
-                    $harga_ecer = $i['harga_ecer'];
-                    $harga_grosir_3_11 = $i['harga_grosir_3_11'];
-                    $harga_grosir_12_29 = $i['harga_grosir_12_29'];
-                    $grosir_diatas_30 = $i['grosir_diatas_30'];
-                    $reseller = $i['reseller'];
-                    $HPP = $i['HPP'];
-        ?>
-        <!-- Modal edit Data -->
-          <div class="modal" tabindex="-1" role="dialog" id="editdata<?php echo $barang_id?>">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Edit Data</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <form action="<?php echo base_url()?>Owner/Barang/edit_kategori" method="post" enctype="multipart/form-data">
-                    <div class="modal-body p-20">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label class="control-label">Nama Barang</label>
-                                    <input type="hidden" name="barang_id" value="<?php echo $barang_id?>">
-                                    <input class="form-control form-white" type="text" name="nama_kategori" value="<?php echo $nama_kategori?>" required/>
-                                </div>
-                                <div class="col-md-12 mt-10">
-                                  <label class="control-label mt-10" for="berat">Berat Barang</label>
-                                   <input class="form-control" type="text" name="berat" value="<?php echo $berat?>" required >
-                                </div>
-                                <div class="col-md-12 mt-10">
-                                  <label class="control-label mt-10" for="harga_ecer">Harga Ecer</label>
-                                   <input class="form-control" type="text" name="harga_ecer" value="<?php echo $harga_ecer?>" required  >
-                                </div>
-                                <div class="col-md-12 mt-10">
-                                  <label class="control-label mt-10" for="harga_grosir_3_11">Harga 3-11</label>
-                                   <input class="form-control" type="text" name="harga_grosir_3_11" value="<?php echo $harga_grosir_3_11?>" required  >
-                                </div>
-                                <div class="col-md-12 mt-10">
-                                  <label class="control-label mt-10" for="harga_grosir_12_29">Harga 12-29</label>
-                                   <input class="form-control" type="text" name="harga_grosir_12_29" value="<?php echo $harga_grosir_12_29?>" required  >
-                                </div>
-                                <div class="col-md-12 mt-10">
-                                  <label class="control-label mt-10" for="grosir_diatas_30">Harga Diatas 30</label>
-                                   <input class="form-control" type="text" name="grosir_diatas_30" value="<?php echo $grosir_diatas_30?>" required  >
-                                </div>
-                                <div class="col-md-12 mt-10">
-                                  <label class="control-label mt-10" for="reseller">Harga Reseller</label>
-                                   <input class="form-control" type="text" name="reseller" value="<?php echo $reseller?>" required  >
-                                </div>
-                                <div class="col-md-12 mt-10">
-                                  <label class="control-label mt-10" for="HPP">Harga Modal</label>
-                                   <input class="form-control" type="text" name="HPP" value="<?php echo $HPP?>" required  >
-                                </div> 
-                            </div>          
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success ripple save-category" id="simpan">Save</button>
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <?php endforeach;?>
-
-        <?php foreach($barang->result_array() as $i) :
-                    $barang_id = $i['id_kategori_barang'];
-                    
-        ?>
-        <div class="modal" tabindex="-1" role="dialog" id="hapusdata<?php echo $barang_id?>">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Hapus Barang</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body p-20">
-                        <form action="<?php echo base_url()?>Owner/Barang/hapus_reseller" method="post">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <input type="hidden" name="barang_id" value="<?php echo $barang_id?>"/> 
-                                    <p>Apakah kamu yakin ingin menghapus harga reseller secara keselurahan?</i></b></p>
-                                </div>
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Tidak</button>
-                        <button type="submit" class="btn btn-success ripple save-category">Ya</button>
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <?php endforeach;?>
-  </div>
 
     
 <!--=================================
@@ -427,7 +442,7 @@
         <script type="text/javascript">
                 $.toast({
                     heading: 'Delete',
-                    text: "Data berhasil didelete",
+                    text: "Barang berhasil didelete",
                     showHideTransition: 'slide',
                     icon: 'info',
                     loader: true,        // Change it to false to disable loader

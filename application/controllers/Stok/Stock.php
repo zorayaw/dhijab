@@ -8,10 +8,10 @@ class stock extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		if ($this->session->userdata('masuk') != TRUE) {
+		if ($this->session->userdata('masuk') != TRUE || ($this->session->userdata('akses') != 3 && $this->session->userdata('akses') != 1)) {
 			$url = base_url('Login');
 			redirect($url);
-		}
+		};
 
 		$this->load->model('m_pemesanan');
 		$this->load->model('m_barang');
@@ -21,55 +21,54 @@ class stock extends CI_Controller
 
 	function index()
 	{
-		if ($this->session->userdata('akses') == 3 && $this->session->userdata('masuk') == true) {
-			$y['title'] = "Stock";
+		$y['title'] = "Stock";
 			$x['stock'] = $this->m_barang->getAllBarang();
 			$this->load->view('v_header', $y);
-			$this->load->view('stok/v_sidebar');
+			if($this->session->userdata('akses') == 3){
+				$this->load->view('stok/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
 			$this->load->view('stok/v_stock', $x);
-		} else {
-			redirect('Login');
-		}
 	}
 
 	function history($barang_id)
 	{
-		if ($this->session->userdata('akses') == 3 && $this->session->userdata('masuk') == true) {
-			$y['title'] = "Stock";
+		$y['title'] = "Stock Masuk";
 			$status='2';
 			$x['stock'] = $this->m_barang-> getHistoryStock($barang_id,$status);
 			$this->load->view('v_header', $y);
+			if($this->session->userdata('akses') == 3){
+				$this->load->view('stok/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+			}
 			$this->load->view('stok/v_sidebar');
 			$this->load->view('stok/v_history_stock', $x);
-		} else {
-			redirect('Login');
-		}
 	}
 
 	function history_stok_keluar($barang_id)
-	{
-		if ($this->session->userdata('akses') == 3 && $this->session->userdata('masuk') == true) {
-			$y['title'] = "Stock";
+	{$y['title'] = "Stock Keluar";
 			$status='1';
 			$x['stock'] = $this->m_barang-> getHistoryStock($barang_id,$status);
 			$this->load->view('v_header', $y);
-			$this->load->view('stok/v_sidebar');
-			$this->load->view('stok/v_history_stock', $x);
-		} else {
-			redirect('Login');
-		}
+			if($this->session->userdata('akses') == 3){
+				$this->load->view('admin/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
+			$this->load->view('stok/v_history_stock', $x );
 	}
 
 	function tambah_stock()
 	{
-		if ($this->session->userdata('akses') == 3 && $this->session->userdata('masuk') == true) {
-			$y['title'] = "Stock";
+		$y['title'] = "Stock";
 			$stock = $this->input->post('stock');
 			$barang_id = $this->input->post('barang_id');
 			$this->m_barang->update_stock($barang_id,$stock);
 			redirect('Stok/Stock');
-		} else {
-			redirect('Login');
-		}
+		
 	}
 }

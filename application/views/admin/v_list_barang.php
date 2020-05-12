@@ -18,7 +18,13 @@
         <div class="card card-statistics h-100"> 
           <div class="card-body">
             <div class="col-xl-12 mb-10" style="display: flex;">
-              <div class="col-xl-12 mb-10" style="display: flex">
+            <?php if($lvl == 3) : ?>
+              <div class="col-md-12">
+                  <a href="" data-toggle="modal" data-target="#kurir" class="btn btn-primary btn-block ripple m-t-20">
+                    <i class="fa fa-plus pr-2"></i> Tambah List Barang
+                  </a>
+                </div>
+                <?php else : ?>
                 <div class="col-md-6">
                   <a href="" data-toggle="modal" data-target="#kurir" class="btn btn-primary btn-block ripple m-t-20">
                     <i class="fa fa-plus pr-2"></i> Tambah List Barang
@@ -29,9 +35,11 @@
                     <i class="fa fa-print pr-2"></i> Cetak Invoice
                   </a>
                 </div>
+                <?php endif; ?>
               </div>
+                
               
-            </div>
+
             <div class="table-responsive">
             <table id="datatable" class="table table-striped table-bordered p-0">
               <thead>
@@ -52,7 +60,7 @@
                       return $hasil_rupiah;
                     }
 
-                    $no = 0 ;
+                    $no = 0 ; 
                     foreach($listbarang->result_array() as $i) :
                       $no++;
                       $lb_id = $i['lb_id'];
@@ -61,7 +69,7 @@
                       $barang_id = $i['barang_id'];
                       $qty = $i['lb_qty'];
                       $barang_nama = $i['barang_nama'];
-                      $bnr_harga = $i['bnr_harga'];
+                      $bnr_harga = $i['bnr_harga']; 
                       $total = $i['total'];
                       $jumlah=$total+$jumlah;
                   ?>
@@ -87,7 +95,7 @@
         </div>   
       </div>
 
-       <!-- Modal Add Barang Reseller-->
+       <!-- Modal Add Barang Non Reseller-->
         <div class="modal" tabindex="-1" role="dialog" id="kurir">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
