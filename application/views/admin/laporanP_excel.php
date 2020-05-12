@@ -1,45 +1,12 @@
-<html>
-<head>
-  <title>Laporan Transaksi Bulanan</title>
-</head>
-<!-- Favicon -->
-<link rel="shortcut icon" href="<?php echo base_url()?>assets/images/logo.png" />
+<?php
+ header("Content-type: application/vnd-ms-excel");
+ header("Content-Disposition: attachment; filename=Pemesanan_Excel.xls");
+ header("Pragma: no-cache");
+ header("Expires: 0");
+ ?>
 
-<!-- Font -->
-<link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<body>
-<?php date_default_timezone_set("Asia/Jakarta");?>
-     <div>
-          
-          <div class="col-xl-12">
-          <?php if($numstat == 0) : ?>
-            <center><h1>Laporan Bulanan <?=$stat?> Transaksi</h1></center>
-            <?php else : ?>
-              <center><h1>Laporan  Bulanan Transaksi <?=$stat?></h1></center>
-              <?php endif?>
-            <center><h4>(<?php 
-                  switch ($bulan){
-                    case 1 : echo "Januari"; break;
-                    case 2 : echo "Februari"; break;
-                    case 3 : echo "Maret"; break;
-                    case 4 : echo "April"; break;
-                    case 5 : echo "Mei"; break;
-                    case 6 : echo "Juni"; break;
-                    case 7 : echo "Juli"; break;
-                    case 8 : echo "Agustus"; break;
-                    case 9 : echo "September"; break;
-                    case 10 : echo "Oktober"; break;
-                    case 11 : echo "November"; break;
-                    case 12 : echo "Desember"; break;
-                  }
-                  ?> <?= $tahun?>) </h4></center>
-          </div>
-          <hr style="margin-left:10px;margin-right:10px;">
-          <hr>
-          <br>
-
-          <table border="1" cellpadding="7" width="100%" style="border-style: solid;border-width: thin;border-collapse: collapse;" >
+        <table border="2">
+              <thead>
                 <tr>
                   <th>No</th>
                   <th>Nomor Order</th>
@@ -58,10 +25,13 @@
                   <th>Note</th>
                   <th>Total Harga</th>
 
+
                   <!-- <th>
                     <center>Aksi</center>
                   </th> -->
                 </tr>
+              </thead>
+              <tbody>
                 <?php
                 function rupiah($angka)
                 {
@@ -71,7 +41,7 @@
 
                 $no = 0;
                 $total = 0;
-                foreach ($data->result_array() as $i) :
+                foreach ($datapesanan->result_array() as $i) :
                   $no++;
 
                   $pemesanan_id = $i['pemesanan_id'];
@@ -95,14 +65,6 @@
                   $diskon = $i['diskon'];
                   $uang = $i['uang_kembalian'];
                   $note = $i['note'];
-                  if($status == 0)
-                  $namstat = "Belum Bayar";
-                  else if($status == 1)
-                  $namstat = "Dibayar";
-                  else if($status == 2)
-                  $namstat = "Dikirim";
-                  else if($status == 3)
-                  $namstat = "Selesai";
 
                   $q = $this->db->query("SELECT SUM(lb_qty * harga)AS total_keseluruhan from list_barang where pemesanan_id=' $pemesanan_id'");
                   $c = $q->row_array();
@@ -139,7 +101,24 @@
                     <td><?php echo $at_nama ?></td>
                     <td><?php echo $mp_nama ?></td>
                     <td><?php echo $nama_barang ?></td>
-                    <td><?php echo $namstat?></td>
+                    
+                    <td>
+                      <?php
+                      if ($status == 0) { ?>
+                        <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#bayar<?= $pemesanan_id ?>" style="margin-right: 20px">Belum Bayar</button>
+                      <?php } elseif ($status == 1) {
+                      ?>
+                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#kirim<?= $pemesanan_id ?>" style="margin-right: 20px">Dibayar </button>
+                      <?php } elseif ($status == 2) {
+                      ?>
+                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#selesai<?= $pemesanan_id ?>" style="margin-right: 20px">Dikirim </button>
+                      <?php } else {
+                      ?>
+                        <button class="btn btn-success" style="margin-right: 20px">Selesai</button>
+                      <?php
+                      }
+                      ?>
+                    </td>
                     <td><?php echo $note ?></td>
                     <td><?php echo rupiah($jumlah) ?></td>
 
@@ -152,19 +131,12 @@
                     </td> -->
                   </tr>
                 <?php endforeach; ?>
+
+              </tbody>
               <tr>
-                <th colspan="14">
+                <th colspan="15">
                   <center>Jumlah</center>
                 </th>
                 <th colspan="2"><?php echo rupiah($total) ?></th>
               </tr>
             </table>
-    </div>
-
-</body>
-</html>
-
-<script type="text/javascript">
- window.print();
- window.close();
-</script>

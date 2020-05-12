@@ -40,15 +40,11 @@ $cur_date = date("d-m-Y");?>
                   <th>Email </th>
                   <th>Ekspedisi</th>
                   <th>Nomor Resi</th>
-                  <th>Biaya Ongkir</th>
                   <th>Asal Transaksi</th>
                   <th>Metode Pembayaran</th>
                   <th>List Barang</th>
                   <th>Status</th>
                   <th>Note</th>
-                  <th>Biaya Admin</th>
-                  <th>Diskon</th>
-                  <th>Uang Kembalian</th>
                   <th>Total Harga</th>
 
                   <!-- <th>
@@ -129,15 +125,11 @@ $cur_date = date("d-m-Y");?>
                     <td><?php echo $email ?></td>
                     <td><?php echo $kurir_nama ?></td>
                     <td><?php echo $resi ?></td>
-                    <td><?php echo $ongkir ?></td>
                     <td><?php echo $at_nama ?></td>
                     <td><?php echo $mp_nama ?></td>
                     <td><?php echo $nama_barang ?></td>
                     <td><?php echo $namstat?></td>
                     <td><?php echo $note ?></td>
-                    <td><?php echo rupiah($biaya_admin) ?></td>
-                    <td><?php echo rupiah($diskon) ?></td>
-                    <td><?php echo rupiah($uang) ?></td>
                     <td><?php echo rupiah($jumlah) ?></td>
 
                     <?php
@@ -150,7 +142,7 @@ $cur_date = date("d-m-Y");?>
                   </tr>
                 <?php endforeach; ?>
               <tr>
-                <th colspan="18">
+                <th colspan="14">
                   <center>Jumlah</center>
                 </th>
                 <th colspan="2"><?php echo rupiah($total) ?></th>

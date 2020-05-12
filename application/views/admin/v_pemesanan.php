@@ -93,10 +93,10 @@
 							<?php endforeach; ?>
             </div>
 					</div>
-
+<?php if($this->session->userdata('akses') == 2) : ?>
           <div class="btn-group">
 						<button type="button" class="btn btn-success dropdown-toggle mb-4 ml-4 "  data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">
+							aria-haspopup="true" aria-expanded="false"><i class="fa fa-print pr-2"></i> 
 							Cetak Dokumen
 						</button>
 						<div class="dropdown-menu">
@@ -107,18 +107,19 @@
             
           <div class="btn-group">
             <button type="button" class="btn btn-dark dropdown-toggle mb-4 ml-4" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false">
+								aria-haspopup="true" aria-expanded="false"><i class="fa fa-save pr-2"></i> 
 								Convert Dokumen
 							</button>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="" data-toggle="modal" data-target="#pilihan">Data Pemesanan</a>
-								<a class="dropdown-item" href="" data-toggle="modal" data-target="#produksi">Data Keuangan</a>
+								<a class="dropdown-item" href="" data-toggle="modal" data-target="#Conv-Pemesanan">Data Pemesanan</a>
+								<a class="dropdown-item" href="" data-toggle="modal" data-target="#Conv-Transaksi">Data Keuangan</a>
               </div>
-          </div>
+		  </div>
+<?php endif; ?>
 </div>
 
 					<!-- Modal -->
-					<div class="modal fade" id="pilihan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+					<div class="modal fade" id="Conv-Pemesanan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 						aria-hidden="true">
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
@@ -131,19 +132,19 @@
 								<div class="modal-body">
 									<div class="col-md-12 mt-4">
 										<a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="excel"
-											data-toggle="modal" data-target="#export">
+											data-toggle="modal" data-target="#exportP">
 											<i class="fa fa-file-excel-o pr-2"></i>Convert Excel
 										</a>
 									</div>
 									<div class="col-md-12 mt-4">
 										<a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="pdf"
-											data-toggle="modal" data-target="#exportpdf">
+											data-toggle="modal" data-target="#exportpdfP">
 											<i class="fa fa-file-pdf-o pr-2"></i>Convert PDF
 										</a>
 									</div>
 									<div class="col-md-12 mt-4 mb-4">
 										<a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="words"
-											data-toggle="modal" data-target="#word">
+											data-toggle="modal" data-target="#wordP">
 											<i class="fa fa-file-word-o pr-2"></i>Convert Word
 										</a>
 									</div>
@@ -156,7 +157,7 @@
 					</div>
 
 					<!-- Modal Excel -->
-					<div class="modal fade" id="export" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+					<div class="modal fade" id="exportP" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 						aria-hidden="true">
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
@@ -170,14 +171,14 @@
 									<div class="row">
 
 										<div class="col-md-12">
-											<a href="<?= base_url() ?>admin/Pemesanan/convertExcel?status=0" target="_blank"
+											<a href="<?= base_url() ?>admin/Pemesanan/convertExcel?status=0&doc=1" target="_blank"
 												class="btn btn-success btn-block ripple m-t-10">
 												<i class="fa fa-print pr-2"></i>Convert Seluruh Pemesanan</a>
 											</a>
 										</div>
 
 										<div class="col-md-12 mt-4">
-											<a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerhari?status=0" target="_blank"
+											<a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerhari?status=0&doc=1" target="_blank"
 												class="btn btn-success btn-block ripple m-t-10">
 												<i class="fa fa-print pr-2"></i>Convert Pemesanan Hari Ini (<?= date('d')?> <?php 
                             switch (date('m')){
@@ -201,7 +202,7 @@
 										</div>
 
 										<div class="col-md-12 mt-4">
-											<a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerbulan?status=0&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
+											<a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerbulan?status=0&doc=1&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
 												target="_blank" class="btn btn-success btn-block ripple m-t-10">
 												<i class="fa fa-print pr-2"></i>Convert Pemesanan Bulan Ini (<?php 
                             switch (date('m')){
@@ -226,7 +227,7 @@
 										<div class="col-md-12 mt-4">
 											<h6>Convert Berdasarkan Tanggal:</h6>
 										</div>
-										<form action="<?php echo base_url() ?>admin/Pemesanan/convertExcelBytanggal?status=0"
+										<form action="<?php echo base_url() ?>admin/Pemesanan/convertExcelBytanggal?status=0&doc=1"
 											target="_blank" method="post" enctype="multipart/form-data">
 											<div class="modal-body p-20">
 												<div class="row">
@@ -258,7 +259,7 @@
 					<!-- end modal excel -->
 
 					<!-- modal word -->
-					<div class="modal fade" id="word" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+					<div class="modal fade" id="wordP" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 						aria-hidden="true">
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
@@ -272,14 +273,14 @@
 									<div class="row">
 
 										<div class="col-md-12">
-											<a href="<?= base_url() ?>admin/Pemesanan/convertWord?status=0" target="_blank"
+											<a href="<?= base_url() ?>admin/Pemesanan/convertWord?status=0&doc=1" target="_blank"
 												class="btn btn-success btn-block ripple m-t-10">
 												<i class="fa fa-print pr-2"></i>Convert Seluruh Pemesanan</a>
 											</a>
 										</div>
 
 										<div class="col-md-12 mt-4">
-											<a href="<?= base_url() ?>admin/Pemesanan/convertWordPerhari?status=0" target="_blank"
+											<a href="<?= base_url() ?>admin/Pemesanan/convertWordPerhari?status=0&doc=1" target="_blank"
 												class="btn btn-success btn-block ripple m-t-10">
 												<i class="fa fa-print pr-2"></i>Convert Pemesanan Hari Ini (<?= date('d')?> <?php 
                             switch (date('m')){
@@ -303,7 +304,7 @@
 										</div>
 
 										<div class="col-md-12 mt-4">
-											<a href="<?= base_url() ?>admin/Pemesanan/convertWordPerbulan?status=0&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
+											<a href="<?= base_url() ?>admin/Pemesanan/convertWordPerbulan?status=0&doc=1&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
 												target="_blank" class="btn btn-success btn-block ripple m-t-10">
 												<i class="fa fa-print pr-2"></i>Convert Pemesanan Bulan Ini (<?php 
                             switch (date('m')){
@@ -328,7 +329,7 @@
 										<div class="col-md-12 mt-4">
 											<h6>Convert Berdasarkan Tanggal:</h6>
 										</div>
-										<form action="<?php echo base_url() ?>admin/Pemesanan/convertWordPertanggal?status=0"
+										<form action="<?php echo base_url() ?>admin/Pemesanan/convertWordPertanggal?status=0&doc=1"
 											target="_blank" method="post" enctype="multipart/form-data">
 											<div class="modal-body p-20">
 												<div class="row">
@@ -361,7 +362,7 @@
 					<!-- end modal word -->
 
 					<!-- modal pdf -->
-					<div class="modal fade" id="exportpdf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+					<div class="modal fade" id="exportpdfP" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 						aria-hidden="true">
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
@@ -375,14 +376,14 @@
 									<div class="row">
 
 										<div class="col-md-12">
-											<a href="<?= base_url() ?>admin/Pemesanan/convertPDF?status=0" target="_blank"
+											<a href="<?= base_url() ?>admin/Pemesanan/convertPDF?status=0&doc=1" target="_blank"
 												class="btn btn-success btn-block ripple m-t-10">
 												<i class="fa fa-print pr-2"></i>Convert Seluruh Pemesanan</a>
 											</a>
 										</div>
 
 										<div class="col-md-12 mt-4">
-											<a href="<?= base_url() ?>admin/Pemesanan/convertPDFPerhari?status=0" target="_blank"
+											<a href="<?= base_url() ?>admin/Pemesanan/convertPDFPerhari?status=0&doc=1" target="_blank"
 												class="btn btn-success btn-block ripple m-t-10">
 												<i class="fa fa-print pr-2"></i>Convert Pemesanan Hari Ini (<?= date('d')?> <?php 
                             switch (date('m')){
@@ -406,7 +407,7 @@
 										</div>
 
 										<div class="col-md-12 mt-4">
-											<a href="<?= base_url() ?>admin/Pemesanan/convertPDFPerbulan?status=0&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
+											<a href="<?= base_url() ?>admin/Pemesanan/convertPDFPerbulan?status=0&doc=1&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
 												target="_blank" class="btn btn-success btn-block ripple m-t-10">
 												<i class="fa fa-print pr-2"></i>Convert Pemesanan Bulan Ini (<?php 
                             switch (date('m')){
@@ -431,7 +432,7 @@
 										<div class="col-md-12 mt-4">
 											<h6>Convert Berdasarkan Tanggal:</h6>
 										</div>
-										<form action="<?php echo base_url() ?>admin/Pemesanan/convertPDFPertanggal?status=0" target="_blank"
+										<form action="<?php echo base_url() ?>admin/Pemesanan/convertPDFPertanggal?status=0&doc=1" target="_blank"
 											method="post" enctype="multipart/form-data">
 											<div class="modal-body p-20">
 												<div class="row">
@@ -460,6 +461,349 @@
 					</div>
 					<!-- end modal pdf -->
 
+
+					<!-- Modal -->
+					<div class="modal fade" id="Conv-Transaksi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header" style="margin-right: 5px">
+									<h5 class="modal-title" id="exampleModalLabel">Pilihan</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="col-md-12 mt-4">
+										<a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="excel"
+											data-toggle="modal" data-target="#exportT">
+											<i class="fa fa-file-excel-o pr-2"></i>Convert Excel
+										</a>
+									</div>
+									<div class="col-md-12 mt-4">
+										<a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="pdf"
+											data-toggle="modal" data-target="#exportpdfT">
+											<i class="fa fa-file-pdf-o pr-2"></i>Convert PDF
+										</a>
+									</div>
+									<div class="col-md-12 mt-4 mb-4">
+										<a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="words"
+											data-toggle="modal" data-target="#wordT">
+											<i class="fa fa-file-word-o pr-2"></i>Convert Word
+										</a>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Modal Excel -->
+					<div class="modal fade" id="exportT" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Convert Data Transaksi</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+
+										<div class="col-md-12">
+											<a href="<?= base_url() ?>admin/Pemesanan/convertExcel?status=0&doc=2" target="_blank"
+												class="btn btn-success btn-block ripple m-t-10">
+												<i class="fa fa-print pr-2"></i>Convert Seluruh Transaksi</a>
+											</a>
+										</div>
+
+										<div class="col-md-12 mt-4">
+											<a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerhari?status=0&doc=2" target="_blank"
+												class="btn btn-success btn-block ripple m-t-10">
+												<i class="fa fa-print pr-2"></i>Convert Transaksi Hari Ini (<?= date('d')?> <?php 
+                            switch (date('m')){
+                              case 1 : echo "Januari"; break;
+                              case 2 : echo "Februari"; break;
+                              case 3 : echo "Maret"; break;
+                              case 4 : echo "April"; break;
+                              case 5 : echo "May"; break;
+                              case 6 : echo "Juni"; break;
+                              case 7 : echo "Juli"; break;
+                              case 8 : echo "Agustus"; break;
+                              case 9 : echo "September"; break;
+                              case 10 : echo "Oktober"; break;
+                              case 11 : echo "November"; break;
+                              case 12 : echo "Desember"; break;
+                            }
+                            ?>
+												<?= date('Y')?>)
+											</a>
+											</a>
+										</div>
+
+										<div class="col-md-12 mt-4">
+											<a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerbulan?status=0&doc=2&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
+												target="_blank" class="btn btn-success btn-block ripple m-t-10">
+												<i class="fa fa-print pr-2"></i>Convert Transaksi Bulan Ini (<?php 
+                            switch (date('m')){
+                              case 1 : echo "Januari"; break;
+                              case 2 : echo "Februari"; break;
+                              case 3 : echo "Maret"; break;
+                              case 4 : echo "April"; break;
+                              case 5 : echo "May"; break;
+                              case 6 : echo "Juni"; break;
+                              case 7 : echo "Juli"; break;
+                              case 8 : echo "Agustus"; break;
+                              case 9 : echo "September"; break;
+                              case 10 : echo "Oktober"; break;
+                              case 11 : echo "November"; break;
+                              case 12 : echo "Desember"; break;
+                            }
+                            ?>
+												<?= date('Y')?>)
+											</a>
+											</a>
+										</div>
+										<div class="col-md-12 mt-4">
+											<h6>Convert Berdasarkan Tanggal:</h6>
+										</div>
+										<form action="<?php echo base_url() ?>admin/Pemesanan/convertExcelBytanggal?status=0&doc=2"
+											target="_blank" method="post" enctype="multipart/form-data">
+											<div class="modal-body p-20">
+												<div class="row">
+													<div class="col-md-4">
+														<label class="control-label">Start date:</label>
+														<input class="form-control form-white" id="startdateexcel" type="date" name="start_date"
+															required />
+													</div>
+													<div class="col-md-4">
+														<label class="control-label">End date:</label>
+														<input class="form-control form-white" id="enddateexcel" type="date" name="end_date"
+															required />
+													</div>
+													<div class="col-md-4">
+														<button type="submit" class="btn btn-info btn-block ripple m-t-10">
+															<i class="fa fa-print pr-2"></i>Convert<br>Transaksi</a>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- end modal excel -->
+
+					<!-- modal word -->
+					<div class="modal fade" id="wordT" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Convert Data Transaksi</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+
+										<div class="col-md-12">
+											<a href="<?= base_url() ?>admin/Pemesanan/convertWord?status=0&doc=2" target="_blank"
+												class="btn btn-success btn-block ripple m-t-10">
+												<i class="fa fa-print pr-2"></i>Convert Seluruh Transaksi</a>
+											</a>
+										</div>
+
+										<div class="col-md-12 mt-4">
+											<a href="<?= base_url() ?>admin/Pemesanan/convertWordPerhari?status=0&doc=2" target="_blank"
+												class="btn btn-success btn-block ripple m-t-10">
+												<i class="fa fa-print pr-2"></i>Convert Transaksi Hari Ini (<?= date('d')?> <?php 
+                            switch (date('m')){
+                              case 1 : echo "Januari"; break;
+                              case 2 : echo "Februari"; break;
+                              case 3 : echo "Maret"; break;
+                              case 4 : echo "April"; break;
+                              case 5 : echo "May"; break;
+                              case 6 : echo "Juni"; break;
+                              case 7 : echo "Juli"; break;
+                              case 8 : echo "Agustus"; break;
+                              case 9 : echo "September"; break;
+                              case 10 : echo "Oktober"; break;
+                              case 11 : echo "November"; break;
+                              case 12 : echo "Desember"; break;
+                            }
+                            ?>
+												<?= date('Y')?>)
+											</a>
+											</a>
+										</div>
+
+										<div class="col-md-12 mt-4">
+											<a href="<?= base_url() ?>admin/Pemesanan/convertWordPerbulan?status=0&doc=2&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
+												target="_blank" class="btn btn-success btn-block ripple m-t-10">
+												<i class="fa fa-print pr-2"></i>Convert Transaksi Bulan Ini (<?php 
+                            switch (date('m')){
+                              case 1 : echo "Januari"; break;
+                              case 2 : echo "Februari"; break;
+                              case 3 : echo "Maret"; break;
+                              case 4 : echo "April"; break;
+                              case 5 : echo "May"; break;
+                              case 6 : echo "Juni"; break;
+                              case 7 : echo "Juli"; break;
+                              case 8 : echo "Agustus"; break;
+                              case 9 : echo "September"; break;
+                              case 10 : echo "Oktober"; break;
+                              case 11 : echo "November"; break;
+                              case 12 : echo "Desember"; break;
+                            }
+                            ?>
+												<?= date('Y')?>)
+											</a>
+											</a>
+										</div>
+										<div class="col-md-12 mt-4">
+											<h6>Convert Berdasarkan Tanggal:</h6>
+										</div>
+										<form action="<?php echo base_url() ?>admin/Pemesanan/convertWordPertanggal?status=0&doc=2"
+											target="_blank" method="post" enctype="multipart/form-data">
+											<div class="modal-body p-20">
+												<div class="row">
+													<div class="col-md-4">
+														<label class="control-label">Start date:</label>
+														<input class="form-control form-white" id="startdateword" type="date" name="start_date"
+															required />
+													</div>
+													<div class="col-md-4">
+														<label class="control-label">End date:</label>
+														<input class="form-control form-white" id="enddateword" type="date" name="end_date"
+															required />
+													</div>
+													<div class="col-md-4">
+														<button type="submit" class="btn btn-info btn-block ripple m-t-10">
+															<i class="fa fa-print pr-2"></i>Convert<br>Transaksi</a>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- end modal word -->
+
+					<!-- modal pdf -->
+					<div class="modal fade" id="exportpdfT" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Convert Data Transaksi</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+
+										<div class="col-md-12">
+											<a href="<?= base_url() ?>admin/Pemesanan/convertPDF?status=0&doc=2" target="_blank"
+												class="btn btn-success btn-block ripple m-t-10">
+												<i class="fa fa-print pr-2"></i>Convert Seluruh Transaksi</a>
+											</a>
+										</div>
+
+										<div class="col-md-12 mt-4">
+											<a href="<?= base_url() ?>admin/Pemesanan/convertPDFPerhari?status=0&doc=2" target="_blank"
+												class="btn btn-success btn-block ripple m-t-10">
+												<i class="fa fa-print pr-2"></i>Convert Transaksi Hari Ini (<?= date('d')?> <?php 
+                            switch (date('m')){
+                              case 1 : echo "Januari"; break;
+                              case 2 : echo "Februari"; break;
+                              case 3 : echo "Maret"; break;
+                              case 4 : echo "April"; break;
+                              case 5 : echo "May"; break;
+                              case 6 : echo "Juni"; break;
+                              case 7 : echo "Juli"; break;
+                              case 8 : echo "Agustus"; break;
+                              case 9 : echo "September"; break;
+                              case 10 : echo "Oktober"; break;
+                              case 11 : echo "November"; break;
+                              case 12 : echo "Desember"; break;
+                            }
+                            ?>
+												<?= date('Y')?>)
+											</a>
+											</a>
+										</div>
+
+										<div class="col-md-12 mt-4">
+											<a href="<?= base_url() ?>admin/Pemesanan/convertPDFPerbulan?status=0&doc=2&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
+												target="_blank" class="btn btn-success btn-block ripple m-t-10">
+												<i class="fa fa-print pr-2"></i>Convert Transaksi Bulan Ini (<?php 
+                            switch (date('m')){
+                              case 1 : echo "Januari"; break;
+                              case 2 : echo "Februari"; break;
+                              case 3 : echo "Maret"; break;
+                              case 4 : echo "April"; break;
+                              case 5 : echo "May"; break;
+                              case 6 : echo "Juni"; break;
+                              case 7 : echo "Juli"; break;
+                              case 8 : echo "Agustus"; break;
+                              case 9 : echo "September"; break;
+                              case 10 : echo "Oktober"; break;
+                              case 11 : echo "November"; break;
+                              case 12 : echo "Desember"; break;
+                            }
+                            ?>
+												<?= date('Y')?>)
+											</a>
+											</a>
+										</div>
+										<div class="col-md-12 mt-4">
+											<h6>Convert Berdasarkan Tanggal:</h6>
+										</div>
+										<form action="<?php echo base_url() ?>admin/Pemesanan/convertPDFPertanggal?status=0&doc=2" target="_blank"
+											method="post" enctype="multipart/form-data">
+											<div class="modal-body p-20">
+												<div class="row">
+													<div class="col-md-4">
+														<label class="control-label">Start date:</label>
+														<input class="form-control form-white" type="date" name="start_date" required />
+													</div>
+													<div class="col-md-4">
+														<label class="control-label">End date:</label>
+														<input class="form-control form-white" type="date" name="end_date" required />
+													</div>
+													<div class="col-md-4">
+														<button type="submit" class="btn btn-info btn-block ripple m-t-10">
+															<i class="fa fa-print pr-2"></i>Convert<br>Transaksi</a>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- end modal pdf -->
 					<!-- end convert -->
 
 					<div id="parent">

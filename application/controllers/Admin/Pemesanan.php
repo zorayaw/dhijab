@@ -64,6 +64,7 @@ class Pemesanan extends CI_Controller
 	// }
 
 	function convertPDF(){
+		$doc = $this->input->get('doc');
 		$statusc = $this->input->get('status');
 		$x['numstat'] = $statusc;
 			if($statusc==0){
@@ -75,10 +76,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesanan();
-
-				$this->pdf->setPaper('legal', 'landscape');
-				$this->pdf->filename = "laporan_pdf.pdf";
-				$this->pdf->load_view('admin/laporan_pdf', $x);
 			}
 			else if($statusc==1){
 				$y['title'] = "Pemesanan";
@@ -89,10 +86,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomer();
-
-				$this->pdf->setPaper('legal', 'landscape');
-				$this->pdf->filename = "laporan_pdf.pdf";
-				$this->pdf->load_view('admin/laporan_pdf', $x);
 			}
 			else if($statusc==2){
 				$y['title'] = "Pemesanan";
@@ -103,10 +96,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananreseller();
-
-				$this->pdf->setPaper('legal', 'landscape');
-				$this->pdf->filename = "laporan_pdf.pdf";
-				$this->pdf->load_view('admin/laporan_pdf', $x);
 			}
 			else if($statusc==3){
 
@@ -118,11 +107,14 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananproduksi();
-
-				$this->pdf->setPaper('legal', 'landscape');
-				$this->pdf->filename = "laporan_pdf.pdf";
-				$this->pdf->load_view('admin/laporan_pdf', $x);
 			}		
+			
+			$this->pdf->setPaper('legal', 'landscape');
+			$this->pdf->filename = "laporan_pdf.pdf";
+			if($doc==2)
+			$this->pdf->load_view('admin/laporan_pdf', $x);
+			elseif($doc==1)
+			$this->pdf->load_view('admin/laporanP_pdf', $x);
 	}
 
 	function convertPDFPBerjalan(){
@@ -137,10 +129,11 @@ class Pemesanan extends CI_Controller
 
 				$this->pdf->setPaper('legal', 'landscape');
 				$this->pdf->filename = "laporan_pdf.pdf";
-				$this->pdf->load_view('admin/laporan_pdf', $x);
+				$this->pdf->load_view('admin/laporanP_pdf', $x);
 	}
 
 	function convertPDFPerhari(){
+		$doc = $this->input->get('doc');
 		$statusc = $this->input->get('status');
 		$x['numstat'] = $statusc;
 			if($statusc==0){
@@ -152,10 +145,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCurdate();
-
-				$this->pdf->setPaper('legal', 'landscape');
-				$this->pdf->filename = "laporan_pdf.pdf";
-				$this->pdf->load_view('admin/laporan_pdf', $x);
 			}
 			else if($statusc==1){
 				$y['title'] = "Pemesanan";
@@ -166,10 +155,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerCurdate();
-
-				$this->pdf->setPaper('legal', 'landscape');
-				$this->pdf->filename = "laporan_pdf.pdf";
-				$this->pdf->load_view('admin/laporan_pdf', $x);
 			}
 			else if($statusc==2){
 				$y['title'] = "Pemesanan";
@@ -180,10 +165,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerCurdate();
-
-				$this->pdf->setPaper('legal', 'landscape');
-				$this->pdf->filename = "laporan_pdf.pdf";
-				$this->pdf->load_view('admin/laporan_pdf', $x);
 			}
 			else if($statusc==3){
 
@@ -195,14 +176,17 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiCurdate();
-
-				$this->pdf->setPaper('legal', 'landscape');
-				$this->pdf->filename = "laporan_pdf.pdf";
-				$this->pdf->load_view('admin/laporan_pdf', $x);
 			}		
+			$this->pdf->setPaper('legal', 'landscape');
+			$this->pdf->filename = "laporan_pdf.pdf";
+			if($doc==2)
+			$this->pdf->load_view('admin/laporan_pdf', $x);
+			elseif($doc==1)
+			$this->pdf->load_view('admin/laporanP_pdf', $x);
 	}	
 
 	function convertPDFPerbulan(){
+		$doc = $this->input->get('doc');
 		$statusc = $this->input->get('status');
 		$bulan = $this->input->get('bulan');
 		$tahun = $this->input->get('tahun');
@@ -218,10 +202,6 @@ class Pemesanan extends CI_Controller
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananByBulan($bulan,$tahun);
-
-			$this->pdf->setPaper('legal', 'landscape');
-			$this->pdf->filename = "laporan_pdf.pdf";
-			$this->pdf->load_view('admin/laporan_pdf', $x);
 		}
 		else if($statusc==1){
 			$y['title'] = "Pemesanan";
@@ -232,10 +212,6 @@ class Pemesanan extends CI_Controller
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByBulan($bulan,$tahun);
-
-			$this->pdf->setPaper('legal', 'landscape');
-			$this->pdf->filename = "laporan_pdf.pdf";
-			$this->pdf->load_view('admin/laporan_pdf', $x);
 			}
 		else if($statusc==2){
 			$y['title'] = "Pemesanan";
@@ -246,10 +222,6 @@ class Pemesanan extends CI_Controller
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByBulan($bulan, $tahun);
-
-			$this->pdf->setPaper('legal', 'landscape');
-			$this->pdf->filename = "laporan_pdf.pdf";
-			$this->pdf->load_view('admin/laporan_pdf', $x);
 		}
 		else if($statusc==3){
 			$y['title'] = "Pemesanan";
@@ -260,14 +232,17 @@ class Pemesanan extends CI_Controller
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByBulan($bulan, $tahun);
-
-			$this->pdf->setPaper('legal', 'landscape');
+		}	
+		$this->pdf->setPaper('legal', 'landscape');
 			$this->pdf->filename = "laporan_pdf.pdf";
+			if($doc==2)
 			$this->pdf->load_view('admin/laporan_pdf', $x);
-		}		
+			elseif($doc==1)
+			$this->pdf->load_view('admin/laporanP_pdf', $x);	
 	}
 
 	function convertPDFByBulanTanpaTahun(){
+		$doc = $this->input->get('doc');
 		$statusc = $this->input->get('status');
 		$bulan = $this->input->get('bulan');
 		$awal = $this->input->post('start_year');
@@ -286,10 +261,6 @@ class Pemesanan extends CI_Controller
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananByBulanTanpaTahun($bulan,$awal, $akhir);
-
-			$this->pdf->setPaper('legal', 'landscape');
-			$this->pdf->filename = "laporan_pdf.pdf";
-			$this->pdf->load_view('admin/laporan_pdf', $x);
 		}
 		else if($statusc==1){
 			$y['title'] = "Pemesanan";
@@ -300,11 +271,6 @@ class Pemesanan extends CI_Controller
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByBulanTanpaTahun($bulan,$awal, $akhir);
-
-
-			$this->pdf->setPaper('legal', 'landscape');
-			$this->pdf->filename = "laporan_pdf.pdf";
-			$this->pdf->load_view('admin/laporan_pdf', $x);
 			}
 		else if($statusc==2){
 			$y['title'] = "Pemesanan";
@@ -315,10 +281,6 @@ class Pemesanan extends CI_Controller
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByBulanTanpaTahun($bulan,$awal, $akhir);
-
-			$this->pdf->setPaper('legal', 'landscape');
-			$this->pdf->filename = "laporan_pdf.pdf";
-			$this->pdf->load_view('admin/laporan_pdf', $x);
 		}
 		else if($statusc==3){
 			$y['title'] = "Pemesanan";
@@ -329,14 +291,17 @@ class Pemesanan extends CI_Controller
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByBulanTanpaTahun($bulan,$awal, $akhir);
-
-			$this->pdf->setPaper('legal', 'landscape');
-			$this->pdf->filename = "laporan_pdf.pdf";
-			$this->pdf->load_view('admin/laporan_pdf', $x);
 		}
+		$this->pdf->setPaper('legal', 'landscape');
+			$this->pdf->filename = "laporan_pdf.pdf";
+			if($doc==2)
+			$this->pdf->load_view('admin/laporan_pdf', $x);
+			elseif($doc==1)
+			$this->pdf->load_view('admin/laporanP_pdf', $x);
 	}
 
 	function convertPDFPerTanggal(){
+		$doc = $this->input->get('doc');
 		$statusc = $this->input->get('status');
 		$start = $this->input->post('start_date');
 		$end = $this->input->post('end_date');
@@ -353,10 +318,6 @@ class Pemesanan extends CI_Controller
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananByTanggal($start, $end);
-			
-			$this->pdf->setPaper('legal', 'landscape');
-			$this->pdf->filename = "laporan_pdf.pdf";
-			$this->pdf->load_view('admin/laporan_pdf', $x);
 		}
 		else if($statusc==1){
 			$y['title'] = "Pemesanan";
@@ -367,10 +328,6 @@ class Pemesanan extends CI_Controller
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByTanggal($start, $end);
-			
-			$this->pdf->setPaper('legal', 'landscape');
-			$this->pdf->filename = "laporan_pdf.pdf";
-			$this->pdf->load_view('admin/laporan_pdf', $x);
 		}
 		else if($statusc==2){
 			$y['title'] = "Pemesanan";
@@ -381,11 +338,6 @@ class Pemesanan extends CI_Controller
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByTanggal($start, $end);
-			
-			$this->pdf->setPaper('legal', 'landscape');
-			$this->pdf->filename = "laporan_pdf.pdf";
-			$this->pdf->load_view('admin/laporan_pdf', $x);
-
 		}
 		else if($statusc==3){
 			$y['title'] = "Pemesanan";
@@ -396,15 +348,18 @@ class Pemesanan extends CI_Controller
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByTanggal($start, $end);
-			
-			$this->pdf->setPaper('legal', 'landscape');
-			$this->pdf->filename = "laporan_pdf.pdf";
-			$this->pdf->load_view('admin/laporan_pdf', $x);
 		}
+		$this->pdf->setPaper('legal', 'landscape');
+			$this->pdf->filename = "laporan_pdf.pdf";
+			if($doc==2)
+			$this->pdf->load_view('admin/laporan_pdf', $x);
+			elseif($doc==1)
+			$this->pdf->load_view('admin/laporanP_pdf', $x);
 	}
 	
 
 	function convertWord(){
+		$doc = $this->input->get('doc');
 		$statusc = $this->input->get('status');
 		$x['numstat'] = $statusc;
 			if($statusc==0){
@@ -416,7 +371,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesanan();
-				$this->load->view('admin/laporan_word', $x);
 			}
 			else if($statusc==1){
 				$y['title'] = "Pemesanan";
@@ -427,7 +381,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomer();
-				$this->load->view('admin/laporan_word', $x);
 			}
 			else if($statusc==2){
 				$y['title'] = "Pemesanan";
@@ -438,7 +391,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananreseller();
-				$this->load->view('admin/laporan_word', $x);
 			}
 			else if($statusc==3){
 
@@ -450,8 +402,11 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananproduksi();
-				$this->load->view('admin/laporan_word', $x);
 			}
+			if($doc==2)
+				$this->load->view('admin/laporan_word', $x);
+				elseif($doc==1)
+				$this->load->view('admin/laporanP_word', $x);
 		
 	}
 
@@ -468,6 +423,7 @@ class Pemesanan extends CI_Controller
 	}
 
 	function convertWordPerhari(){
+		$doc = $this->input->get('doc');
 		$statusc = $this->input->get('status');
 		$x['numstat'] = $statusc;
 			if($statusc==0){
@@ -479,7 +435,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCurdate();
-				$this->load->view('admin/laporan_word', $x);
 			}
 			else if($statusc==1){
 				$y['title'] = "Pemesanan";
@@ -490,7 +445,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerCurdate();
-				$this->load->view('admin/laporan_word', $x);
 			}
 			else if($statusc==2){
 				$y['title'] = "Pemesanan";
@@ -501,7 +455,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerCurdate();
-				$this->load->view('admin/laporan_word', $x);
 			}
 			else if($statusc==3){
 
@@ -513,12 +466,16 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiCurdate();
-				$this->load->view('admin/laporan_word', $x);
 			}
+			if($doc==2)
+				$this->load->view('admin/laporan_word', $x);
+				elseif($doc==1)
+				$this->load->view('admin/laporanP_word', $x);
 		
 	}
 
 	function convertWordPerbulan(){
+		$doc = $this->input->get('doc');
 			$statusc = $this->input->get('status');
 			$bulan = $this->input->get('bulan');
 			$tahun = $this->input->get('tahun');
@@ -534,7 +491,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananByBulan($bulan,$tahun);
-				$this->load->view('admin/laporan_word', $x);
 			}
 			else if($statusc==1){
 				$y['title'] = "Pemesanan";
@@ -545,7 +501,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByBulan($bulan,$tahun);
-				$this->load->view('admin/laporan_word', $x);
 				}
 			else if($statusc==2){
 				$y['title'] = "Pemesanan";
@@ -556,7 +511,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByBulan($bulan, $tahun);
-				$this->load->view('admin/laporan_word', $x);
 			}
 			else if($statusc==3){
 				$y['title'] = "Pemesanan";
@@ -567,11 +521,15 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByBulan($bulan, $tahun);
-				$this->load->view('admin/laporan_word', $x);
 			}
+			if($doc==2)
+				$this->load->view('admin/laporan_word', $x);
+				elseif($doc==1)
+				$this->load->view('admin/laporanP_word', $x);
 	}
 
 	function ConvertWordByBulanTanpaTahun(){
+		$doc = $this->input->get('doc');
 		$statusc = $this->input->get('status');
 		$bulan = $this->input->get('bulan');
 		$awal = $this->input->post('start_year');
@@ -621,10 +579,14 @@ class Pemesanan extends CI_Controller
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByBulanTanpaTahun($bulan, $awal, $akhir);
 		}
-		$this->load->view('admin/laporan_word', $x);
+		if($doc==2)
+				$this->load->view('admin/laporan_word', $x);
+				elseif($doc==1)
+				$this->load->view('admin/laporanP_word', $x);
 	}
 
 	function convertWordPertanggal(){
+		$doc = $this->input->get('doc');
 		$statusc = $this->input->get('status');
 			$start = $this->input->post('start_date');
 			$end = $this->input->post('end_date');
@@ -641,7 +603,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananByTanggal($start, $end);
-				$this->load->view('admin/laporan_word', $x);
 			}
 			else if($statusc==1){
 				$y['title'] = "Pemesanan";
@@ -652,7 +613,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByTanggal($start, $end);
-				$this->load->view('admin/laporan_word', $x);
 			}
 			else if($statusc==2){
 				$y['title'] = "Pemesanan";
@@ -663,8 +623,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByTanggal($start, $end);
-				$this->load->view('admin/laporan_word', $x);
-	
 			}
 			else if($statusc==3){
 				$y['title'] = "Pemesanan";
@@ -675,12 +633,15 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByTanggal($start, $end);
-				$this->load->view('admin/laporan_word', $x);
 			}
-	
+			if($doc==2)
+			$this->load->view('admin/laporan_word', $x);
+			elseif($doc==1)
+			$this->load->view('admin/laporanP_word', $x);
 	}
 
 	function convertExcel(){
+		$doc = $this->input->get('doc');
 		$statusc = $this->input->get('status');
 		$x['numstat'] = $statusc;
 			if($statusc==0){
@@ -692,7 +653,7 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesanan();
-				$this->load->view('admin/laporan_excel', $x);
+				
 			}
 			else if($statusc==1){
 				$y['title'] = "Pemesanan";
@@ -703,7 +664,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomer();
-				$this->load->view('admin/laporan_excel', $x);
 			}
 			else if($statusc==2){
 				$y['title'] = "Pemesanan";
@@ -714,7 +674,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananreseller();
-				$this->load->view('admin/laporan_excel', $x);
 			}
 			else if($statusc==3){
 
@@ -726,8 +685,11 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananproduksi();
-				$this->load->view('admin/laporan_excel', $x);
 			}
+			if($doc==2)
+				$this->load->view('admin/laporan_excel', $x);
+				elseif($doc==1)
+				$this->load->view('admin/laporanP_excel', $x);
 		
 	}
 
@@ -744,7 +706,7 @@ class Pemesanan extends CI_Controller
 			}
 
 	function convertExcelPerhari(){
-
+		$doc = $this->input->get('doc');
 		$statusc = $this->input->get('status');
 		$x['numstat'] = $statusc;
 			if($statusc==0){
@@ -756,7 +718,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCurdate();
-				$this->load->view('admin/laporan_excel', $x);
 			}
 			else if($statusc==1){
 				$y['title'] = "Pemesanan";
@@ -767,7 +728,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerCurdate();
-				$this->load->view('admin/laporan_excel', $x);
 			}
 			else if($statusc==2){
 				$y['title'] = "Pemesanan";
@@ -778,7 +738,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerCurdate();
-				$this->load->view('admin/laporan_excel', $x);
 			}
 			else if($statusc==3){
 
@@ -790,12 +749,16 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiCurdate();
-				$this->load->view('admin/laporan_excel', $x);
 			}
+			if($doc==2)
+				$this->load->view('admin/laporan_excel', $x);
+				elseif($doc==1)
+				$this->load->view('admin/laporanP_excel', $x);
 					
 	}	
 
 	function convertExcelPerbulan(){
+		$doc = $this->input->get('doc');
 			$statusc = $this->input->get('status');
 			$bulan = $this->input->get('bulan');
 			$tahun = $this->input->get('tahun');
@@ -811,7 +774,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananByBulan($bulan,$tahun);
-				$this->load->view('admin/laporan_excel', $x);
 			}
 			else if($statusc==1){
 				$y['title'] = "Pemesanan";
@@ -822,7 +784,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByBulan($bulan,$tahun);
-				$this->load->view('admin/laporan_excel', $x);
 				}
 			else if($statusc==2){
 				$y['title'] = "Pemesanan";
@@ -833,7 +794,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByBulan($bulan, $tahun);
-				$this->load->view('admin/laporan_excel', $x);
 			}
 			else if($statusc==3){
 				$y['title'] = "Pemesanan";
@@ -844,11 +804,15 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByBulan($bulan, $tahun);
-				$this->load->view('admin/laporan_excel', $x);
 			}
+			if($doc==2)
+				$this->load->view('admin/laporan_excel', $x);
+				elseif($doc==1)
+				$this->load->view('admin/laporanP_excel', $x);
 	}
 
 	function ConvertExcelByBulanTanpaTahun(){
+		$doc = $this->input->get('doc');
 		$statusc = $this->input->get('status');
 		$bulan = $this->input->get('bulan');
 		$awal = $this->input->post('start_year');
@@ -898,11 +862,14 @@ class Pemesanan extends CI_Controller
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByBulanTanpaTahun($bulan, $awal, $akhir);
 		}
-		$this->load->view('admin/laporan_excel', $x);
+		if($doc==2)
+				$this->load->view('admin/laporan_excel', $x);
+				elseif($doc==1)
+				$this->load->view('admin/laporanP_excel', $x);
 	}
 
 	function convertExcelByTanggal(){
-
+		$doc = $this->input->get('doc');
 		$statusc = $this->input->get('status');
 			$start = $this->input->post('start_date');
 			$end = $this->input->post('end_date');
@@ -919,7 +886,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananByTanggal($start, $end);
-				$this->load->view('admin/laporan_excel', $x);
 			}
 			else if($statusc==1){
 				$y['title'] = "Pemesanan";
@@ -930,7 +896,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByTanggal($start, $end);
-				$this->load->view('admin/laporan_excel', $x);
 			}
 			else if($statusc==2){
 				$y['title'] = "Pemesanan";
@@ -941,7 +906,6 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByTanggal($start, $end);
-				$this->load->view('admin/laporan_excel', $x);
 	
 			}
 			else if($statusc==3){
@@ -953,9 +917,11 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByTanggal($start, $end);
-				$this->load->view('admin/laporan_excel', $x);
 			}
-	
+			if($doc==2)
+			$this->load->view('admin/laporan_excel', $x);
+			elseif($doc==1)
+			$this->load->view('admin/laporanP_excel', $x);
 	}
 
 
