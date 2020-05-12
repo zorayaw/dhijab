@@ -13,8 +13,8 @@
 				redirect($url);
 			};
 
-		    $this->load->model('m_pemesanan');
-		    $this->load->model('m_barang');	
+		    $this->load->model('M_pemesanan');
+		    $this->load->model('M_barang');	
 		    $this->load->model('m_list_barang');
 		    $this->load->library('upload');
 	  	}
@@ -31,8 +31,8 @@
  	  		   	   $x['p_id'] = $pemesanan_id;
  	  		   	   $x['lvl'] =$level;	
 	 	  		   $x['listbarang'] = $this->m_list_barang->getLBRbyid($pemesanan_id);	
-	 	  		   $x['pemesan'] = $this->m_pemesanan->getIdbyid($pemesanan_id);
-	 	  		    $a = $this->m_pemesanan->getIdbyid($pemesanan_id)->row_array();
+	 	  		   $x['pemesan'] = $this->M_pemesanan->getIdbyid($pemesanan_id);
+	 	  		    $a = $this->M_pemesanan->getIdbyid($pemesanan_id)->row_array();
  	  		   	   $x['kurir'] = $a['kurir_nama'];
  	  		   	   $x['mp_nama'] = $a['mp_nama'];
  	  		  	   $x['nama'] = $this->session->userdata('nama');
@@ -42,8 +42,8 @@
  	  		   	   $x['p_id'] = $pemesanan_id;
  	  		   	   $x['lvl'] =$level;	
  	  		   	   $x['listbarang'] = $this->m_list_barang->getLBNRbyid($pemesanan_id);
- 	  		   	   $x['pemesan'] = $this->m_pemesanan->getIdbyid($pemesanan_id);
- 	  		   	   $a = $this->m_pemesanan->getIdbyid($pemesanan_id)->row_array();
+ 	  		   	   $x['pemesan'] = $this->M_pemesanan->getIdbyid($pemesanan_id);
+ 	  		   	   $a = $this->M_pemesanan->getIdbyid($pemesanan_id)->row_array();
  	  		   	   $x['kurir'] = $a['kurir_nama'];
  	  		   	   $x['mp_nama'] = $a['mp_nama'];
  	  		   	   $x['nama'] = $this->session->userdata('nama');
@@ -54,15 +54,20 @@
 
 	  	function kurir(){
 	  		$y['title'] = "Kurir";
-			   $x['datapesanan'] = $this->m_pemesanan->getPemesanan();
-		       $this->load->view('v_header',$y);
-		       $this->load->view('stok/v_sidebar');
+			   $x['datapesanan'] = $this->M_pemesanan->getPemesanan();
+			   $this->load->view('v_header',$y);
+			   if($this->session->userdata('akses') == 3){
+				$this->load->view('stok/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
 		       $this->load->view('stok/v_kurir',$x);
 	  	}
 
 	  	function savekurir(){
 	  		$kurir_nama = $this->input->post('kurir_nama');
-	  		$this->m_pemesanan->save_kurir($kurir_nama);
+	  		$this->M_pemesanan->save_kurir($kurir_nama);
 	  		echo $this->session->set_flashdata('msg','success');
 	       	redirect('Stok/Pemesanan/kurir');
 	  	}
@@ -70,14 +75,14 @@
 	  	function updatekurir(){
 	  		$id = $this->input->post('kurir_id');
 	  		$kurir_nama = $this->input->post('kurir_nama');
-	  		$this->m_pemesanan->update_kurir($id,$kurir_nama);
+	  		$this->M_pemesanan->update_kurir($id,$kurir_nama);
 	  		echo $this->session->set_flashdata('msg','update');
 	       	redirect('Stok/Pemesanan/kurir');
 	  	}
 
 	  	function hapuskurir(){
 	  		$id = $this->input->post('kurir_id');
-	  		$this->m_pemesanan->hapus_kurir($id);
+	  		$this->M_pemesanan->hapus_kurir($id);
 	  		echo $this->session->set_flashdata('msg','delete');
 	       	redirect('Stok/Pemesanan/kurir');
 	  	}
@@ -88,7 +93,7 @@
             if($status_eks==0)
             {
             $status_eks=1;
-            $this->m_pemesanan->status_eks($pemesanan_id,$status_eks);
+            $this->M_pemesanan->status_eks($pemesanan_id,$status_eks);
 					}
              redirect('Stok/Pemesanan/Kurir');	
         
