@@ -128,7 +128,7 @@
 							</div>
 							<div class="col-md-12">
 								<label class="control-label">No HP</label>
-								<input class="form-control form-white" type="number" name="hp" required />
+								<input class="form-control form-white" type="number" min=1 name="hp" required />
 							</div>
 							<div class="col-md-12">
 								<label class="control-label">Tanggal</label>
@@ -225,7 +225,7 @@
 									</div>
 									<div class="col-md-2">
 										<label class="control-label" for="harga">Kuantitas</label>
-										<input class="form-control" type="number" name="qty[]" min=1 required>
+										<input class="form-control" type="number" min=1 name="qty[]" min=1 required>
 									</div>
 								</div>
 							</div>
@@ -1137,7 +1137,7 @@ $mp_nama = $i['mp_nama'];
           </div>
           <div class="col-md-12">
             <label class="control-label">No HP</label>
-            <input class="form-control form-white" type="number" name="hp" value="<?php echo $hp ?>" required />
+            <input class="form-control form-white" type="number" min=1 name="hp" value="<?php echo $hp ?>" required />
           </div>
           <!--                                <div class="col-md-12">
                                           <label class="control-label">Tanggal</label>
