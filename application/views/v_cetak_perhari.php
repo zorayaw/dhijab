@@ -41,7 +41,7 @@ $cur_date = date("d-m-Y");?>
           <br>
 
           <table border="1" cellpadding="7" width="100%" style="border-style: solid;border-width: thin;border-collapse: collapse;" >
-                <tr>
+          <tr>
                   <th>No</th>
                   <th>Nomor Order</th>
                   <th>Nama Pemesan</th>
@@ -56,7 +56,8 @@ $cur_date = date("d-m-Y");?>
                   <th>Total Harga</th>
                   <th>Omset</th>
                 </tr>
-              <?php
+                
+                <?php
                 function rupiah($angka)
                 {
                   $hasil_rupiah = "Rp " . number_format($angka, 0, ',', '.');
@@ -134,6 +135,8 @@ $cur_date = date("d-m-Y");?>
                     ?>
                   </tr>
                 <?php endforeach; ?>
+              
+              </tbody>
               <tr>
                 <th colspan="11">
                   <center>Jumlah</center>
