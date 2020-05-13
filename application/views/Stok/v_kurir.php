@@ -124,7 +124,7 @@
 				</div>
 			</div>
 		</div>
-
+		</div>
 
 
 			<!-- Modal Status -->
@@ -215,7 +215,7 @@
 					</div>
 				</div>
 			</div>
-    </div>
+ 
     <?php endforeach; ?>
 
 

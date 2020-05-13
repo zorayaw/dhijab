@@ -1784,79 +1784,73 @@
 </script>
 
 <script type="text/javascript">
-	$(document).ready(function () {
-		var i = 1;
-		$('#add').click(function () {
-				i++;
-				$('#dynamic_field').append('<div class="row" id="row' + i +
-					'"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($nonreseller->result_array() as $i) : $barang_id = $i['barang_id '];$barang_nama = $i['barang_nama ']; ?> <option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1 ></div><div class="col-md-2 mt-30"><button type="button" id="' +
-					i + '" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
-				$('select').selectize({
-					sortField: 'text'
-				});
-			}
+  $(document).ready(function() {
+    var i = 1;
+    $('#add').click(function() {
+      i++;
+      $('#dynamic_field').append('<div class="row" id="row' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($nonreseller->result_array() as $i) : $barang_id = $i['barang_id']; $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1 ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>')
+      ;
+      $('select').selectize({
+          sortField: 'text'
+      });
+    }
 
 
-		);
-		$('select').selectize({
-			sortField: 'text'
-		});
+    );
+     $('select').selectize({
+          sortField: 'text'
+      });
 
-		$(document).on('click', '.btn_remove', function () {
-			var button_id = $(this).attr("id");
-			$('#row' + button_id + '').remove();
-		});
+    $(document).on('click', '.btn_remove', function() {
+      var button_id = $(this).attr("id");
+      $('#row' + button_id + '').remove();
+    });
 
-	});
-
+  });
 </script>
 
 <script type="text/javascript">
-	$(document).ready(function () {
+  $(document).ready(function() {
 
-		var i = 1;
-		$('#add1').click(function () {
-			i++;
-			$('#dynamic_field1').append('<div class="row" id="roww' + i +
-				'"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($reseller->result_array() as $i) : $barang_id = $i['barang_id '];$barang_nama = $i['barang_nama ']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?></select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1></div><div class="col-md-2 mt-30"><button type="button" id="' +
-				i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>');
-			$('select').selectize({
-				sortField: 'text'
-			});
-		});
+    var i = 1;
+    $('#add1').click(function() {
+      i++;
+      $('#dynamic_field1').append('<div class="row" id="roww' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($reseller->result_array() as $i) : $barang_id = $i['barang_id']; $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1 ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>')
+      ;
+       $('select').selectize({
+          sortField: 'text'
+      });
+    });
 
-		$(document).on('click', '.btn_remove1', function () {
-			var button_id = $(this).attr("id");
-			$('#roww' + button_id + '').remove();
-		});
+    $(document).on('click', '.btn_remove1', function() {
+      var button_id = $(this).attr("id");
+      $('#roww' + button_id + '').remove();
+    });
 
 
-	});
-
+  });
 </script>
 
 <script type="text/javascript">
-	$(document).ready(function () {
+  $(document).ready(function() {
 
-		var i = 1;
-		$('#add3').click(function () {
-			i++;
-			$('#dynamic_field2').append('<div class="row" id="rowww' + i +
-				'"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($produksi->result_array() as $i) : $barang_id = $i['barang_id ']; $barang_nama = $i['barang_nama ']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1 ></div><div class="col-md-2 mt-30"><button type="button" id="' +
-				i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>');
-			$('select').selectize({
-				sortField: 'text'
-			});
-		});
+    var i = 1;
+    $('#add3').click(function() {
+      i++;
+      $('#dynamic_field2').append('<div class="row" id="rowww' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($produksi->result_array() as $i) : $barang_id = $i['barang_id']; $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1 ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>')
+      ;
+       $('select').selectize({
+          sortField: 'text'
+      });
+    });
 
-		$(document).on('click', '.btn_remove1', function () {
-			var button_id = $(this).attr("id");
-			$('#rowww' + button_id + '').remove();
-		});
+    $(document).on('click', '.btn_remove1', function() {
+      var button_id = $(this).attr("id");
+      $('#rowww' + button_id + '').remove();
+    });
 
 
-	});
-
+  });
 </script>
 
 <?php if ($this->session->flashdata('msg') == 'update') : ?>
