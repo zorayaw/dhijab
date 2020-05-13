@@ -1227,7 +1227,7 @@ $status_pemesanan = $i['status_pemesanan'];
 					<div class="row">
 						<div class="col-md-12">
 							<a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi?status=1&doc=1" target="_blank"
-								class="btn btn-success btn-block ripple m-t-10">
+								class="btn btn-warning btn-block ripple m-t-10">
 								<i class="fa fa-print pr-2"></i>Cetak Pemesanan Hari Ini (<?= date('d')?> <?php 
                   switch (date('m')){
                     case 1 : echo "Januari"; break;
@@ -1359,7 +1359,7 @@ $status_pemesanan = $i['status_pemesanan'];
 					<div class="row">
 						<div class="col-md-12">
 							<a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi?status=1&doc=2" target="_blank"
-								class="btn btn-success btn-block ripple m-t-10">
+								class="btn btn-warning btn-block ripple m-t-10">
 								<i class="fa fa-print pr-2"></i>Cetak Transaksi Hari Ini (<?= date('d')?> <?php 
                   switch (date('m')){
                     case 1 : echo "Januari"; break;
