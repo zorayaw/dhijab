@@ -545,19 +545,19 @@
                 </div>
                 <div class="modal-body">
                     <div class="col-md-12 mt-4">
-                        <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="excel"
+                        <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="excelT"
                             data-toggle="modal" data-target="#exportTrans">
                             <i class="fa fa-file-excel-o pr-2"></i>Convert Excel
                         </a>
                     </div>
                     <div class="col-md-12 mt-4">
-                        <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="pdf"
+                        <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="pdfT"
                             data-toggle="modal" data-target="#exportpdfTrans">
                             <i class="fa fa-file-pdf-o pr-2"></i>Convert PDF
                         </a>
                     </div>
                     <div class="col-md-12 mt-4 mb-4">
-                        <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="words"
+                        <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="wordsT"
                             data-toggle="modal" data-target="#wordTrans">
                             <i class="fa fa-file-word-o pr-2"></i>Convert Word
                         </a>
@@ -2060,21 +2060,41 @@ $status_pemesanan = $i['status_pemesanan'];
 
 <script type="text/javascript">
   $("#excel").click(function(){
-    $("#pilihan").modal('hide');
+    $("#Conv-Pemesanan").modal('hide');
   });
 </script>
 
 <script type="text/javascript">
   $("#words").click(function(){
-    $("#pilihan").modal('hide');
+    $("#Conv-Pemesanan").modal('hide');
   });
 </script>
 
 <script type="text/javascript">
   $("#pdf").click(function(){
-    $("#pilihan").modal('hide');
+    $("#Conv-Pemesanan").modal('hide');
   });
 </script>
+
+
+<script type="text/javascript">
+  $("#excelT").click(function(){
+    $("#Conv-Transaksi").modal('hide');
+  });
+</script>
+
+<script type="text/javascript">
+  $("#wordsT").click(function(){
+    $("#Conv-Transaksi").modal('hide');
+  });
+</script>
+
+<script type="text/javascript">
+  $("#pdfT").click(function(){
+    $("#Conv-Transaksi").modal('hide');
+  });
+</script>
+
 
 <script type="text/javascript">
   $(document).ready(function () {
