@@ -10,8 +10,8 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-          <li class="breadcrumb-item"><a href="<?php echo base_url() ?>Admin/PemesananAllByBulan/viewPemesananByBulan/<?=$bulan?>" class="default-color">Home</a></li>
-          <li class="breadcrumb-item active">Daftar Barang</li>
+          <li class="breadcrumb-item"><a href="<?php echo base_url() ?>Admin/Pemesanan" class="default-color">Seluruh Pemesanan</a></li>
+          <li class="breadcrumb-item active">Seluruh Pemesanan Bulan <?=$namaBulan?></li>
         </ol>
       </div>
     </div>
