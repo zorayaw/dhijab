@@ -102,7 +102,7 @@
                                   </div>
                                   <div class="col-md-12">
                                       <label class="control-label">Nomor HP*</label>
-                                      <input class="form-control form-white" placeholder="Nomor HP" type="number" name="nohp" required/>
+                                      <input class="form-control form-white" placeholder="Nomor HP" type="number" min = 1 name="nohp" required/>
                                   </div>
                                   <div class="col-md-12">
                                       <label class="control-label">Alamat</label>
@@ -182,7 +182,7 @@
                                   </div>
                                   <div class="col-md-12">
                                       <label class="control-label">Nomor HP*</label>
-                                      <input class="form-control form-white" placeholder="Nomor HP" type="number" name="nohp" value="<?=  $hp?>"/>
+                                      <input class="form-control form-white" placeholder="Nomor HP" type="number" min = 1 name="nohp" value="<?=  $hp?>"/>
                                   </div>
                                   <div class="col-md-12">
                                       <label class="control-label">Alamat</label>

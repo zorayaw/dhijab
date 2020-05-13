@@ -92,7 +92,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <label class="control-label">Stock </label>
-                                    <input class="form-control form-white" type="number" name="stock" required="" />
+                                    <input class="form-control form-white" type="number" min = 1 name="stock" required="" />
                                 </div>
                                 <div class="col-md-12">
                   <label class="control-label">Kategori Barang</label>
@@ -153,7 +153,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <label class="control-label">Stock  : <?= $barang_stok?> </label>
-                                    <input class="form-control form-white" type="number" min = 1 name="stock" placeholder="Masukkan Jumlah Barang yang ingin ditambahkan" />
+                                    <input class="form-control form-white" type="number" min = 1 min = 1 name="stock" placeholder="Masukkan Jumlah Barang yang ingin ditambahkan" />
                                 </div>
                             </div>  
                     </div>
@@ -349,7 +349,7 @@
   var i=1;
   $('#add').click(function(){
     i++;
-    $('#dynamic_field').append('<div class="row" id="row'+i+'"><div class="col-md-2"><label class="control-label" for="harga">Min.qty</label><input class="form-control" type="number" name="minqty[]" ></div><div class="col-md-2"><label class="control-label" for="harga">Max.qty</label><input class="form-control" type="number" name="maxqty[]"></div><div class="col-md-5"><label class="control-label" for="harga">Harga</label><input class="form-control money" type="text" name="harga[]"></div><div class="col-md-2 mt-30"><button type="button" id="'+i+'" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
+    $('#dynamic_field').append('<div class="row" id="row'+i+'"><div class="col-md-2"><label class="control-label" for="harga">Min.qty</label><input class="form-control" type="number" min = 1 name="minqty[]" ></div><div class="col-md-2"><label class="control-label" for="harga">Max.qty</label><input class="form-control" type="number" min = 1 name="maxqty[]"></div><div class="col-md-5"><label class="control-label" for="harga">Harga</label><input class="form-control money" type="text" name="harga[]"></div><div class="col-md-2 mt-30"><button type="button" id="'+i+'" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
   });
   
   $(document).on('click', '.btn_remove', function(){
