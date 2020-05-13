@@ -101,7 +101,7 @@
      
           
           <!-- Modal -->
-          <div class="modal fade" id="pilihan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="Conv-Pemesanan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -160,7 +160,7 @@
                     <div class="modal-body">
                     <div class="row">
                       <div class="col-md-12">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerhari?status=0" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerhari?status=0&doc=1" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
                           <i class="fa fa-print pr-2"></i>Convert Pemesanan Hari Ini (<?= date('d')?> <?php 
                             switch (date('m')){
                               case 1 : echo "Januari"; break;
@@ -182,7 +182,7 @@
                       </div>
 
                       <div class="col-md-12 mt-4">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerbulan?status=0&bulan=<?=$bulan?>&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerbulan?status=0&doc=1&bulan=<?=$bulan?>&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
                           <i class="fa fa-print pr-2"></i>Convert Pemesanan Bulan <?php 
                             switch ($bulan){
                               case 1 : echo "Januari"; break;
@@ -204,7 +204,7 @@
                        <br>
                       </div>
 
-                      <form action="<?php echo base_url() ?>Admin/Pemesanan/ConvertExcelByBulanTanpaTahun?status=0&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
+                      <form action="<?php echo base_url() ?>Admin/Pemesanan/ConvertExcelByBulanTanpaTahun?status=0&doc=1&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
               <div class="col-md-12"><h6>Convert Pemesanan Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
@@ -246,16 +246,16 @@
                   </form>
 
                       <div class="col-md-12 mt-3"><h6>Convert Berdasarkan Tanggal:</h6></div>
-                        <form action="<?php echo base_url() ?>admin/Pemesanan/convertExcelPertanggal?status=0" target="_blank" method="post" enctype="multipart/form-data">
+                        <form action="<?php echo base_url() ?>admin/Pemesanan/convertExcelBytanggal?status=0&doc=1" target="_blank" method="post" enctype="multipart/form-data">
                       <div class="modal-body p-20">
                         <div class="row">
                         <div class="col-md-4">
                           <label class="control-label">Start date:</label>
-                          <input class="form-control form-white" id="startdateword" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                          <input class="form-control form-white sd" id="startdateword" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
                         </div>
                         <div class="col-md-4">
                           <label class="control-label">End date:</label>
-                          <input class="form-control form-white" id="enddateword" type="date" name="end_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                          <input class="form-control form-white ed" id="enddateword" type="date" name="end_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
                         </div>
                         
                         <div class="col-md-4">
@@ -288,7 +288,7 @@
                     <div class="modal-body">
                     <div class="row">
                       <div class="col-md-12">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertWordPerhari?status=0" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertWordPerhari?status=0&doc=1" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
                           <i class="fa fa-print pr-2"></i>Convert Pemesanan Hari Ini (<?= date('d')?> <?php 
                             switch (date('m')){
                               case 1 : echo "Januari"; break;
@@ -310,7 +310,7 @@
                       </div>
 
                       <div class="col-md-12 mt-4">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertWordPerbulan?status=0&bulan=<?=$bulan?>&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertWordPerbulan?status=0&doc=1&bulan=<?=$bulan?>&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
                           <i class="fa fa-print pr-2"></i>Convert Pemesanan Bulan <?php 
                             switch ($bulan){
                               case 1 : echo "Januari"; break;
@@ -332,7 +332,7 @@
                        <br>
                       </div>
 
-                      <form action="<?php echo base_url() ?>Admin/Pemesanan/ConvertWordByBulanTanpaTahun?status=0&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
+                      <form action="<?php echo base_url() ?>Admin/Pemesanan/ConvertWordByBulanTanpaTahun?status=0&doc=1&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
               <div class="col-md-12"><h6>Convert Pemesanan Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
@@ -374,16 +374,16 @@
                   </form>
 
                       <div class="col-md-12 mt-3"><h6>Convert Berdasarkan Tanggal:</h6></div>
-                        <form action="<?php echo base_url() ?>admin/Pemesanan/convertWordPertanggal?status=0" target="_blank" method="post" enctype="multipart/form-data">
+                        <form action="<?php echo base_url() ?>admin/Pemesanan/convertWordPertanggal?status=0&doc=1" target="_blank" method="post" enctype="multipart/form-data">
                       <div class="modal-body p-20">
                         <div class="row">
                         <div class="col-md-4">
                           <label class="control-label">Start date:</label>
-                          <input class="form-control form-white" id="startdateword" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                          <input class="form-control form-white sd" id="startdateword" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
                         </div>
                         <div class="col-md-4">
                           <label class="control-label">End date:</label>
-                          <input class="form-control form-white" id="enddateword" type="date" name="end_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                          <input class="form-control form-white ed" id="enddateword" type="date" name="end_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
                         </div>
                         <div class="col-md-4">
                         <button type="submit" class="btn btn-success btn-block ripple m-t-10">
@@ -418,7 +418,7 @@
                         <div class="modal-body">
                     <div class="row">
                       <div class="col-md-12">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertPDFPerhari?status=0" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertPDFPerhari?status=0&doc=1" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
                           <i class="fa fa-print pr-2"></i>Convert Pemesanan Hari Ini (<?= date('d')?> <?php 
                             switch (date('m')){
                               case 1 : echo "Januari"; break;
@@ -440,7 +440,7 @@
                       </div>
 
                       <div class="col-md-12 mt-4">
-                        <a href="<?= base_url() ?>admin/Pemesanan/convertPDFPerbulan?status=0&bulan=<?=$bulan?>&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertPDFPerbulan?status=0&doc=1&bulan=<?=$bulan?>&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
                           <i class="fa fa-print pr-2"></i>Convert Pemesanan Bulan <?php 
                             switch ($bulan){
                               case 1 : echo "Januari"; break;
@@ -462,7 +462,7 @@
                        <br>
                       </div>
 
-                      <form action="<?php echo base_url() ?>Admin/Pemesanan/ConvertPDFByBulanTanpaTahun?status=0&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
+                      <form action="<?php echo base_url() ?>Admin/Pemesanan/ConvertPDFByBulanTanpaTahun?status=0&doc=1&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
               <div class="col-md-12"><h6>Convert Pemesanan Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
@@ -504,16 +504,16 @@
                   </form>
 
                       <div class="col-md-12 mt-3"><h6>Convert Berdasarkan Tanggal:</h6></div>
-                        <form action="<?php echo base_url() ?>admin/Pemesanan/convertPDFPertanggal?status=0" target="_blank" method="post" enctype="multipart/form-data">
+                        <form action="<?php echo base_url() ?>admin/Pemesanan/convertPDFPertanggal?status=0&doc=1" target="_blank" method="post" enctype="multipart/form-data">
                       <div class="modal-body p-20">
                         <div class="row">
                         <div class="col-md-4">
                           <label class="control-label">Start date:</label>
-                          <input class="form-control form-white" id="startdateword" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                          <input class="form-control form-white sd" id="startdateword" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
                         </div>
                         <div class="col-md-4">
                           <label class="control-label">End date:</label>
-                          <input class="form-control form-white" id="enddateword" type="date" name="end_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                          <input class="form-control form-white ed" id="enddateword" type="date" name="end_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
                         </div>
                         <div class="col-md-4">
                         <button type="submit" class="btn btn-success btn-block ripple m-t-10">
@@ -533,6 +533,442 @@
             </div>
             <!-- end modal pdf -->
 <!-- end convert -->
+
+    
+<!-- Modal convert transaksi -->
+          <div class="modal fade" id="Conv-Transaksi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Pilihan</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12 mt-4">
+                        <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="excelT"
+                            data-toggle="modal" data-target="#exportTrans">
+                            <i class="fa fa-file-excel-o pr-2"></i>Convert Excel
+                        </a>
+                    </div>
+                    <div class="col-md-12 mt-4">
+                        <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="pdfT"
+                            data-toggle="modal" data-target="#exportpdfTrans">
+                            <i class="fa fa-file-pdf-o pr-2"></i>Convert PDF
+                        </a>
+                    </div>
+                    <div class="col-md-12 mt-4 mb-4">
+                        <a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="wordsT"
+                            data-toggle="modal" data-target="#wordTrans">
+                            <i class="fa fa-file-word-o pr-2"></i>Convert Word
+                        </a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <?php 
+    if($bulan<10){
+        $tglawal = date('Y')."-0".$bulan."-01";
+        $tglakhir = date('Y')."-0".$bulan."-".$tanggalAkhir;
+    }
+    else{
+        $tglawal = date('Y')."-".$bulan."-01";
+        $tglakhir = date('Y')."-".$bulan."-".$tanggalAkhir;
+    }
+    ?>
+        <!-- Modal Excel -->
+        <div class="modal fade" id="exportTrans" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Convert Data Transaksi (Excel)</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerhari?status=0&doc=2" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
+                          <i class="fa fa-print pr-2"></i>Convert Transaksi Hari Ini (<?= date('d')?> <?php 
+                            switch (date('m')){
+                              case 1 : echo "Januari"; break;
+                              case 2 : echo "Februari"; break;
+                              case 3 : echo "Maret"; break;
+                              case 4 : echo "April"; break;
+                              case 5 : echo "Mei"; break;
+                              case 6 : echo "Juni"; break;
+                              case 7 : echo "Juli"; break;
+                              case 8 : echo "Agustus"; break;
+                              case 9 : echo "September"; break;
+                              case 10 : echo "Oktober"; break;
+                              case 11 : echo "November"; break;
+                              case 12 : echo "Desember"; break;
+                            }
+                            ?>
+                            <?= date('Y')?>)
+                          </a>
+                      </div>
+
+                      <div class="col-md-12 mt-4">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertExcelPerbulan?status=0&doc=2&bulan=<?=$bulan?>&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                          <i class="fa fa-print pr-2"></i>Convert Transaksi Bulan <?php 
+                            switch ($bulan){
+                              case 1 : echo "Januari"; break;
+                              case 2 : echo "Februari"; break;
+                              case 3 : echo "Maret"; break;
+                              case 4 : echo "April"; break;
+                              case 5 : echo "Mei"; break;
+                              case 6 : echo "Juni"; break;
+                              case 7 : echo "Juli"; break;
+                              case 8 : echo "Agustus"; break;
+                              case 9 : echo "September"; break;
+                              case 10 : echo "Oktober"; break;
+                              case 11 : echo "November"; break;
+                              case 12 : echo "Desember"; break;
+                            }
+                            ?>
+                            <?= date('Y')?>
+                          </a>
+                       <br>
+                      </div>
+
+                      <form action="<?php echo base_url() ?>Admin/Pemesanan/ConvertExcelByBulanTanpaTahun?status=0&doc=2&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
+              <div class="col-md-12"><h6>Convert Transaksi Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
+               
+            <div class="modal-body p-20">
+              <div class="row">
+              <div class="col-lg-6">
+              <label class="control-label">Dari tahun:</label>
+              <select class="form-control" id="syear" name="start_year" required>
+                    <option selected value="">Pilih</option>
+                    <?php
+                for ($x = 2020; $x <= date('Y'); $x++) :
+                ?>
+                    <option value="<?php echo $x ?>"><?php echo $x ?></option>
+                <?php endfor ?>
+              </select>
+              </div>
+              
+              <div class="col-lg-6">
+              <label class="control-label">Sampai tahun:</label>
+              <select class="form-control" id="eyear" name="end_year" required>
+                    <option selected value="">Pilih</option>
+                    <?php
+                for ($x = 2020; $x <= date('Y'); $x++) :
+                ?>
+                    <option value="<?php echo $x ?>"><?php echo $x ?></option>
+                <?php endfor ?>
+              </select>
+               </div>
+
+              </div>
+                </div>
+                </div>
+
+               
+               <div class="col-md-12">
+               <button type="submit" class="btn btn-success btn-block ripple m-t-10">
+                  <i class="fa fa-print pr-2"></i>Convert Transaksi</button>
+                  <br>
+                   </div>
+                  </form>
+
+                      <div class="col-md-12 mt-3"><h6>Convert Berdasarkan Tanggal:</h6></div>
+                        <form action="<?php echo base_url() ?>admin/Pemesanan/convertExcelByTanggal?status=0&doc=2" target="_blank" method="post" enctype="multipart/form-data">
+                      <div class="modal-body p-20">
+                        <div class="row">
+                        <div class="col-md-4">
+                          <label class="control-label">Start date:</label>
+                          <input class="form-control form-white sd" id="startdateword" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                        </div>
+                        <div class="col-md-4">
+                          <label class="control-label">End date:</label>
+                          <input class="form-control form-white ed" id="enddateword" type="date" name="end_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                        </div>
+                        
+                        <div class="col-md-4">
+                        <button type="submit" class="btn btn-success btn-block ripple m-t-10">
+                            <i class="fa fa-print pr-2"></i>Convert<br>Transaksi</a>
+                      </div>
+
+                        </div>
+                      </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+         <!-- end modal excel -->
+
+         <!-- modal word -->
+            <div class="modal fade" id="wordTrans" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Convert Data Transaksi (Word)</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertWordPerhari?status=0&doc=2" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
+                          <i class="fa fa-print pr-2"></i>Convert Transaksi Hari Ini (<?= date('d')?> <?php 
+                            switch (date('m')){
+                              case 1 : echo "Januari"; break;
+                              case 2 : echo "Februari"; break;
+                              case 3 : echo "Maret"; break;
+                              case 4 : echo "April"; break;
+                              case 5 : echo "Mei"; break;
+                              case 6 : echo "Juni"; break;
+                              case 7 : echo "Juli"; break;
+                              case 8 : echo "Agustus"; break;
+                              case 9 : echo "September"; break;
+                              case 10 : echo "Oktober"; break;
+                              case 11 : echo "November"; break;
+                              case 12 : echo "Desember"; break;
+                            }
+                            ?>
+                            <?= date('Y')?>)
+                          </a>
+                      </div>
+
+                      <div class="col-md-12 mt-4">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertWordPerbulan?status=0&doc=2&bulan=<?=$bulan?>&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                          <i class="fa fa-print pr-2"></i>Convert Transaksi Bulan <?php 
+                            switch ($bulan){
+                              case 1 : echo "Januari"; break;
+                              case 2 : echo "Februari"; break;
+                              case 3 : echo "Maret"; break;
+                              case 4 : echo "April"; break;
+                              case 5 : echo "Mei"; break;
+                              case 6 : echo "Juni"; break;
+                              case 7 : echo "Juli"; break;
+                              case 8 : echo "Agustus"; break;
+                              case 9 : echo "September"; break;
+                              case 10 : echo "Oktober"; break;
+                              case 11 : echo "November"; break;
+                              case 12 : echo "Desember"; break;
+                            }
+                            ?>
+                            <?= date('Y')?>
+                          </a>
+                       <br>
+                      </div>
+
+                      <form action="<?php echo base_url() ?>Admin/Pemesanan/ConvertWordByBulanTanpaTahun?status=0&doc=2&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
+              <div class="col-md-12"><h6>Convert Transaksi Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
+               
+            <div class="modal-body p-20">
+              <div class="row">
+              <div class="col-lg-6">
+              <label class="control-label">Dari tahun:</label>
+              <select class="form-control" id="syear" name="start_year" required>
+                    <option selected value="">Pilih</option>
+                    <?php
+                for ($x = 2020; $x <= date('Y'); $x++) :
+                ?>
+                    <option value="<?php echo $x ?>"><?php echo $x ?></option>
+                <?php endfor ?>
+              </select>
+              </div>
+              
+              <div class="col-lg-6">
+              <label class="control-label">Sampai tahun:</label>
+              <select class="form-control" id="eyear" name="end_year" required>
+                    <option selected value="">Pilih</option>
+                    <?php
+                for ($x = 2020; $x <= date('Y'); $x++) :
+                ?>
+                    <option value="<?php echo $x ?>"><?php echo $x ?></option>
+                <?php endfor ?>
+              </select>
+               </div>
+
+              </div>
+                </div>
+                </div>
+
+               
+               <div class="col-md-12">
+               <button type="submit" class="btn btn-success btn-block ripple m-t-10">
+                  <i class="fa fa-print pr-2"></i>Convert Transaksi</button>
+                  <br>
+                   </div>
+                  </form>
+
+                      <div class="col-md-12 mt-3"><h6>Convert Berdasarkan Tanggal:</h6></div>
+                        <form action="<?php echo base_url() ?>admin/Pemesanan/convertWordPertanggal?status=0&doc=2" target="_blank" method="post" enctype="multipart/form-data">
+                      <div class="modal-body p-20">
+                        <div class="row">
+                        <div class="col-md-4">
+                          <label class="control-label">Start date:</label>
+                          <input class="form-control form-white sd" id="startdateword" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                        </div>
+                        <div class="col-md-4">
+                          <label class="control-label">End date:</label>
+                          <input class="form-control form-white ed" id="enddateword" type="date" name="end_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                        </div>
+                        <div class="col-md-4">
+                        <button type="submit" class="btn btn-success btn-block ripple m-t-10">
+                            <i class="fa fa-print pr-2"></i>Convert<br>Transaksi</a>
+                      </div>
+
+                        </div>
+                      </div>
+                        </form>
+                    </div>
+                    
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                            
+         <!-- end modal word -->
+
+            <!-- modal pdf -->
+            <div class="modal fade" id="exportpdfTrans" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Convert Data Transaksi (PDF)</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertPDFPerhari?status=0&doc=2" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
+                          <i class="fa fa-print pr-2"></i>Convert Transaksi Hari Ini (<?= date('d')?> <?php 
+                            switch (date('m')){
+                              case 1 : echo "Januari"; break;
+                              case 2 : echo "Februari"; break;
+                              case 3 : echo "Maret"; break;
+                              case 4 : echo "April"; break;
+                              case 5 : echo "Mei"; break;
+                              case 6 : echo "Juni"; break;
+                              case 7 : echo "Juli"; break;
+                              case 8 : echo "Agustus"; break;
+                              case 9 : echo "September"; break;
+                              case 10 : echo "Oktober"; break;
+                              case 11 : echo "November"; break;
+                              case 12 : echo "Desember"; break;
+                            }
+                            ?>
+                            <?= date('Y')?>)
+                          </a>
+                      </div>
+
+                      <div class="col-md-12 mt-4">
+                        <a href="<?= base_url() ?>admin/Pemesanan/convertPDFPerbulan?status=0&doc=2&bulan=<?=$bulan?>&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                          <i class="fa fa-print pr-2"></i>Convert Transaksi Bulan <?php 
+                            switch ($bulan){
+                              case 1 : echo "Januari"; break;
+                              case 2 : echo "Februari"; break;
+                              case 3 : echo "Maret"; break;
+                              case 4 : echo "April"; break;
+                              case 5 : echo "Mei"; break;
+                              case 6 : echo "Juni"; break;
+                              case 7 : echo "Juli"; break;
+                              case 8 : echo "Agustus"; break;
+                              case 9 : echo "September"; break;
+                              case 10 : echo "Oktober"; break;
+                              case 11 : echo "November"; break;
+                              case 12 : echo "Desember"; break;
+                            }
+                            ?>
+                            <?= date('Y')?>
+                          </a>
+                       <br>
+                      </div>
+
+                      <form action="<?php echo base_url() ?>Admin/Pemesanan/ConvertPDFByBulanTanpaTahun?status=0&doc=2&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
+              <div class="col-md-12"><h6>Convert Transaksi Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
+               
+            <div class="modal-body p-20">
+              <div class="row">
+              <div class="col-lg-6">
+              <label class="control-label">Dari tahun:</label>
+              <select class="form-control" id="syear" name="start_year" required>
+                    <option selected value="">Pilih</option>
+                    <?php
+                for ($x = 2020; $x <= date('Y'); $x++) :
+                ?>
+                    <option value="<?php echo $x ?>"><?php echo $x ?></option>
+                <?php endfor ?>
+              </select>
+              </div>
+              
+              <div class="col-lg-6">
+              <label class="control-label">Sampai tahun:</label>
+              <select class="form-control" id="eyear" name="end_year" required>
+                    <option selected value="">Pilih</option>
+                    <?php
+                for ($x = 2020; $x <= date('Y'); $x++) :
+                ?>
+                    <option value="<?php echo $x ?>"><?php echo $x ?></option>
+                <?php endfor ?>
+              </select>
+               </div>
+
+              </div>
+                </div>
+                </div>
+
+               
+               <div class="col-md-12">
+               <button type="submit" class="btn btn-success btn-block ripple m-t-10">
+                  <i class="fa fa-print pr-2"></i>Convert Transaksi</button>
+                  <br>
+                   </div>
+                  </form>
+
+                      <div class="col-md-12 mt-3"><h6>Convert Berdasarkan Tanggal:</h6></div>
+                        <form action="<?php echo base_url() ?>admin/Pemesanan/convertPDFPertanggal?status=0&doc=2" target="_blank" method="post" enctype="multipart/form-data">
+                      <div class="modal-body p-20">
+                        <div class="row">
+                        <div class="col-md-4">
+                          <label class="control-label">Start date:</label>
+                          <input class="form-control form-white sd" id="startdateword" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                        </div>
+                        <div class="col-md-4">
+                          <label class="control-label">End date:</label>
+                          <input class="form-control form-white ed" id="enddateword" type="date" name="end_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                        </div>
+                        <div class="col-md-4">
+                        <button type="submit" class="btn btn-success btn-block ripple m-t-10">
+                            <i class="fa fa-print pr-2"></i>Convert<br>Transaksi</a>
+                      </div>
+
+                        </div>
+                      </div>
+                        </form>
+                    </div>
+                    
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end modal pdf -->
+<!-- end convert Transaksi -->
+
 
 <div id="parent">
   <div class="table-responsive">
@@ -1390,11 +1826,11 @@
               <div class="row">
               <div class="col-md-4">
                 <label class="control-label">Dari tanggal:</label>
-                <input class="form-control form-white" id="startdatecetak" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>"required/>
+                <input class="form-control form-white sd" id="startdatecetak" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>"required/>
               </div>
               <div class="col-md-4">
                 <label class="control-label">Sampai tanggal:</label>
-                <input class="form-control form-white" id="enddatecetak" type="date" name="end_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                <input class="form-control form-white ed" id="enddatecetak" type="date" name="end_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
               </div>
               <div class="col-md-4">
                <button type="submit" class="btn btn-success btn-block ripple m-t-10">
@@ -1645,13 +2081,38 @@
 
 <script type="text/javascript">
   $("#excel").click(function(){
-    $("#pilihan").modal('hide');
+    $("#Conv-Pemesanan").modal('hide');
   });
 </script>
 
 <script type="text/javascript">
   $("#words").click(function(){
-    $("#pilihan").modal('hide');
+    $("#Conv-Pemesanan").modal('hide');
+  });
+</script>
+
+<script type="text/javascript">
+  $("#pdf").click(function(){
+    $("#Conv-Pemesanan").modal('hide');
+  });
+</script>
+
+
+<script type="text/javascript">
+  $("#excelT").click(function(){
+    $("#Conv-Transaksi").modal('hide');
+  });
+</script>
+
+<script type="text/javascript">
+  $("#wordsT").click(function(){
+    $("#Conv-Transaksi").modal('hide');
+  });
+</script>
+
+<script type="text/javascript">
+  $("#pdfT").click(function(){
+    $("#Conv-Transaksi").modal('hide');
   });
 </script>
 
@@ -1676,102 +2137,33 @@
 </script>
 
 <script type="text/javascript">
+	var e = document.getElementsByClassName("sd");
+	$('.sd').on('change', function () {
+		var date = new Date($(this).val());
+		days = date.getDate();
+		months = date.getMonth() + 1;
+		years = date.getFullYear();
+	});
 
-    var e = document.getElementById("startdatecetak");
-        $('#startdatecetak').on('change', function(){
-        var date = new Date($('#startdatecetak').val());
-        days = date.getDate();
-        months = date.getMonth() + 1;
-        years = date.getFullYear();
-    });
-
-    var e = document.getElementById("enddatecetak");
-        $('#enddatecetak').on('change', function(){
-        var date = new Date($('#enddatecetak').val());
-        daye = date.getDate();
-        monthe = date.getMonth() + 1;
-        yeare = date.getFullYear();
-        if(years > yeare){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddatecetak').val('');
-        }
-        else if ((years == yeare) && (months > monthe)){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddatecetak').val('');
-        }
-        else if ((days > daye) && (years == yeare) && (months == monthe)){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddatecetak').val('');
-        }
-    });
+	var e = document.getElementsByClassName("ed");
+	$('.ed').on('change', function () {
+		var date = new Date($(this).val());
+		daye = date.getDate();
+		monthe = date.getMonth() + 1;
+		yeare = date.getFullYear();
+		if (years > yeare) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		} else if ((years == yeare) && (months > monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		}
+	});
 
 </script>
-
-<script type="text/javascript">
-
-    var e = document.getElementById("startdateexcel");
-        $('#startdateexcel').on('change', function(){
-        var date = new Date($('#startdateexcel').val());
-        days = date.getDate();
-        months = date.getMonth() + 1;
-        years = date.getFullYear();
-    });
-
-    var e = document.getElementById("enddateexcel");
-        $('#enddateexcel').on('change', function(){
-        var date = new Date($('#enddateexcel').val());
-        daye = date.getDate();
-        monthe = date.getMonth() + 1;
-        yeare = date.getFullYear();
-        if(years > yeare){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddateexcel').val('');
-        }
-        else if ((years == yeare) && (months > monthe)){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddateexcel').val('');
-        }
-        else if ((days > daye) && (years == yeare) && (months == monthe)){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddateexcel').val('');
-        }
-    });
-
-</script>
-
-<script type="text/javascript">
-
-    var e = document.getElementById("startdateword");
-        $('#startdateword').on('change', function(){
-        var date = new Date($('#startdateword').val());
-        days = date.getDate();
-        months = date.getMonth() + 1;
-        years = date.getFullYear();
-    });
-
-    var e = document.getElementById("enddateword");
-        $('#enddateword').on('change', function(){
-        var date = new Date($('#enddateword').val());
-        daye = date.getDate();
-        monthe = date.getMonth() + 1;
-        yeare = date.getFullYear();
-        if(years > yeare){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddateword').val('');
-        }
-        else if ((years == yeare) && (months > monthe)){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddateword').val('');
-        }
-        else if ((days > daye) && (years == yeare) && (months == monthe)){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddateword').val('');
-        }
-    });
-
-</script>
-
-
 
 <script type="text/javascript">
   $("#excel").click(function(){
