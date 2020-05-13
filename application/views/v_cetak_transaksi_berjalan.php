@@ -18,7 +18,8 @@ $cur_date = date("d-m-Y");?>
           <hr style="margin-left:10px;margin-right:10px;">
           <hr>
           <br>
-
+          </div>
+<div>
              <table border="1" cellpadding="7" width="100%" style="border-style: solid;border-width: thin;border-collapse: collapse;" >
              <tr>
                   <th>No</th>
