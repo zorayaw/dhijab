@@ -756,7 +756,6 @@ class Pemesanan extends CI_Controller
 				$this->load->view('admin/laporanP_excel', $x);
 					
 	}	
-
 	function convertExcelPerbulan(){
 		$doc = $this->input->get('doc');
 			$statusc = $this->input->get('status');
@@ -1541,6 +1540,29 @@ class Pemesanan extends CI_Controller
 
 		echo $this->session->set_flashdata('msg', 'update');
 		redirect('Admin/Pemesanan');
+	}
+
+	function edit_pesanankonfPesanan(){
+		$pemesanan_id = $this->input->post('pemesanan_id');
+		$nama_pemesan = $this->input->post('nama_pemesan');
+		$no_hp = $this->input->post('hp');
+		$alamat = $this->input->post('alamat');
+		$asal_transaksi = $this->input->post('at');
+		$kurir = $this->input->post('kurir');
+		$username = $this->input->post('username');
+		$resi = $this->input->post('no_resi');
+		if($resi == null){
+			$resi = "-";
+		}
+		else{
+			$resi = $this->input->post('no_resi');
+		}
+		$metode_pembayaran = $this->input->post('mp');
+		// $tanggal = $this->input->post('tanggal');
+		$this->M_pemesanan->edit_pesanan($pemesanan_id, $nama_pemesan, $no_hp, $alamat, $kurir, $resi,$username, $asal_transaksi, $metode_pembayaran);
+
+		echo $this->session->set_flashdata('msg', 'update');
+		redirect('Admin/Pemesanan/konfirmasi_pesanan');
 	}
 
 	function list_barang($pemesanan_id)

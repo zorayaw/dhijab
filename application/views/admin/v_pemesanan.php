@@ -13,9 +13,7 @@
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-					<li class="breadcrumb-item"><a href="<?php echo base_url() ?>Admin/Pemesanan" class="default-color">Home</a>
-					</li>
-					<li class="breadcrumb-item active">Daftar Barang</li>
+				<li class="breadcrumb-item">Seluruh Pemesanan</a></li>
 				</ol>
 			</div>
 		</div>
@@ -1392,7 +1390,7 @@
                     case 3 : echo "Maret"; break;
                     case 4 : echo "April"; break;
                     case 5 : echo "Mei"; break;
-                    case 6 : echo "Juni"; break;
+                    case 6 : echo "Juni"; break; 
                     case 7 : echo "Juli"; break;
                     case 8 : echo "Agustus"; break;
                     case 9 : echo "September"; break;

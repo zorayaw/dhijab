@@ -7,8 +7,8 @@
 
         <table border="2">
         <thead>
-                <tr>
-                <th>No</th>
+              <tr>
+                  <th>No</th>
                   <th>Nomor Order</th>
                   <th>Nama Pemesan</th>
                   <th>Nama Akun</th>
@@ -21,9 +21,8 @@
                   <th>Uang Kembalian</th>
                   <th>Total Harga</th>
                   <th>Omset</th>
-                  <!-- <th>
-                    <center>Aksi</center>
-                  </th> -->
+                  <th>Modal</th>
+                  <th>Untung</th>
                 </tr>
               </thead>
               <tbody>
@@ -38,7 +37,11 @@
                 $total = 0;
                 $status = "";
                 $tot_omset = 0;
+                $untung = 0;
+                $tot_modal = 0;
+                $tot_untung = 0;
                 foreach ($datapesanan->result_array() as $i) :
+                  $m = 0;
                   $no++;
   
                   $pemesanan_id = $i['pemesanan_id'];
@@ -71,13 +74,22 @@
                   elseif($i['status_pemesanan'] == 3)
                   $status = "Selesai";
                
-                  
-                
+                  $q = $this->M_pemesanan->getHModal($pemesanan_id)->result_array();
+
+                  foreach($q as $key){
+                    $modal = $key['HPP'];
+                    $br_id = $key['barang_id'];
+                    $z =  $this->db->query("SELECT *,lb_qty * $modal AS total from list_barang where barang_id = $br_id AND pemesanan_id=' $pemesanan_id'");
+                    $c = $z->row_array();
+                  $m = $m + $c['total'];
+                  }
+
                   
                   $q = $this->db->query("SELECT SUM(lb_qty * harga)AS total_keseluruhan from list_barang where pemesanan_id=' $pemesanan_id'");
                   $c = $q->row_array();
                   $omset = $c['total_keseluruhan'];
                   $jumlah = $c['total_keseluruhan'] + $ongkir - ($diskon + $biaya_admin + $uang);
+                  $untung = $jumlah - $m;
   
                 ?>
   
@@ -97,11 +109,16 @@
                     <td><?php echo rupiah($uang) ?></td>
                     <td><?php echo rupiah($jumlah) ?></td>
                     <td><?php echo rupiah($omset) ?></td>
+                    <td><?php echo rupiah($m) ?></td>
+                    <td><?php echo rupiah($untung) ?></td>
+                    
                     
   
                     <?php
                     $tot_omset = $tot_omset + $omset;
                     $total = $total + $jumlah;
+                    $tot_modal = $tot_modal + $m;
+                    $tot_untung = $tot_untung + $untung;
                     ?>
                   </tr>
                 <?php endforeach; ?>
@@ -113,6 +130,9 @@
                 </th>
                 <th><?php echo rupiah($total) ?></th>
                 <th><?php echo rupiah($tot_omset) ?></th>
+                <th><?php echo rupiah($tot_modal) ?></th>
+                <th><?php echo rupiah($tot_untung) ?></th>
               </tr>
             
+  
             </table>

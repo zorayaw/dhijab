@@ -10,8 +10,8 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-          <li class="breadcrumb-item"><a href="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/viewPemesananByBulan/<?=$bulan?>" class="default-color">Home</a></li>
-          <li class="breadcrumb-item active">Daftar Barang</li>
+          <li class="breadcrumb-item"><a href="<?php echo base_url() ?>Admin/PemesananProduksi" class="default-color">Pemesanan Produksi</a></li>
+          <li class="breadcrumb-item active">Pemesanan Produksi Bulan <?=$namaBulan?></li>
         </ol>
       </div>
     </div>
@@ -1744,20 +1744,20 @@ $status_pemesanan = $i['status_pemesanan'];
           <div class="modal-body">
             <div class="row">
               <div class="col-md-12">
-                <a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi?status=3" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
+                <a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi?status=3&doc=1" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
                   <i class="fa fa-print pr-2"></i>Cetak Pemesanan Hari Ini (<?= date('d')." ".$namaBulan." ".date('Y')?>)
                 </a>
                 <br>
               </div>
 
               <div class="col-md-12">
-                <a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiByBulan?status=3&bulan=<?=$bulan?>&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                <a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiByBulan?status=3&doc=1&bulan=<?=$bulan?>&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
                   <i class="fa fa-print pr-2"></i>Cetak Pemesanan Bulan (<?=$namaBulan." ".date('Y')?>)
                 </a>
                 <br>
               </div>
 
-              <form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiByBulanTanpaTahun?status=3&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
+              <form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiByBulanTanpaTahun?status=3&doc=1&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
               <div class="col-md-12"><h6>Cetak Pemesanan Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
@@ -1805,7 +1805,7 @@ $status_pemesanan = $i['status_pemesanan'];
                 <br>
               </div> -->
               <div class="col-md-12"><h6>Cetak Berdasarkan Tanggal (<?=$namaBulan." ".date('Y')?>):</h6></div>
-               <form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiBytanggal?status=3" target="_blank" method="post" enctype="multipart/form-data">
+               <form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiBytanggal?status=3&doc=1" target="_blank" method="post" enctype="multipart/form-data">
             <div class="modal-body p-20">
               <div class="row">
               <div class="col-md-4">
@@ -1830,6 +1830,139 @@ $status_pemesanan = $i['status_pemesanan'];
         </div>
       </div>
     </div>
+
+    	<!-- Modal Cetak Transaksi-->
+	<?php date_default_timezone_set("Asia/Jakarta");
+    ?>
+
+	<div class="modal fade" tabindex="-1" role="dialog" id="Cetak-Transaksi">
+		<div class="modal-dialog modal-lg-10">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Cetak Seluruh Transaksi</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+							<a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi?status=3&doc=2" target="_blank"
+								class="btn btn-warning btn-block ripple m-t-10">
+								<i class="fa fa-print pr-2"></i>Cetak Transaksi Hari Ini (<?= date('d')?> <?php 
+                  switch (date('m')){
+                    case 1 : echo "Januari"; break;
+                    case 2 : echo "Februari"; break;
+                    case 3 : echo "Maret"; break;
+                    case 4 : echo "April"; break;
+                    case 5 : echo "Mei"; break;
+                    case 6 : echo "Juni"; break;
+                    case 7 : echo "Juli"; break;
+                    case 8 : echo "Agustus"; break;
+                    case 9 : echo "September"; break;
+                    case 10 : echo "Oktober"; break;
+                    case 11 : echo "November"; break;
+                    case 12 : echo "Desember"; break;
+                  }
+                  ?>
+								<?= date('Y')?>)
+							</a>
+							<br>
+						</div>
+
+						<div class="col-md-12">
+							<a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiByBulan?status=3&doc=2&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
+								target="_blank" class="btn btn-success btn-block ripple m-t-10">
+								<i class="fa fa-print pr-2"></i>Cetak Transaksi Bulan Ini (<?php 
+                  switch (date('m')){
+                    case 1 : echo "Januari"; break;
+                    case 2 : echo "Februari"; break;
+                    case 3 : echo "Maret"; break;
+                    case 4 : echo "April"; break;
+                    case 5 : echo "Mei"; break;
+                    case 6 : echo "Juni"; break;
+                    case 7 : echo "Juli"; break;
+                    case 8 : echo "Agustus"; break;
+                    case 9 : echo "September"; break;
+                    case 10 : echo "Oktober"; break;
+                    case 11 : echo "November"; break;
+                    case 12 : echo "Desember"; break;
+                  }
+                  ?> <?= date('Y')?>)
+							</a>
+							<br>
+						</div>
+
+						<form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiByTahun?status=3&doc=2" target="_blank"
+							method="post" enctype="multipart/form-data">
+							<div class="col-md-12">
+								<h6>Cetak Transaksi Berdasarkan Tahun: </h6>
+							</div>
+
+							<div class="modal-body p-20">
+								<div class="row">
+									<div class="col-lg-6">
+										<label class="control-label">Dari tahun:</label>
+										<select class="form-control" id="syear" name="start_year" required>
+											<option selected value="">Pilih</option>
+											<?php
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
+                ?>
+											<option id="enddate" value="<?php echo $x ?>"><?php echo $x ?></option>
+											<?php endfor ?>
+										</select>
+									</div>
+
+									<div class="col-lg-6">
+										<label class="control-label">Sampai tahun:</label>
+										<select class="form-control" id="eyear" name="end_year" required>
+											<option selected value="">Pilih</option>
+											<?php
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
+                ?>
+											<option id="endyear" value="<?php echo $x ?>"><?php echo $x ?></option>
+											<?php endfor ?>
+										</select>
+									</div>
+								</div>
+							</div>
+					</div>
+
+					<div class="col-md-12">
+						<button type="submit" class="btn btn-success btn-block ripple m-t-10">
+							<i class="fa fa-print pr-2"></i>Cetak Transaksi</button>
+						<br>
+					</div>
+					</form>
+
+
+					<div class="col-md-12">
+						<h6>Cetak Berdasarkan Tanggal:</h6>
+					</div>
+					<form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiBytanggal?status=3&doc=2" target="_blank"
+						method="post" enctype="multipart/form-data">
+						<div class="modal-body p-20">
+							<div class="row">
+								<div class="col-md-4">
+									<label class="control-label">Dari tanggal:</label>
+									<input class="form-control form-white" type="date" id="startdatecetak" name="start_date" required />
+								</div>
+								<div class="col-md-4">
+									<label class="control-label">Sampai tanggal:</label>
+									<input class="form-control form-white" type="date" id="enddatecetak" name="end_date" required />
+								</div>
+								<div class="col-md-4">
+									<button type="submit" class="btn btn-success btn-block ripple m-t-10">
+										<i class="fa fa-print pr-2"></i>Cetak<br>Transaksi</a>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger ripple" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 
 

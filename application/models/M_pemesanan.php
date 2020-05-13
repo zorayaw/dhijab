@@ -598,7 +598,7 @@
 				} 
 				
 				function getHModal($pemesanan_id){
-					return $this->db->query("SELECT a.HPP FROM kategori_barang a, barang b, list_barang d WHERE d.pemesanan_id = $pemesanan_id AND d.barang_id = b.barang_id AND b.id_kategori_barang = a.id_kategori_barang");
+					return $this->db->query("SELECT a.HPP, d.* FROM kategori_barang a, barang b, list_barang d WHERE d.pemesanan_id = $pemesanan_id AND d.barang_id = b.barang_id AND b.id_kategori_barang = a.id_kategori_barang");
 					
 				}
 	}

@@ -10,8 +10,7 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-          <li class="breadcrumb-item"><a href="<?php echo base_url() ?>Admin/PemesananReseller" class="default-color">Home</a></li>
-          <li class="breadcrumb-item active">Daftar Barang</li>
+        <li class="breadcrumb-item">Pemesanan Reseller</a></li>
         </ol>
       </div>
     </div>
@@ -1228,7 +1227,7 @@ $status_pemesanan = $i['status_pemesanan'];
 					<div class="row">
 						<div class="col-md-12">
 							<a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi?status=2&doc=1" target="_blank"
-								class="btn btn-success btn-block ripple m-t-10">
+								class="btn btn-warning btn-block ripple m-t-10">
 								<i class="fa fa-print pr-2"></i>Cetak Pemesanan Hari Ini (<?= date('d')?> <?php 
                   switch (date('m')){
                     case 1 : echo "Januari"; break;
@@ -1360,7 +1359,7 @@ $status_pemesanan = $i['status_pemesanan'];
 					<div class="row">
 						<div class="col-md-12">
 							<a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi?status=2&doc=2" target="_blank"
-								class="btn btn-success btn-block ripple m-t-10">
+								class="btn btn-warning btn-block ripple m-t-10">
 								<i class="fa fa-print pr-2"></i>Cetak Transaksi Hari Ini (<?= date('d')?> <?php 
                   switch (date('m')){
                     case 1 : echo "Januari"; break;

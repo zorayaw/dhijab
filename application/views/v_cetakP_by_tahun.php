@@ -107,7 +107,7 @@
                   $nama_barang="";
                   $nomor_barang=1;
                   foreach ($q->result_array() as $k) :
-                    $nama_barang=$nama_barang.$nomor_barang.". ".$k['barang_nama'].": ".$k['lb_qty']."<br>";
+                    $nama_barang=$nama_barang.$nomor_barang.". ".$k['barang_nama'].": ".$k['lb_qty']."<br><br>";
                       $nomor_barang++; 
                   endforeach;
                 
