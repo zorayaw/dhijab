@@ -10,17 +10,16 @@
         <h4 class="mb-0">Data Keuangan</h4>
         <?php else : ?>
           <h4 class="mb-0">Data Keuangan <?= $stat ?></h4>
-        <?php endif;?>
-          
+        <?php endif;?>  
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-          <li class="breadcrumb-item"><a href="<?php echo base_url() ?>Admin/Pemesanan" class="default-color">Home</a></li>
-          <li class="breadcrumb-item active">Daftar Barang</li>
+          <li class="breadcrumb-item"><a href="<?php echo base_url() ?>Admin/Keuangan?status=0" class="default-color">Data Keuangan</a></li>
         </ol>
       </div>
     </div>
   </div>
+
   <!-- main body -->
   <div class="row">
     <div class="col-xl-12 mb-30">
@@ -228,7 +227,7 @@
       </div>
     </div>
     </div>
-    
+  </div>
     <?php
     $no = 0;
     foreach ($datapesanan->result_array() as $i) :
@@ -476,8 +475,6 @@
   </div>
   
   <?php endforeach; ?>
-
-</div>  
 
 
 
@@ -984,8 +981,45 @@
 
 <!--=================================
  jquery -->
+  <!-- plugins-jquery -->
+  <script src="<?php echo base_url()?>assets/admin/js/plugins-jquery.js"></script>
+
+<!-- plugin_path -->
+<script>var plugin_path = '<?php echo base_url()?>assets/admin/js/';</script>
+
+<!-- chart -->
+<script src="<?php echo base_url()?>assets/admin/js/chart-init.js"></script>
+
+<!-- calendar -->
+<script src="<?php echo base_url()?>assets/admin/js/calendar.init.js"></script>
+
+<!-- charts sparkline -->
+<script src="<?php echo base_url()?>assets/admin/js/sparkline.init.js"></script>
+
+<!-- charts morris -->
+<script src="<?php echo base_url()?>assets/admin/js/morris.init.js"></script>
+
+<!-- datepicker -->
+<script src="<?php echo base_url()?>assets/admin/js/datepicker.js"></script>
+
+<!-- sweetalert2 -->
+<script src="<?php echo base_url()?>assets/admin/js/sweetalert2.js"></script>
+
+<!-- toastr -->
+<script src="<?php echo base_url().'assets/admin/js/jquery.toast.min.js'?>"></script>
+
+<!-- validation -->
+<script src="<?php echo base_url()?>assets/admin/js/validation.js"></script>
+
+<!-- lobilist -->
+<script src="<?php echo base_url()?>assets/admin/js/lobilist.js"></script>
+ 
 <!-- custom -->
-<script src="<?php echo base_url() ?>assets/admin/js/custom.js"></script>
+<script src="<?php echo base_url()?>assets/admin/js/custom.js"></script>
+  
+<!-- mask -->
+<script src="<?php echo base_url()?>assets/admin/js/jquery.mask.min.js"></script>
+
 
 </body>
 
