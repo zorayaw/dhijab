@@ -61,6 +61,7 @@
 			<br>
 					</div>
 					<?php endif;?>
+					<br>
 					<div class="col-xl-12 mb-10" style="display: flex">
 						<div class="btn-group">
 							<button type="button" class="btn btn-info dropdown-toggle mb-4 ml-4" data-toggle="dropdown"
@@ -101,6 +102,82 @@
 						</div>
 						<?php endif; ?>
 					</div>
+				
+
+
+	<!-- Modal Pesanan Produksi-->
+	<div class="modal fade" tabindex="-1" role="dialog" id="produksi">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Tambah Pesanan Produksi</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<form action="<?php echo base_url() ?>Admin/Pemesanan/savepemesananP" method="post"
+					enctype="multipart/form-data">
+					<div class="modal-body p-20">
+						<div class="row">
+
+							<input value="<?php echo $this->session->userdata('nama')?>" type="hidden" name="username" required />
+
+							<div class="col-md-12">
+								<label class="control-label">Tanggal</label>
+								<input class="form-control form-white" type="date" name="tanggal" required />
+							</div>
+
+							<div class="col-md-12">
+								<label class="control-label">No HP</label>
+								<input class="form-control form-white" type="number" name="hp" required />
+							</div>
+
+							<div class="col-md-12">
+								<label class="control-label">Alamat</label>
+								<input class="form-control form-white" type="text" name="alamat" required />
+							</div>
+
+							<div class="col-md-12">
+								<label class="control-label">Note</label>
+								<input class="form-control form-white" type="text" name="note" required />
+							</div>
+
+
+							<div class="form-group col-md-12 mt-10" id="dynamic_field2">
+								<div class="row">
+									<div class="col-md-8">
+										<label class="control-label">Barang</label>
+										<select class="form-control" name="barang[]" required id="select-state"
+											placeholder="Pick a state...">
+											<option selected value="">Pilih</option>
+											<?php
+                        foreach ($produksi->result_array() as $i) :
+                          $barang_id = $i['barang_id'];
+                          $barang_nama = $i['barang_nama'];
+                        ?>
+											<option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option>
+											<?php endforeach; ?>
+										</select>
+									</div>
+									<div class="col-md-2">
+										<label class="control-label" for="harga">Kuantitas</label>
+										<input class="form-control" type="number" name="qty[]" min=1 required>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12 mt-30">
+								<input class="button" value="Add new" id="add3" />
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger ripple" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-success ripple save-category" id="simpan">Save</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
 
 					<!-- Modal -->
 					<div class="modal fade" id="Conv-Pemesanan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

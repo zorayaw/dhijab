@@ -99,6 +99,149 @@
 <?php endif; ?>
 </div>
 
+
+
+	<!-- Modal Pesanan Reseller-->
+	<div class="modal fade" tabindex="-1" role="dialog" id="reseller">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Tambah Pesanan Reseller</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<form action="<?php echo base_url() ?>Admin/Pemesanan/savepemesananR" method="post"
+					enctype="multipart/form-data">
+					<div class="modal-body p-20">
+						<div class="row">
+							<input value="<?php echo $this->session->userdata('nama')?>" type="hidden" name="username" required />
+							<div class="col-md-12">
+								<label class="control-label">Nama Pemesan</label>
+								<input class="form-control form-white" type="text" name="nama_pemesan" required />
+							</div>
+							<div class="col-md-12">
+								<label class="control-label">Nama Akun Pemesan</label>
+								<input class="form-control form-white" type="text" name="nama_akun_pemesan" required />
+							</div>
+							<div class="col-md-12">
+								<label class="control-label">Email Pemesan</label>
+								<input class="form-control form-white" type="text" name="email_pemesanan" required />
+							</div>
+							<div class="col-md-12">
+								<label class="control-label">No HP</label>
+								<input class="form-control form-white" type="number" name="hp" required />
+							</div>
+							<div class="col-md-12">
+								<label class="control-label">Tanggal</label>
+								<input class="form-control form-white" type="date" name="tanggal" required />
+							</div>
+							<div class="col-md-12">
+								<label class="control-label">Alamat</label>
+								<input class="form-control form-white" type="text" name="alamat" required />
+							</div>
+							<div class="col-md-12">
+								<label class="control-label">Biaya Admin</label>
+								<input class="form-control form-white" type="text" name="biaya_admin" required />
+							</div>
+							<div class="col-md-12">
+								<label class="control-label">Diskon</label>
+								<input class="form-control form-white" type="text" name="diskon" required />
+							</div>
+							<div class="col-md-12">
+								<label class="control-label">Uang Kembalian</label>
+								<input class="form-control form-white" type="text" name="uang" required />
+							</div>
+							<div class="col-md-12">
+								<label class="control-label">Asal Transaksi</label>
+								<select class="form-control" name="at" required>
+									<option selected value="">Pilih</option>
+									<?php
+                    foreach ($asal_transaksi->result_array() as $i) :
+                      $at_id = $i['at_id'];
+                      $at_nama = $i['at_nama'];
+                      $at_tanggal = $i['at_tanggal'];
+                    ?>
+									<option value="<?php echo $at_id ?>"><?php echo $at_nama ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+							<div class="col-md-12">
+								<label class="control-label">Jenis Ekspedisi</label>
+								<select class="form-control" name="kurir" required>
+									<option selected value="">Pilih</option>
+									<?php
+                    foreach ($kurir->result_array() as $i) :
+                      $kurir_id = $i['kurir_id'];
+                      $kurir_nama = $i['kurir_nama'];
+                      $kurir_tanggal = $i['kurir_tanggal'];
+                    ?>
+									<option value="<?php echo $kurir_id ?>"><?php echo $kurir_nama ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+							<div class="col-md-12 my-3">
+								<label class="control-label">Nomor Resi : </label>
+								<input type="checkbox" onchange='noresires(this);' name="checkboxres" id="checkboxres" />
+							</div>
+							<div class="col-md-12">
+								<label class="control-label">Biaya Ongkir</label>
+								<input class="form-control form-white" type="text" name="biaya_ongkir" required />
+							</div>
+							<div class="col-md-12">
+								<label class="control-label">Jenis Pembayaran</label>
+								<select class="form-control" name="metpem" required>
+									<option selected value="">Pilih</option>
+									<?php
+                    foreach ($metode_pembayaran->result_array() as $i) :
+                      $mp_id = $i['mp_id'];
+                      $mp_nama = $i['mp_nama'];
+                      $mp_tanggal = $i['mp_tanggal'];
+                    ?>
+									<option value="<?php echo $mp_id ?>"><?php echo $mp_nama ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+							<div class="col-md-12">
+								<label class="control-label">Note</label>
+								<input class="form-control form-white" type="text" name="note" required />
+							</div>
+
+
+							<div class="form-group col-md-12 mt-10" id="dynamic_field1">
+								<div class="row">
+									<div class="col-md-8">
+										<label class="control-label">Barang</label>
+										<select class="form-control" name="barang[]" required>
+											<option selected value="">Pilih</option>
+											<?php
+                        foreach ($nonreseller->result_array() as $i) :
+                          $barang_id = $i['barang_id'];
+                          $barang_nama = $i['barang_nama'];
+                        ?>
+											<option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option>
+											<?php endforeach; ?>
+										</select>
+									</div>
+									<div class="col-md-2">
+										<label class="control-label" for="harga">Kuantitas</label>
+										<input class="form-control" type="number" name="qty[]" min=1 required>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12 mt-30">
+								<input class="button" value="Add new" id="add1" />
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger ripple" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-success ripple save-category" id="simpan">Save</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
 					<!-- Modal -->
 					<div class="modal fade" id="Conv-Pemesanan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 						aria-hidden="true">
