@@ -26,51 +26,78 @@
         <h6 class="mb-0">Tambah Pemesanan Bulan <?=$namaBulan." ".date('Y')?> :</h6>
       </div>
         <div class="col-xl-12 mb-10" style="display: flex">
-            <div class="col-md-2">
+            <div class="col-md-4">
               <a href="" data-toggle="modal" data-target="#tambah-pesanan-non-reseller" class="btn btn-primary btn-block ripple m-t-10">
-                <i class="fa fa-plus pr-2"></i>Customer
+                <i class="fa fa-plus pr-2"></i>Pemesanan Customer
               </a>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-4">
               <a href="" data-toggle="modal" data-target="#reseller" class="btn btn-primary btn-block ripple m-t-10">
-                <i class="fa fa-plus pr-2"></i>Reseller
+                <i class="fa fa-plus pr-2"></i>Pemesanan Reseller
               </a>
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-4">
               <a href="" data-toggle="modal" data-target="#produksi" class="btn btn-primary btn-block ripple m-t-20">
-                <i class="fa fa-plus pr-2"></i>Produksi
+                <i class="fa fa-plus pr-2"></i>Pemesanan Produksi
               </a>
             </div>
-            <div class="col-md-3">
+            <!-- <div class="col-md-3">
               <a href="" data-toggle="modal" data-target="#Cetak-Pesanan" class="btn btn-success btn-block ripple m-t-20">
                 <i class="fa fa-print pr-2"></i> Cetak Pemesanan
               </a>
-            </div>
+            </div> -->
 
                   <!-- convert -->
 
-                  <div class="col-md-3 ml-3 mb-4">
+                  <!-- <div class="col-md-3 ml-3 mb-4">
               <a href="<?= base_url() ?>admin/Pemesanan/convertExcel" data-toggle="modal" data-target="#pilihan"  class="btn btn-dark btn-block ripple m-t-20">
                 <i class="fa fa-print pr-2"></i> Convert
               </a>
-            </div>
+            </div>-->
           </div>
           <?php endif; ?>
-            <div class="btn-group">
-            <button type="button" class="btn btn-info dropdown-toggle mb-4 ml-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Filter Tahun
-            </button>
-            <?php 
+          <br>
+          <div class="col-xl-12 mb-10" style="display: flex">
+					<div class="btn-group">
+						<button type="button" class="btn btn-info dropdown-toggle mb-4 ml-4" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">
+							Filter Tahun
+						</button>
+						<?php 
               $curyear = date('Y');
               $earlyyear = $curyear-10;
             ?>
-            <div class="dropdown-menu">
-              <?php foreach(range($curyear, $earlyyear) as $r ) : ?>
-                <a class="dropdown-item" onclick="cyear(<?= $r ?>)" id="changeYear<?= $r ?>"><?= $r ?></a>
-              <?php endforeach; ?>
+						<div class="dropdown-menu">
+							<?php foreach(range($curyear, $earlyyear) as $r ) : ?>
+							<a class="dropdown-item" onclick="cyear(<?= $r ?>)" id="changeYear<?= $r ?>"><?= $r ?></a>
+							<?php endforeach; ?>
+            </div>
+					</div>
+<?php if($this->session->userdata('akses') == 2) : ?>
+          <div class="btn-group">
+						<button type="button" class="btn btn-success dropdown-toggle mb-4 ml-4 "  data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"><i class="fa fa-print pr-2"></i> 
+							Cetak Dokumen
+						</button>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="" data-toggle="modal" data-target="#Cetak-Pesanan" >Data Pemesanan</a>
+							<a class="dropdown-item" href="" data-toggle="modal" data-target="#Cetak-Transaksi" >Data Keuangan</a>
             </div>
           </div>
+            
+          <div class="btn-group">
+            <button type="button" class="btn btn-dark dropdown-toggle mb-4 ml-4" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false"><i class="fa fa-save pr-2"></i> 
+								Convert Dokumen
+							</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="" data-toggle="modal" data-target="#Conv-Pemesanan">Data Pemesanan</a>
+								<a class="dropdown-item" href="" data-toggle="modal" data-target="#Conv-Transaksi">Data Keuangan</a>
+              </div>
+		  </div>
+<?php endif; ?>
+</div>
      
           
           <!-- Modal -->
