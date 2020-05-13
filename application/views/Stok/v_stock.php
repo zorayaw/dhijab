@@ -51,13 +51,13 @@
                     </td>
                    
                     <td>
-                      
+                     <center> <?php if($this->session->userdata('akses') == 3) : ?>
                         <a href="#" style="margin-right: 20px" data-toggle="modal" data-target="#editdata<?php echo $barang_id ?>"><span class="ti-pencil"></span></a>
-                      
+                      <?php endif;?>
                       <a href="<?php echo base_url() ?>stok/Stock/History/<?php echo $barang_id ?>" style="margin-right: 20px" data-toggle="tooltip" data-placement="top" title="Lihat History Stock Masuk"><i class="fa fa-arrow-circle-down"></i></a>
 
                        <a href="<?php echo base_url() ?>stok/Stock/history_stok_keluar/<?php echo $barang_id ?>" data-toggle="tooltip" data-placement="top" title="Lihat History Stock Keluar"><i class="fa fa-arrow-circle-up"></i></a>
-                    </td>
+                     </center></td>
                   </tr>
                 <?php endforeach; ?>
               </tbody>
