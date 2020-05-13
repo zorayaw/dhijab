@@ -2,12 +2,11 @@
   <div class="page-title">
     <div class="row">
       <div class="col-sm-6">
-        <h4 class="mb-0">Data Daftar Barang</h4>
+        <h4 class="mb-0">Stock Barang</h4>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-          <li class="breadcrumb-item"><a href="#" class="default-color">Home</a></li>
-          <li class="breadcrumb-item active">Daftar Barang</li>
+          <li class="breadcrumb-item">Stock</a></li>
         </ol>
       </div>
     </div>
@@ -55,9 +54,9 @@
                       
                         <a href="#" style="margin-right: 20px" data-toggle="modal" data-target="#editdata<?php echo $barang_id ?>"><span class="ti-pencil"></span></a>
                       
-                      <a href="<?php echo base_url() ?>Stok/Stock/History/<?php echo $barang_id ?>" style="margin-right: 20px" data-toggle="tooltip" data-placement="top" title="Lihat History Stock Masuk"><i class="fa fa-arrow-circle-down"></i></a>
+                      <a href="<?php echo base_url() ?>stok/Stock/History/<?php echo $barang_id ?>" style="margin-right: 20px" data-toggle="tooltip" data-placement="top" title="Lihat History Stock Masuk"><i class="fa fa-arrow-circle-down"></i></a>
 
-                       <a href="<?php echo base_url() ?>Stok/Stock/history_stok_keluar/<?php echo $barang_id ?>" data-toggle="tooltip" data-placement="top" title="Lihat History Stock Keluar"><i class="fa fa-arrow-circle-up"></i></a>
+                       <a href="<?php echo base_url() ?>stok/Stock/history_stok_keluar/<?php echo $barang_id ?>" data-toggle="tooltip" data-placement="top" title="Lihat History Stock Keluar"><i class="fa fa-arrow-circle-up"></i></a>
                     </td>
                   </tr>
                 <?php endforeach; ?>
@@ -167,7 +166,7 @@
                         <h5 class="modal-title">Edit Barang</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <form action="<?php echo base_url()?>Stok/Stock/tambah_stock" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url()?>stok/Stock/tambah_stock" method="post" enctype="multipart/form-data">
                     <div class="modal-body p-20">
                             <div class="row">
                                 <div class="col-md-12">

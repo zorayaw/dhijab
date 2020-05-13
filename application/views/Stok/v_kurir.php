@@ -6,9 +6,7 @@
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-					<li class="breadcrumb-item"><a href="<?php echo base_url()?>Stok/Pemesanan" class="default-color">Home</a>
-					</li>
-					<li class="breadcrumb-item active">Kurir</li>
+					<li class="breadcrumb-item">Kurir</li>
 				</ol>
 			</div>
 		</div>
@@ -146,7 +144,7 @@
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						</div>
 						<div class="modal-body p-20">
-							<form action="<?php echo base_url() ?>Stok/Pemesanan/status" method="POST">
+							<form action="<?php echo base_url() ?>stok/Pemesanan/status" method="POST">
 								<div class="row">
 									<div class="col-md-12">
 										<input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
@@ -173,7 +171,7 @@
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						</div>
 						<div class="modal-body p-20">
-							<form action="<?php echo base_url() ?>Stok/Pemesanan/status" method="POST">
+							<form action="<?php echo base_url() ?>stok/Pemesanan/status" method="POST">
 								<div class="row">
 									<div class="col-md-12">
 										<input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
@@ -199,7 +197,7 @@
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						</div>
 						<div class="modal-body p-20">
-							<form action="<?php echo base_url() ?>Stok/Pemesanan/status" method="POST">
+							<form action="<?php echo base_url() ?>stok/Pemesanan/status" method="POST">
 								<div class="row">
 									<div class="col-md-12">
 										<input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />

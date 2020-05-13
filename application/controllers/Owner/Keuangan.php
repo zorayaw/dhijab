@@ -47,7 +47,7 @@
                 
                 $this->load->view('v_header', $y);
                     $this->load->view('owner/v_sidebar');
-		       $this->load->view('owner/LapKeu/v_lapKeuAll',$x);
+		       $this->load->view('owner/lapkeu/v_lapKeuAll',$x);
 	  	}
 
 	  	function Cari(){
@@ -110,7 +110,7 @@
 			else if($statusc==3){
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksibyTahun2($tahun);
 			}
-			$this->load->view('owner/LapKeu/v_lapKeu_by_tahun', $x);
+			$this->load->view('owner/lapkeu/v_lapKeu_by_tahun', $x);
 			
 		   }
 

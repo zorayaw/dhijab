@@ -68,7 +68,7 @@ class stock extends CI_Controller
 			$stock = $this->input->post('stock');
 			$barang_id = $this->input->post('barang_id');
 			$this->M_barang->update_stock($barang_id,$stock);
-			redirect('Stok/Stock');
+			redirect('stok/Stock');
 		
 	}
 }
