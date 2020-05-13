@@ -13,7 +13,7 @@ class Login extends CI_Controller
         } else if ($this->session->userdata('masuk') == true && $this->session->userdata('akses') == 2) {
             redirect("Admin/Pemesanan");
         } else if ($this->session->userdata('masuk') == true && $this->session->userdata('akses') == 3) {
-            redirect("Stok/Stock");
+            redirect("stok/Stock");
         } else {
             $this->load->view('v_login');
         }
@@ -56,7 +56,7 @@ class Login extends CI_Controller
                 $this->session->set_userdata('hp', $user_hp);
                 $this->session->set_userdata('id', $id);
                 $this->session->set_userdata('nama', $user_nama);
-                redirect('Stok/Stock');
+                redirect('stok/Stock');
             }
             //Front Office 
         } else {

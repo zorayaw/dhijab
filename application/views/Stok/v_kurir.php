@@ -144,7 +144,7 @@
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						</div>
 						<div class="modal-body p-20">
-							<form action="<?php echo base_url() ?>Stok/Pemesanan/status" method="POST">
+							<form action="<?php echo base_url() ?>stok/Pemesanan/status" method="POST">
 								<div class="row">
 									<div class="col-md-12">
 										<input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
@@ -171,7 +171,7 @@
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						</div>
 						<div class="modal-body p-20">
-							<form action="<?php echo base_url() ?>Stok/Pemesanan/status" method="POST">
+							<form action="<?php echo base_url() ?>stok/Pemesanan/status" method="POST">
 								<div class="row">
 									<div class="col-md-12">
 										<input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
@@ -197,7 +197,7 @@
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						</div>
 						<div class="modal-body p-20">
-							<form action="<?php echo base_url() ?>Stok/Pemesanan/status" method="POST">
+							<form action="<?php echo base_url() ?>stok/Pemesanan/status" method="POST">
 								<div class="row">
 									<div class="col-md-12">
 										<input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
@@ -363,7 +363,7 @@ function noresires(checkbox){
 		$('#add').click(function () {
 			i++;
 			$('#dynamic_field').append('<div class="row" id="row' + i +
-				'"><div class="col-md-2"><label class="control-label" for="harga">Min.qty</label><input class="form-control" type="number" min = 1 name="minqty[]" ></div><div class="col-md-2"><label class="control-label" for="harga">Max.qty</label><input class="form-control" type="number" min = 1 name="maxqty[]"></div><div class="col-md-5"><label class="control-label" for="harga">Harga</label><input class="form-control money" type="text" name="harga[]"></div><div class="col-md-2 mt-30"><button type="button" id="' +
+				'"><div class="col-md-2"><label class="control-label" for="harga">Min.qty</label><input class="form-control" type="number" name="minqty[]" ></div><div class="col-md-2"><label class="control-label" for="harga">Max.qty</label><input class="form-control" type="number" name="maxqty[]"></div><div class="col-md-5"><label class="control-label" for="harga">Harga</label><input class="form-control money" type="text" name="harga[]"></div><div class="col-md-2 mt-30"><button type="button" id="' +
 				i + '" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
 		});
 
