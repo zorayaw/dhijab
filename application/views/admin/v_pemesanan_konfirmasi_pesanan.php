@@ -6,16 +6,17 @@
   <div class="page-title">
     <div class="row">
       <div class="col-sm-6">
-        <h4 class="mb-0">Data Daftar Barang</h4>
-      </div>
-      <div class="col-sm-6">
-        <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-          <li class="breadcrumb-item"><a href="<?php echo base_url() ?>Admin/Pemesanan/konfirmasi_pesanan" class="default-color">Home</a></li>
-          <li class="breadcrumb-item active">Daftar Barang</li>
+        <h4 class="mb-0">Konfirmasi Pemesanan</h4>
+</div>
+<div class="col-sm-6">
+          <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
+          <li class="breadcrumb-item"><a href="<?php echo base_url() ?>Admin/Pemesanan" class="default-color">Home</a></li>
+          <li class="breadcrumb-item active">Konfirmasi Pemesanan</li>
         </ol>
-      </div>
+          </div>
     </div>
   </div>
+
   <!-- main body -->
   <div class="row">
     <div class="col-xl-12 mb-30">
@@ -631,7 +632,7 @@
               <h5 class="modal-title">Edit Data</h5>
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
-            <form action="<?php echo base_url() ?>Admin/Pemesanan/edit_pesanan" method="post" enctype="multipart/form-data">
+            <form action="<?php echo base_url() ?>Admin/Pemesanan/edit_pesanankonfPesanan" method="post" enctype="multipart/form-data">
               <div class="modal-body p-20">
                 <div class="row">
                   <div class="col-md-12">

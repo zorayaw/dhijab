@@ -8,7 +8,7 @@
 		function __construct()
 	  	{
 		    parent:: __construct();
-		    if($this->session->userdata('masuk') !=TRUE){
+		    if($this->session->userdata('masuk') !=TRUE || $this->session->userdata('akses') != 1){
 		      $url=base_url('Login');
 		      redirect($url);
 		    };
@@ -20,7 +20,6 @@
 
 	  	function index(){
 			  $statusc = $this->input->get('status');
-	  		if($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') == true){
 				  $x['st'] = $statusc;
                 $y['title'] = "Data Keuangan";
                 $x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
@@ -49,13 +48,9 @@
                 $this->load->view('v_header', $y);
                     $this->load->view('owner/v_sidebar');
 		       $this->load->view('owner/LapKeu/v_lapKeuAll',$x);
-		    }
-		    else
-		       redirect('Login');
 	  	}
 
 	  	function Cari(){
-	  		if($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') == true){
 		       $y['title'] = "Transaksi";
 		       $dari = $this->input->post('daritgl');
 		       $ke = $this->input->post('ketgl');
@@ -90,10 +85,6 @@
 		       $this->load->view('v_header',$y);
 		       $this->load->view('owner/v_sidebar');
 		       $this->load->view('owner/v_cari_transaksi',$x);
-		    }
-		    else{
-		       redirect('Login');
-		    }
 		  }
 		  
 		  function pemesananByTahun(){

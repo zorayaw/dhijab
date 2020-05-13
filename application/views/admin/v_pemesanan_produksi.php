@@ -6,31 +6,30 @@
 	integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
 
 <div class="content-wrapper">
-	<div class="page-title">
-		<div class="row">
-			<div class="col-sm-6">
-				<h4 class="mb-0">Data Pemesanan Produksi</h4>
-			</div>
-			<div class="col-sm-6">
-				<ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-					<li class="breadcrumb-item"><a href="<?php echo base_url() ?>Admin/PemesananProduksi"
-							class="default-color">Home</a></li>
-					<li class="breadcrumb-item active">Daftar Barang</li>
-				</ol>
-			</div>
-		</div>
-	</div>
-	<!-- main body -->
-	<div class="row">
-		<div class="col-xl-12 mb-30">
-			<div class="card card-statistics h-100">
-				<div class="card-body">
-					<?php if($this->session->userdata('akses') == 2) : ?>
-					<div class="col-xl-12 mb-10">
-						<h6 class="mb-0">Tambah Pemesanan: </h6>
-					</div>
-					<div class="col-xl-12 mb-10" style="display: flex">
-						<!-- <div class="col-md-6">
+
+  <div class="page-title">
+    <div class="row">
+      <div class="col-sm-6">
+        <h4 class="mb-0">Data Pemesanan Produksi</h4>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
+        <li class="breadcrumb-item">Pemesanan Produksi</a></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <!-- main body -->
+  <div class="row">
+    <div class="col-xl-12 mb-30">
+      <div class="card card-statistics h-100">
+        <div class="card-body">
+        <?php if($this->session->userdata('akses') == 2) : ?>
+        <div class="col-xl-12 mb-10">
+        <h6 class="mb-0">Tambah Pemesanan: </h6>
+      </div>
+          <div class="col-xl-12 mb-10" style="display: flex">
+            <!-- <div class="col-md-6">
               <a href="" data-toggle="modal" data-target="#tambah-pesanan-non-reseller" class="btn btn-primary btn-block ripple m-t-10">
                 <i class="fa fa-plus pr-2"></i>Pemesanan Customer
               </a>
