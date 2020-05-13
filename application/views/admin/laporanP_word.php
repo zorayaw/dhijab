@@ -2,7 +2,7 @@
  header("Content-Type: application/vnd.ms-word");
         header("Expires: 0");
         header("Cache-Control:  must-revalidate, post-check=0, pre-check=0");
-        header("Content-disposition: attachment; filename=Pemesanan_word.doc");
+        header("Content-disposition: attachment; filename=Transaksi_word.doc");
 ?>
 <table border="2">
               <thead>

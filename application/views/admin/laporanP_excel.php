@@ -1,6 +1,6 @@
 <?php
  header("Content-type: application/vnd-ms-excel");
- header("Content-Disposition: attachment; filename=Pemesanan_Excel.xls");
+ header("Content-Disposition: attachment; filename=Transaksi_Excel.xls");
  header("Pragma: no-cache");
  header("Expires: 0");
  ?>
