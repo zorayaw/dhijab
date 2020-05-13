@@ -319,12 +319,12 @@
 												<div class="row">
 													<div class="col-md-4">
 														<label class="control-label">Start date:</label>
-														<input class="form-control form-white" id="startdateword" type="date" name="start_date"
+														<input class="form-control form-white sd" type="date" name="start_date"
 															required />
 													</div>
 													<div class="col-md-4">
 														<label class="control-label">End date:</label>
-														<input class="form-control form-white" id="enddateword" type="date" name="end_date"
+														<input class="form-control form-white ed" type="date" name="end_date"
 															required />
 													</div>
 													<div class="col-md-4">
@@ -422,11 +422,11 @@
 												<div class="row">
 													<div class="col-md-4">
 														<label class="control-label">Start date:</label>
-														<input class="form-control form-white" type="date" name="start_date" required />
+														<input class="form-control form-white sd" type="date" name="start_date" required />
 													</div>
 													<div class="col-md-4">
 														<label class="control-label">End date:</label>
-														<input class="form-control form-white" type="date" name="end_date" required />
+														<input class="form-control form-white ed" type="date" name="end_date" required />
 													</div>
 													<div class="col-md-4">
 														<button type="submit" class="btn btn-info btn-block ripple m-t-10">
@@ -459,19 +459,19 @@
 								</div>
 								<div class="modal-body">
 									<div class="col-md-12 mt-4">
-										<a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="excel"
+										<a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="excelT"
 											data-toggle="modal" data-target="#exportT">
 											<i class="fa fa-file-excel-o pr-2"></i>Convert Excel
 										</a>
 									</div>
 									<div class="col-md-12 mt-4">
-										<a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="pdf"
+										<a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="pdfT"
 											data-toggle="modal" data-target="#exportpdfT">
 											<i class="fa fa-file-pdf-o pr-2"></i>Convert PDF
 										</a>
 									</div>
 									<div class="col-md-12 mt-4 mb-4">
-										<a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="words"
+										<a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="wordsT"
 											data-toggle="modal" data-target="#wordT">
 											<i class="fa fa-file-word-o pr-2"></i>Convert Word
 										</a>
@@ -561,12 +561,12 @@
 												<div class="row">
 													<div class="col-md-4">
 														<label class="control-label">Start date:</label>
-														<input class="form-control form-white" id="startdateexcel" type="date" name="start_date"
+														<input class="form-control form-white sd" type="date" name="start_date"
 															required />
 													</div>
 													<div class="col-md-4">
 														<label class="control-label">End date:</label>
-														<input class="form-control form-white" id="enddateexcel" type="date" name="end_date"
+														<input class="form-control form-white ed" type="date" name="end_date"
 															required />
 													</div>
 													<div class="col-md-4">
@@ -663,12 +663,12 @@
 												<div class="row">
 													<div class="col-md-4">
 														<label class="control-label">Start date:</label>
-														<input class="form-control form-white" id="startdateword" type="date" name="start_date"
+														<input class="form-control form-white sd" type="date" name="start_date"
 															required />
 													</div>
 													<div class="col-md-4">
 														<label class="control-label">End date:</label>
-														<input class="form-control form-white" id="enddateword" type="date" name="end_date"
+														<input class="form-control form-white ed" type="date" name="end_date"
 															required />
 													</div>
 													<div class="col-md-4">
@@ -766,11 +766,11 @@
 												<div class="row">
 													<div class="col-md-4">
 														<label class="control-label">Start date:</label>
-														<input class="form-control form-white" type="date" name="start_date" required />
+														<input class="form-control form-white sd" type="date" name="start_date" required />
 													</div>
 													<div class="col-md-4">
 														<label class="control-label">End date:</label>
-														<input class="form-control form-white" type="date" name="end_date" required />
+														<input class="form-control form-white ed" type="date" name="end_date" required />
 													</div>
 													<div class="col-md-4">
 														<button type="submit" class="btn btn-info btn-block ripple m-t-10">
@@ -1321,11 +1321,11 @@
 							<div class="row">
 								<div class="col-md-4">
 									<label class="control-label">Dari tanggal:</label>
-									<input class="form-control form-white" type="date" id="startdatecetak" name="start_date" required />
+									<input class="form-control form-white sd" type="date" name="start_date" required />
 								</div>
 								<div class="col-md-4">
 									<label class="control-label">Sampai tanggal:</label>
-									<input class="form-control form-white" type="date" id="enddatecetak" name="end_date" required />
+									<input class="form-control form-white ed" type="date" name="end_date" required />
 								</div>
 								<div class="col-md-4">
 									<button type="submit" class="btn btn-success btn-block ripple m-t-10">
@@ -1453,11 +1453,11 @@
 							<div class="row">
 								<div class="col-md-4">
 									<label class="control-label">Dari tanggal:</label>
-									<input class="form-control form-white" type="date" id="startdatecetak" name="start_date" required />
+									<input class="form-control form-white sd" type="date" name="start_date" required />
 								</div>
 								<div class="col-md-4">
 									<label class="control-label">Sampai tanggal:</label>
-									<input class="form-control form-white" type="date" id="enddatecetak" name="end_date" required />
+									<input class="form-control form-white ed" type="date" name="end_date" required />
 								</div>
 								<div class="col-md-4">
 									<button type="submit" class="btn btn-success btn-block ripple m-t-10">
@@ -1577,125 +1577,93 @@
 </script>
 
 <script type="text/javascript">
-	$("#excel").click(function () {
-		$("#pilihan").modal('hide');
-	});
+  $("#excel").click(function(){
+    $("#Conv-Pemesanan").modal('hide');
+  });
+</script>
+
+<script type="text/javascript">
+  $("#words").click(function(){
+    $("#Conv-Pemesanan").modal('hide');
+  });
+</script>
+
+<script type="text/javascript">
+  $("#pdf").click(function(){
+    $("#Conv-Pemesanan").modal('hide');
+  });
+</script>
+	
+<script type="text/javascript">
+  $("#excelT").click(function(){
+    $("#Conv-Transaksi").modal('hide');
+  });
+</script>
+
+<script type="text/javascript">
+  $("#wordsT").click(function(){
+    $("#Conv-Transaksi").modal('hide');
+  });
+</script>
+
+<script type="text/javascript">
+  $("#pdfT").click(function(){
+    $("#Conv-Transaksi").modal('hide');
+  });
+</script>
+
+<script type="text/javascript">
+
+    var e = document.getElementById("syear");
+        $('#syear').on('change', function(){
+        var date = new Date($('#syear').val());
+        years = date.getFullYear();
+    });
+
+    var e = document.getElementById("endyear");
+        $('#eyear').on('change', function(){
+        var date = new Date($('#eyear').val());
+        yeare = date.getFullYear();
+        if(years > yeare){
+          alert("Tahun tidak valid (Start Year > End Year)");
+          // $('#eyear').remove();
+        }
+    });
 
 </script>
 
 <script type="text/javascript">
-	$("#words").click(function () {
-		$("#pilihan").modal('hide');
-	});
 
-</script>
+	var e = document.getElementsByClassName("sd");
+	$('.sd').on('change', function () {
+		var date = new Date($(this).val());
 
-<script type="text/javascript">
-	var e = document.getElementById("syear");
-	$('#syear').on('change', function () {
-		var date = new Date($('#syear').val());
-		years = date.getFullYear();
-	});
-
-	var e = document.getElementById("endyear");
-	$('#eyear').on('change', function () {
-		var date = new Date($('#eyear').val());
-		yeare = date.getFullYear();
-		if (years > yeare) {
-			alert("Tahun tidak valid (Start Year > End Year)");
-			// $('#eyear').remove();
-		}
-	});
-
-</script>
-
-<script type="text/javascript">
-	var e = document.getElementById("startdatecetak");
-	$('#startdatecetak').on('change', function () {
-		var date = new Date($('#startdatecetak').val());
 		days = date.getDate();
 		months = date.getMonth() + 1;
 		years = date.getFullYear();
 	});
 
-	var e = document.getElementById("enddatecetak");
-	$('#enddatecetak').on('change', function () {
-		var date = new Date($('#enddatecetak').val());
+
+	var e = document.getElementsByClassName("ed");
+	$('.ed').on('change', function () {
+		var date = new Date($(this).val());
 		daye = date.getDate();
 		monthe = date.getMonth() + 1;
 		yeare = date.getFullYear();
 		if (years > yeare) {
 			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddatecetak').val('');
+
+			$(this).val('');
 		} else if ((years == yeare) && (months > monthe)) {
 			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddatecetak').val('');
+			$(this).val('');
 		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
 			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddatecetak').val('');
+			$(this).val('');
 		}
 	});
 
 </script>
-
-<script type="text/javascript">
-	var e = document.getElementById("startdateexcel");
-	$('#startdateexcel').on('change', function () {
-		var date = new Date($('#startdateexcel').val());
-		days = date.getDate();
-		months = date.getMonth() + 1;
-		years = date.getFullYear();
-	});
-
-	var e = document.getElementById("enddateexcel");
-	$('#enddateexcel').on('change', function () {
-		var date = new Date($('#enddateexcel').val());
-		daye = date.getDate();
-		monthe = date.getMonth() + 1;
-		yeare = date.getFullYear();
-		if (years > yeare) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddateexcel').val('');
-		} else if ((years == yeare) && (months > monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddateexcel').val('');
-		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddateexcel').val('');
-		}
-	});
-
-</script>
-
-<script type="text/javascript">
-	var e = document.getElementById("startdateword");
-	$('#startdateword').on('change', function () {
-		var date = new Date($('#startdateword').val());
-		days = date.getDate();
-		months = date.getMonth() + 1;
-		years = date.getFullYear();
-	});
-
-	var e = document.getElementById("enddateword");
-	$('#enddateword').on('change', function () {
-		var date = new Date($('#enddateword').val());
-		daye = date.getDate();
-		monthe = date.getMonth() + 1;
-		yeare = date.getFullYear();
-		if (years > yeare) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddateword').val('');
-		} else if ((years == yeare) && (months > monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddateword').val('');
-		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddateword').val('');
-		}
-	});
-
-</script>
-
 
 
 <script type="text/javascript">

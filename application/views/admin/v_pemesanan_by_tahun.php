@@ -505,7 +505,6 @@
 
 <!-- custom -->
 <script src="<?php echo base_url()?>assets/admin/js/custom.js"></script>
-  
 
   <script type="text/javascript">
     function form_submit(num) {
