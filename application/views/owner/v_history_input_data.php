@@ -6,8 +6,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-              <li class="breadcrumb-item"><a href="<?php echo base_url()?>" class="default-color">Home</a></li>
-              <li class="breadcrumb-item active">Daftar Barang</li>
+              <li class="breadcrumb-item"><?=$title_view?></a></li>
             </ol>
           </div>
         </div>

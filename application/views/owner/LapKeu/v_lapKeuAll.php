@@ -14,7 +14,12 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-          <li class="breadcrumb-item"><a href="<?php echo base_url() ?>Admin/Keuangan?status=0" class="default-color">Data Keuangan</a></li>
+          <?php if($st == 0) : ?>
+          <li class="breadcrumb-item">Data Keuangan</a></li>
+        <?php else : ?>
+          <li class="breadcrumb-item"><a href="<?php echo base_url() ?>Owner/Keuangan?status=0" class="default-color">Data Keuangan</a></li>
+          <li class="breadcrumb-item">Data Keuangan <?= $stat?></a></li>
+        <?php endif; ?>
         </ol>
       </div>
     </div>

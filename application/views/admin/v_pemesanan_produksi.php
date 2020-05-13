@@ -58,8 +58,8 @@
                 <i class="fa fa-print pr-2"></i> Convert
               </a>
             </div> -->
+			<br>
 					</div>
-					<br>
 					<?php endif;?>
 					<div class="col-xl-12 mb-10" style="display: flex">
 						<div class="btn-group">

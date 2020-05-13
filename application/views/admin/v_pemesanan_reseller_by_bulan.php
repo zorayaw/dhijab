@@ -56,8 +56,8 @@
               </a>
             </div> -->
         </div>
-        <?php endif; ?>
         <br>
+        <?php endif; ?>
 
        
 <div class="col-xl-12 mb-10" style="display: flex">

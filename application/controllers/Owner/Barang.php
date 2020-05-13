@@ -358,10 +358,9 @@ class Barang extends CI_Controller
 	function edit_barang()
 	{
 		
-			$nama_barang = $this->input->post('nama_barang');
 			$stock = $this->input->post('stock');
 			$barang_id = $this->input->post('barang_id');
-			$this->M_barang->update_barang($barang_id,$nama_barang, $stock);
+			$this->M_barang->update_barang($barang_id, $stock);
 			echo $this->session->set_flashdata('msg', 'success_non_reseller');
 			redirect('Owner/Barang');
 		

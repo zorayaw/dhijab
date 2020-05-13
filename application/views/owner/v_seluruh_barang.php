@@ -2,12 +2,11 @@
     <div class="page-title">
       <div class="row">
           <div class="col-sm-6">
-              <h4 class="mb-0">Data Daftar Seluruh Barang Barang</h4>              
+              <h4 class="mb-0">Daftar Seluruh Barang</h4>              
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-              <li class="breadcrumb-item"><a href="<?php echo base_url()?>" class="default-color">Home</a></li>
-              <li class="breadcrumb-item active">Daftar Barang</li>
+              <li class="breadcrumb-item">Daftar Barang</a></li>
             </ol>
           </div>
         </div>
@@ -149,12 +148,12 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label class="control-label">Nama Barang</label>
-                                    <input type="" name="barang_id" value="<?php echo $barang_id?>">
-                                     <input class="form-control form-white" type="text" name="nama_barang" placeholder="<?php echo $barang_nama?>" />
+                                    <input type="hidden" name="barang_id" value="<?php echo $barang_id?>">
+                                     <input class="form-control form-white" type="text" name="nama_barang" value = "<?php echo $barang_nama?>" placeholder="<?php echo $barang_nama?>" disabled />
                                 </div>
                                 <div class="col-md-12">
                                     <label class="control-label">Stock  : <?= $barang_stok?> </label>
-                                    <input class="form-control form-white" type="number" name="stock" placeholder="<?= $barang_stok?> " />
+                                    <input class="form-control form-white" type="number" min = 1 name="stock" placeholder="Masukkan Jumlah Barang yang ingin ditambahkan" />
                                 </div>
                             </div>  
                     </div>

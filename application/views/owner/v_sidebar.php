@@ -253,6 +253,10 @@
         <li>
           <a href="<?php echo base_url()?>Stok/Stock"><i class="ti-calendar"></i><span class="right-nav-text">Stock</span> </a>
         </li>
+
+        <li>
+          <a href="<?php echo base_url()?>Admin/Pemesanan/konfirmasi_pesanan"><i class="ti-calendar"></i><span class="right-nav-text">Konfirmasi Pesanan</span> </a>
+        </li>
        
         <!-- <li>
           <a href="<?php echo base_url()?>Owner/Transaksi"><i class="ti-calendar"></i><span class="right-nav-text">History Transaksi</span> </a>

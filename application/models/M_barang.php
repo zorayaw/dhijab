@@ -20,8 +20,8 @@
      		return $hsl;
 		}
 
-		function update_barang($barang_id,$nama_barang, $stock){
-			$hsl = $this->db->query("UPDATE barang SET barang_nama='$nama_barang', barang_stok='$stock' WHERE barang_id='$barang_id'");
+		function update_barang($barang_id, $stock){
+			$hsl = $this->db->query("UPDATE barang SET barang_stok=barang_stok+'$stock' WHERE barang_id='$barang_id'");
      		return $hsl;
 		}
 
