@@ -44,7 +44,8 @@
                 }
 
                 $no = 0;
-                $total=0;
+				$total=0;
+				$namstat="";
                 foreach ($datapesanan->result_array() as $i) :
                   $no++;
 
@@ -65,9 +66,17 @@
                   $biaya_admin = $i['biaya_admin'];
                   $diskon = $i['diskon'];
                   $uang = $i['uang_kembalian'];
-                  $note = $i['note'];
-
-                  $q = $this->db->query("SELECT SUM(lb_qty * harga)AS total_keseluruhan from list_barang where pemesanan_id=' $pemesanan_id'");
+				  $note = $i['note'];
+				  if($status==0)
+					  $namstat = "Belum Lunas";
+					  elseif($status==1)
+					  $namstat = "Lunas";
+					  elseif($status==2)
+					  $namstat = "Dikirim";
+					  elseif($status==3)
+					  $namstat = "Selesai";
+					  
+					  $q = $this->db->query("SELECT SUM(lb_qty * harga)AS total_keseluruhan from list_barang where pemesanan_id=' $pemesanan_id'");
                   $c = $q->row_array();
                   $jumlah = $c['total_keseluruhan'] + $ongkir - ($diskon + $biaya_admin + $uang);
                   
@@ -86,6 +95,7 @@
 										<td><?php echo $hp ?></td>
 										<td><?php echo $kurir_nama ?></td>
 										<td><?php echo $resi ?></td>
+										<?php if($this->session->userdata('akses')==3) : ?>
 										<td>
 
 											<?php
@@ -107,6 +117,10 @@
                       }
                       ?>
 										</td>
+										<?php else : ?>
+											<td><?php echo $namstat ?></td>
+										<?php endif; ?>
+
 
 
 										<td><?php echo rupiah($ongkir) ?></td>

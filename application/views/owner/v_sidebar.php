@@ -258,6 +258,9 @@
           <a href="<?php echo base_url()?>Admin/Pemesanan/konfirmasi_pesanan"><i class="ti-calendar"></i><span class="right-nav-text">Konfirmasi Pesanan</span> </a>
         </li>
        
+        <li>
+          <a href="<?php echo base_url()?>stok/Pemesanan/Kurir"><i class="ti-calendar"></i><span class="right-nav-text">Tagihan Ekspedisi</span> </a>
+        </li>
         <!-- <li>
           <a href="<?php echo base_url()?>Owner/Transaksi"><i class="ti-calendar"></i><span class="right-nav-text">History Transaksi</span> </a>
         </li>
