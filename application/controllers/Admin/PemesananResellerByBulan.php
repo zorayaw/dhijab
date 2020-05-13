@@ -14,8 +14,8 @@ class PemesananResellerByBulan extends CI_Controller
 			redirect($url);
 		};
 
-		$this->load->model('m_pemesanan');
-		$this->load->model('m_barang');
+		$this->load->model('M_pemesanan');
+		$this->load->model('M_barang');
 		$this->load->model('m_list_barang');
 		$this->load->library('upload');
 	}
@@ -34,6 +34,7 @@ class PemesananResellerByBulan extends CI_Controller
 		$alamat = $this->input->post('alamat');
 		$asal_transaksi = $this->input->post('at');
 		$kurir = $this->input->post('kurir');
+		$username = $this->input->post('username');
 		$resi = $this->input->post('no_resi');
 		if($resi == null){
 			$resi = "-";
@@ -53,12 +54,13 @@ class PemesananResellerByBulan extends CI_Controller
 		$email_pemesanan = $this->input->post('email_pemesanan');
 		$note = $this->input->post('note');
 		$status = 0;
-		$pemesanan_id = $this->m_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir,$resi, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
+		$pemesanan_id = $this->M_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir,$username,$resi, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
+
 		$size = sizeof($barang_id);
 
 		for ($i = 0; $i < $size; $i++) {
 			$this->m_list_barang->save_list_barang($pemesanan_id, $qty[$i], $barang_id[$i], $level);
-			$this->m_barang->saveStok($barang_id[$i], $qty[$i], 1);
+			$this->M_barang->saveStok($barang_id[$i], $qty[$i], 1);
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
@@ -69,7 +71,7 @@ class PemesananResellerByBulan extends CI_Controller
 	{
         $bulan = $this->input->get('bulan');
 		$pemesanan_id = $this->input->post('pemesanan_id');
-		$this->m_pemesanan->hapus_pesanan($pemesanan_id);
+		$this->M_pemesanan->hapus_pesanan($pemesanan_id);
 		echo $this->session->set_flashdata('msg', 'hapus');
 		redirect('Admin/PemesananResellerByBulan/viewPemesananByBulan/'.$bulan);
 	}
@@ -83,6 +85,7 @@ class PemesananResellerByBulan extends CI_Controller
 		$alamat = $this->input->post('alamat');
 		$asal_transaksi = $this->input->post('at');
 		$kurir = $this->input->post('kurir');
+		$username = $this->input->post('username');
 		$resi = $this->input->post('no_resi');
 		if($resi == null){
 			$resi = "-";
@@ -103,13 +106,14 @@ class PemesananResellerByBulan extends CI_Controller
 		$note = $this->input->post('note');
 		$status = 0;
 		$level = 2;
-		$pemesanan_id = $this->m_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir,$resi, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
+		$pemesanan_id = $this->M_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir,$username,$resi, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
+
 
 		$size = sizeof($barang_id);
 
 		for ($i = 0; $i < $size; $i++) {
 			$this->m_list_barang->save_list_barangR($pemesanan_id, $qty[$i], $barang_id[$i], $level);
-			$this->m_barang->saveStok($barang_id[$i], $qty[$i], 1);
+			$this->M_barang->saveStok($barang_id[$i], $qty[$i], 1);
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
@@ -127,6 +131,7 @@ class PemesananResellerByBulan extends CI_Controller
 		$asal_transaksi = "6";
 		$kurir = "6";
 		$resi = "-";
+		$username = $this->input->post('username');
 		$metpem = "1";
 		$tanggal = $this->input->post('tanggal');
 		$uang = "0";
@@ -139,15 +144,16 @@ class PemesananResellerByBulan extends CI_Controller
 		$status = 3;
 		$diskon = 0;
 		$biaya_admin = 0;
-		$pemesanan_id = $this->m_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir,$resi, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
+		$pemesanan_id = $this->M_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir,$resi,$username, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
+
 		$size = sizeof($barang_id);
 		for ($i = 0; $i < $size; $i++) {
 			$this->m_list_barang->save_list_barangP($pemesanan_id, $qty[$i], $barang_id[$i], $level);
-			$this->m_barang->saveStok($barang_id[$i], $qty[$i], 1);
+			$this->M_barang->saveStok($barang_id[$i], $qty[$i], 1);
 		}
 		$a = $this->m_list_barang->SUMLBNR($pemesanan_id)->row_array();
 		$jumlah = $a['total_keseluruhan'];
-		$this->m_pemesanan->insert_uang_masuk($pemesanan_id, $jumlah);
+		$this->M_pemesanan->insert_uang_masuk($pemesanan_id, $jumlah);
 		echo $this->session->set_flashdata('msg', 'success');
 		redirect('Admin/PemesananResellerByBulan/viewPemesananByBulan/'.$bulan);
 	}
@@ -162,6 +168,7 @@ class PemesananResellerByBulan extends CI_Controller
 		$alamat = $this->input->post('alamat');
 		$asal_transaksi = $this->input->post('at');
 		$kurir = $this->input->post('kurir');
+		$username = $this->input->post('username');
 		$resi = $this->input->post('no_resi');
 		if($resi == null){
 			$resi = "-";
@@ -171,8 +178,8 @@ class PemesananResellerByBulan extends CI_Controller
 		}
 		$metode_pembayaran = $this->input->post('mp');
 		// $tanggal = $this->input->post('tanggal');
+		$this->M_pemesanan->edit_pesanan($pemesanan_id, $nama_pemesan, $no_hp, $alamat, $kurir,$username,$resi, $asal_transaksi, $metode_pembayaran);
 
-		$this->m_pemesanan->edit_pesanan($pemesanan_id, $nama_pemesan, $no_hp, $alamat, $kurir,$resi, $asal_transaksi, $metode_pembayaran);
 		echo $this->session->set_flashdata('msg', 'update');
 		redirect('Admin/PemesananResellerByBulan/viewPemesananByBulan/'.$bulan);
 	}
@@ -185,7 +192,7 @@ class PemesananResellerByBulan extends CI_Controller
 			$x['lvl'] = $level;
 			$x['listbarang'] = $this->m_list_barang->get_list_barang($pemesanan_id);
 			$a = $this->m_list_barang->SUMLBNR($pemesanan_id)->row_array();
-			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 			$x['jumlah'] = $a['total_keseluruhan'];
 			$this->load->view('v_header', $y);
 			if($this->session->userdata('akses') == 2){
@@ -205,8 +212,8 @@ class PemesananResellerByBulan extends CI_Controller
 			$x['p_id'] = $pemesanan_id;
 			$x['lvl'] = $level;
 			$x['listbarang'] = $this->m_list_barang->getLBRbyid($pemesanan_id);
-			$x['pemesan'] = $this->m_pemesanan->getIdbyid($pemesanan_id);
-			$a = $this->m_pemesanan->getIdbyid($pemesanan_id)->row_array();
+			$x['pemesan'] = $this->M_pemesanan->getIdbyid($pemesanan_id);
+			$a = $this->M_pemesanan->getIdbyid($pemesanan_id)->row_array();
 			$x['kurir'] = $a['kurir_nama'];
 			$x['mp_nama'] = $a['mp_nama'];
 			$x['nama'] = $this->session->userdata('nama');
@@ -216,8 +223,8 @@ class PemesananResellerByBulan extends CI_Controller
 			$x['p_id'] = $pemesanan_id;
 			$x['lvl'] = $level;
 			$x['listbarang'] = $this->m_list_barang->getLBNRbyid($pemesanan_id);
-			$x['pemesan'] = $this->m_pemesanan->getIdbyid($pemesanan_id);
-			$a = $this->m_pemesanan->getIdbyid($pemesanan_id)->row_array();
+			$x['pemesan'] = $this->M_pemesanan->getIdbyid($pemesanan_id);
+			$a = $this->M_pemesanan->getIdbyid($pemesanan_id)->row_array();
 			$x['kurir'] = $a['kurir_nama'];
 			$x['mp_nama'] = $a['mp_nama'];
 			$x['nama'] = $this->session->userdata('nama');
@@ -234,14 +241,14 @@ class PemesananResellerByBulan extends CI_Controller
 		$jumlah = $this->input->post('jumlah');
 		if ($status_pemesanan == 0) {
 			$status_pemesanan = 1;
-			$this->m_pemesanan->status_pesanan($pemesanan_id, $status_pemesanan);
+			$this->M_pemesanan->status_pesanan($pemesanan_id, $status_pemesanan);
 		} else if ($status_pemesanan == 1) {
 			$status_pemesanan = 2;
-			$this->m_pemesanan->status_pesanan($pemesanan_id, $status_pemesanan);
+			$this->M_pemesanan->status_pesanan($pemesanan_id, $status_pemesanan);
 		} else if ($status_pemesanan == 2) {
 			$status_pemesanan = 3;
-			$this->m_pemesanan->insert_uang_masuk($pemesanan_id, $jumlah);
-			$this->m_pemesanan->status_pesanan($pemesanan_id, $status_pemesanan);
+			$this->M_pemesanan->insert_uang_masuk($pemesanan_id, $jumlah);
+			$this->M_pemesanan->status_pesanan($pemesanan_id, $status_pemesanan);
 		}
 		redirect('Admin/PemesananResellerByBulan/viewPemesananByBulan/'.$bulan);
 	}
@@ -269,13 +276,13 @@ class PemesananResellerByBulan extends CI_Controller
 			$namaBulan = $x['namaBulan'];
 			$x['bulan'] = $bulan;
 			$y['title'] = "Pemesanan Reseller Bulan $namaBulan";
-			$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
-			$x['kurir'] = $this->m_pemesanan->getAllkurir();
-			$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
-			$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
-			 $x['produksi'] = $this->m_barang->getdataProduksi();
-			$x['reseller'] = $this->m_barang->getAllBarangR();
-			$x['datapesanan'] = $this->m_pemesanan->getPemesananResellerbyBulan($bulan, date('Y'));
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			 $x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerbyBulan($bulan, date('Y'));
 			$this->load->view('v_header',$y);
 			if($this->session->userdata('akses') == 2){
 				$this->load->view('admin/v_sidebar');
@@ -292,13 +299,13 @@ class PemesananResellerByBulan extends CI_Controller
 		   $bulan = $this->input->get('bulan');
 		   $x['stsp'] = 2;
 		   $x['bulan'] = $bulan;
-		$x['asal_transaksi'] = $this->m_pemesanan->getAllAT();
-		$x['kurir'] = $this->m_pemesanan->getAllkurir();
-		$x['metode_pembayaran'] = $this->m_pemesanan->getAllMetpem();
-		$x['nonreseller'] = $this->m_barang->getDataNonReseller1();
-		 $x['produksi'] = $this->m_barang->getdataProduksi();
-		$x['reseller'] = $this->m_barang->getAllBarangR();
-		$x['datapesanan'] = $this->m_pemesanan->getPemesananResellerByBulan($bulan, $tahun);
+		$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+		$x['kurir'] = $this->M_pemesanan->getAllkurir();
+		$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+		$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+		 $x['produksi'] = $this->M_barang->getdataProduksi();
+		$x['reseller'] = $this->M_barang->getAllBarangR();
+		$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByBulan($bulan, $tahun);
 		$this->load->view('admin/v_pemesanan_by_tahun', $x);
 	   }
 	}

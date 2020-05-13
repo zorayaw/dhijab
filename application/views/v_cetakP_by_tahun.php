@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Laporan Transaksi</title>
+  <title>Laporan Transaksi Bulanan</title>
 </head>
 <!-- Favicon -->
 <link rel="shortcut icon" href="<?php echo base_url()?>assets/images/logo.png" />
@@ -9,18 +9,27 @@
 <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <body>
-<?php date_default_timezone_set("Asia/Jakarta");
-$cur_date = date("d-m-Y");?>
+<?php date_default_timezone_set("Asia/Jakarta");?>
      <div>
           
           <div class="col-xl-12">
-            <center><h1>Laporan Transaksi Berjalan</h1></center>
+          <?php if($numstat == 0) : ?>
+            <center><h1>Laporan Tahunan <?=$stat?> Transaksi</h1></center>
+            <?php else : ?>
+              <center><h1>Laporan Tahunan Transaksi <?=$stat?></h1></center>
+              <?php endif?>
+
+              <?php if($awal == $akhir) : ?>
+                <center><h4>(<?=$awal?>) </h4></center>
+                <?php else : ?>
+            <center><h4>(<?=$awal." - ". $akhir?>) </h4></center>
+                <?php endif; ?>
+          </div>
           <hr style="margin-left:10px;margin-right:10px;">
           <hr>
           <br>
-          </div>
-<div>
-<table border="1" cellpadding="7" width="100%" style="border-style: solid;border-width: thin;border-collapse: collapse;" >
+          
+          <table border="1" cellpadding="7" width="100%" style="border-style: solid;border-width: thin;border-collapse: collapse;" >
                 <tr>
                   <th>No</th>
                   <th>Nomor Order</th>
@@ -141,9 +150,6 @@ $cur_date = date("d-m-Y");?>
               </tr>
             </table>
     </div>
-
-        </div>
-      
 
 </body>
 </html>

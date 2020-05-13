@@ -1,26 +1,11 @@
-<html>
-<head>
-  <title>Laporan Transaksi</title>
-</head>
-<!-- Favicon -->
-<link rel="shortcut icon" href="<?php echo base_url()?>assets/images/logo.png" />
-
-<!-- Font -->
-<link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<body>
-<?php date_default_timezone_set("Asia/Jakarta");
-$cur_date = date("d-m-Y");?>
-     <div>
-          
-          <div class="col-xl-12">
-            <center><h1>Laporan Transaksi Berjalan</h1></center>
-          <hr style="margin-left:10px;margin-right:10px;">
-          <hr>
-          <br>
-          </div>
-<div>
-<table border="1" cellpadding="7" width="100%" style="border-style: solid;border-width: thin;border-collapse: collapse;" >
+<?php
+ header("Content-Type: application/vnd.ms-word");
+        header("Expires: 0");
+        header("Cache-Control:  must-revalidate, post-check=0, pre-check=0");
+        header("Content-disposition: attachment; filename=Pemesanan_word.doc");
+?>
+<table border="2">
+              <thead>
                 <tr>
                   <th>No</th>
                   <th>Nomor Order</th>
@@ -39,10 +24,13 @@ $cur_date = date("d-m-Y");?>
                   <th>Note</th>
                   <th>Total Harga</th>
 
+
                   <!-- <th>
                     <center>Aksi</center>
                   </th> -->
                 </tr>
+              </thead>
+              <tbody>
                 <?php
                 function rupiah($angka)
                 {
@@ -52,7 +40,7 @@ $cur_date = date("d-m-Y");?>
 
                 $no = 0;
                 $total = 0;
-                foreach ($data->result_array() as $i) :
+                foreach ($datapesanan->result_array() as $i) :
                   $no++;
 
                   $pemesanan_id = $i['pemesanan_id'];
@@ -76,14 +64,6 @@ $cur_date = date("d-m-Y");?>
                   $diskon = $i['diskon'];
                   $uang = $i['uang_kembalian'];
                   $note = $i['note'];
-                  if($status == 0)
-                  $namstat = "Belum Bayar";
-                  else if($status == 1)
-                  $namstat = "Dibayar";
-                  else if($status == 2)
-                  $namstat = "Dikirim";
-                  else if($status == 3)
-                  $namstat = "Selesai";
 
                   $q = $this->db->query("SELECT SUM(lb_qty * harga)AS total_keseluruhan from list_barang where pemesanan_id=' $pemesanan_id'");
                   $c = $q->row_array();
@@ -98,7 +78,7 @@ $cur_date = date("d-m-Y");?>
                   $nama_barang="";
                   $nomor_barang=1;
                   foreach ($q->result_array() as $k) :
-                    $nama_barang=$nama_barang.$nomor_barang.". ".$k['barang_nama'].": ".$k['lb_qty']."<br><br>";
+                    $nama_barang=$nama_barang.$nomor_barang.". ".$k['barang_nama'].": ".$k['lb_qty']."<br>";
                       $nomor_barang++; 
                   endforeach;
                 
@@ -120,7 +100,24 @@ $cur_date = date("d-m-Y");?>
                     <td><?php echo $at_nama ?></td>
                     <td><?php echo $mp_nama ?></td>
                     <td><?php echo $nama_barang ?></td>
-                    <td><?php echo $namstat?></td>
+                    
+                    <td>
+                      <?php
+                      if ($status == 0) { ?>
+                        <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#bayar<?= $pemesanan_id ?>" style="margin-right: 20px">Belum Bayar</button>
+                      <?php } elseif ($status == 1) {
+                      ?>
+                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#kirim<?= $pemesanan_id ?>" style="margin-right: 20px">Dibayar </button>
+                      <?php } elseif ($status == 2) {
+                      ?>
+                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#selesai<?= $pemesanan_id ?>" style="margin-right: 20px">Dikirim </button>
+                      <?php } else {
+                      ?>
+                        <button class="btn btn-success" style="margin-right: 20px">Selesai</button>
+                      <?php
+                      }
+                      ?>
+                    </td>
                     <td><?php echo $note ?></td>
                     <td><?php echo rupiah($jumlah) ?></td>
 
@@ -133,22 +130,12 @@ $cur_date = date("d-m-Y");?>
                     </td> -->
                   </tr>
                 <?php endforeach; ?>
+
+              </tbody>
               <tr>
-                <th colspan="14">
+                <th colspan="15">
                   <center>Jumlah</center>
                 </th>
                 <th colspan="2"><?php echo rupiah($total) ?></th>
               </tr>
             </table>
-    </div>
-
-        </div>
-      
-
-</body>
-</html>
-
-<script type="text/javascript">
- window.print();
- window.close();
-</script>

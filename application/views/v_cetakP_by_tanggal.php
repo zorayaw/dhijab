@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Laporan Transaksi</title>
+  <title>Laporan Transaksi Perhari</title>
 </head>
 <!-- Favicon -->
 <link rel="shortcut icon" href="<?php echo base_url()?>assets/images/logo.png" />
@@ -14,13 +14,21 @@ $cur_date = date("d-m-Y");?>
      <div>
           
           <div class="col-xl-12">
-            <center><h1>Laporan Transaksi Berjalan</h1></center>
+          <?php if($numstat == 0) : ?>
+            <center><h1>Laporan <?=$stat?> Transaksi</h1></center>
+            <?php else :?>
+              <center><h1>Laporan Transaksi <?=$stat?></h1></center>
+              <?php endif?>
+              <?php if($start != $end) : ?>
+            <center><h4>(<?=date("d-m-Y", strtotime($start))?> hingga <?= date("d-m-Y", strtotime($end)) ?>)</h4></center>
+                <?php else : ?>
+                  <center><h4>(<?=date("d-m-Y", strtotime($start))?>)</h4></center>
+                <?php endif; ?>
+          </div>
           <hr style="margin-left:10px;margin-right:10px;">
           <hr>
           <br>
-          </div>
-<div>
-<table border="1" cellpadding="7" width="100%" style="border-style: solid;border-width: thin;border-collapse: collapse;" >
+          <table border="1" cellpadding="7" width="100%" style="border-style: solid;border-width: thin;border-collapse: collapse;" >
                 <tr>
                   <th>No</th>
                   <th>Nomor Order</th>
@@ -141,9 +149,6 @@ $cur_date = date("d-m-Y");?>
               </tr>
             </table>
     </div>
-
-        </div>
-      
 
 </body>
 </html>

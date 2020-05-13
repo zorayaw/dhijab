@@ -2,13 +2,12 @@
     <div class="page-title">
       <div class="row">
           <div class="col-sm-6">
-              <h4 class="mb-0">Data Daftar Barang</h4>              
+              <h4 class="mb-0"><?= $title_view ?></h4>              
           </div>
           <div class="col-sm-6">
-          <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-          <li class="breadcrumb-item"><a href="<?php echo base_url() ?>Admin/Pemesanan" class="default-color">Home</a></li>
-          <li class="breadcrumb-item active">Daftar Barang</li>
-        </ol>
+            <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
+              <li class="breadcrumb-item"><?=$title_view?></a></li>
+            </ol>
           </div>
         </div>
     </div>
@@ -22,31 +21,45 @@
               <thead>
                   <tr>
                       <th width="10">No</th>
-                      <th>Nama Barang</th>
-                      <th><center>Sisa Stok</center></th>
-                      
-                      <th width="100"><center>Aksi</center></th>
+                      <th><center>ID Pemesanan</center></th>
+                      <th><center>Nama Pemesan</center></th>
+                      <th><center>Tanggal Pemesanan</center></th>
+                      <th><center>Status </center></th>
+                      <th><center>Input Data </center></th>
                   </tr>
               </thead>
               <tbody>
                   <?php 
                   $no = 0;
-                  foreach($stock->result_array() as $i) :
+                  foreach ($datapesanan->result_array() as $i) :
                     $no++;
-                    $barang_id = $i['barang_id'];
-                    $barang_nama = $i['barang_nama'];
-                    $barang_stok = $i['barang_stok'];
-                  
+                    $pemesanan_id = $i['pemesanan_id'];
+                    $pemesanan_nama = $i['pemesanan_nama'];  
+                    $tanggal = $i['tanggal'];
+                    $status = $i['status_pemesanan'];
+                    if($status == 0){
+                        $status = "Belum Bayar";
+                    }
+                    else if($status == 1){
+                        $status = "Dibayar";
+                    }
+                    else if ($status == 2){
+                        $status = "Dikirim";
+                    }
+                    else {
+                        $status = "Selesai";
+                    }
+                    $username = $i['user_nama'];
+                    $id = $i['user_id'];
                   ?>
                   <tr>
-                      <td><center><?php echo $no?></center></td>
-                      <td><?php echo $barang_nama?></td>
-                      <td><center><?php echo $barang_stok?></center></td>
-                      
-                      <td>
-                          <center><a href="<?php echo base_url()?>Admin/Stock/History/<?php echo $barang_id?>" data-toggle="tooltip" data-placement="top" title="Lihat History Stock"><span class="ti-eye"></span></a></center>
-                      </td>
-                    </tr>
+                      <td><center><?= $no?></center></td>
+                      <td><center><?= $pemesanan_id ?></center></td>
+                      <td><center><?= $pemesanan_nama ?></center></td>
+                      <td><center><?= $tanggal?></center></td>
+                      <td><center><?= $status?></center></td>
+                      <td><center><?= $username ?> ( ID = <?= $id ?>) </center></td>
+                </tr>
                     <?php endforeach;?>
               </tbody>
            </table>
@@ -147,7 +160,7 @@
   var i=1;
   $('#add').click(function(){
     i++;
-    $('#dynamic_field').append('<div class="row" id="row'+i+'"><div class="col-md-2"><label class="control-label" for="harga">Min.qty</label><input class="form-control" type="number" name="minqty[]" ></div><div class="col-md-2"><label class="control-label" for="harga">Max.qty</label><input class="form-control" type="number" name="maxqty[]"></div><div class="col-md-5"><label class="control-label" for="harga">Harga</label><input class="form-control money" type="text" name="harga[]"></div><div class="col-md-2 mt-30"><button type="button" id="'+i+'" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
+    $('#dynamic_field').append('<div class="row" id="row'+i+'"><div class="col-md-2"><label class="control-label" for="harga">Min.qty</label><input class="form-control" type="number" min=1 name="minqty[]" ></div><div class="col-md-2"><label class="control-label" for="harga">Max.qty</label><input class="form-control" type="number" min=1 name="maxqty[]"></div><div class="col-md-5"><label class="control-label" for="harga">Harga</label><input class="form-control money" type="text" name="harga[]"></div><div class="col-md-2 mt-30"><button type="button" id="'+i+'" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
   });
   
   $(document).on('click', '.btn_remove', function(){
