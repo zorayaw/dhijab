@@ -1958,11 +1958,11 @@
 							<div class="row">
 								<div class="col-md-4">
 									<label class="control-label">Dari tanggal:</label>
-									<input class="form-control form-white" type="date" id="startdatecetak" name="start_date" required />
+									<input class="form-control form-white sd" type="date" id="startdatecetak" name="start_date" required />
 								</div>
 								<div class="col-md-4">
 									<label class="control-label">Sampai tanggal:</label>
-									<input class="form-control form-white" type="date" id="enddatecetak" name="end_date" required />
+									<input class="form-control form-white ed" type="date" id="enddatecetak" name="end_date" required />
 								</div>
 								<div class="col-md-4">
 									<button type="submit" class="btn btn-success btn-block ripple m-t-10">
