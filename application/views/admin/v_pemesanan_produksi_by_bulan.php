@@ -10,7 +10,7 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-          <li class="breadcrumb-item"><a href="<?php echo base_url() ?>Admin/PemesananProduksi" class="default-color">Pemesanan Produksi</a></li>
+          <li class="breadcrumb-item"><a href="<?php echo base_url() ?>admin/PemesananProduksi" class="default-color">Pemesanan Produksi</a></li>
           <li class="breadcrumb-item active">Pemesanan Produksi Bulan <?=$namaBulan?></li>
         </ol>
       </div>
@@ -202,7 +202,7 @@
                        <br>
                       </div>
 
-                      <form action="<?php echo base_url() ?>Admin/Pemesanan/ConvertExcelByBulanTanpaTahun?status=3&doc=1&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
+                      <form action="<?php echo base_url() ?>admin/Pemesanan/ConvertExcelByBulanTanpaTahun?status=3&doc=1&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
               <div class="col-md-12"><h6>Convert Pemesanan Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
@@ -330,7 +330,7 @@
                        <br>
                       </div>
 
-                      <form action="<?php echo base_url() ?>Admin/Pemesanan/ConvertWordByBulanTanpaTahun?status=3&doc=1&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
+                      <form action="<?php echo base_url() ?>admin/Pemesanan/ConvertWordByBulanTanpaTahun?status=3&doc=1&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
               <div class="col-md-12"><h6>Convert Pemesanan Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
@@ -460,7 +460,7 @@
                        <br>
                       </div>
 
-                      <form action="<?php echo base_url() ?>Admin/Pemesanan/ConvertPDFByBulanTanpaTahun?status=3&doc=1&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
+                      <form action="<?php echo base_url() ?>admin/Pemesanan/ConvertPDFByBulanTanpaTahun?status=3&doc=1&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
               <div class="col-md-12"><h6>Convert Pemesanan Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
@@ -637,7 +637,7 @@
                        <br>
                       </div>
 
-                      <form action="<?php echo base_url() ?>Admin/Pemesanan/ConvertExcelByBulanTanpaTahun?status=3&doc=2&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
+                      <form action="<?php echo base_url() ?>admin/Pemesanan/ConvertExcelByBulanTanpaTahun?status=3&doc=2&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
               <div class="col-md-12"><h6>Convert Transaksi Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
@@ -765,7 +765,7 @@
                        <br>
                       </div>
 
-                      <form action="<?php echo base_url() ?>Admin/Pemesanan/ConvertWordByBulanTanpaTahun?status=3&doc=2&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
+                      <form action="<?php echo base_url() ?>admin/Pemesanan/ConvertWordByBulanTanpaTahun?status=3&doc=2&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
               <div class="col-md-12"><h6>Convert Transaksi Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
@@ -895,7 +895,7 @@
                        <br>
                       </div>
 
-                      <form action="<?php echo base_url() ?>Admin/Pemesanan/ConvertPDFByBulanTanpaTahun?status=3&doc=2&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
+                      <form action="<?php echo base_url() ?>admin/Pemesanan/ConvertPDFByBulanTanpaTahun?status=3&doc=2&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
               <div class="col-md-12"><h6>Convert Transaksi Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
@@ -1077,7 +1077,7 @@
                     <td><?php echo $at_nama ?></td>
                     <td><?php echo $mp_nama ?></td>
                     <?php if($this->session->userdata('akses') == 2) : ?>
-                    <td><a href="<?php echo base_url() ?>Admin/PemesananProduksibyBulan/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>" target="_blank" class="btn btn-primary">List Barang</a></td>
+                    <td><a href="<?php echo base_url() ?>admin/PemesananProduksibyBulan/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>" target="_blank" class="btn btn-primary">List Barang</a></td>
                     <?php else : ?>
                     <td><?php echo $nama_barang ?></td>
                     <?php endif;?>
@@ -1164,7 +1164,7 @@ $mp_nama = $i['mp_nama'];
       <h5 class="modal-title">Edit Data</h5>
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     </div>
-    <form action="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/edit_pesanan?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
+    <form action="<?php echo base_url() ?>admin/PemesananProduksiByBulan/edit_pesanan?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
       <div class="modal-body p-20">
         <div class="row">
         <input value="<?php echo $this->session->userdata('nama')?>" type="hidden" name="username" required />
@@ -1267,7 +1267,7 @@ $pemesanan_id = $i['pemesanan_id'];
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     </div>
     <div class="modal-body p-20">
-      <form action="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/hapus_pesanan?bulan=<?=$bulan?>" method="post">
+      <form action="<?php echo base_url() ?>admin/PemesananProduksiByBulan/hapus_pesanan?bulan=<?=$bulan?>" method="post">
         <div class="row">
           <div class="col-md-12">
             <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
@@ -1304,7 +1304,7 @@ $status_pemesanan = $i['status_pemesanan'];
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   </div>
   <div class="modal-body p-20">
-    <form action="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/status?bulan=<?=$bulan?>" method="POST">
+    <form action="<?php echo base_url() ?>admin/PemesananProduksiByBulan/status?bulan=<?=$bulan?>" method="POST">
       <div class="row">
         <div class="col-md-12">
           <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
@@ -1331,7 +1331,7 @@ $status_pemesanan = $i['status_pemesanan'];
   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 </div>
 <div class="modal-body p-20">
-  <form action="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/status?bulan=<?=$bulan?>" method="POST">
+  <form action="<?php echo base_url() ?>admin/PemesananProduksiByBulan/status?bulan=<?=$bulan?>" method="POST">
     <div class="row">
       <div class="col-md-12">
         <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
@@ -1357,7 +1357,7 @@ $status_pemesanan = $i['status_pemesanan'];
   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 </div>
 <div class="modal-body p-20">
-  <form action="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/status?bulan=<?=$bulan?>" method="POST">
+  <form action="<?php echo base_url() ?>admin/PemesananProduksiByBulan/status?bulan=<?=$bulan?>" method="POST">
     <div class="row">
       <div class="col-md-12">
         <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
@@ -1401,7 +1401,7 @@ $status_pemesanan = $i['status_pemesanan'];
             <h5 class="modal-title">Tambah Pesanan Customer</h5>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
-          <form action="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/savepemesananNR?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
+          <form action="<?php echo base_url() ?>admin/PemesananProduksiByBulan/savepemesananNR?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
             <div class="modal-body p-20">
               <div class="row">
                 <div class="col-md-12">
@@ -1532,7 +1532,7 @@ $status_pemesanan = $i['status_pemesanan'];
             <h5 class="modal-title">Tambah Pesanan Reseller</h5>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
-          <form action="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/savepemesananR?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
+          <form action="<?php echo base_url() ?>admin/PemesananProduksiByBulan/savepemesananR?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
             <div class="modal-body p-20">
               <div class="row">
                 <div class="col-md-12">
@@ -1668,7 +1668,7 @@ $status_pemesanan = $i['status_pemesanan'];
             <h5 class="modal-title">Tambah Pesanan  Produksi</h5>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
-          <form action="<?php echo base_url() ?>Admin/PemesananProduksiByBulan/savepemesananP?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
+          <form action="<?php echo base_url() ?>admin/PemesananProduksiByBulan/savepemesananP?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
             <div class="modal-body p-20">
               <div class="row">
               
@@ -1744,20 +1744,20 @@ $status_pemesanan = $i['status_pemesanan'];
           <div class="modal-body">
             <div class="row">
               <div class="col-md-12">
-                <a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi?status=3&doc=1" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
+                <a href="<?= base_url() ?>owner/Transaksi/cetak_transaksi?status=3&doc=1" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
                   <i class="fa fa-print pr-2"></i>Cetak Pemesanan Hari Ini (<?= date('d')." ".$namaBulan." ".date('Y')?>)
                 </a>
                 <br>
               </div>
 
               <div class="col-md-12">
-                <a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiByBulan?status=3&doc=1&bulan=<?=$bulan?>&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                <a href="<?= base_url() ?>owner/Transaksi/cetakTransaksiByBulan?status=3&doc=1&bulan=<?=$bulan?>&tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
                   <i class="fa fa-print pr-2"></i>Cetak Pemesanan Bulan (<?=$namaBulan." ".date('Y')?>)
                 </a>
                 <br>
               </div>
 
-              <form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiByBulanTanpaTahun?status=3&doc=1&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
+              <form action="<?php echo base_url() ?>owner/Transaksi/cetakTransaksiByBulanTanpaTahun?status=3&doc=1&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
               <div class="col-md-12"><h6>Cetak Pemesanan Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
@@ -1798,14 +1798,14 @@ $status_pemesanan = $i['status_pemesanan'];
               
 <!-- 
               <div class="col-md-12">
-                <a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiByTahun?tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
+                <a href="<?= base_url() ?>owner/Transaksi/cetakTransaksiByTahun?tahun=<?= date("Y")?>" target="_blank" class="btn btn-success btn-block ripple m-t-10">
                   <i class="fa fa-print pr-2"></i>Cetak Pemesanan Tahun Ini (<?= date('Y')?>) 
                 </a>
                 <br>
                 <br>
               </div> -->
               <div class="col-md-12"><h6>Cetak Berdasarkan Tanggal (<?=$namaBulan." ".date('Y')?>):</h6></div>
-               <form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiBytanggal?status=3&doc=1" target="_blank" method="post" enctype="multipart/form-data">
+               <form action="<?php echo base_url() ?>owner/Transaksi/cetakTransaksiBytanggal?status=3&doc=1" target="_blank" method="post" enctype="multipart/form-data">
             <div class="modal-body p-20">
               <div class="row">
               <div class="col-md-4">
@@ -1844,7 +1844,7 @@ $status_pemesanan = $i['status_pemesanan'];
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-12">
-							<a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi?status=3&doc=2" target="_blank"
+							<a href="<?= base_url() ?>owner/Transaksi/cetak_transaksi?status=3&doc=2" target="_blank"
 								class="btn btn-warning btn-block ripple m-t-10">
 								<i class="fa fa-print pr-2"></i>Cetak Transaksi Hari Ini (<?= date('d')?> <?php 
                   switch (date('m')){
@@ -1868,7 +1868,7 @@ $status_pemesanan = $i['status_pemesanan'];
 						</div>
 
 						<div class="col-md-12">
-							<a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiByBulan?status=3&doc=2&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
+							<a href="<?= base_url() ?>owner/Transaksi/cetakTransaksiByBulan?status=3&doc=2&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
 								target="_blank" class="btn btn-success btn-block ripple m-t-10">
 								<i class="fa fa-print pr-2"></i>Cetak Transaksi Bulan Ini (<?php 
                   switch (date('m')){
@@ -1890,7 +1890,7 @@ $status_pemesanan = $i['status_pemesanan'];
 							<br>
 						</div>
 
-						<form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiByTahun?status=3&doc=2" target="_blank"
+						<form action="<?php echo base_url() ?>owner/Transaksi/cetakTransaksiByTahun?status=3&doc=2" target="_blank"
 							method="post" enctype="multipart/form-data">
 							<div class="col-md-12">
 								<h6>Cetak Transaksi Berdasarkan Tahun: </h6>
@@ -1936,7 +1936,7 @@ $status_pemesanan = $i['status_pemesanan'];
 					<div class="col-md-12">
 						<h6>Cetak Berdasarkan Tanggal:</h6>
 					</div>
-					<form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiBytanggal?status=3&doc=2" target="_blank"
+					<form action="<?php echo base_url() ?>owner/Transaksi/cetakTransaksiBytanggal?status=3&doc=2" target="_blank"
 						method="post" enctype="multipart/form-data">
 						<div class="modal-body p-20">
 							<div class="row">

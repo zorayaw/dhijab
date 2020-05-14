@@ -6,7 +6,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-              <li class="breadcrumb-item"><a href="<?php echo base_url()?>Owner/Barang/Reseller" class="default-color">Home</a></li>
+              <li class="breadcrumb-item"><a href="<?php echo base_url()?>owner/Barang/Reseller" class="default-color">Home</a></li>
               <li class="breadcrumb-item active">Daftar Barang</li>
             </ol>
           </div>
@@ -69,7 +69,7 @@
                         <h5 class="modal-title">Edit Data</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <form action="<?php echo base_url()?>Owner/Barang/update_harga_reseller" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url()?>owner/Barang/update_harga_reseller" method="post" enctype="multipart/form-data">
                     <div class="modal-body p-20">
                             <div class="row">
                                 <div class="col-md-12">
@@ -104,7 +104,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body p-20">
-                        <form action="<?php echo base_url()?>Owner/Barang/hapus_reseller" method="post">
+                        <form action="<?php echo base_url()?>owner/Barang/hapus_reseller" method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <input type="hidden" name="barang_id" value="<?php echo $barang_id?>"/> 
@@ -224,7 +224,7 @@
   
   $('#submit').click(function(){    
     $.ajax({
-      url:"<?php echo base_url()?>Owner/Barang",
+      url:"<?php echo base_url()?>owner/Barang",
       method:"POST",
       data:$('#add_name').serialize(),
       success:function(data)

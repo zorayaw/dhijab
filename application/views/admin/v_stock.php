@@ -6,7 +6,7 @@
           </div>
           <div class="col-sm-6">
           <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-          <li class="breadcrumb-item"><a href="<?php echo base_url() ?>Admin/Pemesanan" class="default-color">Home</a></li>
+          <li class="breadcrumb-item"><a href="<?php echo base_url() ?>admin/Pemesanan" class="default-color">Home</a></li>
           <li class="breadcrumb-item active">Daftar Barang</li>
         </ol>
           </div>
@@ -44,7 +44,7 @@
                       <td><center><?php echo $barang_stok?></center></td>
                       
                       <td>
-                          <center><a href="<?php echo base_url()?>Admin/Stock/History/<?php echo $barang_id?>" data-toggle="tooltip" data-placement="top" title="Lihat History Stock"><span class="ti-eye"></span></a></center>
+                          <center><a href="<?php echo base_url()?>admin/Stock/History/<?php echo $barang_id?>" data-toggle="tooltip" data-placement="top" title="Lihat History Stock"><span class="ti-eye"></span></a></center>
                       </td>
                     </tr>
                     <?php endforeach;?>
@@ -157,7 +157,7 @@
   
   $('#submit').click(function(){    
     $.ajax({
-      url:"<?php echo base_url()?>Owner/Barang",
+      url:"<?php echo base_url()?>owner/Barang",
       method:"POST",
       data:$('#add_name').serialize(),
       success:function(data)

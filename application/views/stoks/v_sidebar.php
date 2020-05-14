@@ -26,8 +26,8 @@
             <div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div>
           </a>
           <ul id="Barang" class="collapse" data-parent="#sidebarnav">
-            <li> <a href="<?php echo base_url()?>Owner/Barang">Barang Non Reseller</a> </li>
-            <li> <a href="<?php echo base_url()?>Owner/Barang/Reseller">Barang Reseller</a> </li>
+            <li> <a href="<?php echo base_url()?>owner/Barang">Barang Non Reseller</a> </li>
+            <li> <a href="<?php echo base_url()?>owner/Barang/Reseller">Barang Reseller</a> </li>
           </ul>
         </li> -->
 <!--         <li>

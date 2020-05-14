@@ -6,7 +6,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-              <li class="breadcrumb-item"><a href="<?php echo base_url()?>Admin/Pemesanan" class="default-color">Home</a></li>
+              <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/Pemesanan" class="default-color">Home</a></li>
               <li class="breadcrumb-item active">Daftar Barang</li>
             </ol>
           </div>
@@ -94,7 +94,7 @@
                       <td><?php echo $mp_nama?></td>
                       <td><?php echo rupiah($jumlah)?></td>
                       
-                      <td><a href="<?php echo base_url()?>Owner/Barang/list_barang/<?php echo $pemesanan_id?>/<?php echo $level?>" target="_blank" class="btn btn-primary">List Barang</a></td>
+                      <td><a href="<?php echo base_url()?>owner/Barang/list_barang/<?php echo $pemesanan_id?>/<?php echo $level?>" target="_blank" class="btn btn-primary">List Barang</a></td>
                       
                       <td> <?php
                             if ($status == 0) 
@@ -134,7 +134,7 @@
                         <h5 class="modal-title">Tambah Pesanan Non Reseller</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <form action="<?php echo base_url()?>Owner/Barang/savepemesananNR" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url()?>owner/Barang/savepemesananNR" method="post" enctype="multipart/form-data">
                     <div class="modal-body p-20">
                             <div class="row">
                                 <div class="col-md-12">
@@ -238,7 +238,7 @@
                         <h5 class="modal-title">Tambah Pesanan Reseller</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <form action="<?php echo base_url()?>Owner/Barang/savepemesananR" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url()?>owner/Barang/savepemesananR" method="post" enctype="multipart/form-data">
                     <div class="modal-body p-20">
                             <div class="row">
                                 <div class="col-md-12">
@@ -359,7 +359,7 @@
                         <h5 class="modal-title">Edit Data</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <form action="<?php echo base_url()?>Owner/Barang/edit_pesanan" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url()?>owner/Barang/edit_pesanan" method="post" enctype="multipart/form-data">
                     <div class="modal-body p-20">
                             <div class="row">
                                 <div class="col-md-12">
@@ -461,7 +461,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body p-20">
-                        <form action="<?php echo base_url()?>Owner/Barang/hapus_pesanan" method="post">
+                        <form action="<?php echo base_url()?>owner/Barang/hapus_pesanan" method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id?>"/> 
@@ -497,7 +497,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body p-20">
-                        <form action="<?php echo base_url()?>Owner/Barang/status" method="POST">
+                        <form action="<?php echo base_url()?>owner/Barang/status" method="POST">
                             <div class="row">
                                 <div class="col-md-12">
                                     <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id?>"/> 
@@ -524,7 +524,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body p-20">
-                        <form action="<?php echo base_url()?>Owner/Barang/status" method="POST">
+                        <form action="<?php echo base_url()?>owner/Barang/status" method="POST">
                             <div class="row">
                                 <div class="col-md-12">
                                     <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id?>"/> 

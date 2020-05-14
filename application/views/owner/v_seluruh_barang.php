@@ -61,7 +61,7 @@
                       <td>
                           <a href="#" style="margin-right: 10px; margin-left: 20px;" data-toggle="modal" data-target="#editdata<?php echo $barang_id?>"><span class="ti-pencil"></span></a>
                           <a href="#" style="margin-right: 10px" data-toggle="modal" data-target="#hapusdata<?php echo $barang_id?>"><span class="ti-trash"></span></a>
-                          <a href="<?php echo base_url()?>Owner/Barang/History/<?php echo $barang_id?>" data-toggle="tooltip" data-placement="top" title="Lihat History Stock"><span class="ti-eye"></span></a>
+                          <a href="<?php echo base_url()?>owner/Barang/History/<?php echo $barang_id?>" data-toggle="tooltip" data-placement="top" title="Lihat History Stock"><span class="ti-eye"></span></a>
                       </td>
                     </tr>
                     <?php endif ?>
@@ -82,7 +82,7 @@
                         <h5 class="modal-title">Tambah Barang</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <form action="<?php echo base_url()?>Owner/Barang/tambah_barang" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url()?>owner/Barang/tambah_barang" method="post" enctype="multipart/form-data">
                     <div class="modal-body p-20">
                             <div class="row">
                                 <div class="col-md-12">
@@ -143,7 +143,7 @@
                         <h5 class="modal-title">Edit Barang</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <form action="<?php echo base_url()?>Owner/Barang/edit_barang" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url()?>owner/Barang/edit_barang" method="post" enctype="multipart/form-data">
                     <div class="modal-body p-20">
                             <div class="row">
                                 <div class="col-md-12">
@@ -180,7 +180,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body p-20">
-                        <form action="<?php echo base_url()?>Owner/Barang/hapus_non_reseller" method="post">
+                        <form action="<?php echo base_url()?>owner/Barang/hapus_non_reseller" method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <input type="hidden" name="barang_id" value="<?php echo $barang_id?>"/> 
@@ -210,7 +210,7 @@
                         <h5 class="modal-title">Tambah Kategori Barang</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <form action="<?php echo base_url()?>Owner/Barang/tambah_kategori_barang" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url()?>owner/Barang/tambah_kategori_barang" method="post" enctype="multipart/form-data">
                     <div class="modal-body p-20">
                             <div class="row">
                                 
@@ -359,7 +359,7 @@
   
   $('#submit').click(function(){    
     $.ajax({
-      url:"<?php echo base_url()?>Owner/Barang",
+      url:"<?php echo base_url()?>owner/Barang",
       method:"POST",
       data:$('#add_name').serialize(),
       success:function(data)

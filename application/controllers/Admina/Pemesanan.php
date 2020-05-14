@@ -985,7 +985,7 @@ class Pemesanan extends CI_Controller
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect('Admin/Pemesanan/customer');
+		redirect('admin/Pemesanan/customer');
 	}
 
 	function hapus_pesananCustomer()
@@ -993,7 +993,7 @@ class Pemesanan extends CI_Controller
 		$pemesanan_id = $this->input->post('pemesanan_id');
 		$this->M_pemesanan->hapus_pesanan($pemesanan_id);
 		echo $this->session->set_flashdata('msg', 'hapus');
-		redirect('Admin/Pemesanan/customer');
+		redirect('admin/Pemesanan/customer');
 	}
 
 	function statusCustomer()
@@ -1012,7 +1012,7 @@ class Pemesanan extends CI_Controller
 			$this->M_pemesanan->insert_uang_masuk($pemesanan_id, $jumlah);
 			$this->M_pemesanan->status_pesanan($pemesanan_id, $status_pemesanan);
 		}
-		redirect('Admin/Pemesanan/customer');
+		redirect('admin/Pemesanan/customer');
 	}
 
 	function reseller()
@@ -1076,7 +1076,7 @@ class Pemesanan extends CI_Controller
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect('Admin/Pemesanan/reseller');
+		redirect('admin/Pemesanan/reseller');
 	}
 
 	function hapus_pesananreseller()
@@ -1084,7 +1084,7 @@ class Pemesanan extends CI_Controller
 		$pemesanan_id = $this->input->post('pemesanan_id');
 		$this->M_pemesanan->hapus_pesanan($pemesanan_id);
 		echo $this->session->set_flashdata('msg', 'hapus');
-		redirect('Admin/Pemesanan/reseller');
+		redirect('admin/Pemesanan/reseller');
 	}
 
 	function statusreseller()
@@ -1103,7 +1103,7 @@ class Pemesanan extends CI_Controller
 			$this->M_pemesanan->insert_uang_masuk($pemesanan_id, $jumlah);
 			$this->M_pemesanan->status_pesanan($pemesanan_id, $status_pemesanan);
 		}
-		redirect('Admin/Pemesanan/reseller');
+		redirect('admin/Pemesanan/reseller');
 	}
 
 	function produksi()
@@ -1162,7 +1162,7 @@ class Pemesanan extends CI_Controller
 		$jumlah = $a['total_keseluruhan'];
 		$this->M_pemesanan->insert_uang_masuk($pemesanan_id, $jumlah);
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect('Admin/Pemesanan/produksi');
+		redirect('admin/Pemesanan/produksi');
 	}
 
 	function hapus_pesananproduksi()
@@ -1170,7 +1170,7 @@ class Pemesanan extends CI_Controller
 		$pemesanan_id = $this->input->post('pemesanan_id');
 		$this->M_pemesanan->hapus_pesanan($pemesanan_id);
 		echo $this->session->set_flashdata('msg', 'hapus');
-		redirect('Admin/Pemesanan/produksi');
+		redirect('admin/Pemesanan/produksi');
 	}
 
 	function statusproduksi()
@@ -1189,7 +1189,7 @@ class Pemesanan extends CI_Controller
 			$this->M_pemesanan->insert_uang_masuk($pemesanan_id, $jumlah);
 			$this->M_pemesanan->status_pesanan($pemesanan_id, $status_pemesanan);
 		}
-		redirect('Admin/Pemesanan/produksi');
+		redirect('admin/Pemesanan/produksi');
 	}
 
 
@@ -1245,7 +1245,7 @@ class Pemesanan extends CI_Controller
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect('Admin/Pemesanan/konfirmasi_pesanan');
+		redirect('admin/Pemesanan/konfirmasi_pesanan');
 	}
 
 	function savepemesanankonfirmasi_pesananReseller()
@@ -1279,7 +1279,7 @@ class Pemesanan extends CI_Controller
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect('Admin/Pemesanan/konfirmasi_pesanan');
+		redirect('admin/Pemesanan/konfirmasi_pesanan');
 	}
 
 	function savepemesanankonfirmasi_pesananProduksi()
@@ -1311,7 +1311,7 @@ class Pemesanan extends CI_Controller
 		$jumlah = $a['total_keseluruhan'];
 		$this->M_pemesanan->insert_uang_masuk($pemesanan_id, $jumlah);
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect('Admin/Pemesanan/konfirmasi_pesanan');
+		redirect('admin/Pemesanan/konfirmasi_pesanan');
 	}
 
 	function hapus_pesanankonfirmasi_pesanan()
@@ -1319,7 +1319,7 @@ class Pemesanan extends CI_Controller
 		$pemesanan_id = $this->input->post('pemesanan_id');
 		$this->M_pemesanan->hapus_pesanan($pemesanan_id);
 		echo $this->session->set_flashdata('msg', 'hapus');
-		redirect('Admin/Pemesanan/konfirmasi_pesanan');
+		redirect('admin/Pemesanan/konfirmasi_pesanan');
 	}
 
 	function statuskonfirmasi_pesanan()
@@ -1339,7 +1339,7 @@ class Pemesanan extends CI_Controller
 			$this->M_pemesanan->insert_uang_masuk($pemesanan_id, $jumlah);
 			$this->M_pemesanan->status_pesanan($pemesanan_id, $status_pemesanan);
 		}
-		redirect('Admin/Pemesanan/konfirmasi_pesanan');
+		redirect('admin/Pemesanan/konfirmasi_pesanan');
 	}
 
 
@@ -1381,7 +1381,7 @@ class Pemesanan extends CI_Controller
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect('Admin/Pemesanan');
+		redirect('admin/Pemesanan');
 	}
 
 	function tambahpesananNR()
@@ -1399,7 +1399,7 @@ class Pemesanan extends CI_Controller
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect("Admin/Pemesanan/list_barang/$pemesanan_id/$level");
+		redirect("admin/Pemesanan/list_barang/$pemesanan_id/$level");
 	}
 
 	function tambahpesananR()
@@ -1417,7 +1417,7 @@ class Pemesanan extends CI_Controller
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect("Admin/Pemesanan/list_barang/$pemesanan_id/$level");
+		redirect("admin/Pemesanan/list_barang/$pemesanan_id/$level");
 	}
 
 	function hapuspesananlb()
@@ -1436,7 +1436,7 @@ class Pemesanan extends CI_Controller
 		$pemesanan_id = $this->input->post('pemesanan_id');
 		$this->M_pemesanan->hapus_pesanan($pemesanan_id);
 		echo $this->session->set_flashdata('msg', 'hapus');
-		redirect('Admin/Pemesanan');
+		redirect('admin/Pemesanan');
 	}
 
 	function savepemesananR()
@@ -1479,7 +1479,7 @@ class Pemesanan extends CI_Controller
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect('Admin/Pemesanan');
+		redirect('admin/Pemesanan');
 	}
 
 	function savepemesananP()
@@ -1515,7 +1515,7 @@ class Pemesanan extends CI_Controller
 		$jumlah = $a['total_keseluruhan'];
 		$this->M_pemesanan->insert_uang_masuk($pemesanan_id, $jumlah);
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect('Admin/Pemesanan');
+		redirect('admin/Pemesanan');
 	}
 
 	function edit_pesanan()
@@ -1539,7 +1539,7 @@ class Pemesanan extends CI_Controller
 		$this->M_pemesanan->edit_pesanan($pemesanan_id, $nama_pemesan, $no_hp, $alamat, $kurir, $resi,$username, $asal_transaksi, $metode_pembayaran);
 
 		echo $this->session->set_flashdata('msg', 'update');
-		redirect('Admin/Pemesanan');
+		redirect('admin/Pemesanan');
 	}
 
 	function edit_pesanankonfPesanan(){
@@ -1562,7 +1562,7 @@ class Pemesanan extends CI_Controller
 		$this->M_pemesanan->edit_pesanan($pemesanan_id, $nama_pemesan, $no_hp, $alamat, $kurir, $resi,$username, $asal_transaksi, $metode_pembayaran);
 
 		echo $this->session->set_flashdata('msg', 'update');
-		redirect('Admin/Pemesanan/konfirmasi_pesanan');
+		redirect('admin/Pemesanan/konfirmasi_pesanan');
 	}
 
 	function list_barang($pemesanan_id)
@@ -1633,7 +1633,7 @@ class Pemesanan extends CI_Controller
 		$at_nama = $this->input->post('at_nama');
 		$this->M_pemesanan->save_at($at_nama);
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect('Admin/Pemesanan/asal_transaksi');
+		redirect('admin/Pemesanan/asal_transaksi');
 	}
 
 	function updateAT()
@@ -1642,7 +1642,7 @@ class Pemesanan extends CI_Controller
 		$at_nama = $this->input->post('at_nama');
 		$this->M_pemesanan->update_at($id, $at_nama);
 		echo $this->session->set_flashdata('msg', 'update');
-		redirect('Admin/Pemesanan/asal_transaksi');
+		redirect('admin/Pemesanan/asal_transaksi');
 	}
 
 	function hapusAT()
@@ -1650,7 +1650,7 @@ class Pemesanan extends CI_Controller
 		$id = $this->input->post('at_id');
 		$this->M_pemesanan->hapus_at($id);
 		echo $this->session->set_flashdata('msg', 'delete');
-		redirect('Admin/Pemesanan/asal_transaksi');
+		redirect('admin/Pemesanan/asal_transaksi');
 	}
 
 	function kurir()
@@ -1673,7 +1673,7 @@ class Pemesanan extends CI_Controller
 		$kurir_nama = $this->input->post('kurir_nama');
 		$this->M_pemesanan->save_kurir($kurir_nama);
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect('Admin/Pemesanan/kurir');
+		redirect('admin/Pemesanan/kurir');
 	}
 
 	function updatekurir()
@@ -1682,7 +1682,7 @@ class Pemesanan extends CI_Controller
 		$kurir_nama = $this->input->post('kurir_nama');
 		$this->M_pemesanan->update_kurir($id, $kurir_nama);
 		echo $this->session->set_flashdata('msg', 'update');
-		redirect('Admin/Pemesanan/kurir');
+		redirect('admin/Pemesanan/kurir');
 	}
 
 	function hapuskurir()
@@ -1690,7 +1690,7 @@ class Pemesanan extends CI_Controller
 		$id = $this->input->post('kurir_id');
 		$this->M_pemesanan->hapus_kurir($id);
 		echo $this->session->set_flashdata('msg', 'delete');
-		redirect('Admin/Pemesanan/kurir');
+		redirect('admin/Pemesanan/kurir');
 	}
 
 	function metode_pembayaran()
@@ -1714,7 +1714,7 @@ class Pemesanan extends CI_Controller
 		$metpem_nama = $this->input->post('mp_nama');
 		$this->M_pemesanan->save_Metpem($metpem_nama);
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect('Admin/Pemesanan/metode_pembayaran');
+		redirect('admin/Pemesanan/metode_pembayaran');
 	}
 
 	function updateMetodePembayaran()
@@ -1723,7 +1723,7 @@ class Pemesanan extends CI_Controller
 		$metpem_nama = $this->input->post('mp_nama');
 		$this->M_pemesanan->update_Metpem($id, $metpem_nama);
 		echo $this->session->set_flashdata('msg', 'update');
-		redirect('Admin/Pemesanan/metode_pembayaran');
+		redirect('admin/Pemesanan/metode_pembayaran');
 	}
 
 	function hapusMetodePembayaran()
@@ -1731,7 +1731,7 @@ class Pemesanan extends CI_Controller
 		$id = $this->input->post('mp_id');
 		$this->M_pemesanan->hapus_Metpem($id);
 		echo $this->session->set_flashdata('msg', 'delete');
-		redirect('Admin/Pemesanan/metode_pembayaran');
+		redirect('admin/Pemesanan/metode_pembayaran');
 	}
 	function status()
 	{
@@ -1749,7 +1749,7 @@ class Pemesanan extends CI_Controller
 			$this->M_pemesanan->insert_uang_masuk($pemesanan_id, $jumlah);
 			$this->M_pemesanan->status_pesanan($pemesanan_id, $status_pemesanan);
 		}
-		redirect('Admin/pemesanan');
+		redirect('admin/pemesanan');
 	}
 
 	function statusByBulan()
@@ -1770,7 +1770,7 @@ class Pemesanan extends CI_Controller
 			$this->M_pemesanan->insert_uang_masuk($pemesanan_id, $jumlah);
 			$this->M_pemesanan->status_pesanan($pemesanan_id, $status_pemesanan);
 		}
-		redirect('Admin/Pemesanan/viewPemesananByBulan/'.$bulan);
+		redirect('admin/Pemesanan/viewPemesananByBulan/'.$bulan);
 	}
 
 	function viewPemesananByBulan($bulan){

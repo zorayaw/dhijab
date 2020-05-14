@@ -2,7 +2,7 @@
 	/**
 	 * 
 	 */
-	class PemesananProduksi extends CI_Controller
+	class PemesananReseller extends CI_Controller
 	{
 		
 		function __construct()
@@ -20,14 +20,14 @@
 	  	}
 
 	  	function index(){
-		       $y['title'] = "Pemesanan Produksi";
+	  		$y['title'] = "Pemesanan Reseller";
 		       $x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 		       $x['kurir'] = $this->M_pemesanan->getAllkurir();
 		       $x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
 		       $x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 		        $x['produksi'] = $this->M_barang->getdataProduksi();
 		       $x['reseller'] = $this->M_barang->getAllBarangR();
-		       $x['datapesanan'] = $this->M_pemesanan->getPemesananproduksibyTahun2(date('Y'));
+		       $x['datapesanan'] = $this->M_pemesanan->getPemesananresellerbyTahun2(date('Y'));
 		       $this->load->view('v_header',$y);
 		       if($this->session->userdata('akses') == 2){
 				$this->load->view('admin/v_sidebar');
@@ -35,18 +35,18 @@
 			else if($this->session->userdata('akses') == 1){
 				$this->load->view('owner/v_sidebar');
 			}
-		       $this->load->view('admin/v_pemesanan_produksi',$x);
+		       $this->load->view('admin/v_pemesanan_reseller',$x);
 	  	}
 
-	  	function produksi(){
-		       $y['title'] = "Pemesanan";
+	  	function reseller(){
+	  		$y['title'] = "Pemesanan";
 		       $x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 		       $x['kurir'] = $this->M_pemesanan->getAllkurir();
 		       $x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
 		       $x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 		        $x['produksi'] = $this->M_barang->getdataProduksi();
 		       $x['reseller'] = $this->M_barang->getAllBarangR();
-		       $x['datapesanan'] = $this->M_pemesanan->getPemesananproduksi();
+		       $x['datapesanan'] = $this->M_pemesanan->getPemesananresellerbyTahun2(date('Y'));
 		       $this->load->view('v_header',$y);
 			   if($this->session->userdata('akses') == 2){
 				$this->load->view('admin/v_sidebar');
@@ -54,42 +54,49 @@
 			else if($this->session->userdata('akses') == 1){
 				$this->load->view('owner/v_sidebar');
 			}
-		       $this->load->view('admin/v_pemesanan_produksi',$x);
+		       $this->load->view('admin/v_pemesanan_reseller',$x);
 	  	}
 
-	  	function savepemesananP(){
-	  		$nama_pemesan = "admin";
-			$nama_akun_pemesan ="-";
-			$no_hp = $this->input->post('hp');
-			$alamat = $this->input->post('alamat');
-	  		$asal_transaksi = "6";
-			  $kurir ="6";
-			  $resi = "-";
+	  	function savepemesananR(){
+	  		$nama_pemesan = $this->input->post('nama_pemesan');
+	  		$nama_akun_pemesan = $this->input->post('nama_akun_pemesan');
+	  		$no_hp = $this->input->post('hp');
+	  		$alamat = $this->input->post('alamat');
+	  		$asal_transaksi = $this->input->post('at');
+			  $kurir = $this->input->post('kurir');
 			  $username = $this->input->post('username');
-	  		$metpem = "1";
+			  $resi = $this->input->post('no_resi');
+			  if($resi == null){
+				$resi = "-";
+			}
+			else{
+				$resi = $this->input->post('no_resi');
+			}
+	  		$metpem = $this->input->post('metpem');
 			$tanggal = $this->input->post('tanggal');
-			$uang = "0";
-	  		$level = 3;
+			$diskon = $this->input->post('diskon');
+			$biaya_admin = $this->input->post('biaya_admin');
+			$uang = $this->input->post('uang');
+	  		$level = 1;
 	  		$barang_id = $this->input->post('barang');
 	  		$qty = $this->input->post('qty');
-	  		$biaya_ongkir= "0";
-	  		$email_pemesanan="-";
+	  		$biaya_ongkir= $this->input->post('biaya_ongkir');
+	  		$email_pemesanan=$this->input->post('email_pemesanan');
 	  		$note=$this->input->post('note');
-	  		$status=3;
-	  		$diskon = 0;
-			$biaya_admin = 0;
-	  		$pemesanan_id=$this->M_pemesanan->save_pesanan($nama_pemesan,$tanggal,$no_hp,$alamat,$level,$kurir, $resi,$username, $asal_transaksi,$metpem,$uang,$biaya_ongkir,$email_pemesanan,$note,$status,$biaya_admin,$diskon,$nama_akun_pemesan);
+	  		$status=0;
+	  		$level = 2;
+	  		$pemesanan_id=$this->M_pemesanan->save_pesanan($nama_pemesan,$tanggal,$no_hp,$alamat,$level,$kurir,$username,$resi,$asal_transaksi,$metpem,$uang,$biaya_ongkir,$email_pemesanan,$note,$status,$biaya_admin,$diskon,$nama_akun_pemesan);
 
+			
 	  		$size = sizeof($barang_id);
+
 	  		for($i=0; $i < $size; $i++){
-	  			$this->m_list_barang->save_list_barangP($pemesanan_id,$qty[$i],$barang_id[$i],$level);
+	  			$this->m_list_barang->save_list_barangR($pemesanan_id,$qty[$i],$barang_id[$i],$level);
 	  			$this->M_barang->saveStok($barang_id[$i], $qty[$i], 1);
 	  		}
-	  		$a = $this->m_list_barang->SUMLBNR($pemesanan_id)->row_array();
-	  		$jumlah=$a['total_keseluruhan'];
-	  		$this->M_pemesanan->insert_uang_masuk($pemesanan_id,$jumlah);
+
 	  		echo $this->session->set_flashdata('msg','success');
-	       	redirect('Admin/PemesananProduksi');		  	
+	       	redirect('admin/PemesananReseller');		  	
  	  	}
 
 
@@ -97,7 +104,7 @@
             $pemesanan_id = $this->input->post('pemesanan_id');
             $status_pemesanan=$this->input->post('status_pemesanan');
             $jumlah=$this->input->post('jumlah');
-           if($status_pemesanan==0)
+            if($status_pemesanan==0)
             {
             $status_pemesanan=1;
             $this->M_pemesanan->status_pesanan($pemesanan_id,$status_pemesanan);
@@ -112,7 +119,7 @@
              $this->M_pemesanan->insert_uang_masuk($pemesanan_id,$jumlah);
             $this->M_pemesanan->status_pesanan($pemesanan_id,$status_pemesanan);
             }
-             redirect('Admin/PemesananProduksi');	
+             redirect('admin/PemesananReseller');	
         }
 
         function edit_pesanan(){
@@ -120,9 +127,9 @@
  	  		$nama_pemesan = $this->input->post('nama_pemesan');
 	  		$no_hp = $this->input->post('hp');
 	  		$alamat = $this->input->post('alamat');
-			  $asal_transaksi = $this->input->post('at');
-			  $username = $this->input->post('username');
+	  		$asal_transaksi = $this->input->post('at');
 			  $kurir = $this->input->post('kurir');
+			  $username = $this->input->post('username');
 			  $resi = $this->input->post('no_resi');
 			  if($resi == null){
 				$resi = "-";
@@ -132,21 +139,21 @@
 			}
 	  		$metode_pembayaran = $this->input->post('mp');
 	  		// $tanggal = $this->input->post('tanggal');
-	  		$this->M_pemesanan->edit_pesanan($pemesanan_id,$nama_pemesan,$no_hp,$alamat,$kurir,$resi,$username ,$asal_transaksi,$metode_pembayaran);
+	  		$this->M_pemesanan->edit_pesanan($pemesanan_id,$nama_pemesan,$no_hp,$alamat,$kurir,$username,$resi,$asal_transaksi,$metode_pembayaran);
 
 	  		echo $this->session->set_flashdata('msg','update');
-	       	redirect('Admin/PemesananProduksi');	
+	       	redirect('admin/PemesananReseller');	
 	  	}
 
 	  	function hapus_pesanan(){
 	  		$pemesanan_id = $this->input->post('pemesanan_id');
 	  		$this->M_pemesanan->hapus_pesanan($pemesanan_id);
 	  		echo $this->session->set_flashdata('msg','hapus');
-	       	redirect('Admin/PemesananProduksi');	
+	       	redirect('admin/PemesananReseller');	
 	  	}
 
 	  	function list_barang($pemesanan_id){
-			   $level = $this->uri->segment(5);
+ 	  		 $level = $this->uri->segment(5);
  	  		  		$y['title'] = "List Barang Pemesan";
  	  		   	   $x['p_id'] = $pemesanan_id;
  	  		   	   $x['lvl'] =$level;	
@@ -155,7 +162,7 @@
  	  		   	   $x['nonreseller'] = $this->M_barang->getDataNonReseller1();
  	  		   	   $x['jumlah'] = $a['total_keseluruhan'];
 			       $this->load->view('v_header',$y);
-				   if($this->session->userdata('akses') == 2){
+			       if($this->session->userdata('akses') == 2){
 					$this->load->view('admin/v_sidebar');
 				}
 				else if($this->session->userdata('akses') == 1){
@@ -164,9 +171,11 @@
 			       $this->load->view('admin/v_list_barang',$x);	
 		    
 		   }
-		function pemesananByTahun(){
+
+		   function pemesananByTahun(){
+			   
 			$tahun = intVal($this->input->post('thn'));
-			$x['stsp'] = 3;
+			$x['stsp'] = 2;
 			$x['bulan'] = 0;
 			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 			$x['kurir'] = $this->M_pemesanan->getAllkurir();
@@ -174,7 +183,7 @@
 			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 			 $x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksibyTahun2($tahun);
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerbyTahun2($tahun);
 			$this->load->view('admin/v_pemesanan_by_tahun', $x);
 		   }
 	}

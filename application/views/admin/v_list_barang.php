@@ -6,7 +6,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-              <li class="breadcrumb-item"><a href="<?php echo base_url()?>Admin/Pemesanan" class="default-color">Home</a></li>
+              <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/Pemesanan" class="default-color">Home</a></li>
               <li class="breadcrumb-item active">List Barang</li>
             </ol>
           </div>
@@ -31,7 +31,7 @@
                   </a>
                 </div>
                 <div class="col-md-6">
-                  <a href="<?php echo base_url()?>Admin/Pemesanan/Cetak_Invoice/<?php echo $p_id?>/<?php echo $lvl?>" target="blank" class="btn btn-primary btn-block ripple m-t-20">
+                  <a href="<?php echo base_url()?>admin/Pemesanan/Cetak_Invoice/<?php echo $p_id?>/<?php echo $lvl?>" target="blank" class="btn btn-primary btn-block ripple m-t-20">
                     <i class="fa fa-print pr-2"></i> Cetak Invoice
                   </a>
                 </div>
@@ -103,7 +103,7 @@
                         <h5 class="modal-title">Tambah Kurir</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <form action="<?php echo base_url()?>Admin/Pemesanan/tambahpesananNR" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url()?>admin/Pemesanan/tambahpesananNR" method="post" enctype="multipart/form-data">
                     <div class="modal-body p-20">
                             <div class="row">
                                 <div class="form-group col-md-12 mt-10" id="dynamic_field">
@@ -163,7 +163,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body p-20">
-                        <form action="<?php echo base_url()?>Admin/Pemesanan/hapuspesananlb" method="post">
+                        <form action="<?php echo base_url()?>admin/Pemesanan/hapuspesananlb" method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id?>"/>
