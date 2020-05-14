@@ -22,15 +22,15 @@
         <center><img style="width: 80px; margin-left: 120px; margin-right: auto;" src="<?php echo base_url() ?>assets/admin/images/dhijablogo.jpeg"></center>
         <p style="text-align: center;margin-bottom: 0;"><b>D'hijab Afna</b></p>
       <p style="text-align: center;margin-bottom: 0;"><b>Your Best Hijab Identity</b></p>
-      <p style="text-align: center;margin-bottom: 0;"><b>WA :</b> : 0856-281-6868</p>
+      <p style="text-align: center;margin-bottom: 0;"><b>WA </b>: 0856-281-6868</p>
       <hr>
           <div class="col-md-6" style="float: left;">
-            <p style="font-size: 12px;margin-bottom: 0;text-align: center;"><b>Tokopedia</b> : Afna Store</p>
-            <p style="font-size: 12px;margin-bottom: 0;text-align: center;"><b>Shopee</b> : d_hijab_afna</p>
+            <p style="font-size: 15px;margin-bottom: 0;text-align: center;"><b>Tokopedia</b> : Afna Store</p>
+            <p style="font-size: 15px;margin-bottom: 0;text-align: center;"><b>Shopee</b> : d_hijab_afna</p>
           </div>
           <div class="col-md-6" style="float: left;">
-            <p style="font-size: 12px;margin-bottom: 0;text-align: center;"><b>Bukalapak</b> : Hijab Afna</p>
-            <p style="font-size: 12px;margin-bottom: 0;text-align: center;"><b>Lazada</b> : d_hijab_afna</p>
+            <p style="font-size: 15px;margin-bottom: 0;text-align: center;"><b>Bukalapak</b> : Hijab Afna</p>
+            <p style="font-size: 15px;margin-bottom: 0;text-align: center;"><b>Lazada</b> : d_hijab_afna</p>
           <br>
           </div>
         </div>
