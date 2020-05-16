@@ -601,5 +601,11 @@
 					return $this->db->query("SELECT a.HPP, d.* FROM kategori_barang a, barang b, list_barang d WHERE d.pemesanan_id = $pemesanan_id AND d.barang_id = b.barang_id AND b.id_kategori_barang = a.id_kategori_barang");
 					
 				}
+
+				function getPemesananAllByTanggal($start, $end, $bulan){
+					$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE a.status_customer=1 AND month(a.pemesanan_tanggal) = $bulan AND year(pemesanan_tanggal) BETWEEN '$start' AND '$end' AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal ASC");
+					return $hasil;
+				}
+
 	}
 ?>

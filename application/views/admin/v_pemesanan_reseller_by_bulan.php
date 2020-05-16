@@ -100,6 +100,30 @@
 		  </div>
 <?php endif; ?>
 </div>
+
+<?php 
+if($bulan < 10){
+  $minn =  date('Y')."-0".$bulan."-01";
+  $maxx =  date("Y-m-t", strtotime($minn));
+}
+else if ($bulan >= 10){
+  $minn =  date('Y')."-".$bulan."-01";
+  $maxx =  date("Y-m-t", strtotime($minn));
+}
+?>
+
+<div class="container ml-4" >
+<h7 class="mb-0">Cari Berdasarkan Tanggal :  </h7>
+<br>
+<form id="formsearch" method="post">
+  <input class="sd" type="date" name="start"  class="form-control" id="s" min="<?= $minn ?>" max="<?= $maxx ?>">
+  <input class="ed" type="date" name="end"  class="form-control" id="e" min="<?= $minn ?>" max="<?= $maxx ?>">
+  <button type="submit" class="btn btn-secondary"><i class="fa fa-search" aria-hidden="true"></i></button>
+</form>
+</div>
+
+<br>  
+
    
           <!-- Modal -->
           <div class="modal fade" id="Conv-Pemesanan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -2055,7 +2079,7 @@
         let value = parseInt($('#changeYear'+num).html())
         $.ajax({
             method: "POST",
-            url: "http://localhost/dhijab/admin/PemesananResellerByBulan/pemesananByTahun?bulan=<?= $bulan?>",
+            url: "<?= base_url() ?>admin/PemesananResellerByBulan/pemesananByTahun?bulan=<?= $bulan?>",
             data: {
               thn: parseInt($('#changeYear'+num).html())
             },
@@ -2065,6 +2089,27 @@
 			});
     }
 </script>
+
+
+<script>
+	$('#formsearch').submit(function(e){
+		$.ajax({
+			method: "POST",
+			url: "<?= base_url() ?>admin/PemesananResellerByBulan/pemesananByTanggal",
+			data: {
+				startt: $('#s').val(),
+				endd : $('#e').val()
+			},
+			success: function (result) {
+				$('#parent').html(result)
+			}
+		});
+		e.preventDefault()
+	});
+
+</script>
+
+
 
 <script type="text/javascript">
   $("#excel").click(function(){

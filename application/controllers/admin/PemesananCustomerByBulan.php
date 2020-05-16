@@ -308,6 +308,24 @@ class PemesananCustomerByBulan extends CI_Controller
 		$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerbyBulan($bulan, $tahun);
 		$this->load->view('admin/v_pemesanan_by_tahun', $x);
 	   }
+
+	   function pemesananByTanggal(){
+		$start = $this->input->post('startt');
+		$end = $this->input->post('endd');
+		$x ['stsp'] = 0;
+		$x['bulan'] = 0;
+		$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+		$x['kurir'] = $this->M_pemesanan->getAllkurir();
+		$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+		$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+		 $x['produksi'] = $this->M_barang->getdataProduksi();
+		$x['reseller'] = $this->M_barang->getAllBarangR();
+		$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByTanggal($start, $end);
+		$this->load->view('admin/v_pemesanan_by_tahun', $x);
+		
+	   }
+
+
 }
 
 

@@ -103,7 +103,18 @@
 						<?php endif; ?>
 					</div>
 				
+					
+<div class="container ml-4" >
+<h7 class="mb-0">Cari Berdasarkan Tanggal :  </h7>
+<br>
+<form id="formsearch" method="post">
+  <input class="sd" type="date" name="start" id="s">
+  <input class="ed" type="date" name="end" id="e">
+  <button type="submit" class="btn btn-secondary"><i class="fa fa-search" aria-hidden="true"></i></button>
+</form>
+</div>
 
+<br>
 
 	<!-- Modal Pesanan Produksi-->
 	<div class="modal fade" tabindex="-1" role="dialog" id="produksi">
@@ -1641,7 +1652,7 @@
 		let value = parseInt($('#changeYear' + num).html())
 		$.ajax({
 			method: "POST",
-			url: "http://localhost/dhijab/admin/PemesananProduksi/pemesananByTahun",
+			url: "<?= base_url() ?>admin/PemesananProduksi/pemesananByTahun",
 			data: {
 				thn: parseInt($('#changeYear' + num).html())
 			},
@@ -1650,6 +1661,24 @@
 			}
 		});
 	}
+
+</script>
+
+<script>
+	$('#formsearch').submit(function(e){
+		$.ajax({
+			method: "POST",
+			url: "<?= base_url() ?>admin/PemesananProduksi/pemesananByTanggal",
+			data: {
+				startt: $('#s').val(),
+				endd : $('#e').val()
+			},
+			success: function (result) {
+				$('#parent').html(result)
+			}
+		});
+		e.preventDefault()
+	});
 
 </script>
 
