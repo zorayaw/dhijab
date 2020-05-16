@@ -137,6 +137,6 @@
                 <th colspan="15">
                   <center>Jumlah</center>
                 </th>
-                <th colspan="2"><?php echo rupiah($total) ?></th>
+                <th colspan="1"><?php echo rupiah($total) ?></th>
               </tr>
             </table>

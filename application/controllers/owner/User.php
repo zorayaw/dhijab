@@ -64,12 +64,12 @@
 
                         $this->m_login->saveUser($nama, $level, $nohp, $alamat, $username, $password, $foto);
             			echo $this->session->set_flashdata('msg','success');
-            			redirect('Owner/User');
+            			redirect('owner/User');
                           
                       
                   }else{
                       echo $this->session->set_flashdata('msg','warning');
-                      redirect('Owner/User');
+                      redirect('owner/User');
                   }
               }
     	}
@@ -113,18 +113,18 @@
 
                           $this->m_login->updateUser($id, $nama, $level, $nohp, $alamat, $username, $password, $foto);
 						  echo $this->session->set_flashdata('msg','success');
-						  redirect('Owner/User');
+						  redirect('owner/User');
                       
                   }else{
                       echo $this->session->set_flashdata('msg','warning');
-                      redirect('Owner/User');
+                      redirect('owner/User');
                   }
                   
               }else{
 
                 $this->m_login->updateUserNoFoto($id, $nama, $level, $nohp, $alamat, $username, $password);
         		echo $this->session->set_flashdata('msg','success');
-        		redirect('Owner/User');
+        		redirect('owner/User');
               }
     	}
 
@@ -136,7 +136,7 @@
 
 	      $this->m_login->hapusUser($id);
 	      echo $this->session->set_flashdata('msg','Hapus');
-	      redirect('Owner/User');
+	      redirect('owner/User');
     	}
 
 	}

@@ -7,7 +7,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-              <li class="breadcrumb-item"><a href="<?php echo base_url()?>Admin/Pemesanan" class="default-color">Home</a></li>
+              <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/Pemesanan" class="default-color">Home</a></li>
               <li class="breadcrumb-item active">Daftar Barang</li>
             </ol>
           </div>
@@ -113,7 +113,7 @@
                         <h5 class="modal-title">Pilih Bulan</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <form action="<?php echo base_url()?>Owner/Transaksi/Cari" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url()?>owner/Transaksi/Cari" method="post" enctype="multipart/form-data">
                     <div class="modal-body p-20">
                             <div class="row">
                                 <div class="col-md-6">
@@ -142,7 +142,7 @@
                         <h5 class="modal-title">Pilih tanggal</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <form action="<?= base_url()?>Owner/Transaksi/cetak_transaksiTanggal" method="post" enctype="multipart/form-data">
+                    <form action="<?= base_url()?>owner/Transaksi/cetak_transaksiTanggal" method="post" enctype="multipart/form-data">
                     <div class="modal-body p-20">
                             <div class="row">
                                <div class="col-md-6">

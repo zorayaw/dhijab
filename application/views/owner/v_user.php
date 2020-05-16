@@ -84,7 +84,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body p-20">
-                        <form action="<?php echo base_url().'Owner/User/save_user'?>" method="post" enctype="multipart/form-data">
+                        <form action="<?php echo base_url().'owner/User/save_user'?>" method="post" enctype="multipart/form-data">
                             <div class="row">
                                   <div class="col-md-12">
                                       <label class="control-label">Nama User*</label>
@@ -102,7 +102,7 @@
                                   </div>
                                   <div class="col-md-12">
                                       <label class="control-label">Nomor HP*</label>
-                                      <input class="form-control form-white" placeholder="Nomor HP" type="number" name="nohp" required/>
+                                      <input class="form-control form-white" placeholder="Nomor HP" type="number" min=1 name="nohp" required/>
                                   </div>
                                   <div class="col-md-12">
                                       <label class="control-label">Alamat</label>
@@ -149,7 +149,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                    <div class="modal-body p-20">
-                        <form action="<?php echo base_url().'Owner/User/update_user'?>" method="post" enctype="multipart/form-data">
+                        <form action="<?php echo base_url().'owner/User/update_user'?>" method="post" enctype="multipart/form-data">
                             <div class="row">
                                   <div class="col-md-12">
                                       <label class="control-label">Nama User*</label>
@@ -182,7 +182,7 @@
                                   </div>
                                   <div class="col-md-12">
                                       <label class="control-label">Nomor HP*</label>
-                                      <input class="form-control form-white" placeholder="Nomor HP" type="number" name="nohp" value="<?=  $hp?>"/>
+                                      <input class="form-control form-white" placeholder="Nomor HP" type="number" min=1 name="nohp" value="<?=  $hp?>"/>
                                   </div>
                                   <div class="col-md-12">
                                       <label class="control-label">Alamat</label>
@@ -230,7 +230,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body p-20">
-                        <form action="<?php echo base_url().'Owner/User/hapus_user'?>" method="post">
+                        <form action="<?php echo base_url().'owner/User/hapus_user'?>" method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <input type="hidden" name="id" value="<?= $id?>">

@@ -107,7 +107,7 @@ class Barang extends CI_Controller
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect("Owner/Barang/list_barang/$pemesanan_id/$level");
+		redirect("owner/Barang/list_barang/$pemesanan_id/$level");
 	}
 
 	function hapuspesananlb()
@@ -135,7 +135,7 @@ class Barang extends CI_Controller
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect("Owner/Barang/list_barang/$pemesanan_id/$level");
+		redirect("owner/Barang/list_barang/$pemesanan_id/$level");
 	}
 
 
@@ -165,7 +165,7 @@ class Barang extends CI_Controller
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect('Owner/Barang/pemesanan');
+		redirect('owner/Barang/pemesanan');
 	}
 
 	function savepemesananR()
@@ -193,7 +193,7 @@ class Barang extends CI_Controller
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect('Owner/Barang/pemesanan');
+		redirect('owner/Barang/pemesanan');
 	}
 
 	function edit_pesanan()
@@ -209,7 +209,7 @@ class Barang extends CI_Controller
 
 		$this->M_pemesanan->edit_pesanan1($pemesanan_id, $nama_pemesan, $tanggal, $no_hp, $alamat, $kurir, $asal_transaksi, $metode_pembayaran);
 		echo $this->session->set_flashdata('msg', 'update');
-		redirect('Owner/Barang/pemesanan');
+		redirect('owner/Barang/pemesanan');
 	}
 
 	function hapus_pesanan()
@@ -217,7 +217,7 @@ class Barang extends CI_Controller
 		$pemesanan_id = $this->input->post('pemesanan_id');
 		$this->M_pemesanan->hapus_pesanan($pemesanan_id);
 		echo $this->session->set_flashdata('msg', 'hapus');
-		redirect('Owner/Barang/pemesanan');
+		redirect('owner/Barang/pemesanan');
 	}
 
 	function list_barang($pemesanan_id)
@@ -287,7 +287,7 @@ class Barang extends CI_Controller
 		$harga = str_replace(".", "", $this->input->post('harga'));
 		$this->M_barang->update_harga($br_id, $harga);
 		echo $this->session->set_flashdata('msg', 'update');
-		redirect("Owner/Barang/Harga_Reseller/$barang_id");
+		redirect("owner/Barang/Harga_Reseller/$barang_id");
 	}
 
 	function tambah_kategori_barang()
@@ -305,7 +305,7 @@ class Barang extends CI_Controller
 
 		$this->M_barang->tambah_kategori($nama_kategori,$berat,$harga_ecer,$harga_grosir_3_11,$harga_grosir_12_29,$grosir_diatas_30,$reseller,$HPP);
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect('Owner/Barang/Reseller');
+		redirect('owner/Barang/Reseller');
 	}
 
 	function edit_kategori()
@@ -324,7 +324,7 @@ class Barang extends CI_Controller
 			$this->M_barang->update_kategori($barang_id,$nama_kategori,$berat,$harga_ecer,$harga_grosir_3_11,$harga_grosir_12_29,$grosir_diatas_30,$reseller,$HPP);
 			
 			echo $this->session->set_flashdata('msg', 'success_non_reseller');
-			redirect('Owner/Barang/Reseller');
+			redirect('owner/Barang/Reseller');
 		
 	}
 
@@ -333,7 +333,7 @@ class Barang extends CI_Controller
 		$id_kategori_barang = $this->input->post('barang_id');
 		$this->M_barang->hapus_kategori_barang($id_kategori_barang);
 		echo $this->session->set_flashdata('msg', 'delete');
-		redirect('Owner/Barang/Reseller');
+		redirect('owner/Barang/Reseller');
 	}
 
 	function tambah_barang()
@@ -349,7 +349,7 @@ class Barang extends CI_Controller
 				
 
 				echo $this->session->set_flashdata('msg', 'success_non_reseller');
-				redirect('Owner/Barang');
+				redirect('owner/Barang');
 			
 			
 		
@@ -358,12 +358,11 @@ class Barang extends CI_Controller
 	function edit_barang()
 	{
 		
-			$nama_barang = $this->input->post('nama_barang');
 			$stock = $this->input->post('stock');
 			$barang_id = $this->input->post('barang_id');
-			$this->M_barang->update_barang($barang_id,$nama_barang, $stock);
+			$this->M_barang->update_barang($barang_id, $stock);
 			echo $this->session->set_flashdata('msg', 'success_non_reseller');
-			redirect('Owner/Barang');
+			redirect('owner/Barang');
 		
 	}
 
@@ -375,7 +374,7 @@ class Barang extends CI_Controller
 		unlink($path);
 		$this->M_barang->hapus_barang_NR($barang_id);
 		echo $this->session->set_flashdata('msg', 'delete');
-		redirect('Owner/Barang');
+		redirect('owner/Barang');
 	}
 
 	function history($barang_id)
@@ -401,6 +400,6 @@ class Barang extends CI_Controller
 			$status_pemesanan = 2;
 			$this->M_pemesanan->status_pesanan($pemesanan_id, $status_pemesanan);
 		}
-		redirect('Owner/Barang/pemesanan');
+		redirect('owner/Barang/pemesanan');
 	}
 }

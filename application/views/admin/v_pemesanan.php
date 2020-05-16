@@ -231,12 +231,12 @@
 												<div class="row">
 													<div class="col-md-4">
 														<label class="control-label">Start date:</label>
-														<input class="form-control form-white" id="startdateexcel" type="date" name="start_date"
+														<input class="form-control form-white sd" type="date" name="start_date"
 															required />
 													</div>
 													<div class="col-md-4">
 														<label class="control-label">End date:</label>
-														<input class="form-control form-white" id="enddateexcel" type="date" name="end_date"
+														<input class="form-control form-white ed" type="date" name="end_date"
 															required />
 													</div>
 													<div class="col-md-4">
@@ -333,12 +333,12 @@
 												<div class="row">
 													<div class="col-md-4">
 														<label class="control-label">Start date:</label>
-														<input class="form-control form-white" id="startdateword" type="date" name="start_date"
+														<input class="form-control form-white sd"  type="date" name="start_date"
 															required />
 													</div>
 													<div class="col-md-4">
 														<label class="control-label">End date:</label>
-														<input class="form-control form-white" id="enddateword" type="date" name="end_date"
+														<input class="form-control form-white ed"  type="date" name="end_date"
 															required />
 													</div>
 													<div class="col-md-4">
@@ -436,11 +436,11 @@
 												<div class="row">
 													<div class="col-md-4">
 														<label class="control-label">Start date:</label>
-														<input class="form-control form-white" type="date" name="start_date" required />
+														<input class="form-control form-white sd" type="date" name="start_date" required />
 													</div>
 													<div class="col-md-4">
 														<label class="control-label">End date:</label>
-														<input class="form-control form-white" type="date" name="end_date" required />
+														<input class="form-control form-white ed" type="date" name="end_date" required />
 													</div>
 													<div class="col-md-4">
 														<button type="submit" class="btn btn-info btn-block ripple m-t-10">
@@ -473,19 +473,19 @@
 								</div>
 								<div class="modal-body">
 									<div class="col-md-12 mt-4">
-										<a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="excel"
+										<a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="excelT"
 											data-toggle="modal" data-target="#exportT">
 											<i class="fa fa-file-excel-o pr-2"></i>Convert Excel
 										</a>
 									</div>
 									<div class="col-md-12 mt-4">
-										<a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="pdf"
+										<a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="pdfT"
 											data-toggle="modal" data-target="#exportpdfT">
 											<i class="fa fa-file-pdf-o pr-2"></i>Convert PDF
 										</a>
 									</div>
 									<div class="col-md-12 mt-4 mb-4">
-										<a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="words"
+										<a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="wordsT"
 											data-toggle="modal" data-target="#wordT">
 											<i class="fa fa-file-word-o pr-2"></i>Convert Word
 										</a>
@@ -575,12 +575,12 @@
 												<div class="row">
 													<div class="col-md-4">
 														<label class="control-label">Start date:</label>
-														<input class="form-control form-white" id="startdateexcel" type="date" name="start_date"
+														<input class="form-control form-white sd" type="date" name="start_date"
 															required />
 													</div>
 													<div class="col-md-4">
 														<label class="control-label">End date:</label>
-														<input class="form-control form-white" id="enddateexcel" type="date" name="end_date"
+														<input class="form-control form-white ed" type="date" name="end_date"
 															required />
 													</div>
 													<div class="col-md-4">
@@ -677,12 +677,12 @@
 												<div class="row">
 													<div class="col-md-4">
 														<label class="control-label">Start date:</label>
-														<input class="form-control form-white" id="startdateword" type="date" name="start_date"
+														<input class="form-control form-white sd" id="startdateword" type="date" name="start_date"
 															required />
 													</div>
 													<div class="col-md-4">
 														<label class="control-label">End date:</label>
-														<input class="form-control form-white" id="enddateword" type="date" name="end_date"
+														<input class="form-control form-white ed" id="enddateword" type="date" name="end_date"
 															required />
 													</div>
 													<div class="col-md-4">
@@ -780,11 +780,11 @@
 												<div class="row">
 													<div class="col-md-4">
 														<label class="control-label">Start date:</label>
-														<input class="form-control form-white" type="date" name="start_date" required />
+														<input class="form-control form-white sd" type="date" name="start_date" required />
 													</div>
 													<div class="col-md-4">
 														<label class="control-label">End date:</label>
-														<input class="form-control form-white" type="date" name="end_date" required />
+														<input class="form-control form-white ed" type="date" name="end_date" required />
 													</div>
 													<div class="col-md-4">
 														<button type="submit" class="btn btn-info btn-block ripple m-t-10">
@@ -914,7 +914,7 @@
 										<td><?php echo $mp_nama ?></td>
 										<?php if($this->session->userdata('akses') == 2) : ?>
 										<td><a
-												href="<?php echo base_url() ?>Admin/Pemesanan/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>"
+												href="<?php echo base_url() ?>admin/Pemesanan/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>"
 												target="_blank" class="btn btn-primary">List Barang</a></td>
 										<?php else : ?>
 										<td><?php echo $nama_barang ?></td>
@@ -1005,7 +1005,7 @@
 						<h5 class="modal-title">Edit Data</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
-					<form action="<?php echo base_url() ?>Admin/Pemesanan/edit_pesanan" method="post"
+					<form action="<?php echo base_url() ?>admin/Pemesanan/edit_pesanan" method="post"
 						enctype="multipart/form-data">
 						<div class="modal-body p-20">
 							<div class="row">
@@ -1018,7 +1018,7 @@
 								</div>
 								<div class="col-md-12">
 									<label class="control-label">No HP</label>
-									<input class="form-control form-white" type="number" name="hp" value="<?php echo $hp ?>" required />
+									<input class="form-control form-white" type="number" min=1 name="hp" value="<?php echo $hp ?>" required />
 								</div>
 								<!--                                <div class="col-md-12">
                                                   <label class="control-label">Tanggal</label>
@@ -1120,7 +1120,7 @@
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body p-20">
-						<form action="<?php echo base_url() ?>Admin/Pemesanan/hapus_pesanan" method="post">
+						<form action="<?php echo base_url() ?>admin/Pemesanan/hapus_pesanan" method="post">
 							<div class="row">
 								<div class="col-md-12">
 									<input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
@@ -1157,7 +1157,7 @@
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body p-20">
-						<form action="<?php echo base_url() ?>Admin/Pemesanan/status" method="POST">
+						<form action="<?php echo base_url() ?>admin/Pemesanan/status" method="POST">
 							<div class="row">
 								<div class="col-md-12">
 									<input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
@@ -1184,7 +1184,7 @@
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body p-20">
-						<form action="<?php echo base_url() ?>Admin/Pemesanan/status" method="POST">
+						<form action="<?php echo base_url() ?>admin/Pemesanan/status" method="POST">
 							<div class="row">
 								<div class="col-md-12">
 									<input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
@@ -1211,7 +1211,7 @@
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body p-20">
-						<form action="<?php echo base_url() ?>Admin/Pemesanan/status" method="POST">
+						<form action="<?php echo base_url() ?>admin/Pemesanan/status" method="POST">
 							<div class="row">
 								<div class="col-md-12">
 									<input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
@@ -1249,7 +1249,7 @@
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-12">
-							<a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi?status=0&doc=1" target="_blank"
+							<a href="<?= base_url() ?>owner/Transaksi/cetak_transaksi?status=0&doc=1" target="_blank"
 								class="btn btn-success btn-block ripple m-t-10">
 								<i class="fa fa-print pr-2"></i>Cetak Pemesanan Hari Ini (<?= date('d')?> <?php 
                   switch (date('m')){
@@ -1273,7 +1273,7 @@
 						</div>
 
 						<div class="col-md-12">
-							<a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiByBulan?status=0&doc=1&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
+							<a href="<?= base_url() ?>owner/Transaksi/cetakTransaksiByBulan?status=0&doc=1&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
 								target="_blank" class="btn btn-success btn-block ripple m-t-10">
 								<i class="fa fa-print pr-2"></i>Cetak Pemesanan Bulan Ini (<?php 
                   switch (date('m')){
@@ -1295,7 +1295,7 @@
 							<br>
 						</div>
 
-						<form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiByTahun?status=0&doc=1" target="_blank"
+						<form action="<?php echo base_url() ?>owner/Transaksi/cetakTransaksiByTahun?status=0&doc=1" target="_blank"
 							method="post" enctype="multipart/form-data">
 							<div class="col-md-12">
 								<h6>Cetak Pemesanan Berdasarkan Tahun: </h6>
@@ -1341,17 +1341,17 @@
 					<div class="col-md-12">
 						<h6>Cetak Berdasarkan Tanggal:</h6>
 					</div>
-					<form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiBytanggal?status=0&doc=1" target="_blank"
+					<form action="<?php echo base_url() ?>owner/Transaksi/cetakTransaksiBytanggal?status=0&doc=1" target="_blank"
 						method="post" enctype="multipart/form-data">
 						<div class="modal-body p-20">
 							<div class="row">
 								<div class="col-md-4">
 									<label class="control-label">Dari tanggal:</label>
-									<input class="form-control form-white" type="date" id="startdatecetak" name="start_date" required />
+									<input class="form-control form-white sd" type="date" id="startdatecetak" name="start_date" required />
 								</div>
 								<div class="col-md-4">
 									<label class="control-label">Sampai tanggal:</label>
-									<input class="form-control form-white" type="date" id="enddatecetak" name="end_date" required />
+									<input class="form-control form-white ed" type="date" id="enddatecetak" name="end_date" required />
 								</div>
 								<div class="col-md-4">
 									<button type="submit" class="btn btn-success btn-block ripple m-t-10">
@@ -1381,7 +1381,7 @@
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-12">
-							<a href="<?= base_url() ?>Owner/Transaksi/cetak_transaksi?status=0&doc=2" target="_blank"
+							<a href="<?= base_url() ?>owner/Transaksi/cetak_transaksi?status=0&doc=2" target="_blank"
 								class="btn btn-success btn-block ripple m-t-10">
 								<i class="fa fa-print pr-2"></i>Cetak Transaksi Hari Ini (<?= date('d')?> <?php 
                   switch (date('m')){
@@ -1390,7 +1390,7 @@
                     case 3 : echo "Maret"; break;
                     case 4 : echo "April"; break;
                     case 5 : echo "Mei"; break;
-                    case 6 : echo "Juni"; break;
+                    case 6 : echo "Juni"; break; 
                     case 7 : echo "Juli"; break;
                     case 8 : echo "Agustus"; break;
                     case 9 : echo "September"; break;
@@ -1405,7 +1405,7 @@
 						</div>
 
 						<div class="col-md-12">
-							<a href="<?= base_url() ?>Owner/Transaksi/cetakTransaksiByBulan?status=0&doc=2&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
+							<a href="<?= base_url() ?>owner/Transaksi/cetakTransaksiByBulan?status=0&doc=2&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
 								target="_blank" class="btn btn-success btn-block ripple m-t-10">
 								<i class="fa fa-print pr-2"></i>Cetak Transaksi Bulan Ini (<?php 
                   switch (date('m')){
@@ -1427,7 +1427,7 @@
 							<br>
 						</div>
 
-						<form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiByTahun?status=0&doc=2" target="_blank"
+						<form action="<?php echo base_url() ?>owner/Transaksi/cetakTransaksiByTahun?status=0&doc=2" target="_blank"
 							method="post" enctype="multipart/form-data">
 							<div class="col-md-12">
 								<h6>Cetak Transaksi Berdasarkan Tahun: </h6>
@@ -1473,17 +1473,17 @@
 					<div class="col-md-12">
 						<h6>Cetak Berdasarkan Tanggal:</h6>
 					</div>
-					<form action="<?php echo base_url() ?>Owner/Transaksi/cetakTransaksiBytanggal?status=0&doc=2" target="_blank"
+					<form action="<?php echo base_url() ?>owner/Transaksi/cetakTransaksiBytanggal?status=0&doc=2" target="_blank"
 						method="post" enctype="multipart/form-data">
 						<div class="modal-body p-20">
 							<div class="row">
 								<div class="col-md-4">
 									<label class="control-label">Dari tanggal:</label>
-									<input class="form-control form-white" type="date" id="startdatecetak" name="start_date" required />
+									<input class="form-control form-white sd" type="date" id="startdatecetak" name="start_date" required />
 								</div>
 								<div class="col-md-4">
 									<label class="control-label">Sampai tanggal:</label>
-									<input class="form-control form-white" type="date" id="enddatecetak" name="end_date" required />
+									<input class="form-control form-white ed" type="date" id="enddatecetak" name="end_date" required />
 								</div>
 								<div class="col-md-4">
 									<button type="submit" class="btn btn-success btn-block ripple m-t-10">
@@ -1509,7 +1509,7 @@
 					<h5 class="modal-title">Tambah Pesanan Customer</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<form action="<?php echo base_url() ?>Admin/Pemesanan/savepemesananNR" method="post"
+				<form action="<?php echo base_url() ?>admin/Pemesanan/savepemesananNR" method="post"
 					enctype="multipart/form-data">
 					<div class="modal-body p-20">
 						<div class="row">
@@ -1524,7 +1524,7 @@
 							</div>
 							<div class="col-md-12">
 								<label class="control-label">No HP</label>
-								<input class="form-control form-white" type="number" name="hp" required />
+								<input class="form-control form-white" type="number" min=1 name="hp" required />
 							</div>
 							<div class="col-md-12">
 								<label class="control-label">Tanggal</label>
@@ -1647,7 +1647,7 @@
 					<h5 class="modal-title">Tambah Pesanan Reseller</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<form action="<?php echo base_url() ?>Admin/Pemesanan/savepemesananR" method="post"
+				<form action="<?php echo base_url() ?>admin/Pemesanan/savepemesananR" method="post"
 					enctype="multipart/form-data">
 					<div class="modal-body p-20">
 						<div class="row">
@@ -1666,7 +1666,7 @@
 							</div>
 							<div class="col-md-12">
 								<label class="control-label">No HP</label>
-								<input class="form-control form-white" type="number" name="hp" required />
+								<input class="form-control form-white" type="number" min=1 name="hp" required />
 							</div>
 							<div class="col-md-12">
 								<label class="control-label">Tanggal</label>
@@ -1788,7 +1788,7 @@
 					<h5 class="modal-title">Tambah Pesanan Produksi</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<form action="<?php echo base_url() ?>Admin/Pemesanan/savepemesananP" method="post"
+				<form action="<?php echo base_url() ?>admin/Pemesanan/savepemesananP" method="post"
 					enctype="multipart/form-data">
 					<div class="modal-body p-20">
 						<div class="row">
@@ -1802,7 +1802,7 @@
 
 							<div class="col-md-12">
 								<label class="control-label">No HP</label>
-								<input class="form-control form-white" type="number" name="hp" required />
+								<input class="form-control form-white" type="number" min=1 name="hp" required />
 							</div>
 
 							<div class="col-md-12">
@@ -1973,88 +1973,31 @@
 
 </script>
 
+
 <script type="text/javascript">
-	var e = document.getElementById("startdatecetak");
-	$('#startdatecetak').on('change', function () {
-		var date = new Date($('#startdatecetak').val());
+	var e = document.getElementsByClassName("sd");
+	$('.sd').on('change', function () {
+		var date = new Date($(this).val());
 		days = date.getDate();
 		months = date.getMonth() + 1;
 		years = date.getFullYear();
 	});
 
-	var e = document.getElementById("enddatecetak");
-	$('#enddatecetak').on('change', function () {
-		var date = new Date($('#enddatecetak').val());
+	var e = document.getElementsByClassName("ed");
+	$('.ed').on('change', function () {
+		var date = new Date($(this).val());
 		daye = date.getDate();
 		monthe = date.getMonth() + 1;
 		yeare = date.getFullYear();
 		if (years > yeare) {
 			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddatecetak').val('');
+			$(this).val('');
 		} else if ((years == yeare) && (months > monthe)) {
 			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddatecetak').val('');
+			$(this).val('');
 		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
 			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddatecetak').val('');
-		}
-	});
-
-</script>
-
-<script type="text/javascript">
-	var e = document.getElementById("startdateexcel");
-	$('#startdateexcel').on('change', function () {
-		var date = new Date($('#startdateexcel').val());
-		days = date.getDate();
-		months = date.getMonth() + 1;
-		years = date.getFullYear();
-	});
-
-	var e = document.getElementById("enddateexcel");
-	$('#enddateexcel').on('change', function () {
-		var date = new Date($('#enddateexcel').val());
-		daye = date.getDate();
-		monthe = date.getMonth() + 1;
-		yeare = date.getFullYear();
-		if (years > yeare) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddateexcel').val('');
-		} else if ((years == yeare) && (months > monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddateexcel').val('');
-		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddateexcel').val('');
-		}
-	});
-
-</script>
-
-<script type="text/javascript">
-	var e = document.getElementById("startdateword");
-	$('#startdateword').on('change', function () {
-		var date = new Date($('#startdateword').val());
-		days = date.getDate();
-		months = date.getMonth() + 1;
-		years = date.getFullYear();
-	});
-
-	var e = document.getElementById("enddateword");
-	$('#enddateword').on('change', function () {
-		var date = new Date($('#enddateword').val());
-		daye = date.getDate();
-		monthe = date.getMonth() + 1;
-		yeare = date.getFullYear();
-		if (years > yeare) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddateword').val('');
-		} else if ((years == yeare) && (months > monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddateword').val('');
-		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$('#enddateword').val('');
+			$(this).val('');
 		}
 	});
 
@@ -2063,24 +2006,46 @@
 
 <script type="text/javascript">
 	$("#excel").click(function () {
-		$("#pilihan").modal('hide');
+		$("#Conv-Pemesanan").modal('hide');
 	});
 
 </script>
 
 <script type="text/javascript">
 	$("#words").click(function () {
-		$("#pilihan").modal('hide');
+		$("#Conv-Pemesanan").modal('hide');
 	});
 
 </script>
 
 <script type="text/javascript">
 	$("#pdf").click(function () {
-		$("#pilihan").modal('hide');
+		$("#Conv-Pemesanan").modal('hide');
 	});
 
 </script>
+
+<script type="text/javascript">
+	$("#excelT").click(function () {
+		$("#Conv-Transaksi").modal('hide');
+	});
+
+</script>
+
+<script type="text/javascript">
+	$("#wordsT").click(function () {
+		$("#Conv-Transaksi").modal('hide');
+	});
+
+</script>
+
+<script type="text/javascript">
+	$("#pdfT").click(function () {
+		$("#Conv-Transaksi").modal('hide');
+	});
+
+</script>
+
 
 <script type="text/javascript">
 	function noresicus(checkbox) {
@@ -2140,77 +2105,73 @@
 </script>
 
 <script type="text/javascript">
-	$(document).ready(function () {
-		var i = 1;
-		$('#add').click(function () {
-				i++;
-				$('#dynamic_field').append('<div class="row" id="row' + i +
-					'"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($nonreseller->result_array() as $i) : $barang_id = $i['barang_id '];$barang_nama = $i['	barang_nama ']; ?> <option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1 ></div><div class="col-md-2 mt-30"><button type="button" id="' +
-					i + '" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
-				$('select').selectize({
-					sortField: 'text'
-				});
-			}
+  $(document).ready(function() {
+    var i = 1;
+    $('#add').click(function() {
+      i++;
+      $('#dynamic_field').append('<div class="row" id="row' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($nonreseller->result_array() as $i) : $barang_id = $i['barang_id']; $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1 ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>')
+      ;
+      $('select').selectize({
+          sortField: 'text'
+      });
+    }
 
 
-		);
-		$('select').selectize({
-			sortField: 'text'
-		});
+    );
+     $('select').selectize({
+          sortField: 'text'
+      });
 
-		$(document).on('click', '.btn_remove', function () {
-			var button_id = $(this).attr("id");
-			$('#row' + button_id + '').remove();
-		});
+    $(document).on('click', '.btn_remove', function() {
+      var button_id = $(this).attr("id");
+      $('#row' + button_id + '').remove();
+    });
 
-	});
-
+  });
 </script>
 
 <script type="text/javascript">
-	$(document).ready(function () {
+  $(document).ready(function() {
 
-		var i = 1;
-		$('#add1').click(function () {
-			i++;
-			$('#dynamic_field1').append('<div class="row" id="roww' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($reseller->result_array() as $i) : $barang_id = $i['barang_id '];$barang_nama = $i['barang_nama ']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?></select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1 ></div><div class="col-md-2 mt-30"><button type="button" id="' +
-				i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>');
-			$('select').selectize({
-				sortField: 'text'
-			});
-		});
+    var i = 1;
+    $('#add1').click(function() {
+      i++;
+      $('#dynamic_field1').append('<div class="row" id="roww' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($reseller->result_array() as $i) : $barang_id = $i['barang_id']; $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1 ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>')
+      ;
+       $('select').selectize({
+          sortField: 'text'
+      });
+    });
 
-		$(document).on('click', '.btn_remove1', function () {
-			var button_id = $(this).attr("id");
-			$('#roww' + button_id + '').remove();
-		});
+    $(document).on('click', '.btn_remove1', function() {
+      var button_id = $(this).attr("id");
+      $('#roww' + button_id + '').remove();
+    });
 
 
-	});
-
+  });
 </script>
 
 <script type="text/javascript">
-	$(document).ready(function () {
+  $(document).ready(function() {
 
-		var i = 1;
-		$('#add3').click(function () {
-			i++;
-			$('#dynamic_field2').append('<div class="row" id="rowww' + i +'"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($produksi->result_array() as $i) : $barang_id = $i['barang_id ']; $barang_nama = $i['barang_nama ']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1 ></div><div class="col-md-2 mt-30"><button type="button" id="' +
-				i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>');
-			$('select').selectize({
-				sortField: 'text'
-			});
-		});
+    var i = 1;
+    $('#add3').click(function() {
+      i++;
+      $('#dynamic_field2').append('<div class="row" id="rowww' + i + '"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach ($produksi->result_array() as $i) : $barang_id = $i['barang_id']; $barang_nama = $i['barang_nama']; ?><option value="<?php echo $barang_id ?>"><?php echo $barang_nama ?></option><?php endforeach; ?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" min = 1 ></div><div class="col-md-2 mt-30"><button type="button" id="' + i + '" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>')
+      ;
+       $('select').selectize({
+          sortField: 'text'
+      });
+    });
 
-		$(document).on('click', '.btn_remove1', function () {
-			var button_id = $(this).attr("id");
-			$('#rowww' + button_id + '').remove();
-		});
+    $(document).on('click', '.btn_remove1', function() {
+      var button_id = $(this).attr("id");
+      $('#rowww' + button_id + '').remove();
+    });
 
 
-	});
-
+  });
 </script>
 
 <?php if ($this->session->flashdata('msg') == 'update') : ?>

@@ -6,8 +6,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-              <li class="breadcrumb-item"><a href="<?php echo base_url()?>" class="default-color">Home</a></li>
-              <li class="breadcrumb-item active">Daftar Barang</li>
+              <li class="breadcrumb-item"><?=$title_view?></a></li>
             </ol>
           </div>
         </div>
@@ -161,7 +160,7 @@
   var i=1;
   $('#add').click(function(){
     i++;
-    $('#dynamic_field').append('<div class="row" id="row'+i+'"><div class="col-md-2"><label class="control-label" for="harga">Min.qty</label><input class="form-control" type="number" name="minqty[]" ></div><div class="col-md-2"><label class="control-label" for="harga">Max.qty</label><input class="form-control" type="number" name="maxqty[]"></div><div class="col-md-5"><label class="control-label" for="harga">Harga</label><input class="form-control money" type="text" name="harga[]"></div><div class="col-md-2 mt-30"><button type="button" id="'+i+'" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
+    $('#dynamic_field').append('<div class="row" id="row'+i+'"><div class="col-md-2"><label class="control-label" for="harga">Min.qty</label><input class="form-control" type="number" min=1 name="minqty[]" ></div><div class="col-md-2"><label class="control-label" for="harga">Max.qty</label><input class="form-control" type="number" min=1 name="maxqty[]"></div><div class="col-md-5"><label class="control-label" for="harga">Harga</label><input class="form-control money" type="text" name="harga[]"></div><div class="col-md-2 mt-30"><button type="button" id="'+i+'" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
   });
   
   $(document).on('click', '.btn_remove', function(){
@@ -171,7 +170,7 @@
   
   $('#submit').click(function(){    
     $.ajax({
-      url:"<?php echo base_url()?>Owner/Barang",
+      url:"<?php echo base_url()?>owner/Barang",
       method:"POST",
       data:$('#add_name').serialize(),
       success:function(data)

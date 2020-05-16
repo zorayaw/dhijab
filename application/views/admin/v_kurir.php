@@ -6,7 +6,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-              <li class="breadcrumb-item"><a href="<?php echo base_url()?>Admin/Pemesanan" class="default-color">Home</a></li>
+              <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/Pemesanan" class="default-color">Home</a></li>
               <li class="breadcrumb-item active">Kurir</li>
             </ol>
           </div>
@@ -65,7 +65,7 @@
                         <h5 class="modal-title">Tambah Kurir</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <form action="<?php echo base_url()?>Admin/Pemesanan/savekurir" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url()?>admin/Pemesanan/savekurir" method="post" enctype="multipart/form-data">
                     <div class="modal-body p-20">
                             <div class="row">
                                 <div class="col-md-12">
@@ -97,7 +97,7 @@
                         <h5 class="modal-title">Edit Data</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <form action="<?php echo base_url()?>Admin/Pemesanan/updatekurir" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url()?>admin/Pemesanan/updatekurir" method="post" enctype="multipart/form-data">
                     <div class="modal-body p-20">
                             <div class="row">
                                 <div class="col-md-12">
@@ -131,7 +131,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body p-20">
-                        <form action="<?php echo base_url()?>Admin/Pemesanan/hapuskurir" method="post">
+                        <form action="<?php echo base_url()?>admin/Pemesanan/hapuskurir" method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <input type="hidden" name="kurir_id" value="<?php echo $kurir_id?>"/> 
@@ -241,7 +241,7 @@
   var i=1;
   $('#add').click(function(){
     i++;
-    $('#dynamic_field').append('<div class="row" id="row'+i+'"><div class="col-md-2"><label class="control-label" for="harga">Min.qty</label><input class="form-control" type="number" name="minqty[]" ></div><div class="col-md-2"><label class="control-label" for="harga">Max.qty</label><input class="form-control" type="number" name="maxqty[]"></div><div class="col-md-5"><label class="control-label" for="harga">Harga</label><input class="form-control money" type="text" name="harga[]"></div><div class="col-md-2 mt-30"><button type="button" id="'+i+'" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
+    $('#dynamic_field').append('<div class="row" id="row'+i+'"><div class="col-md-2"><label class="control-label" for="harga">Min.qty</label><input class="form-control" type="number" min=1 name="minqty[]" ></div><div class="col-md-2"><label class="control-label" for="harga">Max.qty</label><input class="form-control" type="number" min=1 name="maxqty[]"></div><div class="col-md-5"><label class="control-label" for="harga">Harga</label><input class="form-control money" type="text" name="harga[]"></div><div class="col-md-2 mt-30"><button type="button" id="'+i+'" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
   });
   
   $(document).on('click', '.btn_remove', function(){
@@ -251,7 +251,7 @@
   
   $('#submit').click(function(){    
     $.ajax({
-      url:"<?php echo base_url()?>Owner/Barang",
+      url:"<?php echo base_url()?>owner/Barang",
       method:"POST",
       data:$('#add_name').serialize(),
       success:function(data)

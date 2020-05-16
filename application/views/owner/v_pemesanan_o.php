@@ -6,7 +6,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-              <li class="breadcrumb-item"><a href="<?php echo base_url()?>Admin/Pemesanan" class="default-color">Home</a></li>
+              <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/Pemesanan" class="default-color">Home</a></li>
               <li class="breadcrumb-item active">Daftar Barang</li>
             </ol>
           </div>
@@ -94,7 +94,7 @@
                       <td><?php echo $mp_nama?></td>
                       <td><?php echo rupiah($jumlah)?></td>
                       
-                      <td><a href="<?php echo base_url()?>Owner/Barang/list_barang/<?php echo $pemesanan_id?>/<?php echo $level?>" target="_blank" class="btn btn-primary">List Barang</a></td>
+                      <td><a href="<?php echo base_url()?>owner/Barang/list_barang/<?php echo $pemesanan_id?>/<?php echo $level?>" target="_blank" class="btn btn-primary">List Barang</a></td>
                       
                       <td> <?php
                             if ($status == 0) 
@@ -134,7 +134,7 @@
                         <h5 class="modal-title">Tambah Pesanan Non Reseller</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <form action="<?php echo base_url()?>Owner/Barang/savepemesananNR" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url()?>owner/Barang/savepemesananNR" method="post" enctype="multipart/form-data">
                     <div class="modal-body p-20">
                             <div class="row">
                                 <div class="col-md-12">
@@ -143,7 +143,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <label class="control-label">No HP</label>
-                                    <input class="form-control form-white" type="number" name="hp" required/>
+                                    <input class="form-control form-white" type="number" min=1 name="hp" required/>
                                 </div>
                                 <div class="col-md-12">
                                     <label class="control-label">Tanggal</label>
@@ -212,7 +212,7 @@
                                           </div>
                                           <div class="col-md-2">
                                             <label class="control-label" for="harga">Jumlah</label>
-                                            <input class="form-control" type="number" name="qty[]" required>
+                                            <input class="form-control" type="number" min=1 name="qty[]" required>
                                           </div>
                                         </div>
                                       </div>                                  
@@ -238,7 +238,7 @@
                         <h5 class="modal-title">Tambah Pesanan Reseller</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <form action="<?php echo base_url()?>Owner/Barang/savepemesananR" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url()?>owner/Barang/savepemesananR" method="post" enctype="multipart/form-data">
                     <div class="modal-body p-20">
                             <div class="row">
                                 <div class="col-md-12">
@@ -247,7 +247,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <label class="control-label">No HP</label>
-                                    <input class="form-control form-white" type="number" name="hp" required/>
+                                    <input class="form-control form-white" type="number" min=1 name="hp" required/>
                                 </div>
                                 <div class="col-md-12">
                                     <label class="control-label">Tanggal</label>
@@ -316,7 +316,7 @@
                                           </div>
                                           <div class="col-md-2">
                                             <label class="control-label" for="harga">Jumlah</label>
-                                            <input class="form-control" type="number" name="qty[]" required>
+                                            <input class="form-control" type="number" name="qty[]" min=1 required>
                                           </div>
                                         </div>
                                       </div>                                  
@@ -359,7 +359,7 @@
                         <h5 class="modal-title">Edit Data</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <form action="<?php echo base_url()?>Owner/Barang/edit_pesanan" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url()?>owner/Barang/edit_pesanan" method="post" enctype="multipart/form-data">
                     <div class="modal-body p-20">
                             <div class="row">
                                 <div class="col-md-12">
@@ -369,7 +369,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <label class="control-label">No HP</label>
-                                    <input class="form-control form-white" type="number" name="hp" value="<?php echo $hp?>" required/>
+                                    <input class="form-control form-white" type="number" min=1 name="hp" value="<?php echo $hp?>" required/>
                                 </div>
                                 <div class="col-md-12">
                                     <label class="control-label">Tanggal</label>
@@ -461,7 +461,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body p-20">
-                        <form action="<?php echo base_url()?>Owner/Barang/hapus_pesanan" method="post">
+                        <form action="<?php echo base_url()?>owner/Barang/hapus_pesanan" method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id?>"/> 
@@ -497,7 +497,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body p-20">
-                        <form action="<?php echo base_url()?>Owner/Barang/status" method="POST">
+                        <form action="<?php echo base_url()?>owner/Barang/status" method="POST">
                             <div class="row">
                                 <div class="col-md-12">
                                     <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id?>"/> 
@@ -524,7 +524,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body p-20">
-                        <form action="<?php echo base_url()?>Owner/Barang/status" method="POST">
+                        <form action="<?php echo base_url()?>owner/Barang/status" method="POST">
                             <div class="row">
                                 <div class="col-md-12">
                                     <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id?>"/> 
@@ -638,7 +638,7 @@
   var i=1;
   $('#add').click(function(){
     i++;
-    $('#dynamic_field').append('<div class="row" id="row'+i+'"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach($nonreseller->result_array() as $i) :$barang_id = $i['barang_id']; $barang_nama = $i['barang_nama'];?><option value="<?php echo $barang_id?>"><?php echo $barang_nama?></option><?php endforeach;?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="'+i+'" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
+    $('#dynamic_field').append('<div class="row" id="row'+i+'"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach($nonreseller->result_array() as $i) :$barang_id = $i['barang_id']; $barang_nama = $i['barang_nama'];?><option value="<?php echo $barang_id?>"><?php echo $barang_nama?></option><?php endforeach;?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" min=1 name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="'+i+'" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
   });
   
   $(document).on('click', '.btn_remove', function(){
@@ -654,7 +654,7 @@
   var i=1;
   $('#add1').click(function(){
     i++;
-    $('#dynamic_field1').append('<div class="row" id="roww'+i+'"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach($reseller->result_array() as $i) :$barang_id = $i['barang_id']; $barang_nama = $i['barang_nama'];?><option value="<?php echo $barang_id?>"><?php echo $barang_nama?></option><?php endforeach;?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="'+i+'" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>');
+    $('#dynamic_field1').append('<div class="row" id="roww'+i+'"><div class="col-md-8"><label class="control-label">Barang</label><select class="form-control" name="barang[]"><option selected value="">Pilih</option><?php foreach($reseller->result_array() as $i) :$barang_id = $i['barang_id']; $barang_nama = $i['barang_nama'];?><option value="<?php echo $barang_id?>"><?php echo $barang_nama?></option><?php endforeach;?> </select></div><div class="col-md-2"><label class="control-label" for="harga">Jumlah</label><input class="form-control" type="number" min=1 name="qty[]" ></div><div class="col-md-2 mt-30"><button type="button" id="'+i+'" class="btn btn-danger btn-block btn_remove1">Delete</button></div></div>');
   });
   
   $(document).on('click', '.btn_remove1', function(){

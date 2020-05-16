@@ -64,6 +64,14 @@
                   $diskon = $i['diskon'];
                   $uang = $i['uang_kembalian'];
                   $note = $i['note'];
+                  if($i['status_pemesanan'] == 0)
+                  $status = "Belum Bayar";
+                  elseif($i['status_pemesanan'] == 1)
+                  $status = "Dibayar";
+                  elseif($i['status_pemesanan'] == 2)
+                  $status = "Dikirim";
+                  elseif($i['status_pemesanan'] == 3)
+                  $status = "Selesai";
 
                   $q = $this->db->query("SELECT SUM(lb_qty * harga)AS total_keseluruhan from list_barang where pemesanan_id=' $pemesanan_id'");
                   $c = $q->row_array();
@@ -100,24 +108,7 @@
                     <td><?php echo $at_nama ?></td>
                     <td><?php echo $mp_nama ?></td>
                     <td><?php echo $nama_barang ?></td>
-                    
-                    <td>
-                      <?php
-                      if ($status == 0) { ?>
-                        <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#bayar<?= $pemesanan_id ?>" style="margin-right: 20px">Belum Bayar</button>
-                      <?php } elseif ($status == 1) {
-                      ?>
-                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#kirim<?= $pemesanan_id ?>" style="margin-right: 20px">Dibayar </button>
-                      <?php } elseif ($status == 2) {
-                      ?>
-                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#selesai<?= $pemesanan_id ?>" style="margin-right: 20px">Dikirim </button>
-                      <?php } else {
-                      ?>
-                        <button class="btn btn-success" style="margin-right: 20px">Selesai</button>
-                      <?php
-                      }
-                      ?>
-                    </td>
+                    <td><?php echo $status ?></td>
                     <td><?php echo $note ?></td>
                     <td><?php echo rupiah($jumlah) ?></td>
 

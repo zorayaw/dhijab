@@ -9,11 +9,11 @@ class Login extends CI_Controller
     function index()
     {
         if ($this->session->userdata('masuk') == true && $this->session->userdata('akses') == 1) {
-            redirect("Owner/Barang");
+            redirect("owner/Barang");
         } else if ($this->session->userdata('masuk') == true && $this->session->userdata('akses') == 2) {
-            redirect("Admin/Pemesanan");
+            redirect("admin/Pemesanan");
         } else if ($this->session->userdata('masuk') == true && $this->session->userdata('akses') == 3) {
-            redirect("Stok/Stock");
+            redirect("stok/Stock");
         } else {
             $this->load->view('v_login');
         }
@@ -38,7 +38,7 @@ class Login extends CI_Controller
                 $this->session->set_userdata('hp', $user_hp);
                 $this->session->set_userdata('id', $id);
                 $this->session->set_userdata('nama', $user_nama);
-                redirect('Owner/Barang');
+                redirect('owner/Barang');
             } else if ($xcadmin['user_level'] == '2') {
                 $this->session->set_userdata('akses', '2');
                 $id = $xcadmin['user_id'];
@@ -47,7 +47,7 @@ class Login extends CI_Controller
                 $this->session->set_userdata('hp', $user_hp);
                 $this->session->set_userdata('id', $id);
                 $this->session->set_userdata('nama', $user_nama);
-                redirect('Admin/Pemesanan');
+                redirect('admin/Pemesanan');
             } else {
                 $this->session->set_userdata('akses', '3');
                 $id = $xcadmin['user_id'];
@@ -56,7 +56,7 @@ class Login extends CI_Controller
                 $this->session->set_userdata('hp', $user_hp);
                 $this->session->set_userdata('id', $id);
                 $this->session->set_userdata('nama', $user_nama);
-                redirect('Stok/Stock');
+                redirect('stok/Stock');
             }
             //Front Office 
         } else {

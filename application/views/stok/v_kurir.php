@@ -6,9 +6,7 @@
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-					<li class="breadcrumb-item"><a href="<?php echo base_url()?>Stok/Pemesanan" class="default-color">Home</a>
-					</li>
-					<li class="breadcrumb-item active">Kurir</li>
+					<li class="breadcrumb-item">Kurir</li>
 				</ol>
 			</div>
 		</div>
@@ -46,7 +44,8 @@
                 }
 
                 $no = 0;
-                $total=0;
+				$total=0;
+				$namstat="";
                 foreach ($datapesanan->result_array() as $i) :
                   $no++;
 
@@ -67,9 +66,17 @@
                   $biaya_admin = $i['biaya_admin'];
                   $diskon = $i['diskon'];
                   $uang = $i['uang_kembalian'];
-                  $note = $i['note'];
-
-                  $q = $this->db->query("SELECT SUM(lb_qty * harga)AS total_keseluruhan from list_barang where pemesanan_id=' $pemesanan_id'");
+				  $note = $i['note'];
+				  if($status==0)
+					  $namstat = "Belum Lunas";
+					  elseif($status==1)
+					  $namstat = "Lunas";
+					  elseif($status==2)
+					  $namstat = "Dikirim";
+					  elseif($status==3)
+					  $namstat = "Selesai";
+					  
+					  $q = $this->db->query("SELECT SUM(lb_qty * harga)AS total_keseluruhan from list_barang where pemesanan_id=' $pemesanan_id'");
                   $c = $q->row_array();
                   $jumlah = $c['total_keseluruhan'] + $ongkir - ($diskon + $biaya_admin + $uang);
                   
@@ -88,6 +95,7 @@
 										<td><?php echo $hp ?></td>
 										<td><?php echo $kurir_nama ?></td>
 										<td><?php echo $resi ?></td>
+										<?php if($this->session->userdata('akses')==3) : ?>
 										<td>
 
 											<?php
@@ -109,6 +117,10 @@
                       }
                       ?>
 										</td>
+										<?php else : ?>
+											<td><?php echo $namstat ?></td>
+										<?php endif; ?>
+
 
 
 										<td><?php echo rupiah($ongkir) ?></td>
@@ -126,7 +138,7 @@
 				</div>
 			</div>
 		</div>
-
+		</div>
 
 
 			<!-- Modal Status -->
@@ -146,7 +158,7 @@
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						</div>
 						<div class="modal-body p-20">
-							<form action="<?php echo base_url() ?>Stok/Pemesanan/status" method="POST">
+							<form action="<?php echo base_url() ?>stok/Pemesanan/status" method="POST">
 								<div class="row">
 									<div class="col-md-12">
 										<input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
@@ -173,7 +185,7 @@
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						</div>
 						<div class="modal-body p-20">
-							<form action="<?php echo base_url() ?>Stok/Pemesanan/status" method="POST">
+							<form action="<?php echo base_url() ?>stok/Pemesanan/status" method="POST">
 								<div class="row">
 									<div class="col-md-12">
 										<input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
@@ -199,7 +211,7 @@
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						</div>
 						<div class="modal-body p-20">
-							<form action="<?php echo base_url() ?>Stok/Pemesanan/status" method="POST">
+							<form action="<?php echo base_url() ?>stok/Pemesanan/status" method="POST">
 								<div class="row">
 									<div class="col-md-12">
 										<input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
@@ -217,7 +229,7 @@
 					</div>
 				</div>
 			</div>
-    </div>
+ 
     <?php endforeach; ?>
 
 
@@ -365,7 +377,7 @@ function noresires(checkbox){
 		$('#add').click(function () {
 			i++;
 			$('#dynamic_field').append('<div class="row" id="row' + i +
-				'"><div class="col-md-2"><label class="control-label" for="harga">Min.qty</label><input class="form-control" type="number" name="minqty[]" ></div><div class="col-md-2"><label class="control-label" for="harga">Max.qty</label><input class="form-control" type="number" name="maxqty[]"></div><div class="col-md-5"><label class="control-label" for="harga">Harga</label><input class="form-control money" type="text" name="harga[]"></div><div class="col-md-2 mt-30"><button type="button" id="' +
+				'"><div class="col-md-2"><label class="control-label" for="harga">Min.qty</label><input class="form-control" type="number" min=1 name="minqty[]" ></div><div class="col-md-2"><label class="control-label" for="harga">Max.qty</label><input class="form-control" type="number" min=1 name="maxqty[]"></div><div class="col-md-5"><label class="control-label" for="harga">Harga</label><input class="form-control money" type="text" name="harga[]"></div><div class="col-md-2 mt-30"><button type="button" id="' +
 				i + '" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
 		});
 
@@ -376,7 +388,7 @@ function noresires(checkbox){
 
 		$('#submit').click(function () {
 			$.ajax({
-				url: "<?php echo base_url()?>Owner/Barang",
+				url: "<?php echo base_url()?>owner/Barang",
 				method: "POST",
 				data: $('#add_name').serialize(),
 				success: function (data) {

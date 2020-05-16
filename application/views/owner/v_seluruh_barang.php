@@ -2,12 +2,11 @@
     <div class="page-title">
       <div class="row">
           <div class="col-sm-6">
-              <h4 class="mb-0">Data Daftar Seluruh Barang Barang</h4>              
+              <h4 class="mb-0">Daftar Seluruh Barang</h4>              
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-              <li class="breadcrumb-item"><a href="<?php echo base_url()?>" class="default-color">Home</a></li>
-              <li class="breadcrumb-item active">Daftar Barang</li>
+              <li class="breadcrumb-item">Daftar Barang</a></li>
             </ol>
           </div>
         </div>
@@ -62,7 +61,7 @@
                       <td>
                           <a href="#" style="margin-right: 10px; margin-left: 20px;" data-toggle="modal" data-target="#editdata<?php echo $barang_id?>"><span class="ti-pencil"></span></a>
                           <a href="#" style="margin-right: 10px" data-toggle="modal" data-target="#hapusdata<?php echo $barang_id?>"><span class="ti-trash"></span></a>
-                          <a href="<?php echo base_url()?>Owner/Barang/History/<?php echo $barang_id?>" data-toggle="tooltip" data-placement="top" title="Lihat History Stock"><span class="ti-eye"></span></a>
+                          <a href="<?php echo base_url()?>owner/Barang/History/<?php echo $barang_id?>" data-toggle="tooltip" data-placement="top" title="Lihat History Stock"><span class="ti-eye"></span></a>
                       </td>
                     </tr>
                     <?php endif ?>
@@ -83,7 +82,7 @@
                         <h5 class="modal-title">Tambah Barang</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <form action="<?php echo base_url()?>Owner/Barang/tambah_barang" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url()?>owner/Barang/tambah_barang" method="post" enctype="multipart/form-data">
                     <div class="modal-body p-20">
                             <div class="row">
                                 <div class="col-md-12">
@@ -93,7 +92,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <label class="control-label">Stock </label>
-                                    <input class="form-control form-white" type="number" name="stock" required="" />
+                                    <input class="form-control form-white" type="number" min=1 name="stock" required="" />
                                 </div>
                                 <div class="col-md-12">
                   <label class="control-label">Kategori Barang</label>
@@ -144,17 +143,17 @@
                         <h5 class="modal-title">Edit Barang</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <form action="<?php echo base_url()?>Owner/Barang/edit_barang" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url()?>owner/Barang/edit_barang" method="post" enctype="multipart/form-data">
                     <div class="modal-body p-20">
                             <div class="row">
                                 <div class="col-md-12">
                                     <label class="control-label">Nama Barang</label>
-                                    <input type="" name="barang_id" value="<?php echo $barang_id?>">
-                                     <input class="form-control form-white" type="text" name="nama_barang" placeholder="<?php echo $barang_nama?>" />
+                                    <input type="hidden" name="barang_id" value="<?php echo $barang_id?>">
+                                     <input class="form-control form-white" type="text" name="nama_barang" value = "<?php echo $barang_nama?>" placeholder="<?php echo $barang_nama?>" disabled />
                                 </div>
                                 <div class="col-md-12">
                                     <label class="control-label">Stock  : <?= $barang_stok?> </label>
-                                    <input class="form-control form-white" type="number" name="stock" placeholder="<?= $barang_stok?> " />
+                                    <input class="form-control form-white" type="number" min=1 min = 1 name="stock" placeholder="Masukkan Jumlah Barang yang ingin ditambahkan" />
                                 </div>
                             </div>  
                     </div>
@@ -181,7 +180,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body p-20">
-                        <form action="<?php echo base_url()?>Owner/Barang/hapus_non_reseller" method="post">
+                        <form action="<?php echo base_url()?>owner/Barang/hapus_non_reseller" method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <input type="hidden" name="barang_id" value="<?php echo $barang_id?>"/> 
@@ -211,7 +210,7 @@
                         <h5 class="modal-title">Tambah Kategori Barang</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <form action="<?php echo base_url()?>Owner/Barang/tambah_kategori_barang" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url()?>owner/Barang/tambah_kategori_barang" method="post" enctype="multipart/form-data">
                     <div class="modal-body p-20">
                             <div class="row">
                                 
@@ -350,7 +349,7 @@
   var i=1;
   $('#add').click(function(){
     i++;
-    $('#dynamic_field').append('<div class="row" id="row'+i+'"><div class="col-md-2"><label class="control-label" for="harga">Min.qty</label><input class="form-control" type="number" name="minqty[]" ></div><div class="col-md-2"><label class="control-label" for="harga">Max.qty</label><input class="form-control" type="number" name="maxqty[]"></div><div class="col-md-5"><label class="control-label" for="harga">Harga</label><input class="form-control money" type="text" name="harga[]"></div><div class="col-md-2 mt-30"><button type="button" id="'+i+'" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
+    $('#dynamic_field').append('<div class="row" id="row'+i+'"><div class="col-md-2"><label class="control-label" for="harga">Min.qty</label><input class="form-control" type="number" min=1 name="minqty[]" ></div><div class="col-md-2"><label class="control-label" for="harga">Max.qty</label><input class="form-control" type="number" min=1 name="maxqty[]"></div><div class="col-md-5"><label class="control-label" for="harga">Harga</label><input class="form-control money" type="text" name="harga[]"></div><div class="col-md-2 mt-30"><button type="button" id="'+i+'" class="btn btn-danger btn-block btn_remove">Delete</button></div></div>');
   });
   
   $(document).on('click', '.btn_remove', function(){
@@ -360,7 +359,7 @@
   
   $('#submit').click(function(){    
     $.ajax({
-      url:"<?php echo base_url()?>Owner/Barang",
+      url:"<?php echo base_url()?>owner/Barang",
       method:"POST",
       data:$('#add_name').serialize(),
       success:function(data)

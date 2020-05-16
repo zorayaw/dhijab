@@ -95,7 +95,7 @@
 	  		}
 
 	  		echo $this->session->set_flashdata('msg','success');
-	       	redirect('Admin/PemesananCustomer');		  	
+	       	redirect('admin/PemesananCustomer');		  	
  	  	}
 
 	  	function status(){
@@ -117,7 +117,7 @@
              $this->M_pemesanan->insert_uang_masuk($pemesanan_id,$jumlah);
             $this->M_pemesanan->status_pesanan($pemesanan_id,$status_pemesanan);
             }
-             redirect('Admin/PemesananCustomer');	
+             redirect('admin/PemesananCustomer');	
         }
 
         function edit_pesanan(){
@@ -140,14 +140,14 @@
 	  		$this->M_pemesanan->edit_pesanan($pemesanan_id,$nama_pemesan,$no_hp,$alamat,$kurir,$resi,$username,$asal_transaksi,$metode_pembayaran);
 
 	  		echo $this->session->set_flashdata('msg','update');
-	       	redirect('Admin/PemesananCustomer');	
+	       	redirect('admin/PemesananCustomer');	
 	  	}
 
 	  	function hapus_pesanan(){
 	  		$pemesanan_id = $this->input->post('pemesanan_id');
 	  		$this->M_pemesanan->hapus_pesanan($pemesanan_id);
 	  		echo $this->session->set_flashdata('msg','hapus');
-	       	redirect('Admin/PemesananCustomer');	
+	       	redirect('admin/PemesananCustomer');	
 	  	}
 
 	  	function list_barang($pemesanan_id){

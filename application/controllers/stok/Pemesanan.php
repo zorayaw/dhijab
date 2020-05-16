@@ -71,7 +71,7 @@
 	   
 			   $this->M_pemesanan->edit_pesanan($pemesanan_id, $nama_pemesan, $no_hp, $alamat, $kurir, $resi, $asal_transaksi, $metode_pembayaran);
 			   echo $this->session->set_flashdata('msg', 'update');
-			   redirect('Stok/Pemesanan/kurir');
+			   redirect('stok/Pemesanan/kurir');
 		   }
 
 
@@ -93,7 +93,7 @@
 	  		$kurir_nama = $this->input->post('kurir_nama');
 	  		$this->M_pemesanan->save_kurir($kurir_nama);
 	  		echo $this->session->set_flashdata('msg','success');
-	       	redirect('Stok/Pemesanan/kurir');
+	       	redirect('stok/Pemesanan/kurir');
 	  	}
 
 	  	function updatekurir(){
@@ -101,14 +101,14 @@
 	  		$kurir_nama = $this->input->post('kurir_nama');
 	  		$this->M_pemesanan->update_kurir($id,$kurir_nama);
 	  		echo $this->session->set_flashdata('msg','update');
-	       	redirect('Stok/Pemesanan/kurir');
+	       	redirect('stok/Pemesanan/kurir');
 	  	}
 
 	  	function hapuskurir(){
 	  		$id = $this->input->post('kurir_id');
 	  		$this->M_pemesanan->hapus_kurir($id);
 	  		echo $this->session->set_flashdata('msg','delete');
-	       	redirect('Stok/Pemesanan/kurir');
+	       	redirect('stok/Pemesanan/kurir');
 	  	}
 
 		  function status(){
@@ -124,7 +124,7 @@
 				$status_eks = 3;
 				$this->M_pemesanan->status_eks($pemesanan_id, $status_eks);
 			} 
-            redirect('Stok/Pemesanan/Kurir');	
+            redirect('stok/Pemesanan/Kurir');	
         }
 
 }

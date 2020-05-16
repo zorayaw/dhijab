@@ -64,7 +64,7 @@ class PemesananResellerByBulan extends CI_Controller
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect('Admin/PemesananResellerByBulan/viewPemesananByBulan/'.$bulan);
+		redirect('admin/PemesananResellerByBulan/viewPemesananByBulan/'.$bulan);
 	}
 
 	function hapus_pesanan()
@@ -73,7 +73,7 @@ class PemesananResellerByBulan extends CI_Controller
 		$pemesanan_id = $this->input->post('pemesanan_id');
 		$this->M_pemesanan->hapus_pesanan($pemesanan_id);
 		echo $this->session->set_flashdata('msg', 'hapus');
-		redirect('Admin/PemesananResellerByBulan/viewPemesananByBulan/'.$bulan);
+		redirect('admin/PemesananResellerByBulan/viewPemesananByBulan/'.$bulan);
 	}
 
 	function savepemesananR()
@@ -117,7 +117,7 @@ class PemesananResellerByBulan extends CI_Controller
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect('Admin/PemesananResellerByBulan/viewPemesananByBulan/'.$bulan);
+		redirect('admin/PemesananResellerByBulan/viewPemesananByBulan/'.$bulan);
 	}
 	
 
@@ -155,7 +155,7 @@ class PemesananResellerByBulan extends CI_Controller
 		$jumlah = $a['total_keseluruhan'];
 		$this->M_pemesanan->insert_uang_masuk($pemesanan_id, $jumlah);
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect('Admin/PemesananResellerByBulan/viewPemesananByBulan/'.$bulan);
+		redirect('admin/PemesananResellerByBulan/viewPemesananByBulan/'.$bulan);
 	}
 	
 
@@ -181,7 +181,7 @@ class PemesananResellerByBulan extends CI_Controller
 		$this->M_pemesanan->edit_pesanan($pemesanan_id, $nama_pemesan, $no_hp, $alamat, $kurir,$username,$resi, $asal_transaksi, $metode_pembayaran);
 
 		echo $this->session->set_flashdata('msg', 'update');
-		redirect('Admin/PemesananResellerByBulan/viewPemesananByBulan/'.$bulan);
+		redirect('admin/PemesananResellerByBulan/viewPemesananByBulan/'.$bulan);
 	}
 
 	function list_barang($pemesanan_id)
@@ -250,7 +250,7 @@ class PemesananResellerByBulan extends CI_Controller
 			$this->M_pemesanan->insert_uang_masuk($pemesanan_id, $jumlah);
 			$this->M_pemesanan->status_pesanan($pemesanan_id, $status_pemesanan);
 		}
-		redirect('Admin/PemesananResellerByBulan/viewPemesananByBulan/'.$bulan);
+		redirect('admin/PemesananResellerByBulan/viewPemesananByBulan/'.$bulan);
 	}
 
 	function viewPemesananByBulan($bulan){
