@@ -21,7 +21,6 @@
     <div class="col-xl-12 mb-30">
       <div class="card card-statistics h-100">
         <div class="card-body">
-        <?php if($this->session->userdata('akses') == 2) : ?>
           <div class="col-xl-12 mb-10" style="display: flex">
             <!-- <div class="col-md-3">
               <a href="" data-toggle="modal" data-target="#tambah-pesanan-non-reseller" class="btn btn-primary btn-block ripple m-t-10">
@@ -51,7 +50,6 @@
               </a>
             </div>
           </div>
-        <?php endif; ?>
 
           <div class="table-responsive">
             <table id="datatable" class="table table-striped table-bordered p-0">

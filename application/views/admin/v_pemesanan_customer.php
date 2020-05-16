@@ -80,7 +80,6 @@
 							<?php endforeach; ?>
             </div>
 					</div>
-<?php if($this->session->userdata('akses') == 2) : ?>
           <div class="btn-group">
 						<button type="button" class="btn btn-success dropdown-toggle mb-4 ml-4 "  data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false"><i class="fa fa-print pr-2"></i> 
@@ -102,7 +101,6 @@
 								<a class="dropdown-item" href="" data-toggle="modal" data-target="#Conv-Transaksi">Data Keuangan</a>
               </div>
 		  </div>
-<?php endif; ?>
 </div>
 
 
