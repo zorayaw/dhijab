@@ -22,23 +22,7 @@ class PemesananAllByBulan extends CI_Controller
 
 	function index()
 	{
-			$y['title'] = "Pemesanan";
-			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-			$x['kurir'] = $this->M_pemesanan->getAllkurir();
-			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-			$x['produksi'] = $this->M_barang->getdataProduksi();
-			$x['reseller'] = $this->M_barang->getAllBarangR();
-			$x['datapesanan'] = $this->M_pemesanan->getPemesanan();
-			$this->load->view('v_header', $y);
-			if($this->session->userdata('akses') == 2){
-				$this->load->view('admin/v_sidebar');
-			}
-			else if($this->session->userdata('akses') == 1){
-				$this->load->view('owner/v_sidebar');
-			}
-			$this->load->view('admin/v_pemesanan', $x);
-		
+		$this->viewPemesananByBulan(date('m'));
 	}
 	
 	function savepemesananNR()
@@ -298,7 +282,7 @@ class PemesananAllByBulan extends CI_Controller
 			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 			 $x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananAllbyBulan($bulan, date('Y'));
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananByBulanSemuaTahun($bulan);
 			$this->load->view('v_header',$y);
 			if($this->session->userdata('akses') == 2){
 				$this->load->view('admin/v_sidebar');
@@ -320,6 +304,9 @@ class PemesananAllByBulan extends CI_Controller
 			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
+			if ($tahun == 0)
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananByBulanSemuaTahun($bulan);
+			else
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananAllbyBulan($bulan, $tahun);
 			$this->load->view('admin/v_pemesanan_by_tahun', $x);
 	   }

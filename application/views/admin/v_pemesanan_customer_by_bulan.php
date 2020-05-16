@@ -71,6 +71,7 @@
               $earlyyear = $curyear-10;
             ?>
 						<div class="dropdown-menu">
+            <a class="dropdown-item" onclick="cyear(<?= 0 ?>)" id="changeYear<?= 0 ?>">Seluruh Data</a>
 							<?php foreach(range($curyear, $earlyyear) as $r ) : ?>
 							<a class="dropdown-item" onclick="cyear(<?= $r ?>)" id="changeYear<?= $r ?>"><?= $r ?></a>
 							<?php endforeach; ?>
