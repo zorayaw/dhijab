@@ -189,7 +189,7 @@
 			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 			 $x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByTanggal($start, $end);
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByTanggal($start, $end);
 			$this->load->view('admin/v_pemesanan_by_tahun', $x);
 		   }
 
