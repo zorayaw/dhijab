@@ -20,28 +20,28 @@
 		<div class="col-xl-12 mb-30">
 			<div class="card card-statistics h-100">
 				<div class="card-body">
-					<div class="col-xl-12 mb-10" style="display: flex">
+					<div class="col-xl-12 mb-20" style="display: flex">
 						<div class="btn-group col-md-6">
-							<button type="button" class="btn btn-success dropdown-toggle m-t-20 "
+							<button type="button" class="btn btn-success dropdown-toggle m-t-20 col-md-12"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
 									class="fa fa-print pr-2"></i>
 								Cetak Dokumen
 							</button>
+							<center>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="<?php echo base_url() ?>stok/Pemesanan/cetakTransaksiBerjalan" >Data Pemesanan</a>
-								<a class="dropdown-item" href="<?php echo base_url() ?>stok/Pemesanan/cetakTransaksiTBerjalan" >Data Keuangan</a>
+								<a class="dropdown-item" style="width: 420px" href="<?php echo base_url() ?>stok/Pemesanan/cetakTransaksiBerjalan" ><center>Data Pemesanan</center></a>
+								<a class="dropdown-item" style="width: 420px" href="<?php echo base_url() ?>stok/Pemesanan/cetakTransaksiTBerjalan" ><center>Data Keuangan</center></a>
 							</div>
+							</center>
 						</div>
 						<div class="btn-group col-md-6">
-							<button type="button" class="btn btn-dark dropdown-toggle m-t-20" data-toggle="dropdown"
+							<button type="button" class="btn btn-dark dropdown-toggle m-t-20 col-md-12" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false"><i class="fa fa-save pr-2"></i>
 								Convert Dokumen
 							</button>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href=" " data-toggle="modal" data-target="#Conv-Pemesanan">Data
-									Pemesanan</a>
-								<a class="dropdown-item" href="" data-toggle="modal" data-target="#Conv-Transaksi">Data
-									Keuangan</a>
+								<a class="dropdown-item" href=" " style="width: 420px" data-toggle="modal" data-target="#Conv-Pemesanan"><center>Data Pemesanan</center></a>
+								<a class="dropdown-item" href="" style="width: 420px" data-toggle="modal" data-target="#Conv-Transaksi"><center>Data Keuangan</center></a>
 							</div>
 						</div>
 					</div>
