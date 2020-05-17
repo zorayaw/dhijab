@@ -92,6 +92,7 @@
 							<?php endforeach; ?>
             </div>
 					</div>
+					<?php if($this->session->userdata('akses') == 2) : ?>
           <div class="btn-group">
 						<button type="button" class="btn btn-success dropdown-toggle mb-4 ml-4 "  data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false"><i class="fa fa-print pr-2"></i> 
@@ -113,6 +114,21 @@
 								<a class="dropdown-item" href="" data-toggle="modal" data-target="#Conv-Transaksi">Data Keuangan</a>
               </div>
 		  </div>
+		  <?php else : ?>
+			<div class="col-md-2 ml-3">
+							<a href="" data-toggle="modal" data-target="#Cetak-Pesanan"
+								class="btn btn-success btn-block ripple m-t-10">
+								<i class="fa fa-print pr-2"></i>Cetak
+							</a>
+						</div>
+			<div class="col-md-2">
+				<a href="" data-toggle="modal" data-target="#Conv-Pemesanan"
+					class="btn btn-dark btn-block ripple m-t-10">
+					<i class="fa fa-save pr-2"></i>Convert
+				</a>
+			</div>
+			<?php endif?>
+
 </div>
 
 					<!-- Modal -->
@@ -159,7 +175,7 @@
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">Convert Data Pemesanan</h5>
+									<h5 class="modal-title" id="exampleModalLabel">Convert Data Pemesanan (Excel)</h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
@@ -261,7 +277,7 @@
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">Convert Data Pemesanan</h5>
+									<h5 class="modal-title" id="exampleModalLabel">Convert Data Pemesanan (Word)</h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
@@ -364,7 +380,7 @@
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">Convert Data Pemesanan</h5>
+									<h5 class="modal-title" id="exampleModalLabel">Convert Data Pemesanan (PDF)</h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
@@ -503,7 +519,7 @@
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">Convert Data Transaksi</h5>
+									<h5 class="modal-title" id="exampleModalLabel">Convert Data Transaksi (Excel)</h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
@@ -605,7 +621,7 @@
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">Convert Data Transaksi</h5>
+									<h5 class="modal-title" id="exampleModalLabel">Convert Data Transaksi (Word)</h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
@@ -708,7 +724,7 @@
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">Convert Data Transaksi</h5>
+									<h5 class="modal-title" id="exampleModalLabel">Convert Data Transaksi (PDF)</h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>

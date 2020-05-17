@@ -38,17 +38,27 @@
                 <i class="fa fa-plus pr-2"></i> Tambah Pemesanan Produksi
               </a>
             </div> -->
-            <div class="col-md-6">
-              <a href="<?= base_url() ?>owner/Transaksi/cetakTransaksiBerjalan" target="blank" class="btn btn-success btn-block ripple m-t-20">
-                <i class="fa fa-print pr-2"></i> Cetak
-              </a>
+            <div class="btn-group">
+						<button type="button" class="btn btn-success dropdown-toggle mb-4 ml-4 "  data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"><i class="fa fa-print pr-2"></i> 
+							Cetak Dokumen
+						</button> 
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="<?= base_url() ?>owner/Transaksi/cetakTransaksiBerjalan?doc=1" target = "_blank" >Data Pemesanan</a>
+							<a class="dropdown-item" href="<?= base_url() ?>owner/Transaksi/cetakTransaksiBerjalan?doc=2" target = "_blank"  >Data Keuangan</a>
             </div>
-               <!-- convert -->
-           <div class="col-md-6">
-              <a href="<?= base_url() ?>admin/Pemesanan/convertExcel" data-toggle="modal" data-target="#pilihan"  class="btn btn-dark btn-block ripple m-t-20">
-                <i class="fa fa-save pr-2"></i> Convert
-              </a>
-            </div>
+          </div>
+            
+          <div class="btn-group">
+            <button type="button" class="btn btn-dark dropdown-toggle mb-4 ml-4" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false"><i class="fa fa-save pr-2"></i> 
+								Convert Dokumen
+							</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="" data-toggle="modal" data-target="#Pilihan-P">Data Pemesanan</a>
+								<a class="dropdown-item" href="" data-toggle="modal" data-target="#Pilihan-T">Data Keuangan</a>
+              </div>
+      </div>
           </div>
 
           <div class="table-responsive">
@@ -217,7 +227,7 @@
   </div>
  
           <!-- Modal -->
-          <div class="modal fade" id="pilihan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="Pilihan-P" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -228,17 +238,54 @@
                 </div>
                 <div class="modal-body">
                     <div class="col-md-12 mt-4">
-                    <a href="<?= base_url() ?>admin/Pemesanan/convertExcelPBerjalan" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
+                    <a href="<?= base_url() ?>admin/Pemesanan/convertExcelPBerjalan?doc=1" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
                             <i class="fa fa-file-excel-o pr-2"></i>Convert Excel
                         </a>
                     </div>
                     <div class="col-md-12 mt-4">
-                    <a href="<?= base_url() ?>admin/Pemesanan/convertPDFPBerjalan" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
+                    <a href="<?= base_url() ?>admin/Pemesanan/convertPDFPBerjalan?doc=1" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
                             <i class="fa fa-file-pdf-o pr-2"></i>Convert PDF
                         </a>
                     </div>
                     <div class="col-md-12 mt-4 mb-4">
-                    <a href="<?= base_url() ?>admin/Pemesanan/convertWordPBerjalan" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
+                    <a href="<?= base_url() ?>admin/Pemesanan/convertWordPBerjalan?doc=1" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
+                            <i class="fa fa-file-word-o pr-2"></i>Convert Word
+                        </a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        
+<!-- end convert -->
+
+<!-- Modal -->
+<div class="modal fade" id="Pilihan-T" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Pilihan</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12 mt-4">
+                    <a href="<?= base_url() ?>admin/Pemesanan/convertExcelPBerjalan?doc=2" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
+                            <i class="fa fa-file-excel-o pr-2"></i>Convert Excel
+                        </a>
+                    </div>
+                    <div class="col-md-12 mt-4">
+                    <a href="<?= base_url() ?>admin/Pemesanan/convertPDFPBerjalan?doc=2" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
+                            <i class="fa fa-file-pdf-o pr-2"></i>Convert PDF
+                        </a>
+                    </div>
+                    <div class="col-md-12 mt-4 mb-4">
+                    <a href="<?= base_url() ?>admin/Pemesanan/convertWordPBerjalan?doc=2" target="_blank" class="btn btn-warning btn-block ripple m-t-10">
                             <i class="fa fa-file-word-o pr-2"></i>Convert Word
                         </a>
                     </div>

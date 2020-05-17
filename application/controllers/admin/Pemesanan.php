@@ -118,7 +118,8 @@ class Pemesanan extends CI_Controller
 	}
 
 	function convertPDFPBerjalan(){
-		$y['title'] = "Pemesanan";
+		$doc = $this->input->get('doc');
+		$y['title'] = "Convert";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -129,7 +130,11 @@ class Pemesanan extends CI_Controller
 
 				$this->pdf->setPaper('legal', 'landscape');
 				$this->pdf->filename = "laporan_pdf.pdf";
+				if($doc == 2)
+				$this->pdf->load_view('admin/laporan_pdf', $x);
+				else
 				$this->pdf->load_view('admin/laporanP_pdf', $x);
+
 	}
 
 	function convertPDFPerhari(){
@@ -411,7 +416,8 @@ class Pemesanan extends CI_Controller
 	}
 
 	function convertWordPBerjalan(){
-		$y['title'] = "Pemesanan";
+		$doc = $this->input->get('doc');
+		$y['title'] = "Convert";
 		$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 		$x['kurir'] = $this->M_pemesanan->getAllkurir();
 		$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -419,7 +425,11 @@ class Pemesanan extends CI_Controller
 		$x['produksi'] = $this->M_barang->getdataProduksi();
 		$x['reseller'] = $this->M_barang->getAllBarangR();
 		$x['datapesanan'] = $this->M_pemesanan->getPemesananKonfirmasi();
+		if ($doc==2)
 		$this->load->view('admin/laporan_word', $x);
+		else
+		$this->load->view('admin/laporanP_word', $x);
+
 	}
 
 	function convertWordPerhari(){
@@ -694,7 +704,8 @@ class Pemesanan extends CI_Controller
 	}
 
 	function convertExcelPBerjalan(){
-				$y['title'] = "Pemesanan";
+		$doc = $this->input->get('doc');
+				$y['title'] = "Convert";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -702,7 +713,11 @@ class Pemesanan extends CI_Controller
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananKonfirmasi();
+				if($doc==2)
 				$this->load->view('admin/laporan_excel', $x);
+				else
+				$this->load->view('admin/laporanP_excel', $x);
+
 			}
 
 	function convertExcelPerhari(){
