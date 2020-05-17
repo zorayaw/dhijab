@@ -87,17 +87,33 @@ class Barang extends CI_Controller
 	function historyPemesananByTahun(){
 		$tahun = intVal($this->input->post('thn'));
 		$statuss = $this->input->get('stts');
-		if($statuss == 0){
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananInputByTahun($tahun);
+		if($tahun == 0){
+			if($statuss == 0){
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananInput();
+			}
+			else if($statuss == 1){
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerInput();
+			}
+			else if($statuss == 2){
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerInput();
+			}
+			else if($statuss == 3){
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiInput();
+			}
 		}
-		else if($statuss == 1){
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerInputByTahun($tahun);
-		}
-		else if($statuss == 2){
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerInputByTahun($tahun);
-		}
-		else if($statuss == 3){
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiInputByTahun($tahun);
+		else {
+			if($statuss == 0){
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananInputByTahun($tahun);
+			}
+			else if($statuss == 1){
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerInputByTahun($tahun);
+			}
+			else if($statuss == 2){
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerInputByTahun($tahun);
+			}
+			else if($statuss == 3){
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiInputByTahun($tahun);
+			}
 		}
 		$this->load->view('owner/v_history_input_data_bytanggal', $x);	
 	}
