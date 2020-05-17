@@ -114,6 +114,36 @@
 			
 		   }
 
+		function pemesananByTanggal(){
+			$statusc=$this->input->get('status');
+			$start = $this->input->post('startt');
+			$end = $this->input->post('endd');
+		  $x ['stsp'] = 0;
+		  $x['bulan'] = 0;
+		  $x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+		  $x['kurir'] = $this->M_pemesanan->getAllkurir();
+		  $x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+		  $x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+		   $x['produksi'] = $this->M_barang->getdataProduksi();
+		  $x['reseller'] = $this->M_barang->getAllBarangR();
+		  if($statusc==0){
+			  $x['datapesanan'] = $this->M_pemesanan->getPemesananByTanggal($start, $end);
+		  }
+		  else if($statusc==1){
+			  $x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByTanggal($start, $end);
+		  }
+		  else if($statusc==2){
+			  $x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByTanggal($start, $end);
+		  }
+		  else if($statusc==3){
+			  $x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByTanggal($start, $end);
+		  }
+		  $this->load->view('owner/lapkeu/v_lapKeu_by_tahun', $x);
+		  
+		 }
+
+
+
 
 	  		}
 	

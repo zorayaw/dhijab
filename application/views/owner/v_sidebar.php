@@ -219,6 +219,9 @@
       </a>
       <ul id="historyinputdata" class="collapse" data-parent="#sidebarnav">
           <li>
+            <a href="<?php echo base_url()?>owner/Barang/historyPemesanan"><i class="ti-calendar"></i><span class="right-nav-text">Semua Input Data </span> </a>
+          </li>
+          <li>
             <a href="<?php echo base_url()?>owner/Barang/historyPemesananCustomer"><i class="ti-calendar"></i><span class="right-nav-text">Input Data Customer </span> </a>
           </li>
           <li>

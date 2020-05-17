@@ -51,6 +51,20 @@ class Barang extends CI_Controller
 		}
 	}
 
+	function historyPemesanan()
+	{
+		if ($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') == true) {
+			$y['title'] = "History Input Data ";
+			$x['title_view'] = "History Input Data";
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananInput();
+			$this->load->view('v_header', $y);
+			$this->load->view('owner/v_sidebar');
+			$this->load->view('owner/v_history_input_data',  $x);
+		} else {
+			redirect('Login');
+		}
+	}
+
 	function historyPemesananCustomer()
 	{
 		if ($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') == true) {
