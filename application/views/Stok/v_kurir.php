@@ -6,39 +6,64 @@
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-					<li class="breadcrumb-item"><a href="<?php echo base_url()?>Stok/Pemesanan" class="default-color">Home</a>
+					<li class="breadcrumb-item"><a href="<?php echo base_url()?>Stok/Pemesanan"
+							class="default-color">Home</a>
 					</li>
 					<li class="breadcrumb-item active">Kurir</li>
 				</ol>
 			</div>
 		</div>
-  </div>
+	</div>
 
 	<div class="row">
 		<div class="col-xl-12 mb-30">
 			<div class="card card-statistics h-100">
 				<div class="card-body">
 					<div class="col-xl-12 mb-10" style="display: flex">
+						<div class="btn-group">
+							<button type="button" class="btn btn-success dropdown-toggle mb-4 ml-4 "
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+									class="fa fa-print pr-2"></i>
+								Cetak Dokumen
+							</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="<?php echo base_url() ?>stok/Pemesanan/cetakTransaksiBerjalan" >Data Pemesanan</a>
+								<a class="dropdown-item" href="<?php echo base_url() ?>stok/Pemesanan/cetakTransaksiTBerjalan" >Data Keuangan</a>
+							</div>
+						</div>
 
-						<div class="table-responsive">
-							<table id="datatable" class="table table-striped table-bordered p-0">
-								<thead>
-									<tr>
-                    <th width="5">No</th>
-                    <th>No order</th>
-										<th>Nama Pemesan</th>
-										<th width="10">Tanggal Pemesanan</th>
-										<th>No HP</th>
-										<th>Ekspedisi</th>
-										<th>Nomor Resi</th>
-										<th>Status Ekspedisi</th>
-										<th>Ongkos kirim</th>
-										<th>Total Harga</th>
-										
-									</tr>
-								</thead>
-								<tbody>
-									<?php
+						<div class="btn-group">
+							<button type="button" class="btn btn-dark dropdown-toggle mb-4 ml-4" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false"><i class="fa fa-save pr-2"></i>
+								Convert Dokumen
+							</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href=" " data-toggle="modal" data-target="#Conv-Pemesanan">Data
+									Pemesanan</a>
+								<a class="dropdown-item" href="" data-toggle="modal" data-target="#Conv-Transaksi">Data
+									Keuangan</a>
+							</div>
+						</div>
+					</div>
+					<div class="table-responsive">
+						<table id="datatable" class="table table-striped table-bordered p-0">
+							<thead>
+								<tr>
+									<th width="5">No</th>
+									<th>No order</th>
+									<th>Nama Pemesan</th>
+									<th width="10">Tanggal Pemesanan</th>
+									<th>No HP</th>
+									<th>Ekspedisi</th>
+									<th>Nomor Resi</th>
+									<th>Status Ekspedisi</th>
+									<th>Ongkos kirim</th>
+									<th>Total Harga</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<?php
                 function rupiah($angka)
                 {
                   $hasil_rupiah = "Rp " . number_format($angka, 0, ',', '.');
@@ -75,62 +100,126 @@
                   
                   
                   ?>
-									<tr>
-										<td>
-											<center><?php echo $no ?></center>
-                    </td>
-                    </td>
-                    <td>
-											<center><?php echo $pemesanan_id ?></center>
-                    </td>
-										<td><?php echo $pemesanan_nama ?></td>
-										<td><?php echo $tanggal ?></td>
-										<td><?php echo $hp ?></td>
-										<td><?php echo $kurir_nama ?></td>
-										<td><?php echo $resi ?></td>
-										<td>
+								<tr>
+									<td>
+										<center><?php echo $no ?></center>
+									</td>
+									</td>
+									<td>
+										<center><?php echo $pemesanan_id ?></center>
+									</td>
+									<td><?php echo $pemesanan_nama ?></td>
+									<td><?php echo $tanggal ?></td>
+									<td><?php echo $hp ?></td>
+									<td><?php echo $kurir_nama ?></td>
+									<td><?php echo $resi ?></td>
+									<td>
 
-											<?php
+										<?php
                       if ($status == 0) { ?>
-											<button type="submit" class="btn btn-warning" data-toggle="modal"
-												data-target="#lunas<?= $pemesanan_id ?>" style="margin-right: 20px">Belum Lunas</button>
-											<?php } elseif ($status == 1) {
+										<button type="submit" class="btn btn-warning" data-toggle="modal"
+											data-target="#lunas<?= $pemesanan_id ?>" style="margin-right: 20px">Belum
+											Lunas</button>
+										<?php } elseif ($status == 1) {
                       ?>
-											<button type="submit" class="btn btn-primary" data-toggle="modal"
-												data-target="#kirim<?= $pemesanan_id ?>" style="margin-right: 20px">Lunas </button>
-											<?php } elseif ($status == 2) {
+										<button type="submit" class="btn btn-primary" data-toggle="modal"
+											data-target="#kirim<?= $pemesanan_id ?>" style="margin-right: 20px">Lunas
+										</button>
+										<?php } elseif ($status == 2) {
                       ?>
-											<button type="submit" class="btn btn-primary" data-toggle="modal"
-												data-target="#selesai<?= $pemesanan_id ?>" style="margin-right: 20px">Dikirim </button>
-											<?php } else {
+										<button type="submit" class="btn btn-primary" data-toggle="modal"
+											data-target="#selesai<?= $pemesanan_id ?>"
+											style="margin-right: 20px">Dikirim </button>
+										<?php } else {
                       ?>
-											<button class="btn btn-success" style="margin-right: 20px">Selesai</button>
-											<?php
+										<button class="btn btn-success" style="margin-right: 20px">Selesai</button>
+										<?php
                       }
                       ?>
-										</td>
+									</td>
 
 
-										<td><?php echo rupiah($ongkir) ?></td>
-										<td><?php echo rupiah($jumlah) ?></td>
-										<?php 
+									<td><?php echo rupiah($ongkir) ?></td>
+									<td><?php echo rupiah($jumlah) ?></td>
+									<?php 
                     $total=$total+$jumlah;
                     ?>
-									</tr>
-									<?php endforeach; ?>
+								</tr>
+								<?php endforeach; ?>
 
-								</tbody>
-							</table>
-						</div>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 
+	<!-- convert  -->
+	<div class="modal fade" id="Conv-Pemesanan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header" style="margin-right: 5px">
+					<h5 class="modal-title" id="exampleModalLabel">Pilihan</h5>
+				</div>
+				<div class="modal-body">
+					<div class="col-md-12 mt-4">
+						<a href="<?php echo base_url() ?>stok/Pemesanan/convertExcelPBerjalan"  class="btn btn-warning btn-block ripple m-t-10" id="excel">
+							<i class="fa fa-file-excel-o pr-2"></i>Convert Excel
+						</a>
+					</div>
+					<div class="col-md-12 mt-4">
+						<a href="<?php echo base_url() ?>stok/Pemesanan/convertPDFPBerjalan"  class="btn btn-warning btn-block ripple m-t-10" id="pdf">
+							<i class="fa fa-file-pdf-o pr-2"></i>Convert PDF
+						</a>
+					</div>
+					<div class="col-md-12 mt-4 mb-4">
+						<a href="<?php echo base_url() ?>stok/Pemesanan/convertWordPBerjalan"  class="btn btn-warning btn-block ripple m-t-10" id="words">
+							<i class="fa fa-file-word-o pr-2"></i>Convert Word
+						</a>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
+	<div class="modal fade" id="Conv-Transaksi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header" style="margin-right: 5px">
+					<h5 class="modal-title" id="exampleModalLabel">Pilihan</h5>
+				</div>
+				<div class="modal-body">
+					<div class="col-md-12 mt-4">
+						<a href="<?php echo base_url() ?>stok/Pemesanan/convertExcelBerjalan" class="btn btn-warning btn-block ripple m-t-10" id="excel" >
+							<i class="fa fa-file-excel-o pr-2"></i>Convert Excel
+						</a>
+					</div>
+					<div class="col-md-12 mt-4">
+						<a href="<?php echo base_url() ?>stok/Pemesanan/convertPDFBerjalan" class="btn btn-warning btn-block ripple m-t-10" id="pdf">
+							<i class="fa fa-file-pdf-o pr-2"></i>Convert PDF
+						</a>
+					</div>
+					<div class="col-md-12 mt-4 mb-4">
+						<a href="<?php echo base_url() ?>stok/Pemesanan/convertWordBerjalan"  class="btn btn-warning btn-block ripple m-t-10" id="words">
+							<i class="fa fa-file-word-o pr-2"></i>Convert Word
+						</a>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
-			<!-- Modal Status -->
-			<?php
+	<!-- Modal Status -->
+	<?php
     $no = 0;
     foreach ($datapesanan->result_array() as $i) :
     $no++;
@@ -138,115 +227,115 @@
     $status_eks = $i['status_eks'];
     ?>
 
-			<div class="modal" tabindex="-1" role="dialog" id="lunas<?= $pemesanan_id ?>">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Ganti Status</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						</div>
-						<div class="modal-body p-20">
-							<form action="<?php echo base_url() ?>Stok/Pemesanan/status" method="POST">
-								<div class="row">
-									<div class="col-md-12">
-										<input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
-										<input type="hidden" name="status_eks" value="<?php echo $status_eks ?>" />
-										<p>Apakah kamu yakin ingin mengganti status data ini?</i></b></p>
-									</div>
-								</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-danger ripple" data-dismiss="modal">Tidak</button>
-							<button type="submit" class="btn btn-success ripple save-category">Ya</button>
-						</div>
-						</form>
-					</div>
+	<div class="modal" tabindex="-1" role="dialog" id="lunas<?= $pemesanan_id ?>">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Ganti Status</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-			</div>
-
-
-			<div class="modal" tabindex="-1" role="dialog" id="kirim<?= $pemesanan_id ?>">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Ganti Status</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<div class="modal-body p-20">
+					<form action="<?php echo base_url() ?>Stok/Pemesanan/status" method="POST">
+						<div class="row">
+							<div class="col-md-12">
+								<input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
+								<input type="hidden" name="status_eks" value="<?php echo $status_eks ?>" />
+								<p>Apakah kamu yakin ingin mengganti status data ini?</i></b></p>
+							</div>
 						</div>
-						<div class="modal-body p-20">
-							<form action="<?php echo base_url() ?>Stok/Pemesanan/status" method="POST">
-								<div class="row">
-									<div class="col-md-12">
-										<input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
-										<input type="hidden" name="status_eks" value="<?php echo $status_eks ?>" />
-										<p>Apakah kamu yakin ingin mengganti status data ini?</i></b></p>
-									</div>
-								</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-danger ripple" data-dismiss="modal">Tidak</button>
-							<button type="submit" class="btn btn-success ripple save-category">Ya</button>
-						</div>
-						</form>
-					</div>
 				</div>
-			</div>
-
-			<div class="modal" tabindex="-1" role="dialog" id="selesai<?= $pemesanan_id ?>">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Ganti Status</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						</div>
-						<div class="modal-body p-20">
-							<form action="<?php echo base_url() ?>Stok/Pemesanan/status" method="POST">
-								<div class="row">
-									<div class="col-md-12">
-										<input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
-										<input type="hidden" name="jumlah" value="<?php echo $jumlah ?>" />
-										<input type="hidden" name="status_eks" value="2" />
-										<p>Apakah kamu yakin ingin mengganti status data ini?</i></b></p>
-									</div>
-								</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-danger ripple" data-dismiss="modal">Tidak</button>
-							<button type="submit" class="btn btn-success ripple save-category">Ya</button>
-						</div>
-						</form>
-					</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger ripple" data-dismiss="modal">Tidak</button>
+					<button type="submit" class="btn btn-success ripple save-category">Ya</button>
 				</div>
+				</form>
 			</div>
-    </div>
-    <?php endforeach; ?>
+		</div>
+	</div>
+
+
+	<div class="modal" tabindex="-1" role="dialog" id="kirim<?= $pemesanan_id ?>">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Ganti Status</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body p-20">
+					<form action="<?php echo base_url() ?>Stok/Pemesanan/status" method="POST">
+						<div class="row">
+							<div class="col-md-12">
+								<input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
+								<input type="hidden" name="status_eks" value="<?php echo $status_eks ?>" />
+								<p>Apakah kamu yakin ingin mengganti status data ini?</i></b></p>
+							</div>
+						</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger ripple" data-dismiss="modal">Tidak</button>
+					<button type="submit" class="btn btn-success ripple save-category">Ya</button>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal" tabindex="-1" role="dialog" id="selesai<?= $pemesanan_id ?>">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Ganti Status</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body p-20">
+					<form action="<?php echo base_url() ?>Stok/Pemesanan/status" method="POST">
+						<div class="row">
+							<div class="col-md-12">
+								<input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>" />
+								<input type="hidden" name="jumlah" value="<?php echo $jumlah ?>" />
+								<input type="hidden" name="status_eks" value="2" />
+								<p>Apakah kamu yakin ingin mengganti status data ini?</i></b></p>
+							</div>
+						</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger ripple" data-dismiss="modal">Tidak</button>
+					<button type="submit" class="btn btn-success ripple save-category">Ya</button>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<?php endforeach; ?>
 
 
 
-		<!--=================================
+<!--=================================
  footer -->
 
-		<footer class="bg-white p-4">
-			<div class="row">
-				<div class="col-md-6">
-					<div class="text-center text-md-left">
-						<p class="mb-0"> &copy; Copyright <span id="copyright">
-								<script>
-									document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+<footer class="bg-white p-4">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="text-center text-md-left">
+				<p class="mb-0"> &copy; Copyright <span id="copyright">
+						<script>
+							document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
 
-								</script>
-							</span>. <a href="#"> Webmin </a> All Rights Reserved. </p>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<ul class="text-center text-md-right">
-						<li class="list-inline-item"><a href="#">Terms & Conditions </a> </li>
-						<li class="list-inline-item"><a href="#">API Use Policy </a> </li>
-						<li class="list-inline-item"><a href="#">Privacy Policy </a> </li>
-					</ul>
-				</div>
+						</script>
+					</span>. <a href="#"> Webmin </a> All Rights Reserved. </p>
 			</div>
-		</footer>
+		</div>
+		<div class="col-md-6">
+			<ul class="text-center text-md-right">
+				<li class="list-inline-item"><a href="#">Terms & Conditions </a> </li>
+				<li class="list-inline-item"><a href="#">API Use Policy </a> </li>
+				<li class="list-inline-item"><a href="#">Privacy Policy </a> </li>
+			</ul>
+		</div>
 	</div>
+</footer>
+</div>
 </div>
 </div>
 </div>
@@ -320,11 +409,10 @@
 </script>
 
 <script type="text/javascript">
-
-function noresicus(checkbox){
-      var isChecked = $('#checkboxcus').is(':checked'); 
-        if(isChecked == true) {
-            $("#checkboxcus").after(`
+	function noresicus(checkbox) {
+		var isChecked = $('#checkboxcus').is(':checked');
+		if (isChecked == true) {
+			$("#checkboxcus").after(`
                       <div class="col-md-12 resi" id="a">
                         <br>
                         <label class="control-label">Nomor Resi</label>
@@ -332,19 +420,18 @@ function noresicus(checkbox){
                         <br>
                       </div>
             `);
-          } 
-          else {
-            $("#a").remove();
-          }
-}
+		} else {
+			$("#a").remove();
+		}
+	}
 
 </script>
 
 <script type="text/javascript">
-function noresires(checkbox){
-      var isChecked = $('#checkboxres').is(':checked'); 
-        if(isChecked == true) {
-            $("#checkboxres").after(`
+	function noresires(checkbox) {
+		var isChecked = $('#checkboxres').is(':checked');
+		if (isChecked == true) {
+			$("#checkboxres").after(`
                       <div class="col-md-12 resi" id="a">
                         <br>
                         <label class="control-label">Nomor Resi</label>
@@ -352,11 +439,11 @@ function noresires(checkbox){
                         <br>
                       </div>
             `);
-          } 
-          else {
-            $("#a").remove();
-          }
-}
+		} else {
+			$("#a").remove();
+		}
+	}
+
 </script>
 
 <script type="text/javascript">
