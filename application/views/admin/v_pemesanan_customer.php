@@ -63,8 +63,19 @@
           <br>
           <?php endif;?>
           
-          <div class="col-xl-12 mb-10" style="display: flex">
-					<div class="btn-group">
+		  <div class="col-xl-12 mb-20" style="display: flex">
+		  
+				<div class="container" >
+				<h7 class="mb-0">Cari Berdasarkan Tanggal :  </h7>
+				<br>
+				<form id="formsearch" method="post">
+				<input class="sd" type="date" style="width:142px;" name="start" id="s">
+				<input class="ed" type="date" style="width:142px;" name="end" id="e">
+				<button type="submit" class="btn btn-secondary"><i class="fa fa-search" aria-hidden="true"></i></button>
+				</form>
+				</div>
+
+					<div class="btn-group mt-4">
 						<button type="button" class="btn btn-info dropdown-toggle mb-4 ml-4" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">
 							Filter Tahun
@@ -80,7 +91,7 @@
             </div>
 					</div>
 <?php if($this->session->userdata('akses') == 2) : ?>
-          <div class="btn-group">
+          <div class="btn-group mt-4">
 						<button type="button" class="btn btn-success dropdown-toggle mb-4 ml-4 "  data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false"><i class="fa fa-print pr-2"></i> 
 							Cetak Dokumen
@@ -91,7 +102,7 @@
             </div>
           </div>
             
-          <div class="btn-group">
+          <div class="btn-group mt-4">
             <button type="button" class="btn btn-dark dropdown-toggle mb-4 ml-4" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false"><i class="fa fa-save pr-2"></i> 
 								Convert Dokumen
@@ -103,19 +114,6 @@
 		  </div>
 <?php endif; ?>
 </div>
-
-<div class="container ml-4" >
-<h7 class="mb-0">Cari Berdasarkan Tanggal :  </h7>
-<br>
-<form id="formsearch" method="post">
-  <input class="sd" type="date" name="start" id="s">
-  <input class="ed" type="date" name="end" id="e">
-  <button type="submit" class="btn btn-secondary"><i class="fa fa-search" aria-hidden="true"></i></button>
-</form>
-</div>
-
-<br>
-
 
 	<!-- Modal Pesanan NonReseller-->
 	<div class="modal fade" tabindex="-1" role="dialog" id="tambah-pesanan-non-reseller">
