@@ -219,16 +219,16 @@
       </a>
       <ul id="historyinputdata" class="collapse" data-parent="#sidebarnav">
           <li>
-            <a href="<?php echo base_url()?>owner/Barang/historyPemesanan"><i class="ti-calendar"></i><span class="right-nav-text">Semua Input Data </span> </a>
+            <a href="<?php echo base_url()?>owner/Barang/historyPemesanan?status=0"><i class="ti-calendar"></i><span class="right-nav-text">Semua Input Data </span> </a>
           </li>
           <li>
-            <a href="<?php echo base_url()?>owner/Barang/historyPemesananCustomer"><i class="ti-calendar"></i><span class="right-nav-text">Input Data Customer </span> </a>
+            <a href="<?php echo base_url()?>owner/Barang/historyPemesanan?status=1"><i class="ti-calendar"></i><span class="right-nav-text">Input Data Customer </span> </a>
           </li>
           <li>
-            <a href="<?php echo base_url()?>owner/Barang/historyPemesananReseller"><i class="ti-calendar"></i><span class="right-nav-text">Input Data Reseller</span> </a>
+            <a href="<?php echo base_url()?>owner/Barang/historyPemesanan?status=2"><i class="ti-calendar"></i><span class="right-nav-text">Input Data Reseller</span> </a>
           </li>
           <li>
-            <a href="<?php echo base_url()?>owner/Barang/historyPemesananProduksi"><i class="ti-calendar"></i><span class="right-nav-text">Input Data Produksi</span> </a>
+            <a href="<?php echo base_url()?>owner/Barang/historyPemesanan?status=3"><i class="ti-calendar"></i><span class="right-nav-text">Input Data Produksi</span> </a>
           </li>
       </ul>
     </li>
