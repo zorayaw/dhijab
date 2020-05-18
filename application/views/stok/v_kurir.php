@@ -21,6 +21,7 @@
 			<div class="card card-statistics h-100">
 				<div class="card-body">
 					<div class="col-xl-12 mb-20" style="display: flex">
+
 						<div class="btn-group col-md-6">
 							<button type="button" class="btn btn-success dropdown-toggle m-t-20 col-md-12"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
@@ -34,6 +35,7 @@
 							</div>
 							</center>
 						</div>
+						
 						<div class="btn-group col-md-6">
 							<button type="button" class="btn btn-dark dropdown-toggle m-t-20 col-md-12" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false"><i class="fa fa-save pr-2"></i>

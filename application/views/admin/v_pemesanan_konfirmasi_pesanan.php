@@ -38,25 +38,25 @@
                 <i class="fa fa-plus pr-2"></i> Tambah Pemesanan Produksi
               </a>
             </div> -->
-            <div class="btn-group">
-						<button type="button" class="btn btn-success dropdown-toggle mb-4 ml-4 "  data-toggle="dropdown"
+            <div class="btn-group col-md-6">
+						<button type="button" class="btn btn-success dropdown-toggle mb-4 ml-4 col-md-12"  data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false"><i class="fa fa-print pr-2"></i> 
 							Cetak Dokumen
 						</button> 
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="<?= base_url() ?>owner/Transaksi/cetakTransaksiBerjalan?doc=1" target = "_blank" >Data Pemesanan</a>
-							<a class="dropdown-item" href="<?= base_url() ?>owner/Transaksi/cetakTransaksiBerjalan?doc=2" target = "_blank"  >Data Keuangan</a>
+							<a class="dropdown-item" style="width: 400px" href="<?= base_url() ?>owner/Transaksi/cetakTransaksiBerjalan?doc=1" target = "_blank" ><center>Data Pemesanan</center></a>
+							<a class="dropdown-item" style="width: 400px" href="<?= base_url() ?>owner/Transaksi/cetakTransaksiBerjalan?doc=2" target = "_blank" ><center>Data Keuangan</center></a>
             </div>
           </div>
             
-          <div class="btn-group">
-            <button type="button" class="btn btn-dark dropdown-toggle mb-4 ml-4" data-toggle="dropdown"
+          <div class="btn-group col-md-6">
+            <button type="button" class="btn btn-dark dropdown-toggle mb-4 ml-4 col-md-12" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false"><i class="fa fa-save pr-2"></i> 
 								Convert Dokumen
 							</button>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="" data-toggle="modal" data-target="#Pilihan-P">Data Pemesanan</a>
-								<a class="dropdown-item" href="" data-toggle="modal" data-target="#Pilihan-T">Data Keuangan</a>
+								<a class="dropdown-item" href="" style="width: 400px" target="_blank" data-toggle="modal" data-target="#Pilihan-P"><center>Data Pemesanan</center></a>
+								<a class="dropdown-item" href="" style="width: 400px" target="_blank" data-toggle="modal" data-target="#Pilihan-T"><center>Data Keuangan</center></a>
               </div>
       </div>
           </div>

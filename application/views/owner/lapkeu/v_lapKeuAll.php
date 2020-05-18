@@ -89,7 +89,7 @@
 							</form>
             </div>
             
-          <div class="btn-group mt-4 mr-5">
+          <div class="btn-group mt-4">
 
             <button type="button" class="btn btn-info dropdown-toggle mb-4 ml-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Filter Tahun
@@ -104,16 +104,16 @@
               <?php endforeach; ?>
             </div>
           </div>
-          <div class="col-md-2 ml-3">
+          <div class=" mt-4 ml-4">
 							<a href="" data-toggle="modal" data-target="#Cetak-Transaksi"
 								class="btn btn-success btn-block ripple m-t-10">
-								<i class="fa fa-print pr-2"></i>Cetak
+								<i class="fa fa-print pr-2"></i>Cetak Dokumen
 							</a>
 						</div>
-			<div class="col-md-2">
+            <div class=" mt-4 ml-4">
 				<a href="" data-toggle="modal" data-target="#Conv-Transaksi"
 					class="btn btn-dark btn-block ripple m-t-10">
-					<i class="fa fa-save pr-2"></i>Convert
+					<i class="fa fa-save pr-2"></i>Convert Dokumen
 				</a>
       </div>
             </div>
@@ -1192,24 +1192,49 @@
 </script>
 
 
-
 <script type="text/javascript">
-  $("#excel").click(function(){
-    $("#pilihan").modal('hide');
-  });
+	$("#excel").click(function () {
+		$("#Conv-Pemesanan").modal('hide');
+	});
+
 </script>
 
 <script type="text/javascript">
-  $("#words").click(function(){
-    $("#pilihan").modal('hide');
-  });
+	$("#words").click(function () {
+		$("#Conv-Pemesanan").modal('hide');
+	});
+
 </script>
 
 <script type="text/javascript">
-  $("#pdf").click(function(){
-    $("#pilihan").modal('hide');
-  });
+	$("#pdf").click(function () {
+		$("#Conv-Pemesanan").modal('hide');
+	});
+
 </script>
+
+<script type="text/javascript">
+	$("#excelT").click(function () {
+		$("#Conv-Transaksi").modal('hide');
+	});
+
+</script>
+
+<script type="text/javascript">
+	$("#wordsT").click(function () {
+		$("#Conv-Transaksi").modal('hide');
+	});
+
+</script>
+
+<script type="text/javascript">
+	$("#pdfT").click(function () {
+		$("#Conv-Transaksi").modal('hide');
+	});
+
+</script>
+
+
 <script type="text/javascript">
 function noresicus(checkbox){
       var isChecked = $('#checkboxcus').is(':checked'); 

@@ -124,16 +124,16 @@
               </div>
       </div>
       <?php else : ?>
-			<div class="col-md-2 ml-3">
+      <div class=" mt-4 ml-4">
 							<a href="" data-toggle="modal" data-target="#Cetak-Pesanan"
 								class="btn btn-success btn-block ripple m-t-10">
-								<i class="fa fa-print pr-2"></i>Cetak
+								<i class="fa fa-print pr-2"></i>Cetak Dokumen
 							</a>
 						</div>
-			<div class="col-md-2">
+      <div class=" mt-4 ml-4">
 				<a href="" data-toggle="modal" data-target="#Conv-Pemesanan"
 					class="btn btn-dark btn-block ripple m-t-10">
-					<i class="fa fa-save pr-2"></i>Convert
+					<i class="fa fa-save pr-2"></i>Convert Dokumen
 				</a>
 			</div>
 			<?php endif?>
