@@ -51,12 +51,31 @@ class Barang extends CI_Controller
 		}
 	}
 
-	function historyPemesananCustomer()
+	function historyPemesanan()
 	{
+		$statusc = $this->input->get('status');
 		if ($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') == true) {
-			$y['title'] = "History Input Data Customer";
-			$x['title_view'] = "History Input Data Customer";
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerInput();
+			$y['title'] = "History Input Data";
+			if($statusc == 0){
+				$x['st'] = "$statusc";
+				$x['title_view'] = "History Input Data ";
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananInput();
+			}
+			else if($statusc == 1){
+				$x['st'] = "$statusc";
+				$x['title_view'] = "History Input Data Customer";
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerInput();
+			}
+			else if($statusc == 2){
+				$x['st'] = "$statusc";
+				$x['title_view'] = "History Input Data Reseller";
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerInput();
+			}
+			else if($statusc == 3){
+				$x['st'] = "$statusc";
+				$x['title_view'] = "History Input Data Produksi";
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiInput();
+			}
 			$this->load->view('v_header', $y);
 			$this->load->view('owner/v_sidebar');
 			$this->load->view('owner/v_history_input_data',  $x);
@@ -65,33 +84,58 @@ class Barang extends CI_Controller
 		}
 	}
 
-	function historyPemesananReseller()
-	{
-		if ($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') == true) {
-			$y['title'] = "History Input Data Reseller";
-			$x['title_view'] = "History Input Data Reseller";
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerInput();
-			$this->load->view('v_header', $y);
-			$this->load->view('owner/v_sidebar');
-			$this->load->view('owner/v_history_input_data',  $x);
-		} else {
-			redirect('Login');
+	function historyPemesananByTahun(){
+		$tahun = intVal($this->input->post('thn'));
+		$statuss = $this->input->get('stts');
+		if($tahun == 0){
+			if($statuss == 0){
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananInput();
+			}
+			else if($statuss == 1){
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerInput();
+			}
+			else if($statuss == 2){
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerInput();
+			}
+			else if($statuss == 3){
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiInput();
+			}
 		}
+		else {
+			if($statuss == 0){
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananInputByTahun($tahun);
+			}
+			else if($statuss == 1){
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerInputByTahun($tahun);
+			}
+			else if($statuss == 2){
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerInputByTahun($tahun);
+			}
+			else if($statuss == 3){
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiInputByTahun($tahun);
+			}
+		}
+		$this->load->view('owner/v_history_input_data_bytanggal', $x);	
 	}
 
-	function historyPemesananProduksi()
-	{
-		if ($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') == true) {
-			$y['title'] = "History Input Data Produksi";
-			$x['title_view'] = "History Input Data Produksi";
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiInput();
-			$this->load->view('v_header', $y);
-			$this->load->view('owner/v_sidebar');
-			$this->load->view('owner/v_history_input_data',  $x);
-		} else {
-			redirect('Login');
+	function historyPemesananByTanggal(){
+		$start = $this->input->post('startt');
+		$end = $this->input->post('endd');
+		$statuss = $this->input->get('stts');
+		if($statuss == 0){
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananInputByTanggal($start, $end);
 		}
-	}
+		else if($statuss == 1){
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerInputByTanggal($start, $end);	
+		}
+		else if($statuss == 2){
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerInputByTanggal($start, $end);
+		}
+		else if($statuss == 3){
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiInputByTanggal($start, $end);
+		}
+		$this->load->view('owner/v_history_input_data_bytanggal', $x);
+	   }
 
 	function tambahpesananNR()
 	{

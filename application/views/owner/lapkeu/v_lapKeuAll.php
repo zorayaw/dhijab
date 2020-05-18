@@ -75,8 +75,22 @@
               }
             print '</select>';
           ?> -->
-            <div class="col-xl-12 mb-10" style="display: flex">
-          <div class="btn-group">
+
+
+<div class="col-xl-12 mb-20" style="display: flex">
+          <div class="container">
+							<h7 class="mb-0">Cari Berdasarkan Tanggal : </h7>
+							<br>
+							<form id="formsearch" method="post">
+								<input class="sd" style="width:142px;" type="date" class="form-control" name="start" id="s">
+								<input class="ed" style="width:142px;" type="date" class="form-control" name="end" id="e">
+								<button type="submit" class="btn btn-secondary"><i class="fa fa-search"
+										aria-hidden="true"></i></button>
+							</form>
+            </div>
+            
+          <div class="btn-group mt-4 mr-5">
+
             <button type="button" class="btn btn-info dropdown-toggle mb-4 ml-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Filter Tahun
             </button>
@@ -1069,7 +1083,7 @@
         let value = parseInt($('#changeYear'+num).html())
         $.ajax({
             method: "POST",
-            url: "http://localhost/dhijab/owner/Keuangan/PemesananByTahun?status=<?=$st?>",
+            url: "<?= base_url() ?>owner/Keuangan/PemesananByTahun?status=<?=$st?>",
             data: {
               thn: parseInt($('#changeYear'+num).html())
             },
@@ -1080,6 +1094,23 @@
     }
 </script>
 
+<script>
+	$('#formsearch').submit(function (e) {
+		$.ajax({
+			method: "POST",
+			url: "<?= base_url() ?>owner/Keuangan/pemesananByTanggal?status=<?=$st?>",
+			data: {
+				startt: $('#s').val(),
+				endd: $('#e').val()
+			},
+			success: function (result) {
+				$('#parent').html(result)
+			}
+		});
+		e.preventDefault()
+	});
+
+</script>
 
 <script type="text/javascript">
 
@@ -1101,101 +1132,65 @@
 
 </script>
 
+
 <script type="text/javascript">
+	var e = document.getElementsByClassName("sd");
+	$('.sd').on('change', function () {
+		var date = new Date($(this).val());
+		days = date.getDate();
+		months = date.getMonth() + 1;
+		years = date.getFullYear();
+	});
 
-    var e = document.getElementById("startdatecetak");
-        $('#startdatecetak').on('change', function(){
-        var date = new Date($('#startdatecetak').val());
-        days = date.getDate();
-        months = date.getMonth() + 1;
-        years = date.getFullYear();
-    });
-
-    var e = document.getElementById("enddatecetak");
-        $('#enddatecetak').on('change', function(){
-        var date = new Date($('#enddatecetak').val());
-        daye = date.getDate();
-        monthe = date.getMonth() + 1;
-        yeare = date.getFullYear();
-        if(years > yeare){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddatecetak').val('');
-        }
-        else if ((years == yeare) && (months > monthe)){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddatecetak').val('');
-        }
-        else if ((days > daye) && (years == yeare) && (months == monthe)){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddatecetak').val('');
-        }
-    });
+	var e = document.getElementsByClassName("ed");
+	$('.ed').on('change', function () {
+		var date = new Date($(this).val());
+		daye = date.getDate();
+		monthe = date.getMonth() + 1;
+		yeare = date.getFullYear();
+		if (years > yeare) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		} else if ((years == yeare) && (months > monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		}
+	});
 
 </script>
 
 <script type="text/javascript">
+	var e = document.getElementsByClassName("ed");
+	$('.ed').on('change', function () {
+		var date = new Date($(this).val());
+		daye = date.getDate();
+		monthe = date.getMonth() + 1;
+		yeare = date.getFullYear();
+	});
 
-    var e = document.getElementById("startdateexcel");
-        $('#startdateexcel').on('change', function(){
-        var date = new Date($('#startdateexcel').val());
-        days = date.getDate();
-        months = date.getMonth() + 1;
-        years = date.getFullYear();
-    });
-
-    var e = document.getElementById("enddateexcel");
-        $('#enddateexcel').on('change', function(){
-        var date = new Date($('#enddateexcel').val());
-        daye = date.getDate();
-        monthe = date.getMonth() + 1;
-        yeare = date.getFullYear();
-        if(years > yeare){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddateexcel').val('');
-        }
-        else if ((years == yeare) && (months > monthe)){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddateexcel').val('');
-        }
-        else if ((days > daye) && (years == yeare) && (months == monthe)){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddateexcel').val('');
-        }
-    });
+	var e = document.getElementsByClassName("sd");
+	$('.sd').on('change', function () {
+		var date = new Date($(this).val());
+		days = date.getDate();
+		months = date.getMonth() + 1;
+		years = date.getFullYear();
+		if (years > yeare) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		} else if ((years == yeare) && (months > monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		}
+	});
 
 </script>
 
-<script type="text/javascript">
-
-    var e = document.getElementById("startdateword");
-        $('#startdateword').on('change', function(){
-        var date = new Date($('#startdateword').val());
-        days = date.getDate();
-        months = date.getMonth() + 1;
-        years = date.getFullYear();
-    });
-
-    var e = document.getElementById("enddateword");
-        $('#enddateword').on('change', function(){
-        var date = new Date($('#enddateword').val());
-        daye = date.getDate();
-        monthe = date.getMonth() + 1;
-        yeare = date.getFullYear();
-        if(years > yeare){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddateword').val('');
-        }
-        else if ((years == yeare) && (months > monthe)){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddateword').val('');
-        }
-        else if ((days > daye) && (years == yeare) && (months == monthe)){
-          alert("Tanggal tidak valid (Start date > End date)");
-          $('#enddateword').val('');
-        }
-    });
-
-</script>
 
 
 <script type="text/javascript">

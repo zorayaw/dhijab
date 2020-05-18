@@ -57,8 +57,30 @@
           </div> 
           <br>
         <?php endif; ?>
-        <div class="col-xl-12 mb-10" style="display: flex">
-					<div class="btn-group">
+        <div class="col-xl-12 mb-20" style="display: flex">
+                  
+          <?php 
+          if($bulan < 10){
+            $minn =  date('Y')."-0".$bulan."-01";
+            $maxx =  date("Y-m-t", strtotime($minn));
+          }
+          else if ($bulan >= 10){
+            $minn =  date('Y')."-".$bulan."-01";
+            $maxx =  date("Y-m-t", strtotime($minn));
+          }
+          ?>
+
+          <div class="container" >
+          <h7 class="mb-0">Cari Berdasarkan Tanggal :  </h7>
+          <br>
+          <form id="formsearch" method="post">
+            <input class="sd" type="date" name="start" style="width:142px;" class="form-control" id="s" min="<?= $minn ?>" max="<?= $maxx ?>">
+            <input class="ed" type="date" name="end" style="width:142px;" class="form-control" id="e" min="<?= $minn ?>" max="<?= $maxx ?>">
+            <button type="submit" class="btn btn-secondary"><i class="fa fa-search" aria-hidden="true"></i></button>
+          </form>
+          </div>
+
+					<div class="btn-group mt-4">
 						<button type="button" class="btn btn-info dropdown-toggle mb-4 ml-4" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">
 							Filter Tahun
@@ -73,9 +95,11 @@
 							<a class="dropdown-item" onclick="cyear(<?= $r ?>)" id="changeYear<?= $r ?>"><?= $r ?></a>
 							<?php endforeach; ?>
             </div>
-          </div>
-          <?php if($this->session->userdata('akses') == 2) : ?>
-          <div class="btn-group">
+
+					</div>
+<?php if($this->session->userdata('akses') == 2) : ?>
+          <div class="btn-group mt-4">
+
 						<button type="button" class="btn btn-success dropdown-toggle mb-4 ml-4 "  data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false"><i class="fa fa-print pr-2"></i> 
 							Cetak Dokumen
@@ -86,7 +110,7 @@
             </div>
           </div>
             
-          <div class="btn-group">
+          <div class="btn-group mt-4">
             <button type="button" class="btn btn-dark dropdown-toggle mb-4 ml-4" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false"><i class="fa fa-save pr-2"></i> 
 								Convert Dokumen
@@ -2065,7 +2089,7 @@ $status_pemesanan = $i['status_pemesanan'];
         let value = parseInt($('#changeYear'+num).html())
         $.ajax({
             method: "POST",
-            url: "http://localhost/dhijab/admin/PemesananProduksiByBulan/pemesananByTahun?bulan=<?= $bulan ?>",
+            url: "<?= base_url() ?>admin/PemesananProduksiByBulan/pemesananByTahun?bulan=<?= $bulan ?>",
             data: {
               thn: parseInt($('#changeYear'+num).html())
             },
@@ -2074,6 +2098,25 @@ $status_pemesanan = $i['status_pemesanan'];
             }
 			});
     }
+</script>
+
+
+<script>
+	$('#formsearch').submit(function(e){
+		$.ajax({
+			method: "POST",
+			url: "<?= base_url() ?>admin/PemesananProduksiByBulan/pemesananByTanggal",
+			data: {
+				startt: $('#s').val(),
+				endd : $('#e').val()
+			},
+			success: function (result) {
+				$('#parent').html(result)
+			}
+		});
+		e.preventDefault()
+	});
+
 </script>
 
 <script type="text/javascript">
@@ -2136,6 +2179,37 @@ $status_pemesanan = $i['status_pemesanan'];
 	});
 
 </script>
+
+
+<script type="text/javascript">
+	var e = document.getElementsByClassName("ed");
+	$('.ed').on('change', function () {
+		var date = new Date($(this).val());
+		daye = date.getDate();
+		monthe = date.getMonth() + 1;
+		yeare = date.getFullYear();
+	});
+
+	var e = document.getElementsByClassName("sd");
+	$('.sd').on('change', function () {
+		var date = new Date($(this).val());
+		days = date.getDate();
+		months = date.getMonth() + 1;
+		years = date.getFullYear();
+		if (years > yeare) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		} else if ((years == yeare) && (months > monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		}
+	});
+
+</script>
+
 
 <script type="text/javascript">
   $("#excel").click(function(){
