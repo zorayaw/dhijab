@@ -27,7 +27,7 @@
 		       $x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 		        $x['produksi'] = $this->M_barang->getdataProduksi();
 		       $x['reseller'] = $this->M_barang->getAllBarangR();
-		       $x['datapesanan'] = $this->M_pemesanan->getPemesananresellerbyTahun2(date('Y'));
+		       $x['datapesanan'] = $this->M_pemesanan->getPemesananreseller();
 		       $this->load->view('v_header',$y);
 		       if($this->session->userdata('akses') == 2){
 				$this->load->view('admin/v_sidebar');
@@ -183,6 +183,9 @@
 			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 			 $x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
+			if ($tahun == 0)
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananReseller();
+			else
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerbyTahun2($tahun);
 			$this->load->view('admin/v_pemesanan_by_tahun', $x);
 		   }

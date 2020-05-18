@@ -493,7 +493,7 @@
 		
 
 		function cetakTransaksiBerjalan(){
-
+			$doc = $this->input->get('doc');
 			$x['data'] = $this->M_pemesanan->getPemesananKonfirmasi();
 			$a = $this->M_pemesanan->getPemesananKonfirmasi();
 			$modal = 0;
@@ -532,7 +532,11 @@
 			$total_omset = $total_o;
 			$x['total_untung'] = $total_untung;
 			$x['total_omset'] = $total_omset;
+			if ($doc == 1)
+			$this->load->view('v_cetak_pemesanan_berjalan', $x);
+			else
 			$this->load->view('v_cetak_transaksi_berjalan', $x);
+
 		}
 	}
 	
