@@ -10,10 +10,10 @@
         <!-- All Form  --> 
         
         <li>
-          <a href="<?php echo base_url()?>stok/Stock"><i class="ti-calendar"></i><span class="right-nav-text">Stock</span> </a>
+          <a href="<?php echo base_url()?>stok/Stock"><i class="fa fa-shopping-basket"></i><span class="right-nav-text">Stock</span> </a> 
         </li>
         <li>
-          <a href="<?php echo base_url()?>stok/Pemesanan/Kurir"><i class="ti-calendar"></i><span class="right-nav-text">Tagihan Ekspedisi</span> </a>
+          <a href="<?php echo base_url()?>stok/Pemesanan/Kurir"><i class="fa fa-paper-plane-o"></i><span class="right-nav-text">Tagihan Ekspedisi</span> </a>
         </li>
         <!-- <li>
           <a href="<?php echo base_url()?>"><i class="ti-calendar"></i><span class="right-nav-text">History Ekspedisi</span> </a>

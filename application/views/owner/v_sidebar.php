@@ -10,7 +10,7 @@
         <!-- All Form  -->
          <li>
           <a href="javascript:void(0);" data-toggle="collapse" data-target="#Barang">
-            <div class="pull-left"><i class="ti-files"></i><span class="right-nav-text">Barang</span></div>
+            <div class="pull-left"><i class="fa fa-archive"></i><span class="right-nav-text">Barang</span></div>
             <div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div>
           </a>
           <ul id="Barang" class="collapse" data-parent="#sidebarnav">
@@ -214,7 +214,7 @@
       <li>
 
       <a href="javascript:void(0);" data-toggle="collapse" data-target="#historyinputdata">
-          <div class="pull-left"><i class="ti-files"></i><span class="right-nav-text">History Pegawai</span></div>
+          <div class="pull-left"><i class="fa fa-users"></i><span class="right-nav-text">History Pegawai</span></div>
           <div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div>
       </a>
       <ul id="historyinputdata" class="collapse" data-parent="#sidebarnav">
@@ -234,7 +234,7 @@
     </li>
     <li>
       <a href="javascript:void(0);" data-toggle="collapse" data-target="#LaporanKeu">
-            <div class="pull-left"><i class="ti-files"></i><span class="right-nav-text">Data Keuangan</span></div>
+            <div class="pull-left"><i class="fa fa-money"></i><span class="right-nav-text">Data Keuangan</span></div>
             <div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div>
           </a>
 
@@ -254,15 +254,15 @@
         </ul>
       </li>
         <li>
-          <a href="<?php echo base_url()?>stok/Stock"><i class="ti-calendar"></i><span class="right-nav-text">Stock</span> </a>
+          <a href="<?php echo base_url()?>stok/Stock"><i class="fa fa-shopping-basket"></i><span class="right-nav-text">Stock</span> </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url()?>admin/Pemesanan/konfirmasi_pesanan"><i class="ti-calendar"></i><span class="right-nav-text">Konfirmasi Pesanan</span> </a>
+          <a href="<?php echo base_url()?>admin/Pemesanan/konfirmasi_pesanan"><i class="fa fa-check-square-o"></i><span class="right-nav-text">Konfirmasi Pesanan</span> </a>
         </li>
        
         <li>
-          <a href="<?php echo base_url()?>stok/Pemesanan/Kurir"><i class="ti-calendar"></i><span class="right-nav-text">Tagihan Ekspedisi</span> </a>
+          <a href="<?php echo base_url()?>stok/Pemesanan/Kurir"><i class="fa fa-paper-plane-o"></i><span class="right-nav-text">Tagihan Ekspedisi</span> </a>
         </li>
         <!-- <li>
           <a href="<?php echo base_url()?>owner/Transaksi"><i class="ti-calendar"></i><span class="right-nav-text">History Transaksi</span> </a>
