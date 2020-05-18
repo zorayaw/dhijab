@@ -29,19 +29,19 @@
                 $x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
 				if($statusc==0){
-					$x['datapesanan'] = $this->M_pemesanan->getPemesananbyTahun2(date('Y'));
+					$x['datapesanan'] = $this->M_pemesanan->getPemesanan();
 					$x['stat'] = "Seluruh";
 				}
 				else if($statusc==1){
-					$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerbyTahun2(date('Y'));
+					$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomer();
 					$x['stat'] = "Customer";
 				}
 				else if($statusc==2){
-					$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerbyTahun2(date('Y'));
+					$x['datapesanan'] = $this->M_pemesanan->getPemesananReseller();
 					$x['stat'] = "Reseller";
 				}
 				else if($statusc==3){
-					$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksibyTahun2(date('Y'));
+					$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksi();
 					$x['stat'] = "Produksi";
 				}
                 
@@ -98,6 +98,25 @@
 			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 			 $x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
+			if($tahun == 0){
+				if($statusc==0){
+					$x['datapesanan'] = $this->M_pemesanan->getPemesanan();
+					$x['stat'] = "Seluruh";
+				}
+				else if($statusc==1){
+					$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomer();
+					$x['stat'] = "Customer";
+				}
+				else if($statusc==2){
+					$x['datapesanan'] = $this->M_pemesanan->getPemesananReseller();
+					$x['stat'] = "Reseller";
+				}
+				else if($statusc==3){
+					$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksi();
+					$x['stat'] = "Produksi";
+				}
+			}
+			else{
 			if($statusc==0){
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananbyTahun2($tahun);
 			}
@@ -109,6 +128,7 @@
 			}
 			else if($statusc==3){
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksibyTahun2($tahun);
+			}
 			}
 			$this->load->view('owner/lapkeu/v_lapKeu_by_tahun', $x);
 			
