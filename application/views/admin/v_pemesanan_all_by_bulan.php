@@ -76,8 +76,8 @@
           <h7 class="mb-0">Cari Berdasarkan Tanggal :  </h7>
           <br>
           <form id="formsearch" method="post">
-            <input class="sd" style="width:142px;" type="date" name="start"  class="form-control" id="s" min="<?= $minn ?>" max="<?= $maxx ?>">
-            <input class="ed" style="width:142px;" type="date" name="end"  class="form-control" id="e" min="<?= $minn ?>" max="<?= $maxx ?>">
+            <input class="sd" style="width:142px;" type="date" name="start"  class="form-control" id="s" min="<?= $minn ?>" value="<?= $minn ?>" max="<?= $maxx ?>">
+            <input class="ed" style="width:142px;" type="date" name="end"  class="form-control" id="e" min="<?= $minn ?>" value="<?= $maxx ?>" max="<?= $maxx ?>">
             <button type="submit" class="btn btn-secondary"><i class="fa fa-search" aria-hidden="true"></i></button>
           </form>
           </div>
