@@ -29,8 +29,8 @@
 							</button>
 							<center>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" style="width: 420px" href="<?php echo base_url() ?>stok/Pemesanan/cetakTransaksiBerjalan" ><center>Data Pemesanan</center></a>
-								<a class="dropdown-item" style="width: 420px" href="<?php echo base_url() ?>stok/Pemesanan/cetakTransaksiTBerjalan" ><center>Data Keuangan</center></a>
+								<a class="dropdown-item" style="width: 420px" target="_blank" href="<?php echo base_url() ?>stok/Pemesanan/cetakTransaksiBerjalan" ><center>Data Pemesanan</center></a>
+								<a class="dropdown-item" style="width: 420px" target="_blank" href="<?php echo base_url() ?>stok/Pemesanan/cetakTransaksiTBerjalan" ><center>Data Keuangan</center></a>
 							</div>
 							</center>
 						</div>
@@ -40,7 +40,7 @@
 								Convert Dokumen
 							</button>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href=" " style="width: 420px" data-toggle="modal" data-target="#Conv-Pemesanan"><center>Data Pemesanan</center></a>
+								<a class="dropdown-item" href=""  style="width: 420px" data-toggle="modal" data-target="#Conv-Pemesanan"><center>Data Pemesanan</center></a>
 								<a class="dropdown-item" href="" style="width: 420px" data-toggle="modal" data-target="#Conv-Transaksi"><center>Data Keuangan</center></a>
 							</div>
 						</div>
@@ -175,17 +175,17 @@
 				</div>
 				<div class="modal-body">
 					<div class="col-md-12 mt-4">
-						<a href="<?php echo base_url() ?>stok/Pemesanan/convertExcelPBerjalan"  class="btn btn-warning btn-block ripple m-t-10" id="excel">
+						<a href="<?php echo base_url() ?>stok/Pemesanan/convertExcelPBerjalan" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="excel">
 							<i class="fa fa-file-excel-o pr-2"></i>Convert Excel
 						</a>
 					</div>
 					<div class="col-md-12 mt-4">
-						<a href="<?php echo base_url() ?>stok/Pemesanan/convertPDFPBerjalan"  class="btn btn-warning btn-block ripple m-t-10" id="pdf">
+						<a href="<?php echo base_url() ?>stok/Pemesanan/convertPDFPBerjalan" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="pdf">
 							<i class="fa fa-file-pdf-o pr-2"></i>Convert PDF
 						</a>
 					</div>
 					<div class="col-md-12 mt-4 mb-4">
-						<a href="<?php echo base_url() ?>stok/Pemesanan/convertWordPBerjalan"  class="btn btn-warning btn-block ripple m-t-10" id="words">
+						<a href="<?php echo base_url() ?>stok/Pemesanan/convertWordPBerjalan" target="_blank"  class="btn btn-warning btn-block ripple m-t-10" id="words">
 							<i class="fa fa-file-word-o pr-2"></i>Convert Word
 						</a>
 					</div>
@@ -206,17 +206,17 @@
 				</div>
 				<div class="modal-body">
 					<div class="col-md-12 mt-4">
-						<a href="<?php echo base_url() ?>stok/Pemesanan/convertExcelBerjalan" class="btn btn-warning btn-block ripple m-t-10" id="excel" >
+						<a href="<?php echo base_url() ?>stok/Pemesanan/convertExcelBerjalan" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="excel" >
 							<i class="fa fa-file-excel-o pr-2"></i>Convert Excel
 						</a>
 					</div>
 					<div class="col-md-12 mt-4">
-						<a href="<?php echo base_url() ?>stok/Pemesanan/convertPDFBerjalan" class="btn btn-warning btn-block ripple m-t-10" id="pdf">
+						<a href="<?php echo base_url() ?>stok/Pemesanan/convertPDFBerjalan" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="pdf">
 							<i class="fa fa-file-pdf-o pr-2"></i>Convert PDF
 						</a>
 					</div>
 					<div class="col-md-12 mt-4 mb-4">
-						<a href="<?php echo base_url() ?>stok/Pemesanan/convertWordBerjalan"  class="btn btn-warning btn-block ripple m-t-10" id="words">
+						<a href="<?php echo base_url() ?>stok/Pemesanan/convertWordBerjalan" target="_blank"  class="btn btn-warning btn-block ripple m-t-10" id="words">
 							<i class="fa fa-file-word-o pr-2"></i>Convert Word
 						</a>
 					</div>

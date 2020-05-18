@@ -214,7 +214,7 @@
       <li>
 
       <a href="javascript:void(0);" data-toggle="collapse" data-target="#historyinputdata">
-          <div class="pull-left"><i class="ti-files"></i><span class="right-nav-text">History Input Data</span></div>
+          <div class="pull-left"><i class="ti-files"></i><span class="right-nav-text">History Pegawai</span></div>
           <div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div>
       </a>
       <ul id="historyinputdata" class="collapse" data-parent="#sidebarnav">
