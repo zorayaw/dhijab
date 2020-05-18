@@ -259,7 +259,7 @@ class PemesananAllByBulan extends CI_Controller
 			case 2 : $x['namaBulan'] =  "Februari"; 
 			switch(date('Y')%4) {
 				case 0 : $x['tanggalAkhir'] = 29; break;
-				case 1 : $x['tanggalAkhir'] = 28; break;
+				default : $x['tanggalAkhir'] = 28; break;
 			}break;
 			case 3 : $x['namaBulan'] =  "Maret"; $x['tanggalAkhir'] = 31; break;
 			case 4 : $x['namaBulan'] =  "April"; $x['tanggalAkhir'] = 30; break;
