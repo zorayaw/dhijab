@@ -1,25 +1,27 @@
 <html>
 <head>
-  <title>Laporan Transaksi Bulanan</title>
+  <title>Laporan Transaksi Perhari</title>
 </head>
-<!-- Favicon -->
+<!-- Favicon --> 
 <link rel="shortcut icon" href="<?php echo base_url()?>assets/images/logo.png" />
 
 <!-- Font -->
 <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<body>
-<?php date_default_timezone_set("Asia/Jakarta");
+<body>          
+     <?php date_default_timezone_set("Asia/Jakarta");
 $cur_date = date("d-m-Y");?>
      <div>
           
           <div class="col-xl-12">
-            <center><h1>Laporan Transaksi Berjalan</h1></center>
+            <center><h1>Laporan Ekspedisi</h1></center>
           <hr style="margin-left:10px;margin-right:10px;">
           <hr>
           <br>
           </div>
 <div>
+
+          <div>
              <table border="1" cellpadding="7" width="100%" style="border-style: solid;border-width: thin;border-collapse: collapse;" >
              <tr>
                   <th>No</th>
@@ -28,7 +30,7 @@ $cur_date = date("d-m-Y");?>
                   <th>Nama Akun</th>
                   <th>Tanggal Pemesanan</th>
                   <th>Metode Pembayaran</th>
-                  <th>Status Pemesanan</th>
+                  <th>Status Ekspedisi</th>
                   <th>Biaya Ongkir</th>
                   <th>Biaya Admin</th>
                   <th>Diskon</th>
@@ -72,18 +74,18 @@ $cur_date = date("d-m-Y");?>
                   $resi = $i['no_resi'];
                   $at_id = $i['at_id'];
                   $at_nama = $i['at_nama'];
-                  $status = $i['status_pemesanan'];
+                  $status = $i['status_eks'];
                   $biaya_admin = $i['biaya_admin'];
                   $diskon = $i['diskon'];
                   $uang = $i['uang_kembalian'];
                   $note = $i['note'];
-                  if($i['status_pemesanan'] == 0)
+                  if($i['status_eks'] == 0)
                   $status = "Belum Bayar";
-                  elseif($i['status_pemesanan'] == 1)
+                  elseif($i['status_eks'] == 1)
                   $status = "Dibayar";
-                  elseif($i['status_pemesanan'] == 2)
+                  elseif($i['status_eks'] == 2)
                   $status = "Dikirim";
-                  elseif($i['status_pemesanan'] == 3)
+                  elseif($i['status_eks'] == 3)
                   $status = "Selesai";
                
                   $q = $this->M_pemesanan->getHModal($pemesanan_id)->result_array();
@@ -147,8 +149,7 @@ $cur_date = date("d-m-Y");?>
               </tr>
             
             </table>
-          </div>
-        </div>
+          </div></div>
 
 </body>
 </html>

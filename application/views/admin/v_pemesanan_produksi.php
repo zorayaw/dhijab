@@ -62,8 +62,19 @@
 					</div>
 					<?php endif;?>
 					<br>
-					<div class="col-xl-12 mb-10" style="display: flex">
-						<div class="btn-group">
+					<div class="col-xl-12 mb-20" style="display: flex">
+																
+						<div class="container" >
+						<h7 class="mb-0">Cari Berdasarkan Tanggal :  </h7>
+						<br>
+						<form id="formsearch" method="post">
+						<input class="sd" type="date" style="width:142px;" name="start" id="s">
+						<input class="ed" type="date" style="width:142px;" name="end" id="e">
+						<button type="submit" class="btn btn-secondary"><i class="fa fa-search" aria-hidden="true"></i></button>
+						</form>
+						</div>
+
+						<div class="btn-group mt-4">
 							<button type="button" class="btn btn-info dropdown-toggle mb-4 ml-4" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">
 								Filter Tahun
@@ -73,13 +84,14 @@
               $earlyyear = $curyear-10;
             ?>
 							<div class="dropdown-menu">
+							<a class="dropdown-item" onclick="cyear(<?= 0 ?>)" id="changeYear<?= 0 ?>">Seluruh Data</a>
 								<?php foreach(range($curyear, $earlyyear) as $r ) : ?>
 								<a class="dropdown-item" onclick="cyear(<?= $r ?>)" id="changeYear<?= $r ?>"><?= $r ?></a>
 								<?php endforeach; ?>
 							</div>
 						</div>
 						<?php if($this->session->userdata('akses') == 2) : ?>
-						<div class="btn-group">
+						<div class="btn-group mt-4">
 							<button type="button" class="btn btn-success dropdown-toggle mb-4 ml-4 " data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false"><i class="fa fa-print pr-2"></i>
 								Cetak Dokumen
@@ -90,7 +102,7 @@
 							</div>
 						</div>
 
-						<div class="btn-group">
+						<div class="btn-group mt-4">
 							<button type="button" class="btn btn-dark dropdown-toggle mb-4 ml-4" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false"><i class="fa fa-save pr-2"></i>
 								Convert Dokumen
@@ -100,21 +112,22 @@
 								<a class="dropdown-item" href="" data-toggle="modal" data-target="#Conv-Transaksi">Data Keuangan</a>
 							</div>
 						</div>
-						<?php endif; ?>
+						<?php else : ?>
+			<div class="col-md-2 ml-3">
+							<a href="" data-toggle="modal" data-target="#Cetak-Pesanan"
+								class="btn btn-success btn-block ripple m-t-10">
+								<i class="fa fa-print pr-2"></i>Cetak
+							</a>
+						</div>
+			<div class="col-md-2">
+				<a href="" data-toggle="modal" data-target="#Conv-Pemesanan"
+					class="btn btn-dark btn-block ripple m-t-10">
+					<i class="fa fa-save pr-2"></i>Convert
+				</a>
+			</div>
+			<?php endif?>
 					</div>
 				
-					
-<div class="container ml-4" >
-<h7 class="mb-0">Cari Berdasarkan Tanggal :  </h7>
-<br>
-<form id="formsearch" method="post">
-  <input class="sd" type="date" name="start" id="s">
-  <input class="ed" type="date" name="end" id="e">
-  <button type="submit" class="btn btn-secondary"><i class="fa fa-search" aria-hidden="true"></i></button>
-</form>
-</div>
-
-<br>
 
 	<!-- Modal Pesanan Produksi-->
 	<div class="modal fade" tabindex="-1" role="dialog" id="produksi">
@@ -1771,6 +1784,35 @@
 
 </script>
 
+
+<script type="text/javascript">
+	var e = document.getElementsByClassName("ed");
+	$('.ed').on('change', function () {
+		var date = new Date($(this).val());
+		daye = date.getDate();
+		monthe = date.getMonth() + 1;
+		yeare = date.getFullYear();
+	});
+
+	var e = document.getElementsByClassName("sd");
+	$('.sd').on('change', function () {
+		var date = new Date($(this).val());
+		days = date.getDate();
+		months = date.getMonth() + 1;
+		years = date.getFullYear();
+		if (years > yeare) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		} else if ((years == yeare) && (months > monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		}
+	});
+
+</script>
 
 <script type="text/javascript">
 	$("#excel").click(function () {

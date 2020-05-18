@@ -1,27 +1,13 @@
-<html>
-<head>
-  <title>Laporan Transaksi Bulanan</title>
-</head>
-<!-- Favicon -->
-<link rel="shortcut icon" href="<?php echo base_url()?>assets/images/logo.png" />
+<?php
+ header("Content-Type: application/vnd.ms-word");
+        header("Expires: 0");
+        header("Cache-Control:  must-revalidate, post-check=0, pre-check=0");
+        header("Content-disposition: attachment; filename=Transaksi_word.doc");
+?>
 
-<!-- Font -->
-<link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<body>
-<?php date_default_timezone_set("Asia/Jakarta");
-$cur_date = date("d-m-Y");?>
-     <div>
-          
-          <div class="col-xl-12">
-            <center><h1>Laporan Transaksi Berjalan</h1></center>
-          <hr style="margin-left:10px;margin-right:10px;">
-          <hr>
-          <br>
-          </div>
-<div>
-             <table border="1" cellpadding="7" width="100%" style="border-style: solid;border-width: thin;border-collapse: collapse;" >
-             <tr>
+        <table border="2">
+        <thead>
+              <tr>
                   <th>No</th>
                   <th>Nomor Order</th>
                   <th>Nama Pemesan</th>
@@ -38,7 +24,9 @@ $cur_date = date("d-m-Y");?>
                   <th>Modal</th>
                   <th>Untung</th>
                 </tr>
-                <?php
+              </thead>
+              <tbody>
+              <?php
                 function rupiah($angka)
                 {
                   $hasil_rupiah = "Rp " . number_format($angka, 0, ',', '.');
@@ -52,7 +40,7 @@ $cur_date = date("d-m-Y");?>
                 $untung = 0;
                 $tot_modal = 0;
                 $tot_untung = 0;
-                foreach ($data->result_array() as $i) :
+                foreach ($datapesanan->result_array() as $i) :
                   $m = 0;
                   $no++;
   
@@ -72,18 +60,18 @@ $cur_date = date("d-m-Y");?>
                   $resi = $i['no_resi'];
                   $at_id = $i['at_id'];
                   $at_nama = $i['at_nama'];
-                  $status = $i['status_pemesanan'];
+                  $status = $i['status_eks'];
                   $biaya_admin = $i['biaya_admin'];
                   $diskon = $i['diskon'];
                   $uang = $i['uang_kembalian'];
                   $note = $i['note'];
-                  if($i['status_pemesanan'] == 0)
+                  if($i['status_eks'] == 0)
                   $status = "Belum Bayar";
-                  elseif($i['status_pemesanan'] == 1)
+                  elseif($i['status_eks'] == 1)
                   $status = "Dibayar";
-                  elseif($i['status_pemesanan'] == 2)
+                  elseif($i['status_eks'] == 2)
                   $status = "Dikirim";
-                  elseif($i['status_pemesanan'] == 3)
+                  elseif($i['status_eks'] == 3)
                   $status = "Selesai";
                
                   $q = $this->M_pemesanan->getHModal($pemesanan_id)->result_array();
@@ -146,14 +134,5 @@ $cur_date = date("d-m-Y");?>
                 <th><?php echo rupiah($tot_untung) ?></th>
               </tr>
             
+  
             </table>
-          </div>
-        </div>
-
-</body>
-</html>
-
-<script type="text/javascript">
- window.print();
- window.close();
-</script>

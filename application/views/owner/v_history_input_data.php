@@ -11,63 +11,99 @@
           </div>
         </div>
     </div>
+
     <!-- main body --> 
     <div class="row">   
       <div class="col-xl-12 mb-30">     
         <div class="card card-statistics h-100"> 
           <div class="card-body">
-            <div class="table-responsive">
-            <table id="datatable" class="table table-striped table-bordered p-0">
-              <thead>
-                  <tr>
-                      <th width="10">No</th>
-                      <th><center>ID Pemesanan</center></th>
-                      <th><center>Nama Pemesan</center></th>
-                      <th><center>Tanggal Pemesanan</center></th>
-                      <th><center>Status </center></th>
-                      <th><center>Input Data </center></th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <?php 
-                  $no = 0;
-                  foreach ($datapesanan->result_array() as $i) :
-                    $no++;
-                    $pemesanan_id = $i['pemesanan_id'];
-                    $pemesanan_nama = $i['pemesanan_nama'];  
-                    $tanggal = $i['tanggal'];
-                    $status = $i['status_pemesanan'];
-                    if($status == 0){
-                        $status = "Belum Bayar";
-                    }
-                    else if($status == 1){
-                        $status = "Dibayar";
-                    }
-                    else if ($status == 2){
-                        $status = "Dikirim";
-                    }
-                    else {
-                        $status = "Selesai";
-                    }
-                    $username = $i['user_nama'];
-                    $id = $i['user_id'];
-                  ?>
-                  <tr>
-                      <td><center><?= $no?></center></td>
-                      <td><center><?= $pemesanan_id ?></center></td>
-                      <td><center><?= $pemesanan_nama ?></center></td>
-                      <td><center><?= $tanggal?></center></td>
-                      <td><center><?= $status?></center></td>
-                      <td><center><?= $username ?> ( ID = <?= $id ?>) </center></td>
-                </tr>
-                    <?php endforeach;?>
-              </tbody>
-           </table>
-          </div>
-          </div>
-        </div>   
-      </div>
-  </div>
+
+          
+    <div class="col-xl-12 mb-10" style="display: flex">
+						<div class="container">
+							<h7 class="mb-0">Cari Berdasarkan Tanggal : </h7>
+							<br>
+							<form id="formsearch" method="post">
+								<input class="sd" style="width:142px;" type="date" class="form-control" name="start" id="s">
+								<input class="ed" style="width:142px;" type="date" class="form-control" name="end" id="e">
+								<button type="submit" class="btn btn-secondary"><i class="fa fa-search"
+										aria-hidden="true"></i></button>
+							</form>
+						</div>
+						<div class="btn-group mt-4 mr-5">
+							<button type="button" class="btn btn-info dropdown-toggle mb-4 ml-4" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">
+								Filter Tahun
+							</button>
+							<?php 
+              			$curyear = date('Y');
+              			$earlyyear = $curyear-10;
+            			?>
+							<div class="dropdown-menu">
+              <a class="dropdown-item" onclick="cyear(<?= 0 ?>)" id="changeYear<?= 0 ?>">Seluruh Data</a>
+								<?php foreach(range($curyear, $earlyyear) as $r ) : ?>
+								<a class="dropdown-item" onclick="cyear(<?= $r ?>)"
+									id="changeYear<?= $r ?>"><?= $r ?></a>
+								<?php endforeach; ?>
+							</div>
+						</div>
+    </div>
+
+    <div id="parent">
+
+      <div class="table-responsive">
+      <table id="datatable" class="table table-striped table-bordered p-0">
+        <thead>
+            <tr>
+                <th width="10">No</th>
+                <th><center>ID Pemesanan</center></th>
+                <th><center>Nama Pemesan</center></th>
+                <th><center>Tanggal Pemesanan</center></th>
+                <th><center>Status </center></th>
+                <th><center>Input Data </center></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php 
+            $no = 0;
+            foreach ($datapesanan->result_array() as $i) :
+              $no++;
+              $pemesanan_id = $i['pemesanan_id'];
+              $pemesanan_nama = $i['pemesanan_nama'];  
+              $tanggal = $i['tanggal'];
+              $status = $i['status_pemesanan'];
+              if($status == 0){
+                  $status = "Belum Bayar";
+              }
+              else if($status == 1){
+                  $status = "Dibayar";
+              }
+              else if ($status == 2){
+                  $status = "Dikirim";
+              }
+              else {
+                  $status = "Selesai";
+              }
+              $username = $i['user_nama'];
+              $id = $i['user_id'];
+            ?>
+            <tr>
+                <td><center><?= $no?></center></td>
+                <td><center><?= $pemesanan_id ?></center></td>
+                <td><center><?= $pemesanan_nama ?></center></td>
+                <td><center><?= $tanggal?></center></td>
+                <td><center><?= $status?></center></td>
+                <td><center><?= $username ?> ( ID = <?= $id ?>) </center></td>
+          </tr>
+              <?php endforeach;?>
+        </tbody>
+     </table>
+    </div>
+    </div>
+  </div>   
+</div>
+</div>
+    </div>
 
     
 <!--=================================
@@ -146,6 +182,102 @@
  
 </body>
 </html> 
+
+
+<script>
+	function cyear(num) {
+		let value = parseInt($('#changeYear' + num).html())
+		$.ajax({
+			method: "POST",
+			url: "<?= base_url() ?>owner/Barang/historyPemesananByTahun?stts=<?= $st ?>",
+			data: {
+				thn: parseInt($('#changeYear' + num).html())
+			},
+			success: function (result) {
+				$('#parent').html(result)
+			}
+		});
+	}
+
+</script>
+
+<script>
+	$('#formsearch').submit(function (e) {
+		$.ajax({
+			method: "POST",
+			url: "<?= base_url() ?>owner/Barang/historyPemesananByTanggal?stts=<?= $st ?>",
+			data: {
+				startt: $('#s').val(),
+				endd: $('#e').val()
+			},
+			success: function (result) {
+				$('#parent').html(result)
+			}
+		});
+		e.preventDefault()
+	});
+
+</script>
+
+
+<script type="text/javascript">
+	var e = document.getElementsByClassName("sd");
+	$('.sd').on('change', function () {
+		var date = new Date($(this).val());
+		days = date.getDate();
+		months = date.getMonth() + 1;
+		years = date.getFullYear();
+	});
+
+	var e = document.getElementsByClassName("ed");
+	$('.ed').on('change', function () {
+		var date = new Date($(this).val());
+		daye = date.getDate();
+		monthe = date.getMonth() + 1;
+		yeare = date.getFullYear();
+		if (years > yeare) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		} else if ((years == yeare) && (months > monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		}
+	});
+
+</script>
+
+
+<script type="text/javascript">
+	var e = document.getElementsByClassName("ed");
+	$('.ed').on('change', function () {
+		var date = new Date($(this).val());
+		daye = date.getDate();
+		monthe = date.getMonth() + 1;
+		yeare = date.getFullYear();
+	});
+
+	var e = document.getElementsByClassName("sd");
+	$('.sd').on('change', function () {
+		var date = new Date($(this).val());
+		days = date.getDate();
+		months = date.getMonth() + 1;
+		years = date.getFullYear();
+		if (years > yeare) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		} else if ((years == yeare) && (months > monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		}
+	});
+
+</script>
 
 <script type="text/javascript">
   $(document).ready(function(){
