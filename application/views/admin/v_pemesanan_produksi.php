@@ -84,6 +84,7 @@
               $earlyyear = $curyear-10;
             ?>
 							<div class="dropdown-menu">
+							<a class="dropdown-item" onclick="cyear(<?= 0 ?>)" id="changeYear<?= 0 ?>">Seluruh Data</a>
 								<?php foreach(range($curyear, $earlyyear) as $r ) : ?>
 								<a class="dropdown-item" onclick="cyear(<?= $r ?>)" id="changeYear<?= $r ?>"><?= $r ?></a>
 								<?php endforeach; ?>
@@ -111,7 +112,20 @@
 								<a class="dropdown-item" href="" data-toggle="modal" data-target="#Conv-Transaksi">Data Keuangan</a>
 							</div>
 						</div>
-						<?php endif; ?>
+						<?php else : ?>
+			<div class="col-md-2 ml-3">
+							<a href="" data-toggle="modal" data-target="#Cetak-Pesanan"
+								class="btn btn-success btn-block ripple m-t-10">
+								<i class="fa fa-print pr-2"></i>Cetak
+							</a>
+						</div>
+			<div class="col-md-2">
+				<a href="" data-toggle="modal" data-target="#Conv-Pemesanan"
+					class="btn btn-dark btn-block ripple m-t-10">
+					<i class="fa fa-save pr-2"></i>Convert
+				</a>
+			</div>
+			<?php endif?>
 					</div>
 				
 
