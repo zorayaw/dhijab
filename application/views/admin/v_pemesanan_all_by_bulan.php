@@ -6,7 +6,12 @@
   <div class="page-title">
     <div class="row">
       <div class="col-sm-6">
-        <h4 class="mb-0">Data Semua Pemesanan Bulan <?=$namaBulan." ".date('Y')?></h4>
+        <h4 class="mb-0">Data Semua Pemesanan Bulan <?=$namaBulan?> 
+        <span id="thun">
+          2020
+        </span>
+      </h4>
+      <br>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
@@ -60,7 +65,7 @@
           <?php endif; ?>
 
           <div class="col-xl-12 mb-20" style="display: flex">
-          
+            
           <?php 
           if($bulan < 10){
             $minn =  date('Y')."-0".$bulan."-01";
@@ -76,9 +81,9 @@
           <h7 class="mb-0">Cari Berdasarkan Tanggal :  </h7>
           <br>
           <form id="formsearch" method="post">
-            <input class="sd" style="width:142px;" type="date" name="start"  class="form-control" id="s" min="<?= $minn ?>" value="<?= $minn ?>" max="<?= $maxx ?>">
-            <input class="ed" style="width:142px;" type="date" name="end"  class="form-control" id="e" min="<?= $minn ?>" value="<?= $maxx ?>" max="<?= $maxx ?>">
-            <button type="submit" class="btn btn-secondary"><i class="fa fa-search" aria-hidden="true"></i></button>
+          <input class="sd" type="date" name="start" style="width:142px;" class="form-control" id="s" value="<?= $minn ?>" min="<?= $minn ?>" max="<?= $maxx ?>">
+          <input class="ed" type="date" name="end" style="width:142px;" class="form-control" id="e" value="<?= $maxx ?>" min="<?= $minn ?>" max="<?= $maxx ?>">  
+          <button type="submit" class="btn btn-secondary"><i class="fa fa-search" aria-hidden="true"></i></button>
           </form>
           </div>
 
@@ -2109,8 +2114,50 @@
               thn: parseInt($('#changeYear'+num).html())
             },
             success: function (result) {
-              $('#parent').html(result)          
-            }
+              $('#parent').html(result)   
+             if(<?=$bulan?> < 10) {
+                if(<?=$bulan?> == 2){
+                  if((value % 4)==0){
+                        $("#s").attr('min', value+"-0<?=$bulan?>-01");
+                        $("#s").attr('max', value+"-0<?=$bulan?>-29");
+                        $("#s").attr('value', value+"-0<?=$bulan?>-01");
+                        $("#e").attr('min', value+"-0<?=$bulan?>-01");
+                        $("#e").attr('max', value+"-0<?=$bulan?>-29");
+                        $("#e").attr('value', value+"-0<?=$bulan?>-29");   
+                  }
+                  else {
+                        $("#s").attr('min', value+"-0<?=$bulan?>-01");
+                        $("#s").attr('max', value+"-0<?=$bulan?>-28");
+                        $("#s").attr('value', value+"-0<?=$bulan?>-01");
+                        $("#e").attr('min', value+"-0<?=$bulan?>-01");
+                        $("#e").attr('max', value+"-0<?=$bulan?>-28");
+                        $("#e").attr('value', value+"-0<?=$bulan?>-28");   
+                  }
+                }
+                else{
+                  $("#s").attr('min', value+"-0<?=$bulan?>-01");
+                  $("#s").attr('max', value+"-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                  $("#s").attr('value', value+"-0<?=$bulan?>-01");
+                  $("#e").attr('min', value+"-0<?=$bulan?>-01");
+                  $("#e").attr('max', value+"-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                  $("#e").attr('value', value+"-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                }
+             }
+             else if(<?=$bulan?> >= 10) {
+                  $("#s").attr('min', value+"-<?=$bulan?>-01");
+                  $("#s").attr('max', value+"-<?=$bulan?>-<?=$tanggalAkhir?>");
+                  $("#s").attr('value', value+"-<?=$bulan?>-01");
+                  $("#e").attr('min', value+"-<?=$bulan?>-01");
+                  $("#e").attr('max', value+"-<?=$bulan?>-<?=$tanggalAkhir?>");
+                  $("#e").attr('value', value+"-<?=$bulan?>-<?=$tanggalAkhir?>");
+             } 
+             if(isNaN(value)){
+                $("#thun").text("")
+             }
+             else{
+                $("#thun").text(parseInt($('#changeYear' + num).html()))
+             }
+	          }
 			});
     }
 </script>

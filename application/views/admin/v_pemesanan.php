@@ -10,7 +10,7 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<h4 class="mb-0">Data Semua Pemesanan</h4>
-			</div>
+				</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
 					<li class="breadcrumb-item">Seluruh Pemesanan</a></li>
@@ -69,7 +69,17 @@
 
 
 					<div class="col-xl-12 mb-20" style="display: flex">
-						<div class="container">
+							<div class="container" >
+							<h7 class="mb-0">Cari Berdasarkan Tanggal :  </h7>
+							<br>
+							<form id="formsearch" method="post">
+								<input class="sd" style="width:142px;" min="" max="" type="date" name="start"  class="form-control" id="s"  >
+								<input class="ed" style="width:142px;" min="" max="" type="date" name="end"  class="form-control" id="e" >
+								<button type="submit" class="btn btn-secondary"><i class="fa fa-search" aria-hidden="true"></i></button>
+							</form>
+							</div>
+
+						<!-- <div class="container">
 							<h7 class="mb-0">Cari Berdasarkan Tanggal : </h7>
 							<br>
 							<form id="formsearch" method="post">
@@ -78,7 +88,7 @@
 								<button type="submit" class="btn btn-secondary"><i class="fa fa-search"
 										aria-hidden="true"></i></button>
 							</form>
-						</div>
+						</div> -->
 						<div class="btn-group mt-4">
 							<button type="button" class="btn btn-info dropdown-toggle mb-4 ml-4" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">
@@ -2018,8 +2028,15 @@
 			},
 			success: function (result) {
 				$('#parent').html(result)
+				$("#s").attr('min', value+"-01-01");
+				$("#s").attr('max', value+"-12-31");
+				$("#s").attr('value', value+"-01-01");
+				$("#e").attr('min', value+"-01-01");
+				$("#e").attr('max', value+"-12-31");
+				$("#e").attr('value', value+"-12-31");
 			}
 		});
+		
 	}
 
 </script>

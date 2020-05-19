@@ -6,7 +6,12 @@
   <div class="page-title">
     <div class="row">
       <div class="col-sm-6">
-        <h4 class="mb-0">Data Pemesanan Produksi Bulan <?=$namaBulan." ".date('Y')?></h4>
+        <h4 class="mb-0">Data Pemesanan Produksi Bulan <?=$namaBulan?>
+        <span id="thun">
+          2020
+        </span>
+      </h4>
+      <br>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
@@ -2094,7 +2099,49 @@ $status_pemesanan = $i['status_pemesanan'];
               thn: parseInt($('#changeYear'+num).html())
             },
             success: function (result) {
-              $('#parent').html(result)          
+              $('#parent').html(result) 
+              if(<?=$bulan?> < 10) {
+                if(<?=$bulan?> == 2){
+                  if((value % 4)==0){
+                        $("#s").attr('min', value+"-0<?=$bulan?>-01");
+                        $("#s").attr('max', value+"-0<?=$bulan?>-29");
+                        $("#s").attr('value', value+"-0<?=$bulan?>-01");
+                        $("#e").attr('min', value+"-0<?=$bulan?>-01");
+                        $("#e").attr('max', value+"-0<?=$bulan?>-29");
+                        $("#e").attr('value', value+"-0<?=$bulan?>-29");   
+                  }
+                  else {
+                        $("#s").attr('min', value+"-0<?=$bulan?>-01");
+                        $("#s").attr('max', value+"-0<?=$bulan?>-28");
+                        $("#s").attr('value', value+"-0<?=$bulan?>-01");
+                        $("#e").attr('min', value+"-0<?=$bulan?>-01");
+                        $("#e").attr('max', value+"-0<?=$bulan?>-28");
+                        $("#e").attr('value', value+"-0<?=$bulan?>-28");   
+                  }
+                }
+                else{
+                  $("#s").attr('min', value+"-0<?=$bulan?>-01");
+                  $("#s").attr('max', value+"-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                  $("#s").attr('value', value+"-0<?=$bulan?>-01");
+                  $("#e").attr('min', value+"-0<?=$bulan?>-01");
+                  $("#e").attr('max', value+"-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                  $("#e").attr('value', value+"-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                }
+             }
+             else if(<?=$bulan?> >= 10) {
+                  $("#s").attr('min', value+"-<?=$bulan?>-01");
+                  $("#s").attr('max', value+"-<?=$bulan?>-<?=$tanggalAkhir?>");
+                  $("#s").attr('value', value+"-<?=$bulan?>-01");
+                  $("#e").attr('min', value+"-<?=$bulan?>-01");
+                  $("#e").attr('max', value+"-<?=$bulan?>-<?=$tanggalAkhir?>");
+                  $("#e").attr('value', value+"-<?=$bulan?>-<?=$tanggalAkhir?>");
+             }  
+             if(isNaN(value)){
+                $("#thun").text("")
+             }
+             else{
+                $("#thun").text(parseInt($('#changeYear' + num).html()))
+             }        
             }
 			});
     }
