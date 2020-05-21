@@ -1402,6 +1402,7 @@ class Pemesanan extends CI_Controller
 	function tambahpesananNR()
 	{
 		$pemesanan_id = $this->input->post('pemesanan_id');
+		$lvl = $this->input->post('lvl');
 		$level = 2;
 		$barang_id = $this->input->post('barang');
 		$qty = $this->input->post('qty');
@@ -1414,7 +1415,7 @@ class Pemesanan extends CI_Controller
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect("admin/Pemesanan/list_barang/$pemesanan_id/$level");
+		redirect("admin/Pemesanan/list_barang/$pemesanan_id/$lvl");
 	}
 
 	function tambahpesananR()

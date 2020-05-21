@@ -109,6 +109,7 @@
                                 <div class="form-group col-md-12 mt-10" id="dynamic_field">
                                         <div class="row"> 
                                           <input type="hidden" name="pemesanan_id" value="<?php echo $p_id?>">
+                                          <input type="hidden" name="lvl" value="<?php echo $lvl?>">
                                           <div class="col-md-8">
                                             <label class="control-label">Barang</label>
                                             <select class="form-control" name="barang[]" required>
