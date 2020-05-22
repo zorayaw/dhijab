@@ -35,4 +35,14 @@ class M_login extends CI_Model
             $hsl = $this->db->query("DELETE FROM user WHERE user_id='$id'");
             return $hsl;
         } 
-}?>
+
+        function insertDataLogin($username, $id){
+                $hsl = $this->db->query("INSERT INTO data_login(username, user_id) VALUES  ('$username', '$id')");
+                return $hsl;
+        }
+        
+        function getAllDataLogin(){
+            $hsl = $this->db->query("SELECT * FROM data_login");
+            return $hsl->result_array();
+        }
+        }?>

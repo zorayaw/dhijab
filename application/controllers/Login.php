@@ -4,7 +4,7 @@ class Login extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('m_login');
+        $this->load->model('M_login');
     }
     function index()
     {
@@ -25,7 +25,7 @@ class Login extends CI_Controller
         $password = strip_tags(str_replace("'", "", $this->input->post('password')));
         $u = $username;
         $p = $password;
-        $cadmin = $this->m_login->cekuser($u, $p);
+        $cadmin = $this->M_login->cekuser($u, $p);
         if ($cadmin->num_rows() > 0) {
             $this->session->set_userdata('masuk', true);
             $this->session->set_userdata('user', $u);
@@ -44,9 +44,10 @@ class Login extends CI_Controller
                 $id = $xcadmin['user_id'];
                 $user_nama = $xcadmin['user_nama'];
                 $user_hp = $xcadmin['user_hp'];
+                $this->M_login->insertDataLogin($u, $id);
                 $this->session->set_userdata('hp', $user_hp);
                 $this->session->set_userdata('id', $id);
-                $this->session->set_userdata('nama', $user_nama);
+                $this->session->set_userdata('nama', $user_nama);      
                 redirect('admin/Pemesanan');
             } else {
                 $this->session->set_userdata('akses', '3');
@@ -76,5 +77,15 @@ class Login extends CI_Controller
         $this->session->sess_destroy();
         $url = base_url('Login');
         redirect($url);
+    }
+
+    function viewDataLogin(){
+        if($this->session->userdata('akses') == 1 ){
+        $x['data_login'] = $this->M_login->getAllDataLogin();
+        var_dump($x['data_login']);
+        }
+        else
+        redirect('Login');
+
     }
 }
