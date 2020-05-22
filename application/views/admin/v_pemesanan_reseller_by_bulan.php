@@ -2104,11 +2104,13 @@
             },
             success: function (result) {
               $('#parent').html(result)  
-              $('#s').val("")
-              $('#e').val("") 
+               
               if(<?=$bulan?> < 10) {
                 if(<?=$bulan?> == 2){
                   if((value % 4)==0){
+                        $('#s').val(value+"-0<?=$bulan?>-01")
+                        $('#e').val(value+"-0<?=$bulan?>-29")
+
                         $("#s").attr('min', value+"-0<?=$bulan?>-01");
                         $("#s").attr('max', value+"-0<?=$bulan?>-29");
                         $("#s").attr('value', value+"-0<?=$bulan?>-01");
@@ -2117,6 +2119,9 @@
                         $("#e").attr('value', value+"-0<?=$bulan?>-29");   
                   }
                   else {
+                        $('#s').val(value+"-0<?=$bulan?>-01")
+                        $('#e').val(value+"-0<?=$bulan?>-28")
+
                         $("#s").attr('min', value+"-0<?=$bulan?>-01");
                         $("#s").attr('max', value+"-0<?=$bulan?>-28");
                         $("#s").attr('value', value+"-0<?=$bulan?>-01");
@@ -2126,6 +2131,9 @@
                   }
                 }
                 else{
+                  $('#s').val(value+"-0<?=$bulan?>-01")
+                  $('#e').val(value+"-0<?=$bulan?>-<?=$tanggalAkhir?>")
+
                   $("#s").attr('min', value+"-0<?=$bulan?>-01");
                   $("#s").attr('max', value+"-0<?=$bulan?>-<?=$tanggalAkhir?>");
                   $("#s").attr('value', value+"-0<?=$bulan?>-01");
@@ -2135,6 +2143,9 @@
                 }
              }
              else if(<?=$bulan?> >= 10) {
+                  $('#s').val(value+"-<?=$bulan?>-01")
+                  $('#e').val(value+"-<?=$bulan?>-<?=$tanggalAkhir?>")
+
                   $("#s").attr('min', value+"-<?=$bulan?>-01");
                   $("#s").attr('max', value+"-<?=$bulan?>-<?=$tanggalAkhir?>");
                   $("#s").attr('value', value+"-<?=$bulan?>-01");
@@ -2144,6 +2155,9 @@
              } 
              if(isNaN(value)){
               if(<?=$bulan?> < 10) {
+                  $('#s').val("<?=date('Y')?>-0<?=$bulan?>-01")
+                  $('#e').val("<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>")
+
                   $("#s").attr('min', "<?=date('Y')?>-0<?=$bulan?>-01");
                   $("#s").attr('max', "<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>");
                   $("#s").attr('value',"<?=date('Y')?>-0<?=$bulan?>-01");
@@ -2153,6 +2167,9 @@
                   $("#thun").text("")
               }
               else if(<?=$bulan?> >= 10){
+                  $('#s').val("<?=date('Y')?>-<?=$bulan?>-01")
+                  $('#e').val("<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>")
+
                   $("#s").attr('min', "<?=date('Y')?>-<?=$bulan?>-01");
                   $("#s").attr('max', "<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>");
                   $("#s").attr('value',"<?=date('Y')?>-<?=$bulan?>-01");

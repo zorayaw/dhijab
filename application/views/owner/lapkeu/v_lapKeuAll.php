@@ -1096,14 +1096,15 @@
             },
             success: function (result) {
               $('#parent').html(result)
-              $('#s').val("")
-              $('#e').val("")
               $("#s").attr('min', value+"-01-01");
               $("#s").attr('max', value+"-12-31");
               $("#s").attr('value', value+"-01-01");
               $("#e").attr('min', value+"-01-01");
               $("#e").attr('max', value+"-12-31");
               $("#e").attr('value', value+"-12-31");
+              $('#s').val(value+"-01-01")
+              $('#e').val(value+"-12-31")
+
               if(isNaN(value)){
 				      $("#thun").text("")
               }
