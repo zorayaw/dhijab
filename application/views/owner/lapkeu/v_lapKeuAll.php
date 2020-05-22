@@ -7,9 +7,15 @@
     <div class="row">
       <div class="col-sm-6">
         <?php if ($st == 0) : ?>
-        <h4 class="mb-0">Data Keuangan</h4>
+        <h4 class="mb-0">Data Keuangan
+        <span id="thun">
+        </span>
+        </h4>
         <?php else : ?>
-          <h4 class="mb-0">Data Keuangan <?= $stat ?></h4>
+          <h4 class="mb-0">Data Keuangan <?= $stat ?>
+        <span id="thun">
+        </span>
+        </h4>
         <?php endif;?>  
       </div>
       <div class="col-sm-6">
@@ -1090,12 +1096,21 @@
             },
             success: function (result) {
               $('#parent').html(result)
+              $('#s').val("")
+              $('#e').val("")
               $("#s").attr('min', value+"-01-01");
               $("#s").attr('max', value+"-12-31");
               $("#s").attr('value', value+"-01-01");
               $("#e").attr('min', value+"-01-01");
               $("#e").attr('max', value+"-12-31");
-              $("#e").attr('value', value+"-12-31");}
+              $("#e").attr('value', value+"-12-31");
+              if(isNaN(value)){
+				      $("#thun").text("")
+              }
+              else{
+                $("#thun").text(parseInt($('#changeYear' + num).html()))
+              }
+          }
 			});
     }
 </script>

@@ -2,7 +2,10 @@
     <div class="page-title">
       <div class="row">
           <div class="col-sm-6">
-              <h4 class="mb-0"><?= $title_view ?></h4>              
+              <h4 class="mb-0"><?= $title_view ?>
+              <span id="thun">
+              </span>
+              </h4>              
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
@@ -195,12 +198,20 @@
 			},
 			success: function (result) {
 				$('#parent').html(result)
+        $('#s').val("")
+        $('#e').val("")
         $("#s").attr('min', value+"-01-01");
 			  $("#s").attr('max', value+"-12-31");
 			  $("#s").attr('value', value+"-01-01");
 			  $("#e").attr('min', value+"-01-01");
 			  $("#e").attr('max', value+"-12-31");
 			  $("#e").attr('value', value+"-12-31");
+        if(isNaN(value)){
+				    $("#thun").text("")
+        }
+        else{
+            $("#thun").text(parseInt($('#changeYear' + num).html()))
+        }
 			}
 		});
 	}

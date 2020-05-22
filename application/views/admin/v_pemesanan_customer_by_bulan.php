@@ -2108,7 +2108,9 @@
               thn: parseInt($('#changeYear'+num).html())
             },
             success: function (result) {
-              $('#parent').html(result)    
+              $('#parent').html(result)  
+              $('#s').val("")
+              $('#e').val("")  
               if(<?=$bulan?> < 10) {
                 if(<?=$bulan?> == 2){
                   if((value % 4)==0){
@@ -2145,8 +2147,26 @@
                   $("#e").attr('max', value+"-<?=$bulan?>-<?=$tanggalAkhir?>");
                   $("#e").attr('value', value+"-<?=$bulan?>-<?=$tanggalAkhir?>");
              } 
+
              if(isNaN(value)){
-                $("#thun").text("")
+              if(<?=$bulan?> < 10) {
+                  $("#s").attr('min', "<?=date('Y')?>-0<?=$bulan?>-01");
+                  $("#s").attr('max', "<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                  $("#s").attr('value',"<?=date('Y')?>-0<?=$bulan?>-01");
+                  $("#e").attr('min', "<?=date('Y')?>-0<?=$bulan?>-01");
+                  $("#e").attr('max', "<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                  $("#e").attr('value', "<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                  $("#thun").text("")
+              }
+              else if(<?=$bulan?> >= 10){
+                  $("#s").attr('min', "<?=date('Y')?>-<?=$bulan?>-01");
+                  $("#s").attr('max', "<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>");
+                  $("#s").attr('value',"<?=date('Y')?>-<?=$bulan?>-01");
+                  $("#e").attr('min', "<?=date('Y')?>-<?=$bulan?>-01");
+                  $("#e").attr('max', "<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>");
+                  $("#e").attr('value', "<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>");
+                  $("#thun").text("")
+              }
              }
              else{
                 $("#thun").text(parseInt($('#changeYear' + num).html()))
