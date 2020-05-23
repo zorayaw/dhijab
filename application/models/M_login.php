@@ -43,6 +43,6 @@ class M_login extends CI_Model
         
         function getAllDataLogin(){
             $hsl = $this->db->query("SELECT * FROM data_login");
-            return $hsl->result_array();
+            return $hsl;
         }
         }?>
