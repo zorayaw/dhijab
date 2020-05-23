@@ -20,7 +20,7 @@
             <div class="card-body">
               <div class="col-xl-12 mb-10">
                   <a href="" data-toggle="modal" data-target="#tambah-data" class="btn btn-primary btn-block ripple m-t-20">
-                      <i class="fa fa-plus pr-2"></i> Tambah User 
+                      <i class="fa fa-user-plus pr-2"></i> Tambah User 
                   </a>
             </div>
               <div class="table-responsive">
