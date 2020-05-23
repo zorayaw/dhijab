@@ -2044,7 +2044,7 @@
 				$("#thun").text("")
              }
              else{
-                $("#thun").text(parseInt($('#changeYear' + num).html()))
+                $("#thun").text(parseInt($('#changeKurir' + num).html()))
              }
 			}
 		});

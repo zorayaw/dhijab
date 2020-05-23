@@ -7,10 +7,8 @@
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-					<li class="breadcrumb-item"><a href="<?php echo base_url()?>Stok/Pemesanan"
-							class="default-color">Home</a>
+					<li class="breadcrumb-item">Kurir
 					</li>
-					<li class="breadcrumb-item active">Kurir</li>
 				</ol>
 			</div>
 		</div>
@@ -44,6 +42,25 @@
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href=""  style="width: 420px" data-toggle="modal" data-target="#Conv-Pemesanan"><center>Data Pemesanan</center></a>
 								<a class="dropdown-item" href="" style="width: 420px" data-toggle="modal" data-target="#Conv-Transaksi"><center>Data Keuangan</center></a>
+							</div>
+						</div>
+						
+					</div>
+					<div class="col-xl-12 mb-20" style="display: flex">
+					<div class="btn-group mt-4">
+							<button type="button" class="btn btn-info dropdown-toggle mb-4 ml-4" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">
+								Filter Kurir
+							</button>
+							<div class="dropdown-menu">
+							<a class="dropdown-item" onclick="ckurir(<?= -1 ?>)" id="changeKurir<?= -1 ?>">Seluruh Kurir</a>
+								<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_id = $i['kurir_id'];
+                      				$kurir_nama = $i['kurir_nama'];
+									  $kurir_tanggal = $i['kurir_tanggal'];
+									  ?>
+								<a class="dropdown-item" onclick="ckurir(<?= $kurir_id ?>)" id="changeKurir<?= $kurir_id ?>"><?= $kurir_nama ?></a>
+								<?php endforeach; ?>
 							</div>
 						</div>
 					</div>
@@ -570,6 +587,35 @@
 		position: 'top-right',
 		bgColor: 'red'
 	});
+
+</script>
+<script>
+	function ckurir(num) {
+		let value = parseInt($('#changeKurir' + num).html())
+		$.ajax({
+			method: "POST",
+			url: "<?= base_url() ?>stok/Pemesanan/PemesananByKurir",
+			data: {
+				id_kurir: parseInt($('#changeYear' + num).html())
+			},
+			success: function (result) {
+				$('#parent').html(result)
+				$("#s").attr('min', value+"-01-01");
+				$("#s").attr('max', value+"-12-31");
+				$("#s").attr('value', value+"-01-01");
+				$("#e").attr('min', value+"-01-01");
+				$("#e").attr('max', value+"-12-31");
+				$("#e").attr('value', value+"-12-31");
+				$('#s').val(value+"-01-01")
+              	$('#e').val(value+"-12-31")
+
+			if(isNaN(value)){
+				$("#thun").text("")
+             }
+			}
+		});
+		
+	}
 
 </script>
 <?php else:?>
