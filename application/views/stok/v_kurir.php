@@ -243,6 +243,24 @@ foreach ($datapesanan->result_array() as $i) :
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-12">
+							<button type="button" class="btn btn-info dropdown-toggle ripple m-t-10 mb-4" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false" style="width: 470px">
+								Filter Kurir
+							</button>
+							<div class="dropdown-menu">
+							<center><a class="dropdown-item" onclick="ckurir(<?= -1 ?>)" id="changeKurir<?= -1 ?>" style="width: 470px">Seluruh Kurir</a>
+								<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_id = $i['kurir_id'];
+                      				$kurir_nama = $i['kurir_nama'];
+									  $kurir_tanggal = $i['kurir_tanggal'];
+									  ?>
+								<a class="dropdown-item" onclick="ckurir(<?= $kurir_id ?>)" id="changeKurir<?= $kurir_id ?>"><?= $kurir_nama ?></a>
+								<?php endforeach; ?>
+							</center>
+							</div>
+						</div>
+					
+						<div class="col-md-12">
 							<a href="<?= base_url() ?>owner/Transaksi/cetak_transaksi?doc=1" target="_blank"
 								class="btn btn-success btn-block ripple m-t-10">
 								<i class="fa fa-print pr-2"></i>Cetak Pemesanan Hari Ini (<?= date('d')?> <?php 
@@ -355,25 +373,7 @@ foreach ($datapesanan->result_array() as $i) :
 								</div>
 							</div>
 						</div>
-					</form>
-
-					<div class="btn-group col-md-12">
-						<button type="button" class="btn btn-success dropdown-toggle col-md-12"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-								class="fa fa-print pr-2"></i>
-							Cetak Berdasarkan Kurir
-						</button>
-						<center>
-						<div class="dropdown-menu">
-							<center><a class="dropdown-item" >Seluruh Kurir</a></center>
-							<?php foreach($kurir->result_array() as $i ) : 
-								$kurir_nama = $i['kurir_nama'];				
-							?>
-							<center><a class="dropdown-item" style="width: 420px"><?= $kurir_nama ?></a></center>
-							<?php endforeach; ?>
-						</div>
-						</center>
-					</div>					
+					</form>			
 					
 
 
@@ -397,6 +397,25 @@ foreach ($datapesanan->result_array() as $i) :
 				</div>
 				<div class="modal-body">
 					<div class="row">
+
+					<div class="col-md-12">
+							<button type="button" class="btn btn-info dropdown-toggle ripple m-t-10 mb-4" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false" style="width: 470px">
+								Filter Kurir
+							</button>
+							<div class="dropdown-menu">
+							<center><a class="dropdown-item" onclick="ckurir(<?= -1 ?>)" id="changeKurir<?= -1 ?>" style="width: 470px">Seluruh Kurir</a>
+								<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_id = $i['kurir_id'];
+                      				$kurir_nama = $i['kurir_nama'];
+									  $kurir_tanggal = $i['kurir_tanggal'];
+									  ?>
+								<a class="dropdown-item" onclick="ckurir(<?= $kurir_id ?>)" id="changeKurir<?= $kurir_id ?>"><?= $kurir_nama ?></a>
+								<?php endforeach; ?>
+							</center>
+							</div>
+						</div>
+
 						<div class="col-md-12">
 							<a href="<?= base_url() ?>owner/Transaksi/cetak_transaksi?doc=2" target="_blank"
 								class="btn btn-success btn-block ripple m-t-10">
@@ -584,6 +603,24 @@ foreach ($datapesanan->result_array() as $i) :
 					<div class="modal-body">
 						<div class="row">
 
+						<div class="col-md-12">
+							<button type="button" class="btn btn-info dropdown-toggle ripple m-t-10 mb-4" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false" style="width: 470px">
+								Filter Kurir
+							</button>
+							<div class="dropdown-menu">
+							<center><a class="dropdown-item" onclick="ckurir(<?= -1 ?>)" id="changeKurir<?= -1 ?>" style="width: 470px">Seluruh Kurir</a>
+								<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_id = $i['kurir_id'];
+                      				$kurir_nama = $i['kurir_nama'];
+									  $kurir_tanggal = $i['kurir_tanggal'];
+									  ?>
+								<a class="dropdown-item" onclick="ckurir(<?= $kurir_id ?>)" id="changeKurir<?= $kurir_id ?>"><?= $kurir_nama ?></a>
+								<?php endforeach; ?>
+							</center>
+							</div>
+						</div>
+
 							<div class="col-md-12">
 								<a href="<?= base_url() ?>stok/Pemesanan/convertExcel?doc=1"
 									target="_blank" class="btn btn-success btn-block ripple m-t-10">
@@ -706,6 +743,24 @@ foreach ($datapesanan->result_array() as $i) :
 					</div>
 					<div class="modal-body">
 						<div class="row">
+
+						<div class="col-md-12">
+							<button type="button" class="btn btn-info dropdown-toggle ripple m-t-10 mb-4" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false" style="width: 470px">
+								Filter Kurir
+							</button>
+							<div class="dropdown-menu">
+							<center><a class="dropdown-item" onclick="ckurir(<?= -1 ?>)" id="changeKurir<?= -1 ?>" style="width: 470px">Seluruh Kurir</a>
+								<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_id = $i['kurir_id'];
+                      				$kurir_nama = $i['kurir_nama'];
+									  $kurir_tanggal = $i['kurir_tanggal'];
+									  ?>
+								<a class="dropdown-item" onclick="ckurir(<?= $kurir_id ?>)" id="changeKurir<?= $kurir_id ?>"><?= $kurir_nama ?></a>
+								<?php endforeach; ?>
+							</center>
+							</div>
+						</div>
 
 							<div class="col-md-12">
 								<a href="<?= base_url() ?>stok/Pemesanan/convertWord?doc=1"
@@ -831,6 +886,24 @@ foreach ($datapesanan->result_array() as $i) :
 					</div>
 					<div class="modal-body">
 						<div class="row">
+
+						<div class="col-md-12">
+							<button type="button" class="btn btn-info dropdown-toggle ripple m-t-10 mb-4" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false" style="width: 470px">
+								Filter Kurir
+							</button>
+							<div class="dropdown-menu">
+							<center><a class="dropdown-item" onclick="ckurir(<?= -1 ?>)" id="changeKurir<?= -1 ?>" style="width: 470px">Seluruh Kurir</a>
+								<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_id = $i['kurir_id'];
+                      				$kurir_nama = $i['kurir_nama'];
+									  $kurir_tanggal = $i['kurir_tanggal'];
+									  ?>
+								<a class="dropdown-item" onclick="ckurir(<?= $kurir_id ?>)" id="changeKurir<?= $kurir_id ?>"><?= $kurir_nama ?></a>
+								<?php endforeach; ?>
+							</center>
+							</div>
+						</div>
 
 							<div class="col-md-12">
 								<a href="<?= base_url() ?>stok/Pemesanan/convertPDF?doc=1"
@@ -986,6 +1059,23 @@ foreach ($datapesanan->result_array() as $i) :
 					</div>
 					<div class="modal-body">
 						<div class="row">
+						<div class="col-md-12">
+							<button type="button" class="btn btn-info dropdown-toggle ripple m-t-10 mb-4" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false" style="width: 470px">
+								Filter Kurir
+							</button>
+							<div class="dropdown-menu">
+							<center><a class="dropdown-item" onclick="ckurir(<?= -1 ?>)" id="changeKurir<?= -1 ?>" style="width: 470px">Seluruh Kurir</a>
+								<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_id = $i['kurir_id'];
+                      				$kurir_nama = $i['kurir_nama'];
+									  $kurir_tanggal = $i['kurir_tanggal'];
+									  ?>
+								<a class="dropdown-item" onclick="ckurir(<?= $kurir_id ?>)" id="changeKurir<?= $kurir_id ?>"><?= $kurir_nama ?></a>
+								<?php endforeach; ?>
+							</center>
+							</div>
+						</div>
 
 							<div class="col-md-12">
 								<a href="<?= base_url() ?>stok/Pemesanan/convertExcel?doc=2"
@@ -1110,6 +1200,24 @@ foreach ($datapesanan->result_array() as $i) :
 					<div class="modal-body">
 						<div class="row">
 
+						<div class="col-md-12">
+							<button type="button" class="btn btn-info dropdown-toggle ripple m-t-10 mb-4" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false" style="width: 470px">
+								Filter Kurir
+							</button>
+							<div class="dropdown-menu">
+							<center><a class="dropdown-item" onclick="ckurir(<?= -1 ?>)" id="changeKurir<?= -1 ?>" style="width: 470px">Seluruh Kurir</a>
+								<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_id = $i['kurir_id'];
+                      				$kurir_nama = $i['kurir_nama'];
+									  $kurir_tanggal = $i['kurir_tanggal'];
+									  ?>
+								<a class="dropdown-item" onclick="ckurir(<?= $kurir_id ?>)" id="changeKurir<?= $kurir_id ?>"><?= $kurir_nama ?></a>
+								<?php endforeach; ?>
+							</center>
+							</div>
+						</div>							
+
 							<div class="col-md-12">
 								<a href="<?= base_url() ?>stok/Pemesanan/convertWord?doc=2"
 									target="_blank" class="btn btn-success btn-block ripple m-t-10">
@@ -1233,6 +1341,24 @@ foreach ($datapesanan->result_array() as $i) :
 					</div>
 					<div class="modal-body">
 						<div class="row">
+							
+						<div class="col-md-12">
+							<button type="button" class="btn btn-info dropdown-toggle ripple m-t-10 mb-4" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false" style="width: 470px">
+								Filter Kurir
+							</button>
+							<div class="dropdown-menu">
+							<center><a class="dropdown-item" onclick="ckurir(<?= -1 ?>)" id="changeKurir<?= -1 ?>" style="width: 470px">Seluruh Kurir</a>
+								<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_id = $i['kurir_id'];
+                      				$kurir_nama = $i['kurir_nama'];
+									  $kurir_tanggal = $i['kurir_tanggal'];
+									  ?>
+								<a class="dropdown-item" onclick="ckurir(<?= $kurir_id ?>)" id="changeKurir<?= $kurir_id ?>"><?= $kurir_nama ?></a>
+								<?php endforeach; ?>
+							</center>
+							</div>
+						</div>
 
 							<div class="col-md-12">
 								<a href="<?= base_url() ?>stok/Pemesanan/convertPDF?doc=2"
