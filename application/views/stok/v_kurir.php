@@ -89,7 +89,7 @@
 					<!--end filter tahun -->
 
 					<!-- filter kurir -->
-							<div class="btn-group mt-4">
+						<div class="btn-group mt-4">
 							<button type="button" class="btn btn-info dropdown-toggle mb-4 ml-4" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">
 								Filter Kurir
@@ -356,6 +356,27 @@ foreach ($datapesanan->result_array() as $i) :
 							</div>
 						</div>
 					</form>
+
+					<div class="btn-group col-md-12">
+						<button type="button" class="btn btn-success dropdown-toggle col-md-12"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+								class="fa fa-print pr-2"></i>
+							Cetak Berdasarkan Kurir
+						</button>
+						<center>
+						<div class="dropdown-menu">
+							<center><a class="dropdown-item" >Seluruh Kurir</a></center>
+							<?php foreach($kurir->result_array() as $i ) : 
+								$kurir_nama = $i['kurir_nama'];				
+							?>
+							<center><a class="dropdown-item" style="width: 420px"><?= $kurir_nama ?></a></center>
+							<?php endforeach; ?>
+						</div>
+						</center>
+					</div>					
+					
+
+
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger ripple" data-dismiss="modal">Close</button>
@@ -490,6 +511,25 @@ foreach ($datapesanan->result_array() as $i) :
 							</div>
 						</div>
 					</form>
+
+					<div class="btn-group col-md-12">
+						<button type="button" class="btn btn-success dropdown-toggle col-md-12"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+								class="fa fa-print pr-2"></i>
+							Cetak Berdasarkan Kurir
+						</button>
+						<center>
+						<div class="dropdown-menu">
+							<center><a class="dropdown-item" >Seluruh Kurir</a></center>
+							<?php foreach($kurir->result_array() as $i ) : 
+								$kurir_nama = $i['kurir_nama'];				
+							?>
+							<center><a class="dropdown-item" style="width: 420px"><?= $kurir_nama ?></a></center>
+							<?php endforeach; ?>
+						</div>
+						</center>
+					</div>		
+
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger ripple" data-dismiss="modal">Close</button>
@@ -625,6 +665,24 @@ foreach ($datapesanan->result_array() as $i) :
 									</div>
 								</div>
 							</form>
+
+							<div class="btn-group col-md-12">
+							<button type="button" class="btn btn-success dropdown-toggle col-md-12"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+									class="fa fa-print pr-2"></i>
+								Cetak Berdasarkan Kurir
+							</button>
+							<center>
+							<div class="dropdown-menu">
+								<center><a class="dropdown-item" >Seluruh Kurir</a></center>
+								<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_nama = $i['kurir_nama'];				
+								?>
+								<center><a class="dropdown-item" style="width: 420px"><?= $kurir_nama ?></a></center>
+								<?php endforeach; ?>
+							</div>
+							</center>
+					</div>		
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -730,6 +788,25 @@ foreach ($datapesanan->result_array() as $i) :
 									</div>
 								</div>
 							</form>
+
+							<div class="btn-group col-md-12">
+								<button type="button" class="btn btn-success dropdown-toggle col-md-12"
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+										class="fa fa-print pr-2"></i>
+									Cetak Berdasarkan Kurir
+								</button>
+								<center>
+								<div class="dropdown-menu">
+									<center><a class="dropdown-item" >Seluruh Kurir</a></center>
+									<?php foreach($kurir->result_array() as $i ) : 
+										$kurir_nama = $i['kurir_nama'];				
+									?>
+									<center><a class="dropdown-item" style="width: 420px"><?= $kurir_nama ?></a></center>
+									<?php endforeach; ?>
+								</div>
+								</center>
+							</div>		
+
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -836,6 +913,25 @@ foreach ($datapesanan->result_array() as $i) :
 									</div>
 								</div>
 							</form>
+
+							<div class="btn-group col-md-12">
+								<button type="button" class="btn btn-success dropdown-toggle col-md-12"
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+										class="fa fa-print pr-2"></i>
+									Cetak Berdasarkan Kurir
+								</button>
+								<center>
+								<div class="dropdown-menu">
+									<center><a class="dropdown-item" >Seluruh Kurir</a></center>
+									<?php foreach($kurir->result_array() as $i ) : 
+										$kurir_nama = $i['kurir_nama'];				
+									?>
+									<center><a class="dropdown-item" style="width: 420px"><?= $kurir_nama ?></a></center>
+									<?php endforeach; ?>
+								</div>
+								</center>
+							</div>	
+
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -972,6 +1068,24 @@ foreach ($datapesanan->result_array() as $i) :
 									</div>
 								</div>
 							</form>
+
+							<div class="btn-group col-md-12">
+								<button type="button" class="btn btn-success dropdown-toggle col-md-12"
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+										class="fa fa-print pr-2"></i>
+									Cetak Berdasarkan Kurir
+								</button>
+								<center>
+								<div class="dropdown-menu">
+									<center><a class="dropdown-item" >Seluruh Kurir</a></center>
+									<?php foreach($kurir->result_array() as $i ) : 
+										$kurir_nama = $i['kurir_nama'];				
+									?>
+									<center><a class="dropdown-item" style="width: 420px"><?= $kurir_nama ?></a></center>
+									<?php endforeach; ?>
+								</div>
+								</center>
+							</div>		
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -1077,6 +1191,24 @@ foreach ($datapesanan->result_array() as $i) :
 									</div>
 								</div>
 							</form>
+
+							<div class="btn-group col-md-12">
+								<button type="button" class="btn btn-success dropdown-toggle col-md-12"
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+										class="fa fa-print pr-2"></i>
+									Cetak Berdasarkan Kurir
+								</button>
+								<center>
+								<div class="dropdown-menu">
+									<center><a class="dropdown-item" >Seluruh Kurir</a></center>
+									<?php foreach($kurir->result_array() as $i ) : 
+										$kurir_nama = $i['kurir_nama'];				
+									?>
+									<center><a class="dropdown-item" style="width: 420px"><?= $kurir_nama ?></a></center>
+									<?php endforeach; ?>
+								</div>
+								</center>
+							</div>		
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -1183,6 +1315,24 @@ foreach ($datapesanan->result_array() as $i) :
 									</div>
 								</div>
 							</form>
+
+							<div class="btn-group col-md-12">
+								<button type="button" class="btn btn-success dropdown-toggle col-md-12"
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+										class="fa fa-print pr-2"></i>
+									Cetak Berdasarkan Kurir
+								</button>
+								<center>
+								<div class="dropdown-menu">
+									<center><a class="dropdown-item" >Seluruh Kurir</a></center>
+									<?php foreach($kurir->result_array() as $i ) : 
+										$kurir_nama = $i['kurir_nama'];				
+									?>
+									<center><a class="dropdown-item" style="width: 420px"><?= $kurir_nama ?></a></center>
+									<?php endforeach; ?>
+								</div>
+								</center>
+							</div>		
 						</div>
 					</div>
 					<div class="modal-footer">
