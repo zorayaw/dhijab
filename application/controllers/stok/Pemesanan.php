@@ -428,8 +428,7 @@
 	
 		function convertExcel(){
 			$doc = $this->input->get('doc');
-			
-			
+			$kurir = $this->input->post('kurir');
 
 					$y['title'] = "Pemesanan";
 					$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
@@ -438,7 +437,13 @@
 					$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 					$x['produksi'] = $this->M_barang->getdataProduksi();
 					$x['reseller'] = $this->M_barang->getAllBarangR();
-					$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisi();
+					if($kurir == null || $kurir == -1){
+						$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisi();
+					}
+					else{
+						$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisiByKurir($kurir);
+					}
+					
 					
 				if($doc==2)
 					$this->load->view('admin/laporan_excel', $x);
@@ -469,7 +474,8 @@
 		}	
 		function convertExcelPerbulan(){
 			$doc = $this->input->get('doc');
-				
+			$kurir = $this->input->post('kurir');
+
 				$bulan = $this->input->get('bulan');
 				$tahun = $this->input->get('tahun');
 				
@@ -483,7 +489,12 @@
 					$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 					$x['produksi'] = $this->M_barang->getdataProduksi();
 					$x['reseller'] = $this->M_barang->getAllBarangR();
-					$x['datapesanan'] = $this->M_pemesanan->getPemesananEksByBulan($bulan,$tahun);
+					if($kurir == null || $kurir == -1){
+						$x['datapesanan'] = $this->M_pemesanan->getPemesananEksByBulan($bulan,$tahun);
+					}
+					else{
+						$x['datapesanan'] = $this->M_pemesanan->getPemesananEksByBulanKurir($bulan,$tahun,$kurir);
+					}
 
 				if($doc==2)
 					$this->load->view('admin/laporan_excel', $x);

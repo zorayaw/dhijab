@@ -245,16 +245,20 @@ foreach ($datapesanan->result_array() as $i) :
 						<div class="col-md-12">
 							<button type="button" class="btn btn-info dropdown-toggle ripple m-t-10 mb-4" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false" style="width: 470px">
-								Filter Kurir
+								<span id="krrp">
+									Filter Kurir
+								</span>
 							</button>
 							<div class="dropdown-menu">
-							<center><a class="dropdown-item" onclick="ckurir(<?= -1 ?>)" id="changeKurir<?= -1 ?>" style="width: 470px">Seluruh Kurir</a>
+							<center><a class="dropdown-item" onclick="ckrP(<?= -1 ?>)" id="ckrP<?= -1 ?>" style="width: 470px">
+							Seluruh Kurir
+							</a>
 								<?php foreach($kurir->result_array() as $i ) : 
 									$kurir_id = $i['kurir_id'];
                       				$kurir_nama = $i['kurir_nama'];
 									  $kurir_tanggal = $i['kurir_tanggal'];
 									  ?>
-								<a class="dropdown-item" onclick="ckurir(<?= $kurir_id ?>)" id="changeKurir<?= $kurir_id ?>"><?= $kurir_nama ?></a>
+								<a class="dropdown-item" onclick="ckrP(<?= $kurir_id ?>)" id="ckrP<?= $kurir_id ?>"><?= $kurir_nama ?></a>
 								<?php endforeach; ?>
 							</center>
 							</div>
@@ -603,32 +607,75 @@ foreach ($datapesanan->result_array() as $i) :
 					<div class="modal-body">
 						<div class="row">
 
-						<div class="col-md-12">
-							<button type="button" class="btn btn-info dropdown-toggle ripple m-t-10 mb-4" data-toggle="dropdown"
+					<div class="col-md-12">
+<!-- form start -->
+					<form action="<?= base_url() ?>stok/Pemesanan/convertExcel?doc=1" method="post" id="excelall">
+					<div class="col-md-12">
+						<input type="submit" onclick="submitexcelsemua()"
+						target="_blank" class="btn btn-success btn-block ripple m-t-10" value="Convert Seluruh Pemesanan">
+					</div>
+
+
+					<form action="<?= base_url() ?>stok/Pemesanan/convertExcelPerbulan?doc=1&bulan=<?= date('m')?>&tahun=<?= date("Y")?>" method="post" id="excelperbulann">
+
+					<div class="col-md-12 mt-4">
+					<input type="submit" onclick="submitexcelperbulan()"
+									target="_blank" class="btn btn-success btn-block ripple m-t-10" value="Convert Pemesanan Bulan Ini (<?php 
+									switch (date('m')){
+										case 1 : echo "Januari"; break;
+										case 2 : echo "Februari"; break;
+										case 3 : echo "Maret"; break;
+										case 4 : echo "April"; break;
+										case 5 : echo "May"; break;
+										case 6 : echo "Juni"; break;
+										case 7 : echo "Juli"; break;
+										case 8 : echo "Agustus"; break;
+										case 9 : echo "September"; break;
+										case 10 : echo "Oktober"; break;
+										case 11 : echo "November"; break;
+										case 12 : echo "Desember"; break;
+									}
+									?>
+									<?= date('Y')?>)"
+				>
+				</div>
+
+
+<!-- end form -->
+						<label for="kurir">Filter Kurir</label>
+						<select id="kurir" name="kurir">
+						<option class="dropdown-item" value="<?= -1 ?>">Seluruh Kurir</option>
+						<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_id = $i['kurir_id'];
+                      				$kurir_nama = $i['kurir_nama'];
+									  $kurir_tanggal = $i['kurir_tanggal'];
+									  ?>
+								<option class="dropdown-item" value="<?=$kurir_id?>"><?= $kurir_nama ?></option>
+						<?php endforeach; ?>
+						</select>
+					</form>
+					</form>
+
+							<!-- <button type="button" class="btn btn-info dropdown-toggle ripple m-t-10 mb-4" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false" style="width: 470px">
-								Filter Kurir
+								<span id="krrpexcel">
+									Filter Kurir
+								</span>
 							</button>
 							<div class="dropdown-menu">
-							<center><a class="dropdown-item" onclick="ckurir(<?= -1 ?>)" id="changeKurir<?= -1 ?>" style="width: 470px">Seluruh Kurir</a>
+							<center><a class="dropdown-item" style="width: 470px">Seluruh Kurir</a>
 								<?php foreach($kurir->result_array() as $i ) : 
 									$kurir_id = $i['kurir_id'];
                       				$kurir_nama = $i['kurir_nama'];
 									  $kurir_tanggal = $i['kurir_tanggal'];
 									  ?>
-								<a class="dropdown-item" onclick="ckurir(<?= $kurir_id ?>)" id="changeKurir<?= $kurir_id ?>"><?= $kurir_nama ?></a>
+								<a class="dropdown-item"><?= $kurir_nama ?></a>
 								<?php endforeach; ?>
 							</center>
-							</div>
+							</div> -->
 						</div>
 
-							<div class="col-md-12">
-								<a href="<?= base_url() ?>stok/Pemesanan/convertExcel?doc=1"
-									target="_blank" class="btn btn-success btn-block ripple m-t-10">
-									<i class="fa fa-print pr-2"></i>Convert Seluruh Pemesanan</a>
-								</a>
-							</div>
-
-							<div class="col-md-12 mt-4">
+														<div class="col-md-12 mt-4">
 								<a href="<?= base_url() ?>stok/Pemesanan/convertExcelPerhari?doc=1"
 									target="_blank" class="btn btn-success btn-block ripple m-t-10">
 									<i class="fa fa-print pr-2"></i>Convert Pemesanan Hari Ini
@@ -653,29 +700,7 @@ foreach ($datapesanan->result_array() as $i) :
 								</a>
 							</div>
 
-							<div class="col-md-12 mt-4">
-								<a href="<?= base_url() ?>stok/Pemesanan/convertExcelPerbulan?doc=1&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
-									target="_blank" class="btn btn-success btn-block ripple m-t-10">
-									<i class="fa fa-print pr-2"></i>Convert Pemesanan Bulan Ini (<?php 
-				switch (date('m')){
-					case 1 : echo "Januari"; break;
-					case 2 : echo "Februari"; break;
-					case 3 : echo "Maret"; break;
-					case 4 : echo "April"; break;
-					case 5 : echo "May"; break;
-					case 6 : echo "Juni"; break;
-					case 7 : echo "Juli"; break;
-					case 8 : echo "Agustus"; break;
-					case 9 : echo "September"; break;
-					case 10 : echo "Oktober"; break;
-					case 11 : echo "November"; break;
-					case 12 : echo "Desember"; break;
-				}
-				?>
-									<?= date('Y')?>)
-								</a>
-								</a>
-							</div>
+							
 							<div class="col-md-12 mt-4">
 								<h6>Convert Berdasarkan Tanggal:</h6>
 							</div>
@@ -1645,6 +1670,20 @@ foreach ($datapesanan->result_array() as $i) :
 </body>
 
 </html>
+
+
+<script type="text/javascript">
+    function submitexcelsemua() {
+      $("#excelall").submit();
+    }    
+</script>
+
+<script type="text/javascript">
+    function submitexcelperbulan() {
+      $("#excelperbulann").submit();
+    }    
+</script>
+
 
 <script>
 	function cyear(num) {
