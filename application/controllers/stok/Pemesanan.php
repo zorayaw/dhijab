@@ -554,91 +554,283 @@
 				$this->load->view('admin/laporanP_excel', $x);
 		}
 
-		function cetakTransaksiBerjalan(){
 
-			$x['data'] = $this->M_pemesanan->getPemesananEkspedisi();
-			$a = $this->M_pemesanan->getPemesananEkspedisi();
+		function cetak_transaksiEks(){
+			$doc = $this->input->get('doc');
+			$statusc = $this->input->get('status');
+			$x['numstat'] = $statusc;
+			  $x['data'] = $this->M_pemesanan->getPemesananEksCurdate();
+			  $x['stat'] = "Seluruh";
+			  $a = $this->M_pemesanan->getPemesananEksCurdate();
+
 			$modal = 0;
-			$total_u = 0;
-			$total_o = 0;
-	
-			$total_untung = 0;
-			$total_omset =0;
-	
-	
-			
-			foreach ($a->result_array() as $i) {
-				$pemesanan_id = $i['pemesanan_id'];
-				$level = $i['status_customer'];
-				$b = $this->M_pemesanan->getHargaModal($pemesanan_id, $level);
-				foreach ($b as $temp) {
-					$modal = $modal + $temp['harga'];
-				}
-				if ($level == 1) {
-					$t = $this->db->query("SELECT SUM(a.lb_qty * d.br_harga) AS total_omset, (SUM(a.lb_qty * d.br_harga))-(SUM(a.lb_qty * $modal)) AS total_untung FROM list_barang a, pemesanan b, barang c, barang_reseller d WHERE b.pemesanan_id = '$pemesanan_id' AND a.lb_qty = d.br_kuantitas AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id");
-					$d = $t->row_array();
-					$total_untung = $d['total_untung'];
-					$total_omset = $d['total_omset'];
-				} elseif ($level == 2) {
-					$t = $this->db->query("SELECT SUM(a.lb_qty * d.bnr_harga) AS total_omset, (SUM(a.lb_qty * d.bnr_harga))-(SUM(a.lb_qty * $modal)) AS total_untung FROM list_barang a, pemesanan b, barang c, barang_non_reseller d WHERE b.pemesanan_id = '$pemesanan_id' AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id");
-					$d = $t->row_array();
-					$total_untung = $d['total_untung'];
-					$total_omset = $d['total_omset'];
-				}
-	
-				$total_u = $total_u + $total_untung;
-				$total_o = $total_o + $total_omset;
-			}
-	
-			$total_untung = $total_u;
-			$total_omset = $total_o;
-			$x['total_untung'] = $total_untung;
-			$x['total_omset'] = $total_omset;
-			$this->load->view('v_cetakP_ekspedisi', $x);
-		}
+			 $total_u = 0;
+			 $total_o = 0;
+			 $total_untung = 0;
+			 $total_omset = 0;
+			 foreach ($a->result_array() as $i) {
+				 $pemesanan_id = $i['pemesanan_id'];
+				 $level = $i['status_customer'];
+				  $b = $this->M_pemesanan->getHargaModal($pemesanan_id, $level);
+				  foreach($b as $temp){
+					  $modal = $modal + $temp['harga'];
+				  }
+				 if($level == 1){
+					 $t = $this->db->query("SELECT SUM(a.lb_qty * d.br_harga) AS total_omset, (SUM(a.lb_qty * d.br_harga))-(SUM(a.lb_qty * $modal)) AS total_untung FROM list_barang a, pemesanan b, barang c, barang_reseller d WHERE b.pemesanan_id = '$pemesanan_id' AND a.lb_qty = d.br_kuantitas AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id");
+					$d=$t->row_array();
+					 $total_untung = $d['total_untung'];
+					 $total_omset = $d['total_omset'];
+				 }elseif($level == 2){
+					 $t = $this->db->query("SELECT SUM(a.lb_qty * d.bnr_harga) AS total_omset, (SUM(a.lb_qty * d.bnr_harga))-(SUM(a.lb_qty * $modal)) AS total_untung FROM list_barang a, pemesanan b, barang c, barang_non_reseller d WHERE b.pemesanan_id = '$pemesanan_id' AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id");
+					$d=$t->row_array();
+					 $total_untung = $d['total_untung'];
+					 $total_omset = $d['total_omset'];
+				 }
 
-		function cetakTransaksiTBerjalan(){
+					 $total_u = $total_u + $total_untung;
+					 $total_o = $total_o + $total_omset;
+			 }
+			 
+			 $total_untung = $total_u;
+			 $total_omset = $total_o;
+			 $x['total_untung'] = $total_untung;
+			 $x['total_omset'] = $total_omset;
+			 if($doc==2)
+			$this->load->view('v_cetakEks_perhari',$x);
+			elseif($doc==1)
+			$this->load->view('v_cetakPEks_perhari',$x);
 
-			$x['data'] = $this->M_pemesanan->getPemesananEkspedisi();
-			$a = $this->M_pemesanan->getPemesananEkspedisi();
-			$modal = 0;
-			$total_u = 0;
-			$total_o = 0;
-	
-			$total_untung = 0;
-			$total_omset =0;
-	
-	
-			
-			foreach ($a->result_array() as $i) {
-				$pemesanan_id = $i['pemesanan_id'];
-				$level = $i['status_customer'];
-				$b = $this->M_pemesanan->getHargaModal($pemesanan_id, $level);
-				foreach ($b as $temp) {
-					$modal = $modal + $temp['harga'];
-				}
-				if ($level == 1) {
-					$t = $this->db->query("SELECT SUM(a.lb_qty * d.br_harga) AS total_omset, (SUM(a.lb_qty * d.br_harga))-(SUM(a.lb_qty * $modal)) AS total_untung FROM list_barang a, pemesanan b, barang c, barang_reseller d WHERE b.pemesanan_id = '$pemesanan_id' AND a.lb_qty = d.br_kuantitas AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id");
-					$d = $t->row_array();
-					$total_untung = $d['total_untung'];
-					$total_omset = $d['total_omset'];
-				} elseif ($level == 2) {
-					$t = $this->db->query("SELECT SUM(a.lb_qty * d.bnr_harga) AS total_omset, (SUM(a.lb_qty * d.bnr_harga))-(SUM(a.lb_qty * $modal)) AS total_untung FROM list_barang a, pemesanan b, barang c, barang_non_reseller d WHERE b.pemesanan_id = '$pemesanan_id' AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id");
-					$d = $t->row_array();
-					$total_untung = $d['total_untung'];
-					$total_omset = $d['total_omset'];
-				}
-	
-				$total_u = $total_u + $total_untung;
-				$total_o = $total_o + $total_omset;
-			}
-	
-			$total_untung = $total_u;
-			$total_omset = $total_o;
-			$x['total_untung'] = $total_untung;
-			$x['total_omset'] = $total_omset;
-			$this->load->view('v_cetak_ekspedisi', $x);
 		}
+  
+		function cetakTransaksiEksByTanggal(){
+		  $doc = $this->input->get('doc');
+		  $statusc = $this->input->get('status');
+		  $start = $this->input->post('start_date');
+		  $end = $this->input->post('end_date');
+		  $x['numstat'] = $statusc;
+		  $x['start'] = $start;
+		  $x['end'] = $end;
+		  
+			  $x['data'] = $this->M_pemesanan->getPemesananEksByTanggal($start, $end);
+			  $x['stat'] = "Seluruh";
+			  $a = $this->M_pemesanan->getPemesananEksByTanggal($start, $end);
+		  
+		  $modal = 0;
+		  $total_u = 0;
+		  $total_o = 0;
+  
+		  $total_untung = 0;
+		  $total_omset =0;
+  
+  
+		  
+		  foreach ($a->result_array() as $i) {
+			  $pemesanan_id = $i['pemesanan_id'];
+			  $level = $i['status_customer'];
+			  $b = $this->M_pemesanan->getHargaModal($pemesanan_id, $level);
+			  foreach ($b as $temp) {
+				  $modal = $modal + $temp['harga'];
+			  }
+			  if ($level == 1) {
+				  $t = $this->db->query("SELECT SUM(a.lb_qty * d.br_harga) AS total_omset, (SUM(a.lb_qty * d.br_harga))-(SUM(a.lb_qty * $modal)) AS total_untung FROM list_barang a, pemesanan b, barang c, barang_reseller d WHERE b.pemesanan_id = '$pemesanan_id' AND a.lb_qty = d.br_kuantitas AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id");
+				  $d = $t->row_array();
+				  $total_untung = $d['total_untung'];
+				  $total_omset = $d['total_omset'];
+			  } elseif ($level == 2) {
+				  $t = $this->db->query("SELECT SUM(a.lb_qty * d.bnr_harga) AS total_omset, (SUM(a.lb_qty * d.bnr_harga))-(SUM(a.lb_qty * $modal)) AS total_untung FROM list_barang a, pemesanan b, barang c, barang_non_reseller d WHERE b.pemesanan_id = '$pemesanan_id' AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id");
+				  $d = $t->row_array();
+				  $total_untung = $d['total_untung'];
+				  $total_omset = $d['total_omset'];
+			  }
+  
+			  $total_u = $total_u + $total_untung;
+			  $total_o = $total_o + $total_omset;
+		  }
+  
+		  $total_untung = $total_u;
+		  $total_omset = $total_o;
+		  $x['total_untung'] = $total_untung;
+		  $x['total_omset'] = $total_omset;
+		  if($doc==2)
+		  $this->load->view('v_cetakEks_by_tanggal', $x);
+			elseif($doc==1)
+			$this->load->view('v_cetakPEks_by_tanggal', $x);
+		  
+	  }
+
+	  function cetakTransaksiEksByBulan(){
+		  $doc = $this->input->get('doc');
+		  $statusc = $this->input->get('status');
+		  $bulan = $this->input->get('bulan');
+		  $tahun = $this->input->get('tahun');
+		  $x['numstat'] = $statusc;
+		  $x['bulan'] = $bulan;
+		  $x['tahun'] = $tahun;
+
+			  $x['data'] = $this->M_pemesanan->getPemesananEksByBulan($bulan,$tahun);
+			  $x['stat'] = "Seluruh";
+			  $a = $this->M_pemesanan->getPemesananEksByBulan($bulan,$tahun);
+		  
+		  $modal = 0;
+		  $total_u = 0;
+		  $total_o = 0;
+  
+		  $total_untung = 0;
+		  $total_omset =0;
+  
+  
+		  
+		  foreach ($a->result_array() as $i) {
+			  $pemesanan_id = $i['pemesanan_id'];
+			  $level = $i['status_customer'];
+			  $b = $this->M_pemesanan->getHargaModal($pemesanan_id, $level);
+			  foreach ($b as $temp) {
+				  $modal = $modal + $temp['harga'];
+			  }
+			  if ($level == 1) {
+				  $t = $this->db->query("SELECT SUM(a.lb_qty * d.br_harga) AS total_omset, (SUM(a.lb_qty * d.br_harga))-(SUM(a.lb_qty * $modal)) AS total_untung FROM list_barang a, pemesanan b, barang c, barang_reseller d WHERE b.pemesanan_id = '$pemesanan_id' AND a.lb_qty = d.br_kuantitas AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id");
+				  $d = $t->row_array();
+				  $total_untung = $d['total_untung'];
+				  $total_omset = $d['total_omset'];
+			  } elseif ($level == 2) {
+				  $t = $this->db->query("SELECT SUM(a.lb_qty * d.bnr_harga) AS total_omset, (SUM(a.lb_qty * d.bnr_harga))-(SUM(a.lb_qty * $modal)) AS total_untung FROM list_barang a, pemesanan b, barang c, barang_non_reseller d WHERE b.pemesanan_id = '$pemesanan_id' AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id");
+				  $d = $t->row_array();
+				  $total_untung = $d['total_untung'];
+				  $total_omset = $d['total_omset'];
+			  }
+  
+			  $total_u = $total_u + $total_untung;
+			  $total_o = $total_o + $total_omset;
+		  }
+  
+		  $total_untung = $total_u;
+		  $total_omset = $total_o;
+		  // echo $total_omset;
+		  // echo $total_untung;
+		  // die;
+		  $x['total_untung'] = $total_untung;
+		  $x['total_omset'] = $total_omset;
+		  if($doc==2)
+		  $this->load->view('v_cetakEks_by_bulan', $x);
+			elseif($doc==1)
+			$this->load->view('v_cetakPEks_by_bulan', $x);
+		  
+	  }
+
+	  function cetakTransaksiEksByTahun(){
+		  $doc = $this->input->get('doc');
+		  $statusc = $this->input->get('status');
+		  $awal = $this->input->post('start_year');
+		  $akhir = $this->input->post('end_year');
+		  $x['numstat'] = $statusc;
+		  $x['awal'] = $awal;
+		  $x['akhir'] = $akhir;
+
+
+			  $x['data'] = $this->M_pemesanan->getPemesananEksByTahun($awal, $akhir);
+			  $x['stat'] = "Seluruh";
+			  $a = $this->M_pemesanan->getPemesananEksByTahun($awal, $akhir);
+
+		  $modal = 0;
+		  $total_u = 0;
+		  $total_o = 0;
+  
+		  $total_untung = 0;
+		  $total_omset =0;
+  
+  
+		  
+		  foreach ($a->result_array() as $i) {
+			  $pemesanan_id = $i['pemesanan_id'];
+			  $level = $i['status_customer'];
+			  $b = $this->M_pemesanan->getHargaModal($pemesanan_id, $level);
+			  foreach ($b as $temp) {
+				  $modal = $modal + $temp['harga'];
+			  }
+			  if ($level == 1) {
+				  $t = $this->db->query("SELECT SUM(a.lb_qty * d.br_harga) AS total_omset, (SUM(a.lb_qty * d.br_harga))-(SUM(a.lb_qty * $modal)) AS total_untung FROM list_barang a, pemesanan b, barang c, barang_reseller d WHERE b.pemesanan_id = '$pemesanan_id' AND a.lb_qty = d.br_kuantitas AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id");
+				  $d = $t->row_array();
+				  $total_untung = $d['total_untung'];
+				  $total_omset = $d['total_omset'];
+			  } elseif ($level == 2) {
+				  $t = $this->db->query("SELECT SUM(a.lb_qty * d.bnr_harga) AS total_omset, (SUM(a.lb_qty * d.bnr_harga))-(SUM(a.lb_qty * $modal)) AS total_untung FROM list_barang a, pemesanan b, barang c, barang_non_reseller d WHERE b.pemesanan_id = '$pemesanan_id' AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id");
+				  $d = $t->row_array();
+				  $total_untung = $d['total_untung'];
+				  $total_omset = $d['total_omset'];
+			  }
+  
+			  $total_u = $total_u + $total_untung;
+			  $total_o = $total_o + $total_omset;
+		  }
+  
+		  $total_untung = $total_u;
+		  $total_omset = $total_o;
+		  $x['total_untung'] = $total_untung;
+		  $x['total_omset'] = $total_omset;
+		  if($doc==2)
+		  $this->load->view('v_cetakEks_by_Tahun', $x);
+			elseif($doc==1)
+			$this->load->view('v_cetakPEks_by_Tahun', $x);
+		  
+	  }
+
+	  function cetakTransaksiEksByBulanTanpaTahun(){
+		  $doc = $this->input->get('doc');
+		  $statusc = $this->input->get('status');
+		  $bulan = $this->input->get('bulan');
+		  $awal = $this->input->post('start_year');
+		  $akhir = $this->input->post('end_year');
+		  $x['numstat'] = $statusc;
+		  $x['bulan'] = $bulan;
+		  $x['awal'] = $awal;
+		  $x['akhir'] = $akhir;
+
+			  $x['data'] = $this->M_pemesanan->getPemesananEksByBulanTanpaTahun($bulan, $awal, $akhir);
+			  $x['stat'] = "Seluruh";
+		  $a = $this->M_pemesanan->getPemesananEksByBulanTanpaTahun($bulan, $awal, $akhir);
+		  
+		  $modal = 0;
+		  $total_u = 0;
+		  $total_o = 0;
+  
+		  $total_untung = 0;
+		  $total_omset =0;
+  
+  
+		  
+		  foreach ($a->result_array() as $i) {
+			  $pemesanan_id = $i['pemesanan_id'];
+			  $level = $i['status_customer'];
+			  $b = $this->M_pemesanan->getHargaModal($pemesanan_id, $level);
+			  foreach ($b as $temp) {
+				  $modal = $modal + $temp['harga'];
+			  }
+			  if ($level == 1) {
+				  $t = $this->db->query("SELECT SUM(a.lb_qty * d.br_harga) AS total_omset, (SUM(a.lb_qty * d.br_harga))-(SUM(a.lb_qty * $modal)) AS total_untung FROM list_barang a, pemesanan b, barang c, barang_reseller d WHERE b.pemesanan_id = '$pemesanan_id' AND a.lb_qty = d.br_kuantitas AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id");
+				  $d = $t->row_array();
+				  $total_untung = $d['total_untung'];
+				  $total_omset = $d['total_omset'];
+			  } elseif ($level == 2) {
+				  $t = $this->db->query("SELECT SUM(a.lb_qty * d.bnr_harga) AS total_omset, (SUM(a.lb_qty * d.bnr_harga))-(SUM(a.lb_qty * $modal)) AS total_untung FROM list_barang a, pemesanan b, barang c, barang_non_reseller d WHERE b.pemesanan_id = '$pemesanan_id' AND a.pemesanan_id = b.pemesanan_id AND a.barang_id = c.barang_id AND a.barang_id = d.barang_id");
+				  $d = $t->row_array();
+				  $total_untung = $d['total_untung'];
+				  $total_omset = $d['total_omset'];
+			  }
+  
+			  $total_u = $total_u + $total_untung;
+			  $total_o = $total_o + $total_omset;
+		  }
+  
+		  $total_untung = $total_u;
+		  $total_omset = $total_o;
+		  $x['total_untung'] = $total_untung;
+		  $x['total_omset'] = $total_omset;
+		  if($doc==2)
+		  $this->load->view('v_cetakEks_by_bulan_tanpa_tahun', $x);
+			elseif($doc==1) 
+		  $this->load->view('v_cetakPEks_by_bulan_tanpa_tahun', $x);
+		  
+	  }
 
 
 }
