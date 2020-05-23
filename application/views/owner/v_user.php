@@ -2,13 +2,11 @@
       <div class="page-title">
       <div class="row">
           <div class="col-sm-6">
-              <h4 class="mb-0"> User</h4>
+              <h4 class="mb-0">Data Pegawai</h4>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right">
-              <li class="breadcrumb-item"><a href="#" class="default-color">Home</a></li>
-              <li class="breadcrumb-item"><a href="#" class="default-color">Owner</a></li>
-              <li class="breadcrumb-item active">User</li>
+              <li class="breadcrumb-item"><a href="#" class="default-color">Data Pegawai</a></li>
             </ol>
           </div>
         </div>
@@ -56,10 +54,10 @@
                     <?php
                       if ($level ==  1)
                         echo "<td>Owner</td>";
-                      else if($level ==  2)
-                        echo "<td>Admin Stok</td>";
-                        else 
+                      elseif($level ==  2)
                         echo "<td>Admin Order</td>";
+                        elseif($level == 3)
+                        echo "<td>Admin Stok</td>";
                     ?>
                     <td><?= $username?></td>
                     <td><?= $password?></td>
@@ -91,12 +89,12 @@
                                       <input class="form-control form-white" placeholder="Nama Pegawai" type="text" name="nama_pegawai" required/>
                                   </div>
                                   <div class="col-md-12">
-                                      <label class="control-label">Level User</label>
-                                      <select class="form-control" name="level">
+                                      <label class="control-label">Level User*</label>
+                                      <select class="form-control" name="level" required>
                                           <option selected value="">Pilih</option>
                                           <option value="1">Owner</option>
-                                          <option value="2">Stok</option>
-                                          <option value="3">Order</option>
+                                          <option value="2">Order</option>
+                                          <option value="3">Stok</option>
                                           
                                       </select>
                                   </div>
@@ -168,14 +166,14 @@
                                             echo "<option value='3'>Order</option>";
                                           }elseif ($level == 2) {
                                             echo "<option value=''>Pilih</option>";
-                                            echo "<option selected value='1'>Owner</option>";
-                                            echo "<option value='2'>Stok</option>";
+                                            echo "<option  value='1'>Owner</option>";
+                                            echo "<option selected value='2'>Stok</option>";
                                             echo "<option value='3'>Order</option>";
                                           }else{
                                             echo "<option value=''>Pilih</option>";
-                                            echo "<option selected value='1'>Owner</option>";
+                                            echo "<option value='1'>Owner</option>";
                                             echo "<option value='2'>Stok</option>";
-                                            echo "<option value='3'>Order</option>";
+                                            echo "<option  selected value='3'>Order</option>";
                                           }
                                         ?>
                                       </select>
