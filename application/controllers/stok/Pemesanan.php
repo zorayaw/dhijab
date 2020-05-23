@@ -25,6 +25,65 @@
 			$this->kurir();
 		}
 
+		function pemesananByTanggal(){
+			$start = $this->input->post('startt');
+			$end = $this->input->post('endd');
+			$y['title'] = "Kurir";
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisiByTanggal($start,$end);
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+
+			if($this->session->userdata('akses') == 3){
+				$this->load->view('stok/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
+			$this->load->view('stok/v_kurir_by_tahun', $x);
+			
+		   }
+
+		function pemesananByTahun(){
+			$tahun = intVal($this->input->post('thn'));
+			if($tahun == 0){
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisi();
+			}
+			else{
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisiByTahun($tahun);
+			}
+			$y['title'] = "Kurir";
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+
+			if($this->session->userdata('akses') == 3){
+				$this->load->view('stok/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
+			$this->load->view('stok/v_kurir_by_tahun', $x);
+			
+		   }
+
+		function pemesananByKurir(){
+			$kurir = intVal($this->input->post('id_kurir'));
+			if($kurir == -1){
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisi();
+			}
+			else{
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisiByKurir($kurir);
+			}
+			$y['title'] = "Kurir";
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+
+			if($this->session->userdata('akses') == 3){
+				$this->load->view('stok/v_sidebar');
+			}
+			else if($this->session->userdata('akses') == 1){
+				$this->load->view('owner/v_sidebar');
+			}
+			$this->load->view('stok/v_kurir_by_tahun', $x);
+			
+		   }
+
  	  	function Cetak_Invoice($pemesanan_id){
  	  		$level = $this->uri->segment(5);
  	  		   if($level == 1){

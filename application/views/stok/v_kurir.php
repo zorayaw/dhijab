@@ -1,9 +1,17 @@
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"
+	integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css"
+	integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
 <div class="content-wrapper">
 	<div class="page-title">
 		<div class="row">
 			<div class="col-sm-6">
-				<h4 class="mb-0">Data Kurir</h4>
+				<h4 class="mb-0">Data Kurir
+				<span id="thun">
+				</span>
+				</h4>
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
@@ -47,7 +55,41 @@
 						
 					</div>
 					<div class="col-xl-12 mb-20" style="display: flex">
-					<div class="btn-group mt-4">
+					
+					<!-- filter tgl -->
+						<div class="container" >
+							<h7 class="mb-0">Cari Berdasarkan Tanggal :  </h7>
+							<br>
+							<form id="formsearch" method="post">
+								<input class="sd" style="width:142px;" min="" max="" type="date" name="start"  class="form-control" id="s"  >
+								<input class="ed" style="width:142px;" min="" max="" type="date" name="end"  class="form-control" id="e" >
+								<button type="submit" class="btn btn-secondary"><i class="fa fa-search" aria-hidden="true"></i></button>
+							</form>
+							</div>
+					<!--end filter tgl -->
+
+					<!-- filter tahun -->
+						<div class="btn-group mt-4">
+							<button type="button" class="btn btn-info dropdown-toggle mb-4 ml-4" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">
+								Filter Tahun
+							</button>
+							<?php 
+							$curyear = date('Y');
+							$earlyyear = $curyear-10;
+							?>
+							<div class="dropdown-menu">
+							<a class="dropdown-item" onclick="cyear(<?= 0 ?>)" id="changeYear<?= 0 ?>">Seluruh Data</a>
+								<?php foreach(range($curyear, $earlyyear) as $r ) : ?>
+								<a class="dropdown-item" onclick="cyear(<?= $r ?>)"
+									id="changeYear<?= $r ?>"><?= $r ?></a>
+								<?php endforeach; ?>
+							</div>
+						</div>
+					<!--end filter tahun -->
+
+					<!-- filter kurir -->
+							<div class="btn-group mt-4">
 							<button type="button" class="btn btn-info dropdown-toggle mb-4 ml-4" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">
 								Filter Kurir
@@ -63,122 +105,126 @@
 								<?php endforeach; ?>
 							</div>
 						</div>
+					<!--end filter kurir -->
 					</div>
-					<div class="table-responsive">
-						<table id="datatable" class="table table-striped table-bordered p-0">
-							<thead>
-								<tr>
-									<th width="5">No</th>
-									<th>No order</th>
-									<th>Nama Pemesan</th>
-									<th width="10">Tanggal Pemesanan</th>
-									<th>No HP</th>
-									<th>Ekspedisi</th>
-									<th>Nomor Resi</th>
-									<th>Status Ekspedisi</th>
-									<th>Ongkos kirim</th>
-									<th>Total Harga</th>
 
-								</tr>
-							</thead>
-							<tbody>
-								<?php
-                function rupiah($angka)
-                {
-                  $hasil_rupiah = "Rp " . number_format($angka, 0, ',', '.');
-                  return $hasil_rupiah;
-                }
+<div id="parent">
+	<div class="table-responsive">
+		<table id="datatable" class="table table-striped table-bordered p-0">
+			<thead>
+				<tr>
+					<th width="5">No</th>
+					<th>No order</th>
+					<th>Nama Pemesan</th>
+					<th width="10">Tanggal Pemesanan</th>
+					<th>No HP</th>
+					<th>Ekspedisi</th>
+					<th>Nomor Resi</th>
+					<th>Status Ekspedisi</th>
+					<th>Ongkos kirim</th>
+					<th>Total Harga</th>
 
-                $no = 0;
-                $total=0;
-                foreach ($datapesanan->result_array() as $i) :
-                  $no++;
+				</tr>
+			</thead>
+			<tbody>
+				<?php
+function rupiah($angka)
+{
+  $hasil_rupiah = "Rp " . number_format($angka, 0, ',', '.');
+  return $hasil_rupiah;
+}
 
-                  $pemesanan_id = $i['pemesanan_id'];
-                  $pemesanan_nama = $i['pemesanan_nama'];
-                  $tanggal = $i['tanggal'];
-                  $hp = $i['pemesanan_hp'];
-                  $alamat = $i['pemesanan_alamat'];
-                  $kurir_id = $i['kurir_id'];
-                  $ongkir = $i['biaya_ongkir'];
-                  $mp_id1 = $i['mp_id'];
-                  $mp_nama = $i['mp_nama'];
-                  $level = $i['status_customer'];
-                  $kurir_nama = $i['kurir_nama'];
-                  $resi = $i['no_resi'];
-                  $at_id = $i['at_id'];
-                  $status = $i['status_eks'];
-                  $biaya_admin = $i['biaya_admin'];
-                  $diskon = $i['diskon'];
-                  $uang = $i['uang_kembalian'];
-				  $note = $i['note'];
-				  if($status==0)
-				  $namstat = "Belum Lunas";
-				  elseif($status==1)
-				  $namstat = "Lunas";
-				  elseif($status==2)
-				  $namstat = "Dikirim";
-				  elseif($status==3)
-				  $namstat = "Selesai";
+$no = 0;
+$total=0;
+foreach ($datapesanan->result_array() as $i) :
+  $no++;
 
-                  $q = $this->db->query("SELECT SUM(lb_qty * harga)AS total_keseluruhan from list_barang where pemesanan_id=' $pemesanan_id'");
-                  $c = $q->row_array();
-                  $jumlah = $c['total_keseluruhan'] + $ongkir - ($diskon + $biaya_admin + $uang);
-                  
-                  
-                  ?>
-								<tr>
-									<td>
-										<center><?php echo $no ?></center>
-									</td>
-									</td>
-									<td>
-										<center><?php echo $pemesanan_id ?></center>
-									</td>
-									<td><?php echo $pemesanan_nama ?></td>
-									<td><?php echo $tanggal ?></td>
-									<td><?php echo $hp ?></td>
-									<td><?php echo $kurir_nama ?></td>
-									<td><?php echo $resi ?></td>
-									<?php if($this->session->userdata('akses')==3) : ?>
-									<td>
-										<?php
-                      if ($status == 0) { ?>
-										<button type="submit" class="btn btn-warning" data-toggle="modal"
-											data-target="#lunas<?= $pemesanan_id ?>" style="margin-right: 20px">Belum
-											Lunas</button>
-										<?php } elseif ($status == 1) {
-                      ?>
-										<button type="submit" class="btn btn-primary" data-toggle="modal"
-											data-target="#kirim<?= $pemesanan_id ?>" style="margin-right: 20px">Lunas
-										</button>
-										<?php } elseif ($status == 2) {
-                      ?>
-										<button type="submit" class="btn btn-primary" data-toggle="modal"
-											data-target="#selesai<?= $pemesanan_id ?>"
-											style="margin-right: 20px">Dikirim </button>
-										<?php } else {
-                      ?>
-										<button class="btn btn-success" style="margin-right: 20px">Selesai</button>
-										<?php
-                      }
-                      ?>
-									</td>
-									<?php else : ?>
-											<td><?php echo $namstat ?></td>
-									<?php endif; ?>
+  $pemesanan_id = $i['pemesanan_id'];
+  $pemesanan_nama = $i['pemesanan_nama'];
+  $tanggal = $i['tanggal'];
+  $hp = $i['pemesanan_hp'];
+  $alamat = $i['pemesanan_alamat'];
+  $kurir_id = $i['kurir_id'];
+  $ongkir = $i['biaya_ongkir'];
+  $mp_id1 = $i['mp_id'];
+  $mp_nama = $i['mp_nama'];
+  $level = $i['status_customer'];
+  $kurir_nama = $i['kurir_nama'];
+  $resi = $i['no_resi'];
+  $at_id = $i['at_id'];
+  $status = $i['status_eks'];
+  $biaya_admin = $i['biaya_admin'];
+  $diskon = $i['diskon'];
+  $uang = $i['uang_kembalian'];
+  $note = $i['note'];
+  if($status==0)
+  $namstat = "Belum Lunas";
+  elseif($status==1)
+  $namstat = "Lunas";
+  elseif($status==2)
+  $namstat = "Dikirim";
+  elseif($status==3)
+  $namstat = "Selesai";
 
-									<td><?php echo rupiah($ongkir) ?></td>
-									<td><?php echo rupiah($jumlah) ?></td>
-									<?php 
-                    $total=$total+$jumlah;
-                    ?>
-								</tr>
-								<?php endforeach; ?>
+  $q = $this->db->query("SELECT SUM(lb_qty * harga)AS total_keseluruhan from list_barang where pemesanan_id=' $pemesanan_id'");
+  $c = $q->row_array();
+  $jumlah = $c['total_keseluruhan'] + $ongkir - ($diskon + $biaya_admin + $uang);
+  
+  
+  ?>
+				<tr>
+					<td>
+						<center><?php echo $no ?></center>
+					</td>
+					</td>
+					<td>
+						<center><?php echo $pemesanan_id ?></center>
+					</td>
+					<td><?php echo $pemesanan_nama ?></td>
+					<td><?php echo $tanggal ?></td>
+					<td><?php echo $hp ?></td>
+					<td><?php echo $kurir_nama ?></td>
+					<td><?php echo $resi ?></td>
+					<?php if($this->session->userdata('akses')==3) : ?>
+					<td>
+						<?php
+	  if ($status == 0) { ?>
+						<button type="submit" class="btn btn-warning" data-toggle="modal"
+							data-target="#lunas<?= $pemesanan_id ?>" style="margin-right: 20px">Belum
+							Lunas</button>
+						<?php } elseif ($status == 1) {
+	  ?>
+						<button type="submit" class="btn btn-primary" data-toggle="modal"
+							data-target="#kirim<?= $pemesanan_id ?>" style="margin-right: 20px">Lunas
+						</button>
+						<?php } elseif ($status == 2) {
+	  ?>
+						<button type="submit" class="btn btn-primary" data-toggle="modal"
+							data-target="#selesai<?= $pemesanan_id ?>"
+							style="margin-right: 20px">Dikirim </button>
+						<?php } else {
+	  ?>
+						<button class="btn btn-success" style="margin-right: 20px">Selesai</button>
+						<?php
+	  }
+	  ?>
+					</td>
+					<?php else : ?>
+							<td><?php echo $namstat ?></td>
+					<?php endif; ?>
 
-							</tbody>
-						</table>
-					</div>
+					<td><?php echo rupiah($ongkir) ?></td>
+					<td><?php echo rupiah($jumlah) ?></td>
+					<?php 
+	$total=$total+$jumlah;
+	?>
+				</tr>
+				<?php endforeach; ?>
+
+			</tbody>
+		</table>
+	</div>
+</div>
 				</div>
 			</div>
 		</div>
@@ -384,10 +430,7 @@
 <script src="<?php echo base_url()?>assets/admin/js/plugins-jquery.js"></script>
 
 <!-- plugin_path -->
-<script>
-	var plugin_path = '<?php echo base_url()?>assets/admin/js/';
-
-</script>
+<script>var plugin_path = '<?php echo base_url()?>assets/admin/js/';</script>
 
 <!-- chart -->
 <script src="<?php echo base_url()?>assets/admin/js/chart-init.js"></script>
@@ -415,16 +458,86 @@
 
 <!-- lobilist -->
 <script src="<?php echo base_url()?>assets/admin/js/lobilist.js"></script>
-
+ 
 <!-- custom -->
 <script src="<?php echo base_url()?>assets/admin/js/custom.js"></script>
-
+  
 <!-- mask -->
 <script src="<?php echo base_url()?>assets/admin/js/jquery.mask.min.js"></script>
 
 </body>
 
 </html>
+
+<script>
+	function cyear(num) {
+		let value = parseInt($('#changeYear' + num).html())
+		$.ajax({
+			method: "POST",
+			url: "<?= base_url() ?>stok/Pemesanan/pemesananByTahun",
+			data: {
+				thn: parseInt($('#changeYear' + num).html())
+			},
+			success: function (result) {
+				$('#parent').html(result)
+				$("#s").attr('min', value+"-01-01");
+				$("#s").attr('max', value+"-12-31");
+				$("#s").attr('value', value+"-01-01");
+				$("#e").attr('min', value+"-01-01");
+				$("#e").attr('max', value+"-12-31");
+				$("#e").attr('value', value+"-12-31");
+				$('#s').val(value+"-01-01")
+              	$('#e').val(value+"-12-31")
+
+			if(isNaN(value)){
+				$("#thun").text("")
+             }
+             else{
+                $("#thun").text(parseInt($('#changeYear' + num).html()))
+             }
+			}
+		});
+		
+	}
+
+</script>
+
+<script>
+	function ckurir(num) {
+		let value = num
+		$.ajax({
+			method: "POST",
+			url: "<?= base_url() ?>stok/Pemesanan/pemesananByKurir",
+			data: {
+				id_kurir: value
+			},
+			success: function (result) {
+				$('#parent').html(result)
+				$("#thun").text("")
+			}
+		});
+		
+	}
+
+</script>
+
+<script>
+	$('#formsearch').submit(function (e) {
+		$.ajax({
+			method: "POST",
+			url: "<?= base_url() ?>stok/Pemesanan/pemesananByTanggal",
+			data: {
+				startt: $('#s').val(),
+				endd: $('#e').val()
+			},
+			success: function (result) {
+				$('#parent').html(result)
+			}
+		});
+		e.preventDefault()
+	});
+
+</script>
 
 <script type="text/javascript">
 	$(document).ready(function () {
@@ -589,34 +702,6 @@
 	});
 
 </script>
-<script>
-	function ckurir(num) {
-		let value = parseInt($('#changeKurir' + num).html())
-		$.ajax({
-			method: "POST",
-			url: "<?= base_url() ?>stok/Pemesanan/PemesananByKurir",
-			data: {
-				id_kurir: parseInt($('#changeYear' + num).html())
-			},
-			success: function (result) {
-				$('#parent').html(result)
-				$("#s").attr('min', value+"-01-01");
-				$("#s").attr('max', value+"-12-31");
-				$("#s").attr('value', value+"-01-01");
-				$("#e").attr('min', value+"-01-01");
-				$("#e").attr('max', value+"-12-31");
-				$("#e").attr('value', value+"-12-31");
-				$('#s').val(value+"-01-01")
-              	$('#e').val(value+"-12-31")
 
-			if(isNaN(value)){
-				$("#thun").text("")
-             }
-			}
-		});
-		
-	}
-
-</script>
 <?php else:?>
 <?php endif;?>
