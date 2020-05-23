@@ -89,8 +89,8 @@
 					<!--end filter tahun -->
 
 					<!-- filter kurir -->
-						<div class="btn-group mt-4">
-							<button type="button" class="btn btn-info dropdown-toggle mb-4 ml-4" data-toggle="dropdown"
+							<div class="btn-group mt-4">
+							<button type="button" class="btn btn-primary dropdown-toggle mb-4 ml-4 mr-4" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">
 								Filter Kurir
 							</button>
@@ -1024,17 +1024,17 @@ foreach ($datapesanan->result_array() as $i) :
 				</div>
 				<div class="modal-body">
 					<div class="col-md-12 mt-4">
-						<a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="excel" data-toggle="modal" data-target="#exportT">
+						<a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="excelT" data-toggle="modal" data-target="#exportT">
 							<i class="fa fa-file-excel-o pr-2"></i>Convert Excel
 						</a>
 					</div>
 					<div class="col-md-12 mt-4">
-						<a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="pdf" data-toggle="modal" data-target="#exportpdfT">
+						<a href="" target="_blank" class="btn btn-warning btn-block ripple m-t-10" id="pdfT" data-toggle="modal" data-target="#exportpdfT">
 							<i class="fa fa-file-pdf-o pr-2"></i>Convert PDF
 						</a>
 					</div>
 					<div class="col-md-12 mt-4 mb-4">
-						<a href="" target="_blank"  class="btn btn-warning btn-block ripple m-t-10" id="words" data-toggle="modal" data-target="#wordT">
+						<a href="" target="_blank"  class="btn btn-warning btn-block ripple m-t-10" id="wordsT" data-toggle="modal" data-target="#wordT">
 							<i class="fa fa-file-word-o pr-2"></i>Convert Word
 						</a>
 					</div>
@@ -1749,21 +1749,21 @@ foreach ($datapesanan->result_array() as $i) :
 </script>
 
 <script type="text/javascript">
-	$("#excel").click(function () {
+	$("#excelT").click(function () {
 		$("#Conv-Transaksi").modal('hide');
 	});
 
 </script>
 
 <script type="text/javascript">
-	$("#words").click(function () {
+	$("#wordsT").click(function () {
 		$("#Conv-Transaksi").modal('hide');
 	});
 
 </script>
 
 <script type="text/javascript">
-	$("#pdf").click(function () {
+	$("#pdfT").click(function () {
 		$("#Conv-Transaksi").modal('hide');
 	});
 
