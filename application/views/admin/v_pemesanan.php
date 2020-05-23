@@ -118,7 +118,7 @@
 								Cetak Dokumen
 							</button>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="" data-toggle="modal" data-target="#Cetak-Pesanan">Data
+								<a class="dropdown-item" href="" data-toggle="modal" data-target="#Cetak-Pesanan">Data 
 									Pemesanan</a>
 								<a class="dropdown-item" href="" data-toggle="modal" data-target="#Cetak-Transaksi">Data
 									Keuangan</a>
