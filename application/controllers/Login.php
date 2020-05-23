@@ -81,8 +81,12 @@ class Login extends CI_Controller
 
     function viewDataLogin(){
         if($this->session->userdata('akses') == 1 ){
+            $y['title'] = "Data Login Admin";
+            $x['title_view'] = "Data Login Admin";
         $x['data_login'] = $this->M_login->getAllDataLogin();
-        var_dump($x['data_login']);
+        $this->load->view('v_header', $y);
+        $this->load->view('owner/v_sidebar');
+        $this->load->view('owner/v_data_login', $x);
         }
         else
         redirect('Login');
