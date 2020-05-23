@@ -80,7 +80,7 @@ class Login extends CI_Controller
     }
 
     function viewDataLogin(){
-        if($this->session->userdata('akses') == 1 ){
+        if($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') ==TRUE ){
             $y['title'] = "Data Login Admin";
             $x['title_view'] = "Data Login Admin";
         $x['data_login'] = $this->M_login->getAllDataLogin();
