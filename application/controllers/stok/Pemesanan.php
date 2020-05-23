@@ -428,7 +428,7 @@
 	
 		function convertExcel(){
 			$doc = $this->input->get('doc');
-			$kurir = $this->input->post('kurir');
+			$kurir = $this->input->get('id');
 
 					$y['title'] = "Pemesanan";
 					$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
@@ -454,6 +454,7 @@
 	
 		function convertExcelPerhari(){
 			$doc = $this->input->get('doc');
+			$kurir = $this->input->get('id');
 			
 			
 			
@@ -464,7 +465,10 @@
 					$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 					$x['produksi'] = $this->M_barang->getdataProduksi();
 					$x['reseller'] = $this->M_barang->getAllBarangR();
-					$x['datapesanan'] = $this->M_pemesanan->getPemesananEksCurdate();
+					if($kurir == -1){
+						$x['datapesanan'] = $this->M_pemesanan->getPemesananEksCurdate();
+					}
+					$x['datapesanan'] = $this->M_pemesanan->getPemesananEksCurdateByKurir($kurir);
 				
 				if($doc==2)
 					$this->load->view('admin/laporan_excel', $x);
@@ -474,13 +478,13 @@
 		}	
 		function convertExcelPerbulan(){
 			$doc = $this->input->get('doc');
-			$kurir = $this->input->post('kurir');
+			$kurir = $this->input->get('id');
 
-				$bulan = $this->input->get('bulan');
-				$tahun = $this->input->get('tahun');
+				$bulan = date('m');
+				$tahun =  date('Y');
 				
-				$x['bulan'] = $bulan;
-				$x['tahun'] = $tahun;
+				$x['bulan'] = date('m');
+				$x['tahun'] = date('y');
 
 					$y['title'] = "Pemesanan";
 					$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
@@ -533,6 +537,7 @@
 			
 				$start = $this->input->post('start_date');
 				$end = $this->input->post('end_date');
+				$kurir = $this->input->post('kurir');
 				
 				$x['start'] = $start;
 				$x['end'] = $end;
@@ -545,8 +550,10 @@
 					$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 					$x['produksi'] = $this->M_barang->getdataProduksi();
 					$x['reseller'] = $this->M_barang->getAllBarangR();
+					if($kurir == null || $kurir == -1)
 					$x['datapesanan'] = $this->M_pemesanan->getPemesananEksByTanggal($start, $end);
-				
+					else
+					$x['datapesanan'] = $this->M_pemesanan->getPemesananEksByTanggalByKurir($start, $end, $kurir);
 				
 				if($doc==2)
 				$this->load->view('admin/laporan_excel', $x);

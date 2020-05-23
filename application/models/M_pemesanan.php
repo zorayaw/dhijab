@@ -100,7 +100,12 @@
 			$hasil=$this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE pemesanan_tanggal = '$cur_date' AND a.kurir_id = b.kurir_id AND (a.status_eks<3) AND  a.status_pemesanan!=4 AND a.at_id = c.at_id AND a.mp_id = d.mp_id ORDER BY a.pemesanan_id DESC");
         	return $hasil;
 		}
-
+		function getPemesananEksCurdateByKurir($kurir){
+			date_default_timezone_set("Asia/Jakarta");
+        	$cur_date = date("Y-m-d");
+			$hasil=$this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE pemesanan_tanggal = '$cur_date' AND a.kurir_id = '$kurir' AND b.kurir_id = '$kurir' AND (a.status_eks<3) AND  a.status_pemesanan!=4 AND a.at_id = c.at_id AND a.mp_id = d.mp_id ORDER BY a.pemesanan_id DESC");
+        	return $hasil;
+		}
 		function getPemesananEksByBulan($bulan, $tahun){
 			$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE month(a.pemesanan_tanggal) = '$bulan' AND year(a.pemesanan_tanggal) = '$tahun' AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id AND (a.status_eks<3) and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal ASC");
 			return $hasil;
@@ -120,6 +125,10 @@
 
 		function getPemesananEksByTanggal($start, $end){
 			$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE (a.pemesanan_tanggal BETWEEN '$start' AND '$end') AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id AND (a.status_eks<3) and a.status_pemesanan!=4 ORDER BY a.pemesanan_tanggal ASC");
+			return $hasil;
+		}
+		function getPemesananEksByTanggalByKurir($start, $end, $kurir){
+			$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE  (a.pemesanan_tanggal BETWEEN '$start' AND '$end') AND a.kurir_id = '$kurir' AND b.kurir_id = '$kurir' AND a.at_id = c.at_id AND a.mp_id = d.mp_id AND (a.status_eks<3) and a.status_pemesanan!=4 ORDER BY a.pemesanan_tanggal ASC");
 			return $hasil;
 		}
 
