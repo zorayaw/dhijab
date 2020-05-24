@@ -1385,7 +1385,7 @@
 											<?php
                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
-											<option id="enddate" value="<?php echo $x ?>"><?php echo $x ?></option>
+											<option value="<?php echo $x ?>"><?php echo $x ?></option>
 											<?php endfor ?>
 										</select>
 									</div>
@@ -1397,7 +1397,7 @@
 											<?php
                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
-											<option id="endyear" value="<?php echo $x ?>"><?php echo $x ?></option>
+											<option value="<?php echo $x ?>"><?php echo $x ?></option>
 											<?php endfor ?>
 										</select>
 									</div>

@@ -203,9 +203,9 @@
 				$this->pdf->setPaper('legal', 'landscape');
 				$this->pdf->filename = "laporan_pdf.pdf";
 				if($doc==2)
-				$this->pdf->load_view('admin/laporan_pdf', $x);
+				$this->pdf->load_view('stok/laporan_pdf', $x);
 				elseif($doc==1)
-				$this->pdf->load_view('admin/laporanP_pdf', $x);
+				$this->pdf->load_view('stok/laporanP_pdf', $x);
 		}
 	
 		function convertPDFPerhari(){
@@ -225,9 +225,9 @@
 				$this->pdf->setPaper('legal', 'landscape');
 				$this->pdf->filename = "laporan_pdf.pdf";
 				if($doc==2)
-				$this->pdf->load_view('admin/laporan_pdf', $x);
+				$this->pdf->load_view('stok/laporan_pdf', $x);
 				elseif($doc==1)
-				$this->pdf->load_view('admin/laporanP_pdf', $x);
+				$this->pdf->load_view('stok/laporanP_pdf', $x);
 		}	
 	
 		function convertPDFPerbulan(){
@@ -250,9 +250,9 @@
 			$this->pdf->setPaper('legal', 'landscape');
 				$this->pdf->filename = "laporan_pdf.pdf";
 				if($doc==2)
-				$this->pdf->load_view('admin/laporan_pdf', $x);
+				$this->pdf->load_view('stok/laporan_pdf', $x);
 				elseif($doc==1)
-				$this->pdf->load_view('admin/laporanP_pdf', $x);	
+				$this->pdf->load_view('stok/laporanP_pdf', $x);	
 		}
 	
 		function convertPDFByBulanTanpaTahun(){
@@ -278,9 +278,9 @@
 			$this->pdf->setPaper('legal', 'landscape');
 				$this->pdf->filename = "laporan_pdf.pdf";
 				if($doc==2)
-				$this->pdf->load_view('admin/laporan_pdf', $x);
+				$this->pdf->load_view('stok/laporan_pdf', $x);
 				elseif($doc==1)
-				$this->pdf->load_view('admin/laporanP_pdf', $x);
+				$this->pdf->load_view('stok/laporanP_pdf', $x);
 		}
 	
 		function convertPDFPerTanggal(){
@@ -304,9 +304,9 @@
 			$this->pdf->setPaper('legal', 'landscape');
 				$this->pdf->filename = "laporan_pdf.pdf";
 				if($doc==2)
-				$this->pdf->load_view('admin/laporan_pdf', $x);
+				$this->pdf->load_view('stok/laporan_pdf', $x);
 				elseif($doc==1)
-				$this->pdf->load_view('admin/laporanP_pdf', $x);
+				$this->pdf->load_view('stok/laporanP_pdf', $x);
 		}
 		
 	
@@ -324,9 +324,9 @@
 					$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisi();
 
 				if($doc==2)
-					$this->load->view('admin/laporan_word', $x);
+					$this->load->view('stok/laporan_word', $x);
 					elseif($doc==1)
-					$this->load->view('admin/laporanP_word', $x);
+					$this->load->view('stok/laporanP_word', $x);
 			
 		}
 	
@@ -345,9 +345,9 @@
 					$x['datapesanan'] = $this->M_pemesanan->getPemesananEksCurdate();
 
 				if($doc==2)
-					$this->load->view('admin/laporan_word', $x);
+					$this->load->view('stok/laporan_word', $x);
 					elseif($doc==1)
-					$this->load->view('admin/laporanP_word', $x);
+					$this->load->view('stok/laporanP_word', $x);
 			
 		}
 	
@@ -370,9 +370,9 @@
 					$x['datapesanan'] = $this->M_pemesanan->getPemesananEksByBulan($bulan,$tahun);
 
 				if($doc==2)
-					$this->load->view('admin/laporan_word', $x);
+					$this->load->view('stok/laporan_word', $x);
 					elseif($doc==1)
-					$this->load->view('admin/laporanP_word', $x);
+					$this->load->view('stok/laporanP_word', $x);
 		}
 	
 		function ConvertWordByBulanTanpaTahun(){
@@ -396,9 +396,9 @@
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananEksByBulanTanpaTahun($bulan, $awal, $akhir);
 
 			if($doc==2)
-					$this->load->view('admin/laporan_word', $x);
+					$this->load->view('stok/laporan_word', $x);
 					elseif($doc==1)
-					$this->load->view('admin/laporanP_word', $x);
+					$this->load->view('stok/laporanP_word', $x);
 		}
 	
 		function convertWordPertanggal(){
@@ -421,9 +421,9 @@
 					$x['datapesanan'] = $this->M_pemesanan->getPemesananEksByTanggal($start, $end);
 
 				if($doc==2)
-				$this->load->view('admin/laporan_word', $x);
+				$this->load->view('stok/laporan_word', $x);
 				elseif($doc==1)
-				$this->load->view('admin/laporanP_word', $x);
+				$this->load->view('stok/laporanP_word', $x);
 		}
 	
 		function convertExcel(){
@@ -446,9 +446,9 @@
 					
 					
 				if($doc==2)
-					$this->load->view('admin/laporan_excel', $x);
+					$this->load->view('stok/laporan_excel', $x);
 					elseif($doc==1)
-					$this->load->view('admin/laporanP_excel', $x);
+					$this->load->view('stok/laporanP_excel', $x);
 			
 		}
 	
@@ -471,9 +471,9 @@
 					$x['datapesanan'] = $this->M_pemesanan->getPemesananEksCurdateByKurir($kurir);
 				
 				if($doc==2)
-					$this->load->view('admin/laporan_excel', $x);
+					$this->load->view('stok/laporan_excel', $x);
 					elseif($doc==1)
-					$this->load->view('admin/laporanP_excel', $x);
+					$this->load->view('stok/laporanP_excel', $x);
 						
 		}	
 		function convertExcelPerbulan(){
@@ -501,9 +501,9 @@
 					}
 
 				if($doc==2)
-					$this->load->view('admin/laporan_excel', $x);
+					$this->load->view('stok/laporan_excel', $x);
 					elseif($doc==1)
-					$this->load->view('admin/laporanP_excel', $x);
+					$this->load->view('stok/laporanP_excel', $x);
 		}
 	
 		function ConvertExcelByBulanTanpaTahun(){
@@ -527,9 +527,9 @@
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananEksByBulanTanpaTahun($bulan, $awal, $akhir);
 
 					if($doc==2)
-					$this->load->view('admin/laporan_excel', $x);
+					$this->load->view('stok/laporan_excel', $x);
 					elseif($doc==1)
-					$this->load->view('admin/laporanP_excel', $x);
+					$this->load->view('stok/laporanP_excel', $x);
 		}
 	
 		function convertExcelByTanggal(){
@@ -556,20 +556,25 @@
 					$x['datapesanan'] = $this->M_pemesanan->getPemesananEksByTanggalByKurir($start, $end, $kurir);
 				
 				if($doc==2)
-				$this->load->view('admin/laporan_excel', $x);
+				$this->load->view('stok/laporan_excel', $x);
 				elseif($doc==1)
-				$this->load->view('admin/laporanP_excel', $x);
+				$this->load->view('stok/laporanP_excel', $x);
 		}
 
 
 		function cetak_transaksiEks(){
 			$doc = $this->input->get('doc');
-			$statusc = $this->input->get('status');
-			$x['numstat'] = $statusc;
+			$kurir = $this->input->get('id');
+			if($kurir==0 || $kurir==-1){
 			  $x['data'] = $this->M_pemesanan->getPemesananEksCurdate();
-			  $x['stat'] = "Seluruh";
-			  $a = $this->M_pemesanan->getPemesananEksCurdate();
-
+			  $x['stat'] = "Seluruh Kurir";
+			  $a = $this->M_pemesanan->getPemesananEksCurdateByKurir($kurir);
+			}
+			  else{
+			  $x['data'] = $this->M_pemesanan->getPemesananEksCurdateByKurir($kurir);
+			  $x['stat'] = $this->M_pemesanan->getKurirNama($kurir)->result_array();
+			  $a = $this->M_pemesanan->getPemesananEksCurdateByKurir($kurir);
+			  }
 			$modal = 0;
 			 $total_u = 0;
 			 $total_o = 0;
@@ -602,6 +607,7 @@
 			 $total_omset = $total_o;
 			 $x['total_untung'] = $total_untung;
 			 $x['total_omset'] = $total_omset;
+			 $x['numstat'] = $kurir;
 			 if($doc==2)
 			$this->load->view('v_cetakEks_perhari',$x);
 			elseif($doc==1)
@@ -611,17 +617,23 @@
   
 		function cetakTransaksiEksByTanggal(){
 		  $doc = $this->input->get('doc');
-		  $statusc = $this->input->get('status');
+		  $statusc = -1;
 		  $start = $this->input->post('start_date');
 		  $end = $this->input->post('end_date');
+		  $kurir = $this->input->post('kurir');
 		  $x['numstat'] = $statusc;
 		  $x['start'] = $start;
 		  $x['end'] = $end;
-		  
+		  if($kurir == null || $kurir == -1){
 			  $x['data'] = $this->M_pemesanan->getPemesananEksByTanggal($start, $end);
-			  $x['stat'] = "Seluruh";
+			  $x['stat'] = "Seluruh Kurir";
 			  $a = $this->M_pemesanan->getPemesananEksByTanggal($start, $end);
-		  
+		  }
+		  else{
+			  $x['data'] = $this->M_pemesanan->getPemesananEksByTanggalByKurir($start, $end, $kurir);
+			  $x['stat'] = $this->M_pemesanan->getKurirNama($kurir)->result_array();
+			  $a = $this->M_pemesanan->getPemesananEksByTanggalByKurir($start, $end, $kurir);
+		  }
 		  $modal = 0;
 		  $total_u = 0;
 		  $total_o = 0;
@@ -658,6 +670,7 @@
 		  $total_omset = $total_o;
 		  $x['total_untung'] = $total_untung;
 		  $x['total_omset'] = $total_omset;
+		  $x['numstat'] = $kurir;
 		  if($doc==2)
 		  $this->load->view('v_cetakEks_by_tanggal', $x);
 			elseif($doc==1)
@@ -667,17 +680,23 @@
 
 	  function cetakTransaksiEksByBulan(){
 		  $doc = $this->input->get('doc');
-		  $statusc = $this->input->get('status');
+		  $statusc = -1;
+		  $kurir = $this->input->get('id');
 		  $bulan = $this->input->get('bulan');
 		  $tahun = $this->input->get('tahun');
 		  $x['numstat'] = $statusc;
 		  $x['bulan'] = $bulan;
 		  $x['tahun'] = $tahun;
-
+			if($kurir==0 || $kurir==-1){
 			  $x['data'] = $this->M_pemesanan->getPemesananEksByBulan($bulan,$tahun);
-			  $x['stat'] = "Seluruh";
+			  $x['stat'] = "Seluruh Kurir";
 			  $a = $this->M_pemesanan->getPemesananEksByBulan($bulan,$tahun);
-		  
+			}
+			 else{
+			  $x['data'] = $this->M_pemesanan->getPemesananEksByBulanKurir($bulan,$tahun, $kurir);
+			  $x['stat'] = $this->M_pemesanan->getKurirNama($kurir)->result_array();
+			  $a = $this->M_pemesanan->getPemesananEksByBulanKurir($bulan,$tahun, $kurir);
+			 }
 		  $modal = 0;
 		  $total_u = 0;
 		  $total_o = 0;
@@ -712,6 +731,7 @@
   
 		  $total_untung = $total_u;
 		  $total_omset = $total_o;
+		  $x['numstat'] = $kurir;
 		  // echo $total_omset;
 		  // echo $total_untung;
 		  // die;
@@ -726,18 +746,24 @@
 
 	  function cetakTransaksiEksByTahun(){
 		  $doc = $this->input->get('doc');
-		  $statusc = $this->input->get('status');
+		  $statusc = -1;
 		  $awal = $this->input->post('start_year');
 		  $akhir = $this->input->post('end_year');
+		  $kurir = $this->input->post('kurir');
 		  $x['numstat'] = $statusc;
 		  $x['awal'] = $awal;
 		  $x['akhir'] = $akhir;
 
-
+		if($kurir==null || $kurir == -1){
 			  $x['data'] = $this->M_pemesanan->getPemesananEksByTahun($awal, $akhir);
-			  $x['stat'] = "Seluruh";
+			  $x['stat'] = "Seluruh Kurir";
 			  $a = $this->M_pemesanan->getPemesananEksByTahun($awal, $akhir);
-
+		}
+		else{
+			  $x['data'] = $this->M_pemesanan->getPemesananEksByTahunByKurir($awal, $akhir, $kurir);
+			  $x['stat'] = $this->M_pemesanan->getKurirNama($kurir)->result_array();
+			  $a = $this->M_pemesanan->getPemesananEksByTahunByKurir($awal, $akhir, $kurir);
+		}
 		  $modal = 0;
 		  $total_u = 0;
 		  $total_o = 0;
@@ -774,6 +800,7 @@
 		  $total_omset = $total_o;
 		  $x['total_untung'] = $total_untung;
 		  $x['total_omset'] = $total_omset;
+		  $x['numstat'] = $kurir;
 		  if($doc==2)
 		  $this->load->view('v_cetakEks_by_Tahun', $x);
 			elseif($doc==1)

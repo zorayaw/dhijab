@@ -13,11 +13,14 @@
      <div>
           
           <div class="col-xl-12">
-          <?php if($numstat == 0) : ?>
-            <center><h1>Laporan Bulanan Ekspedisi</h1></center>
+          <center><h1>Laporan Pemesanan Ekspedisi Bulanan</h1></center>
+            <?php if($numstat == -1 || $numstat == 0) : ?>
+            <center><h3><?=$stat?></h3></center>
             <?php else : ?>
-              <center><h1>Laporan  Bulanan Ekspedisi</h1></center>
-              <?php endif?>
+            <center><h3><?php foreach ($stat as $i) {
+              echo $i['kurir_nama'];
+            }?></h3></center>
+<?php endif?>
             <center><h4>(<?php 
                   switch ($bulan){
                     case 1 : echo "Januari"; break;

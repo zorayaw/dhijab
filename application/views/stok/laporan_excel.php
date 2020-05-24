@@ -14,6 +14,7 @@
                   <th>Nama Akun</th>
                   <th>Tanggal Pemesanan</th>
                   <th>Metode Pembayaran</th>
+                  <th>Ekspedisi</th>
                   <th>Status Pemesanan</th>
                   <th>Biaya Ongkir</th>
                   <th>Biaya Admin</th>
@@ -102,6 +103,7 @@
                     <td><?php echo $nama_akun ?></td>
                     <td><?php echo $tanggal ?></td>
                     <td><?php echo $mp_nama ?></td>
+                    <td><?php echo $kurir_nama ?></td>
                     <td><?php echo $status ?></td>
                     <td><?php echo $ongkir ?></td>
                     <td><?php echo rupiah($biaya_admin) ?></td>

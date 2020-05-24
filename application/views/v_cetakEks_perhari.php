@@ -14,11 +14,14 @@ $cur_date = date("d-m-Y");?>
      <div>
           
           <div class="col-xl-12">
-          <?php if($numstat == 0) : ?>
-            <center><h1>Laporan Ekspedisi</h1></center>
-            <?php else :?>
-              <center><h1>Laporan Ekspedisi </h1></center>
-              <?php endif?>
+            <center><h1>Laporan Transaksi Ekspedisi</h1></center>
+            <?php if($numstat == -1 || $numstat == 0) : ?>
+            <center><h3><?=$stat?></h3></center>
+            <?php else : ?>
+            <center><h3><?php foreach ($stat as $i) {
+              echo $i['kurir_nama'];
+            }?></h3></center>
+<?php endif?>
             <center><h4>(<?= date('d')?> <?php 
                   switch (date('m')){
                     case 1 : echo "Januari"; break;
@@ -49,6 +52,7 @@ $cur_date = date("d-m-Y");?>
                   <th>Nama Akun</th>
                   <th>Tanggal Pemesanan</th>
                   <th>Metode Pembayaran</th>
+                  <th>Ekspedisi</th>
                   <th>Status Ekspedisi</th>
                   <th>Biaya Ongkir</th>
                   <th>Biaya Admin</th>
@@ -135,6 +139,7 @@ $cur_date = date("d-m-Y");?>
                     <td><?php echo $nama_akun ?></td>
                     <td><?php echo $tanggal ?></td>
                     <td><?php echo $mp_nama ?></td>
+                    <td><?php echo $kurir_nama ?></td>
                     <td><?php echo $status ?></td>
                     <td><?php echo $ongkir ?></td>
                     <td><?php echo rupiah($biaya_admin) ?></td>
