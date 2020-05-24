@@ -612,10 +612,7 @@ foreach ($datapesanan->result_array() as $i) :
 				</div>
 				<div class="modal-body">
 					<div class="row">
-
-					<div class="col-md-12">
-<!-- form start -->
-<div class="btn-group col-md-12 ">
+					<div class="btn-group col-md-12">
 							<button type="button" class="btn btn-success dropdown-toggle m-t-20 col-md-12"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
 									class="fa fa-print pr-2"></i>
@@ -636,14 +633,9 @@ foreach ($datapesanan->result_array() as $i) :
 								</a>
 								<?php endforeach ?>
 								</div>
-								<br>
 							</center>
 						</div>
-					<!-- <form action="<?= base_url() ?>stok/Pemesanan/convertExcel?doc=1" method="post" id="excelall">
-					<div class="col-md-12">
-						<input type="submit" onclick="submitexcelsemua()"
-						target="_blank" class="btn btn-success btn-block ripple m-t-10" value="Convert Seluruh Pemesanan">
-					</div> -->
+
 
 					<div class="btn-group col-md-12 mt-4">
 							<button type="button" class="btn btn-success dropdown-toggle m-t-20 col-md-12"
@@ -725,27 +717,8 @@ foreach ($datapesanan->result_array() as $i) :
 								</div>
 							</center>
 						</div>
-				
-							<!-- <button type="button" class="btn btn-info dropdown-toggle ripple m-t-10 mb-4" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false" style="width: 470px">
-								<span id="krrpexcel">
-									Filter Kurir
-								</span>
-							</button>
-							<div class="dropdown-menu">
-							<center><a class="dropdown-item" style="width: 470px">Seluruh Kurir</a>
-								<?php foreach($kurir->result_array() as $i ) : 
-									$kurir_id = $i['kurir_id'];
-                      				$kurir_nama = $i['kurir_nama'];
-									  $kurir_tanggal = $i['kurir_tanggal'];
-									  ?>
-								<a class="dropdown-item"><?= $kurir_nama ?></a>
-								<?php endforeach; ?>
-							</center>
-							</div> 
-						</div>-->
 
-							
+
 							<div class="col-md-12 mt-4">
 								<h6>Convert Berdasarkan Tanggal:</h6>
 							</div>
@@ -781,17 +754,17 @@ foreach ($datapesanan->result_array() as $i) :
                   								<i class="fa fa-print pr-2"></i>Convert Pemesanan</button>
 										</div>
 									</div>
-								</div>
+								</form>
 							</div>
-						</form>
+						</div>
 
-					</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 	<!-- end modal excel -->
 
 	<!-- modal word -->
