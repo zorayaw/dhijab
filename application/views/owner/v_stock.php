@@ -46,7 +46,7 @@
                       <td><?php echo $barang_nama?></td>
                       <td><center><?php echo $barang_stock_awal?></center></td>
                       <td><center><?php echo $barang_stock_akhir?></center></td>
-                      <td><center><?php echo $tanggal?></center></td>
+                      <td><center><?php echo date("dS M Y, H:i:s", strtotime($tanggal))?></center></td>
                       <td>
                           <center><a href="<?php echo base_url()?>owner/Stock/History/<?php echo $barang_id?>" data-toggle="tooltip" data-placement="top" title="Lihat History Stock"><span class="ti-eye"></span></a></center>
                       </td>
