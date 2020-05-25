@@ -41,7 +41,7 @@
                       <td><center><?php echo $no?></center></td>
                       <td><?php echo $barang_nama?></td>
                       <td><center><?php echo $stock_berkurang?></center></td>
-                      <td><center><?php echo $tanggal?></center></td>
+                      <td><center><?php echo date("dS M Y, H:i:s", strtotime($tanggal))?></center></td>
                     </tr>
                     <?php endforeach;?>
               </tbody>

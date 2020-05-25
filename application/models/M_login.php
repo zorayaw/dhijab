@@ -42,7 +42,7 @@ class M_login extends CI_Model
         }
         
         function getAllDataLogin(){
-            $hsl = $this->db->query("SELECT * FROM data_login");
+            $hsl = $this->db->query("SELECT * FROM data_login ORDER BY logintime DESC");
             return $hsl;
         }
         }?>

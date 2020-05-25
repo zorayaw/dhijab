@@ -82,8 +82,8 @@
           <h7 class="mb-0">Cari Berdasarkan Tanggal :  </h7>
           <br>
           <form id="formsearch" method="post">
-            <input class="sd" type="date" name="start" style="width:142px;" class="form-control" id="s" value="<?= $minn ?>" min="<?= $minn ?>" max="<?= $maxx ?>">
-            <input class="ed" type="date" name="end" style="width:142px;" class="form-control" id="e" value="<?= $maxx ?>" min="<?= $minn ?>" max="<?= $maxx ?>">
+            <input class="sd1" onchange="sdds(<?=1?>)" type="date" name="start" style="width:142px;" class="form-control" id="s" value="<?= $minn ?>" min="<?= $minn ?>" max="<?= $maxx ?>">
+            <input class="ed1" onchange="sdds(<?=1?>)" type="date" name="end" style="width:142px;" class="form-control" id="e" value="<?= $maxx ?>" min="<?= $minn ?>" max="<?= $maxx ?>">
             <button type="submit" class="btn btn-secondary"><i class="fa fa-search" aria-hidden="true"></i></button>
           </form>
           </div>
@@ -250,7 +250,7 @@
                       </div>
 
                       <form action="<?php echo base_url() ?>admin/Pemesanan/ConvertExcelByBulanTanpaTahun?status=1&doc=1&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
-              <div class="col-md-12"><h6>Convert Pemesanan Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
+              <div class="col-md-12"><h6>Convert Pemesanan Bulan <?=$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
               <div class="row">
@@ -259,7 +259,7 @@
               <select class="form-control" id="syear" name="start_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -271,7 +271,7 @@
               <select class="form-control" id="eyear" name="end_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -296,11 +296,11 @@
                         <div class="row">
                         <div class="col-md-4">
                           <label class="control-label">Start date:</label>
-                          <input class="form-control form-white sd" id="startdateword" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                          <input class="form-control form-white sd2" onchange="sdd(<?=2?>)" id="startdateword" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
                         </div>
                         <div class="col-md-4">
                           <label class="control-label">End date:</label>
-                          <input class="form-control form-white ed" id="enddateword" type="date" name="end_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                          <input class="form-control form-white ed2" onchange="sdd(<?=2?>)" id="enddateword" type="date" name="end_date" value = "<?=$tglakhir?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
                         </div>
                         
                         <div class="col-md-4">
@@ -378,7 +378,7 @@
                       </div>
 
                       <form action="<?php echo base_url() ?>admin/Pemesanan/ConvertWordByBulanTanpaTahun?status=1&doc=1&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
-              <div class="col-md-12"><h6>Convert Pemesanan Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
+              <div class="col-md-12"><h6>Convert Pemesanan Bulan <?=$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
               <div class="row">
@@ -387,7 +387,7 @@
               <select class="form-control" id="syear" name="start_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -399,7 +399,7 @@
               <select class="form-control" id="eyear" name="end_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -424,11 +424,11 @@
                         <div class="row">
                         <div class="col-md-4">
                           <label class="control-label">Start date:</label>
-                          <input class="form-control form-white sd" id="startdateword" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                          <input class="form-control form-white sd3" onchange="sdd(<?=3?>)" id="startdateword" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
                         </div>
                         <div class="col-md-4">
                           <label class="control-label">End date:</label>
-                          <input class="form-control form-white ed" id="enddateword" type="date" name="end_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                          <input class="form-control form-white ed3" onchange="sdd(<?=3?>)" id="enddateword" type="date" name="end_date" value = "<?=$tglakhir?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
                         </div>
                         <div class="col-md-4">
                         <button type="submit" class="btn btn-success btn-block ripple m-t-10">
@@ -508,7 +508,7 @@
                       </div>
 
                       <form action="<?php echo base_url() ?>admin/Pemesanan/ConvertPDFByBulanTanpaTahun?status=1&doc=1&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
-              <div class="col-md-12"><h6>Convert Pemesanan Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
+              <div class="col-md-12"><h6>Convert Pemesanan Bulan <?=$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
               <div class="row">
@@ -517,7 +517,7 @@
               <select class="form-control" id="syear" name="start_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -529,7 +529,7 @@
               <select class="form-control" id="eyear" name="end_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -554,11 +554,11 @@
                         <div class="row">
                         <div class="col-md-4">
                           <label class="control-label">Start date:</label>
-                          <input class="form-control form-white sd" id="startdateword" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                          <input class="form-control form-white sd4" onchange="sdd(<?=4?>)" id="startdateword" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
                         </div>
                         <div class="col-md-4">
                           <label class="control-label">End date:</label>
-                          <input class="form-control form-white ed" id="enddateword" type="date" name="end_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                          <input class="form-control form-white ed4" onchange="sdd(<?=4?>)" id="enddateword" type="date" name="end_date" value = "<?=$tglakhir?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
                         </div>
                         <div class="col-md-4">
                         <button type="submit" class="btn btn-success btn-block ripple m-t-10">
@@ -685,7 +685,7 @@
                       </div>
 
                       <form action="<?php echo base_url() ?>admin/Pemesanan/ConvertExcelByBulanTanpaTahun?status=1&doc=2&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
-              <div class="col-md-12"><h6>Convert Transaksi Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
+              <div class="col-md-12"><h6>Convert Transaksi Bulan <?=$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
               <div class="row">
@@ -694,7 +694,7 @@
               <select class="form-control" id="syear" name="start_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -706,7 +706,7 @@
               <select class="form-control" id="eyear" name="end_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -731,11 +731,11 @@
                         <div class="row">
                         <div class="col-md-4">
                           <label class="control-label">Start date:</label>
-                          <input class="form-control form-white sd" id="startdateword" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                          <input class="form-control form-white sd5" onchange="sdd(<?=5?>)" id="startdateword" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
                         </div>
                         <div class="col-md-4">
                           <label class="control-label">End date:</label>
-                          <input class="form-control form-white ed" id="enddateword" type="date" name="end_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                          <input class="form-control form-white ed5" onchange="sdd(<?=5?>)" id="enddateword" type="date" name="end_date" value = "<?=$tglakhir?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
                         </div>
                         
                         <div class="col-md-4">
@@ -813,7 +813,7 @@
                       </div>
 
                       <form action="<?php echo base_url() ?>admin/Pemesanan/ConvertWordByBulanTanpaTahun?status=1&doc=2&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
-              <div class="col-md-12"><h6>Convert Transaksi Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
+              <div class="col-md-12"><h6>Convert Transaksi Bulan <?=$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
               <div class="row">
@@ -822,7 +822,7 @@
               <select class="form-control" id="syear" name="start_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -834,7 +834,7 @@
               <select class="form-control" id="eyear" name="end_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -859,11 +859,11 @@
                         <div class="row">
                         <div class="col-md-4">
                           <label class="control-label">Start date:</label>
-                          <input class="form-control form-white sd" id="startdateword" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                          <input class="form-control form-white sd6" onchange="sdd(<?=6?>)" id="startdateword" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
                         </div>
                         <div class="col-md-4">
                           <label class="control-label">End date:</label>
-                          <input class="form-control form-white ed" id="enddateword" type="date" name="end_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                          <input class="form-control form-white ed6" onchange="sdd(<?=6?>)" id="enddateword" type="date" name="end_date" value = "<?=$tglakhir?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
                         </div>
                         <div class="col-md-4">
                         <button type="submit" class="btn btn-success btn-block ripple m-t-10">
@@ -943,7 +943,7 @@
                       </div>
 
                       <form action="<?php echo base_url() ?>admin/Pemesanan/ConvertPDFByBulanTanpaTahun?status=1&doc=2&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
-              <div class="col-md-12"><h6>Convert Transaksi Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
+              <div class="col-md-12"><h6>Convert Transaksi Bulan <?=$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
               <div class="row">
@@ -952,7 +952,7 @@
               <select class="form-control" id="syear" name="start_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -964,7 +964,7 @@
               <select class="form-control" id="eyear" name="end_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -989,11 +989,11 @@
                         <div class="row">
                         <div class="col-md-4">
                           <label class="control-label">Start date:</label>
-                          <input class="form-control form-white sd" id="startdateword" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                          <input class="form-control form-white sd7" onchange="sdd(<?=7?>)" id="startdateword" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
                         </div>
                         <div class="col-md-4">
                           <label class="control-label">End date:</label>
-                          <input class="form-control form-white ed" id="enddateword" type="date" name="end_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                          <input class="form-control form-white ed7" onchange="sdd(<?=7?>)" id="enddateword" type="date" name="end_date" value = "<?=$tglakhir?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
                         </div>
                         <div class="col-md-4">
                         <button type="submit" class="btn btn-success btn-block ripple m-t-10">
@@ -1052,7 +1052,7 @@
                 <?php
                 function rupiah($angka)
                 {
-                  $hasil_rupiah = "Rp " . number_format($angka, 0, ',', '.');
+                  $hasil_rupiah = "Rp" . number_format($angka, 0, ',', '.');
                   return $hasil_rupiah;
                 }
 
@@ -1811,7 +1811,7 @@
               </div>
 
               <form action="<?php echo base_url() ?>owner/Transaksi/cetakTransaksiByBulanTanpaTahun?status=1&doc=1&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
-              <div class="col-md-12"><h6>Cetak Pemesanan Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
+              <div class="col-md-12"><h6>Cetak Pemesanan Bulan <?=$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
               <div class="row">
@@ -1863,11 +1863,11 @@
               <div class="row">
               <div class="col-md-4">
                 <label class="control-label">Dari tanggal:</label>
-                <input class="form-control form-white sd" id="startdatecetak" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>"required/>
+                <input class="form-control form-white sd8" onchange="sdd(<?=8?>)" id="startdatecetak" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>"required/>
               </div>
               <div class="col-md-4">
                 <label class="control-label">Sampai tanggal:</label>
-                <input class="form-control form-white ed" id="enddatecetak" type="date" name="end_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                <input class="form-control form-white ed8" onchange="sdd(<?=8?>)" id="enddatecetak" type="date" name="end_date" value = "<?=$tglakhir?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
               </div>
               <div class="col-md-4">
                <button type="submit" class="btn btn-success btn-block ripple m-t-10">
@@ -1995,11 +1995,11 @@
 							<div class="row">
 								<div class="col-md-4">
 									<label class="control-label">Dari tanggal:</label>
-									<input class="form-control form-white sd" type="date" id="startdatecetak"  name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required />
+									<input class="form-control form-white sd9" onchange="sdd(<?=9?>)" type="date" id="startdatecetak"  name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required />
 								</div>
 								<div class="col-md-4">
 									<label class="control-label">Sampai tanggal:</label>
-									<input class="form-control form-white ed" type="date" id="enddatecetak" name="end_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>"  required />
+									<input class="form-control form-white ed9" onchange="sdd(<?=9?>)" type="date" id="enddatecetak" name="end_date" value = "<?=$tglakhir?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>"  required />
 								</div>
 								<div class="col-md-4">
 									<button type="submit" class="btn btn-success btn-block ripple m-t-10">
@@ -2099,8 +2099,11 @@
 </html>
 
 <script>
+
+  var value;
+
     function cyear(num){
-        let value = parseInt($('#changeYear'+num).html())
+        value = parseInt($('#changeYear'+num).html())
         $.ajax({
             method: "POST",
             url: "<?= base_url() ?>admin/PemesananCustomerByBulan/pemesananByTahun?bulan=<?= $bulan?>",
@@ -2191,6 +2194,257 @@
             }
 			});
     }
+
+
+function sdds(num){
+
+var e = document.getElementsByClassName("sd"+num);
+  var date = new Date($(".sd"+num).val());
+  days = date.getDate();
+  months = date.getMonth() + 1;
+  years = date.getFullYear();
+
+var e = document.getElementsByClassName("ed"+num);
+  var date = new Date($(".ed"+num).val());
+  daye = date.getDate();
+  monthe = date.getMonth() + 1;
+  yeare = date.getFullYear();
+  if (years > yeare) {
+    alert("Tanggal tidak valid (Start date > End date)");
+               
+    if(<?=$bulan?> < 10){
+        if(<?=$bulan?> == 2){
+            if((value % 4)==0){
+                $("#e").attr('value', value+"-0<?=$bulan?>-29");
+                $('#e').val(value+"-0<?=$bulan?>-29")
+            }
+            else{
+                $("#e").attr('value', value+"-0<?=$bulan?>-28");
+                $('#e').val(value+"-0<?=$bulan?>-28")
+            }
+        }
+        else{
+               $("#e").attr('value', value+"-0<?=$bulan?>-<?=$tanggalAkhir?>");
+               $('#e').val(value+"-0<?=$bulan?>-<?=$tanggalAkhir?>")
+        }
+    }
+    else if(<?=$bulan?> >= 10){
+      $("#e").attr('value', value+"-<?=$bulan?>-<?=$tanggalAkhir?>");
+      $('#e').val(value+"-<?=$bulan?>-<?=$tanggalAkhir?>")
+    }   
+} 
+
+else if ((years == yeare) && (months > monthe)) {
+            alert("Tanggal tidak valid (Start date > End date)");
+
+            if(<?=$bulan?> < 10){
+                if(<?=$bulan?> == 2){
+                    if((value % 4)==0){
+                        $("#e").attr('value', value+"-0<?=$bulan?>-29");
+                        $('#e').val(value+"-0<?=$bulan?>-29")
+                    }
+                    else{
+                        $("#e").attr('value', value+"-0<?=$bulan?>-28");
+                        $('#e').val(value+"-0<?=$bulan?>-28")
+                    }
+                }
+                else{
+                      $("#e").attr('value', value+"-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                      $('#e').val(value+"-0<?=$bulan?>-<?=$tanggalAkhir?>")
+                }
+            }
+            else if(<?=$bulan?> >= 10){
+              $("#e").attr('value',value+"-<?=$bulan?>-<?=$tanggalAkhir?>");
+              $('#e').val(value+"-<?=$bulan?>-<?=$tanggalAkhir?>")
+            }
+}
+else if ((days > daye) && (years == yeare) && (months == monthe)) {
+        alert("Tanggal tidak valid (Start date > End date)");
+
+             if(<?=$bulan?> < 10){
+                if(<?=$bulan?> == 2){
+                    if((value % 4)==0){
+                        $("#e").attr('value', value+"-0<?=$bulan?>-29");
+                        $('#e').val(value+"-0<?=$bulan?>-29")
+                    }
+                    else{
+                        $("#e").attr('value', value+"-0<?=$bulan?>-28");
+                        $('#e').val(value+"-0<?=$bulan?>-28")
+                    }
+                }
+                else{
+                      $("#e").attr('value', value+"-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                      $('#e').val(value+"-0<?=$bulan?>-<?=$tanggalAkhir?>")
+                }
+            }
+            else if(<?=$bulan?> >= 10){
+              $("#e").attr('value', value+"-<?=$bulan?>-<?=$tanggalAkhir?>");
+              $('#e').val(value+"-<?=$bulan?>-<?=$tanggalAkhir?>")
+            }
+}
+
+if(isNaN(value)){
+  if (years > yeare) {
+              if(<?=$bulan?> < 10){
+                  if(<?=$bulan?> == 2){
+                      if((value % 4)==0){
+                          $("#e").attr('value',"<?=date('Y')?>-0<?=$bulan?>-29");
+                          $('#e').val("<?=date('Y')?>-0<?=$bulan?>-29")
+                      }
+                      else{
+                          $("#e").attr('value',"<?=date('Y')?>-0<?=$bulan?>-28");
+                          $('#e').val("<?=date('Y')?>-0<?=$bulan?>-28")
+                      }
+                  }
+                  else{
+                        $("#e").attr('value',"<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                        $('#e').val("<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>")
+                  }
+              }
+              else if(<?=$bulan?> >= 10){
+                $("#e").attr('value',"<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>");
+                $('#e').val("<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>")
+              }
+    }
+    else if ((years == yeare) && (months > monthe)) {
+            if(<?=$bulan?> < 10){
+                  if(<?=$bulan?> == 2){
+                      if((value % 4)==0){
+                          $("#e").attr('value',"<?=date('Y')?>-0<?=$bulan?>-29");
+                          $('#e').val("<?=date('Y')?>-0<?=$bulan?>-29")
+                      }
+                      else{
+                          $("#e").attr('value',"<?=date('Y')?>-0<?=$bulan?>-28");
+                          $('#e').val("<?=date('Y')?>-0<?=$bulan?>-28")
+                      }
+                  }
+                  else{
+                        $("#e").attr('value',"<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                        $('#e').val("<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>")
+                  }
+              }
+              else if(<?=$bulan?> >= 10){
+                $("#e").attr('value',"<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>");
+                $('#e').val("<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>")
+              }
+    }
+    else if ((days > daye) && (years == yeare) && (months == monthe)) {
+        if(<?=$bulan?> < 10){
+                  if(<?=$bulan?> == 2){
+                      if((value % 4)==0){
+                          $("#e").attr('value',"<?=date('Y')?>-0<?=$bulan?>-29");
+                          $('#e').val("<?=date('Y')?>-0<?=$bulan?>-29")
+                      }
+                      else{
+                          $("#e").attr('value',"<?=date('Y')?>-0<?=$bulan?>-28");
+                          $('#e').val("<?=date('Y')?>-0<?=$bulan?>-28")
+                      }
+                  }
+                  else{
+                        $("#e").attr('value',"<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                        $('#e').val("<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>")
+                  }
+              }
+              else if(<?=$bulan?> >= 10){
+                $("#e").attr('value',"<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>");
+                $('#e').val("<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>")
+              }
+    }
+  }
+
+
+}
+
+
+function sdd(num){
+
+	  var e = document.getElementsByClassName("sd"+num);
+		var date = new Date($(".sd"+num).val());
+		days = date.getDate();
+		months = date.getMonth() + 1;
+		years = date.getFullYear();
+
+	  var e = document.getElementsByClassName("ed"+num);
+		var date = new Date($(".ed"+num).val());
+		daye = date.getDate();
+		monthe = date.getMonth() + 1;
+		yeare = date.getFullYear();
+
+if (years > yeare) {
+			alert("Tanggal tidak valid (Start date > End date)");
+      if(<?=$bulan?> < 10){
+          if(<?=$bulan?> == 2){
+              if((<?=date('Y')?> % 4)==0){
+                  $(".ed"+num).attr('value',"<?=date('Y')?>-0<?=$bulan?>-29");
+                  $(".ed"+num).val("<?=date('Y')?>-0<?=$bulan?>-29")
+              }
+              else{
+                  $(".ed"+num).attr('value',"<?=date('Y')?>-0<?=$bulan?>-28");
+                  $(".ed"+num).val("<?=date('Y')?>-0<?=$bulan?>-28")
+              }
+          }
+          else{
+                 $(".ed"+num).attr('value',"<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                 $(".ed"+num).val("<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>")
+          }
+      }
+      else if(<?=$bulan?> >= 10){
+        $(".ed"+num).attr('value',"<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>");
+        $(".ed"+num).val("<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>")
+      }   
+} 
+
+else if ((years == yeare) && (months > monthe)) {
+              alert("Tanggal tidak valid (Start date > End date)");
+              if(<?=$bulan?> < 10){
+                  if(<?=$bulan?> == 2){
+                      if((<?=date('Y')?> % 4)==0){
+                          $(".ed"+num).attr('value',"<?=date('Y')?>-0<?=$bulan?>-29");
+                          $(".ed"+num).val("<?=date('Y')?>-0<?=$bulan?>-29")
+                      }
+                      else{
+                          $(".ed"+num).attr('value',"<?=date('Y')?>-0<?=$bulan?>-28");
+                          $(".ed"+num).val("<?=date('Y')?>-0<?=$bulan?>-28")
+                      }
+                  }
+                  else{
+                        $(".ed"+num).attr('value',"<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                        $(".ed"+num).val("<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>")
+                  }
+              }
+              else if(<?=$bulan?> >= 10){
+                $(".ed"+num).attr('value',"<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>");
+                $(".ed"+num).val("<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>")
+              }
+}
+else if ((days > daye) && (years == yeare) && (months == monthe)) {
+
+              alert("Tanggal tidak valid (Start date > End date)");
+              if(<?=$bulan?> < 10){
+                  if(<?=$bulan?> == 2){
+                      if((<?=date('Y')?> % 4)==0){
+                          $(".ed"+num).attr('value',"<?=date('Y')?>-0<?=$bulan?>-29");
+                          $(".ed"+num).val("<?=date('Y')?>-0<?=$bulan?>-29")
+                      }
+                      else{
+                          $(".ed"+num).attr('value',"<?=date('Y')?>-0<?=$bulan?>-28");
+                          $(".ed"+num).val("<?=date('Y')?>-0<?=$bulan?>-28")
+                      }
+                  }
+                  else{
+                        $(".ed"+num).attr('value', "<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                        $(".ed"+num).val("<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>")
+                  }
+              }
+              else if(<?=$bulan?> >= 10){
+                $(".ed"+num).attr('value', "<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>");
+                $(".ed"+num).val("<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>")
+              }
+}
+
+}
+
+
 </script>
 
 <script>
@@ -2268,87 +2522,6 @@ function noresicus(checkbox){
 }
 
 </script>
-
-<script type="text/javascript">
-
-    var e = document.getElementById("syear");
-        $('#syear').on('change', function(){
-        var date = new Date($('#syear').val());
-        years = date.getFullYear();
-    });
-
-    var e = document.getElementById("endyear");
-        $('#eyear').on('change', function(){
-        var date = new Date($('#eyear').val());
-        yeare = date.getFullYear();
-        if(years > yeare){
-          alert("Tahun tidak valid (Start Year > End Year)");
-          // $('#eyear').remove();
-        }
-    });
-
-</script>
-
-
-<script type="text/javascript">
-	var e = document.getElementsByClassName("sd");
-	$('.sd').on('change', function () {
-		var date = new Date($(this).val());
-		days = date.getDate();
-		months = date.getMonth() + 1;
-		years = date.getFullYear();
-	});
-
-	var e = document.getElementsByClassName("ed");
-	$('.ed').on('change', function () {
-		var date = new Date($(this).val());
-		daye = date.getDate();
-		monthe = date.getMonth() + 1;
-		yeare = date.getFullYear();
-		if (years > yeare) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$(this).val('');
-		} else if ((years == yeare) && (months > monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$(this).val('');
-		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$(this).val('');
-		}
-	});
-
-</script>
-
-
-<script type="text/javascript">
-	var e = document.getElementsByClassName("ed");
-	$('.ed').on('change', function () {
-		var date = new Date($(this).val());
-		daye = date.getDate();
-		monthe = date.getMonth() + 1;
-		yeare = date.getFullYear();
-	});
-
-	var e = document.getElementsByClassName("sd");
-	$('.sd').on('change', function () {
-		var date = new Date($(this).val());
-		days = date.getDate();
-		months = date.getMonth() + 1;
-		years = date.getFullYear();
-		if (years > yeare) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$(this).val('');
-		} else if ((years == yeare) && (months > monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$(this).val('');
-		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$(this).val('');
-		}
-	});
-
-</script>
-
 
 <script type="text/javascript">
   $(document).ready(function () {
