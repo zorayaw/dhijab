@@ -61,9 +61,9 @@
                     ?>
                     <td><?= $username?></td>
                     <td><?= $password?></td>
-                    <td style="text-align:left;">
+                    <td style="text-align:center;">
                       <a href="#" data-toggle="modal" data-target="#EditData<?= $id?>"><span class="ti-pencil"></span></a>
-                      <a href="#" style="margin-left: 10px" data-toggle="modal" data-target="#HapusData<?= $id?>"><span class="ti-trash"></span></a>
+                      <a href="#" style="margin-left: 5px" data-toggle="modal" data-target="#HapusData<?= $id?>"><span class="ti-trash"></span></a>
                     </td>
                   </tr>
                   <?php endforeach;?>            

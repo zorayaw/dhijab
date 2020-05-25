@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Laporan Transaksi Perhari</title>
+  <title>Laporan Ekspedisi Perhari</title>
 </head>
 <!-- Favicon -->
 <link rel="shortcut icon" href="<?php echo base_url()?>assets/images/logo.png" />
@@ -14,11 +14,14 @@ $cur_date = date("d-m-Y");?>
      <div>
           
           <div class="col-xl-12">
-          <?php if($numstat == 0) : ?>
-            <center><h1>Laporan <?=$stat?> Transaksi</h1></center>
-            <?php else :?>
-              <center><h1>Laporan Transaksi <?=$stat?></h1></center>
-              <?php endif?>
+          <center><h1>Laporan Pemesanan Ekspedisi</h1></center>
+            <?php if($numstat == -1 || $numstat == 0) : ?>
+            <center><h3><?=$stat?></h3></center>
+            <?php else : ?>
+            <center><h3><?php foreach ($stat as $i) {
+              echo $i['kurir_nama'];
+            }?></h3></center>
+<?php endif?>
             <center><h4>(<?= date('d')?> <?php 
                   switch (date('m')){
                     case 1 : echo "Januari"; break;
@@ -40,7 +43,7 @@ $cur_date = date("d-m-Y");?>
           <hr>
           <br>
 
-          <table border="1" cellpadding="7" width="100%" style="border-style: solid;border-width: thin;border-collapse: collapse;" >
+<table border="1" cellpadding="7" width="100%" style="border-style: solid;border-width: thin;border-collapse: collapse;" >
                 <tr>
                   <th>No</th>
                   <th>Nomor Order</th>
@@ -55,7 +58,7 @@ $cur_date = date("d-m-Y");?>
                   <th>Asal Transaksi</th>
                   <th>Metode Pembayaran</th>
                   <th>List Barang</th>
-                  <th>Status</th>
+                  <th>Status Ekspedisi</th>
                   <th>Note</th>
                   <th>Total Harga</th>
 
@@ -91,7 +94,7 @@ $cur_date = date("d-m-Y");?>
                   $kurir_nama = $i['kurir_nama'];
                   $at_id = $i['at_id'];
                   $at_nama = $i['at_nama'];
-                  $status = $i['status_pemesanan'];
+                  $status = $i['status_eks'];
                   $biaya_admin = $i['biaya_admin'];
                   $diskon = $i['diskon'];
                   $uang = $i['uang_kembalian'];
@@ -161,6 +164,9 @@ $cur_date = date("d-m-Y");?>
               </tr>
             </table>
     </div>
+
+        </div>
+      
 
 </body>
 </html>

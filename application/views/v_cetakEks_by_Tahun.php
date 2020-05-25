@@ -1,20 +1,47 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head><body>
-<table border="2">
+<html>
+<head>
+  <title>Laporan Ekspedisi Bulanan</title>
+</head>
+<!-- Favicon -->
+<link rel="shortcut icon" href="<?php echo base_url()?>assets/images/logo.png" />
 
-              <thead>
-              <tr>
+<!-- Font -->
+<link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<body>
+<?php date_default_timezone_set("Asia/Jakarta");?>
+     <div>
+          
+          <div class="col-xl-12">
+            <center><h1>Laporan Transaksi Ekspedisi Tahunan</h1></center>
+            <?php if($numstat == -1 || $numstat == 0) : ?>
+            <center><h3><?=$stat?></h3></center>
+            <?php else : ?>
+            <center><h3><?php foreach ($stat as $i) {
+              echo $i['kurir_nama'];
+            }?></h3></center>
+<?php endif?>
+              <?php if($awal == $akhir) : ?>
+                <center><h4>(<?=$awal?>) </h4></center>
+                <?php else : ?>
+            <center><h4>(<?=$awal." - ". $akhir?>) </h4></center>
+                <?php endif; ?>
+          </div>
+          <hr style="margin-left:10px;margin-right:10px;">
+          <hr>
+          <br>
+
+          <div>
+             <table border="1" cellpadding="7" width="100%" style="border-style: solid;border-width: thin;border-collapse: collapse;" >
+             <tr>
                   <th>No</th>
                   <th>Nomor Order</th>
                   <th>Nama Pemesan</th>
                   <th>Nama Akun</th>
                   <th>Tanggal Pemesanan</th>
                   <th>Metode Pembayaran</th>
-                  <th>Status Pemesanan</th>
+                  <th>Ekspedisi</th>
+                  <th>Status Ekspedisi</th>
                   <th>Biaya Ongkir</th>
                   <th>Biaya Admin</th>
                   <th>Diskon</th>
@@ -24,9 +51,7 @@
                   <th>Modal</th>
                   <th>Untung</th>
                 </tr>
-              </thead>
-              <tbody>
-              <?php
+                <?php
                 function rupiah($angka)
                 {
                   $hasil_rupiah = "Rp" . number_format($angka, 0, ',', '.');
@@ -40,7 +65,7 @@
                 $untung = 0;
                 $tot_modal = 0;
                 $tot_untung = 0;
-                foreach ($datapesanan->result_array() as $i) :
+                foreach ($data->result_array() as $i) :
                   $m = 0;
                   $no++;
   
@@ -60,18 +85,18 @@
                   $resi = $i['no_resi'];
                   $at_id = $i['at_id'];
                   $at_nama = $i['at_nama'];
-                  $status = $i['status_pemesanan'];
+                  $status = $i['status_eks'];
                   $biaya_admin = $i['biaya_admin'];
                   $diskon = $i['diskon'];
                   $uang = $i['uang_kembalian'];
                   $note = $i['note'];
-                  if($i['status_pemesanan'] == 0)
+                  if($i['status_eks'] == 0)
                   $status = "Belum Bayar";
-                  elseif($i['status_pemesanan'] == 1)
+                  elseif($i['status_eks'] == 1)
                   $status = "Dibayar";
-                  elseif($i['status_pemesanan'] == 2)
+                  elseif($i['status_eks'] == 2)
                   $status = "Dikirim";
-                  elseif($i['status_pemesanan'] == 3)
+                  elseif($i['status_eks'] == 3)
                   $status = "Selesai";
                
                   $q = $this->M_pemesanan->getHModal($pemesanan_id)->result_array();
@@ -102,6 +127,7 @@
                     <td><?php echo $nama_akun ?></td>
                     <td><?php echo $tanggal ?></td>
                     <td><?php echo $mp_nama ?></td>
+                    <td><?php echo $kurir_nama ?></td>
                     <td><?php echo $status ?></td>
                     <td><?php echo $ongkir ?></td>
                     <td><?php echo rupiah($biaya_admin) ?></td>
@@ -134,6 +160,13 @@
                 <th><?php echo rupiah($tot_untung) ?></th>
               </tr>
             
-  
             </table>
-</body></html>
+          </div></div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+ window.print();
+ window.close();
+</script>

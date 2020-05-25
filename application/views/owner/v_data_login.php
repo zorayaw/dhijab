@@ -31,7 +31,7 @@
             <tr>
                 <th width="10">No</th>
                 <th><center>Username</center></th>
-                <th><center>Logged in</center></th>
+                <th><center>Waktu Login</center></th>
             </tr>
         </thead>
         <tbody>

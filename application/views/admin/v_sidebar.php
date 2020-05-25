@@ -233,7 +233,7 @@
         </li>
         
         <li>
-          <a href="<?php echo base_url()?>admin/Pemesanan/konfirmasi_pesanan"><i class="fa fa-check-square-o"></i><span class="right-nav-text">Konfirmasi Pesanan</span> </a>
+          <a href="<?php echo base_url()?>admin/Pemesanan/konfirmasi_pesanan"><i class="fa fa-check-square-o"></i><span class="right-nav-text">Konfirmasi Pemesanan</span> </a>
         </li>
 
          <!-- <li>

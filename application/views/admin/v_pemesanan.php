@@ -118,7 +118,7 @@
 								Cetak Dokumen
 							</button>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="" data-toggle="modal" data-target="#Cetak-Pesanan">Data
+								<a class="dropdown-item" href="" data-toggle="modal" data-target="#Cetak-Pesanan">Data 
 									Pemesanan</a>
 								<a class="dropdown-item" href="" data-toggle="modal" data-target="#Cetak-Transaksi">Data
 									Keuangan</a>
@@ -904,7 +904,7 @@
 									<?php
 	function rupiah($angka)
 	{
-	$hasil_rupiah = "Rp " . number_format($angka, 0, ',', '.');
+	$hasil_rupiah = "Rp" . number_format($angka, 0, ',', '.');
 	return $hasil_rupiah;
 	}
 	
@@ -1385,7 +1385,7 @@
 											<?php
                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
-											<option id="enddate" value="<?php echo $x ?>"><?php echo $x ?></option>
+											<option value="<?php echo $x ?>"><?php echo $x ?></option>
 											<?php endfor ?>
 										</select>
 									</div>
@@ -1397,7 +1397,7 @@
 											<?php
                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
-											<option id="endyear" value="<?php echo $x ?>"><?php echo $x ?></option>
+											<option value="<?php echo $x ?>"><?php echo $x ?></option>
 											<?php endfor ?>
 										</select>
 									</div>
