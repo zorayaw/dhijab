@@ -1350,6 +1350,13 @@
   $no++;
   $pemesanan_id = $i['pemesanan_id'];
   $status_pemesanan = $i['status_pemesanan'];
+  $ongkir = $i['biaya_ongkir'];
+                  $biaya_admin = $i['biaya_admin'];
+                  $diskon = $i['diskon'];
+                  $uang = $i['uang_kembalian'];
+                    $q = $this->db->query("SELECT SUM(lb_qty * harga)AS total_keseluruhan from list_barang where pemesanan_id=' $pemesanan_id'");
+                    $c = $q->row_array();
+                    $jumlah = $c['total_keseluruhan']+$ongkir-($diskon+$biaya_admin+$uang) ;
   ?>
   
   <div class="modal" tabindex="-1" role="dialog" id="bayar<?= $pemesanan_id ?>">
