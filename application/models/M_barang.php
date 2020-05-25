@@ -121,13 +121,13 @@
 		}
 
 		function getHistoryStock($barang_id,$status){
-			$hasil=$this->db->query("select stok_barang.*,barang.barang_nama from stok_barang,barang where stok_barang.id_barang='$barang_id' and stok_barang.status='$status' and stok_barang.id_barang=barang.barang_id  ");
+			$hasil=$this->db->query("SELECT stok_barang.*,barang.barang_nama from stok_barang,barang where stok_barang.id_barang='$barang_id' AND stok_barang.status='$status' AND stok_barang.id_barang=barang.barang_id ORDER BY tanggal DESC");
 
         	return $hasil;
 		}
 
 		function getHistoryStocks($barang_id){
-			$hasil=$this->db->query("SELECT c.pemesanan_nama,a.stock_berkurang,a.barang_id,b.barang_nama,DATE_FORMAT(a.hsb_tanggal,'%d/%m/%Y %h:%i:%s') AS tanggal FROM history_stock_barang a,barang b, pemesanan c WHERE a.barang_id = '$barang_id' AND a.barang_id = b.barang_id AND a.pemesanan_id = c.pemesanan_id");
+			$hasil=$this->db->query("SELECT c.pemesanan_nama,a.stock_berkurang,a.barang_id,b.barang_nama,DATE_FORMAT(a.hsb_tanggal,'%d/%m/%Y %h:%i:%s') AS tanggal FROM history_stock_barang a,barang b, pemesanan c WHERE a.barang_id = '$barang_id' AND a.barang_id = b.barang_id AND a.pemesanan_id = c.pemesanan_id ORDER BY tanggal DESC");
         	return $hasil;
 		}
 
