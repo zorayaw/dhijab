@@ -287,7 +287,7 @@ foreach ($datapesanan->result_array() as $i) :
 							</button>
 							<center>
 								<div class="dropdown-menu">
-								<a class="dropdown-item" href="<?= base_url() ?>stok/Pemesanan/cetak_transaksiEks?doc=1&id=-1" target = "_blank" style="width: 420px">
+								<a class="dropdown-item" href="<?= base_url() ?>stok/Pemesanan/cetak_transaksiEks?doc=1&id=-1" target = "_blank" style="width: 470px">
 								<center>Semua Kurir</center>
 								</a>
 								<?php foreach($kurir->result_array() as $i ) : 
@@ -295,7 +295,7 @@ foreach ($datapesanan->result_array() as $i) :
                       				$kurir_nama = $i['kurir_nama'];
 									  $kurir_tanggal = $i['kurir_tanggal'];
 									  ?>
-								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/cetak_transaksiEks?doc=1&id=<?=$kurir_id?>" target = "_blank" style="width: 420px">
+								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/cetak_transaksiEks?doc=1&id=<?=$kurir_id?>" target = "_blank" style="width: 470px">
 									<center><?=$kurir_nama?></center>
 								</a>
 								<?php endforeach ?>
@@ -327,7 +327,7 @@ foreach ($datapesanan->result_array() as $i) :
 							</button>
 							<center>
 								<div class="dropdown-menu">
-								<a class="dropdown-item" href="<?= base_url() ?>stok/Pemesanan/cetakTransaksiEksByBulan?doc=1&bulan=<?= date('m')?>&tahun=<?= date('Y')?>&id=-1" target = "_blank" style="width: 420px">
+								<a class="dropdown-item" href="<?= base_url() ?>stok/Pemesanan/cetakTransaksiEksByBulan?doc=1&bulan=<?= date('m')?>&tahun=<?= date('Y')?>&id=-1" target = "_blank" style="width: 470px">
 								<center>Semua Kurir</center>
 								</a>
 								<?php foreach($kurir->result_array() as $i ) : 
@@ -335,7 +335,7 @@ foreach ($datapesanan->result_array() as $i) :
                       				$kurir_nama = $i['kurir_nama'];
 									  $kurir_tanggal = $i['kurir_tanggal'];
 									  ?>
-								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/cetakTransaksiEksByBulan?doc=1&bulan=<?= date('m')?>&tahun=<?= date('Y')?>&id=<?=$kurir_id?>" target = "_blank" style="width: 420px">
+								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/cetakTransaksiEksByBulan?doc=1&bulan=<?= date('m')?>&tahun=<?= date('Y')?>&id=<?=$kurir_id?>" target = "_blank" style="width: 470px">
 									<center><?=$kurir_nama?></center>
 								</a>
 								<?php endforeach ?>
@@ -352,8 +352,8 @@ foreach ($datapesanan->result_array() as $i) :
 							<div class="col-md-12">
 								<div class="row">
 									<div class="col-md-4">
-										<label class="control-label">Dari:</label>
-										<select class="form-control" id="syear" name="start_year" required>
+										<label class="control-label ml-4">Dari:</label>
+										<select class="form-control ml-4" id="syear" name="start_year" style="width: 120px" required>
 											<option selected value="">Pilih</option>
 											<?php
                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
@@ -364,13 +364,12 @@ foreach ($datapesanan->result_array() as $i) :
 									</div>
 
 									<div class="col-md-4">
-										<label class="control-label">Sampai:</label>
-										<select class="form-control" id="eyear" name="end_year" required>
+										<label class="control-label ml-3">Sampai:</label>
+										<select class="form-control ml-3" id="eyear" name="end_year" style="width: 120px" required>
 											<option selected value="">Pilih</option>
 											<?php
                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
 				?>
-				
 											<option value="<?php echo $x ?>"><?php echo $x ?></option>
 											<?php endfor ?>
 										</select>
@@ -378,7 +377,7 @@ foreach ($datapesanan->result_array() as $i) :
 
 									<div class="col-md-4">
 										<label class="control-label">Kurir:</label>
-										<select class="form-control-lg-4" id="kurir" name="kurir" required>
+										<select class="form-control" id="kurir" name="kurir" style="width: 125px" required>
 										<option value="-1">Seluruh Kurir</option>
 											<?php
                foreach($kurir->result_array() as $i ) : 
@@ -393,7 +392,8 @@ foreach ($datapesanan->result_array() as $i) :
 									</div>
 								</div>
 							</div>
-					</div>
+			   </div>
+					
 					<div class="col-md-12 mt-2">
 						<button type="submit" class="btn btn-success btn-block ripple m-t-10">
 							<i class="fa fa-print pr-2"></i>Cetak Pemesanan</button>
@@ -487,7 +487,7 @@ foreach ($datapesanan->result_array() as $i) :
 							</button>
 							<center>
 								<div class="dropdown-menu">
-								<a class="dropdown-item" href="<?= base_url() ?>stok/Pemesanan/cetak_transaksiEks?doc=2&id=-1" target = "_blank" style="width: 420px">
+								<a class="dropdown-item" href="<?= base_url() ?>stok/Pemesanan/cetak_transaksiEks?doc=2&id=-1" target = "_blank" style="width: 470px">
 								<center>Semua Kurir</center>
 								</a>
 								<?php foreach($kurir->result_array() as $i ) : 
@@ -495,7 +495,7 @@ foreach ($datapesanan->result_array() as $i) :
                       				$kurir_nama = $i['kurir_nama'];
 									  $kurir_tanggal = $i['kurir_tanggal'];
 									  ?>
-								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/cetak_transaksiEks?doc=2&id=<?=$kurir_id?>" target = "_blank" style="width: 420px">
+								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/cetak_transaksiEks?doc=2&id=<?=$kurir_id?>" target = "_blank" style="width: 470px">
 									<center><?=$kurir_nama?></center>
 								</a>
 								<?php endforeach ?>
@@ -527,7 +527,7 @@ foreach ($datapesanan->result_array() as $i) :
 							</button>
 							<center>
 								<div class="dropdown-menu">
-								<a class="dropdown-item" href="<?= base_url() ?>stok/Pemesanan/cetakTransaksiEksByBulan?doc=2&bulan=<?= date('m')?>&tahun=<?= date('Y')?>&id=-1" target = "_blank" style="width: 420px">
+								<a class="dropdown-item" href="<?= base_url() ?>stok/Pemesanan/cetakTransaksiEksByBulan?doc=2&bulan=<?= date('m')?>&tahun=<?= date('Y')?>&id=-1" target = "_blank" style="width: 470px">
 								<center>Semua Kurir</center>
 								</a>
 								<?php foreach($kurir->result_array() as $i ) : 
@@ -535,7 +535,7 @@ foreach ($datapesanan->result_array() as $i) :
                       				$kurir_nama = $i['kurir_nama'];
 									  $kurir_tanggal = $i['kurir_tanggal'];
 									  ?>
-								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/cetakTransaksiEksByBulan?doc=2&bulan=<?= date('m')?>&tahun=<?= date('Y')?>&id=<?=$kurir_id?>" target = "_blank" style="width: 420px">
+								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/cetakTransaksiEksByBulan?doc=2&bulan=<?= date('m')?>&tahun=<?= date('Y')?>&id=<?=$kurir_id?>" target = "_blank" style="width: 470px">
 									<center><?=$kurir_nama?></center>
 								</a>
 								<?php endforeach ?>
@@ -552,8 +552,8 @@ foreach ($datapesanan->result_array() as $i) :
 							<div class="col-md-12">
 								<div class="row">
 									<div class="col-md-4">
-										<label class="control-label">Dari:</label>
-										<select class="form-control" id="syear" name="start_year" required>
+										<label class="control-label ml-4">Dari:</label>
+										<select class="form-control ml-4" id="syear" name="start_year" style="width: 120px" required>
 											<option selected value="">Pilih</option>
 											<?php
                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
@@ -564,8 +564,8 @@ foreach ($datapesanan->result_array() as $i) :
 									</div>
 
 									<div class="col-md-4">
-										<label class="control-label">Sampai:</label>
-										<select class="form-control" id="eyear" name="end_year" required>
+										<label class="control-label ml-3">Sampai:</label>
+										<select class="form-control ml-3" id="eyear" name="end_year" style="width: 120px" required>
 											<option selected value="">Pilih</option>
 											<?php
                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
@@ -578,7 +578,7 @@ foreach ($datapesanan->result_array() as $i) :
 
 									<div class="col-md-4">
 										<label class="control-label">Kurir:</label>
-										<select class="form-control-lg-4" id="kurir" name="kurir" required>
+										<select class="form-control" id="kurir" name="kurir" style="width: 125px" required>
 										<option value="-1">Seluruh Kurir</option>
 											<?php
                foreach($kurir->result_array() as $i ) : 
@@ -708,7 +708,7 @@ foreach ($datapesanan->result_array() as $i) :
 								<div class="dropdown-menu">
 									<a class="dropdown-item"
 										href="<?= base_url()?>stok/Pemesanan/convertExcel?doc=1&id=-1"
-										style="width: 420px">
+										style="width: 470px">
 										<center>Semua Kurir</center>
 									</a>
 									<?php foreach($kurir->result_array() as $i ) : 
@@ -718,7 +718,7 @@ foreach ($datapesanan->result_array() as $i) :
 									  ?>
 									<a class="dropdown-item"
 										href="<?= base_url()?>stok/Pemesanan/convertExcel?doc=1&id=<?=$kurir_id?>"
-										style="width: 420px">
+										style="width: 470px">
 										<center><?=$kurir_nama?></center>
 									</a>
 									<?php endforeach ?>
@@ -753,7 +753,7 @@ foreach ($datapesanan->result_array() as $i) :
 								<div class="dropdown-menu">
 									<a class="dropdown-item"
 										href="<?= base_url()?>stok/Pemesanan/convertExcelPerhari?doc=1&id=-1"
-										style="width: 420px">
+										style="width: 470px">
 										<center>Semua Kurir</center>
 									</a>
 									<?php foreach($kurir->result_array() as $i ) : 
@@ -763,7 +763,7 @@ foreach ($datapesanan->result_array() as $i) :
 									  ?>
 									<a class="dropdown-item"
 										href="<?= base_url()?>stok/Pemesanan/convertExcelPerhari?doc=1&id=<?=$kurir_id?>"
-										style="width: 420px">
+										style="width: 470px">
 										<center><?=$kurir_nama?></center>
 									</a>
 									<?php endforeach ?>
@@ -798,7 +798,7 @@ foreach ($datapesanan->result_array() as $i) :
 								<div class="dropdown-menu">
 									<a class="dropdown-item"
 										href="<?= base_url()?>stok/Pemesanan/convertExcelPerbulan?doc=1&id=-1"
-										style="width: 420px">
+										style="width: 470px">
 										<center>Semua Kurir</center>
 									</a>
 									<?php foreach($kurir->result_array() as $i ) : 
@@ -808,7 +808,7 @@ foreach ($datapesanan->result_array() as $i) :
 									  ?>
 									<a class="dropdown-item"
 										href="<?= base_url()?>stok/Pemesanan/convertExcelPerbulan?doc=1&id=<?=$kurir_id?>"
-										style="width: 420px">
+										style="width: 470px">
 										<center><?=$kurir_nama?></center>
 									</a>
 									<?php endforeach ?>
@@ -888,7 +888,7 @@ foreach ($datapesanan->result_array() as $i) :
 								<div class="dropdown-menu">
 									<a class="dropdown-item"
 										href="<?= base_url()?>stok/Pemesanan/convertWord?doc=1&id=-1"
-										style="width: 420px">
+										style="width: 470px">
 										<center>Semua Kurir</center>
 									</a>
 									<?php foreach($kurir->result_array() as $i ) : 
@@ -898,7 +898,7 @@ foreach ($datapesanan->result_array() as $i) :
 									  ?>
 									<a class="dropdown-item"
 										href="<?= base_url()?>stok/Pemesanan/convertWord?doc=1&id=<?=$kurir_id?>"
-										style="width: 420px">
+										style="width: 470px">
 										<center><?=$kurir_nama?></center>
 									</a>
 									<?php endforeach ?>
@@ -933,7 +933,7 @@ foreach ($datapesanan->result_array() as $i) :
 								<div class="dropdown-menu">
 									<a class="dropdown-item"
 										href="<?= base_url()?>stok/Pemesanan/convertWordPerhari?doc=1&id=-1"
-										style="width: 420px">
+										style="width: 470px">
 										<center>Semua Kurir</center>
 									</a>
 									<?php foreach($kurir->result_array() as $i ) : 
@@ -943,7 +943,7 @@ foreach ($datapesanan->result_array() as $i) :
 									  ?>
 									<a class="dropdown-item"
 										href="<?= base_url()?>stok/Pemesanan/convertWordPerhari?doc=1&id=<?=$kurir_id?>"
-										style="width: 420px">
+										style="width: 470px">
 										<center><?=$kurir_nama?></center>
 									</a>
 									<?php endforeach ?>
@@ -977,7 +977,7 @@ foreach ($datapesanan->result_array() as $i) :
 								<div class="dropdown-menu">
 									<a class="dropdown-item"
 										href="<?= base_url() ?>stok/Pemesanan/convertWordPerbulan?doc=1&bulan=<?= date('m')?>&tahun=<?= date("Y")?>&id=<?=-1?>"
-										style="width: 420px">
+										style="width: 470px">
 										<center>Semua Kurir</center>
 									</a>
 									<?php foreach($kurir->result_array() as $i ) : 
@@ -987,7 +987,7 @@ foreach ($datapesanan->result_array() as $i) :
 									  ?>
 									<a class="dropdown-item"
 										href="<?= base_url() ?>stok/Pemesanan/convertWordPerbulan?doc=1&bulan=<?= date('m')?>&tahun=<?= date("Y")?>&id=<?=$kurir_id?>"
-										style="width: 420px">
+										style="width: 470px">
 										<center><?=$kurir_nama?></center>
 									</a>
 									<?php endforeach ?>
@@ -1068,7 +1068,7 @@ foreach ($datapesanan->result_array() as $i) :
 								<div class="dropdown-menu">
 									<a class="dropdown-item" target="_blank"
 										href="<?= base_url()?>stok/Pemesanan/convertPDF?doc=1&id=-1"
-										style="width: 420px">
+										style="width: 470px">
 										<center>Semua Kurir</center>
 									</a>
 									<?php foreach($kurir->result_array() as $i ) : 
@@ -1078,7 +1078,7 @@ foreach ($datapesanan->result_array() as $i) :
 									  ?>
 									<a class="dropdown-item" target="_blank"
 										href="<?= base_url()?>stok/Pemesanan/convertPDF?doc=1&id=<?=$kurir_id?>"
-										style="width: 420px">
+										style="width: 470px">
 										<center><?=$kurir_nama?></center>
 									</a>
 									<?php endforeach ?>
@@ -1112,7 +1112,7 @@ foreach ($datapesanan->result_array() as $i) :
 								<div class="dropdown-menu">
 									<a class="dropdown-item" target="_blank"
 										href="<?= base_url()?>stok/Pemesanan/convertPDFPerhari?doc=1&id=-1"
-										style="width: 420px">
+										style="width: 470px">
 										<center>Semua Kurir</center>
 									</a>
 									<?php foreach($kurir->result_array() as $i ) : 
@@ -1122,7 +1122,7 @@ foreach ($datapesanan->result_array() as $i) :
 									  ?>
 									<a class="dropdown-item" target="_blank"
 										href="<?= base_url()?>stok/Pemesanan/convertPDFPerhari?doc=1&id=<?=$kurir_id?>"
-										style="width: 420px">
+										style="width: 470px">
 										<center><?=$kurir_nama?></center>
 									</a>
 									<?php endforeach ?>
@@ -1155,7 +1155,7 @@ foreach ($datapesanan->result_array() as $i) :
 								<div class="dropdown-menu">
 									<a class="dropdown-item" target="_blank"
 										href="<?= base_url()?>stok/Pemesanan/convertPDFPerbulan?doc=1&id=-1"
-										style="width: 420px">
+										style="width: 470px">
 										<center>Semua Kurir</center>
 									</a>
 									<?php foreach($kurir->result_array() as $i ) : 
@@ -1165,7 +1165,7 @@ foreach ($datapesanan->result_array() as $i) :
 									  ?>
 									<a class="dropdown-item" target="_blank"
 										href="<?= base_url()?>stok/Pemesanan/convertPDFPerbulan?doc=1&id=<?=$kurir_id?>"
-										style="width: 420px">
+										style="width: 470px">
 										<center><?=$kurir_nama?></center>
 									</a>
 									<?php endforeach ?>
@@ -1274,7 +1274,7 @@ foreach ($datapesanan->result_array() as $i) :
 							</button>
 							<center>
 								<div class="dropdown-menu">
-								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/convertExcel?doc=2&id=-1" style="width: 420px">
+								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/convertExcel?doc=2&id=-1" style="width: 470px">
 								<center>Semua Kurir</center>
 								</a>
 								<?php foreach($kurir->result_array() as $i ) : 
@@ -1282,7 +1282,7 @@ foreach ($datapesanan->result_array() as $i) :
                       				$kurir_nama = $i['kurir_nama'];
 									  $kurir_tanggal = $i['kurir_tanggal'];
 									  ?>
-								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/convertExcel?doc=2&id=<?=$kurir_id?>" style="width: 420px">
+								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/convertExcel?doc=2&id=<?=$kurir_id?>" style="width: 470px">
 									<center><?=$kurir_nama?></center>
 								</a>
 								<?php endforeach ?>
@@ -1315,7 +1315,7 @@ foreach ($datapesanan->result_array() as $i) :
 							</button>
 							<center>
 								<div class="dropdown-menu">
-								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/convertExcelPerhari?doc=2&id=-1" style="width: 420px">
+								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/convertExcelPerhari?doc=2&id=-1" style="width: 470px">
 								<center>Semua Kurir</center>
 								</a>
 								<?php foreach($kurir->result_array() as $i ) : 
@@ -1323,7 +1323,7 @@ foreach ($datapesanan->result_array() as $i) :
                       				$kurir_nama = $i['kurir_nama'];
 									  $kurir_tanggal = $i['kurir_tanggal'];
 									  ?>
-								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/convertExcelPerhari?doc=2&id=<?=$kurir_id?>" style="width: 420px">
+								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/convertExcelPerhari?doc=2&id=<?=$kurir_id?>" style="width: 470px">
 									<center><?=$kurir_nama?></center>
 								</a>
 								<?php endforeach ?>
@@ -1356,7 +1356,7 @@ foreach ($datapesanan->result_array() as $i) :
 							</button>
 							<center>
 								<div class="dropdown-menu">
-								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/convertExcelPerbulan?doc=2&id=-1" style="width: 420px">
+								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/convertExcelPerbulan?doc=2&id=-1" style="width: 470px">
 								<center>Semua Kurir</center>
 								</a>
 								<?php foreach($kurir->result_array() as $i ) : 
@@ -1364,7 +1364,7 @@ foreach ($datapesanan->result_array() as $i) :
                       				$kurir_nama = $i['kurir_nama'];
 									  $kurir_tanggal = $i['kurir_tanggal'];
 									  ?>
-								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/convertExcelPerbulan?doc=2&id=<?=$kurir_id?>" style="width: 420px">
+								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/convertExcelPerbulan?doc=2&id=<?=$kurir_id?>" style="width: 470px">
 									<center><?=$kurir_nama?></center>
 								</a>
 								<?php endforeach ?>
@@ -1445,7 +1445,7 @@ foreach ($datapesanan->result_array() as $i) :
 								<div class="dropdown-menu">
 									<a class="dropdown-item"
 										href="<?= base_url()?>stok/Pemesanan/convertWord?doc=2&id=-1"
-										style="width: 420px">
+										style="width: 470px">
 										<center>Semua Kurir</center>
 									</a>
 									<?php foreach($kurir->result_array() as $i ) : 
@@ -1455,7 +1455,7 @@ foreach ($datapesanan->result_array() as $i) :
 									  ?>
 									<a class="dropdown-item"
 										href="<?= base_url()?>stok/Pemesanan/convertWord?doc=2&id=<?=$kurir_id?>"
-										style="width: 420px">
+										style="width: 470px">
 										<center><?=$kurir_nama?></center>
 									</a>
 									<?php endforeach ?>
@@ -1489,7 +1489,7 @@ foreach ($datapesanan->result_array() as $i) :
 								<div class="dropdown-menu">
 									<a class="dropdown-item"
 										href="<?= base_url()?>stok/Pemesanan/convertWordPerhari?doc=2&id=-1"
-										style="width: 420px">
+										style="width: 470px">
 										<center>Semua Kurir</center>
 									</a>
 									<?php foreach($kurir->result_array() as $i ) : 
@@ -1499,7 +1499,7 @@ foreach ($datapesanan->result_array() as $i) :
 									  ?>
 									<a class="dropdown-item"
 										href="<?= base_url()?>stok/Pemesanan/convertWordPerhari?doc=2&id=<?=$kurir_id?>"
-										style="width: 420px">
+										style="width: 470px">
 										<center><?=$kurir_nama?></center>
 									</a>
 									<?php endforeach ?>
@@ -1533,7 +1533,7 @@ foreach ($datapesanan->result_array() as $i) :
 								<div class="dropdown-menu">
 									<a class="dropdown-item"
 										href="<?= base_url()?>stok/Pemesanan/convertWordPerbulan?doc=2&id=-1"
-										style="width: 420px">
+										style="width: 470px">
 										<center>Semua Kurir</center>
 									</a>
 									<?php foreach($kurir->result_array() as $i ) : 
@@ -1543,7 +1543,7 @@ foreach ($datapesanan->result_array() as $i) :
 									  ?>
 									<a class="dropdown-item"
 										href="<?= base_url()?>stok/Pemesanan/convertWordPerbulan?doc=2&id=<?=$kurir_id?>"
-										style="width: 420px">
+										style="width: 470px">
 										<center><?=$kurir_nama?></center>
 									</a>
 									<?php endforeach ?>
@@ -1621,7 +1621,7 @@ foreach ($datapesanan->result_array() as $i) :
 								<div class="dropdown-menu">
 									<a class="dropdown-item" target="_blank" 
 										href="<?= base_url()?>stok/Pemesanan/convertPDF?doc=2&id=-1"
-										style="width: 420px">
+										style="width: 470px">
 										<center>Semua Kurir</center>
 									</a>
 									<?php foreach($kurir->result_array() as $i ) : 
@@ -1631,7 +1631,7 @@ foreach ($datapesanan->result_array() as $i) :
 									  ?>
 									<a class="dropdown-item" target="_blank"
 										href="<?= base_url()?>stok/Pemesanan/convertPDF?doc=2&id=<?=$kurir_id?>"
-										style="width: 420px">
+										style="width: 470px">
 										<center><?=$kurir_nama?></center>
 									</a>
 									<?php endforeach ?>
@@ -1665,7 +1665,7 @@ foreach ($datapesanan->result_array() as $i) :
 								<div class="dropdown-menu">
 									<a class="dropdown-item" target="_blank"
 										href="<?= base_url()?>stok/Pemesanan/convertPDFPerhari?doc=2&id=-1"
-										style="width: 420px">
+										style="width: 470px">
 										<center>Semua Kurir</center>
 									</a>
 									<?php foreach($kurir->result_array() as $i ) : 
@@ -1675,7 +1675,7 @@ foreach ($datapesanan->result_array() as $i) :
 									  ?>
 									<a class="dropdown-item" target="_blank"
 										href="<?= base_url()?>stok/Pemesanan/convertPDFPerhari?doc=2&id=<?=$kurir_id?>"
-										style="width: 420px">
+										style="width: 470px">
 										<center><?=$kurir_nama?></center>
 									</a>
 									<?php endforeach ?>
@@ -1709,7 +1709,7 @@ foreach ($datapesanan->result_array() as $i) :
 								<div class="dropdown-menu">
 									<a class="dropdown-item" target="_blank"
 										href="<?= base_url()?>stok/Pemesanan/convertPDFPerbulan?doc=2&id=-1"
-										style="width: 420px">
+										style="width: 470px">
 										<center>Semua Kurir</center>
 									</a>
 									<?php foreach($kurir->result_array() as $i ) : 
@@ -1719,7 +1719,7 @@ foreach ($datapesanan->result_array() as $i) :
 									  ?>
 									<a class="dropdown-item" target="_blank"
 										href="<?= base_url()?>stok/Pemesanan/convertPDFPerbulan?doc=2&id=<?=$kurir_id?>"
-										style="width: 420px">
+										style="width: 470px">
 										<center><?=$kurir_nama?></center>
 									</a>
 									<?php endforeach ?>
