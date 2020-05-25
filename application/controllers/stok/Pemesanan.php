@@ -211,11 +211,12 @@
 
 					if($kurir == -1){
 						$x['datapesanan'] = $this->M_pemesanan->getPemesananEksCurdate();
+
 					}
 					else{
 						$x['datapesanan'] = $this->M_pemesanan->getPemesananEksCurdateByKurir($kurir);
 					}
-	
+
 				$this->pdf->setPaper('legal', 'landscape');
 				$this->pdf->filename = "laporan_pdf.pdf";
 				if($doc==2)
@@ -366,7 +367,7 @@
 
 				if($doc==2)
 					$this->load->view('stok/laporan_word', $x);
-					elseif($doc==1)
+				elseif($doc==1)
 					$this->load->view('stok/laporanP_word', $x);
 			
 		}
