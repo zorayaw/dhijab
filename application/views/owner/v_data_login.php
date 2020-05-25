@@ -45,8 +45,8 @@
              ?>
             <tr>
                 <td><center><?= $no?></center></td>
-                <td><center><?= $username ?> ( ID = <?= $id ?>) </center></td>
-                <td><center><?= $loggedin ?></center></td>
+                <td><center><?= $username ?> (ID : <?= $id ?>) </center></td>
+                <td><center><?= date("dS M Y, H:i:s", strtotime($loggedin)) ?></center></td>
           </tr>
               <?php endforeach;?>
         </tbody>
