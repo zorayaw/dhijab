@@ -246,7 +246,7 @@
                       </div>
 
                       <form action="<?php echo base_url() ?>admin/Pemesanan/ConvertExcelByBulanTanpaTahun?status=3&doc=1&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
-              <div class="col-md-12"><h6>Convert Pemesanan Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
+              <div class="col-md-12"><h6>Convert Pemesanan Bulan <?=$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
               <div class="row">
@@ -255,7 +255,7 @@
               <select class="form-control" id="syear" name="start_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -267,7 +267,7 @@
               <select class="form-control" id="eyear" name="end_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -374,7 +374,7 @@
                       </div>
 
                       <form action="<?php echo base_url() ?>admin/Pemesanan/ConvertWordByBulanTanpaTahun?status=3&doc=1&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
-              <div class="col-md-12"><h6>Convert Pemesanan Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
+              <div class="col-md-12"><h6>Convert Pemesanan Bulan <?=$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
               <div class="row">
@@ -383,7 +383,7 @@
               <select class="form-control" id="syear" name="start_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -395,7 +395,7 @@
               <select class="form-control" id="eyear" name="end_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -504,7 +504,7 @@
                       </div>
 
                       <form action="<?php echo base_url() ?>admin/Pemesanan/ConvertPDFByBulanTanpaTahun?status=3&doc=1&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
-              <div class="col-md-12"><h6>Convert Pemesanan Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
+              <div class="col-md-12"><h6>Convert Pemesanan Bulan <?=$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
               <div class="row">
@@ -513,7 +513,7 @@
               <select class="form-control" id="syear" name="start_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -525,7 +525,7 @@
               <select class="form-control" id="eyear" name="end_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -681,7 +681,7 @@
                       </div>
 
                       <form action="<?php echo base_url() ?>admin/Pemesanan/ConvertExcelByBulanTanpaTahun?status=3&doc=2&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
-              <div class="col-md-12"><h6>Convert Transaksi Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
+              <div class="col-md-12"><h6>Convert Transaksi Bulan <?=$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
               <div class="row">
@@ -690,7 +690,7 @@
               <select class="form-control" id="syear" name="start_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -702,7 +702,7 @@
               <select class="form-control" id="eyear" name="end_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -809,7 +809,7 @@
                       </div>
 
                       <form action="<?php echo base_url() ?>admin/Pemesanan/ConvertWordByBulanTanpaTahun?status=3&doc=2&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
-              <div class="col-md-12"><h6>Convert Transaksi Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
+              <div class="col-md-12"><h6>Convert Transaksi Bulan <?=$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
               <div class="row">
@@ -818,7 +818,7 @@
               <select class="form-control" id="syear" name="start_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -830,7 +830,7 @@
               <select class="form-control" id="eyear" name="end_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -939,7 +939,7 @@
                       </div>
 
                       <form action="<?php echo base_url() ?>admin/Pemesanan/ConvertPDFByBulanTanpaTahun?status=3&doc=2&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
-              <div class="col-md-12"><h6>Convert Transaksi Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
+              <div class="col-md-12"><h6>Convert Transaksi Bulan <?=$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
               <div class="row">
@@ -948,7 +948,7 @@
               <select class="form-control" id="syear" name="start_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -960,7 +960,7 @@
               <select class="form-control" id="eyear" name="end_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -1801,7 +1801,7 @@ $status_pemesanan = $i['status_pemesanan'];
               </div>
 
               <form action="<?php echo base_url() ?>owner/Transaksi/cetakTransaksiByBulanTanpaTahun?status=3&doc=1&bulan=<?=$bulan?>" target="_blank" method="post" enctype="multipart/form-data">
-              <div class="col-md-12"><h6>Cetak Pemesanan Bulan <?$namaBulan?> Berdasarkan Tahun: </h6></div>
+              <div class="col-md-12"><h6>Cetak Pemesanan Bulan <?=$namaBulan?> Berdasarkan Tahun: </h6></div>
                
             <div class="modal-body p-20">
               <div class="row">
