@@ -42,7 +42,7 @@
                   $no = 0;
 
                   function rupiah($angka){
-                    $hasil_rupiah = "Rp " . number_format($angka,0,',','.');
+                    $hasil_rupiah = "Rp" . number_format($angka,0,',','.');
                     return $hasil_rupiah;
                   }
 
@@ -63,12 +63,12 @@
                      
                       <td><?php echo $nama_kategori?></td>
                       <td><?php echo $berat?></td>
-                      <td><?php echo $harga_ecer?></td>
+                      <td><?php echo  rupiah($harga_ecer)?></td>
                       <td><?php echo rupiah($harga_grosir_3_11)?></td>
-                      <td><?php echo $harga_grosir_12_29?></td>
-                       <td><?php echo $grosir_diatas_30?></td>
-                       <td><?php echo $reseller?></td>
-                      <td><?php echo $hpp?></td>
+                      <td><?php echo  rupiah($harga_grosir_12_29)?></td>
+                       <td><?php echo  rupiah($grosir_diatas_30)?></td>
+                       <td><?php echo  rupiah($reseller)?></td>
+                      <td><?php echo  rupiah($hpp)?></td>
 <!--                           <a href="#" style="margin-right: 10px; margin-left: 10px;" data-toggle="modal" data-target="#editdata<?php echo $barang_id?>"><span class="ti-pencil"></span></a> -->
                       <td>
                           <center><a href="#" style="margin-right: 10px" data-toggle="modal" data-target="#editdata<?php echo $barang_id?>"><span class="ti-pencil"></span></a>
