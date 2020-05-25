@@ -213,57 +213,73 @@
       </li>
       <li>
 
-      <a href="javascript:void(0);" data-toggle="collapse" data-target="#historyinputdata">
-          <div class="pull-left"><i class="fa fa-users"></i><span class="right-nav-text">History Pegawai</span></div>
+        <a href="javascript:void(0);" data-toggle="collapse" data-target="#LaporanKeu">
+          <div class="pull-left"><i class="fa fa-money"></i><span class="right-nav-text">Data Keuangan</span></div>
           <div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div>
-      </a>
-      <ul id="historyinputdata" class="collapse" data-parent="#sidebarnav">
-          <li>
-            <a href="<?php echo base_url()?>owner/Barang/historyPemesanan?status=0"><i class="ti-calendar"></i><span class="right-nav-text">Semua Input Data </span> </a>
-          </li>
-          <li>
-            <a href="<?php echo base_url()?>owner/Barang/historyPemesanan?status=1"><i class="ti-calendar"></i><span class="right-nav-text">Input Data Customer </span> </a>
-          </li>
-          <li>
-            <a href="<?php echo base_url()?>owner/Barang/historyPemesanan?status=2"><i class="ti-calendar"></i><span class="right-nav-text">Input Data Reseller</span> </a>
-          </li>
-          <li>
-            <a href="<?php echo base_url()?>owner/Barang/historyPemesanan?status=3"><i class="ti-calendar"></i><span class="right-nav-text">Input Data Produksi</span> </a>
-          </li>
-      </ul>
-    </li>
-    <li>
-      <a href="javascript:void(0);" data-toggle="collapse" data-target="#LaporanKeu">
-            <div class="pull-left"><i class="fa fa-money"></i><span class="right-nav-text">Data Keuangan</span></div>
-            <div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div>
-          </a>
-
+        </a>
+        
         <ul id="LaporanKeu" class="collapse" data-parent="#sidebarnav">
+          <li>
+            <a href="<?php echo base_url()?>owner/Keuangan?status=0"><i class="ti-files"></i><span class="right-nav-text">Data Keuangan</span> </a>
+          </li>
+          <li>
+            <a href="<?php echo base_url()?>owner/Keuangan?status=1"><i class="ti-files"></i><span class="right-nav-text">Data Keuangan Customer</span> </a>
+          </li>
+          <li>
+            <a href="<?php echo base_url()?>owner/Keuangan?status=2"><i class="ti-files"></i><span class="right-nav-text">Data Keuangan Reseller</span> </a>
+          </li>
+          <li>
+            <a href="<?php echo base_url()?>owner/Keuangan?status=3"><i class="ti-files"></i><span class="right-nav-text">Data Keuangan Produksi</span> </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="javascript:void(0);" data-toggle="collapse" data-target="#historyinputdata">
+            <div class="pull-left"><i class="fa fa-users"></i><span class="right-nav-text">History Input Pegawai</span></div>
+            <div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div>
+        </a>
+        <ul id="historyinputdata" class="collapse" data-parent="#sidebarnav">
             <li>
-              <a href="<?php echo base_url()?>owner/Keuangan?status=0"><i class="ti-files"></i><span class="right-nav-text">Data Keuangan</span> </a>
+              <a href="<?php echo base_url()?>owner/Barang/historyPemesanan?status=0"><i class="ti-calendar"></i><span class="right-nav-text">Semua Input Data </span> </a>
             </li>
             <li>
-              <a href="<?php echo base_url()?>owner/Keuangan?status=1"><i class="ti-files"></i><span class="right-nav-text">Data Keuangan Customer</span> </a>
+              <a href="<?php echo base_url()?>owner/Barang/historyPemesanan?status=1"><i class="ti-calendar"></i><span class="right-nav-text">Input Data Customer </span> </a>
             </li>
             <li>
-              <a href="<?php echo base_url()?>owner/Keuangan?status=2"><i class="ti-files"></i><span class="right-nav-text">Data Keuangan Reseller</span> </a>
+              <a href="<?php echo base_url()?>owner/Barang/historyPemesanan?status=2"><i class="ti-calendar"></i><span class="right-nav-text">Input Data Reseller</span> </a>
             </li>
             <li>
-              <a href="<?php echo base_url()?>owner/Keuangan?status=3"><i class="ti-files"></i><span class="right-nav-text">Data Keuangan Produksi</span> </a>
+              <a href="<?php echo base_url()?>owner/Barang/historyPemesanan?status=3"><i class="ti-calendar"></i><span class="right-nav-text">Input Data Produksi</span> </a>
             </li>
         </ul>
       </li>
+      <li>
+        <a href="javascript:void(0);" data-toggle="collapse" data-target="#datapegawai">
+            <div class="pull-left"><i class="fa fa-users"></i><span class="right-nav-text">Data Pegawai</span></div>
+            <div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div>
+        </a>
+
+        <ul id="datapegawai" class="collapse" data-parent="#sidebarnav">
+          
+          <li>
+            <a href="<?php echo base_url()?>owner/User"><i class="fa fa-user-circle"></i><span class="right-nav-text">Data pegawai</span> </a>
+          </li>
         <li>
-          <a href="<?php echo base_url()?>stok/Stock"><i class="fa fa-shopping-basket"></i><span class="right-nav-text">Stock</span> </a>
+          <a href="<?php echo base_url()?>Login/viewDataLogin"><i class="fa fa-sign-in"></i><span class="right-nav-text">Data Login Admin</span> </a>
         </li>
 
+        </ul>
+      </li>
         <li>
           <a href="<?php echo base_url()?>admin/Pemesanan/konfirmasi_pesanan"><i class="fa fa-check-square-o"></i><span class="right-nav-text">Konfirmasi Pesanan</span> </a>
         </li>
-       
+        <li>
+        <a href="<?php echo base_url()?>stok/Stock"><i class="fa fa-shopping-basket"></i><span class="right-nav-text">Stock</span> </a>
+        </li>
         <li>
           <a href="<?php echo base_url()?>stok/Pemesanan/Kurir"><i class="fa fa-paper-plane-o"></i><span class="right-nav-text">Tagihan Ekspedisi</span> </a>
         </li>
+       
         <!-- <li>
           <a href="<?php echo base_url()?>owner/Transaksi"><i class="ti-calendar"></i><span class="right-nav-text">History Transaksi</span> </a>
         </li>
