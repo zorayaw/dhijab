@@ -2,126 +2,61 @@
     <div class="page-title">
       <div class="row">
           <div class="col-sm-6">
-              <h4 class="mb-0">Data Daftar Barang</h4>              
+              <h4 class="mb-0"><?= $title_view ?>
+              <span id="thun">
+              </span>
+              </h4>              
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-              <li class="breadcrumb-item"><a href="<?php echo base_url()?>owner/Barang/Reseller" class="default-color">Home</a></li>
-              <li class="breadcrumb-item active">Daftar Barang</li>
+              <li class="breadcrumb-item"><?=$title_view?></a></li>
             </ol>
           </div>
         </div>
     </div>
+
     <!-- main body --> 
     <div class="row">   
       <div class="col-xl-12 mb-30">     
         <div class="card card-statistics h-100"> 
           <div class="card-body">
-            <div class="table-responsive">
-            <table id="datatable" class="table table-striped table-bordered p-0">
-              <thead>
-                  <tr>
-                      <th width="20">Kuantitas</th>
-                      <th>Harga</th>
-                      <th width="100"><center>Aksi</center></th>
-                  </tr>
-              </thead>
-              <tbody>
-                <?php 
-                  function rupiah($angka){
-                    $hasil_rupiah = "Rp" . number_format($angka,0,',','.');
-                    return $hasil_rupiah;
-                  }
 
-                  foreach($harga->result_array() as $i) :
-                    $br_id = $i['br_id'];
-                    $barang_id = $i['barang_id'];
-                    $br_kuantitas = $i['br_kuantitas'];
-                    $br_harga = $i['br_harga'];
-                  ?>
-                  <tr>
-                     <td><center><?php echo $br_kuantitas?></center></td>
-                      <td><?php echo rupiah($br_harga)?></td>
-                      <td>
-                          <a href="#" style="margin-right: 10px; margin-left: 10px;" data-toggle="modal" data-target="#editdata<?php echo $br_id?>"><span class="ti-pencil"></span></a>
-                          <a href="#" style="margin-right: 10px" data-toggle="modal" data-target="#hapusdata<?php echo $br_id?>"><span class="ti-trash"></span></a>
-                      </td>
-                    </tr>
-                  <?php endforeach;?>
-              </tbody>
-           </table>
-          </div>
-          </div>
-        </div>   
-      </div>
 
-        <?php foreach($harga->result_array() as $i) :
-                    $br_id = $i['br_id'];
-                    $barang_id = $i['barang_id'];
-                    $br_kuantitas = $i['br_kuantitas'];
-                    $br_harga = $i['br_harga'];
-        ?>
-        <!-- Modal edit Data -->
-          <div class="modal" tabindex="-1" role="dialog" id="editdata<?php echo $br_id?>">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Edit Data</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <form action="<?php echo base_url()?>owner/Barang/update_harga_reseller" method="post" enctype="multipart/form-data">
-                    <div class="modal-body p-20">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label class="control-label">Nama Barang</label>
-                                    <input type="hidden" name="br_id" value="<?php echo $br_id?>">
-                                    <input type="hidden" name="barang_id" value="<?php echo $barang_id?>">
-                                    <input class="form-control form-white money" type="text" name="harga" value="<?php echo $br_harga?>" required/>
-                                </div>
-                            </div>          
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success ripple save-category" id="simpan">Save</button>
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <?php endforeach;?>
 
-        <?php foreach($harga->result_array() as $i) :
-                    $br_id = $i['br_id'];
-                    $barang_id = $i['barang_id'];
-                    $br_kuantitas = $i['br_kuantitas'];
-                    $br_harga = $i['br_harga'];
-        ?>
-        <div class="modal" tabindex="-1" role="dialog" id="hapusdata<?php echo $br_id?>">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Hapus Barang</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body p-20">
-                        <form action="<?php echo base_url()?>owner/Barang/hapus_reseller" method="post">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <input type="hidden" name="barang_id" value="<?php echo $barang_id?>"/> 
-                                    <p>Apakah kamu yakin ingin menghapus data ini?</i></b></p>
-                                </div>
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Tidak</button>
-                        <button type="submit" class="btn btn-success ripple save-category">Ya</button>
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <?php endforeach;?>
-  </div>
+    <div id="parent">
+
+      <div class="table-responsive">
+      <table id="datatable" class="table table-striped table-bordered p-0">
+        <thead>
+            <tr>
+                <th width="10">No</th>
+                <th><center>Username</center></th>
+                <th><center>Waktu Login</center></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php 
+            $no = 0;
+            foreach ($data_login->result_array() as $i) :
+              $no++;
+              $username = $i['username'];
+              $loggedin = $i['logintime'];
+              $id = $i['user_id'];
+             ?>
+            <tr>
+                <td><center><?= $no?></center></td>
+                <td><center><?= $username ?> ( ID = <?= $id ?>) </center></td>
+                <td><center><?= $loggedin ?></center></td>
+          </tr>
+              <?php endforeach;?>
+        </tbody>
+     </table>
+    </div>
+    </div>
+  </div>   
+</div>
+</div>
+    </div>
 
     
 <!--=================================
@@ -201,6 +136,117 @@
 </body>
 </html> 
 
+
+<script>
+	function cyear(num) {
+		let value = parseInt($('#changeYear' + num).html())
+		$.ajax({
+			method: "POST",
+			url: "<?= base_url() ?>owner/Barang/historyPemesananByTahun?stts=<?= $st ?>",
+			data: {
+				thn: parseInt($('#changeYear' + num).html())
+			},
+			success: function (result) {
+				$('#parent').html(result)
+        $("#s").attr('min', value+"-01-01");
+			  $("#s").attr('max', value+"-12-31");
+			  $("#s").attr('value', value+"-01-01");
+			  $("#e").attr('min', value+"-01-01");
+			  $("#e").attr('max', value+"-12-31");
+			  $("#e").attr('value', value+"-12-31");
+        $('#s').val(value+"-01-01")
+        $('#e').val(value+"-12-31")
+
+        if(isNaN(value)){
+				    $("#thun").text("")
+        }
+        else{
+            $("#thun").text(parseInt($('#changeYear' + num).html()))
+        }
+			}
+		});
+	}
+
+</script>
+
+<script>
+	$('#formsearch').submit(function (e) {
+		$.ajax({
+			method: "POST",
+			url: "<?= base_url() ?>owner/Barang/historyPemesananByTanggal?stts=<?= $st ?>",
+			data: {
+				startt: $('#s').val(),
+				endd: $('#e').val()
+			},
+			success: function (result) {
+				$('#parent').html(result)
+			}
+		});
+		e.preventDefault()
+	});
+
+</script>
+
+
+<script type="text/javascript">
+	var e = document.getElementsByClassName("sd");
+	$('.sd').on('change', function () {
+		var date = new Date($(this).val());
+		days = date.getDate();
+		months = date.getMonth() + 1;
+		years = date.getFullYear();
+	});
+
+	var e = document.getElementsByClassName("ed");
+	$('.ed').on('change', function () {
+		var date = new Date($(this).val());
+		daye = date.getDate();
+		monthe = date.getMonth() + 1;
+		yeare = date.getFullYear();
+		if (years > yeare) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		} else if ((years == yeare) && (months > monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		}
+	});
+
+</script>
+
+
+<script type="text/javascript">
+	var e = document.getElementsByClassName("ed");
+	$('.ed').on('change', function () {
+		var date = new Date($(this).val());
+		daye = date.getDate();
+		monthe = date.getMonth() + 1;
+		yeare = date.getFullYear();
+	});
+
+	var e = document.getElementsByClassName("sd");
+	$('.sd').on('change', function () {
+		var date = new Date($(this).val());
+		days = date.getDate();
+		months = date.getMonth() + 1;
+		years = date.getFullYear();
+		if (years > yeare) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		} else if ((years == yeare) && (months > monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(this).val('');
+		}
+	});
+
+</script>
+
 <script type="text/javascript">
   $(document).ready(function(){
     // Format mata uang.
@@ -241,7 +287,7 @@
         <script type="text/javascript">
                 $.toast({
                     heading: 'Update',
-                    text: "Data berhasil Diupdate.",
+                    text: "Data Harian berhasil Diupdate.",
                     showHideTransition: 'slide',
                     icon: 'success',
                     loader: true,        // Change it to false to disable loader
@@ -306,7 +352,7 @@
         <script type="text/javascript">
                 $.toast({
                     heading: 'Delete',
-                    text: "Data berhasil didelete",
+                    text: "Barang berhasil didelete",
                     showHideTransition: 'slide',
                     icon: 'info',
                     loader: true,        // Change it to false to disable loader
