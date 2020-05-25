@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2020 at 03:02 PM
+-- Generation Time: May 25, 2020 at 06:57 PM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.3.17
+-- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -114,6 +114,28 @@ CREATE TABLE `barang_reseller` (
 
 INSERT INTO `barang_reseller` (`br_id`, `barang_id`, `br_kuantitas`, `br_harga`, `br_tanggal`) VALUES
 (3014, 70, 12, '2000', '2019-07-08 08:59:45');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `data_login`
+--
+
+CREATE TABLE `data_login` (
+  `id_login` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `logintime` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `data_login`
+--
+
+INSERT INTO `data_login` (`id_login`, `user_id`, `username`, `logintime`) VALUES
+(1, 2, 'order', '2020-05-22 23:33:21'),
+(2, 2, 'order', '2020-05-22 23:33:45'),
+(3, 2, 'order', '2020-05-25 16:54:56');
 
 -- --------------------------------------------------------
 
@@ -596,6 +618,12 @@ ALTER TABLE `barang_reseller`
   ADD PRIMARY KEY (`br_id`);
 
 --
+-- Indexes for table `data_login`
+--
+ALTER TABLE `data_login`
+  ADD PRIMARY KEY (`id_login`);
+
+--
 -- Indexes for table `history_stock_barang`
 --
 ALTER TABLE `history_stock_barang`
@@ -676,6 +704,12 @@ ALTER TABLE `barang_non_reseller`
 --
 ALTER TABLE `barang_reseller`
   MODIFY `br_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3015;
+
+--
+-- AUTO_INCREMENT for table `data_login`
+--
+ALTER TABLE `data_login`
+  MODIFY `id_login` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `history_stock_barang`
