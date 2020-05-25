@@ -43,15 +43,16 @@
                 foreach ($datapesanan->result_array() as $i) :
                   $no++;
 
+                  
                   $pemesanan_id = $i['pemesanan_id'];
                   $pemesanan_nama = $i['pemesanan_nama'];
                   $nama_akun = $i['pemesanan_nama_akun'];
                   $tanggal = $i['tanggal'];
-                  $hp = $i['pemesanan_hp'];
-                  $alamat = $i['pemesanan_alamat'];
-                  $email = $i['email_pemesan'];
+                  $hp =  wordwrap($i['pemesanan_hp'], 13, '<br>', true); 
+                  $alamat = wordwrap($i['pemesanan_alamat'], 13, '<br>', true); 
+                  $email = wordwrap($i['email_pemesan'], 13, '<br>', true); 
                   $kurir_id = $i['kurir_id'];
-                  $resi = $i['no_resi'];
+                  $resi = wordwrap($i['no_resi'], 10, '<br>', true); 
                   $ongkir = $i['biaya_ongkir'];
                   $mp_id1 = $i['mp_id'];
                   $mp_nama = $i['mp_nama'];
