@@ -1754,6 +1754,7 @@ class Pemesanan extends CI_Controller
 		$pemesanan_id = $this->input->post('pemesanan_id');
 		$status_pemesanan = $this->input->post('status_pemesanan');
 		$jumlah = $this->input->post('jumlah');
+		
 		if ($status_pemesanan == 0) {
 			$status_pemesanan = 1;
 			$this->M_pemesanan->status_pesanan($pemesanan_id, $status_pemesanan);
