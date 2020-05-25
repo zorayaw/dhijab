@@ -27,8 +27,8 @@
 							<h7 class="mb-0">Cari Berdasarkan Tanggal : </h7>
 							<br>
 							<form id="formsearch" method="post">
-								<input class="sd" style="width:142px;" type="date" class="form-control" name="start" id="s">
-								<input class="ed" style="width:142px;" type="date" class="form-control" name="end" id="e">
+								<input class="sd1" onchange="sdds(<?=1?>)" style="width:142px;" type="date" class="form-control" name="start" id="s">
+								<input class="ed1" onchange="sdds(<?=1?>)" style="width:142px;" type="date" class="form-control" name="end" id="e">
 								<button type="submit" class="btn btn-secondary"><i class="fa fa-search"
 										aria-hidden="true"></i></button>
 							</form>
@@ -188,8 +188,11 @@
 
 
 <script>
+
+var value;
+
 	function cyear(num) {
-		let value = parseInt($('#changeYear' + num).html())
+		value = parseInt($('#changeYear' + num).html())
 		$.ajax({
 			method: "POST",
 			url: "<?= base_url() ?>owner/Barang/historyPemesananByTahun?stts=<?= $st ?>",
@@ -216,6 +219,34 @@
 			}
 		});
 	}
+	
+function sdds(num){
+	var e = document.getElementsByClassName("sd"+num);
+		var date = new Date($(".sd"+num).val());
+		days = date.getDate();
+		months = date.getMonth() + 1;
+		years = date.getFullYear();
+
+	var e = document.getElementsByClassName("ed"+num);
+		var date = new Date($(".ed"+num).val());
+		daye = date.getDate();
+		monthe = date.getMonth() + 1;
+		yeare = date.getFullYear();
+		if (years > yeare) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$("#e").attr('value', value+"-12-31");
+			$('#e').val(value+"-12-31")	
+		} else if ((years == yeare) && (months > monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$("#e").attr('value', value+"-12-31");
+			$('#e').val(value+"-12-31")
+		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$("#e").attr('value', value+"-12-31");
+			$('#e').val(value+"-12-31")		
+		}		
+}
+
 
 </script>
 
@@ -237,65 +268,6 @@
 
 </script>
 
-
-<script type="text/javascript">
-	var e = document.getElementsByClassName("sd");
-	$('.sd').on('change', function () {
-		var date = new Date($(this).val());
-		days = date.getDate();
-		months = date.getMonth() + 1;
-		years = date.getFullYear();
-	});
-
-	var e = document.getElementsByClassName("ed");
-	$('.ed').on('change', function () {
-		var date = new Date($(this).val());
-		daye = date.getDate();
-		monthe = date.getMonth() + 1;
-		yeare = date.getFullYear();
-		if (years > yeare) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$(this).val('');
-		} else if ((years == yeare) && (months > monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$(this).val('');
-		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$(this).val('');
-		}
-	});
-
-</script>
-
-
-<script type="text/javascript">
-	var e = document.getElementsByClassName("ed");
-	$('.ed').on('change', function () {
-		var date = new Date($(this).val());
-		daye = date.getDate();
-		monthe = date.getMonth() + 1;
-		yeare = date.getFullYear();
-	});
-
-	var e = document.getElementsByClassName("sd");
-	$('.sd').on('change', function () {
-		var date = new Date($(this).val());
-		days = date.getDate();
-		months = date.getMonth() + 1;
-		years = date.getFullYear();
-		if (years > yeare) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$(this).val('');
-		} else if ((years == yeare) && (months > monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$(this).val('');
-		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$(this).val('');
-		}
-	});
-
-</script>
 
 <script type="text/javascript">
   $(document).ready(function(){

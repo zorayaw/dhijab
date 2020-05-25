@@ -15,7 +15,7 @@
                   <th>Tanggal Pemesanan</th>
                   <th>Metode Pembayaran</th>
                   <th>Ekspedisi</th>
-                  <th>Status Pemesanan</th>
+                  <th>Status Ekspedisi</th>
                   <th>Biaya Ongkir</th>
                   <th>Biaya Admin</th>
                   <th>Diskon</th>
@@ -127,7 +127,7 @@
               
               </tbody>
               <tr>
-                <th colspan="11">
+                <th colspan="12">
                   <center>Jumlah</center>
                 </th>
                 <th><?php echo rupiah($total) ?></th>

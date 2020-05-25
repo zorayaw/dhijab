@@ -88,8 +88,8 @@
 							<h7 class="mb-0">Cari Berdasarkan Tanggal : </h7>
 							<br>
 							<form id="formsearch" method="post">
-								<input class="sd" style="width:142px;" type="date" class="form-control" name="start" id="s">
-								<input class="ed" style="width:142px;" type="date" class="form-control" name="end" id="e">
+								<input class="sd1" onchange="sdds(<?=1?>)" style="width:142px;" type="date" class="form-control" name="start" id="s">
+								<input class="ed1" onchange="sdds(<?=1?>)" style="width:142px;" type="date" class="form-control" name="end" id="e">
 								<button type="submit" class="btn btn-secondary"><i class="fa fa-search"
 										aria-hidden="true"></i></button>
 							</form>
@@ -634,12 +634,12 @@
 												<div class="row">
 													<div class="col-md-4">
 														<label class="control-label">Start date:</label>
-														<input class="form-control form-white sd" type="date" name="start_date"
+														<input class="form-control form-white sd2" onchange="sdd(<?=2?>)" type="date" name="start_date"
 															required />
 													</div>
 													<div class="col-md-4">
 														<label class="control-label">End date:</label>
-														<input class="form-control form-white ed" type="date" name="end_date"
+														<input class="form-control form-white ed2" onchange="sdd(<?=2?>)" type="date" name="end_date"
 															required />
 													</div>
 													<div class="col-md-4">
@@ -739,12 +739,12 @@
 												<div class="row">
 													<div class="col-md-4">
 														<label class="control-label">Start date:</label>
-														<input class="form-control form-white sd" id="startdateword" type="date" name="start_date"
+														<input class="form-control form-white sd3" onchange="sdd(<?=3?>)" id="startdateword" type="date" name="start_date"
 															required />
 													</div>
 													<div class="col-md-4">
 														<label class="control-label">End date:</label>
-														<input class="form-control form-white ed" id="enddateword" type="date" name="end_date"
+														<input class="form-control form-white ed3" onchange="sdd(<?=3?>)" id="enddateword" type="date" name="end_date"
 															required />
 													</div>
 													<div class="col-md-4">
@@ -846,11 +846,11 @@
 												<div class="row">
 													<div class="col-md-4">
 														<label class="control-label">Start date:</label>
-														<input class="form-control form-white sd" type="date" name="start_date" required />
+														<input class="form-control form-white sd4" onchange="sdd(<?=4?>)" type="date" name="start_date" required />
 													</div>
 													<div class="col-md-4">
 														<label class="control-label">End date:</label>
-														<input class="form-control form-white ed" type="date" name="end_date" required />
+														<input class="form-control form-white ed4" onchange="sdd(<?=4?>)" type="date" name="end_date" required />
 													</div>
 													<div class="col-md-4">
 														<button type="submit" class="btn btn-info btn-block ripple m-t-10">
@@ -985,11 +985,11 @@
 							<div class="row">
 								<div class="col-md-4">
 									<label class="control-label">Dari tanggal:</label>
-									<input class="form-control form-white sd" type="date" id="startdatecetak" name="start_date" required />
+									<input class="form-control form-white sd5" onchange="sdd(<?=5?>)" type="date" id="startdatecetak" name="start_date" required />
 								</div>
 								<div class="col-md-4">
 									<label class="control-label">Sampai tanggal:</label>
-									<input class="form-control form-white ed" type="date" id="enddatecetak" name="end_date" required />
+									<input class="form-control form-white ed5" onchange="sdd(<?=5?>)" type="date" id="enddatecetak" name="end_date" required />
 								</div>
 								<div class="col-md-4">
 									<button type="submit" class="btn btn-success btn-block ripple m-t-10">
@@ -1086,8 +1086,9 @@
 </html>
 
 <script>
+var value;
     function cyear(num){
-        let value = parseInt($('#changeYear'+num).html())
+        value = parseInt($('#changeYear'+num).html())
         $.ajax({
             method: "POST",
             url: "<?= base_url() ?>owner/Keuangan/PemesananByTahun?status=<?=$st?>",
@@ -1114,6 +1115,59 @@
           }
 			});
     }
+	
+function sdds(num){
+	var e = document.getElementsByClassName("sd"+num);
+		var date = new Date($(".sd"+num).val());
+		days = date.getDate();
+		months = date.getMonth() + 1;
+		years = date.getFullYear();
+
+	var e = document.getElementsByClassName("ed"+num);
+		var date = new Date($(".ed"+num).val());
+		daye = date.getDate();
+		monthe = date.getMonth() + 1;
+		yeare = date.getFullYear();
+		if (years > yeare) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$("#e").attr('value', value+"-12-31");
+			$('#e').val(value+"-12-31")	
+		} else if ((years == yeare) && (months > monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$("#e").attr('value', value+"-12-31");
+			$('#e').val(value+"-12-31")
+		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$("#e").attr('value', value+"-12-31");
+			$('#e').val(value+"-12-31")		
+		}		
+}
+
+
+function sdd(num){
+	var e = document.getElementsByClassName("sd"+num);
+		var date = new Date($(".sd"+num).val());
+		days = date.getDate();
+		months = date.getMonth() + 1;
+		years = date.getFullYear();
+
+	var e = document.getElementsByClassName("ed"+num);
+		var date = new Date($(".ed"+num).val());
+		daye = date.getDate();
+		monthe = date.getMonth() + 1;
+		yeare = date.getFullYear();
+		if (years > yeare) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(".ed"+num).val("")	
+		} else if ((years == yeare) && (months > monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(".ed"+num).val("")
+		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(".ed"+num).val("")		}
+
+}
+
 </script>
 
 <script>
@@ -1133,86 +1187,6 @@
 	});
 
 </script>
-
-<script type="text/javascript">
-
-    var e = document.getElementById("syear");
-        $('#syear').on('change', function(){
-        var date = new Date($('#syear').val());
-        years = date.getFullYear();
-    });
-
-    var e = document.getElementById("endyear");
-        $('#eyear').on('change', function(){
-        var date = new Date($('#eyear').val());
-        yeare = date.getFullYear();
-        if(years > yeare){
-          alert("Tahun tidak valid (Start Year > End Year)");
-          // $('#eyear').remove();
-        }
-    });
-
-</script>
-
-
-<script type="text/javascript">
-	var e = document.getElementsByClassName("sd");
-	$('.sd').on('change', function () {
-		var date = new Date($(this).val());
-		days = date.getDate();
-		months = date.getMonth() + 1;
-		years = date.getFullYear();
-	});
-
-	var e = document.getElementsByClassName("ed");
-	$('.ed').on('change', function () {
-		var date = new Date($(this).val());
-		daye = date.getDate();
-		monthe = date.getMonth() + 1;
-		yeare = date.getFullYear();
-		if (years > yeare) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$(this).val('');
-		} else if ((years == yeare) && (months > monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$(this).val('');
-		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$(this).val('');
-		}
-	});
-
-</script>
-
-<script type="text/javascript">
-	var e = document.getElementsByClassName("ed");
-	$('.ed').on('change', function () {
-		var date = new Date($(this).val());
-		daye = date.getDate();
-		monthe = date.getMonth() + 1;
-		yeare = date.getFullYear();
-	});
-
-	var e = document.getElementsByClassName("sd");
-	$('.sd').on('change', function () {
-		var date = new Date($(this).val());
-		days = date.getDate();
-		months = date.getMonth() + 1;
-		years = date.getFullYear();
-		if (years > yeare) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$(this).val('');
-		} else if ((years == yeare) && (months > monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$(this).val('');
-		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
-			alert("Tanggal tidak valid (Start date > End date)");
-			$(this).val('');
-		}
-	});
-
-</script>
-
 
 <script type="text/javascript">
 	$("#excel").click(function () {

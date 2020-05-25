@@ -32,12 +32,6 @@
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisiByTanggal($start,$end);
 			$x['kurir'] = $this->M_pemesanan->getAllkurir();
 
-			if($this->session->userdata('akses') == 3){
-				$this->load->view('stok/v_sidebar');
-			}
-			else if($this->session->userdata('akses') == 1){
-				$this->load->view('owner/v_sidebar');
-			}
 			$this->load->view('stok/v_kurir_by_tahun', $x);
 			
 		   }
@@ -53,12 +47,6 @@
 			$y['title'] = "Kurir";
 			$x['kurir'] = $this->M_pemesanan->getAllkurir();
 
-			if($this->session->userdata('akses') == 3){
-				$this->load->view('stok/v_sidebar');
-			}
-			else if($this->session->userdata('akses') == 1){
-				$this->load->view('owner/v_sidebar');
-			}
 			$this->load->view('stok/v_kurir_by_tahun', $x);
 			
 		   }
@@ -73,13 +61,7 @@
 			}
 			$y['title'] = "Kurir";
 			$x['kurir'] = $this->M_pemesanan->getAllkurir();
-
-			if($this->session->userdata('akses') == 3){
-				$this->load->view('stok/v_sidebar');
-			}
-			else if($this->session->userdata('akses') == 1){
-				$this->load->view('owner/v_sidebar');
-			}
+			
 			$this->load->view('stok/v_kurir_by_tahun', $x);
 			
 		   }
@@ -189,7 +171,7 @@
 
 		function convertPDF(){
 			$doc = $this->input->get('doc');
-			
+			$kurir = $this->input->get('id');
 			
 					$y['title'] = "Pemesanan";
 					$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
@@ -198,7 +180,13 @@
 					$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 					$x['produksi'] = $this->M_barang->getdataProduksi();
 					$x['reseller'] = $this->M_barang->getAllBarangR();
-					$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisi();
+
+					if($kurir == null || $kurir == -1){
+						$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisi();
+					}
+					else{
+						$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisiByKurir($kurir);
+					}
 
 				$this->pdf->setPaper('legal', 'landscape');
 				$this->pdf->filename = "laporan_pdf.pdf";
@@ -210,7 +198,7 @@
 	
 		function convertPDFPerhari(){
 			$doc = $this->input->get('doc');
-			
+			$kurir = $this->input->get('id');
 			
 
 					$y['title'] = "Pemesanan";
@@ -220,7 +208,13 @@
 					$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 					$x['produksi'] = $this->M_barang->getdataProduksi();
 					$x['reseller'] = $this->M_barang->getAllBarangR();
-					$x['datapesanan'] = $this->M_pemesanan->getPemesananEksCurdate();
+
+					if($kurir == -1){
+						$x['datapesanan'] = $this->M_pemesanan->getPemesananEksCurdate();
+					}
+					else{
+						$x['datapesanan'] = $this->M_pemesanan->getPemesananEksCurdateByKurir($kurir);
+					}
 	
 				$this->pdf->setPaper('legal', 'landscape');
 				$this->pdf->filename = "laporan_pdf.pdf";
@@ -232,20 +226,27 @@
 	
 		function convertPDFPerbulan(){
 			$doc = $this->input->get('doc');
-			
-			$bulan = $this->input->get('bulan');
-			$tahun = $this->input->get('tahun');
-			
-			$x['bulan'] = $bulan;
-			$x['tahun'] = $tahun;
-				$y['title'] = "Pemesanan";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananEksByBulan($bulan,$tahun);
+			$kurir = $this->input->get('id');
+
+				$bulan = date('m');
+				$tahun =  date('Y');
+				
+				$x['bulan'] = date('m');
+				$x['tahun'] = date('y');
+
+					$y['title'] = "Pemesanan";
+					$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+					$x['kurir'] = $this->M_pemesanan->getAllkurir();
+					$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+					$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+					$x['produksi'] = $this->M_barang->getdataProduksi();
+					$x['reseller'] = $this->M_barang->getAllBarangR();
+					if($kurir == null || $kurir == -1){
+						$x['datapesanan'] = $this->M_pemesanan->getPemesananEksByBulan($bulan,$tahun);
+					}
+					else{
+						$x['datapesanan'] = $this->M_pemesanan->getPemesananEksByBulanKurir($bulan,$tahun,$kurir);
+					}
 
 			$this->pdf->setPaper('legal', 'landscape');
 				$this->pdf->filename = "laporan_pdf.pdf";
@@ -291,6 +292,7 @@
 			
 			$x['start'] = $start;
 			$x['end'] = $end;
+			$kurir = $this->input->post('kurir');
 			
 				$y['title'] = "Pemesanan";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
@@ -299,7 +301,13 @@
 				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 				$x['produksi'] = $this->M_barang->getdataProduksi();
 				$x['reseller'] = $this->M_barang->getAllBarangR();
+
+				if($kurir == null || $kurir == -1){
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananEksByTanggal($start, $end);
+				}
+				else{
+				$x['datapesanan'] = $this->M_pemesanan->getPemesananEksByTanggalByKurir($start, $end, $kurir);
+				}
 
 			$this->pdf->setPaper('legal', 'landscape');
 				$this->pdf->filename = "laporan_pdf.pdf";
@@ -312,7 +320,7 @@
 	
 		function convertWord(){
 			$doc = $this->input->get('doc');
-			
+			$kurir = $this->input->get('id');
 			
 					$y['title'] = "Pemesanan";
 					$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
@@ -321,7 +329,13 @@
 					$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 					$x['produksi'] = $this->M_barang->getdataProduksi();
 					$x['reseller'] = $this->M_barang->getAllBarangR();
-					$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisi();
+
+					if($kurir == null || $kurir == -1){
+						$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisi();
+					}
+					else{
+						$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisiByKurir($kurir);
+					}
 
 				if($doc==2)
 					$this->load->view('stok/laporan_word', $x);
@@ -332,7 +346,7 @@
 	
 		function convertWordPerhari(){
 			$doc = $this->input->get('doc');
-			
+			$kurir = $this->input->get('id');
 			
 			
 					$y['title'] = "Pemesanan";
@@ -342,7 +356,13 @@
 					$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 					$x['produksi'] = $this->M_barang->getdataProduksi();
 					$x['reseller'] = $this->M_barang->getAllBarangR();
-					$x['datapesanan'] = $this->M_pemesanan->getPemesananEksCurdate();
+
+					if($kurir == -1){
+						$x['datapesanan'] = $this->M_pemesanan->getPemesananEksCurdate();
+					}
+					else{
+						$x['datapesanan'] = $this->M_pemesanan->getPemesananEksCurdateByKurir($kurir);
+					}
 
 				if($doc==2)
 					$this->load->view('stok/laporan_word', $x);
@@ -353,12 +373,13 @@
 	
 		function convertWordPerbulan(){
 			$doc = $this->input->get('doc');
+			$kurir = $this->input->get('id');
+
+				$bulan = date('m');
+				$tahun =  date('Y');
 				
-				$bulan = $this->input->get('bulan');
-				$tahun = $this->input->get('tahun');
-				
-				$x['bulan'] = $bulan;
-				$x['tahun'] = $tahun;
+				$x['bulan'] = date('m');
+				$x['tahun'] = date('y');
 
 					$y['title'] = "Pemesanan";
 					$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
@@ -367,7 +388,13 @@
 					$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 					$x['produksi'] = $this->M_barang->getdataProduksi();
 					$x['reseller'] = $this->M_barang->getAllBarangR();
-					$x['datapesanan'] = $this->M_pemesanan->getPemesananEksByBulan($bulan,$tahun);
+					if($kurir == null || $kurir == -1){
+						$x['datapesanan'] = $this->M_pemesanan->getPemesananEksByBulan($bulan,$tahun);
+					}
+					else{
+						$x['datapesanan'] = $this->M_pemesanan->getPemesananEksByBulanKurir($bulan,$tahun,$kurir);
+					}
+
 
 				if($doc==2)
 					$this->load->view('stok/laporan_word', $x);
@@ -409,7 +436,7 @@
 				
 				$x['start'] = $start;
 				$x['end'] = $end;
-				
+				$kurir = $this->input->post('kurir');
 			
 					$y['title'] = "Pemesanan";
 					$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
@@ -418,8 +445,12 @@
 					$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 					$x['produksi'] = $this->M_barang->getdataProduksi();
 					$x['reseller'] = $this->M_barang->getAllBarangR();
-					$x['datapesanan'] = $this->M_pemesanan->getPemesananEksByTanggal($start, $end);
-
+					if($kurir == null || $kurir == -1){
+						$x['datapesanan'] = $this->M_pemesanan->getPemesananEksByTanggal($start, $end);
+					}
+					else{
+						$x['datapesanan'] = $this->M_pemesanan->getPemesananEksByTanggalByKurir($start, $end, $kurir);
+					}
 				if($doc==2)
 				$this->load->view('stok/laporan_word', $x);
 				elseif($doc==1)
@@ -468,8 +499,10 @@
 					if($kurir == -1){
 						$x['datapesanan'] = $this->M_pemesanan->getPemesananEksCurdate();
 					}
-					$x['datapesanan'] = $this->M_pemesanan->getPemesananEksCurdateByKurir($kurir);
-				
+					else {
+						$x['datapesanan'] = $this->M_pemesanan->getPemesananEksCurdateByKurir($kurir);
+					}
+
 				if($doc==2)
 					$this->load->view('stok/laporan_excel', $x);
 					elseif($doc==1)
@@ -550,11 +583,13 @@
 					$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 					$x['produksi'] = $this->M_barang->getdataProduksi();
 					$x['reseller'] = $this->M_barang->getAllBarangR();
-					if($kurir == null || $kurir == -1)
+					if($kurir == null || $kurir == -1){
 					$x['datapesanan'] = $this->M_pemesanan->getPemesananEksByTanggal($start, $end);
-					else
+					}
+					else{
 					$x['datapesanan'] = $this->M_pemesanan->getPemesananEksByTanggalByKurir($start, $end, $kurir);
-				
+					}
+
 				if($doc==2)
 				$this->load->view('stok/laporan_excel', $x);
 				elseif($doc==1)
