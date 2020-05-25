@@ -82,8 +82,8 @@
           <h7 class="mb-0">Cari Berdasarkan Tanggal :  </h7>
           <br>
           <form id="formsearch" method="post">
-            <input class="sd1" onchange="sdd(<?=1?>)" type="date" name="start" style="width:142px;" class="form-control" id="s" value="<?= $minn ?>" min="<?= $minn ?>" max="<?= $maxx ?>">
-            <input class="ed1" onchange="sdd(<?=1?>)" type="date" name="end" style="width:142px;" class="form-control" id="e" value="<?= $maxx ?>" min="<?= $minn ?>" max="<?= $maxx ?>">
+            <input class="sd1" onchange="sdds(<?=1?>)" type="date" name="start" style="width:142px;" class="form-control" id="s" value="<?= $minn ?>" min="<?= $minn ?>" max="<?= $maxx ?>">
+            <input class="ed1" onchange="sdds(<?=1?>)" type="date" name="end" style="width:142px;" class="form-control" id="e" value="<?= $maxx ?>" min="<?= $minn ?>" max="<?= $maxx ?>">
             <button type="submit" class="btn btn-secondary"><i class="fa fa-search" aria-hidden="true"></i></button>
           </form>
           </div>
@@ -2196,92 +2196,95 @@
     }
 
 
-function sdd(num){
+function sdds(num){
 
-	var e = document.getElementsByClassName("sd"+num);
-		var date = new Date($(".sd"+num).val());
-		days = date.getDate();
-		months = date.getMonth() + 1;
-		years = date.getFullYear();
+var e = document.getElementsByClassName("sd"+num);
+  var date = new Date($(".sd"+num).val());
+  days = date.getDate();
+  months = date.getMonth() + 1;
+  years = date.getFullYear();
 
-	var e = document.getElementsByClassName("ed"+num);
-		var date = new Date($(".ed"+num).val());
-		daye = date.getDate();
-		monthe = date.getMonth() + 1;
-		yeare = date.getFullYear();
-		if (years > yeare) {
-			alert("Tanggal tidak valid (Start date > End date)");
-      if(<?=$bulan?> < 10){
-          if(<?=$bulan?> == 2){
-              if((value % 4)==0){
-                  $("#e").attr('value', value+"-0<?=$bulan?>-29");
-                  $('#e').val(value+"-0<?=$bulan?>-29")
-              }
-              else{
-                  $("#e").attr('value', value+"-0<?=$bulan?>-28");
-                  $('#e').val(value+"-0<?=$bulan?>-28")
-              }
-          }
-          else{
-                 $("#e").attr('value', value+"-0<?=$bulan?>-<?=$tanggalAkhir?>");
-                 $('#e').val(value+"-0<?=$bulan?>-<?=$tanggalAkhir?>")
-          }
-      }
-      else if(<?=$bulan?> >= 10){
-        $("#e").attr('value', value+"-<?=$bulan?>-<?=$tanggalAkhir?>");
-        $('#e').val(value+"-<?=$bulan?>-<?=$tanggalAkhir?>")
-      }   
+var e = document.getElementsByClassName("ed"+num);
+  var date = new Date($(".ed"+num).val());
+  daye = date.getDate();
+  monthe = date.getMonth() + 1;
+  yeare = date.getFullYear();
+  if (years > yeare) {
+    alert("Tanggal tidak valid (Start date > End date)");
+               
+    if(<?=$bulan?> < 10){
+        if(<?=$bulan?> == 2){
+            if((value % 4)==0){
+                $("#e").attr('value', value+"-0<?=$bulan?>-29");
+                $('#e').val(value+"-0<?=$bulan?>-29")
+            }
+            else{
+                $("#e").attr('value', value+"-0<?=$bulan?>-28");
+                $('#e').val(value+"-0<?=$bulan?>-28")
+            }
+        }
+        else{
+               $("#e").attr('value', value+"-0<?=$bulan?>-<?=$tanggalAkhir?>");
+               $('#e').val(value+"-0<?=$bulan?>-<?=$tanggalAkhir?>")
+        }
+    }
+    else if(<?=$bulan?> >= 10){
+      $("#e").attr('value', value+"-<?=$bulan?>-<?=$tanggalAkhir?>");
+      $('#e').val(value+"-<?=$bulan?>-<?=$tanggalAkhir?>")
+    }   
 } 
 
 else if ((years == yeare) && (months > monthe)) {
-              alert("Tanggal tidak valid (Start date > End date)");
-              if(<?=$bulan?> < 10){
-                  if(<?=$bulan?> == 2){
-                      if((value % 4)==0){
-                          $("#e").attr('value', value+"-0<?=$bulan?>-29");
-                          $('#e').val(value+"-0<?=$bulan?>-29")
-                      }
-                      else{
-                          $("#e").attr('value', value+"-0<?=$bulan?>-28");
-                          $('#e').val(value+"-0<?=$bulan?>-28")
-                      }
-                  }
-                  else{
-                        $("#e").attr('value', value+"-0<?=$bulan?>-<?=$tanggalAkhir?>");
-                        $('#e').val(value+"-0<?=$bulan?>-<?=$tanggalAkhir?>")
-                  }
-              }
-              else if(<?=$bulan?> >= 10){
-                $("#e").attr('value',value+"-<?=$bulan?>-<?=$tanggalAkhir?>");
-                $('#e').val(value+"-<?=$bulan?>-<?=$tanggalAkhir?>")
-              }
+            alert("Tanggal tidak valid (Start date > End date)");
+
+            if(<?=$bulan?> < 10){
+                if(<?=$bulan?> == 2){
+                    if((value % 4)==0){
+                        $("#e").attr('value', value+"-0<?=$bulan?>-29");
+                        $('#e').val(value+"-0<?=$bulan?>-29")
+                    }
+                    else{
+                        $("#e").attr('value', value+"-0<?=$bulan?>-28");
+                        $('#e').val(value+"-0<?=$bulan?>-28")
+                    }
+                }
+                else{
+                      $("#e").attr('value', value+"-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                      $('#e').val(value+"-0<?=$bulan?>-<?=$tanggalAkhir?>")
+                }
+            }
+            else if(<?=$bulan?> >= 10){
+              $("#e").attr('value',value+"-<?=$bulan?>-<?=$tanggalAkhir?>");
+              $('#e').val(value+"-<?=$bulan?>-<?=$tanggalAkhir?>")
+            }
 }
 else if ((days > daye) && (years == yeare) && (months == monthe)) {
+        alert("Tanggal tidak valid (Start date > End date)");
 
-              alert("Tanggal tidak valid (Start date > End date)");
-              if(<?=$bulan?> < 10){
-                  if(<?=$bulan?> == 2){
-                      if((value % 4)==0){
-                          $("#e").attr('value', value+"-0<?=$bulan?>-29");
-                          $('#e').val(value+"-0<?=$bulan?>-29")
-                      }
-                      else{
-                          $("#e").attr('value', value+"-0<?=$bulan?>-28");
-                          $('#e').val(value+"-0<?=$bulan?>-28")
-                      }
-                  }
-                  else{
-                        $("#e").attr('value', value+"-0<?=$bulan?>-<?=$tanggalAkhir?>");
-                        $('#e').val(value+"-0<?=$bulan?>-<?=$tanggalAkhir?>")
-                  }
-              }
-              else if(<?=$bulan?> >= 10){
-                $("#e").attr('value', value+"-<?=$bulan?>-<?=$tanggalAkhir?>");
-                $('#e').val(value+"-<?=$bulan?>-<?=$tanggalAkhir?>")
-              }
+             if(<?=$bulan?> < 10){
+                if(<?=$bulan?> == 2){
+                    if((value % 4)==0){
+                        $("#e").attr('value', value+"-0<?=$bulan?>-29");
+                        $('#e').val(value+"-0<?=$bulan?>-29")
+                    }
+                    else{
+                        $("#e").attr('value', value+"-0<?=$bulan?>-28");
+                        $('#e').val(value+"-0<?=$bulan?>-28")
+                    }
+                }
+                else{
+                      $("#e").attr('value', value+"-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                      $('#e').val(value+"-0<?=$bulan?>-<?=$tanggalAkhir?>")
+                }
+            }
+            else if(<?=$bulan?> >= 10){
+              $("#e").attr('value', value+"-<?=$bulan?>-<?=$tanggalAkhir?>");
+              $('#e').val(value+"-<?=$bulan?>-<?=$tanggalAkhir?>")
+            }
 }
 
 if(isNaN(value)){
+  if (years > yeare) {
               if(<?=$bulan?> < 10){
                   if(<?=$bulan?> == 2){
                       if((value % 4)==0){
@@ -2302,8 +2305,142 @@ if(isNaN(value)){
                 $("#e").attr('value',"<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>");
                 $('#e').val("<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>")
               }
+    }
+    else if ((years == yeare) && (months > monthe)) {
+            if(<?=$bulan?> < 10){
+                  if(<?=$bulan?> == 2){
+                      if((value % 4)==0){
+                          $("#e").attr('value',"<?=date('Y')?>-0<?=$bulan?>-29");
+                          $('#e').val("<?=date('Y')?>-0<?=$bulan?>-29")
+                      }
+                      else{
+                          $("#e").attr('value',"<?=date('Y')?>-0<?=$bulan?>-28");
+                          $('#e').val("<?=date('Y')?>-0<?=$bulan?>-28")
+                      }
+                  }
+                  else{
+                        $("#e").attr('value',"<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                        $('#e').val("<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>")
+                  }
+              }
+              else if(<?=$bulan?> >= 10){
+                $("#e").attr('value',"<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>");
+                $('#e').val("<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>")
+              }
+    }
+    else if ((days > daye) && (years == yeare) && (months == monthe)) {
+        if(<?=$bulan?> < 10){
+                  if(<?=$bulan?> == 2){
+                      if((value % 4)==0){
+                          $("#e").attr('value',"<?=date('Y')?>-0<?=$bulan?>-29");
+                          $('#e').val("<?=date('Y')?>-0<?=$bulan?>-29")
+                      }
+                      else{
+                          $("#e").attr('value',"<?=date('Y')?>-0<?=$bulan?>-28");
+                          $('#e').val("<?=date('Y')?>-0<?=$bulan?>-28")
+                      }
+                  }
+                  else{
+                        $("#e").attr('value',"<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                        $('#e').val("<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>")
+                  }
+              }
+              else if(<?=$bulan?> >= 10){
+                $("#e").attr('value',"<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>");
+                $('#e').val("<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>")
+              }
+    }
+  }
+
+
 }
 
+
+function sdd(num){
+
+	  var e = document.getElementsByClassName("sd"+num);
+		var date = new Date($(".sd"+num).val());
+		days = date.getDate();
+		months = date.getMonth() + 1;
+		years = date.getFullYear();
+
+	  var e = document.getElementsByClassName("ed"+num);
+		var date = new Date($(".ed"+num).val());
+		daye = date.getDate();
+		monthe = date.getMonth() + 1;
+		yeare = date.getFullYear();
+
+if (years > yeare) {
+			alert("Tanggal tidak valid (Start date > End date)");
+      if(<?=$bulan?> < 10){
+          if(<?=$bulan?> == 2){
+              if((value % 4)==0){
+                  $(".ed"+num).attr('value',"<?=date('Y')?>-0<?=$bulan?>-29");
+                  $(".ed"+num).val("<?=date('Y')?>-0<?=$bulan?>-29")
+              }
+              else{
+                  $(".ed"+num).attr('value',"<?=date('Y')?>-0<?=$bulan?>-28");
+                  $(".ed"+num).val("<?=date('Y')?>-0<?=$bulan?>-28")
+              }
+          }
+          else{
+                 $(".ed"+num).attr('value',"<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                 $(".ed"+num).val("<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>")
+          }
+      }
+      else if(<?=$bulan?> >= 10){
+        $(".ed"+num).attr('value',"<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>");
+        $(".ed"+num).val("<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>")
+      }   
+} 
+
+else if ((years == yeare) && (months > monthe)) {
+              alert("Tanggal tidak valid (Start date > End date)");
+              if(<?=$bulan?> < 10){
+                  if(<?=$bulan?> == 2){
+                      if((value % 4)==0){
+                          $(".ed"+num).attr('value',"<?=date('Y')?>-0<?=$bulan?>-29");
+                          $(".ed"+num).val("<?=date('Y')?>-0<?=$bulan?>-29")
+                      }
+                      else{
+                          $(".ed"+num).attr('value',"<?=date('Y')?>-0<?=$bulan?>-28");
+                          $(".ed"+num).val("<?=date('Y')?>-0<?=$bulan?>-28")
+                      }
+                  }
+                  else{
+                        $(".ed"+num).attr('value',"<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                        $(".ed"+num).val("<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>")
+                  }
+              }
+              else if(<?=$bulan?> >= 10){
+                $(".ed"+num).attr('value',"<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>");
+                $(".ed"+num).val("<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>")
+              }
+}
+else if ((days > daye) && (years == yeare) && (months == monthe)) {
+
+              alert("Tanggal tidak valid (Start date > End date)");
+              if(<?=$bulan?> < 10){
+                  if(<?=$bulan?> == 2){
+                      if((value % 4)==0){
+                          $(".ed"+num).attr('value',"<?=date('Y')?>-0<?=$bulan?>-29");
+                          $(".ed"+num).val("<?=date('Y')?>-0<?=$bulan?>-29")
+                      }
+                      else{
+                          $(".ed"+num).attr('value',"<?=date('Y')?>-0<?=$bulan?>-28");
+                          $(".ed"+num).val("<?=date('Y')?>-0<?=$bulan?>-28")
+                      }
+                  }
+                  else{
+                        $(".ed"+num).attr('value', "<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>");
+                        $(".ed"+num).val("<?=date('Y')?>-0<?=$bulan?>-<?=$tanggalAkhir?>")
+                  }
+              }
+              else if(<?=$bulan?> >= 10){
+                $(".ed"+num).attr('value', "<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>");
+                $(".ed"+num).val("<?=date('Y')?>-<?=$bulan?>-<?=$tanggalAkhir?>")
+              }
+}
 
 }
 
