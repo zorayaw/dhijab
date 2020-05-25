@@ -2364,7 +2364,7 @@ if (years > yeare) {
 			alert("Tanggal tidak valid (Start date > End date)");
       if(<?=$bulan?> < 10){
           if(<?=$bulan?> == 2){
-              if((value % 4)==0){
+              if((<?=date('Y')?> % 4)==0){
                   $(".ed"+num).attr('value',"<?=date('Y')?>-0<?=$bulan?>-29");
                   $(".ed"+num).val("<?=date('Y')?>-0<?=$bulan?>-29")
               }
@@ -2388,7 +2388,7 @@ else if ((years == yeare) && (months > monthe)) {
               alert("Tanggal tidak valid (Start date > End date)");
               if(<?=$bulan?> < 10){
                   if(<?=$bulan?> == 2){
-                      if((value % 4)==0){
+                      if((<?=date('Y')?> % 4)==0){
                           $(".ed"+num).attr('value',"<?=date('Y')?>-0<?=$bulan?>-29");
                           $(".ed"+num).val("<?=date('Y')?>-0<?=$bulan?>-29")
                       }
@@ -2412,7 +2412,7 @@ else if ((days > daye) && (years == yeare) && (months == monthe)) {
               alert("Tanggal tidak valid (Start date > End date)");
               if(<?=$bulan?> < 10){
                   if(<?=$bulan?> == 2){
-                      if((value % 4)==0){
+                      if((<?=date('Y')?> % 4)==0){
                           $(".ed"+num).attr('value',"<?=date('Y')?>-0<?=$bulan?>-29");
                           $(".ed"+num).val("<?=date('Y')?>-0<?=$bulan?>-29")
                       }
