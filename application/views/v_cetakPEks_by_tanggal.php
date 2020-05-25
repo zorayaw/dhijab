@@ -14,11 +14,14 @@ $cur_date = date("d-m-Y");?>
      <div>
           
           <div class="col-xl-12">
-          <?php if($numstat == 0) : ?>
-            <center><h1>Laporan Ekspedisi</h1></center>
-            <?php else :?>
-              <center><h1>Laporan Ekspedisi </h1></center>
-              <?php endif?>
+          <center><h1>Laporan Pemesanan Ekspedisi</h1></center>
+            <?php if($numstat == -1 || $numstat == 0) : ?>
+            <center><h3><?=$stat?></h3></center>
+            <?php else : ?>
+            <center><h3><?php foreach ($stat as $i) {
+              echo $i['kurir_nama'];
+            }?></h3></center>
+<?php endif?>
               <?php if($start != $end) : ?>
             <center><h4>(<?=date("d-m-Y", strtotime($start))?> hingga <?= date("d-m-Y", strtotime($end)) ?>)</h4></center>
                 <?php else : ?>
@@ -55,7 +58,7 @@ $cur_date = date("d-m-Y");?>
                 <?php
                 function rupiah($angka)
                 {
-                  $hasil_rupiah = "Rp " . number_format($angka, 0, ',', '.');
+                  $hasil_rupiah = "Rp" . number_format($angka, 0, ',', '.');
                   return $hasil_rupiah;
                 }
 

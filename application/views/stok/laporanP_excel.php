@@ -5,6 +5,13 @@
  header("Expires: 0");
  ?>
 
+<style> 
+ .str{
+    mso-number-format:\@; 
+    } 
+</style>
+
+
         <table border="2">
               <thead>
                 <tr>
@@ -35,7 +42,7 @@
                 <?php
                 function rupiah($angka)
                 {
-                  $hasil_rupiah = "Rp " . number_format($angka, 0, ',', '.');
+                  $hasil_rupiah = "Rp" . number_format($angka, 0, ',', '.');
                   return $hasil_rupiah;
                 }
 
@@ -93,11 +100,11 @@
                     <td><?php echo $pemesanan_nama ?></td>
                     <td><?php echo $nama_akun ?></td>
                     <td><?php echo $tanggal ?></td>
-                    <td><?php echo $hp ?></td>
+                    <td class="str"><?php echo $hp ?></td>
                     <td><?php echo $alamat ?></td>
                     <td><?php echo $email ?></td>
                     <td><?php echo $kurir_nama ?></td>
-                    <td><?php echo $resi ?></td>
+                    <td class="str"><?php echo $resi ?></td>
                     <td><?php echo $at_nama ?></td>
                     <td><?php echo $mp_nama ?></td>
                     <td><?php echo $nama_barang ?></td>

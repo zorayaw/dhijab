@@ -74,9 +74,8 @@
 							<h7 class="mb-0">Cari Berdasarkan Tanggal : </h7>
 							<br>
 							<form id="formsearch" method="post">
-								<input class="sd" style="width:142px;" min="" max="" type="date" name="start"
-									class="form-control" id="s">
-								<input class="ed" style="width:142px;" min="" max="" type="date" name="end"
+								<input class="sd1" onchange="sdds(<?=1?>)" style="width:142px;" min="" max="" type="date" name="start" class="form-control" id="s">
+								<input class="ed1" onchange="sdds(<?=1?>)" style="width:142px;" min="" max="" type="date" name="end"
 									class="form-control" id="e">
 								<button type="submit" class="btn btn-secondary"><i class="fa fa-search"
 										aria-hidden="true"></i></button>
@@ -149,7 +148,7 @@
 									<?php
 function rupiah($angka)
 {
-  $hasil_rupiah = "Rp " . number_format($angka, 0, ',', '.');
+  $hasil_rupiah = "Rp" . number_format($angka, 0, ',', '.');
   return $hasil_rupiah;
 }
 
@@ -259,34 +258,16 @@ foreach ($datapesanan->result_array() as $i) :
 		<div class="modal-dialog modal-lg-10">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Cetak Seluruh Pemesanan</h5>
+					<h5 class="modal-title">Cetak Pemesanan</h5>
 				</div>
 				<div class="modal-body">
 					<div class="row">
-						<div class="col-md-12">
-							<button type="button" class="btn btn-info dropdown-toggle ripple m-t-10 mb-4"
-								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 470px">
-								Filter Kurir
-							</button>
-							<div class="dropdown-menu">
-								<center><a class="dropdown-item" onclick="ckurir(<?= -1 ?>)" id="changeKurir<?= -1 ?>"
-										style="width: 470px">Seluruh Kurir</a>
-									<?php foreach($kurir->result_array() as $i ) : 
-									$kurir_id = $i['kurir_id'];
-                      				$kurir_nama = $i['kurir_nama'];
-									  $kurir_tanggal = $i['kurir_tanggal'];
-									  ?>
-									<a class="dropdown-item" onclick="ckurir(<?= $kurir_id ?>)"
-										id="changeKurir<?= $kurir_id ?>"><?= $kurir_nama ?></a>
-									<?php endforeach; ?>
-								</center>
-							</div>
-						</div>
-
-						<div class="col-md-12">
-							<a href="<?= base_url() ?>stok/Pemesanan/cetak_transaksiEks?doc=1" target="_blank"
-								class="btn btn-success btn-block ripple m-t-10">
-								<i class="fa fa-print pr-2"></i>Cetak Pemesanan Hari Ini (<?= date('d')?> <?php 
+						
+					<div class="btn-group col-md-12">
+							<button type="button" class="btn btn-success dropdown-toggle m-t-20 col-md-12"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+									class="fa fa-print pr-2"></i>
+									Cetak Pemesanan Hari Ini (<?= date('d')?> <?php 
                   switch (date('m')){
                     case 1 : echo "Januari"; break;
                     case 2 : echo "Februari"; break;
@@ -303,14 +284,30 @@ foreach ($datapesanan->result_array() as $i) :
                   }
                   ?>
 								<?= date('Y')?>)
-							</a>
-							<br>
+							</button>
+							<center>
+								<div class="dropdown-menu">
+								<a class="dropdown-item" href="<?= base_url() ?>stok/Pemesanan/cetak_transaksiEks?doc=1&id=-1" target = "_blank" style="width: 420px">
+								<center>Semua Kurir</center>
+								</a>
+								<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_id = $i['kurir_id'];
+                      				$kurir_nama = $i['kurir_nama'];
+									  $kurir_tanggal = $i['kurir_tanggal'];
+									  ?>
+								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/cetak_transaksiEks?doc=1&id=<?=$kurir_id?>" target = "_blank" style="width: 420px">
+									<center><?=$kurir_nama?></center>
+								</a>
+								<?php endforeach ?>
+								</div>
+							</center>
 						</div>
 
-						<div class="col-md-12">
-							<a href="<?= base_url() ?>stok/Pemesanan/cetakTransaksiEksByBulan?doc=1&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
-								target="_blank" class="btn btn-success btn-block ripple m-t-10">
-								<i class="fa fa-print pr-2"></i>Cetak Pemesanan Bulan Ini (<?php 
+						<div class="btn-group col-md-12 mt-4">
+							<button type="button" class="btn btn-success dropdown-toggle m-t-20 col-md-12"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+									class="fa fa-print pr-2"></i>
+									Cetak Pemesanan Bulan Ini (<?php 
                   switch (date('m')){
                     case 1 : echo "Januari"; break;
                     case 2 : echo "Februari"; break;
@@ -325,47 +322,79 @@ foreach ($datapesanan->result_array() as $i) :
                     case 11 : echo "November"; break;
                     case 12 : echo "Desember"; break;
                   }
-                  ?> <?= date('Y')?>)
-							</a>
-							<br>
+                  ?>
+								<?= date('Y')?>)
+							</button>
+							<center>
+								<div class="dropdown-menu">
+								<a class="dropdown-item" href="<?= base_url() ?>stok/Pemesanan/cetakTransaksiEksByBulan?doc=1&bulan=<?= date('m')?>&tahun=<?= date('Y')?>&id=-1" target = "_blank" style="width: 420px">
+								<center>Semua Kurir</center>
+								</a>
+								<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_id = $i['kurir_id'];
+                      				$kurir_nama = $i['kurir_nama'];
+									  $kurir_tanggal = $i['kurir_tanggal'];
+									  ?>
+								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/cetakTransaksiEksByBulan?doc=1&bulan=<?= date('m')?>&tahun=<?= date('Y')?>&id=<?=$kurir_id?>" target = "_blank" style="width: 420px">
+									<center><?=$kurir_nama?></center>
+								</a>
+								<?php endforeach ?>
+								</div>
+							</center>
 						</div>
 
 						<form action="<?php echo base_url() ?>stok/Pemesanan/cetakTransaksiEksByTahun?doc=1"
 							target="_blank" method="post" enctype="multipart/form-data">
-							<div class="col-md-12">
+							<div class="col-md-12 mt-4">
 								<h6>Cetak Pemesanan Berdasarkan Tahun: </h6>
 							</div>
 
-							<div class="modal-body p-20">
+							<div class="col-md-12">
 								<div class="row">
-									<div class="col-lg-6">
-										<label class="control-label">Dari tahun:</label>
+									<div class="col-md-4">
+										<label class="control-label">Dari:</label>
 										<select class="form-control" id="syear" name="start_year" required>
 											<option selected value="">Pilih</option>
 											<?php
                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
-											<option id="enddate" value="<?php echo $x ?>"><?php echo $x ?></option>
+											<option value="<?php echo $x ?>"><?php echo $x ?></option>
 											<?php endfor ?>
 										</select>
 									</div>
 
-									<div class="col-lg-6">
-										<label class="control-label">Sampai tahun:</label>
+									<div class="col-md-4">
+										<label class="control-label">Sampai:</label>
 										<select class="form-control" id="eyear" name="end_year" required>
 											<option selected value="">Pilih</option>
 											<?php
                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
-                ?>
-											<option id="endyear" value="<?php echo $x ?>"><?php echo $x ?></option>
+				?>
+				
+											<option value="<?php echo $x ?>"><?php echo $x ?></option>
 											<?php endfor ?>
+										</select>
+									</div>
+
+									<div class="col-md-4">
+										<label class="control-label">Kurir:</label>
+										<select class="form-control-lg-4" id="kurir" name="kurir" required>
+										<option value="-1">Seluruh Kurir</option>
+											<?php
+               foreach($kurir->result_array() as $i ) : 
+				$kurir_id = $i['kurir_id'];
+				  $kurir_nama = $i['kurir_nama'];
+				  $kurir_tanggal = $i['kurir_tanggal'];
+				?>
+				
+											<option value="<?php echo $kurir_id ?>"><?php echo $kurir_nama?></option>
+											<?php endforeach ?>
 										</select>
 									</div>
 								</div>
 							</div>
 					</div>
-
-					<div class="col-md-12">
+					<div class="col-md-12 mt-2">
 						<button type="submit" class="btn btn-success btn-block ripple m-t-10">
 							<i class="fa fa-print pr-2"></i>Cetak Pemesanan</button>
 						<br>
@@ -382,25 +411,38 @@ foreach ($datapesanan->result_array() as $i) :
 							<div class="row">
 								<div class="col-md-4">
 									<label class="control-label">Dari tanggal:</label>
-									<input class="form-control form-white sd" type="date" id="startdatecetak"
+									<input class="form-control form-white sd2" onchange="sdd(<?=2?>)" type="date" id="startdatecetak"
 										name="start_date" required />
 								</div>
 								<div class="col-md-4">
 									<label class="control-label">Sampai tanggal:</label>
-									<input class="form-control form-white ed" type="date" id="enddatecetak"
+									<input class="form-control form-white ed2" onchange="sdd(<?=2?>)" type="date" id="enddatecetak"
 										name="end_date" required />
 								</div>
 								<div class="col-md-4">
+										<label class="control-label">Kurir:</label>
+										<select class="form-control" id="kurir" name="kurir" required>
+										<option value="-1">Seluruh Kurir</option>
+											<?php
+               foreach($kurir->result_array() as $i ) : 
+				$kurir_id = $i['kurir_id'];
+				  $kurir_nama = $i['kurir_nama'];
+				  $kurir_tanggal = $i['kurir_tanggal'];
+				?>
+				
+											<option value="<?php echo $kurir_id ?>"><?php echo $kurir_nama?></option>
+											<?php endforeach ?>
+										</select>
+									</div>
+								<div class="col-md-12 mt-2">
 									<button type="submit" class="btn btn-success btn-block ripple m-t-10">
-										<i class="fa fa-print pr-2"></i>Cetak<br>pemesanan</a>
+										<i class="fa fa-print pr-2"></i>Cetak pemesanan</a>
 								</div>
 							</div>
 						</div>
 					</form>
-
-
-
 				</div>
+
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger ripple" data-dismiss="modal">Close</button>
 				</div>
@@ -420,55 +462,12 @@ foreach ($datapesanan->result_array() as $i) :
 				</div>
 				<div class="modal-body">
 					<div class="row">
-
-						<div class="col-md-12">
-							<button type="button" class="btn btn-info dropdown-toggle ripple m-t-10 mb-4"
-								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 470px">
-								Filter Kurir
-							</button>
-							<div class="dropdown-menu">
-								<center><a class="dropdown-item" onclick="ckurir(<?= -1 ?>)" id="changeKurir<?= -1 ?>"
-										style="width: 470px">Seluruh Kurir</a>
-									<?php foreach($kurir->result_array() as $i ) : 
-									$kurir_id = $i['kurir_id'];
-                      				$kurir_nama = $i['kurir_nama'];
-									  $kurir_tanggal = $i['kurir_tanggal'];
-									  ?>
-									<a class="dropdown-item" onclick="ckurir(<?= $kurir_id ?>)"
-										id="changeKurir<?= $kurir_id ?>"><?= $kurir_nama ?></a>
-									<?php endforeach; ?>
-								</center>
-							</div>
-						</div>
-
-						<div class="col-md-12">
-							<a href="<?= base_url() ?>stok/Pemesanan/cetak_transaksiEks?doc=2" target="_blank"
-								class="btn btn-success btn-block ripple m-t-10">
-								<i class="fa fa-print pr-2"></i>Cetak Transaksi Hari Ini (<?= date('d')?> <?php 
-                  switch (date('m')){
-                    case 1 : echo "Januari"; break;
-                    case 2 : echo "Februari"; break;
-                    case 3 : echo "Maret"; break;
-                    case 4 : echo "April"; break;
-                    case 5 : echo "Mei"; break;
-                    case 6 : echo "Juni"; break; 
-                    case 7 : echo "Juli"; break;
-                    case 8 : echo "Agustus"; break;
-                    case 9 : echo "September"; break;
-                    case 10 : echo "Oktober"; break;
-                    case 11 : echo "November"; break;
-                    case 12 : echo "Desember"; break;
-                  }
-                  ?>
-								<?= date('Y')?>)
-							</a>
-							<br>
-						</div>
-
-						<div class="col-md-12">
-							<a href="<?= base_url() ?>stok/Pemesanan/cetakTransaksiEksByBulan?doc=2&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
-								target="_blank" class="btn btn-success btn-block ripple m-t-10">
-								<i class="fa fa-print pr-2"></i>Cetak Transaksi Bulan Ini (<?php 
+						
+					<div class="btn-group col-md-12">
+							<button type="button" class="btn btn-success dropdown-toggle m-t-20 col-md-12"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+									class="fa fa-print pr-2"></i>
+									Cetak Transaksi Hari Ini (<?= date('d')?> <?php 
                   switch (date('m')){
                     case 1 : echo "Januari"; break;
                     case 2 : echo "Februari"; break;
@@ -483,47 +482,119 @@ foreach ($datapesanan->result_array() as $i) :
                     case 11 : echo "November"; break;
                     case 12 : echo "Desember"; break;
                   }
-                  ?> <?= date('Y')?>)
-							</a>
-							<br>
+                  ?>
+								<?= date('Y')?>)
+							</button>
+							<center>
+								<div class="dropdown-menu">
+								<a class="dropdown-item" href="<?= base_url() ?>stok/Pemesanan/cetak_transaksiEks?doc=2&id=-1" target = "_blank" style="width: 420px">
+								<center>Semua Kurir</center>
+								</a>
+								<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_id = $i['kurir_id'];
+                      				$kurir_nama = $i['kurir_nama'];
+									  $kurir_tanggal = $i['kurir_tanggal'];
+									  ?>
+								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/cetak_transaksiEks?doc=2&id=<?=$kurir_id?>" target = "_blank" style="width: 420px">
+									<center><?=$kurir_nama?></center>
+								</a>
+								<?php endforeach ?>
+								</div>
+							</center>
+						</div>
+
+						<div class="btn-group col-md-12 mt-4">
+							<button type="button" class="btn btn-success dropdown-toggle m-t-20 col-md-12"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+									class="fa fa-print pr-2"></i>
+									Cetak Transaksi Bulan Ini (<?php 
+                  switch (date('m')){
+                    case 1 : echo "Januari"; break;
+                    case 2 : echo "Februari"; break;
+                    case 3 : echo "Maret"; break;
+                    case 4 : echo "April"; break;
+                    case 5 : echo "Mei"; break;
+                    case 6 : echo "Juni"; break;
+                    case 7 : echo "Juli"; break;
+                    case 8 : echo "Agustus"; break;
+                    case 9 : echo "September"; break;
+                    case 10 : echo "Oktober"; break;
+                    case 11 : echo "November"; break;
+                    case 12 : echo "Desember"; break;
+                  }
+                  ?>
+								<?= date('Y')?>)
+							</button>
+							<center>
+								<div class="dropdown-menu">
+								<a class="dropdown-item" href="<?= base_url() ?>stok/Pemesanan/cetakTransaksiEksByBulan?doc=2&bulan=<?= date('m')?>&tahun=<?= date('Y')?>&id=-1" target = "_blank" style="width: 420px">
+								<center>Semua Kurir</center>
+								</a>
+								<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_id = $i['kurir_id'];
+                      				$kurir_nama = $i['kurir_nama'];
+									  $kurir_tanggal = $i['kurir_tanggal'];
+									  ?>
+								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/cetakTransaksiEksByBulan?doc=2&bulan=<?= date('m')?>&tahun=<?= date('Y')?>&id=<?=$kurir_id?>" target = "_blank" style="width: 420px">
+									<center><?=$kurir_nama?></center>
+								</a>
+								<?php endforeach ?>
+								</div>
+							</center>
 						</div>
 
 						<form action="<?php echo base_url() ?>stok/Pemesanan/cetakTransaksiEksByTahun?doc=2"
 							target="_blank" method="post" enctype="multipart/form-data">
-							<div class="col-md-12">
-								<h6>Cetak Transaksi Berdasarkan Tahun: </h6>
+							<div class="col-md-12 mt-4">
+								<h6>Cetak Pemesanan Berdasarkan Tahun: </h6>
 							</div>
 
-							<div class="modal-body p-20">
+							<div class="col-md-12">
 								<div class="row">
-									<div class="col-lg-6">
-										<label class="control-label">Dari tahun:</label>
+									<div class="col-md-4">
+										<label class="control-label">Dari:</label>
 										<select class="form-control" id="syear" name="start_year" required>
 											<option selected value="">Pilih</option>
 											<?php
                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
-											<option id="enddate" value="<?php echo $x ?>"><?php echo $x ?></option>
+											<option value="<?php echo $x ?>"><?php echo $x ?></option>
 											<?php endfor ?>
 										</select>
 									</div>
 
-									<div class="col-lg-6">
-										<label class="control-label">Sampai tahun:</label>
+									<div class="col-md-4">
+										<label class="control-label">Sampai:</label>
 										<select class="form-control" id="eyear" name="end_year" required>
 											<option selected value="">Pilih</option>
 											<?php
                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
-                ?>
-											<option id="endyear" value="<?php echo $x ?>"><?php echo $x ?></option>
+				?>
+				
+											<option value="<?php echo $x ?>"><?php echo $x ?></option>
 											<?php endfor ?>
+										</select>
+									</div>
+
+									<div class="col-md-4">
+										<label class="control-label">Kurir:</label>
+										<select class="form-control-lg-4" id="kurir" name="kurir" required>
+										<option value="-1">Seluruh Kurir</option>
+											<?php
+               foreach($kurir->result_array() as $i ) : 
+				$kurir_id = $i['kurir_id'];
+				  $kurir_nama = $i['kurir_nama'];
+				  $kurir_tanggal = $i['kurir_tanggal'];
+				?>
+				
+											<option value="<?php echo $kurir_id ?>"><?php echo $kurir_nama?></option>
+											<?php endforeach ?>
 										</select>
 									</div>
 								</div>
 							</div>
 					</div>
-
-					<div class="col-md-12">
+					<div class="col-md-12 mt-2">
 						<button type="submit" class="btn btn-success btn-block ripple m-t-10">
 							<i class="fa fa-print pr-2"></i>Cetak Transaksi</button>
 						<br>
@@ -540,23 +611,38 @@ foreach ($datapesanan->result_array() as $i) :
 							<div class="row">
 								<div class="col-md-4">
 									<label class="control-label">Dari tanggal:</label>
-									<input class="form-control form-white sd" type="date" id="startdatecetak"
+									<input class="form-control form-white sd3" onchange="sdd(<?=3?>)" type="date" id="startdatecetak"
 										name="start_date" required />
 								</div>
 								<div class="col-md-4">
 									<label class="control-label">Sampai tanggal:</label>
-									<input class="form-control form-white ed" type="date" id="enddatecetak"
+									<input class="form-control form-white ed3" onchange="sdd(<?=3?>)" type="date" id="enddatecetak"
 										name="end_date" required />
 								</div>
 								<div class="col-md-4">
+										<label class="control-label">Kurir:</label>
+										<select class="form-control" id="kurir" name="kurir" required>
+										<option value="-1">Seluruh Kurir</option>
+											<?php
+               foreach($kurir->result_array() as $i ) : 
+				$kurir_id = $i['kurir_id'];
+				  $kurir_nama = $i['kurir_nama'];
+				  $kurir_tanggal = $i['kurir_tanggal'];
+				?>
+				
+											<option value="<?php echo $kurir_id ?>"><?php echo $kurir_nama?></option>
+											<?php endforeach ?>
+										</select>
+									</div>
+								<div class="col-md-12 mt-2">
 									<button type="submit" class="btn btn-success btn-block ripple m-t-10">
-										<i class="fa fa-print pr-2"></i>Cetak<br>Transaksi</a>
+										<i class="fa fa-print pr-2"></i>Cetak Transaksi</a>
 								</div>
 							</div>
 						</div>
 					</form>
-
 				</div>
+
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger ripple" data-dismiss="modal">Close</button>
 				</div>
@@ -740,12 +826,12 @@ foreach ($datapesanan->result_array() as $i) :
 								<div class="row">
 									<div class="col-md-4">
 										<label class="control-label">Start date:</label>
-										<input class="form-control form-white sd" type="date" name="start_date"
+										<input class="form-control form-white sd4" onchange="sdd(<?=4?>)" type="date" name="start_date"
 											required />
 									</div>
 									<div class="col-md-4">
 										<label class="control-label">End date:</label>
-										<input class="form-control form-white ed" type="date" name="end_date"
+										<input class="form-control form-white ed4" onchange="sdd(<?=4?>)" type="date" name="end_date"
 											required />
 									</div>
 									<div class="col-md-4">
@@ -793,80 +879,122 @@ foreach ($datapesanan->result_array() as $i) :
 					<div class="row">
 
 						<div class="col-md-12">
-							<button type="button" class="btn btn-info dropdown-toggle ripple m-t-10 mb-4"
-								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 470px">
-								Filter Kurir
+							<button type="button" class="btn btn-success dropdown-toggle m-t-20 col-md-12"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+									class="fa fa-print pr-2"></i>
+								Convert Seluruh Pemesanan
 							</button>
-							<div class="dropdown-menu">
-								<center><a class="dropdown-item" onclick="ckurir(<?= -1 ?>)" id="changeKurir<?= -1 ?>"
-										style="width: 470px">Seluruh Kurir</a>
+							<center>
+								<div class="dropdown-menu">
+									<a class="dropdown-item"
+										href="<?= base_url()?>stok/Pemesanan/convertWord?doc=1&id=-1"
+										style="width: 420px">
+										<center>Semua Kurir</center>
+									</a>
 									<?php foreach($kurir->result_array() as $i ) : 
 									$kurir_id = $i['kurir_id'];
                       				$kurir_nama = $i['kurir_nama'];
 									  $kurir_tanggal = $i['kurir_tanggal'];
 									  ?>
-									<a class="dropdown-item" onclick="ckurir(<?= $kurir_id ?>)"
-										id="changeKurir<?= $kurir_id ?>"><?= $kurir_nama ?></a>
-									<?php endforeach; ?>
-								</center>
-							</div>
-						</div>
+									<a class="dropdown-item"
+										href="<?= base_url()?>stok/Pemesanan/convertWord?doc=1&id=<?=$kurir_id?>"
+										style="width: 420px">
+										<center><?=$kurir_nama?></center>
+									</a>
+									<?php endforeach ?>
+								</div>
+							</center>
 
-						<div class="col-md-12">
-							<a href="<?= base_url() ?>stok/Pemesanan/convertWord?doc=1" target="_blank"
-								class="btn btn-success btn-block ripple m-t-10">
-								<i class="fa fa-print pr-2"></i>Convert Seluruh Pemesanan</a>
-							</a>
 						</div>
 
 						<div class="col-md-12 mt-4">
-							<a href="<?= base_url() ?>stok/Pemesanan/convertWordPerhari?doc=1" target="_blank"
-								class="btn btn-success btn-block ripple m-t-10">
-								<i class="fa fa-print pr-2"></i>Convert Pemesanan Hari Ini
+						<button type="button" class="btn btn-success dropdown-toggle m-t-20 col-md-12"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+									class="fa fa-print pr-2"></i>Convert Pemesanan Hari Ini
 								(<?= date('d')?> <?php 
-				switch (date('m')){
-					case 1 : echo "Januari"; break;
-					case 2 : echo "Februari"; break;
-					case 3 : echo "Maret"; break;
-					case 4 : echo "April"; break;
-					case 5 : echo "May"; break;
-					case 6 : echo "Juni"; break;
-					case 7 : echo "Juli"; break;
-					case 8 : echo "Agustus"; break;
-					case 9 : echo "September"; break;
-					case 10 : echo "Oktober"; break;
-					case 11 : echo "November"; break;
-					case 12 : echo "Desember"; break;
-				}
-				?>
+								switch (date('m')){
+									case 1 : echo "Januari"; break;
+									case 2 : echo "Februari"; break;
+									case 3 : echo "Maret"; break;
+									case 4 : echo "April"; break;
+									case 5 : echo "May"; break;
+									case 6 : echo "Juni"; break;
+									case 7 : echo "Juli"; break;
+									case 8 : echo "Agustus"; break;
+									case 9 : echo "September"; break;
+									case 10 : echo "Oktober"; break;
+									case 11 : echo "November"; break;
+									case 12 : echo "Desember"; break;
+								}
+								?>
 								<?= date('Y')?>)
-							</a>
-							</a>
+							</button>
+							<center>
+								<div class="dropdown-menu">
+									<a class="dropdown-item"
+										href="<?= base_url()?>stok/Pemesanan/convertWordPerhari?doc=1&id=-1"
+										style="width: 420px">
+										<center>Semua Kurir</center>
+									</a>
+									<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_id = $i['kurir_id'];
+                      				$kurir_nama = $i['kurir_nama'];
+									  $kurir_tanggal = $i['kurir_tanggal'];
+									  ?>
+									<a class="dropdown-item"
+										href="<?= base_url()?>stok/Pemesanan/convertWordPerhari?doc=1&id=<?=$kurir_id?>"
+										style="width: 420px">
+										<center><?=$kurir_nama?></center>
+									</a>
+									<?php endforeach ?>
+								</div>
+							</center>
+
 						</div>
 
 						<div class="col-md-12 mt-4">
-							<a href="<?= base_url() ?>stok/Pemesanan/convertWordPerbulan?doc=1&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
-								target="_blank" class="btn btn-success btn-block ripple m-t-10">
-								<i class="fa fa-print pr-2"></i>Convert Pemesanan Bulan Ini (<?php 
-				switch (date('m')){
-					case 1 : echo "Januari"; break;
-					case 2 : echo "Februari"; break;
-					case 3 : echo "Maret"; break;
-					case 4 : echo "April"; break;
-					case 5 : echo "May"; break;
-					case 6 : echo "Juni"; break;
-					case 7 : echo "Juli"; break;
-					case 8 : echo "Agustus"; break;
-					case 9 : echo "September"; break;
-					case 10 : echo "Oktober"; break;
-					case 11 : echo "November"; break;
-					case 12 : echo "Desember"; break;
-				}
-				?>
+						<button type="button" class="btn btn-success dropdown-toggle m-t-20 col-md-12"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+									class="fa fa-print pr-2"></i>Convert Pemesanan Bulan Ini (<?php 
+									switch (date('m')){
+										case 1 : echo "Januari"; break;
+										case 2 : echo "Februari"; break;
+										case 3 : echo "Maret"; break;
+										case 4 : echo "April"; break;
+										case 5 : echo "May"; break;
+										case 6 : echo "Juni"; break;
+										case 7 : echo "Juli"; break;
+										case 8 : echo "Agustus"; break;
+										case 9 : echo "September"; break;
+										case 10 : echo "Oktober"; break;
+										case 11 : echo "November"; break;
+										case 12 : echo "Desember"; break;
+									}
+									?>
 								<?= date('Y')?>)
-							</a>
-							</a>
+							</button>
+							<center>
+								<div class="dropdown-menu">
+									<a class="dropdown-item"
+										href="<?= base_url() ?>stok/Pemesanan/convertWordPerbulan?doc=1&bulan=<?= date('m')?>&tahun=<?= date("Y")?>&id=<?=-1?>"
+										style="width: 420px">
+										<center>Semua Kurir</center>
+									</a>
+									<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_id = $i['kurir_id'];
+                      				$kurir_nama = $i['kurir_nama'];
+									  $kurir_tanggal = $i['kurir_tanggal'];
+									  ?>
+									<a class="dropdown-item"
+										href="<?= base_url() ?>stok/Pemesanan/convertWordPerbulan?doc=1&bulan=<?= date('m')?>&tahun=<?= date("Y")?>&id=<?=$kurir_id?>"
+										style="width: 420px">
+										<center><?=$kurir_nama?></center>
+									</a>
+									<?php endforeach ?>
+								</div>
+							</center>
 						</div>
+						
 						<div class="col-md-12 mt-4">
 							<h6>Convert Berdasarkan Tanggal:</h6>
 						</div>
@@ -876,18 +1004,30 @@ foreach ($datapesanan->result_array() as $i) :
 								<div class="row">
 									<div class="col-md-4">
 										<label class="control-label">Start date:</label>
-										<input class="form-control form-white sd" type="date" name="start_date"
+										<input class="form-control form-white sd5" onchange="sdd(<?=5?>)" type="date" name="start_date"
 											required />
 									</div>
 									<div class="col-md-4">
 										<label class="control-label">End date:</label>
-										<input class="form-control form-white ed" type="date" name="end_date"
+										<input class="form-control form-white ed5" onchange="sdd(<?=5?>)" type="date" name="end_date"
 											required />
 									</div>
 									<div class="col-md-4">
-										<button type="submit" class="btn btn-info btn-block ripple m-t-10">
-											<i class="fa fa-print pr-2"></i>Convert<br>Pemesanan</a>
+										<label class="control-label">Filter Kurir</label>
+										<select class="form-control" id="kurir" name="kurir" required>
+											<option value="-1">Seluruh Kurir</option>
+											<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_id = $i['kurir_id'];
+                      				$kurir_nama = $i['kurir_nama'];
+									  $kurir_tanggal = $i['kurir_tanggal'];
+									  ?>
+											<option value="<?=$kurir_id?>"><?php echo $kurir_nama ?></option>
+											<?php endforeach ?>
+										</select>
 									</div>
+									<button type="submit" class="btn btn-success btn-block ripple m-t-10 mt-2">
+										<i class="fa fa-print pr-2"></i>Convert Pemesanan</button>
+
 								</div>
 							</div>
 						</form>
@@ -919,80 +1059,120 @@ foreach ($datapesanan->result_array() as $i) :
 					<div class="row">
 
 						<div class="col-md-12">
-							<button type="button" class="btn btn-info dropdown-toggle ripple m-t-10 mb-4"
-								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 470px">
-								Filter Kurir
+						<button type="button" class="btn btn-success dropdown-toggle m-t-20 col-md-12"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+									class="fa fa-print pr-2"></i>
+								Convert Seluruh Pemesanan
 							</button>
-							<div class="dropdown-menu">
-								<center><a class="dropdown-item" onclick="ckurir(<?= -1 ?>)" id="changeKurir<?= -1 ?>"
-										style="width: 470px">Seluruh Kurir</a>
+							<center>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" target="_blank"
+										href="<?= base_url()?>stok/Pemesanan/convertPDF?doc=1&id=-1"
+										style="width: 420px">
+										<center>Semua Kurir</center>
+									</a>
 									<?php foreach($kurir->result_array() as $i ) : 
 									$kurir_id = $i['kurir_id'];
                       				$kurir_nama = $i['kurir_nama'];
 									  $kurir_tanggal = $i['kurir_tanggal'];
 									  ?>
-									<a class="dropdown-item" onclick="ckurir(<?= $kurir_id ?>)"
-										id="changeKurir<?= $kurir_id ?>"><?= $kurir_nama ?></a>
-									<?php endforeach; ?>
-								</center>
-							</div>
-						</div>
-
-						<div class="col-md-12">
-							<a href="<?= base_url() ?>stok/Pemesanan/convertPDF?doc=1" target="_blank"
-								class="btn btn-success btn-block ripple m-t-10">
-								<i class="fa fa-print pr-2"></i>Convert Seluruh Pemesanan</a>
-							</a>
+									<a class="dropdown-item" target="_blank"
+										href="<?= base_url()?>stok/Pemesanan/convertPDF?doc=1&id=<?=$kurir_id?>"
+										style="width: 420px">
+										<center><?=$kurir_nama?></center>
+									</a>
+									<?php endforeach ?>
+								</div>
+							</center>
 						</div>
 
 						<div class="col-md-12 mt-4">
-							<a href="<?= base_url() ?>stok/Pemesanan/convertPDFPerhari?doc=1" target="_blank"
-								class="btn btn-success btn-block ripple m-t-10">
-								<i class="fa fa-print pr-2"></i>Convert Pemesanan Hari Ini
+							<button type="button" class="btn btn-success dropdown-toggle m-t-20 col-md-12"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+									class="fa fa-print pr-2"></i>Convert Pemesanan Hari Ini
 								(<?= date('d')?> <?php 
-				switch (date('m')){
-					case 1 : echo "Januari"; break;
-					case 2 : echo "Februari"; break;
-					case 3 : echo "Maret"; break;
-					case 4 : echo "April"; break;
-					case 5 : echo "May"; break;
-					case 6 : echo "Juni"; break;
-					case 7 : echo "Juli"; break;
-					case 8 : echo "Agustus"; break;
-					case 9 : echo "September"; break;
-					case 10 : echo "Oktober"; break;
-					case 11 : echo "November"; break;
-					case 12 : echo "Desember"; break;
-				}
-				?>
+								switch (date('m')){
+									case 1 : echo "Januari"; break;
+									case 2 : echo "Februari"; break;
+									case 3 : echo "Maret"; break;
+									case 4 : echo "April"; break;
+									case 5 : echo "May"; break;
+									case 6 : echo "Juni"; break;
+									case 7 : echo "Juli"; break;
+									case 8 : echo "Agustus"; break;
+									case 9 : echo "September"; break;
+									case 10 : echo "Oktober"; break;
+									case 11 : echo "November"; break;
+									case 12 : echo "Desember"; break;
+								}
+								?>
 								<?= date('Y')?>)
-							</a>
-							</a>
+							</button>
+							<center>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" target="_blank"
+										href="<?= base_url()?>stok/Pemesanan/convertPDFPerhari?doc=1&id=-1"
+										style="width: 420px">
+										<center>Semua Kurir</center>
+									</a>
+									<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_id = $i['kurir_id'];
+                      				$kurir_nama = $i['kurir_nama'];
+									  $kurir_tanggal = $i['kurir_tanggal'];
+									  ?>
+									<a class="dropdown-item" target="_blank"
+										href="<?= base_url()?>stok/Pemesanan/convertPDFPerhari?doc=1&id=<?=$kurir_id?>"
+										style="width: 420px">
+										<center><?=$kurir_nama?></center>
+									</a>
+									<?php endforeach ?>
+								</div>
+							</center>
 						</div>
 
 						<div class="col-md-12 mt-4">
-							<a href="<?= base_url() ?>stok/Pemesanan/convertPDFPerbulan?doc=1&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
-								target="_blank" class="btn btn-success btn-block ripple m-t-10">
-								<i class="fa fa-print pr-2"></i>Convert Pemesanan Bulan Ini (<?php 
-				switch (date('m')){
-					case 1 : echo "Januari"; break;
-					case 2 : echo "Februari"; break;
-					case 3 : echo "Maret"; break;
-					case 4 : echo "April"; break;
-					case 5 : echo "May"; break;
-					case 6 : echo "Juni"; break;
-					case 7 : echo "Juli"; break;
-					case 8 : echo "Agustus"; break;
-					case 9 : echo "September"; break;
-					case 10 : echo "Oktober"; break;
-					case 11 : echo "November"; break;
-					case 12 : echo "Desember"; break;
-				}
-				?>
+							<button type="button" class="btn btn-success dropdown-toggle m-t-20 col-md-12"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+									class="fa fa-print pr-2"></i>Convert Pemesanan Bulan Ini (<?php 
+									switch (date('m')){
+										case 1 : echo "Januari"; break;
+										case 2 : echo "Februari"; break;
+										case 3 : echo "Maret"; break;
+										case 4 : echo "April"; break;
+										case 5 : echo "May"; break;
+										case 6 : echo "Juni"; break;
+										case 7 : echo "Juli"; break;
+										case 8 : echo "Agustus"; break;
+										case 9 : echo "September"; break;
+										case 10 : echo "Oktober"; break;
+										case 11 : echo "November"; break;
+										case 12 : echo "Desember"; break;
+									}
+									?>
 								<?= date('Y')?>)
-							</a>
-							</a>
+							</button>
+							<center>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" target="_blank"
+										href="<?= base_url()?>stok/Pemesanan/convertPDFPerbulan?doc=1&id=-1"
+										style="width: 420px">
+										<center>Semua Kurir</center>
+									</a>
+									<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_id = $i['kurir_id'];
+                      				$kurir_nama = $i['kurir_nama'];
+									  $kurir_tanggal = $i['kurir_tanggal'];
+									  ?>
+									<a class="dropdown-item" target="_blank"
+										href="<?= base_url()?>stok/Pemesanan/convertPDFPerbulan?doc=1&id=<?=$kurir_id?>"
+										style="width: 420px">
+										<center><?=$kurir_nama?></center>
+									</a>
+									<?php endforeach ?>
+								</div>
+							</center>
 						</div>
+
 						<div class="col-md-12 mt-4">
 							<h6>Convert Berdasarkan Tanggal:</h6>
 						</div>
@@ -1002,22 +1182,32 @@ foreach ($datapesanan->result_array() as $i) :
 								<div class="row">
 									<div class="col-md-4">
 										<label class="control-label">Start date:</label>
-										<input class="form-control form-white sd" type="date" name="start_date"
+										<input class="form-control form-white sd6" onchange="sdd(<?=6?>)" type="date" name="start_date"
 											required />
 									</div>
 									<div class="col-md-4">
 										<label class="control-label">End date:</label>
-										<input class="form-control form-white ed" type="date" name="end_date"
+										<input class="form-control form-white ed6" onchange="sdd(<?=6?>)" type="date" name="end_date"
 											required />
 									</div>
 									<div class="col-md-4">
-										<button type="submit" class="btn btn-info btn-block ripple m-t-10">
-											<i class="fa fa-print pr-2"></i>Convert<br>Pemesanan</a>
+										<label class="control-label">Filter Kurir</label>
+										<select class="form-control" id="kurir" name="kurir" required>
+											<option value="-1">Seluruh Kurir</option>
+											<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_id = $i['kurir_id'];
+                      				$kurir_nama = $i['kurir_nama'];
+									  $kurir_tanggal = $i['kurir_tanggal'];
+									  ?>
+											<option value="<?=$kurir_id?>"><?php echo $kurir_nama ?></option>
+											<?php endforeach ?>
+										</select>
 									</div>
+									<button type="submit" class="btn btn-success btn-block ripple m-t-10 mt-2">
+										<i class="fa fa-print pr-2"></i>Convert Pemesanan</button>
 								</div>
-							</div>
+								</div>
 						</form>
-
 
 					</div>
 				</div>
@@ -1076,115 +1266,159 @@ foreach ($datapesanan->result_array() as $i) :
 				</div>
 				<div class="modal-body">
 					<div class="row">
-						<div class="col-md-12">
-							<button type="button" class="btn btn-info dropdown-toggle ripple m-t-10 mb-4"
-								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 470px">
-								Filter Kurir
+					<div class="btn-group col-md-12">
+							<button type="button" class="btn btn-success dropdown-toggle m-t-20 col-md-12"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+									class="fa fa-print pr-2"></i>
+								Convert Seluruh Transaksi
 							</button>
-							<div class="dropdown-menu">
-								<center><a class="dropdown-item" onclick="ckurir(<?= -1 ?>)" id="changeKurir<?= -1 ?>"
-										style="width: 470px">Seluruh Kurir</a>
-									<?php foreach($kurir->result_array() as $i ) : 
+							<center>
+								<div class="dropdown-menu">
+								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/convertExcel?doc=2&id=-1" style="width: 420px">
+								<center>Semua Kurir</center>
+								</a>
+								<?php foreach($kurir->result_array() as $i ) : 
 									$kurir_id = $i['kurir_id'];
                       				$kurir_nama = $i['kurir_nama'];
 									  $kurir_tanggal = $i['kurir_tanggal'];
 									  ?>
-									<a class="dropdown-item" onclick="ckurir(<?= $kurir_id ?>)"
-										id="changeKurir<?= $kurir_id ?>"><?= $kurir_nama ?></a>
-									<?php endforeach; ?>
-								</center>
-							</div>
-						</div>
-
-						<div class="col-md-12">
-							<a href="<?= base_url() ?>stok/Pemesanan/convertExcel?doc=2" target="_blank"
-								class="btn btn-success btn-block ripple m-t-10">
-								<i class="fa fa-print pr-2"></i>Convert Seluruh Transaksi</a>
-							</a>
-						</div>
-
-						<div class="col-md-12 mt-4">
-							<a href="<?= base_url() ?>stok/Pemesanan/convertExcelPerhari?doc=2" target="_blank"
-								class="btn btn-success btn-block ripple m-t-10">
-								<i class="fa fa-print pr-2"></i>Convert Transaksi Hari Ini
-								(<?= date('d')?> <?php 
-				switch (date('m')){
-					case 1 : echo "Januari"; break;
-					case 2 : echo "Februari"; break;
-					case 3 : echo "Maret"; break;
-					case 4 : echo "April"; break;
-					case 5 : echo "May"; break;
-					case 6 : echo "Juni"; break;
-					case 7 : echo "Juli"; break;
-					case 8 : echo "Agustus"; break;
-					case 9 : echo "September"; break;
-					case 10 : echo "Oktober"; break;
-					case 11 : echo "November"; break;
-					case 12 : echo "Desember"; break;
-				}
-				?>
-								<?= date('Y')?>)
-							</a>
-							</a>
-						</div>
-
-						<div class="col-md-12 mt-4">
-							<a href="<?= base_url() ?>stok/Pemesanan/convertExcelPerbulan?doc=2&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
-								target="_blank" class="btn btn-success btn-block ripple m-t-10">
-								<i class="fa fa-print pr-2"></i>Convert Transaksi Bulan Ini (<?php 
-				switch (date('m')){
-					case 1 : echo "Januari"; break;
-					case 2 : echo "Februari"; break;
-					case 3 : echo "Maret"; break;
-					case 4 : echo "April"; break;
-					case 5 : echo "May"; break;
-					case 6 : echo "Juni"; break;
-					case 7 : echo "Juli"; break;
-					case 8 : echo "Agustus"; break;
-					case 9 : echo "September"; break;
-					case 10 : echo "Oktober"; break;
-					case 11 : echo "November"; break;
-					case 12 : echo "Desember"; break;
-				}
-				?>
-								<?= date('Y')?>)
-							</a>
-							</a>
-						</div>
-						<div class="col-md-12 mt-4">
-							<h6>Convert Berdasarkan Tanggal:</h6>
-						</div>
-						<form action="<?php echo base_url() ?>stok/Pemesanan/convertExcelBytanggal?doc=2"
-							target="_blank" method="post" enctype="multipart/form-data">
-							<div class="modal-body p-20">
-								<div class="row">
-									<div class="col-md-4">
-										<label class="control-label">Start date:</label>
-										<input class="form-control form-white sd" type="date" name="start_date"
-											required />
-									</div>
-									<div class="col-md-4">
-										<label class="control-label">End date:</label>
-										<input class="form-control form-white ed" type="date" name="end_date"
-											required />
-									</div>
-									<div class="col-md-4">
-										<button type="submit" class="btn btn-info btn-block ripple m-t-10">
-											<i class="fa fa-print pr-2"></i>Convert<br>Transaksi</a>
-									</div>
+								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/convertExcel?doc=2&id=<?=$kurir_id?>" style="width: 420px">
+									<center><?=$kurir_nama?></center>
+								</a>
+								<?php endforeach ?>
 								</div>
+							</center>
+						</div>
+
+
+					<div class="btn-group col-md-12 mt-4">
+							<button type="button" class="btn btn-success dropdown-toggle m-t-20 col-md-12"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+									class="fa fa-print pr-2"></i>Convert Transaksi Hari Ini
+									(<?= date('d')?> <?php 
+				switch (date('m')){
+					case 1 : echo "Januari"; break;
+					case 2 : echo "Februari"; break;
+					case 3 : echo "Maret"; break;
+					case 4 : echo "April"; break;
+					case 5 : echo "May"; break;
+					case 6 : echo "Juni"; break;
+					case 7 : echo "Juli"; break;
+					case 8 : echo "Agustus"; break;
+					case 9 : echo "September"; break;
+					case 10 : echo "Oktober"; break;
+					case 11 : echo "November"; break;
+					case 12 : echo "Desember"; break;
+				}
+				?>
+								<?= date('Y')?>)
+							</button>
+							<center>
+								<div class="dropdown-menu">
+								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/convertExcelPerhari?doc=2&id=-1" style="width: 420px">
+								<center>Semua Kurir</center>
+								</a>
+								<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_id = $i['kurir_id'];
+                      				$kurir_nama = $i['kurir_nama'];
+									  $kurir_tanggal = $i['kurir_tanggal'];
+									  ?>
+								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/convertExcelPerhari?doc=2&id=<?=$kurir_id?>" style="width: 420px">
+									<center><?=$kurir_nama?></center>
+								</a>
+								<?php endforeach ?>
+								</div>
+								
+							</center>
+						</div>
+
+
+					<div class="btn-group col-md-12 mt-4">
+							<button type="button" class="btn btn-success dropdown-toggle m-t-20 col-md-12"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+									class="fa fa-print pr-2"></i>Convert Transaksi Bulan Ini (<?php 
+									switch (date('m')){
+										case 1 : echo "Januari"; break;
+										case 2 : echo "Februari"; break;
+										case 3 : echo "Maret"; break;
+										case 4 : echo "April"; break;
+										case 5 : echo "May"; break;
+										case 6 : echo "Juni"; break;
+										case 7 : echo "Juli"; break;
+										case 8 : echo "Agustus"; break;
+										case 9 : echo "September"; break;
+										case 10 : echo "Oktober"; break;
+										case 11 : echo "November"; break;
+										case 12 : echo "Desember"; break;
+									}
+									?>
+									<?= date('Y')?>)
+							</button>
+							<center>
+								<div class="dropdown-menu">
+								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/convertExcelPerbulan?doc=2&id=-1" style="width: 420px">
+								<center>Semua Kurir</center>
+								</a>
+								<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_id = $i['kurir_id'];
+                      				$kurir_nama = $i['kurir_nama'];
+									  $kurir_tanggal = $i['kurir_tanggal'];
+									  ?>
+								<a class="dropdown-item" href="<?= base_url()?>stok/Pemesanan/convertExcelPerbulan?doc=2&id=<?=$kurir_id?>" style="width: 420px">
+									<center><?=$kurir_nama?></center>
+								</a>
+								<?php endforeach ?>
+								</div>
+							</center>
+						</div>
+
+
+
+							<div class="col-md-12 mt-4">
+								<h6>Convert Berdasarkan Tanggal:</h6>
 							</div>
-						</form>
-
-
-					</div>
-				</div>
+							<form
+								action="<?= base_url()?>stok/Pemesanan/convertExcelByTanggal?doc=2"
+								target="_blank" method="post" enctype="multipart/form-data">
+								<div class="modal-body p-20">
+									<div class="row">
+										<div class="col-md-4">
+											<label class="control-label">Start date:</label>
+											<input class="form-control form-white sd7" onchange="sdd(<?=7?>)" type="date" name="start_date"
+											required />
+										</div>
+										<div class="col-md-4">
+											<label class="control-label">End date:</label>
+											<input class="form-control form-white ed7" onchange="sdd(<?=7?>)" type="date" name="end_date"
+											required />
+										</div>
+										<div class="col-md-4">
+											<label class="control-label">Filter Kurir</label>
+											<select class="form-control" id="kurir" name="kurir" required>
+													<option value="-1">Seluruh Kurir</option>
+													<?php foreach($kurir->result_array() as $i ) : 
+									$kurir_id = $i['kurir_id'];
+                      				$kurir_nama = $i['kurir_nama'];
+									  $kurir_tanggal = $i['kurir_tanggal'];
+									  ?>
+													<option value="<?=$kurir_id?>"><?php echo $kurir_nama ?></option>
+												<?php endforeach ?>
+											</select>
+											</div>
+											<button type="submit" class="btn btn-success btn-block ripple m-t-10 mt-2">
+                  								<i class="fa fa-print pr-2"></i>Convert Transaksi</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 	<!-- end modal excel -->
 
 	<!-- modal word -->
@@ -1326,12 +1560,12 @@ foreach ($datapesanan->result_array() as $i) :
 								<div class="row">
 									<div class="col-md-4">
 										<label class="control-label">Start date:</label>
-										<input class="form-control form-white sd" type="date" name="start_date"
+										<input class="form-control form-white sd8" onchange="sdd(<?=8?>)" type="date" name="start_date"
 											required />
 									</div>
 									<div class="col-md-4">
 										<label class="control-label">End date:</label>
-										<input class="form-control form-white ed" type="date" name="end_date"
+										<input class="form-control form-white ed8" onchange="sdd(<?=8?>)" type="date" name="end_date"
 											required />
 									</div>
 									<div class="col-md-4">
@@ -1385,7 +1619,7 @@ foreach ($datapesanan->result_array() as $i) :
 							</button>
 							<center>
 								<div class="dropdown-menu">
-									<a class="dropdown-item"
+									<a class="dropdown-item" target="_blank" 
 										href="<?= base_url()?>stok/Pemesanan/convertPDF?doc=2&id=-1"
 										style="width: 420px">
 										<center>Semua Kurir</center>
@@ -1395,7 +1629,7 @@ foreach ($datapesanan->result_array() as $i) :
                       				$kurir_nama = $i['kurir_nama'];
 									  $kurir_tanggal = $i['kurir_tanggal'];
 									  ?>
-									<a class="dropdown-item"
+									<a class="dropdown-item" target="_blank"
 										href="<?= base_url()?>stok/Pemesanan/convertPDF?doc=2&id=<?=$kurir_id?>"
 										style="width: 420px">
 										<center><?=$kurir_nama?></center>
@@ -1429,7 +1663,7 @@ foreach ($datapesanan->result_array() as $i) :
 							</button>
 							<center>
 								<div class="dropdown-menu">
-									<a class="dropdown-item"
+									<a class="dropdown-item" target="_blank"
 										href="<?= base_url()?>stok/Pemesanan/convertPDFPerhari?doc=2&id=-1"
 										style="width: 420px">
 										<center>Semua Kurir</center>
@@ -1439,7 +1673,7 @@ foreach ($datapesanan->result_array() as $i) :
                       				$kurir_nama = $i['kurir_nama'];
 									  $kurir_tanggal = $i['kurir_tanggal'];
 									  ?>
-									<a class="dropdown-item"
+									<a class="dropdown-item" target="_blank"
 										href="<?= base_url()?>stok/Pemesanan/convertPDFPerhari?doc=2&id=<?=$kurir_id?>"
 										style="width: 420px">
 										<center><?=$kurir_nama?></center>
@@ -1473,7 +1707,7 @@ foreach ($datapesanan->result_array() as $i) :
 							</button>
 							<center>
 								<div class="dropdown-menu">
-									<a class="dropdown-item"
+									<a class="dropdown-item" target="_blank"
 										href="<?= base_url()?>stok/Pemesanan/convertPDFPerbulan?doc=2&id=-1"
 										style="width: 420px">
 										<center>Semua Kurir</center>
@@ -1483,7 +1717,7 @@ foreach ($datapesanan->result_array() as $i) :
                       				$kurir_nama = $i['kurir_nama'];
 									  $kurir_tanggal = $i['kurir_tanggal'];
 									  ?>
-									<a class="dropdown-item"
+									<a class="dropdown-item" target="_blank"
 										href="<?= base_url()?>stok/Pemesanan/convertPDFPerbulan?doc=2&id=<?=$kurir_id?>"
 										style="width: 420px">
 										<center><?=$kurir_nama?></center>
@@ -1502,12 +1736,12 @@ foreach ($datapesanan->result_array() as $i) :
 								<div class="row">
 									<div class="col-md-4">
 										<label class="control-label">Start date:</label>
-										<input class="form-control form-white sd" type="date" name="start_date"
+										<input class="form-control form-white sd9" onchange="sdd(<?=9?>)" type="date" name="start_date"
 											required />
 									</div>
 									<div class="col-md-4">
 										<label class="control-label">End date:</label>
-										<input class="form-control form-white ed" type="date" name="end_date"
+										<input class="form-control form-white ed9" onchange="sdd(<?=9?>)" type="date" name="end_date"
 											required />
 									</div>
 									<div class="col-md-4">
@@ -1719,25 +1953,12 @@ foreach ($datapesanan->result_array() as $i) :
 
 </html>
 
-
-<script type="text/javascript">
-	function submitexcelsemua() {
-		$("#excelall").submit();
-	}
-
-</script>
-
-<script type="text/javascript">
-	function submitexcelperbulan() {
-		$("#excelperbulann").submit();
-	}
-
-</script>
-
-
 <script>
+
+var value;
+
 	function cyear(num) {
-		let value = parseInt($('#changeYear' + num).html())
+		value = parseInt($('#changeYear' + num).html())
 		$.ajax({
 			method: "POST",
 			url: "<?= base_url() ?>stok/Pemesanan/pemesananByTahun",
@@ -1764,6 +1985,58 @@ foreach ($datapesanan->result_array() as $i) :
 		});
 
 	}
+	
+function sdds(num){
+	var e = document.getElementsByClassName("sd"+num);
+		var date = new Date($(".sd"+num).val());
+		days = date.getDate();
+		months = date.getMonth() + 1;
+		years = date.getFullYear();
+
+	var e = document.getElementsByClassName("ed"+num);
+		var date = new Date($(".ed"+num).val());
+		daye = date.getDate();
+		monthe = date.getMonth() + 1;
+		yeare = date.getFullYear();
+		if (years > yeare) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$("#e").attr('value', value+"-12-31");
+			$('#e').val(value+"-12-31")	
+		} else if ((years == yeare) && (months > monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$("#e").attr('value', value+"-12-31");
+			$('#e').val(value+"-12-31")
+		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$("#e").attr('value', value+"-12-31");
+			$('#e').val(value+"-12-31")		
+		}		
+}
+
+
+function sdd(num){
+	var e = document.getElementsByClassName("sd"+num);
+		var date = new Date($(".sd"+num).val());
+		days = date.getDate();
+		months = date.getMonth() + 1;
+		years = date.getFullYear();
+
+	var e = document.getElementsByClassName("ed"+num);
+		var date = new Date($(".ed"+num).val());
+		daye = date.getDate();
+		monthe = date.getMonth() + 1;
+		yeare = date.getFullYear();
+		if (years > yeare) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(".ed"+num).val("")	
+		} else if ((years == yeare) && (months > monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(".ed"+num).val("")
+		} else if ((days > daye) && (years == yeare) && (months == monthe)) {
+			alert("Tanggal tidak valid (Start date > End date)");
+			$(".ed"+num).val("")		}
+
+}
 
 </script>
 

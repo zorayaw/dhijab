@@ -139,10 +139,22 @@
 			return $hasil;
 		}
 
+		function getPemesananEksByTahunByKurir($awal, $akhir, $kurir){
+			$date_start = $awal."-01-01";
+			$date_end = $akhir."-12-31";
+			$hasil = $this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE year(a.pemesanan_tanggal) BETWEEN '$date_start' AND '$date_end' AND a.kurir_id = '$kurir'AND b.kurir_id = '$kurir' AND a.at_id = c.at_id AND a.mp_id = d.mp_id AND (a.status_eks<3) and a.status_pemesanan!=4  ORDER BY a.pemesanan_tanggal ASC");
+			return $hasil;
+		}
+
 
 		function getPemesananKonfirmasi(){
 			$hasil=$this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id and (a.status_pemesanan<3) ORDER BY a.pemesanan_id DESC");
         	return $hasil;
+		}
+
+		function getKurirNama($kurir){
+			$hasil = $this->db->query("SELECT kurir_nama FROM kurir WHERE kurir_id = '$kurir'");
+			return $hasil;
 		}
 
 		function getPemesanan(){
@@ -378,6 +390,13 @@
 			date_default_timezone_set("Asia/Jakarta");
         	$cur_date = date("Y-m-d");
 			$hasil=$this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE pemesanan_tanggal = '$cur_date' AND a.kurir_id = b.kurir_id AND a.at_id = c.at_id AND a.mp_id = d.mp_id ORDER BY a.pemesanan_id DESC");
+        	return $hasil;
+		}
+
+		function getPemesananCurdateByKurir($kurir){
+			date_default_timezone_set("Asia/Jakarta");
+        	$cur_date = date("Y-m-d");
+			$hasil=$this->db->query("SELECT a.*,b.*,c.*,d.*,DATE_FORMAT(pemesanan_tanggal,'%d/%m/%Y') AS tanggal FROM pemesanan a, kurir b, asal_transaksi c, metode_pembayaran d WHERE pemesanan_tanggal = '$cur_date' AND a.kurir_id = '$kurir' AND b.kurir_id = '$kurir' AND a.at_id = c.at_id AND a.mp_id = d.mp_id ORDER BY a.pemesanan_id DESC");
         	return $hasil;
 		}
 
