@@ -146,7 +146,7 @@
                   </tr>
                 <?php endforeach; ?>
               <tr>
-                <th colspan="14">
+                <th colspan="15">
                   <center>Jumlah</center>
                 </th>
                 <th colspan="2"><?php echo rupiah($total) ?></th>
