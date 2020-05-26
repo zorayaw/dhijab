@@ -69,14 +69,26 @@
 					</div>
 					<div class="col-xl-12 mb-20" style="display: flex">
 
-						<!-- filter tgl -->
+						<!-- filter tgl dan kurir -->
 						<div class="container">
-							<h7 class="mb-0">Cari Berdasarkan Tanggal : </h7>
+							<h7 class="mb-0">Cari Berdasarkan Tanggal Dan Kurir : </h7>
 							<br>
 							<form id="formsearch" method="post">
 								<input class="sd1" onchange="sdds(<?=1?>)" style="width:142px;" min="" max="" type="date" name="start" class="form-control" id="s">
 								<input class="ed1" onchange="sdds(<?=1?>)" style="width:142px;" min="" max="" type="date" name="end"
-									class="form-control" id="e">
+								class="form-control" id="e">
+								<!-- kurir -->
+										<select name="kurirr" class="custom-select mr-sm-2" id="k" style="width: 142px">
+											<option value="<?=-1?>">Semua Kurir</option>
+											<?php foreach($kurir->result_array() as $i ) : 
+												$kurir_id = $i['kurir_id'];
+												$kurir_nama = $i['kurir_nama'];
+												$kurir_tanggal = $i['kurir_tanggal'];
+												?>
+											<option value="<?= $kurir_id ?>"><?= $kurir_nama ?></option>
+											<?php endforeach; ?>
+										</select>
+								<!-- endkurir -->
 								<button type="submit" class="btn btn-secondary"><i class="fa fa-search"
 										aria-hidden="true"></i></button>
 							</form>
@@ -85,7 +97,7 @@
 
 						<!-- filter tahun -->
 						<div class="btn-group mt-4">
-							<button type="button" class="btn btn-info dropdown-toggle mb-4 ml-4" data-toggle="dropdown"
+							<button type="button" class="btn btn-info dropdown-toggle mb-4 ml-4 mr-4" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">
 								Filter Tahun
 							</button>
@@ -105,7 +117,7 @@
 						<!--end filter tahun -->
 
 						<!-- filter kurir -->
-						<div class="btn-group mt-4">
+						<!-- <div class="btn-group mt-4">
 							<button type="button" class="btn btn-primary dropdown-toggle mb-4 ml-4 mr-4"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								Filter Kurir
@@ -122,8 +134,9 @@
 									id="changeKurir<?= $kurir_id ?>"><?= $kurir_nama ?></a>
 								<?php endforeach; ?>
 							</div>
-						</div>
+						</div> -->
 						<!--end filter kurir -->
+
 					</div>
 
 					<div id="parent">
@@ -2051,7 +2064,6 @@ function sdd(num){
 			},
 			success: function (result) {
 				$('#parent').html(result)
-				$("#thun").text("")
 			}
 		});
 
@@ -2060,13 +2072,15 @@ function sdd(num){
 </script>
 
 <script>
+
 	$('#formsearch').submit(function (e) {
 		$.ajax({
 			method: "POST",
 			url: "<?= base_url() ?>stok/Pemesanan/pemesananByTanggal",
 			data: {
 				startt: $('#s').val(),
-				endd: $('#e').val()
+				endd: $('#e').val(),
+				id_kurir:$('#k').val()
 			},
 			success: function (result) {
 				$('#parent').html(result)

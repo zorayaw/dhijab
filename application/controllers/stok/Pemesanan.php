@@ -28,8 +28,37 @@
 		function pemesananByTanggal(){
 			$start = $this->input->post('startt');
 			$end = $this->input->post('endd');
+			$id_kurir = $this->input->post('id_kurir');
+			
 			$y['title'] = "Kurir";
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisiByTanggal($start,$end);
+			if($id_kurir == -1){
+				if($start == null && $end == null){	
+					$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisi();
+				}
+				else if($start != null && $end != null){
+					$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisiByTanggal($start,$end);
+				}
+				else if($start == null){
+					$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisi();
+				}
+				else if($end == null){
+					$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisi();
+				}
+			}
+			else{
+				if($start == null && $end == null){	
+					$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisiByKurir($id_kurir);
+				}
+				else if($start != null && $end != null){
+					$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisiByTanggalDanKurir($start,$end,$id_kurir);
+				}
+				else if($start == null){
+					$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisiByKurir($id_kurir);
+				}
+				else if($end == null){
+					$x['datapesanan'] = $this->M_pemesanan->getPemesananEkspedisiByKurir($id_kurir);
+				}
+			}
 			$x['kurir'] = $this->M_pemesanan->getAllkurir();
 
 			$this->load->view('stok/v_kurir_by_tahun', $x);
