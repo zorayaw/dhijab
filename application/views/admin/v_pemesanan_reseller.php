@@ -67,8 +67,8 @@
 					<h7 class="mb-0">Cari Berdasarkan Tanggal :  </h7>
 					<br>
 					<form id="formsearch" method="post">
-					<input class="sd1" onchange="sdds(<?=1?>)" type="date" min="" max="" style="width:142px;" name="start" id="s">
-					<input class="ed1" onchange="sdds(<?=1?>)" type="date" min="" max="" style="width:142px;" name="end" id="e">
+					<input class="sd1" onchange="sdds(<?=1?>)" type="date" min="" max="" style="width:142px;" name="start" id="s" required>
+					<input class="ed1" onchange="sdds(<?=1?>)" type="date" min="" max="" style="width:142px;" name="end" id="e" required>
 					<button type="submit" class="btn btn-secondary"><i class="fa fa-search" aria-hidden="true"></i></button>
 					</form>
 					</div>
