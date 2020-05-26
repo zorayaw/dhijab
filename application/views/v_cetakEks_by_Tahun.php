@@ -151,7 +151,7 @@
               
               </tbody>
               <tr>
-                <th colspan="11">
+                <th colspan="12">
                   <center>Jumlah</center>
                 </th>
                 <th><?php echo rupiah($total) ?></th>
