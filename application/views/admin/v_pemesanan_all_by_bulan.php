@@ -256,7 +256,7 @@
               <select class="form-control" id="syear" name="start_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -268,7 +268,7 @@
               <select class="form-control" id="eyear" name="end_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -384,7 +384,7 @@
               <select class="form-control" id="syear" name="start_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -396,7 +396,7 @@
               <select class="form-control" id="eyear" name="end_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -514,7 +514,7 @@
               <select class="form-control" id="syear" name="start_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -526,7 +526,7 @@
               <select class="form-control" id="eyear" name="end_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -691,7 +691,7 @@
               <select class="form-control" id="syear" name="start_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -703,7 +703,7 @@
               <select class="form-control" id="eyear" name="end_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -819,7 +819,7 @@
               <select class="form-control" id="syear" name="start_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -831,7 +831,7 @@
               <select class="form-control" id="eyear" name="end_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -949,7 +949,7 @@
               <select class="form-control" id="syear" name="start_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
@@ -961,7 +961,7 @@
               <select class="form-control" id="eyear" name="end_year" required>
                     <option selected value="">Pilih</option>
                     <?php
-                for ($x = 2020; $x <= date('Y'); $x++) :
+                 for ($x = date('Y')-10; $x <= date('Y'); $x++) :
                 ?>
                     <option value="<?php echo $x ?>"><?php echo $x ?></option>
                 <?php endfor ?>
