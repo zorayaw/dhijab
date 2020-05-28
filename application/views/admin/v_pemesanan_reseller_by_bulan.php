@@ -989,7 +989,7 @@
                         </div>
                         <div class="col-md-4">
                           <label class="control-label">End date:</label>
-                          <input class="form-control form-white ed7" onchange="sdd(<?=7?>)" type="date" name="end_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                          <input class="form-control form-white ed7" onchange="sdd(<?=7?>)" type="date" name="end_date" value = "<?=$tglakhir?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
                         </div>
                         <div class="col-md-4">
                         <button type="submit" class="btn btn-success btn-block ripple m-t-10">
