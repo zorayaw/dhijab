@@ -559,7 +559,7 @@ foreach ($datapesanan->result_array() as $i) :
 						<form action="<?php echo base_url() ?>stok/Pemesanan/cetakTransaksiEksByTahun?doc=2"
 							target="_blank" method="post" enctype="multipart/form-data">
 							<div class="col-md-12 mt-4">
-								<h6>Cetak Pemesanan Berdasarkan Tahun: </h6>
+								<h6>Cetak Transaksi Berdasarkan Tahun: </h6>
 							</div>
 
 							<div class="col-md-12">
@@ -1479,7 +1479,7 @@ foreach ($datapesanan->result_array() as $i) :
 						<div class="btn-group col-md-12 mt-4">
 							<button type="button" class="btn btn-success dropdown-toggle m-t-20 col-md-12"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-									class="fa fa-print pr-2"></i>Convert Pemesanan Hari Ini
+									class="fa fa-print pr-2"></i>Convert Transaksi Hari Ini
 								(<?= date('d')?> <?php 
 							switch (date('m')){
 								case 1 : echo "Januari"; break;
@@ -1524,7 +1524,7 @@ foreach ($datapesanan->result_array() as $i) :
 						<div class="btn-group col-md-12 mt-4">
 							<button type="button" class="btn btn-success dropdown-toggle m-t-20 col-md-12"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-									class="fa fa-print pr-2"></i>Convert Pemesanan Bulan Ini (<?php 
+									class="fa fa-print pr-2"></i>Convert Transaksi Bulan Ini (<?php 
 									switch (date('m')){
 										case 1 : echo "Januari"; break;
 										case 2 : echo "Februari"; break;
@@ -1595,7 +1595,7 @@ foreach ($datapesanan->result_array() as $i) :
 										</select>
 									</div>
 									<button type="submit" class="btn btn-success btn-block ripple m-t-10 mt-2">
-										<i class="fa fa-print pr-2"></i>Convert Pemesanan</button>
+										<i class="fa fa-print pr-2"></i>Convert Transaksi</button>
 								</div>
 							</div>
 						</form>
@@ -1628,7 +1628,7 @@ foreach ($datapesanan->result_array() as $i) :
 							<button type="button" class="btn btn-success dropdown-toggle m-t-20 col-md-12"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
 									class="fa fa-print pr-2"></i>
-								Convert Seluruh Pemesanan
+								Convert Seluruh Transaksi
 							</button>
 							<center>
 								<div class="dropdown-menu">
@@ -1655,7 +1655,7 @@ foreach ($datapesanan->result_array() as $i) :
 						<div class="btn-group col-md-12 mt-4">
 							<button type="button" class="btn btn-success dropdown-toggle m-t-20 col-md-12"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-									class="fa fa-print pr-2"></i>Convert Pemesanan Hari Ini
+									class="fa fa-print pr-2"></i>Convert Transaksi Hari Ini
 								(<?= date('d')?> <?php 
 								switch (date('m')){
 									case 1 : echo "Januari"; break;
@@ -1700,7 +1700,7 @@ foreach ($datapesanan->result_array() as $i) :
 						<div class="btn-group col-md-12 mt-4">
 							<button type="button" class="btn btn-success dropdown-toggle m-t-20 col-md-12"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-									class="fa fa-print pr-2"></i>Convert Pemesanan Bulan Ini (<?php 
+									class="fa fa-print pr-2"></i>Convert Transaksi Bulan Ini (<?php 
 									switch (date('m')){
 										case 1 : echo "Januari"; break;
 										case 2 : echo "Februari"; break;
@@ -1771,7 +1771,7 @@ foreach ($datapesanan->result_array() as $i) :
 										</select>
 									</div>
 									<button type="submit" class="btn btn-success btn-block ripple m-t-10 mt-2">
-										<i class="fa fa-print pr-2"></i>Convert Pemesanan</button>
+										<i class="fa fa-print pr-2"></i>Convert Transaksi</button>
 								</div>
 							</div>
 						</form>

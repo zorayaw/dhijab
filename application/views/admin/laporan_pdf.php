@@ -56,6 +56,13 @@
     $formattedEnd = $endd->format('d-m-Y');
     echo ("<h5> (" . $formattedStart . " sampai " . $formattedEnd . ") </h5>");
   }
+  else if($stts == "pAll"){
+    echo ($title . "<br>");
+  }
+  else if($stts == "pTransaksi"){
+    echo ($title . "<br>");
+  }
+
   ?>
   </h1>
 </center>

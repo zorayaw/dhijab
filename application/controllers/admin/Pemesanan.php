@@ -69,11 +69,12 @@ class Pemesanan extends CI_Controller
 		$x['numstat'] = $statusc;
 			if($statusc==0){
 				if($doc == 1){
-					$x['title'] = "Pemesanan All";
+					$x['title'] = "Seluruh Pemesanan";
 				}
 				else if($doc == 2) {
-					$x['title'] = "Transaksi All";
+					$x['title'] = "Seluruh Transaksi";
 				}
+				$x['stts'] = "pAll";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -83,7 +84,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesanan();
 			}
 			else if($statusc==1){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Seluruh Pemesanan Customer";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Seluruh Transaksi Customer";
+				}
+				$x['stts'] = "pAll";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -93,7 +100,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomer();
 			}
 			else if($statusc==2){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Seluruh Pemesanan Reseller";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Seluruh Transaksi Reseller";
+				}
+				$x['stts'] = "pAll";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -103,7 +116,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananreseller();
 			}
 			else if($statusc==3){
-
+				if($doc == 1){
+					$x['title'] = "Seluruh Pemesanan Produksi";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Seluruh Transaksi Produksi";
+				}
+				$x['stts'] = "pAll";
 				$y['title'] = "Pemesanan";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
@@ -124,7 +143,13 @@ class Pemesanan extends CI_Controller
 
 	function convertPDFPBerjalan(){
 		$doc = $this->input->get('doc');
-		$y['title'] = "Convert";
+				if($doc == 1){
+					$x['title'] = "Pemesanan Berjalan";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi Berjalan";
+				}
+				$x['stts'] = "pTransaksi";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -468,7 +493,13 @@ class Pemesanan extends CI_Controller
 		$statusc = $this->input->get('status');
 		$x['numstat'] = $statusc;
 			if($statusc==0){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Seluruh Pemesanan";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Seluruh Transaksi";
+				}
+				$x['stts'] = "wAll";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -478,7 +509,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesanan();
 			}
 			else if($statusc==1){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Seluruh Pemesanan Customer";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Seluruh Transaksi Customer";
+				}
+				$x['stts'] = "wAll";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -488,7 +525,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomer();
 			}
 			else if($statusc==2){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Seluruh Pemesanan Reseller";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Seluruh Transaksi Reseller";
+				}
+				$x['stts'] = "wAll";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -498,8 +541,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananreseller();
 			}
 			else if($statusc==3){
-
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Seluruh Pemesanan Produksi";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Seluruh Transaksi Produksi";
+				}
+				$x['stts'] = "wAll";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -517,7 +565,13 @@ class Pemesanan extends CI_Controller
 
 	function convertWordPBerjalan(){
 		$doc = $this->input->get('doc');
-		$y['title'] = "Convert";
+		if($doc == 1){
+			$x['title'] = "Pemesanan Berjalan";
+		}
+		else if($doc == 2) {
+			$x['title'] = "Transaksi Berjalan";
+		}
+		$x['stts'] = "wTransaksi";
 		$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 		$x['kurir'] = $this->M_pemesanan->getAllkurir();
 		$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -851,7 +905,13 @@ class Pemesanan extends CI_Controller
 		$statusc = $this->input->get('status');
 		$x['numstat'] = $statusc;
 			if($statusc==0){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Seluruh Pemesanan";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Seluruh Transaksi";
+				}
+				$x['stts'] = "eAll";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -862,7 +922,13 @@ class Pemesanan extends CI_Controller
 				
 			}
 			else if($statusc==1){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Seluruh Pemesanan Customer";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Seluruh Transaksi Customer";
+				}
+				$x['stts'] = "eAll";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -872,7 +938,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomer();
 			}
 			else if($statusc==2){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Seluruh Pemesanan Reseller";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Seluruh Transaksi Reseller";
+				}
+				$x['stts'] = "eAll";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -882,8 +954,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananreseller();
 			}
 			else if($statusc==3){
-
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Seluruh Pemesanan Produksi";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Seluruh Transaksi Produksi";
+				}
+				$x['stts'] = "eAll";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -901,7 +978,13 @@ class Pemesanan extends CI_Controller
 
 	function convertExcelPBerjalan(){
 		$doc = $this->input->get('doc');
-				$y['title'] = "Convert";
+				if($doc == 1){
+					$x['title'] = "Pemesanan Berjalan";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi Berjalan";
+				}
+				$x['stts'] = "eTransaksi";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
