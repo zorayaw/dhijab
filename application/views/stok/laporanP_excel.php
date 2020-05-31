@@ -11,6 +11,72 @@
     } 
 </style>
 
+<center>
+  <h1>
+  <?php 
+  if($stts == "pperhari"){
+    echo ($title . "<br>"); 
+    echo ("<h5> (" . date('d-m-Y') . ")</h5>"); 
+  }
+  else if ($stts == "pperbulan"){
+    switch ($bulan){
+      case 1 : $month =  "Januari"; break;
+      case 2 : $month =  "Februari"; break;
+      case 3 : $month =  "Maret"; break;
+      case 4 : $month =  "April"; break;
+      case 5 : $month =  "Mei"; break;
+      case 6 : $month =  "Juni"; break;
+      case 7 : $month =  "Juli"; break;
+      case 8 : $month =  "Agustus"; break;
+      case 9 : $month =  "September"; break;
+      case 10 : $month =  "Oktober"; break;
+      case 11 : $month =  "November"; break;
+      case 12 : $month =  "Desember"; break;
+    }
+    echo ($title . "<br>");
+    echo ("<h5> (" . $month . " " . $tahun . ")</h5>");
+  }
+  else if ($stts == "pperbulantanpatahun"){
+    switch ($bulan){
+      case 1 : $month = "Januari"; break;
+      case 2 : $month = "Februari"; break;
+      case 3 : $month = "Maret"; break;
+      case 4 : $month = "April"; break;
+      case 5 : $month = "Mei"; break;
+      case 6 : $month = "Juni"; break;
+      case 7 : $month = "Juli"; break;
+      case 8 : $month = "Agustus"; break;
+      case 9 : $month = "September"; break;
+      case 10 : $month = "Oktober"; break;
+      case 11 : $month = "November"; break;
+      case 12 : $month = "Desember"; break;
+    }
+    echo ($title . "<br>");
+    echo ("<h5> (" . $month . " " . $awal . " sampai " . $month . " " . $akhir . ") </h5>");
+  }
+  else if ($stts == "ppertanggal"){
+    echo ($title . "<br>");
+    $startt = DateTime::createFromFormat('Y-m-d', $start);
+    $formattedStart = $startt->format('d-m-Y');
+    $endd = DateTime::createFromFormat('Y-m-d', $end);
+    $formattedEnd = $endd->format('d-m-Y');
+    echo ("<h5> (" . $formattedStart . " sampai " . $formattedEnd . ") </h5>");
+  }
+
+  else if($stts == 'pAll'){
+  echo ($title."<br>");
+  }
+  
+  
+if($statkurir == -1 || $statkurir == 0){
+  echo ("<h4>".$stat."</h5>");
+}
+else{
+foreach ($stat as $i) {
+    echo ("<h4>".$i['kurir_nama']."</h5>");}}
+?>
+  </h1>
+</center>
 
         <table border="2">
               <thead>
