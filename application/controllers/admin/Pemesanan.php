@@ -173,10 +173,10 @@ class Pemesanan extends CI_Controller
 		$x['numstat'] = $statusc;
 			if($statusc==0){
 				if($doc == 1){
-					$x['title'] = "Pemesanan All";
+					$x['title'] = "Seluruh Pemesanan";
 				}
 				else if($doc == 2) {
-					$x['title'] = "Transaksi All";
+					$x['title'] = "Seluruh Transaksi";
 				}
 				$x['stts'] = "pperhari";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
@@ -253,10 +253,10 @@ class Pemesanan extends CI_Controller
 		$x['tahun'] = $tahun;
 		if($statusc==0){
 			if($doc == 1){
-				$x['title'] = "Pemesanan All";
+				$x['title'] = "Seluruh Pemesanan";
 			}
 			else if($doc == 2) {
-				$x['title'] = "Transaksi All";
+				$x['title'] = "Seluruh Transaksi";
 			}
 			$x['stts'] = "pperbulan";
 			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
@@ -336,10 +336,10 @@ class Pemesanan extends CI_Controller
 
 		if($statusc==0){
 			if($doc == 1){
-				$x['title'] = "Pemesanan All";
+				$x['title'] = "Seluruh Pemesanan";
 			}
 			else if($doc == 2) {
-				$x['title'] = "Transaksi All";
+				$x['title'] = "Seluruh Transaksi";
 			}
 			$x['stts'] = "pperbulantanpatahun";
 			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
@@ -417,10 +417,10 @@ class Pemesanan extends CI_Controller
 		
 		if($statusc==0){
 			if($doc == 1){
-				$x['title'] = "Pemesanan All";
+				$x['title'] = "Seluruh Pemesanan";
 			}
 			else if($doc == 2) {
-				$x['title'] = "Transaksi All";
+				$x['title'] = "Seluruh Transaksi";
 			}
 			$x['stts'] = "ppertanggal";
 			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
@@ -592,10 +592,10 @@ class Pemesanan extends CI_Controller
 		$x['numstat'] = $statusc;
 			if($statusc==0){
 				if($doc == 1){
-					$x['title'] = "Pemesanan All";
+					$x['title'] = "Seluruh Pemesanan";
 				}
 				else if($doc == 2) {
-					$x['title'] = "Transaksi All";
+					$x['title'] = "Seluruh Transaksi";
 				}
 				$x['stts'] = "wperhari";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
@@ -672,10 +672,10 @@ class Pemesanan extends CI_Controller
 			$x['tahun'] = $tahun;
 			if($statusc==0){
 				if($doc == 1){
-					$x['title'] = "Pemesanan All";
+					$x['title'] = "Seluruh Pemesanan";
 				}
 				else if($doc == 2) {
-					$x['title'] = "Transaksi All";
+					$x['title'] = "Seluruh Transaksi";
 				}
 				$x['stts'] = "wperbulan";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
@@ -753,10 +753,10 @@ class Pemesanan extends CI_Controller
 		
 		if($statusc==0){
 			if($doc == 1){
-				$x['title'] = "Pemesanan All";
+				$x['title'] = "Seluruh Pemesanan";
 			}
 			else if($doc == 2) {
-				$x['title'] = "Transaksi All";
+				$x['title'] = "Seluruh Transaksi";
 			}
 			$x['stts'] = "wperbulantanpatahun";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
@@ -832,10 +832,10 @@ class Pemesanan extends CI_Controller
 			
 			if($statusc==0){
 				if($doc == 1){
-					$x['title'] = "Pemesanan All";
+					$x['title'] = "Seluruh Pemesanan";
 				}
 				else if($doc == 2) {
-					$x['title'] = "Transaksi All";
+					$x['title'] = "Seluruh Transaksi";
 				}
 				$x['stts'] = "wpertanggal";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
@@ -1005,10 +1005,10 @@ class Pemesanan extends CI_Controller
 		$x['numstat'] = $statusc;
 			if($statusc==0){
 				if($doc == 1){
-					$x['title'] = "Pemesanan All";
+					$x['title'] = "Seluruh Pemesanan";
 				}
 				else if($doc == 2) {
-					$x['title'] = "Transaksi All";
+					$x['title'] = "Seluruh Transaksi";
 				}
 				$x['stts'] = "eperhari";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
@@ -1084,10 +1084,10 @@ class Pemesanan extends CI_Controller
 			$x['tahun'] = $tahun;
 			if($statusc==0){
 				if($doc == 1){
-					$x['title'] = "Pemesanan All";
+					$x['title'] = "Seluruh Pemesanan";
 				}
 				else if($doc == 2) {
-					$x['title'] = "Transaksi All";
+					$x['title'] = "Seluruh Transaksi";
 				}
 				$x['stts'] = "eperbulan";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
@@ -1165,10 +1165,10 @@ class Pemesanan extends CI_Controller
 		
 		if($statusc==0){
 			if($doc == 1){
-				$x['title'] = "Pemesanan All";
+				$x['title'] = "Seluruh Pemesanan";
 			}
 			else if($doc == 2) {
-				$x['title'] = "Transaksi All";
+				$x['title'] = "Seluruh Transaksi";
 			}
 			$x['stts'] = "eperbulantanpatahun";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
@@ -1244,10 +1244,10 @@ class Pemesanan extends CI_Controller
 			
 			if($statusc==0){
 				if($doc == 1){
-					$x['title'] = "Pemesanan All";
+					$x['title'] = "Seluruh Pemesanan";
 				}
 				else if($doc == 2) {
-					$x['title'] = "Transaksi All";
+					$x['title'] = "Seluruh Transaksi";
 				}
 				$x['stts'] = "epertanggal";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
