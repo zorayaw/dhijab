@@ -179,7 +179,7 @@ class PemesananProduksiByBulan extends CI_Controller
 		}
 		$metode_pembayaran = $this->input->post('mp');
 		// $tanggal = $this->input->post('tanggal');
-		$this->M_pemesanan->edit_pesanan($pemesanan_id, $nama_pemesan, $no_hp, $alamat, $kurir,$username, $resi, $asal_transaksi, $metode_pembayaran);
+		$this->M_pemesanan->edit_pesanan($pemesanan_id, $nama_pemesan, $no_hp, $alamat, $kurir,$resi, $username, $asal_transaksi, $metode_pembayaran);
 
 		echo $this->session->set_flashdata('msg', 'update');
 		redirect('admin/PemesananProduksiByBulan/viewPemesananByBulan/'.$bulan);
