@@ -68,7 +68,12 @@ class Pemesanan extends CI_Controller
 		$statusc = $this->input->get('status');
 		$x['numstat'] = $statusc;
 			if($statusc==0){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan All";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi All";
+				}
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -142,7 +147,13 @@ class Pemesanan extends CI_Controller
 		$statusc = $this->input->get('status');
 		$x['numstat'] = $statusc;
 			if($statusc==0){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan All";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi All";
+				}
+				$x['stts'] = "pperhari";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -152,7 +163,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCurdate();
 			}
 			else if($statusc==1){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan Customer";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi Customer";
+				}
+				$x['stts'] = "pperhari";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -162,7 +179,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerCurdate();
 			}
 			else if($statusc==2){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan Reseller";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi Reseller";
+				}
+				$x['stts'] = "pperhari";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -172,8 +195,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerCurdate();
 			}
 			else if($statusc==3){
-
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan Produksi";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi Produksi";
+				}
+				$x['stts'] = "pperhari";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -199,7 +227,13 @@ class Pemesanan extends CI_Controller
 		$x['bulan'] = $bulan;
 		$x['tahun'] = $tahun;
 		if($statusc==0){
-			$y['title'] = "Pemesanan";
+			if($doc == 1){
+				$x['title'] = "Pemesanan All";
+			}
+			else if($doc == 2) {
+				$x['title'] = "Transaksi All";
+			}
+			$x['stts'] = "pperbulan";
 			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 			$x['kurir'] = $this->M_pemesanan->getAllkurir();
 			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -209,7 +243,13 @@ class Pemesanan extends CI_Controller
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananByBulan($bulan,$tahun);
 		}
 		else if($statusc==1){
-			$y['title'] = "Pemesanan";
+			if($doc == 1){
+				$x['title'] = "Pemesanan Customer";
+			}
+			else if($doc == 2) {
+				$x['title'] = "Transaksi Customer";
+			}
+			$x['stts'] = "pperbulan";
 			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 			$x['kurir'] = $this->M_pemesanan->getAllkurir();
 			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -219,7 +259,13 @@ class Pemesanan extends CI_Controller
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByBulan($bulan,$tahun);
 			}
 		else if($statusc==2){
-			$y['title'] = "Pemesanan";
+			if($doc == 1){
+				$x['title'] = "Pemesanan Reseller";
+			}
+			else if($doc == 2) {
+				$x['title'] = "Transaksi Reseller";
+			}
+			$x['stts'] = "pperbulan";
 			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 			$x['kurir'] = $this->M_pemesanan->getAllkurir();
 			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -229,7 +275,13 @@ class Pemesanan extends CI_Controller
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByBulan($bulan, $tahun);
 		}
 		else if($statusc==3){
-			$y['title'] = "Pemesanan";
+			if($doc == 1){
+				$x['title'] = "Pemesanan Produksi";
+			}
+			else if($doc == 2) {
+				$x['title'] = "Transaksi Produksi";
+			}
+			$x['stts'] = "pperbulan";
 			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 			$x['kurir'] = $this->M_pemesanan->getAllkurir();
 			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -258,7 +310,13 @@ class Pemesanan extends CI_Controller
 		$x['akhir'] = $akhir;
 
 		if($statusc==0){
-			$y['title'] = "Pemesanan";
+			if($doc == 1){
+				$x['title'] = "Pemesanan All";
+			}
+			else if($doc == 2) {
+				$x['title'] = "Transaksi All";
+			}
+			$x['stts'] = "pperbulantanpatahun";
 			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 			$x['kurir'] = $this->M_pemesanan->getAllkurir();
 			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -268,7 +326,13 @@ class Pemesanan extends CI_Controller
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananByBulanTanpaTahun($bulan,$awal, $akhir);
 		}
 		else if($statusc==1){
-			$y['title'] = "Pemesanan";
+			if($doc == 1){
+				$x['title'] = "Pemesanan Customer";
+			}
+			else if($doc == 2) {
+				$x['title'] = "Transaksi Customer";
+			}
+			$x['stts'] = "pperbulantanpatahun";
 			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 			$x['kurir'] = $this->M_pemesanan->getAllkurir();
 			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -278,7 +342,13 @@ class Pemesanan extends CI_Controller
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByBulanTanpaTahun($bulan,$awal, $akhir);
 			}
 		else if($statusc==2){
-			$y['title'] = "Pemesanan";
+			if($doc == 1){
+				$x['title'] = "Pemesanan Reseller";
+			}
+			else if($doc == 2) {
+				$x['title'] = "Transaksi Reseller";
+			}
+			$x['stts'] = "pperbulantanpatahun";
 			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 			$x['kurir'] = $this->M_pemesanan->getAllkurir();
 			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -288,7 +358,13 @@ class Pemesanan extends CI_Controller
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByBulanTanpaTahun($bulan,$awal, $akhir);
 		}
 		else if($statusc==3){
-			$y['title'] = "Pemesanan";
+			if($doc == 1){
+				$x['title'] = "Pemesanan Produksi";
+			}
+			else if($doc == 2) {
+				$x['title'] = "Transaksi Produksi";
+			}
+			$x['stts'] = "pperbulantanpatahun";
 			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 			$x['kurir'] = $this->M_pemesanan->getAllkurir();
 			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -315,7 +391,13 @@ class Pemesanan extends CI_Controller
 		$x['end'] = $end;
 		
 		if($statusc==0){
-			$y['title'] = "Pemesanan";
+			if($doc == 1){
+				$x['title'] = "Pemesanan All";
+			}
+			else if($doc == 2) {
+				$x['title'] = "Transaksi All";
+			}
+			$x['stts'] = "ppertanggal";
 			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 			$x['kurir'] = $this->M_pemesanan->getAllkurir();
 			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -325,7 +407,13 @@ class Pemesanan extends CI_Controller
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananByTanggal($start, $end);
 		}
 		else if($statusc==1){
-			$y['title'] = "Pemesanan";
+			if($doc == 1){
+				$x['title'] = "Pemesanan Customer";
+			}
+			else if($doc == 2) {
+				$x['title'] = "Transaksi Customer";
+			}
+			$x['stts'] = "ppertanggal";
 			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 			$x['kurir'] = $this->M_pemesanan->getAllkurir();
 			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -335,7 +423,13 @@ class Pemesanan extends CI_Controller
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByTanggal($start, $end);
 		}
 		else if($statusc==2){
-			$y['title'] = "Pemesanan";
+			if($doc == 1){
+				$x['title'] = "Pemesanan Reseller";
+			}
+			else if($doc == 2) {
+				$x['title'] = "Transaksi Reseller";
+			}
+			$x['stts'] = "ppertanggal";
 			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 			$x['kurir'] = $this->M_pemesanan->getAllkurir();
 			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -345,7 +439,13 @@ class Pemesanan extends CI_Controller
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByTanggal($start, $end);
 		}
 		else if($statusc==3){
-			$y['title'] = "Pemesanan";
+			if($doc == 1){
+				$x['title'] = "Pemesanan Produksi";
+			}
+			else if($doc == 2) {
+				$x['title'] = "Transaksi Produksi";
+			}
+			$x['stts'] = "ppertanggal";
 			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 			$x['kurir'] = $this->M_pemesanan->getAllkurir();
 			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -437,7 +537,13 @@ class Pemesanan extends CI_Controller
 		$statusc = $this->input->get('status');
 		$x['numstat'] = $statusc;
 			if($statusc==0){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan All";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi All";
+				}
+				$x['stts'] = "wperhari";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -447,7 +553,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCurdate();
 			}
 			else if($statusc==1){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan Customer";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi Customer";
+				}
+				$x['stts'] = "wperhari";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -457,7 +569,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerCurdate();
 			}
 			else if($statusc==2){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan Reseller";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi Reseller";
+				}
+				$x['stts'] = "wperhari";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -468,7 +586,13 @@ class Pemesanan extends CI_Controller
 			}
 			else if($statusc==3){
 
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan Produksi";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi Produksi";
+				}
+				$x['stts'] = "wperhari";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -493,7 +617,13 @@ class Pemesanan extends CI_Controller
 			$x['bulan'] = $bulan;
 			$x['tahun'] = $tahun;
 			if($statusc==0){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan All";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi All";
+				}
+				$x['stts'] = "wperbulan";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -503,7 +633,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananByBulan($bulan,$tahun);
 			}
 			else if($statusc==1){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan Customer";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi Customer";
+				}
+				$x['stts'] = "wperbulan";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -513,7 +649,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByBulan($bulan,$tahun);
 				}
 			else if($statusc==2){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan Reseller";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi Reseller";
+				}
+				$x['stts'] = "wperbulan";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -523,7 +665,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByBulan($bulan, $tahun);
 			}
 			else if($statusc==3){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan Produksi";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi Produksi";
+				}
+				$x['stts'] = "wperbulan";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -550,7 +698,13 @@ class Pemesanan extends CI_Controller
 		$x['akhir'] = $akhir;
 		
 		if($statusc==0){
-			$y['title'] = "Pemesanan";
+			if($doc == 1){
+				$x['title'] = "Pemesanan All";
+			}
+			else if($doc == 2) {
+				$x['title'] = "Transaksi All";
+			}
+			$x['stts'] = "wperbulantanpatahun";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -560,7 +714,13 @@ class Pemesanan extends CI_Controller
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananByBulanTanpaTahun($bulan, $awal, $akhir);
 		}
 		else if($statusc==1){
-			$y['title'] = "Pemesanan";
+			if($doc == 1){
+				$x['title'] = "Pemesanan Customer";
+			}
+			else if($doc == 2) {
+				$x['title'] = "Transaksi Customer";
+			}
+			$x['stts'] = "wperbulantanpatahun";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -570,7 +730,13 @@ class Pemesanan extends CI_Controller
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByBulanTanpaTahun($bulan, $awal, $akhir);
 		}
 		else if($statusc==2){
-			$y['title'] = "Pemesanan";
+			if($doc == 1){
+				$x['title'] = "Pemesanan Reseller";
+			}
+			else if($doc == 2) {
+				$x['title'] = "Transaksi Reseller";
+			}
+			$x['stts'] = "wperbulantanpatahun";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -580,7 +746,13 @@ class Pemesanan extends CI_Controller
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByBulanTanpaTahun($bulan, $awal, $akhir);
 		}
 		else if($statusc==3){
-			$y['title'] = "Pemesanan";
+			if($doc == 1){
+				$x['title'] = "Pemesanan Produksi";
+			}
+			else if($doc == 2) {
+				$x['title'] = "Transaksi Produksi";
+			}
+			$x['stts'] = "wperbulantanpatahun";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -605,7 +777,13 @@ class Pemesanan extends CI_Controller
 			$x['end'] = $end;
 			
 			if($statusc==0){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan All";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi All";
+				}
+				$x['stts'] = "wpertanggal";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -615,7 +793,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananByTanggal($start, $end);
 			}
 			else if($statusc==1){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan Customer";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi Customer";
+				}
+				$x['stts'] = "wpertanggal";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -625,7 +809,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByTanggal($start, $end);
 			}
 			else if($statusc==2){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan Reseller";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi Reseller";
+				}
+				$x['stts'] = "wpertanggal";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -635,7 +825,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByTanggal($start, $end);
 			}
 			else if($statusc==3){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan Produksi";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi Produksi";
+				}
+				$x['stts'] = "wpertanggal";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -725,7 +921,13 @@ class Pemesanan extends CI_Controller
 		$statusc = $this->input->get('status');
 		$x['numstat'] = $statusc;
 			if($statusc==0){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan All";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi All";
+				}
+				$x['stts'] = "eperhari";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -735,7 +937,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCurdate();
 			}
 			else if($statusc==1){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan Customer";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi Customer";
+				}
+				$x['stts'] = "eperhari";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -745,7 +953,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerCurdate();
 			}
 			else if($statusc==2){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan Reseller";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi Reseller";
+				}
+				$x['stts'] = "eperhari";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -755,8 +969,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerCurdate();
 			}
 			else if($statusc==3){
-
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan Produksi";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi Produksi";
+				}
+				$x['stts'] = "eperhari";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -767,10 +986,11 @@ class Pemesanan extends CI_Controller
 			}
 			if($doc==2)
 				$this->load->view('admin/laporan_excel', $x);
-				elseif($doc==1)
+			elseif($doc==1)
 				$this->load->view('admin/laporanP_excel', $x);
 					
 	}	
+
 	function convertExcelPerbulan(){
 		$doc = $this->input->get('doc');
 			$statusc = $this->input->get('status');
@@ -780,7 +1000,13 @@ class Pemesanan extends CI_Controller
 			$x['bulan'] = $bulan;
 			$x['tahun'] = $tahun;
 			if($statusc==0){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan All";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi All";
+				}
+				$x['stts'] = "eperbulan";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -790,7 +1016,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananByBulan($bulan,$tahun);
 			}
 			else if($statusc==1){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan Customer";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi Customer";
+				}
+				$x['stts'] = "eperbulan";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -800,7 +1032,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByBulan($bulan,$tahun);
 				}
 			else if($statusc==2){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan Reseller";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi Reseller";
+				}
+				$x['stts'] = "eperbulan";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -810,7 +1048,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByBulan($bulan, $tahun);
 			}
 			else if($statusc==3){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan Produksi";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi Produksi";
+				}
+				$x['stts'] = "eperbulan";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -837,7 +1081,13 @@ class Pemesanan extends CI_Controller
 		$x['akhir'] = $akhir;
 		
 		if($statusc==0){
-			$y['title'] = "Pemesanan";
+			if($doc == 1){
+				$x['title'] = "Pemesanan All";
+			}
+			else if($doc == 2) {
+				$x['title'] = "Transaksi All";
+			}
+			$x['stts'] = "eperbulantanpatahun";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -847,7 +1097,13 @@ class Pemesanan extends CI_Controller
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananByBulanTanpaTahun($bulan, $awal, $akhir);
 		}
 		else if($statusc==1){
-			$y['title'] = "Pemesanan";
+			if($doc == 1){
+				$x['title'] = "Pemesanan Customer";
+			}
+			else if($doc == 2) {
+				$x['title'] = "Transaksi Customer";
+			}
+			$x['stts'] = "eperbulantanpatahun";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -857,7 +1113,13 @@ class Pemesanan extends CI_Controller
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByBulanTanpaTahun($bulan, $awal, $akhir);
 		}
 		else if($statusc==2){
-			$y['title'] = "Pemesanan";
+			if($doc == 1){
+				$x['title'] = "Pemesanan Reseller";
+			}
+			else if($doc == 2) {
+				$x['title'] = "Transaksi Reseller";
+			}
+			$x['stts'] = "eperbulantanpatahun";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -867,7 +1129,13 @@ class Pemesanan extends CI_Controller
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByBulanTanpaTahun($bulan, $awal, $akhir);
 		}
 		else if($statusc==3){
-			$y['title'] = "Pemesanan";
+			if($doc == 1){
+				$x['title'] = "Pemesanan Produksi";
+			}
+			else if($doc == 2) {
+				$x['title'] = "Transaksi Produksi";
+			}
+			$x['stts'] = "eperbulantanpatahun";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -892,7 +1160,13 @@ class Pemesanan extends CI_Controller
 			$x['end'] = $end;
 			
 			if($statusc==0){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan All";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi All";
+				}
+				$x['stts'] = "epertanggal";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -902,7 +1176,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananByTanggal($start, $end);
 			}
 			else if($statusc==1){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan Customer";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi Customer";
+				}
+				$x['stts'] = "epertanggal";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -912,7 +1192,13 @@ class Pemesanan extends CI_Controller
 				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByTanggal($start, $end);
 			}
 			else if($statusc==2){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan Reseller";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi Reseller";
+				}
+				$x['stts'] = "epertanggal";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -923,7 +1209,13 @@ class Pemesanan extends CI_Controller
 	
 			}
 			else if($statusc==3){
-				$y['title'] = "Pemesanan";
+				if($doc == 1){
+					$x['title'] = "Pemesanan Produksi";
+				}
+				else if($doc == 2) {
+					$x['title'] = "Transaksi Produksi";
+				}
+				$x['stts'] = "epertanggal";
 				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 				$x['kurir'] = $this->M_pemesanan->getAllkurir();
 				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();

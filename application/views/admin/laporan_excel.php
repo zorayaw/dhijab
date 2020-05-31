@@ -4,6 +4,62 @@
  header("Pragma: no-cache");
  header("Expires: 0");
  ?>
+ 
+<center>
+  <h1>
+  <?php 
+  if($stts == "eperhari"){
+    echo ($title . "<br>"); 
+    echo ("<h2> (" . date('d-m-Y') . ")</h2>"); 
+  }
+  else if ($stts == "eperbulan"){
+    switch ($bulan){
+      case 1 : $month =  "Januari"; break;
+      case 2 : $month =  "Februari"; break;
+      case 3 : $month =  "Maret"; break;
+      case 4 : $month =  "April"; break;
+      case 5 : $month =  "Mei"; break;
+      case 6 : $month =  "Juni"; break;
+      case 7 : $month =  "Juli"; break;
+      case 8 : $month =  "Agustus"; break;
+      case 9 : $month =  "September"; break;
+      case 10 : $month =  "Oktober"; break;
+      case 11 : $month =  "November"; break;
+      case 12 : $month =  "Desember"; break;
+    }
+    echo ($title . "<br>");
+    echo ("<h2> (" . $month . " " . $tahun . ")</h2>");
+  }
+  else if ($stts == "eperbulantanpatahun"){
+    switch ($bulan){
+      case 1 : $month = "Januari"; break;
+      case 2 : $month = "Februari"; break;
+      case 3 : $month = "Maret"; break;
+      case 4 : $month = "April"; break;
+      case 5 : $month = "Mei"; break;
+      case 6 : $month = "Juni"; break;
+      case 7 : $month = "Juli"; break;
+      case 8 : $month = "Agustus"; break;
+      case 9 : $month = "September"; break;
+      case 10 : $month = "Oktober"; break;
+      case 11 : $month = "November"; break;
+      case 12 : $month = "Desember"; break;
+    }
+    echo ($title . "<br>");
+    echo ("<h2> (" . $month . " " . $awal . " sampai " . $month . " " . $akhir . ") </h2>");
+  }
+  else if ($stts == "epertanggal"){
+    echo ($title . "<br>");
+    $startt = DateTime::createFromFormat('Y-m-d', $start);
+    $formattedStart = $startt->format('d-m-Y');
+    $endd = DateTime::createFromFormat('Y-m-d', $end);
+    $formattedEnd = $endd->format('d-m-Y');
+    echo ("<h2> (" . $formattedStart . " sampai " . $formattedEnd . ") </h2>");
+  }
+  ?>
+  </h1>
+</center>
+
 
         <table border="2">
               <thead>
