@@ -22,7 +22,7 @@ class Barang extends CI_Controller
 	function index()
 	{
 		if ($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') == true) {
-			$y['title'] = "Barang Customer";
+			$y['title'] = "Daftar Seluruh Barang";
 			$x['nonreseller'] = $this->M_barang->getAllBarang();
 			$x['kategori_barang'] = $this->M_barang->getkategori_barang();
 			$this->load->view('v_header', $y);
@@ -424,7 +424,7 @@ class Barang extends CI_Controller
 	function history($barang_id)
 	{
 		if ($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') == true) {
-			$y['title'] = "Stock";
+			$y['title'] = "History Stock";
 			$x['stock'] = $this->M_barang->getHistoryStock($barang_id, 1);
 			$this->load->view('v_header', $y);
 			$this->load->view('owner/v_sidebar');

@@ -35,8 +35,9 @@ class stock extends CI_Controller
 
 	function history($barang_id)
 	{
-		$y['title'] = "Stock Masuk";
+		$y['title'] = "History Stock Masuk";
 			$status='2';
+			$x['title'] = "History Stock Masuk";
 			$x['stock'] = $this->M_barang-> getHistoryStock($barang_id,$status);
 			$this->load->view('v_header', $y);
 			if($this->session->userdata('akses') == 3){
@@ -50,8 +51,9 @@ class stock extends CI_Controller
 	}
 
 	function history_stok_keluar($barang_id)
-	{$y['title'] = "Stock Keluar";
+	{$y['title'] = "History Stock Keluar";
 			$status='1';
+			$x['title'] = "History Stock Keluar";
 			$x['stock'] = $this->M_barang-> getHistoryStock($barang_id,$status);
 			$this->load->view('v_header', $y);
 			if($this->session->userdata('akses') == 3){

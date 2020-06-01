@@ -9,7 +9,12 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
+              <?php if ($st==0) : ?>
+                <li class="breadcrumb-item"><?=$title_view?></a></li>
+                <?php else : ?>
+                <li class="breadcrumb-item"><a href="<?php echo base_url() ?>owner/Barang/historyPemesanan?status=0" class="default-color">History Input Data</a></li>    
               <li class="breadcrumb-item"><?=$title_view?></a></li>
+                <?php endif; ?>
             </ol>
           </div>
         </div>

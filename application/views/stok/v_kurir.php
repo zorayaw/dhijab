@@ -8,14 +8,14 @@
 	<div class="page-title">
 		<div class="row">
 			<div class="col-sm-6">
-				<h4 class="mb-0">Data Kurir
+				<h4 class="mb-0">Tagihan Ekspedisi
 					<span id="thun">
 					</span>
 				</h4>
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-					<li class="breadcrumb-item">Kurir
+					<li class="breadcrumb-item">Tagihan Ekspedisi
 					</li>
 				</ol>
 			</div>

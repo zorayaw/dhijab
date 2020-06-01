@@ -2,12 +2,16 @@
     <div class="page-title">
       <div class="row">
           <div class="col-sm-6">
-              <h4 class="mb-0">Stock Barang</h4>              
+              <h4 class="mb-0"><?=$title?> (<?php foreach($stock->result_array() as $i){
+                    $id_barang = $i['id_barang'];
+                    $barang_nama = $i['barang_nama']; }
+                    echo $barang_nama;
+                    ?>)</h4>              
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
               <li class="breadcrumb-item"><a href="<?php echo base_url()?>/stok/Stock" class="default-color">Stock Barang</a></li>
-              <li class="breadcrumb-item active">History Stock Barang</li>
+              <li class="breadcrumb-item active"><?= $title." (".$barang_nama.")" ?></li>
             </ol>
           </div>
         </div>
