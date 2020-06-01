@@ -972,7 +972,7 @@
 										<td><?php echo $email ?></td>
 										<td><?php echo $kurir_nama ?></td>
 										<td><?php echo $resi ?></td>
-										<td><?php echo $ongkir ?></td>
+										<td><?php echo rupiah($ongkir) ?></td>
 										<td><?php echo $at_nama ?></td>
 										<td><?php echo $mp_nama ?></td>
 										<?php if($this->session->userdata('akses') == 2) : ?>

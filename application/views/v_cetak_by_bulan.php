@@ -135,7 +135,7 @@
                     <td><?php echo $tanggal ?></td>
                     <td><?php echo $mp_nama ?></td>
                     <td><?php echo $status ?></td>
-                    <td><?php echo $ongkir ?></td>
+                    <td><?php echo rupiah($ongkir) ?></td>
                     <td><?php echo rupiah($biaya_admin) ?></td>
                     <td><?php echo rupiah($diskon) ?></td>
                     <td><?php echo rupiah($uang) ?></td>
