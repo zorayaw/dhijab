@@ -1,7 +1,8 @@
   <div id="parent">
 <!--   
   <div class="container ml-4" >
-  <?php $thn = $this->input->post('thn'); ?>
+  <?php $thn = $this->input->post('thn'); 
+  ?>
   <form >
     <input type="date" name="start" id="s" min="<?= $thn ?>-01-01" max="<?= $thn ?>-12-31">
     <input type="date" name="end" id="e" min="<?= $thn ?>-01-01" max="<?= $thn ?>-12-31">
@@ -219,7 +220,7 @@
                             <?php } elseif($stsp==2) { ?>
                               <form action="<?php echo base_url() ?>admin/PemesananResellerByBulan/edit_pesanan?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
                               <?php } elseif($stsp==3) { ?>
-                                <form action="<?php echo base_url() ?>admin/PemesananProduksi/edit_pesanan?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
+                                <form action="<?php echo base_url() ?>admin/PemesananProduksiByBulan/edit_pesanan?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
                                 <?php }} ?>
                 <div class="modal-body p-20">
                   <div class="row">

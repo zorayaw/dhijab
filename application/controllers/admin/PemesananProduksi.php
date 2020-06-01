@@ -184,7 +184,7 @@
 		   function pemesananByTanggal(){
 			$start = $this->input->post('startt');
 			$end = $this->input->post('endd');
-			$x ['stsp'] = 0;
+			$x ['stsp'] = 3;
 			$x['bulan'] = 0;
 			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 			$x['kurir'] = $this->M_pemesanan->getAllkurir();

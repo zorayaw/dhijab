@@ -2469,7 +2469,7 @@ else if ((days > daye) && (years == yeare) && (months == monthe)) {
 	$('#formsearch').submit(function(e){
 		$.ajax({
 			method: "POST",
-			url: "<?= base_url() ?>admin/PemesananAllByBulan/pemesananByTanggal",
+			url: "<?= base_url() ?>admin/PemesananAllByBulan/pemesananByTanggal?bulan=<?= $bulan ?>",
 			data: {
 				startt: $('#s').val(),
 				endd : $('#e').val()

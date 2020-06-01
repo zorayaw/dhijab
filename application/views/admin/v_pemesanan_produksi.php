@@ -140,7 +140,7 @@
 					<h5 class="modal-title">Tambah Pesanan Produksi</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<form action="<?php echo base_url() ?>admin/Pemesanan/savepemesananP" method="post"
+				<form action="<?php echo base_url() ?>admin/PemesananProduksi/savepemesananP" method="post"
 					enctype="multipart/form-data">
 					<div class="modal-body p-20">
 						<div class="row">

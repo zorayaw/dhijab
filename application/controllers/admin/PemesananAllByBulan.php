@@ -315,8 +315,9 @@ class PemesananAllByBulan extends CI_Controller
 	   function pemesananByTanggal(){
 		$start = $this->input->post('startt');
 		$end = $this->input->post('endd');
+		$bulan = $this->input->get('bulan');
 		$x ['stsp'] = 0;
-		$x['bulan'] = 0;
+		$x['bulan'] = $bulan;
 		$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 		$x['kurir'] = $this->M_pemesanan->getAllkurir();
 		$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
