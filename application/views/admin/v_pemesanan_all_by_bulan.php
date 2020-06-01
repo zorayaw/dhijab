@@ -1027,12 +1027,12 @@
                   <th>Email </th>
                   <th>Ekspedisi</th>
                   <th>Nomor Resi</th>
-                  <th>Biaya Ongkir</th>
                   <th>Asal Transaksi</th>
                   <th>Metode Pembayaran</th>
                   <th>List Barang</th>
                   <th>Status</th>
                   <th>Note</th>
+                  <th>Biaya Ongkir</th>
                   <th>Biaya Admin</th>
                   <th>Diskon</th>
                   <th>Uang Kembalian</th>
@@ -1115,13 +1115,12 @@
                       <td><?php echo $email ?></td>
                     <td><?php echo $kurir_nama ?></td>
                     <td><?php echo $resi ?></td>
-                    <td><?php echo rupiah($ongkir) ?></td>
                     <td><?php echo $at_nama ?></td>
                     <td><?php echo $mp_nama ?></td>
                     <?php if($this->session->userdata('akses') == 2) : ?>
-                    <td><a href="<?php echo base_url() ?>admin/PemesananAllByBulan/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>?stat=0&bulan=<?$bulan?>" target="_blank" class="btn btn-primary">List Barang</a></td>
+                      <td><a href="<?php echo base_url() ?>admin/PemesananAllByBulan/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>?stat=0&bulan=<?$bulan?>" target="_blank" class="btn btn-primary">List Barang</a></td>
                     <?php else : ?>
-                    <td><?php echo $nama_barang ?></td>
+                      <td><?php echo $nama_barang ?></td>
                     <?php endif;?>
                     <?php if($this->session->userdata('akses') == 2) : ?>
                     <td>
@@ -1129,16 +1128,16 @@
                       if ($status == 0) { ?>
                         <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#bayar<?= $pemesanan_id ?>" style="margin-right: 20px">Belum Bayar</button>
                       <?php } elseif ($status == 1) {
-                      ?>
+                        ?>
                         <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#kirim<?= $pemesanan_id ?>" style="margin-right: 20px">Dibayar </button>
-                      <?php } elseif ($status == 2) {
-                      ?>
+                        <?php } elseif ($status == 2) {
+                          ?>
                         <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#selesai<?= $pemesanan_id ?>" style="margin-right: 20px">Dikirim </button>
-                      <?php }
+                        <?php }
                        else {
                       ?>
                         <button  class="btn btn-success" style="margin-right: 20px">Selesai</button>
-                      <?php
+                        <?php
                     }
                     ?>
                     </td>
@@ -1146,6 +1145,7 @@
                     <td><?php echo $namstat ?></td>
                     <?php endif; ?>
                     <td><?php echo $note ?></td>
+                    <td><?php echo rupiah($ongkir) ?></td>
                     <td><?php echo rupiah($biaya_admin) ?></td>
                     <td><?php echo rupiah($diskon) ?></td>
                     <td><?php echo rupiah($uang) ?></td>
@@ -1153,7 +1153,7 @@
                     
                     <?php 
                       $total=$total+$jumlah;
-                    ?>
+                      ?>
                     <?php if($this->session->userdata('akses') == 2) : ?>
                     <td>
                       <a href="#" style="margin-right: 10px; margin-left: 10px;" data-toggle="modal" data-target="#editdata<?php echo $pemesanan_id ?>"><span class="ti-pencil"></span></a>
