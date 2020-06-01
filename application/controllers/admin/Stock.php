@@ -2,8 +2,7 @@
 	/**
 	 * 
 	 */
-	class stock extends CI_Controller
-	{
+	class stock extends CI_Controller{
 		
 		function __construct()
 	  	{
@@ -39,7 +38,7 @@
 
 	  	function history($barang_id){
  	  		if($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true){
- 	  			$y['title'] = "Stock";
+ 	  			$y['title'] = "History Stock";
 	 	  		   $x['stock'] = $this->M_barang->getHistoryStocks($barang_id);	
 			       $this->load->view('v_header',$y);
 				   if($this->session->userdata('akses') == 2){

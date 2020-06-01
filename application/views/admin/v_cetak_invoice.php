@@ -17,6 +17,19 @@
 <!-- Font -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
 
+<?php foreach ($pemesan->result_array() as $i) {
+        $pemesanan_id = $i['pemesanan_id'];
+        $pemesanan_nama = $i['pemesanan_nama'];
+        $tanggal = $i['tanggal'];
+        $pemesanan_alamat = $i['pemesanan_alamat'];
+        $pemesanan_hp = $i['pemesanan_hp'];
+        $ongkir = $i['biaya_ongkir'];
+        $admin = $i['biaya_admin'];
+        $uang = $i['uang_kembalian'];
+        $diskon = $i['diskon'];
+}
+        ?>
+
 <body>
   <div class="cointainer" style="display: flex">
     <div class="col-md-4" style="margin-top: 20px">
@@ -46,8 +59,8 @@
         $pemesanan_hp = $i['pemesanan_hp'];
       ?>
         <p style="font-size: 35px; margin-top: 20px;"><?php echo $pemesanan_nama ?></p>
-        <p style="font-size: 20px; "><?php echo $pemesanan_alamat ?></p>
-        <p style="font-size: 20px; "><?php echo $pemesanan_hp ?></p>
+        <p style="font-size: 20px; ">Alamat: <?php echo $pemesanan_alamat ?></p>
+        <p style="font-size: 20px; ">No HP: <?php echo $pemesanan_hp ?></p>
 
     </div>
     <div class="col-md-3" style="margin-top: 20px;">
@@ -116,7 +129,25 @@
                       <td><?php echo rupiah($bnr_harga)?></td>
                       <td><?php echo rupiah($total)?></td>
                     </tr>
-                    <?php endforeach;?>
+                    <?php endforeach;
+                    
+                    $jumlah = $jumlah + $ongkir-($admin+$diskon+$uang)?>?>
+                    <tr>
+                      <th colspan="4"><center>Ongkir</center></th>
+                      <th><?php echo rupiah($ongkir)?></th>
+                    </tr>
+                    <tr>
+                      <th colspan="4"><center>Admin</center></th>
+                      <th><?php echo rupiah($admin)?></th>
+                    </tr>
+                    <tr>
+                      <th colspan="4"><center>Uang Kembalian</center></th>
+                      <th><?php echo rupiah($uang)?></th>
+                    </tr>
+                    <tr>
+                      <th colspan="4"><center>Diskon</center></th>
+                      <th><?php echo rupiah($diskon)?></th>
+                    </tr>
                     <tr>
                       <th colspan="4"><center>Jumlah</center></th>
                       <th><?php echo rupiah($jumlah)?></th>

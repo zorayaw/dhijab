@@ -2,12 +2,16 @@
     <div class="page-title">
       <div class="row">
           <div class="col-sm-6">
-              <h4 class="mb-0">Data List Barang</h4>              
+              <h4 class="mb-0">Data List Barang <?php foreach($listbarang->result_array() as $i) {
+                      $pemesanan_nama = $i['pemesanan_nama'];
+                      $pemesanan_id = $i['pemesanan_id'];}
+                      echo $pemesanan_nama." (ID: ".$pemesanan_id.")" ?></h4>              
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
               <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/Pemesanan" class="default-color">Home</a></li>
-              <li class="breadcrumb-item active">List Barang</li>
+              <li class="breadcrumb-item active">List Barang <?php
+                      echo $pemesanan_nama." (ID: ".$pemesanan_id.")" ?></li>
             </ol>
           </div>
         </div>
