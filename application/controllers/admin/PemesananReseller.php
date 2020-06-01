@@ -85,7 +85,7 @@
 	  		$note=$this->input->post('note');
 	  		$status=0;
 	  		$level = 2;
-	  		$pemesanan_id=$this->M_pemesanan->save_pesanan($nama_pemesan,$tanggal,$no_hp,$alamat,$level,$kurir,$username,$resi,$asal_transaksi,$metpem,$uang,$biaya_ongkir,$email_pemesanan,$note,$status,$biaya_admin,$diskon,$nama_akun_pemesan);
+	  		$pemesanan_id=$this->M_pemesanan->save_pesanan($nama_pemesan,$tanggal,$no_hp,$alamat,$level,$kurir,$resi,$username,$asal_transaksi,$metpem,$uang,$biaya_ongkir,$email_pemesanan,$note,$status,$biaya_admin,$diskon,$nama_akun_pemesan);
 
 			
 	  		$size = sizeof($barang_id);

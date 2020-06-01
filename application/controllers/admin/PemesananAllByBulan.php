@@ -27,6 +27,7 @@ class PemesananAllByBulan extends CI_Controller
 	
 	function savepemesananNR()
 	{
+		$bulan = $this->input->get('bulan');
 		$nama_pemesan = $this->input->post('nama_pemesan');
 		$nama_akun_pemesan = "-";
 		$no_hp = $this->input->post('hp');
@@ -63,7 +64,7 @@ class PemesananAllByBulan extends CI_Controller
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
-		redirect('admin/Pemesanan');
+		redirect('admin/PemesananAllByBulan/viewPemesananByBulan/'.$bulan);
 	}
 
 	function hapus_pesanan()

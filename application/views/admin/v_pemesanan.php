@@ -1595,7 +1595,7 @@
 					<h5 class="modal-title">Tambah Pesanan Customer</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<form action="<?php echo base_url() ?>admin/Pemesanan/savepemesananNR" method="post"
+				<form action="<?php echo base_url() ?>admin/PemesananCustomer/savepemesananNR" method="post"
 					enctype="multipart/form-data">
 					<div class="modal-body p-20">
 						<div class="row">
