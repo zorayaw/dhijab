@@ -191,6 +191,23 @@ class PemesananProduksiByBulan extends CI_Controller
 			$y['title'] = "List Barang Pemesan";
 			$x['p_id'] = $pemesanan_id;
 			$x['lvl'] = $level;
+			$x['stat'] = $this->input->get('stat');
+			$x['bulan'] = $this->input->get('bulan');
+			$bulan = $this->input->get('bulan');
+			switch ($bulan){
+				case 1 : $x['namaBulan'] = "Januari"; break;
+				case 2 : $x['namaBulan'] =  "Februari"; break;
+				case 3 : $x['namaBulan'] =  "Maret"; break;
+				case 4 : $x['namaBulan'] =  "April"; break;
+				case 5 : $x['namaBulan'] =  "Mei"; break;
+				case 6 : $x['namaBulan'] =  "Juni"; break;
+				case 7 : $x['namaBulan'] =  "Juli"; break;
+				case 8 : $x['namaBulan'] =  "Agustus"; break;
+				case 9 : $x['namaBulan'] =  "September"; break;
+				case 10 : $x['namaBulan'] =  "Oktober"; break;
+				case 11 : $x['namaBulan'] =  "November";break;
+				case 12 : $x['namaBulan'] =  "Desember"; break;
+			  }
 			$x['listbarang'] = $this->m_list_barang->get_list_barang($pemesanan_id);
 			$a = $this->m_list_barang->SUMLBNR($pemesanan_id)->row_array();
 			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();

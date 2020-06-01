@@ -149,7 +149,10 @@
 			   $level = $this->uri->segment(5);
  	  		  		$y['title'] = "List Barang Pemesan";
  	  		   	   $x['p_id'] = $pemesanan_id;
- 	  		   	   $x['lvl'] =$level;	
+						 $x['lvl'] =$level;	
+						 $x['stat'] = $this->input->get('stat');
+			$x['bulan'] = $this->input->get('bulan');
+			
  	  		   	   $x['listbarang'] = $this->m_list_barang->get_list_barang($pemesanan_id);
  	  		   	   $a = $this->m_list_barang->SUMLBNR($pemesanan_id)->row_array();
  	  		   	   $x['nonreseller'] = $this->M_barang->getDataNonReseller1();

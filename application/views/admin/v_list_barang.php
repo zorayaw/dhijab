@@ -9,7 +9,28 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-              <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/Pemesanan" class="default-color">Home</a></li>
+            
+            <?php if($bulan==0) { ?>
+                      <?php if($stat==0) { ?>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/Pemesanan" class="default-color">Seluruh Pemesanan</a></li>
+                      <?php }elseif($stat==1) { ?>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/PemesananCustomer" class="default-color">Pemesanan Customer</a></li>
+                      <?php }elseif($stat==2) { ?>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/Pemesanan" class="default-color">Pemesanan Reseller</a></li>
+                        <?php }elseif($stat==3) { ?>
+                          <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/Pemesanan" class="default-color">Pemesanan Produksi</a></li>
+                        <?php }elseif($stat==4) { ?>
+                          <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/Pemesanan/konfirmasi_pesanan" class="default-color">Konfirmasi Pemesanan</a></li>
+                          <?php }} else { ?>
+                        <?php if($stat==0) { ?>
+                          <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/PemesananAllByBulan/viewPemesananByBulan/<?=$bulan?>" class="default-color">Seluruh Pemesanan Bulan <?=$namaBulan?></a></li>
+                          <?php } elseif($stat==1) { ?>
+                            <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/PemesananCustomerByBulan/viewPemesananByBulan/<?=$bulan?>" class="default-color">Pemesanan Customer Bulan <?=$namaBulan?></a></li>
+                            <?php } elseif($stat==2) { ?>
+                              <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/PemesananResellerByBulan/viewPemesananByBulan/<?=$bulan?>" class="default-color">Pemesanan Reseller Bulan <?=$namaBulan?></a></li>
+                              <?php } elseif($stat==3) { ?>
+                                <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/PemesananProduksiByBulan/viewPemesananByBulan/<?=$bulan?>" class="default-color">Pemesanan Produksi Bulan <?=$namaBulan?></a></li>
+                                <?php }} ?>
               <li class="breadcrumb-item active">List Barang <?php
                       echo $pemesanan_nama." (ID: ".$pemesanan_id.")" ?></li>
             </ol>

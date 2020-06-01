@@ -1068,7 +1068,7 @@
                     <td><?php echo $at_nama ?></td>
                     <td><?php echo $mp_nama ?></td>
                     <?php if($this->session->userdata('akses') == 2) : ?>
-                    <td><a href="<?php echo base_url() ?>admin/PemesananCustomer/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>" target="_blank" class="btn btn-primary">List Barang</a></td>
+                    <td><a href="<?php echo base_url() ?>admin/PemesananCustomer/list_barang/<?php echo $pemesanan_id ?>/<?php echo $level ?>?stat=1&bulan=0" target="_blank" class="btn btn-primary">List Barang</a></td>
                     <?php else : ?>
                     <td><?php echo $nama_barang ?></td>
                     <?php endif;?>
