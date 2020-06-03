@@ -15,7 +15,7 @@ class Barang extends CI_Controller
 
 		$this->load->model('M_pemesanan');
 		$this->load->model('M_barang');
-		$this->load->model('m_list_barang');
+		$this->load->model('M_list_barang');
 		$this->load->library('upload');
 	}
 
@@ -147,7 +147,7 @@ class Barang extends CI_Controller
 		$size = sizeof($barang_id);
 
 		for ($i = 0; $i < $size; $i++) {
-			$this->m_list_barang->save_list_barang($pemesanan_id, $qty[$i], $barang_id[$i], $level);
+			$this->M_list_barang->save_list_barang($pemesanan_id, $qty[$i], $barang_id[$i], $level);
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
@@ -160,7 +160,7 @@ class Barang extends CI_Controller
 		$pemesanan_id = $this->input->post('pemesanan_id');
 		$barang_id = $this->input->post('barang_id');
 		$qty = $this->input->post('qty');
-		$this->m_list_barang->hapus_list_barang($pemesanan_id, $lb_id, $qty, $barang_id);
+		$this->M_list_barang->hapus_list_barang($pemesanan_id, $lb_id, $qty, $barang_id);
 		echo $this->session->set_flashdata('msg', 'delete');
 		redirect($this->agent->referrer());
 	}
@@ -175,7 +175,7 @@ class Barang extends CI_Controller
 		$size = sizeof($barang_id);
 
 		for ($i = 0; $i < $size; $i++) {
-			$this->m_list_barang->save_list_barang($pemesanan_id, $qty[$i], $barang_id[$i], $level);
+			$this->M_list_barang->save_list_barang($pemesanan_id, $qty[$i], $barang_id[$i], $level);
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
@@ -205,7 +205,7 @@ class Barang extends CI_Controller
 		$size = sizeof($barang_id);
 
 		for ($i = 0; $i < $size; $i++) {
-			$this->m_list_barang->save_list_barang($pemesanan_id, $qty[$i], $barang_id[$i], $level);
+			$this->M_list_barang->save_list_barang($pemesanan_id, $qty[$i], $barang_id[$i], $level);
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
@@ -233,7 +233,7 @@ class Barang extends CI_Controller
 		$size = sizeof($barang_id);
 
 		for ($i = 0; $i < $size; $i++) {
-			$this->m_list_barang->save_list_barang($pemesanan_id, $qty[$i], $barang_id[$i], $level);
+			$this->M_list_barang->save_list_barang($pemesanan_id, $qty[$i], $barang_id[$i], $level);
 		}
 
 		echo $this->session->set_flashdata('msg', 'success');
@@ -272,9 +272,9 @@ class Barang extends CI_Controller
 				$x['p_id'] = $pemesanan_id;
 				$x['lvl'] = $level;
 				$y['title'] = "List Barang Pemesan";
-				$x['listbarang'] = $this->m_list_barang->getLBRbyid($pemesanan_id);
+				$x['listbarang'] = $this->M_list_barang->getLBRbyid($pemesanan_id);
 				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$a = $this->m_list_barang->SUMLBR($pemesanan_id)->row_array();
+				$a = $this->M_list_barang->SUMLBR($pemesanan_id)->row_array();
 				$x['jumlah'] = $a['total_keseluruhan'];
 				$this->load->view('v_header', $y);
 				$this->load->view('admin/v_sidebar');
@@ -283,8 +283,8 @@ class Barang extends CI_Controller
 				$y['title'] = "List Barang Pemesan";
 				$x['p_id'] = $pemesanan_id;
 				$x['lvl'] = $level;
-				$x['listbarang'] = $this->m_list_barang->getLBNRbyid($pemesanan_id);
-				$a = $this->m_list_barang->SUMLBNR($pemesanan_id)->row_array();
+				$x['listbarang'] = $this->M_list_barang->getLBNRbyid($pemesanan_id);
+				$a = $this->M_list_barang->SUMLBNR($pemesanan_id)->row_array();
 				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 				$x['jumlah'] = $a['total_keseluruhan'];
 				$this->load->view('v_header', $y);

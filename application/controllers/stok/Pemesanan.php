@@ -16,7 +16,7 @@
 			$this->load->library('pdf');
 		    $this->load->model('M_pemesanan');
 		    $this->load->model('M_barang');	
-		    $this->load->model('m_list_barang');
+		    $this->load->model('M_list_barang');
 		    $this->load->library('upload');
 	  	}
 
@@ -101,7 +101,7 @@
  	  		   	$y['title'] = "List Barang Pemesan";
  	  		   	   $x['p_id'] = $pemesanan_id;
  	  		   	   $x['lvl'] =$level;	
-	 	  		   $x['listbarang'] = $this->m_list_barang->getLBRbyid($pemesanan_id);	
+	 	  		   $x['listbarang'] = $this->M_list_barang->getLBRbyid($pemesanan_id);	
 	 	  		   $x['pemesan'] = $this->M_pemesanan->getIdbyid($pemesanan_id);
 	 	  		    $a = $this->M_pemesanan->getIdbyid($pemesanan_id)->row_array();
  	  		   	   $x['kurir'] = $a['kurir_nama'];
@@ -112,7 +112,7 @@
  	  		   	   $y['title'] = "List Barang Pemesan";
  	  		   	   $x['p_id'] = $pemesanan_id;
  	  		   	   $x['lvl'] =$level;	
- 	  		   	   $x['listbarang'] = $this->m_list_barang->getLBNRbyid($pemesanan_id);
+ 	  		   	   $x['listbarang'] = $this->M_list_barang->getLBNRbyid($pemesanan_id);
  	  		   	   $x['pemesan'] = $this->M_pemesanan->getIdbyid($pemesanan_id);
  	  		   	   $a = $this->M_pemesanan->getIdbyid($pemesanan_id)->row_array();
  	  		   	   $x['kurir'] = $a['kurir_nama'];

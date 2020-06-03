@@ -15,7 +15,7 @@ class stock extends CI_Controller
 
 		$this->load->model('M_pemesanan');
 		$this->load->model('M_barang');
-		$this->load->model('m_list_barang');
+		$this->load->model('M_list_barang');
 		$this->load->library('upload');
 	}
 

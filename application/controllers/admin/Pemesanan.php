@@ -16,7 +16,7 @@ class Pemesanan extends CI_Controller
 		$this->load->library('pdf');
 		$this->load->model('M_pemesanan');
 		$this->load->model('M_barang');
-		$this->load->model('m_list_barang');
+		$this->load->model('M_list_barang');
 		$this->load->library('upload');
 	}
 
@@ -1370,7 +1370,7 @@ class Pemesanan extends CI_Controller
 		$size = sizeof($barang_id);
 
 		for ($i = 0; $i < $size; $i++) {
-			$this->m_list_barang->save_list_barang($pemesanan_id, $qty[$i], $barang_id[$i], $level);
+			$this->M_list_barang->save_list_barang($pemesanan_id, $qty[$i], $barang_id[$i], $level);
 			$this->M_barang->saveStok($barang_id[$i], $qty[$i], 1);
 		}
 
@@ -1461,7 +1461,7 @@ class Pemesanan extends CI_Controller
 		$size = sizeof($barang_id);
 
 		for ($i = 0; $i < $size; $i++) {
-			$this->m_list_barang->save_list_barangR($pemesanan_id, $qty[$i], $barang_id[$i], $level);
+			$this->M_list_barang->save_list_barangR($pemesanan_id, $qty[$i], $barang_id[$i], $level);
 			$this->M_barang->saveStok($barang_id[$i], $qty[$i], 1);
 		}
 
@@ -1545,10 +1545,10 @@ class Pemesanan extends CI_Controller
 
 		$size = sizeof($barang_id);
 		for ($i = 0; $i < $size; $i++) {
-			$this->m_list_barang->save_list_barangP($pemesanan_id, $qty[$i], $barang_id[$i], $level);
+			$this->M_list_barang->save_list_barangP($pemesanan_id, $qty[$i], $barang_id[$i], $level);
 			$this->M_barang->saveStok($barang_id[$i], $qty[$i], 1);
 		}
-		$a = $this->m_list_barang->SUMLBNR($pemesanan_id)->row_array();
+		$a = $this->M_list_barang->SUMLBNR($pemesanan_id)->row_array();
 		$jumlah = $a['total_keseluruhan'];
 		$this->M_pemesanan->insert_uang_masuk($pemesanan_id, $jumlah);
 		echo $this->session->set_flashdata('msg', 'success');
@@ -1630,7 +1630,7 @@ class Pemesanan extends CI_Controller
 		$size = sizeof($barang_id);
 
 		for ($i = 0; $i < $size; $i++) {
-			$this->m_list_barang->save_list_barang($pemesanan_id, $qty[$i], $barang_id[$i], $level);
+			$this->M_list_barang->save_list_barang($pemesanan_id, $qty[$i], $barang_id[$i], $level);
 			$this->M_barang->saveStok($barang_id[$i], $qty[$i], 1);
 		}
 
@@ -1664,7 +1664,7 @@ class Pemesanan extends CI_Controller
 		$size = sizeof($barang_id);
 
 		for ($i = 0; $i < $size; $i++) {
-			$this->m_list_barang->save_list_barangR($pemesanan_id, $qty[$i], $barang_id[$i], $level);
+			$this->M_list_barang->save_list_barangR($pemesanan_id, $qty[$i], $barang_id[$i], $level);
 			$this->M_barang->saveStok($barang_id[$i], $qty[$i], 1);
 		}
 
@@ -1695,9 +1695,9 @@ class Pemesanan extends CI_Controller
 		$pemesanan_id = $this->M_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
 		$size = sizeof($barang_id);
 		for ($i = 0; $i < $size; $i++) {
-			$this->m_list_barang->save_list_barangP($pemesanan_id, $qty[$i], $barang_id[$i], $level);
+			$this->M_list_barang->save_list_barangP($pemesanan_id, $qty[$i], $barang_id[$i], $level);
 		}
-		$a = $this->m_list_barang->SUMLBNR($pemesanan_id)->row_array();
+		$a = $this->M_list_barang->SUMLBNR($pemesanan_id)->row_array();
 		$jumlah = $a['total_keseluruhan'];
 		$this->M_pemesanan->insert_uang_masuk($pemesanan_id, $jumlah);
 		echo $this->session->set_flashdata('msg', 'success');
@@ -1766,7 +1766,7 @@ class Pemesanan extends CI_Controller
 		$size = sizeof($barang_id);
 
 		for ($i = 0; $i < $size; $i++) {
-			$this->m_list_barang->save_list_barang($pemesanan_id, $qty[$i], $barang_id[$i], $level);
+			$this->M_list_barang->save_list_barang($pemesanan_id, $qty[$i], $barang_id[$i], $level);
 			$this->M_barang->saveStok($barang_id[$i], $qty[$i], 1);
 		}
 
@@ -1785,7 +1785,7 @@ class Pemesanan extends CI_Controller
 		$size = sizeof($barang_id);
 
 		for ($i = 0; $i < $size; $i++) {
-			$this->m_list_barang->save_list_barang($pemesanan_id, $qty[$i], $barang_id[$i], $level);
+			$this->M_list_barang->save_list_barang($pemesanan_id, $qty[$i], $barang_id[$i], $level);
 			$this->M_barang->saveStok($barang_id[$i], $qty[$i], 1);
 		}
 
@@ -1803,7 +1803,7 @@ class Pemesanan extends CI_Controller
 		$size = sizeof($barang_id);
 
 		for ($i = 0; $i < $size; $i++) {
-			$this->m_list_barang->save_list_barang($pemesanan_id, $qty[$i], $barang_id[$i], $level);
+			$this->M_list_barang->save_list_barang($pemesanan_id, $qty[$i], $barang_id[$i], $level);
 			$this->M_barang->saveStok($barang_id[$i], $qty[$i], 1);
 		}
 
@@ -1817,7 +1817,7 @@ class Pemesanan extends CI_Controller
 		$pemesanan_id = $this->input->post('pemesanan_id');
 		$barang_id = $this->input->post('barang_id');
 		$qty = $this->input->post('qty');
-		$this->m_list_barang->hapus_list_barang($pemesanan_id, $lb_id, $qty, $barang_id);
+		$this->M_list_barang->hapus_list_barang($pemesanan_id, $lb_id, $qty, $barang_id);
 		echo $this->session->set_flashdata('msg', 'delete');
 		redirect($this->agent->referrer());
 	}
@@ -1865,7 +1865,7 @@ class Pemesanan extends CI_Controller
 		$size = sizeof($barang_id);
 
 		for ($i = 0; $i < $size; $i++) {
-			$this->m_list_barang->save_list_barangR($pemesanan_id, $qty[$i], $barang_id[$i], $level);
+			$this->M_list_barang->save_list_barangR($pemesanan_id, $qty[$i], $barang_id[$i], $level);
 			$this->M_barang->saveStok($barang_id[$i], $qty[$i], 1);
 		}
 
@@ -1899,10 +1899,10 @@ class Pemesanan extends CI_Controller
 
 		$size = sizeof($barang_id);
 		for ($i = 0; $i < $size; $i++) {
-			$this->m_list_barang->save_list_barangP($pemesanan_id, $qty[$i], $barang_id[$i], $level);
+			$this->M_list_barang->save_list_barangP($pemesanan_id, $qty[$i], $barang_id[$i], $level);
 			$this->M_barang->saveStok($barang_id[$i], $qty[$i], 1);
 		}
-		$a = $this->m_list_barang->SUMLBNR($pemesanan_id)->row_array();
+		$a = $this->M_list_barang->SUMLBNR($pemesanan_id)->row_array();
 		$jumlah = $a['total_keseluruhan'];
 		$this->M_pemesanan->insert_uang_masuk($pemesanan_id, $jumlah);
 		echo $this->session->set_flashdata('msg', 'success');
@@ -1965,8 +1965,8 @@ class Pemesanan extends CI_Controller
 			$x['bulan'] = $this->input->get('bulan');
 			$x['p_id'] = $pemesanan_id;
 			$x['lvl'] = $level;
-			$x['listbarang'] = $this->m_list_barang->get_list_barang($pemesanan_id);
-			$a = $this->m_list_barang->SUMLBNR($pemesanan_id)->row_array();
+			$x['listbarang'] = $this->M_list_barang->get_list_barang($pemesanan_id);
+			$a = $this->M_list_barang->SUMLBNR($pemesanan_id)->row_array();
 			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 			$x['jumlah'] = $a['total_keseluruhan'];
 			$this->load->view('v_header', $y);
@@ -1986,7 +1986,7 @@ class Pemesanan extends CI_Controller
 			$y['title'] = "Cetak Invoice id: " . $pemesanan_id;
 			$x['p_id'] = $pemesanan_id;
 			$x['lvl'] = $level;
-			$x['listbarang'] = $this->m_list_barang->get_list_barang($pemesanan_id);
+			$x['listbarang'] = $this->M_list_barang->get_list_barang($pemesanan_id);
 			$x['pemesan'] = $this->M_pemesanan->getIdbyid($pemesanan_id);
 			$a = $this->M_pemesanan->getIdbyid($pemesanan_id)->row_array();
 			$x['kurir'] = $a['kurir_nama'];
@@ -1997,7 +1997,7 @@ class Pemesanan extends CI_Controller
 			$y['title'] = "Cetak Invoice id: " . $pemesanan_id;
 			$x['p_id'] = $pemesanan_id;
 			$x['lvl'] = $level;
-			$x['listbarang'] = $this->m_list_barang->get_list_barang($pemesanan_id);
+			$x['listbarang'] = $this->M_list_barang->get_list_barang($pemesanan_id);
 			$x['pemesan'] = $this->M_pemesanan->getIdbyid($pemesanan_id);
 			$a = $this->M_pemesanan->getIdbyid($pemesanan_id)->row_array();
 			$x['kurir'] = $a['kurir_nama'];

@@ -15,7 +15,7 @@
 
 		    $this->load->model('M_pemesanan');
 		    $this->load->model('M_barang');
-		    $this->load->model('m_list_barang');
+		    $this->load->model('M_list_barang');
 		    $this->load->library('upload');
 	  	}
 
@@ -90,7 +90,7 @@
 	  		$size = sizeof($barang_id);
 
 	  		for($i=0; $i < $size; $i++){
-	  			$this->m_list_barang->save_list_barang($pemesanan_id,$qty[$i],$barang_id[$i],$level);
+	  			$this->M_list_barang->save_list_barang($pemesanan_id,$qty[$i],$barang_id[$i],$level);
 	  			$this->M_barang->saveStok($barang_id[$i], $qty[$i], 1);
 	  		}
 
@@ -157,8 +157,8 @@
 						 $x['stat'] = $this->input->get('stat');
 			$x['bulan'] = $this->input->get('bulan');
  	  		   	   $x['lvl'] =$level;	
- 	  		   	   $x['listbarang'] = $this->m_list_barang->get_list_barang($pemesanan_id);
- 	  		   	   $a = $this->m_list_barang->SUMLBNR($pemesanan_id)->row_array();
+ 	  		   	   $x['listbarang'] = $this->M_list_barang->get_list_barang($pemesanan_id);
+ 	  		   	   $a = $this->M_list_barang->SUMLBNR($pemesanan_id)->row_array();
  	  		   	   $x['nonreseller'] = $this->M_barang->getDataNonReseller1();
  	  		   	   $x['jumlah'] = $a['total_keseluruhan'];
 			       $this->load->view('v_header',$y);
