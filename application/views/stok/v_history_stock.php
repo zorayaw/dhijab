@@ -2,7 +2,9 @@
     <div class="page-title">
       <div class="row">
           <div class="col-sm-6">
-              <h4 class="mb-0"><?=$title?> (<?php foreach($stock->result_array() as $i){
+              <h4 class="mb-0"><?=$title?> (<?php 
+              $barang_nama = ""; 
+              foreach($stock->result_array() as $i){
                     $id_barang = $i['id_barang'];
                     $barang_nama = $i['barang_nama']; }
                     echo $barang_nama;

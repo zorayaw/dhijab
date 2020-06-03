@@ -2,7 +2,11 @@
     <div class="page-title">
       <div class="row">
           <div class="col-sm-6">
-              <h4 class="mb-0">Data List Barang <?php foreach($listbarang->result_array() as $i) {
+              <h4 class="mb-0">Data List Barang <?php 
+              $pemesanan_nama = "" ;
+              $pemesanan_id = '';
+              
+              foreach($listbarang->result_array() as $i) {
                       $pemesanan_nama = $i['pemesanan_nama'];
                       $pemesanan_id = $i['pemesanan_id'];}
                       echo $pemesanan_nama." (ID: ".$pemesanan_id.")" ?></h4>              
