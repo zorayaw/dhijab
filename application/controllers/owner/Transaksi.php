@@ -410,9 +410,9 @@
 			$x['total_untung'] = $total_untung;
 			$x['total_omset'] = $total_omset;
 			if($doc==2)
-			$this->load->view('v_cetak_by_Tahun', $x);
+			$this->load->view('v_cetak_by_tahun', $x);
 			  elseif($doc==1)
-			  $this->load->view('v_cetakP_by_Tahun', $x);
+			  $this->load->view('v_cetakP_by_tahun', $x);
 			
 		}
 
