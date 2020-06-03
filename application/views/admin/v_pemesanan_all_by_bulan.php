@@ -1875,11 +1875,11 @@
               <div class="row">
               <div class="col-md-4">
                 <label class="control-label">Dari tanggal:</label>
-                <input class="form-control form-white sd9" onchange="sdd(<?=9?>)" id="startdatecetak" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>"required/>
+                <input class="form-control form-white sd8" onchange="sdd(<?=8?>)" id="startdatecetak" type="date" name="start_date" value = "<?=$tglawal?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>"required/>
               </div>
               <div class="col-md-4">
                 <label class="control-label">Sampai tanggal:</label>
-                <input class="form-control form-white ed9" onchange="sdd(<?=9?>)" id="enddatecetak" type="date" name="end_date" value = "<?=$tglakhir?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
+                <input class="form-control form-white ed8" onchange="sdd(<?=8?>)" id="enddatecetak" type="date" name="end_date" value = "<?=$tglakhir?>" min = "<?=$tglawal?>" max = "<?=$tglakhir?>" required/>
               </div>
               <div class="col-md-4">
                <button type="submit" class="btn btn-success btn-block ripple m-t-10">
