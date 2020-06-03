@@ -307,7 +307,7 @@ class PemesananResellerByBulan extends CI_Controller
 			else if($this->session->userdata('akses') == 1){
 				$this->load->view('owner/v_sidebar');
 			}
-			$this->load->view('admin/v_pemesanan_Reseller_by_bulan',$x);
+			$this->load->view('admin/v_pemesanan_reseller_by_bulan',$x);
 		 
 	   }
 

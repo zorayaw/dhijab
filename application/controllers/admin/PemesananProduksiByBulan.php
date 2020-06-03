@@ -308,7 +308,7 @@ class PemesananProduksiByBulan extends CI_Controller
 			else if($this->session->userdata('akses') == 1){
 				$this->load->view('owner/v_sidebar');
 			}
-			$this->load->view('admin/v_pemesanan_Produksi_by_bulan',$x);
+			$this->load->view('admin/v_pemesanan_produksi_by_bulan',$x);
 	   }
 
 	   function pemesananByTahun(){
