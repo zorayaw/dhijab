@@ -1955,7 +1955,7 @@
 							<br>
 						</div>
 
-						<form action="<?php echo base_url() ?>owner/Transaksi/cetakTransaksiByTahun?status=0&doc=2" target="_blank"
+						<form action="<?php echo base_url() ?>owner/Transaksi/cetakTransaksiByBulanTanpaTahun?status=0&doc=2&bulan=<?=$bulan?>" target="_blank"
 							method="post" enctype="multipart/form-data">
 							<div class="col-md-12">
 								<h6>Cetak Transaksi Berdasarkan Tahun: </h6>

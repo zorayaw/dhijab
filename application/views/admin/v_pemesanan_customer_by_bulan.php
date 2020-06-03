@@ -1904,7 +1904,7 @@
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-12">
-							<a href="<?= base_url() ?>owner/Transaksi/cetak_transaksi?status=0&doc=2" target="_blank"
+							<a href="<?= base_url() ?>owner/Transaksi/cetak_transaksi?status=1&doc=2" target="_blank"
 								class="btn btn-warning btn-block ripple m-t-10">
 								<i class="fa fa-print pr-2"></i>Cetak Transaksi Hari Ini (<?= date('d')?> <?php 
                   switch (date('m')){
@@ -1928,7 +1928,7 @@
 						</div>
 
 						<div class="col-md-12">
-							<a href="<?= base_url() ?>owner/Transaksi/cetakTransaksiByBulan?status=0&doc=2&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
+							<a href="<?= base_url() ?>owner/Transaksi/cetakTransaksiByBulan?status=1&doc=2&bulan=<?= date('m')?>&tahun=<?= date("Y")?>"
 								target="_blank" class="btn btn-success btn-block ripple m-t-10">
 								<i class="fa fa-print pr-2"></i>Cetak Transaksi Bulan Ini (<?php 
                   switch (date('m')){
@@ -1950,7 +1950,7 @@
 							<br>
 						</div>
 
-						<form action="<?php echo base_url() ?>owner/Transaksi/cetakTransaksiByTahun?status=0&doc=2" target="_blank"
+						<form action="<?php echo base_url() ?>owner/Transaksi/cetakTransaksiByBulanTanpaTahun?status=1&doc=2&bulan=<?=$bulan?>" target="_blank"
 							method="post" enctype="multipart/form-data">
 							<div class="col-md-12">
 								<h6>Cetak Transaksi Berdasarkan Tahun: </h6>
@@ -1996,7 +1996,7 @@
 					<div class="col-md-12">
 						<h6>Cetak Berdasarkan Tanggal:</h6>
 					</div>
-					<form action="<?php echo base_url() ?>owner/Transaksi/cetakTransaksiBytanggal?status=0&doc=2" target="_blank"
+					<form action="<?php echo base_url() ?>owner/Transaksi/cetakTransaksiBytanggal?status=1&doc=2" target="_blank"
 						method="post" enctype="multipart/form-data">
 						<div class="modal-body p-20">
 							<div class="row">

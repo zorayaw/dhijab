@@ -12,6 +12,7 @@
 <?php date_default_timezone_set("Asia/Jakarta");?>
      <div>
           <?php 
+          $nbulan = "";
                   switch ($bulan){
                     case 1 : $nbulan = "Januari"; break;
                     case 2 : $nbulan = "Februari"; break;
@@ -29,9 +30,9 @@
                   ?>
           <div class="col-xl-12">
           <?php if($numstat == 0) : ?>
-            <center><h1>Laporan Tahunan <?=$stat?> Transaksi untuk Bulan <?=$nbulan?></h1></center>
+            <center><h1>Laporan Tahunan <?=$stat?> Pemesanan untuk Bulan <?=$nbulan?></h1></center>
             <?php else : ?>
-              <center><h1>Laporan Tahunan Transaksi <?=$stat?> untuk Bulan <?=$nbulan?></h1></center>
+              <center><h1>Laporan Tahunan Pemesanan <?=$stat?> untuk Bulan <?=$nbulan?></h1></center>
               <?php endif?>
               <?php if($awal == $akhir) : ?>
                 <center><h4>(<?=$awal?>) </h4></center>

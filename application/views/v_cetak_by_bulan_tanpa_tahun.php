@@ -12,6 +12,7 @@
 <?php date_default_timezone_set("Asia/Jakarta");?>
      <div>
           <?php 
+          $nbulan = "";
                   switch ($bulan){
                     case 1 : $nbulan = "Januari"; break;
                     case 2 : $nbulan = "Februari"; break;

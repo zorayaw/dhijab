@@ -14,9 +14,9 @@
           
           <div class="col-xl-12">
           <?php if($numstat == 0) : ?>
-            <center><h1>Laporan Bulanan <?=$stat?> Transaksi</h1></center>
+            <center><h1>Laporan Bulanan <?=$stat?> Pemesanan</h1></center>
             <?php else : ?>
-              <center><h1>Laporan  Bulanan Transaksi <?=$stat?></h1></center>
+              <center><h1>Laporan  Bulanan Pemesanan <?=$stat?></h1></center>
               <?php endif?>
             <center><h4>(<?php 
                   switch ($bulan){

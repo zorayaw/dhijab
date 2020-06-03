@@ -15,9 +15,9 @@ $cur_date = date("d-m-Y");?>
           
           <div class="col-xl-12">
           <?php if($numstat == 0) : ?>
-            <center><h1>Laporan <?=$stat?> Transaksi</h1></center>
+            <center><h1>Laporan <?=$stat?> Pemesanan</h1></center>
             <?php else :?>
-              <center><h1>Laporan Transaksi <?=$stat?></h1></center>
+              <center><h1>Laporan Pemesanan <?=$stat?></h1></center>
               <?php endif?>
               <?php if($start != $end) : ?>
             <center><h4>(<?=date("d-m-Y", strtotime($start))?> hingga <?= date("d-m-Y", strtotime($end)) ?>)</h4></center>
