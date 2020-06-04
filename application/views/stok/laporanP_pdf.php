@@ -45,16 +45,30 @@
       case 11 : $month = "November"; break;
       case 12 : $month = "Desember"; break;
     }
-    echo ($title . "<br>");
-    echo ("<h5> (" . $month . " " . $awal . " sampai " . $month . " " . $akhir . ") </h5>");
+    if($awal == $akhir){
+      echo ($title . "<br>");
+      echo ("<h5> (" . $month . " " . $awal . ") </h5>");
+    }
+    else {
+      echo ($title . "<br>");
+      echo ("<h5> (" . $month . " " . $awal . " sampai " . $month . " " . $akhir . ") </h5>");
+    }
   }
   else if ($stts == "ppertanggal"){
-    echo ($title . "<br>");
-    $startt = DateTime::createFromFormat('Y-m-d', $start);
-    $formattedStart = $startt->format('d-m-Y');
-    $endd = DateTime::createFromFormat('Y-m-d', $end);
-    $formattedEnd = $endd->format('d-m-Y');
-    echo ("<h5> (" . $formattedStart . " sampai " . $formattedEnd . ") </h5>");
+    if($start == $end){
+      echo ($title . "<br>");
+      $startt = DateTime::createFromFormat('Y-m-d', $start);
+      $formattedStart = $startt->format('d-m-Y');
+      echo ("<h5> (" . $formattedStart . ") </h5>");
+    }
+    else {
+      echo ($title . "<br>");
+      $startt = DateTime::createFromFormat('Y-m-d', $start);
+      $formattedStart = $startt->format('d-m-Y');
+      $endd = DateTime::createFromFormat('Y-m-d', $end);
+      $formattedEnd = $endd->format('d-m-Y');
+      echo ("<h5> (" . $formattedStart . " sampai " . $formattedEnd . ") </h5>");
+    }
   }
 
   else if($stts == 'pAll'){
