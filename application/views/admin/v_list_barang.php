@@ -14,7 +14,11 @@
           <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
             
-            <?php if($bulan==0) { ?>
+            <?php 
+            if($this->input->get('namaBulan') != null){
+              $namaBulan = $this->input->get('namaBulan');
+            }
+            if($bulan==0) { ?>
                       <?php if($stat==0) { ?>
                         <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/Pemesanan" class="default-color">Seluruh Pemesanan</a></li>
                       <?php }elseif($stat==1) { ?>
@@ -129,10 +133,10 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Tambah Kurir</h5>
+                        <h5 class="modal-title">Tambah Barang</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <form action="<?php echo base_url()?>admin/Pemesanan/tambahpesananNR" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url()?>admin/Pemesanan/tambahpesananNR?stat=<?=$stat?>&bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body p-20">
                             <div class="row">
                                 <div class="form-group col-md-12 mt-10" id="dynamic_field">
@@ -193,7 +197,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body p-20">
-                        <form action="<?php echo base_url()?>admin/Pemesanan/hapuspesananlb" method="post">
+                        <form action="<?php echo base_url()?>admin/Pemesanan/hapuspesananlb?stat=<?=$stat?>&bulan=<?=$bulan?>" method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id?>"/>
