@@ -425,6 +425,7 @@ class Barang extends CI_Controller
 	{
 		if ($this->session->userdata('akses') == 1 && $this->session->userdata('masuk') == true) {
 			$y['title'] = "History Stock";
+			$x['barang'] = $this->M_barang->getBarangID($barang_id);
 			$x['stock'] = $this->M_barang->getHistoryStock($barang_id, 1);
 			$this->load->view('v_header', $y);
 			$this->load->view('owner/v_sidebar');

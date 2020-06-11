@@ -3,7 +3,7 @@
       <div class="row">
           <div class="col-sm-6">
               <h4 class="mb-0">Data List Barang <?php 
-              $pemesanan_nama = "" ;
+              $pemesanan_nama = "";
               $pemesanan_id = '';
               
               foreach($listbarang->result_array() as $i) {

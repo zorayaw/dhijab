@@ -38,8 +38,9 @@
 
 	  	function history($barang_id){
  	  		if($this->session->userdata('akses') == 2 && $this->session->userdata('masuk') == true){
- 	  			$y['title'] = "History Stock";
-	 	  		   $x['stock'] = $this->M_barang->getHistoryStocks($barang_id);	
+				   $y['title'] = "History Stock";
+				   $x['barang'] = $this->M_barang->getBarangID($barang_id);
+					  $x['stock'] = $this->M_barang->getHistoryStocks($barang_id);	
 			       $this->load->view('v_header',$y);
 				   if($this->session->userdata('akses') == 2){
 					$this->load->view('admin/v_sidebar');

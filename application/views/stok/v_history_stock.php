@@ -4,8 +4,7 @@
           <div class="col-sm-6">
               <h4 class="mb-0"><?=$title?> (<?php 
               $barang_nama = ""; 
-              foreach($stock->result_array() as $i){
-                    $id_barang = $i['id_barang'];
+              foreach($barang->result_array() as $i){
                     $barang_nama = $i['barang_nama']; }
                     echo $barang_nama;
                     ?>)</h4>              
