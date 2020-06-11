@@ -131,7 +131,7 @@
                     </tr>
                     <?php endforeach;
                     
-                    $jumlah = $jumlah + $ongkir-($admin+$diskon+$uang)?>?>
+                    $jumlah = $jumlah + $ongkir-($admin+$diskon+$uang)?>
                     <tr>
                       <th colspan="4"><center>Ongkir</center></th>
                       <th><?php echo rupiah($ongkir)?></th>
