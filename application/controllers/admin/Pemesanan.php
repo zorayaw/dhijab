@@ -9,7 +9,7 @@ class Pemesanan extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		if ($this->session->userdata('masuk') != TRUE || ($this->session->userdata('akses') != 2 && $this->session->userdata('akses') !=1)) {
+		if ($this->session->userdata('masuk') != TRUE || ($this->session->userdata('akses') != 2 && $this->session->userdata('akses') != 1)) {
 			$url = base_url('Login');
 			redirect($url);
 		};
@@ -22,23 +22,22 @@ class Pemesanan extends CI_Controller
 
 	function index()
 	{
-			$y['title'] = "Seluruh Pemesanan";
-			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-			$x['kurir'] = $this->M_pemesanan->getAllkurir();
-			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-			$x['produksi'] = $this->M_barang->getdataProduksi();
-			$x['reseller'] = $this->M_barang->getAllBarangR();
-			$x['datapesanan'] = $this->M_pemesanan->getPemesanan();
-			$this->load->view('v_header', $y);
-			if($this->session->userdata('akses') == 2){
-				$this->load->view('admin/v_sidebar');
-			}
-			else if($this->session->userdata('akses') == 1){
-				$this->load->view('owner/v_sidebar');
-			}
-			
-			$this->load->view('admin/v_pemesanan', $x);
+		$y['title'] = "Seluruh Pemesanan";
+		$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+		$x['kurir'] = $this->M_pemesanan->getAllkurir();
+		$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+		$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+		$x['produksi'] = $this->M_barang->getdataProduksi();
+		$x['reseller'] = $this->M_barang->getAllBarangR();
+		$x['datapesanan'] = $this->M_pemesanan->getPemesanan();
+		$this->load->view('v_header', $y);
+		if ($this->session->userdata('akses') == 2) {
+			$this->load->view('admin/v_sidebar');
+		} else if ($this->session->userdata('akses') == 1) {
+			$this->load->view('owner/v_sidebar');
+		}
+
+		$this->load->view('admin/v_pemesanan', $x);
 	}
 
 
@@ -63,187 +62,175 @@ class Pemesanan extends CI_Controller
 	// 	}
 	// }
 
-	function convertPDF(){
+	function convertPDF()
+	{
 		$doc = $this->input->get('doc');
 		$statusc = $this->input->get('status');
 		$x['numstat'] = $statusc;
-			if($statusc==0){
-				if($doc == 1){
-					$x['title'] = "Seluruh Pemesanan";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Seluruh Transaksi";
-				}
-				$x['stts'] = "pAll";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesanan();
+		if ($statusc == 0) {
+			if ($doc == 1) {
+				$x['title'] = "Seluruh Pemesanan";
+			} else if ($doc == 2) {
+				$x['title'] = "Seluruh Transaksi";
 			}
-			else if($statusc==1){
-				if($doc == 1){
-					$x['title'] = "Seluruh Pemesanan Customer";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Seluruh Transaksi Customer";
-				}
-				$x['stts'] = "pAll";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomer();
+			$x['stts'] = "pAll";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesanan();
+		} else if ($statusc == 1) {
+			if ($doc == 1) {
+				$x['title'] = "Seluruh Pemesanan Customer";
+			} else if ($doc == 2) {
+				$x['title'] = "Seluruh Transaksi Customer";
 			}
-			else if($statusc==2){
-				if($doc == 1){
-					$x['title'] = "Seluruh Pemesanan Reseller";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Seluruh Transaksi Reseller";
-				}
-				$x['stts'] = "pAll";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananreseller();
+			$x['stts'] = "pAll";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomer();
+		} else if ($statusc == 2) {
+			if ($doc == 1) {
+				$x['title'] = "Seluruh Pemesanan Reseller";
+			} else if ($doc == 2) {
+				$x['title'] = "Seluruh Transaksi Reseller";
 			}
-			else if($statusc==3){
-				if($doc == 1){
-					$x['title'] = "Seluruh Pemesanan Produksi";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Seluruh Transaksi Produksi";
-				}
-				$x['stts'] = "pAll";
-				$y['title'] = "Pemesanan";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananproduksi();
-			}		
-			
-			$this->pdf->setPaper('legal', 'landscape');
-			$this->pdf->filename = "laporan_pdf.pdf";
-			if($doc==2)
+			$x['stts'] = "pAll";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananreseller();
+		} else if ($statusc == 3) {
+			if ($doc == 1) {
+				$x['title'] = "Seluruh Pemesanan Produksi";
+			} else if ($doc == 2) {
+				$x['title'] = "Seluruh Transaksi Produksi";
+			}
+			$x['stts'] = "pAll";
+			$y['title'] = "Pemesanan";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananproduksi();
+		}
+
+		$this->pdf->setPaper('legal', 'landscape');
+		$this->pdf->filename = "laporan_pdf.pdf";
+		if ($doc == 2)
 			$this->pdf->load_view('admin/laporan_pdf', $x);
-			elseif($doc==1)
+		elseif ($doc == 1)
 			$this->pdf->load_view('admin/laporanP_pdf', $x);
 	}
 
-	function convertPDFPBerjalan(){
+	function convertPDFPBerjalan()
+	{
 		$doc = $this->input->get('doc');
-				if($doc == 1){
-					$x['title'] = "Pemesanan Berjalan";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Transaksi Berjalan";
-				}
-				$x['stts'] = "pTransaksi";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananKonfirmasi();
+		if ($doc == 1) {
+			$x['title'] = "Pemesanan Berjalan";
+		} else if ($doc == 2) {
+			$x['title'] = "Transaksi Berjalan";
+		}
+		$x['stts'] = "pTransaksi";
+		$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+		$x['kurir'] = $this->M_pemesanan->getAllkurir();
+		$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+		$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+		$x['produksi'] = $this->M_barang->getdataProduksi();
+		$x['reseller'] = $this->M_barang->getAllBarangR();
+		$x['datapesanan'] = $this->M_pemesanan->getPemesananKonfirmasi();
 
-				$this->pdf->setPaper('legal', 'landscape');
-				$this->pdf->filename = "laporan_pdf.pdf";
-				if($doc == 2)
-				$this->pdf->load_view('admin/laporan_pdf', $x);
-				else
-				$this->pdf->load_view('admin/laporanP_pdf', $x);
-
+		$this->pdf->setPaper('legal', 'landscape');
+		$this->pdf->filename = "laporan_pdf.pdf";
+		if ($doc == 2)
+			$this->pdf->load_view('admin/laporan_pdf', $x);
+		else
+			$this->pdf->load_view('admin/laporanP_pdf', $x);
 	}
 
-	function convertPDFPerhari(){
+	function convertPDFPerhari()
+	{
 		$doc = $this->input->get('doc');
 		$statusc = $this->input->get('status');
 		$x['numstat'] = $statusc;
-			if($statusc==0){
-				if($doc == 1){
-					$x['title'] = "Seluruh Pemesanan";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Seluruh Transaksi";
-				}
-				$x['stts'] = "pperhari";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananCurdate();
+		if ($statusc == 0) {
+			if ($doc == 1) {
+				$x['title'] = "Seluruh Pemesanan";
+			} else if ($doc == 2) {
+				$x['title'] = "Seluruh Transaksi";
 			}
-			else if($statusc==1){
-				if($doc == 1){
-					$x['title'] = "Pemesanan Customer";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Transaksi Customer";
-				}
-				$x['stts'] = "pperhari";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerCurdate();
+			$x['stts'] = "pperhari";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananCurdate();
+		} else if ($statusc == 1) {
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Customer";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Customer";
 			}
-			else if($statusc==2){
-				if($doc == 1){
-					$x['title'] = "Pemesanan Reseller";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Transaksi Reseller";
-				}
-				$x['stts'] = "pperhari";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerCurdate();
+			$x['stts'] = "pperhari";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerCurdate();
+		} else if ($statusc == 2) {
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Reseller";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Reseller";
 			}
-			else if($statusc==3){
-				if($doc == 1){
-					$x['title'] = "Pemesanan Produksi";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Transaksi Produksi";
-				}
-				$x['stts'] = "pperhari";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiCurdate();
-			}		
-			$this->pdf->setPaper('legal', 'landscape');
-			$this->pdf->filename = "laporan_pdf.pdf";
-			if($doc==2)
+			$x['stts'] = "pperhari";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerCurdate();
+		} else if ($statusc == 3) {
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Produksi";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Produksi";
+			}
+			$x['stts'] = "pperhari";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiCurdate();
+		}
+		$this->pdf->setPaper('legal', 'landscape');
+		$this->pdf->filename = "laporan_pdf.pdf";
+		if ($doc == 2)
 			$this->pdf->load_view('admin/laporan_pdf', $x);
-			elseif($doc==1)
+		elseif ($doc == 1)
 			$this->pdf->load_view('admin/laporanP_pdf', $x);
-	}	
+	}
 
-	function convertPDFPerbulan(){
+	function convertPDFPerbulan()
+	{
 		$doc = $this->input->get('doc');
 		$statusc = $this->input->get('status');
 		$bulan = $this->input->get('bulan');
@@ -251,11 +238,10 @@ class Pemesanan extends CI_Controller
 		$x['numstat'] = $statusc;
 		$x['bulan'] = $bulan;
 		$x['tahun'] = $tahun;
-		if($statusc==0){
-			if($doc == 1){
+		if ($statusc == 0) {
+			if ($doc == 1) {
 				$x['title'] = "Seluruh Pemesanan";
-			}
-			else if($doc == 2) {
+			} else if ($doc == 2) {
 				$x['title'] = "Seluruh Transaksi";
 			}
 			$x['stts'] = "pperbulan";
@@ -265,13 +251,11 @@ class Pemesanan extends CI_Controller
 			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananByBulan($bulan,$tahun);
-		}
-		else if($statusc==1){
-			if($doc == 1){
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananByBulan($bulan, $tahun);
+		} else if ($statusc == 1) {
+			if ($doc == 1) {
 				$x['title'] = "Pemesanan Customer";
-			}
-			else if($doc == 2) {
+			} else if ($doc == 2) {
 				$x['title'] = "Transaksi Customer";
 			}
 			$x['stts'] = "pperbulan";
@@ -281,13 +265,11 @@ class Pemesanan extends CI_Controller
 			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByBulan($bulan,$tahun);
-			}
-		else if($statusc==2){
-			if($doc == 1){
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByBulan($bulan, $tahun);
+		} else if ($statusc == 2) {
+			if ($doc == 1) {
 				$x['title'] = "Pemesanan Reseller";
-			}
-			else if($doc == 2) {
+			} else if ($doc == 2) {
 				$x['title'] = "Transaksi Reseller";
 			}
 			$x['stts'] = "pperbulan";
@@ -298,12 +280,10 @@ class Pemesanan extends CI_Controller
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByBulan($bulan, $tahun);
-		}
-		else if($statusc==3){
-			if($doc == 1){
+		} else if ($statusc == 3) {
+			if ($doc == 1) {
 				$x['title'] = "Pemesanan Produksi";
-			}
-			else if($doc == 2) {
+			} else if ($doc == 2) {
 				$x['title'] = "Transaksi Produksi";
 			}
 			$x['stts'] = "pperbulan";
@@ -314,16 +294,17 @@ class Pemesanan extends CI_Controller
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByBulan($bulan, $tahun);
-		}	
+		}
 		$this->pdf->setPaper('legal', 'landscape');
-			$this->pdf->filename = "laporan_pdf.pdf";
-			if($doc==2)
+		$this->pdf->filename = "laporan_pdf.pdf";
+		if ($doc == 2)
 			$this->pdf->load_view('admin/laporan_pdf', $x);
-			elseif($doc==1)
-			$this->pdf->load_view('admin/laporanP_pdf', $x);	
+		elseif ($doc == 1)
+			$this->pdf->load_view('admin/laporanP_pdf', $x);
 	}
 
-	function convertPDFByBulanTanpaTahun(){
+	function convertPDFByBulanTanpaTahun()
+	{
 		$doc = $this->input->get('doc');
 		$statusc = $this->input->get('status');
 		$bulan = $this->input->get('bulan');
@@ -334,11 +315,10 @@ class Pemesanan extends CI_Controller
 		$x['awal'] = $awal;
 		$x['akhir'] = $akhir;
 
-		if($statusc==0){
-			if($doc == 1){
+		if ($statusc == 0) {
+			if ($doc == 1) {
 				$x['title'] = "Seluruh Pemesanan";
-			}
-			else if($doc == 2) {
+			} else if ($doc == 2) {
 				$x['title'] = "Seluruh Transaksi";
 			}
 			$x['stts'] = "pperbulantanpatahun";
@@ -348,13 +328,11 @@ class Pemesanan extends CI_Controller
 			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananByBulanTanpaTahun($bulan,$awal, $akhir);
-		}
-		else if($statusc==1){
-			if($doc == 1){
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananByBulanTanpaTahun($bulan, $awal, $akhir);
+		} else if ($statusc == 1) {
+			if ($doc == 1) {
 				$x['title'] = "Pemesanan Customer";
-			}
-			else if($doc == 2) {
+			} else if ($doc == 2) {
 				$x['title'] = "Transaksi Customer";
 			}
 			$x['stts'] = "pperbulantanpatahun";
@@ -364,13 +342,11 @@ class Pemesanan extends CI_Controller
 			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByBulanTanpaTahun($bulan,$awal, $akhir);
-			}
-		else if($statusc==2){
-			if($doc == 1){
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByBulanTanpaTahun($bulan, $awal, $akhir);
+		} else if ($statusc == 2) {
+			if ($doc == 1) {
 				$x['title'] = "Pemesanan Reseller";
-			}
-			else if($doc == 2) {
+			} else if ($doc == 2) {
 				$x['title'] = "Transaksi Reseller";
 			}
 			$x['stts'] = "pperbulantanpatahun";
@@ -380,13 +356,11 @@ class Pemesanan extends CI_Controller
 			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByBulanTanpaTahun($bulan,$awal, $akhir);
-		}
-		else if($statusc==3){
-			if($doc == 1){
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByBulanTanpaTahun($bulan, $awal, $akhir);
+		} else if ($statusc == 3) {
+			if ($doc == 1) {
 				$x['title'] = "Pemesanan Produksi";
-			}
-			else if($doc == 2) {
+			} else if ($doc == 2) {
 				$x['title'] = "Transaksi Produksi";
 			}
 			$x['stts'] = "pperbulantanpatahun";
@@ -396,17 +370,18 @@ class Pemesanan extends CI_Controller
 			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByBulanTanpaTahun($bulan,$awal, $akhir);
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByBulanTanpaTahun($bulan, $awal, $akhir);
 		}
 		$this->pdf->setPaper('legal', 'landscape');
-			$this->pdf->filename = "laporan_pdf.pdf";
-			if($doc==2)
+		$this->pdf->filename = "laporan_pdf.pdf";
+		if ($doc == 2)
 			$this->pdf->load_view('admin/laporan_pdf', $x);
-			elseif($doc==1)
+		elseif ($doc == 1)
 			$this->pdf->load_view('admin/laporanP_pdf', $x);
 	}
 
-	function convertPDFPerTanggal(){
+	function convertPDFPerTanggal()
+	{
 		$doc = $this->input->get('doc');
 		$statusc = $this->input->get('status');
 		$start = $this->input->post('start_date');
@@ -414,12 +389,11 @@ class Pemesanan extends CI_Controller
 		$x['numstat'] = $statusc;
 		$x['start'] = $start;
 		$x['end'] = $end;
-		
-		if($statusc==0){
-			if($doc == 1){
+
+		if ($statusc == 0) {
+			if ($doc == 1) {
 				$x['title'] = "Seluruh Pemesanan";
-			}
-			else if($doc == 2) {
+			} else if ($doc == 2) {
 				$x['title'] = "Seluruh Transaksi";
 			}
 			$x['stts'] = "ppertanggal";
@@ -430,12 +404,10 @@ class Pemesanan extends CI_Controller
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananByTanggal($start, $end);
-		}
-		else if($statusc==1){
-			if($doc == 1){
+		} else if ($statusc == 1) {
+			if ($doc == 1) {
 				$x['title'] = "Pemesanan Customer";
-			}
-			else if($doc == 2) {
+			} else if ($doc == 2) {
 				$x['title'] = "Transaksi Customer";
 			}
 			$x['stts'] = "ppertanggal";
@@ -446,12 +418,10 @@ class Pemesanan extends CI_Controller
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByTanggal($start, $end);
-		}
-		else if($statusc==2){
-			if($doc == 1){
+		} else if ($statusc == 2) {
+			if ($doc == 1) {
 				$x['title'] = "Pemesanan Reseller";
-			}
-			else if($doc == 2) {
+			} else if ($doc == 2) {
 				$x['title'] = "Transaksi Reseller";
 			}
 			$x['stts'] = "ppertanggal";
@@ -462,12 +432,10 @@ class Pemesanan extends CI_Controller
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByTanggal($start, $end);
-		}
-		else if($statusc==3){
-			if($doc == 1){
+		} else if ($statusc == 3) {
+			if ($doc == 1) {
 				$x['title'] = "Pemesanan Produksi";
-			}
-			else if($doc == 2) {
+			} else if ($doc == 2) {
 				$x['title'] = "Transaksi Produksi";
 			}
 			$x['stts'] = "ppertanggal";
@@ -480,95 +448,88 @@ class Pemesanan extends CI_Controller
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByTanggal($start, $end);
 		}
 		$this->pdf->setPaper('legal', 'landscape');
-			$this->pdf->filename = "laporan_pdf.pdf";
-			if($doc==2)
+		$this->pdf->filename = "laporan_pdf.pdf";
+		if ($doc == 2)
 			$this->pdf->load_view('admin/laporan_pdf', $x);
-			elseif($doc==1)
+		elseif ($doc == 1)
 			$this->pdf->load_view('admin/laporanP_pdf', $x);
 	}
-	
 
-	function convertWord(){
+
+	function convertWord()
+	{
 		$doc = $this->input->get('doc');
 		$statusc = $this->input->get('status');
 		$x['numstat'] = $statusc;
-			if($statusc==0){
-				if($doc == 1){
-					$x['title'] = "Seluruh Pemesanan";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Seluruh Transaksi";
-				}
-				$x['stts'] = "wAll";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesanan();
+		if ($statusc == 0) {
+			if ($doc == 1) {
+				$x['title'] = "Seluruh Pemesanan";
+			} else if ($doc == 2) {
+				$x['title'] = "Seluruh Transaksi";
 			}
-			else if($statusc==1){
-				if($doc == 1){
-					$x['title'] = "Seluruh Pemesanan Customer";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Seluruh Transaksi Customer";
-				}
-				$x['stts'] = "wAll";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomer();
+			$x['stts'] = "wAll";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesanan();
+		} else if ($statusc == 1) {
+			if ($doc == 1) {
+				$x['title'] = "Seluruh Pemesanan Customer";
+			} else if ($doc == 2) {
+				$x['title'] = "Seluruh Transaksi Customer";
 			}
-			else if($statusc==2){
-				if($doc == 1){
-					$x['title'] = "Seluruh Pemesanan Reseller";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Seluruh Transaksi Reseller";
-				}
-				$x['stts'] = "wAll";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananreseller();
+			$x['stts'] = "wAll";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomer();
+		} else if ($statusc == 2) {
+			if ($doc == 1) {
+				$x['title'] = "Seluruh Pemesanan Reseller";
+			} else if ($doc == 2) {
+				$x['title'] = "Seluruh Transaksi Reseller";
 			}
-			else if($statusc==3){
-				if($doc == 1){
-					$x['title'] = "Seluruh Pemesanan Produksi";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Seluruh Transaksi Produksi";
-				}
-				$x['stts'] = "wAll";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananproduksi();
+			$x['stts'] = "wAll";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananreseller();
+		} else if ($statusc == 3) {
+			if ($doc == 1) {
+				$x['title'] = "Seluruh Pemesanan Produksi";
+			} else if ($doc == 2) {
+				$x['title'] = "Seluruh Transaksi Produksi";
 			}
-			if($doc==2)
-				$this->load->view('admin/laporan_word', $x);
-				elseif($doc==1)
-				$this->load->view('admin/laporanP_word', $x);
-		
+			$x['stts'] = "wAll";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananproduksi();
+		}
+		if ($doc == 2)
+			$this->load->view('admin/laporan_word', $x);
+		elseif ($doc == 1)
+			$this->load->view('admin/laporanP_word', $x);
 	}
 
-	function convertWordPBerjalan(){
+	function convertWordPBerjalan()
+	{
 		$doc = $this->input->get('doc');
-		if($doc == 1){
+		if ($doc == 1) {
 			$x['title'] = "Pemesanan Berjalan";
-		}
-		else if($doc == 2) {
+		} else if ($doc == 2) {
 			$x['title'] = "Transaksi Berjalan";
 		}
 		$x['stts'] = "wTransaksi";
@@ -579,580 +540,155 @@ class Pemesanan extends CI_Controller
 		$x['produksi'] = $this->M_barang->getdataProduksi();
 		$x['reseller'] = $this->M_barang->getAllBarangR();
 		$x['datapesanan'] = $this->M_pemesanan->getPemesananKonfirmasi();
-		if ($doc==2)
-		$this->load->view('admin/laporan_word', $x);
-		else
-		$this->load->view('admin/laporanP_word', $x);
-
-	}
-
-	function convertWordPerhari(){
-		$doc = $this->input->get('doc');
-		$statusc = $this->input->get('status');
-		$x['numstat'] = $statusc;
-			if($statusc==0){
-				if($doc == 1){
-					$x['title'] = "Seluruh Pemesanan";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Seluruh Transaksi";
-				}
-				$x['stts'] = "wperhari";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananCurdate();
-			}
-			else if($statusc==1){
-				if($doc == 1){
-					$x['title'] = "Pemesanan Customer";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Transaksi Customer";
-				}
-				$x['stts'] = "wperhari";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerCurdate();
-			}
-			else if($statusc==2){
-				if($doc == 1){
-					$x['title'] = "Pemesanan Reseller";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Transaksi Reseller";
-				}
-				$x['stts'] = "wperhari";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerCurdate();
-			}
-			else if($statusc==3){
-
-				if($doc == 1){
-					$x['title'] = "Pemesanan Produksi";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Transaksi Produksi";
-				}
-				$x['stts'] = "wperhari";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiCurdate();
-			}
-			if($doc==2)
-				$this->load->view('admin/laporan_word', $x);
-				elseif($doc==1)
-				$this->load->view('admin/laporanP_word', $x);
-		
-	}
-
-	function convertWordPerbulan(){
-		$doc = $this->input->get('doc');
-			$statusc = $this->input->get('status');
-			$bulan = $this->input->get('bulan');
-			$tahun = $this->input->get('tahun');
-			$x['numstat'] = $statusc;
-			$x['bulan'] = $bulan;
-			$x['tahun'] = $tahun;
-			if($statusc==0){
-				if($doc == 1){
-					$x['title'] = "Seluruh Pemesanan";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Seluruh Transaksi";
-				}
-				$x['stts'] = "wperbulan";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananByBulan($bulan,$tahun);
-			}
-			else if($statusc==1){
-				if($doc == 1){
-					$x['title'] = "Pemesanan Customer";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Transaksi Customer";
-				}
-				$x['stts'] = "wperbulan";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByBulan($bulan,$tahun);
-				}
-			else if($statusc==2){
-				if($doc == 1){
-					$x['title'] = "Pemesanan Reseller";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Transaksi Reseller";
-				}
-				$x['stts'] = "wperbulan";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByBulan($bulan, $tahun);
-			}
-			else if($statusc==3){
-				if($doc == 1){
-					$x['title'] = "Pemesanan Produksi";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Transaksi Produksi";
-				}
-				$x['stts'] = "wperbulan";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByBulan($bulan, $tahun);
-			}
-			if($doc==2)
-				$this->load->view('admin/laporan_word', $x);
-				elseif($doc==1)
-				$this->load->view('admin/laporanP_word', $x);
-	}
-
-	function ConvertWordByBulanTanpaTahun(){
-		$doc = $this->input->get('doc');
-		$statusc = $this->input->get('status');
-		$bulan = $this->input->get('bulan');
-		$awal = $this->input->post('start_year');
-		$akhir = $this->input->post('end_year');
-		$x['numstat'] = $statusc;
-		$x['bulan'] = $bulan;
-		$x['awal'] = $awal;
-		$x['akhir'] = $akhir;
-		
-		if($statusc==0){
-			if($doc == 1){
-				$x['title'] = "Seluruh Pemesanan";
-			}
-			else if($doc == 2) {
-				$x['title'] = "Seluruh Transaksi";
-			}
-			$x['stts'] = "wperbulantanpatahun";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananByBulanTanpaTahun($bulan, $awal, $akhir);
-		}
-		else if($statusc==1){
-			if($doc == 1){
-				$x['title'] = "Pemesanan Customer";
-			}
-			else if($doc == 2) {
-				$x['title'] = "Transaksi Customer";
-			}
-			$x['stts'] = "wperbulantanpatahun";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByBulanTanpaTahun($bulan, $awal, $akhir);
-		}
-		else if($statusc==2){
-			if($doc == 1){
-				$x['title'] = "Pemesanan Reseller";
-			}
-			else if($doc == 2) {
-				$x['title'] = "Transaksi Reseller";
-			}
-			$x['stts'] = "wperbulantanpatahun";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByBulanTanpaTahun($bulan, $awal, $akhir);
-		}
-		else if($statusc==3){
-			if($doc == 1){
-				$x['title'] = "Pemesanan Produksi";
-			}
-			else if($doc == 2) {
-				$x['title'] = "Transaksi Produksi";
-			}
-			$x['stts'] = "wperbulantanpatahun";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByBulanTanpaTahun($bulan, $awal, $akhir);
-		}
-		if($doc==2)
-				$this->load->view('admin/laporan_word', $x);
-				elseif($doc==1)
-				$this->load->view('admin/laporanP_word', $x);
-	}
-
-	function convertWordPertanggal(){
-		$doc = $this->input->get('doc');
-		$statusc = $this->input->get('status');
-			$start = $this->input->post('start_date');
-			$end = $this->input->post('end_date');
-			$x['numstat'] = $statusc;
-			$x['start'] = $start;
-			$x['end'] = $end;
-			
-			if($statusc==0){
-				if($doc == 1){
-					$x['title'] = "Seluruh Pemesanan";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Seluruh Transaksi";
-				}
-				$x['stts'] = "wpertanggal";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananByTanggal($start, $end);
-			}
-			else if($statusc==1){
-				if($doc == 1){
-					$x['title'] = "Pemesanan Customer";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Transaksi Customer";
-				}
-				$x['stts'] = "wpertanggal";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByTanggal($start, $end);
-			}
-			else if($statusc==2){
-				if($doc == 1){
-					$x['title'] = "Pemesanan Reseller";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Transaksi Reseller";
-				}
-				$x['stts'] = "wpertanggal";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByTanggal($start, $end);
-			}
-			else if($statusc==3){
-				if($doc == 1){
-					$x['title'] = "Pemesanan Produksi";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Transaksi Produksi";
-				}
-				$x['stts'] = "wpertanggal";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByTanggal($start, $end);
-			}
-			if($doc==2)
+		if ($doc == 2)
 			$this->load->view('admin/laporan_word', $x);
-			elseif($doc==1)
+		else
 			$this->load->view('admin/laporanP_word', $x);
 	}
 
-	function convertExcel(){
+	function convertWordPerhari()
+	{
 		$doc = $this->input->get('doc');
 		$statusc = $this->input->get('status');
 		$x['numstat'] = $statusc;
-			if($statusc==0){
-				if($doc == 1){
-					$x['title'] = "Seluruh Pemesanan";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Seluruh Transaksi";
-				}
-				$x['stts'] = "eAll";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesanan();
-				
+		if ($statusc == 0) {
+			if ($doc == 1) {
+				$x['title'] = "Seluruh Pemesanan";
+			} else if ($doc == 2) {
+				$x['title'] = "Seluruh Transaksi";
 			}
-			else if($statusc==1){
-				if($doc == 1){
-					$x['title'] = "Seluruh Pemesanan Customer";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Seluruh Transaksi Customer";
-				}
-				$x['stts'] = "eAll";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomer();
+			$x['stts'] = "wperhari";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananCurdate();
+		} else if ($statusc == 1) {
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Customer";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Customer";
 			}
-			else if($statusc==2){
-				if($doc == 1){
-					$x['title'] = "Seluruh Pemesanan Reseller";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Seluruh Transaksi Reseller";
-				}
-				$x['stts'] = "eAll";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananreseller();
+			$x['stts'] = "wperhari";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerCurdate();
+		} else if ($statusc == 2) {
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Reseller";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Reseller";
 			}
-			else if($statusc==3){
-				if($doc == 1){
-					$x['title'] = "Seluruh Pemesanan Produksi";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Seluruh Transaksi Produksi";
-				}
-				$x['stts'] = "eAll";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananproduksi();
+			$x['stts'] = "wperhari";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerCurdate();
+		} else if ($statusc == 3) {
+
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Produksi";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Produksi";
 			}
-			if($doc==2)
-				$this->load->view('admin/laporan_excel', $x);
-				elseif($doc==1)
-				$this->load->view('admin/laporanP_excel', $x);
-		
+			$x['stts'] = "wperhari";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiCurdate();
+		}
+		if ($doc == 2)
+			$this->load->view('admin/laporan_word', $x);
+		elseif ($doc == 1)
+			$this->load->view('admin/laporanP_word', $x);
 	}
 
-	function convertExcelPBerjalan(){
-		$doc = $this->input->get('doc');
-				if($doc == 1){
-					$x['title'] = "Pemesanan Berjalan";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Transaksi Berjalan";
-				}
-				$x['stts'] = "eTransaksi";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananKonfirmasi();
-				if($doc==2)
-				$this->load->view('admin/laporan_excel', $x);
-				else
-				$this->load->view('admin/laporanP_excel', $x);
-
-			}
-
-	function convertExcelPerhari(){
+	function convertWordPerbulan()
+	{
 		$doc = $this->input->get('doc');
 		$statusc = $this->input->get('status');
+		$bulan = $this->input->get('bulan');
+		$tahun = $this->input->get('tahun');
 		$x['numstat'] = $statusc;
-			if($statusc==0){
-				if($doc == 1){
-					$x['title'] = "Seluruh Pemesanan";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Seluruh Transaksi";
-				}
-				$x['stts'] = "eperhari";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananCurdate();
+		$x['bulan'] = $bulan;
+		$x['tahun'] = $tahun;
+		if ($statusc == 0) {
+			if ($doc == 1) {
+				$x['title'] = "Seluruh Pemesanan";
+			} else if ($doc == 2) {
+				$x['title'] = "Seluruh Transaksi";
 			}
-			else if($statusc==1){
-				if($doc == 1){
-					$x['title'] = "Pemesanan Customer";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Transaksi Customer";
-				}
-				$x['stts'] = "eperhari";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerCurdate();
+			$x['stts'] = "wperbulan";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananByBulan($bulan, $tahun);
+		} else if ($statusc == 1) {
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Customer";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Customer";
 			}
-			else if($statusc==2){
-				if($doc == 1){
-					$x['title'] = "Pemesanan Reseller";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Transaksi Reseller";
-				}
-				$x['stts'] = "eperhari";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerCurdate();
+			$x['stts'] = "wperbulan";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByBulan($bulan, $tahun);
+		} else if ($statusc == 2) {
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Reseller";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Reseller";
 			}
-			else if($statusc==3){
-				if($doc == 1){
-					$x['title'] = "Pemesanan Produksi";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Transaksi Produksi";
-				}
-				$x['stts'] = "eperhari";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiCurdate();
+			$x['stts'] = "wperbulan";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByBulan($bulan, $tahun);
+		} else if ($statusc == 3) {
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Produksi";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Produksi";
 			}
-			if($doc==2)
-				$this->load->view('admin/laporan_excel', $x);
-			elseif($doc==1)
-				$this->load->view('admin/laporanP_excel', $x);
-					
-	}	
-
-	function convertExcelPerbulan(){
-		$doc = $this->input->get('doc');
-			$statusc = $this->input->get('status');
-			$bulan = $this->input->get('bulan');
-			$tahun = $this->input->get('tahun');
-			$x['numstat'] = $statusc;
-			$x['bulan'] = $bulan;
-			$x['tahun'] = $tahun;
-			if($statusc==0){
-				if($doc == 1){
-					$x['title'] = "Seluruh Pemesanan";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Seluruh Transaksi";
-				}
-				$x['stts'] = "eperbulan";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananByBulan($bulan,$tahun);
-			}
-			else if($statusc==1){
-				if($doc == 1){
-					$x['title'] = "Pemesanan Customer";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Transaksi Customer";
-				}
-				$x['stts'] = "eperbulan";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByBulan($bulan,$tahun);
-				}
-			else if($statusc==2){
-				if($doc == 1){
-					$x['title'] = "Pemesanan Reseller";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Transaksi Reseller";
-				}
-				$x['stts'] = "eperbulan";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByBulan($bulan, $tahun);
-			}
-			else if($statusc==3){
-				if($doc == 1){
-					$x['title'] = "Pemesanan Produksi";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Transaksi Produksi";
-				}
-				$x['stts'] = "eperbulan";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByBulan($bulan, $tahun);
-			}
-			if($doc==2)
-				$this->load->view('admin/laporan_excel', $x);
-				elseif($doc==1)
-				$this->load->view('admin/laporanP_excel', $x);
+			$x['stts'] = "wperbulan";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByBulan($bulan, $tahun);
+		}
+		if ($doc == 2)
+			$this->load->view('admin/laporan_word', $x);
+		elseif ($doc == 1)
+			$this->load->view('admin/laporanP_word', $x);
 	}
 
-	function ConvertExcelByBulanTanpaTahun(){
+	function ConvertWordByBulanTanpaTahun()
+	{
 		$doc = $this->input->get('doc');
 		$statusc = $this->input->get('status');
 		$bulan = $this->input->get('bulan');
@@ -1162,162 +698,169 @@ class Pemesanan extends CI_Controller
 		$x['bulan'] = $bulan;
 		$x['awal'] = $awal;
 		$x['akhir'] = $akhir;
-		
-		if($statusc==0){
-			if($doc == 1){
+
+		if ($statusc == 0) {
+			if ($doc == 1) {
 				$x['title'] = "Seluruh Pemesanan";
-			}
-			else if($doc == 2) {
+			} else if ($doc == 2) {
 				$x['title'] = "Seluruh Transaksi";
 			}
-			$x['stts'] = "eperbulantanpatahun";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['stts'] = "wperbulantanpatahun";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananByBulanTanpaTahun($bulan, $awal, $akhir);
-		}
-		else if($statusc==1){
-			if($doc == 1){
+		} else if ($statusc == 1) {
+			if ($doc == 1) {
 				$x['title'] = "Pemesanan Customer";
-			}
-			else if($doc == 2) {
+			} else if ($doc == 2) {
 				$x['title'] = "Transaksi Customer";
 			}
-			$x['stts'] = "eperbulantanpatahun";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['stts'] = "wperbulantanpatahun";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByBulanTanpaTahun($bulan, $awal, $akhir);
-		}
-		else if($statusc==2){
-			if($doc == 1){
+		} else if ($statusc == 2) {
+			if ($doc == 1) {
 				$x['title'] = "Pemesanan Reseller";
-			}
-			else if($doc == 2) {
+			} else if ($doc == 2) {
 				$x['title'] = "Transaksi Reseller";
 			}
-			$x['stts'] = "eperbulantanpatahun";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['stts'] = "wperbulantanpatahun";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByBulanTanpaTahun($bulan, $awal, $akhir);
-		}
-		else if($statusc==3){
-			if($doc == 1){
+		} else if ($statusc == 3) {
+			if ($doc == 1) {
 				$x['title'] = "Pemesanan Produksi";
-			}
-			else if($doc == 2) {
+			} else if ($doc == 2) {
 				$x['title'] = "Transaksi Produksi";
 			}
-			$x['stts'] = "eperbulantanpatahun";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['stts'] = "wperbulantanpatahun";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByBulanTanpaTahun($bulan, $awal, $akhir);
 		}
-		if($doc==2)
-				$this->load->view('admin/laporan_excel', $x);
-				elseif($doc==1)
-				$this->load->view('admin/laporanP_excel', $x);
+		if ($doc == 2)
+			$this->load->view('admin/laporan_word', $x);
+		elseif ($doc == 1)
+			$this->load->view('admin/laporanP_word', $x);
 	}
 
-	function convertExcelByTanggal(){
+	function convertWordPertanggal()
+	{
 		$doc = $this->input->get('doc');
 		$statusc = $this->input->get('status');
-			$start = $this->input->post('start_date');
-			$end = $this->input->post('end_date');
-			$x['numstat'] = $statusc;
-			$x['start'] = $start;
-			$x['end'] = $end;
-			
-			if($statusc==0){
-				if($doc == 1){
-					$x['title'] = "Seluruh Pemesanan";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Seluruh Transaksi";
-				}
-				$x['stts'] = "epertanggal";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananByTanggal($start, $end);
+		$start = $this->input->post('start_date');
+		$end = $this->input->post('end_date');
+		$x['numstat'] = $statusc;
+		$x['start'] = $start;
+		$x['end'] = $end;
+
+		if ($statusc == 0) {
+			if ($doc == 1) {
+				$x['title'] = "Seluruh Pemesanan";
+			} else if ($doc == 2) {
+				$x['title'] = "Seluruh Transaksi";
 			}
-			else if($statusc==1){
-				if($doc == 1){
-					$x['title'] = "Pemesanan Customer";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Transaksi Customer";
-				}
-				$x['stts'] = "epertanggal";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByTanggal($start, $end);
+			$x['stts'] = "wpertanggal";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananByTanggal($start, $end);
+		} else if ($statusc == 1) {
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Customer";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Customer";
 			}
-			else if($statusc==2){
-				if($doc == 1){
-					$x['title'] = "Pemesanan Reseller";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Transaksi Reseller";
-				}
-				$x['stts'] = "epertanggal";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByTanggal($start, $end);
-	
+			$x['stts'] = "wpertanggal";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByTanggal($start, $end);
+		} else if ($statusc == 2) {
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Reseller";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Reseller";
 			}
-			else if($statusc==3){
-				if($doc == 1){
-					$x['title'] = "Pemesanan Produksi";
-				}
-				else if($doc == 2) {
-					$x['title'] = "Transaksi Produksi";
-				}
-				$x['stts'] = "epertanggal";
-				$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-				$x['kurir'] = $this->M_pemesanan->getAllkurir();
-				$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-				$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-				$x['produksi'] = $this->M_barang->getdataProduksi();
-				$x['reseller'] = $this->M_barang->getAllBarangR();
-				$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByTanggal($start, $end);
+			$x['stts'] = "wpertanggal";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByTanggal($start, $end);
+		} else if ($statusc == 3) {
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Produksi";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Produksi";
 			}
-			if($doc==2)
-			$this->load->view('admin/laporan_excel', $x);
-			elseif($doc==1)
-			$this->load->view('admin/laporanP_excel', $x);
+			$x['stts'] = "wpertanggal";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByTanggal($start, $end);
+		}
+		if ($doc == 2)
+			$this->load->view('admin/laporan_word', $x);
+		elseif ($doc == 1)
+			$this->load->view('admin/laporanP_word', $x);
 	}
 
-
-
-	function customer()
+	function convertExcel()
 	{
-			$y['title'] = "Pemesanan";
+		$doc = $this->input->get('doc');
+		$statusc = $this->input->get('status');
+		$x['numstat'] = $statusc;
+		if ($statusc == 0) {
+			if ($doc == 1) {
+				$x['title'] = "Seluruh Pemesanan";
+			} else if ($doc == 2) {
+				$x['title'] = "Seluruh Transaksi";
+			}
+			$x['stts'] = "eAll";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesanan();
+		} else if ($statusc == 1) {
+			if ($doc == 1) {
+				$x['title'] = "Seluruh Pemesanan Customer";
+			} else if ($doc == 2) {
+				$x['title'] = "Seluruh Transaksi Customer";
+			}
+			$x['stts'] = "eAll";
 			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 			$x['kurir'] = $this->M_pemesanan->getAllkurir();
 			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
@@ -1325,14 +868,370 @@ class Pemesanan extends CI_Controller
 			$x['produksi'] = $this->M_barang->getdataProduksi();
 			$x['reseller'] = $this->M_barang->getAllBarangR();
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomer();
-			$this->load->view('v_header', $y);
-			if($this->session->userdata('akses') == 2){
-				$this->load->view('admin/v_sidebar');
+		} else if ($statusc == 2) {
+			if ($doc == 1) {
+				$x['title'] = "Seluruh Pemesanan Reseller";
+			} else if ($doc == 2) {
+				$x['title'] = "Seluruh Transaksi Reseller";
 			}
-			else if($this->session->userdata('akses') == 1){
-				$this->load->view('owner/v_sidebar');
+			$x['stts'] = "eAll";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananreseller();
+		} else if ($statusc == 3) {
+			if ($doc == 1) {
+				$x['title'] = "Seluruh Pemesanan Produksi";
+			} else if ($doc == 2) {
+				$x['title'] = "Seluruh Transaksi Produksi";
 			}
-			$this->load->view('admin/v_pemesanan_customer', $x);
+			$x['stts'] = "eAll";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananproduksi();
+		}
+		if ($doc == 2)
+			$this->load->view('admin/laporan_excel', $x);
+		elseif ($doc == 1)
+			$this->load->view('admin/laporanP_excel', $x);
+	}
+
+	function convertExcelPBerjalan()
+	{
+		$doc = $this->input->get('doc');
+		if ($doc == 1) {
+			$x['title'] = "Pemesanan Berjalan";
+		} else if ($doc == 2) {
+			$x['title'] = "Transaksi Berjalan";
+		}
+		$x['stts'] = "eTransaksi";
+		$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+		$x['kurir'] = $this->M_pemesanan->getAllkurir();
+		$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+		$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+		$x['produksi'] = $this->M_barang->getdataProduksi();
+		$x['reseller'] = $this->M_barang->getAllBarangR();
+		$x['datapesanan'] = $this->M_pemesanan->getPemesananKonfirmasi();
+		if ($doc == 2)
+			$this->load->view('admin/laporan_excel', $x);
+		else
+			$this->load->view('admin/laporanP_excel', $x);
+	}
+
+	function convertExcelPerhari()
+	{
+		$doc = $this->input->get('doc');
+		$statusc = $this->input->get('status');
+		$x['numstat'] = $statusc;
+		if ($statusc == 0) {
+			if ($doc == 1) {
+				$x['title'] = "Seluruh Pemesanan";
+			} else if ($doc == 2) {
+				$x['title'] = "Seluruh Transaksi";
+			}
+			$x['stts'] = "eperhari";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananCurdate();
+		} else if ($statusc == 1) {
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Customer";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Customer";
+			}
+			$x['stts'] = "eperhari";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerCurdate();
+		} else if ($statusc == 2) {
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Reseller";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Reseller";
+			}
+			$x['stts'] = "eperhari";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerCurdate();
+		} else if ($statusc == 3) {
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Produksi";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Produksi";
+			}
+			$x['stts'] = "eperhari";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiCurdate();
+		}
+		if ($doc == 2)
+			$this->load->view('admin/laporan_excel', $x);
+		elseif ($doc == 1)
+			$this->load->view('admin/laporanP_excel', $x);
+	}
+
+	function convertExcelPerbulan()
+	{
+		$doc = $this->input->get('doc');
+		$statusc = $this->input->get('status');
+		$bulan = $this->input->get('bulan');
+		$tahun = $this->input->get('tahun');
+		$x['numstat'] = $statusc;
+		$x['bulan'] = $bulan;
+		$x['tahun'] = $tahun;
+		if ($statusc == 0) {
+			if ($doc == 1) {
+				$x['title'] = "Seluruh Pemesanan";
+			} else if ($doc == 2) {
+				$x['title'] = "Seluruh Transaksi";
+			}
+			$x['stts'] = "eperbulan";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananByBulan($bulan, $tahun);
+		} else if ($statusc == 1) {
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Customer";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Customer";
+			}
+			$x['stts'] = "eperbulan";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByBulan($bulan, $tahun);
+		} else if ($statusc == 2) {
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Reseller";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Reseller";
+			}
+			$x['stts'] = "eperbulan";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByBulan($bulan, $tahun);
+		} else if ($statusc == 3) {
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Produksi";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Produksi";
+			}
+			$x['stts'] = "eperbulan";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByBulan($bulan, $tahun);
+		}
+		if ($doc == 2)
+			$this->load->view('admin/laporan_excel', $x);
+		elseif ($doc == 1)
+			$this->load->view('admin/laporanP_excel', $x);
+	}
+
+	function ConvertExcelByBulanTanpaTahun()
+	{
+		$doc = $this->input->get('doc');
+		$statusc = $this->input->get('status');
+		$bulan = $this->input->get('bulan');
+		$awal = $this->input->post('start_year');
+		$akhir = $this->input->post('end_year');
+		$x['numstat'] = $statusc;
+		$x['bulan'] = $bulan;
+		$x['awal'] = $awal;
+		$x['akhir'] = $akhir;
+
+		if ($statusc == 0) {
+			if ($doc == 1) {
+				$x['title'] = "Seluruh Pemesanan";
+			} else if ($doc == 2) {
+				$x['title'] = "Seluruh Transaksi";
+			}
+			$x['stts'] = "eperbulantanpatahun";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananByBulanTanpaTahun($bulan, $awal, $akhir);
+		} else if ($statusc == 1) {
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Customer";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Customer";
+			}
+			$x['stts'] = "eperbulantanpatahun";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByBulanTanpaTahun($bulan, $awal, $akhir);
+		} else if ($statusc == 2) {
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Reseller";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Reseller";
+			}
+			$x['stts'] = "eperbulantanpatahun";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByBulanTanpaTahun($bulan, $awal, $akhir);
+		} else if ($statusc == 3) {
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Produksi";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Produksi";
+			}
+			$x['stts'] = "eperbulantanpatahun";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByBulanTanpaTahun($bulan, $awal, $akhir);
+		}
+		if ($doc == 2)
+			$this->load->view('admin/laporan_excel', $x);
+		elseif ($doc == 1)
+			$this->load->view('admin/laporanP_excel', $x);
+	}
+
+	function convertExcelByTanggal()
+	{
+		$doc = $this->input->get('doc');
+		$statusc = $this->input->get('status');
+		$start = $this->input->post('start_date');
+		$end = $this->input->post('end_date');
+		$x['numstat'] = $statusc;
+		$x['start'] = $start;
+		$x['end'] = $end;
+
+		if ($statusc == 0) {
+			if ($doc == 1) {
+				$x['title'] = "Seluruh Pemesanan";
+			} else if ($doc == 2) {
+				$x['title'] = "Seluruh Transaksi";
+			}
+			$x['stts'] = "epertanggal";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananByTanggal($start, $end);
+		} else if ($statusc == 1) {
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Customer";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Customer";
+			}
+			$x['stts'] = "epertanggal";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomerByTanggal($start, $end);
+		} else if ($statusc == 2) {
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Reseller";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Reseller";
+			}
+			$x['stts'] = "epertanggal";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananResellerByTanggal($start, $end);
+		} else if ($statusc == 3) {
+			if ($doc == 1) {
+				$x['title'] = "Pemesanan Produksi";
+			} else if ($doc == 2) {
+				$x['title'] = "Transaksi Produksi";
+			}
+			$x['stts'] = "epertanggal";
+			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+			$x['kurir'] = $this->M_pemesanan->getAllkurir();
+			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+			$x['produksi'] = $this->M_barang->getdataProduksi();
+			$x['reseller'] = $this->M_barang->getAllBarangR();
+			$x['datapesanan'] = $this->M_pemesanan->getPemesananProduksiByTanggal($start, $end);
+		}
+		if ($doc == 2)
+			$this->load->view('admin/laporan_excel', $x);
+		elseif ($doc == 1)
+			$this->load->view('admin/laporanP_excel', $x);
+	}
+
+
+
+	function customer()
+	{
+		$y['title'] = "Pemesanan";
+		$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+		$x['kurir'] = $this->M_pemesanan->getAllkurir();
+		$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+		$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+		$x['produksi'] = $this->M_barang->getdataProduksi();
+		$x['reseller'] = $this->M_barang->getAllBarangR();
+		$x['datapesanan'] = $this->M_pemesanan->getPemesananCustomer();
+		$this->load->view('v_header', $y);
+		if ($this->session->userdata('akses') == 2) {
+			$this->load->view('admin/v_sidebar');
+		} else if ($this->session->userdata('akses') == 1) {
+			$this->load->view('owner/v_sidebar');
+		}
+		$this->load->view('admin/v_pemesanan_customer', $x);
 	}
 
 	function savepemesananCustomer()
@@ -1344,10 +1243,9 @@ class Pemesanan extends CI_Controller
 		$asal_transaksi = $this->input->post('at');
 		$kurir = $this->input->post('kurir');
 		$resi = $this->input->post('no_resi');
-		if($resi == null){
+		if ($resi == null) {
 			$resi = "-";
-		}
-		else{
+		} else {
 			$resi = $this->input->post('no_resi');
 		}
 		$username = $this->input->post('username');
@@ -1363,7 +1261,7 @@ class Pemesanan extends CI_Controller
 		$email_pemesanan = $this->input->post('email_pemesanan');
 		$note = $this->input->post('note');
 		$status = 0;
-		$pemesanan_id = $this->M_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir, $resi,$username, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
+		$pemesanan_id = $this->M_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir, $resi, $username, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
 
 
 
@@ -1379,7 +1277,7 @@ class Pemesanan extends CI_Controller
 	}
 
 	function hapus_pesananCustomer()
-	{ 
+	{
 		$pemesanan_id = $this->input->post('pemesanan_id');
 		$this->M_pemesanan->hapus_pesanan($pemesanan_id);
 		echo $this->session->set_flashdata('msg', 'hapus');
@@ -1407,23 +1305,21 @@ class Pemesanan extends CI_Controller
 
 	function reseller()
 	{
-			$y['title'] = "Pemesanan";
-			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-			$x['kurir'] = $this->M_pemesanan->getAllkurir();
-			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-			$x['produksi'] = $this->M_barang->getdataProduksi();
-			$x['reseller'] = $this->M_barang->getAllBarangR();
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananreseller();
-			$this->load->view('v_header', $y);
-			if($this->session->userdata('akses') == 2){
-				$this->load->view('admin/v_sidebar');
-			}
-			else if($this->session->userdata('akses') == 1){
-				$this->load->view('owner/v_sidebar');
-			}
-			$this->load->view('admin/v_pemesanan_reseller', $x);
-		
+		$y['title'] = "Pemesanan";
+		$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+		$x['kurir'] = $this->M_pemesanan->getAllkurir();
+		$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+		$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+		$x['produksi'] = $this->M_barang->getdataProduksi();
+		$x['reseller'] = $this->M_barang->getAllBarangR();
+		$x['datapesanan'] = $this->M_pemesanan->getPemesananreseller();
+		$this->load->view('v_header', $y);
+		if ($this->session->userdata('akses') == 2) {
+			$this->load->view('admin/v_sidebar');
+		} else if ($this->session->userdata('akses') == 1) {
+			$this->load->view('owner/v_sidebar');
+		}
+		$this->load->view('admin/v_pemesanan_reseller', $x);
 	}
 
 	function savepemesananreseller()
@@ -1435,10 +1331,9 @@ class Pemesanan extends CI_Controller
 		$asal_transaksi = $this->input->post('at');
 		$kurir = $this->input->post('kurir');
 		$resi = $this->input->post('no_resi');
-		if($resi == null){
+		if ($resi == null) {
 			$resi = "-";
-		}
-		else{
+		} else {
 			$resi = $this->input->post('no_resi');
 		}
 		$username = $this->input->post('username');
@@ -1455,7 +1350,7 @@ class Pemesanan extends CI_Controller
 		$note = $this->input->post('note');
 		$status = 0;
 		$level = 2;
-		$pemesanan_id = $this->M_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir, $resi,$username, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
+		$pemesanan_id = $this->M_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir, $resi, $username, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
 
 
 		$size = sizeof($barang_id);
@@ -1498,24 +1393,22 @@ class Pemesanan extends CI_Controller
 
 	function produksi()
 	{
-		
-			$y['title'] = "Pemesanan";
-			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-			$x['kurir'] = $this->M_pemesanan->getAllkurir();
-			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-			$x['produksi'] = $this->M_barang->getdataProduksi();
-			$x['reseller'] = $this->M_barang->getAllBarangR();
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananproduksi();
-			$this->load->view('v_header', $y);
-			if($this->session->userdata('akses') == 2){
-				$this->load->view('admin/v_sidebar');
-			}
-			else if($this->session->userdata('akses') == 1){
-				$this->load->view('owner/v_sidebar');
-			}
-			$this->load->view('admin/v_pemesanan_produksi', $x);
-		
+
+		$y['title'] = "Pemesanan";
+		$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+		$x['kurir'] = $this->M_pemesanan->getAllkurir();
+		$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+		$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+		$x['produksi'] = $this->M_barang->getdataProduksi();
+		$x['reseller'] = $this->M_barang->getAllBarangR();
+		$x['datapesanan'] = $this->M_pemesanan->getPemesananproduksi();
+		$this->load->view('v_header', $y);
+		if ($this->session->userdata('akses') == 2) {
+			$this->load->view('admin/v_sidebar');
+		} else if ($this->session->userdata('akses') == 1) {
+			$this->load->view('owner/v_sidebar');
+		}
+		$this->load->view('admin/v_pemesanan_produksi', $x);
 	}
 
 	function savepemesananproduksi()
@@ -1541,7 +1434,7 @@ class Pemesanan extends CI_Controller
 		$diskon = 0;
 		$biaya_admin = 0;
 
-		$pemesanan_id = $this->M_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir,$resi, $username, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
+		$pemesanan_id = $this->M_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir, $resi, $username, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
 
 		$size = sizeof($barang_id);
 		for ($i = 0; $i < $size; $i++) {
@@ -1585,23 +1478,21 @@ class Pemesanan extends CI_Controller
 
 	function konfirmasi_pesanan()
 	{
-			$y['title'] = "Pemesanan";
-			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-			$x['kurir'] = $this->M_pemesanan->getAllkurir();
-			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-			$x['produksi'] = $this->M_barang->getdataProduksi();
-			$x['reseller'] = $this->M_barang->getAllBarangR();
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananKonfirmasi();
-			$this->load->view('v_header', $y);
-			if($this->session->userdata('akses') == 2){
-				$this->load->view('admin/v_sidebar');
-			}
-			else if($this->session->userdata('akses') == 1){
-				$this->load->view('owner/v_sidebar');
-			}
-			$this->load->view('admin/v_pemesanan_konfirmasi_pesanan', $x);
-		
+		$y['title'] = "Pemesanan";
+		$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+		$x['kurir'] = $this->M_pemesanan->getAllkurir();
+		$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+		$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+		$x['produksi'] = $this->M_barang->getdataProduksi();
+		$x['reseller'] = $this->M_barang->getAllBarangR();
+		$x['datapesanan'] = $this->M_pemesanan->getPemesananKonfirmasi();
+		$this->load->view('v_header', $y);
+		if ($this->session->userdata('akses') == 2) {
+			$this->load->view('admin/v_sidebar');
+		} else if ($this->session->userdata('akses') == 1) {
+			$this->load->view('owner/v_sidebar');
+		}
+		$this->load->view('admin/v_pemesanan_konfirmasi_pesanan', $x);
 	}
 
 	function savepemesanankonfirmasi_pesananCustomer()
@@ -1717,7 +1608,7 @@ class Pemesanan extends CI_Controller
 		$pemesanan_id = $this->input->post('pemesanan_id');
 		$status_pemesanan = $this->input->post('status_pemesanan');
 		$jumlah = $this->input->post('jumlah');
-		
+
 		if ($status_pemesanan == 0) {
 			$status_pemesanan = 1;
 			$this->M_pemesanan->status_pesanan($pemesanan_id, $status_pemesanan);
@@ -1742,10 +1633,9 @@ class Pemesanan extends CI_Controller
 		$asal_transaksi = $this->input->post('at');
 		$kurir = $this->input->post('kurir');
 		$resi = $this->input->post('no_resi');
-		if($resi == null){
+		if ($resi == null) {
 			$resi = "-";
-		}
-		else{
+		} else {
 			$resi = $this->input->post('no_resi');
 		}
 		$username = $this->input->post('username');
@@ -1780,21 +1670,45 @@ class Pemesanan extends CI_Controller
 		$lvl = $this->input->post('lvl');
 		$level = 2;
 		$stat = $this->input->get('stat');
-		$bulan= $this->input->get('bulan');
-		switch ($bulan){
-			case 1 : $namaBulan = "Januari"; break;
-			case 2 : $namaBulan =  "Februari"; break;
-			case 3 : $namaBulan =  "Maret"; break;
-			case 4 : $namaBulan =  "April"; break;
-			case 5 : $namaBulan =  "Mei"; break;
-			case 6 : $namaBulan =  "Juni"; break;
-			case 7 : $namaBulan =  "Juli"; break;
-			case 8 : $namaBulan =  "Agustus"; break;
-			case 9 : $namaBulan =  "September"; break;
-			case 10 : $namaBulan =  "Oktober"; break;
-			case 11 : $namaBulan =  "November";break;
-			case 12 : $namaBulan =  "Desember"; break;
-		  }
+		$bulan = $this->input->get('bulan');
+		switch ($bulan) {
+			case 1:
+				$namaBulan = "Januari";
+				break;
+			case 2:
+				$namaBulan =  "Februari";
+				break;
+			case 3:
+				$namaBulan =  "Maret";
+				break;
+			case 4:
+				$namaBulan =  "April";
+				break;
+			case 5:
+				$namaBulan =  "Mei";
+				break;
+			case 6:
+				$namaBulan =  "Juni";
+				break;
+			case 7:
+				$namaBulan =  "Juli";
+				break;
+			case 8:
+				$namaBulan =  "Agustus";
+				break;
+			case 9:
+				$namaBulan =  "September";
+				break;
+			case 10:
+				$namaBulan =  "Oktober";
+				break;
+			case 11:
+				$namaBulan =  "November";
+				break;
+			case 12:
+				$namaBulan =  "Desember";
+				break;
+		}
 		$barang_id = $this->input->post('barang');
 		$qty = $this->input->post('qty');
 
@@ -1855,10 +1769,9 @@ class Pemesanan extends CI_Controller
 		$asal_transaksi = $this->input->post('at');
 		$kurir = $this->input->post('kurir');
 		$resi = $this->input->post('no_resi');
-		if($resi == null){
+		if ($resi == null) {
 			$resi = "-";
-		}
-		else{
+		} else {
 			$resi = $this->input->post('no_resi');
 		}
 		$username = $this->input->post('username');
@@ -1875,7 +1788,7 @@ class Pemesanan extends CI_Controller
 		$note = $this->input->post('note');
 		$status = 0;
 		$level = 2;
-		$pemesanan_id = $this->M_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir, $resi,$username, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
+		$pemesanan_id = $this->M_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir, $resi, $username, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
 
 
 		$size = sizeof($barang_id);
@@ -1911,7 +1824,7 @@ class Pemesanan extends CI_Controller
 		$status = 3;
 		$diskon = 0;
 		$biaya_admin = 0;
-		$pemesanan_id = $this->M_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir, $resi,$username, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
+		$pemesanan_id = $this->M_pemesanan->save_pesanan($nama_pemesan, $tanggal, $no_hp, $alamat, $level, $kurir, $resi, $username, $asal_transaksi, $metpem, $uang, $biaya_ongkir, $email_pemesanan, $note, $status, $biaya_admin, $diskon, $nama_akun_pemesan);
 
 		$size = sizeof($barang_id);
 		for ($i = 0; $i < $size; $i++) {
@@ -1927,29 +1840,66 @@ class Pemesanan extends CI_Controller
 
 	function edit_pesanan()
 	{
+		$status = $this->input->post('status');
 		$pemesanan_id = $this->input->post('pemesanan_id');
-		$nama_pemesan = $this->input->post('nama_pemesan');
-		$no_hp = $this->input->post('hp');
-		$alamat = $this->input->post('alamat');
-		$asal_transaksi = $this->input->post('at');
-		$kurir = $this->input->post('kurir');
 		$username = $this->input->post('username');
-		$resi = $this->input->post('no_resi');
-		if($resi == null){
-			$resi = "-";
-		}
-		else{
+		if ($status == 1) {
+			$nama_pemesan = $this->input->post('nama_pemesan');
+			$email = $this->input->post('email_pemesanan');
+			$no_hp = $this->input->post('hp');
+			$tanggal = $this->input->post('tanggal');
+			$alamat = $this->input->post('alamat');
+			$admin = $this->input->post('biaya_admin');
+			$disc = $this->input->post('diskon');
+			$kembalian = $this->input->post('uang');
+			$at = $this->input->post('at');
+			$kurir = $this->input->post('kurir');
 			$resi = $this->input->post('no_resi');
+			if ($resi == null) {
+				$resi = "-";
+			} else {
+				$resi = $this->input->post('no_resi');
+			}
+			$ongkir = $this->input->post('biaya_ongkir');
+			$mp = $this->input->post('mp');
+			$note = $this->input->post('note');
+			$this->M_pemesanan->edit_pesanan_customer($nama_pemesan, $email, $no_hp, $tanggal, $alamat, $admin, $disc, $kembalian, $at, $kurir, $resi, $ongkir, $mp, $note, $username, $pemesanan_id);
+		} else if ($status == 2) {
+			$nama_pemesan = $this->input->post('nama_pemesan');
+			$nama_akun_pemesan = $this->input->post('nama_akun_pemesan');
+			$email = $this->input->post('email_pemesanan');
+			$no_hp = $this->input->post('hp');
+			$tanggal = $this->input->post('tanggal');
+			$alamat = $this->input->post('alamat');
+			$admin = $this->input->post('biaya_admin');
+			$disc = $this->input->post('diskon');
+			$kembalian = $this->input->post('uang');
+			$at = $this->input->post('at');
+			$kurir = $this->input->post('kurir');
+			$resi = $this->input->post('no_resi');
+			if ($resi == null) {
+				$resi = "-";
+			} else {
+				$resi = $this->input->post('no_resi');
+			}
+			$ongkir = $this->input->post('biaya_ongkir');
+			$mp = $this->input->post('mp');
+			$note = $this->input->post('note');
+			$this->M_pemesanan->edit_pesanan_reseller($nama_pemesan, $nama_akun_pemesan, $email, $no_hp, $tanggal, $alamat, $admin, $disc, $kembalian, $at, $kurir, $resi, $ongkir, $mp, $note, $username, $pemesanan_id);
+		} else if ($status == 3) {
+			$no_hp = $this->input->post('hp');
+			$tanggal = $this->input->post('tanggal');
+			$alamat = $this->input->post('alamat');
+			$note = $this->input->post('note');
+			$this->M_pemesanan->edit_pesanan_produksi($no_hp, $tanggal, $alamat, $note, $username, $pemesanan_id);
 		}
-		$metode_pembayaran = $this->input->post('mp');
-		// $tanggal = $this->input->post('tanggal');
-		$this->M_pemesanan->edit_pesanan($pemesanan_id, $nama_pemesan, $no_hp, $alamat, $kurir, $resi,$username, $asal_transaksi, $metode_pembayaran);
 
 		echo $this->session->set_flashdata('msg', 'update');
 		redirect('admin/Pemesanan');
 	}
 
-	function edit_pesanankonfPesanan(){
+	function edit_pesanankonfPesanan()
+	{
 		$pemesanan_id = $this->input->post('pemesanan_id');
 		$nama_pemesan = $this->input->post('nama_pemesan');
 		$no_hp = $this->input->post('hp');
@@ -1958,15 +1908,14 @@ class Pemesanan extends CI_Controller
 		$kurir = $this->input->post('kurir');
 		$username = $this->input->post('username');
 		$resi = $this->input->post('no_resi');
-		if($resi == null){
+		if ($resi == null) {
 			$resi = "-";
-		}
-		else{
+		} else {
 			$resi = $this->input->post('no_resi');
 		}
 		$metode_pembayaran = $this->input->post('mp');
 		// $tanggal = $this->input->post('tanggal');
-		$this->M_pemesanan->edit_pesanan($pemesanan_id, $nama_pemesan, $no_hp, $alamat, $kurir, $resi,$username, $asal_transaksi, $metode_pembayaran);
+		$this->M_pemesanan->edit_pesanan($pemesanan_id, $nama_pemesan, $no_hp, $alamat, $kurir, $resi, $username, $asal_transaksi, $metode_pembayaran);
 
 		echo $this->session->set_flashdata('msg', 'update');
 		redirect('admin/Pemesanan/konfirmasi_pesanan');
@@ -1974,28 +1923,27 @@ class Pemesanan extends CI_Controller
 
 	function list_barang($pemesanan_id)
 	{
-		
-			$level = $this->uri->segment(5);
-			$y['title'] = "List Barang Pemesan";
-			$x['stat'] = $this->input->get('stat');
-			$x['bulan'] = $this->input->get('bulan');
-			$x['p_id'] = $pemesanan_id;
-			$x['lvl'] = $level;
-			$x['listbarang'] = $this->M_list_barang->get_list_barang($pemesanan_id);
-			$a = $this->M_list_barang->SUMLBNR($pemesanan_id)->row_array();
-			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-			$x['jumlah'] = $a['total_keseluruhan'];
-			$this->load->view('v_header', $y);
-			if($this->session->userdata('akses') == 2){
-				$this->load->view('admin/v_sidebar');
-			}
-			else if($this->session->userdata('akses') == 1){
-				$this->load->view('owner/v_sidebar');
-			}
-			$this->load->view('admin/v_list_barang', $x);
+
+		$level = $this->uri->segment(5);
+		$y['title'] = "List Barang Pemesan";
+		$x['stat'] = $this->input->get('stat');
+		$x['bulan'] = $this->input->get('bulan');
+		$x['p_id'] = $pemesanan_id;
+		$x['lvl'] = $level;
+		$x['listbarang'] = $this->M_list_barang->get_list_barang($pemesanan_id);
+		$a = $this->M_list_barang->SUMLBNR($pemesanan_id)->row_array();
+		$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+		$x['jumlah'] = $a['total_keseluruhan'];
+		$this->load->view('v_header', $y);
+		if ($this->session->userdata('akses') == 2) {
+			$this->load->view('admin/v_sidebar');
+		} else if ($this->session->userdata('akses') == 1) {
+			$this->load->view('owner/v_sidebar');
+		}
+		$this->load->view('admin/v_list_barang', $x);
 	}
 
-	function Cetak_Invoice($pemesanan_id) 
+	function Cetak_Invoice($pemesanan_id)
 	{
 		$level = $this->uri->segment(5);
 		if ($level == 1) {
@@ -2025,17 +1973,16 @@ class Pemesanan extends CI_Controller
 
 	function asal_transaksi()
 	{
-		
-			$y['title'] = "Asal Transaksi";
-			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-			$this->load->view('v_header', $y);
-			if($this->session->userdata('akses') == 2){
-				$this->load->view('admin/v_sidebar');
-			}
-			else if($this->session->userdata('akses') == 1){
-				$this->load->view('owner/v_sidebar');
-			}
-			$this->load->view('admin/v_asal_transaksi', $x);
+
+		$y['title'] = "Asal Transaksi";
+		$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+		$this->load->view('v_header', $y);
+		if ($this->session->userdata('akses') == 2) {
+			$this->load->view('admin/v_sidebar');
+		} else if ($this->session->userdata('akses') == 1) {
+			$this->load->view('owner/v_sidebar');
+		}
+		$this->load->view('admin/v_asal_transaksi', $x);
 	}
 
 	function saveAT()
@@ -2065,17 +2012,15 @@ class Pemesanan extends CI_Controller
 
 	function kurir()
 	{
-			$y['title'] = "Kurir";
-			$x['kurir'] = $this->M_pemesanan->getAllkurir();
-			$this->load->view('v_header', $y);
-			if($this->session->userdata('akses') == 2){
-				$this->load->view('admin/v_sidebar');
-			}
-			else if($this->session->userdata('akses') == 1){
-				$this->load->view('owner/v_sidebar');
-			}
-			$this->load->view('admin/v_kurir', $x);
-		
+		$y['title'] = "Kurir";
+		$x['kurir'] = $this->M_pemesanan->getAllkurir();
+		$this->load->view('v_header', $y);
+		if ($this->session->userdata('akses') == 2) {
+			$this->load->view('admin/v_sidebar');
+		} else if ($this->session->userdata('akses') == 1) {
+			$this->load->view('owner/v_sidebar');
+		}
+		$this->load->view('admin/v_kurir', $x);
 	}
 
 	function savekurir()
@@ -2105,18 +2050,16 @@ class Pemesanan extends CI_Controller
 
 	function metode_pembayaran()
 	{
-		
-			$y['title'] = "Metode Pembayaran";
-			$x['metpem'] = $this->M_pemesanan->getAllMetpem();
-			$this->load->view('v_header', $y);
-			if($this->session->userdata('akses') == 2){
-				$this->load->view('admin/v_sidebar');
-			}
-			else if($this->session->userdata('akses') == 1){
-				$this->load->view('owner/v_sidebar');
-			}
-			$this->load->view('admin/v_metode_pembayaran', $x);
-		
+
+		$y['title'] = "Metode Pembayaran";
+		$x['metpem'] = $this->M_pemesanan->getAllMetpem();
+		$this->load->view('v_header', $y);
+		if ($this->session->userdata('akses') == 2) {
+			$this->load->view('admin/v_sidebar');
+		} else if ($this->session->userdata('akses') == 1) {
+			$this->load->view('owner/v_sidebar');
+		}
+		$this->load->view('admin/v_metode_pembayaran', $x);
 	}
 
 	function saveMetodePembayaran()
@@ -2148,7 +2091,7 @@ class Pemesanan extends CI_Controller
 		$pemesanan_id = $this->input->post('pemesanan_id');
 		$status_pemesanan = $this->input->post('status_pemesanan');
 		$jumlah = $this->input->post('jumlah');
-		
+
 		if ($status_pemesanan == 0) {
 			$status_pemesanan = 1;
 			$this->M_pemesanan->status_pesanan($pemesanan_id, $status_pemesanan);
@@ -2165,8 +2108,8 @@ class Pemesanan extends CI_Controller
 
 	function statusByBulan()
 	{
-		
-	$bulan = $this->input->get('bulan');
+
+		$bulan = $this->input->get('bulan');
 		$pemesanan_id = $this->input->post('pemesanan_id');
 		$status_pemesanan = $this->input->post('status_pemesanan');
 		$jumlah = $this->input->post('jumlah');
@@ -2181,87 +2124,120 @@ class Pemesanan extends CI_Controller
 			$this->M_pemesanan->insert_uang_masuk($pemesanan_id, $jumlah);
 			$this->M_pemesanan->status_pesanan($pemesanan_id, $status_pemesanan);
 		}
-		redirect('admin/Pemesanan/viewPemesananByBulan/'.$bulan);
+		redirect('admin/Pemesanan/viewPemesananByBulan/' . $bulan);
 	}
 
-	function viewPemesananByBulan($bulan){
-		
-			switch ($bulan){
-				case 1 : $x['namaBulan'] = "Januari"; $x['tanggalAkhir'] = 31; break;
-				case 2 : $x['namaBulan'] =  "Februari"; 
-				switch(date('Y')%4) {
-					case 0 : $x['tanggalAkhir'] = 29; break;
-					default : $x['tanggalAkhir'] = 28; break;
-				}break;
-				case 3 : $x['namaBulan'] =  "Maret"; $x['tanggalAkhir'] = 31; break;
-				case 4 : $x['namaBulan'] =  "April"; $x['tanggalAkhir'] = 30; break;
-				case 5 : $x['namaBulan'] =  "Mei"; $x['tanggalAkhir'] = 31; break;
-				case 6 : $x['namaBulan'] =  "Juni"; $x['tanggalAkhir'] = 30;break;
-				case 7 : $x['namaBulan'] =  "Juli"; $x['tanggalAkhir'] = 31; break;
-				case 8 : $x['namaBulan'] =  "Agustus"; $x['tanggalAkhir'] = 31; break;
-				case 9 : $x['namaBulan'] =  "September"; $x['tanggalAkhir'] = 30;break;
-				case 10 : $x['namaBulan'] =  "Oktober"; $x['tanggalAkhir'] = 31; break;
-				case 11 : $x['namaBulan'] =  "November"; $x['tanggalAkhir'] = 30;break;
-				case 12 : $x['namaBulan'] =  "Desember"; $x['tanggalAkhir'] = 31; break;
-			  }
+	function viewPemesananByBulan($bulan)
+	{
 
-			$namaBulan = $x['namaBulan'];
-			$x['bulan'] = $bulan;
-			$y['title'] = "Pemesanan Bulan $namaBulan";
-			$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
-			$x['kurir'] = $this->M_pemesanan->getAllkurir();
-			$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
-			$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-			 $x['produksi'] = $this->M_barang->getdataProduksi();
-			$x['reseller'] = $this->M_barang->getAllBarangR();
-			$x['datapesanan'] = $this->M_pemesanan->getPemesananbyBulanSemuaTahun($bulan);
-			$this->load->view('v_header',$y);
-			if($this->session->userdata('akses') == 2){
-				$this->load->view('admin/v_sidebar');
-			}
-			else if($this->session->userdata('akses') == 1){
-				$this->load->view('owner/v_sidebar');
-			}
-			$this->load->view('admin/v_pemesanan_all_by_bulan',$x);
-		 
-	   }
-	   
-	function pemesananByTahun(){
+		switch ($bulan) {
+			case 1:
+				$x['namaBulan'] = "Januari";
+				$x['tanggalAkhir'] = 31;
+				break;
+			case 2:
+				$x['namaBulan'] =  "Februari";
+				switch (date('Y') % 4) {
+					case 0:
+						$x['tanggalAkhir'] = 29;
+						break;
+					default:
+						$x['tanggalAkhir'] = 28;
+						break;
+				}
+				break;
+			case 3:
+				$x['namaBulan'] =  "Maret";
+				$x['tanggalAkhir'] = 31;
+				break;
+			case 4:
+				$x['namaBulan'] =  "April";
+				$x['tanggalAkhir'] = 30;
+				break;
+			case 5:
+				$x['namaBulan'] =  "Mei";
+				$x['tanggalAkhir'] = 31;
+				break;
+			case 6:
+				$x['namaBulan'] =  "Juni";
+				$x['tanggalAkhir'] = 30;
+				break;
+			case 7:
+				$x['namaBulan'] =  "Juli";
+				$x['tanggalAkhir'] = 31;
+				break;
+			case 8:
+				$x['namaBulan'] =  "Agustus";
+				$x['tanggalAkhir'] = 31;
+				break;
+			case 9:
+				$x['namaBulan'] =  "September";
+				$x['tanggalAkhir'] = 30;
+				break;
+			case 10:
+				$x['namaBulan'] =  "Oktober";
+				$x['tanggalAkhir'] = 31;
+				break;
+			case 11:
+				$x['namaBulan'] =  "November";
+				$x['tanggalAkhir'] = 30;
+				break;
+			case 12:
+				$x['namaBulan'] =  "Desember";
+				$x['tanggalAkhir'] = 31;
+				break;
+		}
+
+		$namaBulan = $x['namaBulan'];
+		$x['bulan'] = $bulan;
+		$y['title'] = "Pemesanan Bulan $namaBulan";
+		$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
+		$x['kurir'] = $this->M_pemesanan->getAllkurir();
+		$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
+		$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
+		$x['produksi'] = $this->M_barang->getdataProduksi();
+		$x['reseller'] = $this->M_barang->getAllBarangR();
+		$x['datapesanan'] = $this->M_pemesanan->getPemesananbyBulanSemuaTahun($bulan);
+		$this->load->view('v_header', $y);
+		if ($this->session->userdata('akses') == 2) {
+			$this->load->view('admin/v_sidebar');
+		} else if ($this->session->userdata('akses') == 1) {
+			$this->load->view('owner/v_sidebar');
+		}
+		$this->load->view('admin/v_pemesanan_all_by_bulan', $x);
+	}
+
+	function pemesananByTahun()
+	{
 		$tahun = intVal($this->input->post('thn'));
-		$x ['stsp'] = 0;
+		$x['stsp'] = 0;
 		$x['bulan'] = 0;
 		$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 		$x['kurir'] = $this->M_pemesanan->getAllkurir();
 		$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
 		$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-		 $x['produksi'] = $this->M_barang->getdataProduksi();
+		$x['produksi'] = $this->M_barang->getdataProduksi();
 		$x['reseller'] = $this->M_barang->getAllBarangR();
-		if ($tahun == 0){
+		if ($tahun == 0) {
 			$x['datapesanan'] = $this->M_pemesanan->getPemesanan();
-		}
-		else
+		} else
 			$x['datapesanan'] = $this->M_pemesanan->getPemesananbyTahun2($tahun);
 		$this->load->view('admin/v_pemesanan_by_tahun', $x);
-		
-	   }
+	}
 
-	   function pemesananByTanggal(){
+	function pemesananByTanggal()
+	{
 		$start = $this->input->post('startt');
 		$end = $this->input->post('endd');
-		$x ['stsp'] = 0;
+		$x['stsp'] = 0;
 		$x['bulan'] = 0;
 		$x['asal_transaksi'] = $this->M_pemesanan->getAllAT();
 		$x['kurir'] = $this->M_pemesanan->getAllkurir();
 		$x['metode_pembayaran'] = $this->M_pemesanan->getAllMetpem();
 		$x['nonreseller'] = $this->M_barang->getDataNonReseller1();
-		 $x['produksi'] = $this->M_barang->getdataProduksi();
+		$x['produksi'] = $this->M_barang->getdataProduksi();
 		$x['reseller'] = $this->M_barang->getAllBarangR();
 		$x['datapesanan'] = $this->M_pemesanan->getPemesananByTanggal($start, $end);
 		$this->load->view('admin/v_pemesanan_by_tahun', $x);
-		
-	   }
-
 	}
-
-
-
+}

@@ -121,23 +121,60 @@
         }
 
         function edit_pesanan(){
- 	  		$pemesanan_id = $this->input->post('pemesanan_id');
- 	  		$nama_pemesan = $this->input->post('nama_pemesan');
-	  		$no_hp = $this->input->post('hp');
-	  		$alamat = $this->input->post('alamat');
-	  		$asal_transaksi = $this->input->post('at');
-			  $kurir = $this->input->post('kurir');
-			  $resi = $this->input->post('no_resi');
-			  if($resi == null){
-				$resi = "-";
-			}
-			else{
-				$resi = $this->input->post('no_resi');
-			}
-			$username = $this->input->post('username');
-	  		$metode_pembayaran = $this->input->post('mp');
-	  		// $tanggal = $this->input->post('tanggal');
-	  		$this->M_pemesanan->edit_pesanan($pemesanan_id,$nama_pemesan,$no_hp,$alamat,$kurir,$resi,$username,$asal_transaksi,$metode_pembayaran);
+
+				$status = $this->input->post('status');
+				$pemesanan_id = $this->input->post('pemesanan_id');
+				$username = $this->input->post('username');
+				if ($status == 1) {
+					$nama_pemesan = $this->input->post('nama_pemesan');
+					$email = $this->input->post('email_pemesanan');
+					$no_hp = $this->input->post('hp');
+					$tanggal = $this->input->post('tanggal');
+					$alamat = $this->input->post('alamat');
+					$admin = $this->input->post('biaya_admin');
+					$disc = $this->input->post('diskon');
+					$kembalian = $this->input->post('uang');
+					$at = $this->input->post('at');
+					$kurir = $this->input->post('kurir');
+					$resi = $this->input->post('no_resi');
+					if ($resi == null) {
+						$resi = "-";
+					} else {
+						$resi = $this->input->post('no_resi');
+					}
+					$ongkir = $this->input->post('biaya_ongkir');
+					$mp = $this->input->post('mp');
+					$note = $this->input->post('note');
+					$this->M_pemesanan->edit_pesanan_customer($nama_pemesan, $email, $no_hp, $tanggal, $alamat, $admin, $disc, $kembalian, $at, $kurir, $resi, $ongkir, $mp, $note, $username, $pemesanan_id);
+				} else if ($status == 2) {
+					$nama_pemesan = $this->input->post('nama_pemesan');
+					$nama_akun_pemesan = $this->input->post('nama_akun_pemesan');
+					$email = $this->input->post('email_pemesanan');
+					$no_hp = $this->input->post('hp');
+					$tanggal = $this->input->post('tanggal');
+					$alamat = $this->input->post('alamat');
+					$admin = $this->input->post('biaya_admin');
+					$disc = $this->input->post('diskon');
+					$kembalian = $this->input->post('uang');
+					$at = $this->input->post('at');
+					$kurir = $this->input->post('kurir');
+					$resi = $this->input->post('no_resi');
+					if ($resi == null) {
+						$resi = "-";
+					} else {
+						$resi = $this->input->post('no_resi');
+					}
+					$ongkir = $this->input->post('biaya_ongkir');
+					$mp = $this->input->post('mp');
+					$note = $this->input->post('note');
+					$this->M_pemesanan->edit_pesanan_reseller($nama_pemesan, $nama_akun_pemesan, $email, $no_hp, $tanggal, $alamat, $admin, $disc, $kembalian, $at, $kurir, $resi, $ongkir, $mp, $note, $username, $pemesanan_id);
+				} else if ($status == 3) {
+					$no_hp = $this->input->post('hp');
+					$tanggal = $this->input->post('tanggal');
+					$alamat = $this->input->post('alamat');
+					$note = $this->input->post('note');
+					$this->M_pemesanan->edit_pesanan_produksi($no_hp, $tanggal, $alamat, $note, $username, $pemesanan_id);
+				}
 
 	  		echo $this->session->set_flashdata('msg','update');
 	       	redirect('admin/PemesananCustomer');	

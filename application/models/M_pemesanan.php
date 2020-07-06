@@ -446,8 +446,16 @@
         	return $hasil;
 		}
 
-		function edit_pesanan($pemesanan_id,$nama,$no_hp,$alamat,$kurir_id, $resi,$username,$at_id,$mp_id){
-			$hsl = $this->db->query("UPDATE pemesanan SET pemesanan_nama='$nama',pemesanan_hp='$no_hp',pemesanan_alamat='$alamat',kurir_id='$kurir_id',no_resi='$resi',at_id='$at_id',mp_id = '$mp_id', username = '$username' WHERE pemesanan_id='$pemesanan_id'");
+		function edit_pesanan_customer($nama_pemesan, $email, $no_hp, $tanggal, $alamat, $admin,$disc, $kembalian, $at, $kurir, $resi, $ongkir, $mp, $note, $username, $pemesanan_id){
+			$hsl = $this->db->query("UPDATE pemesanan SET pemesanan_nama='$nama_pemesan', email_pemesan='$email', pemesanan_hp='$no_hp', pemesanan_tanggal='$tanggal', pemesanan_alamat='$alamat', biaya_admin='$admin',diskon='$disc', uang_kembalian='$kembalian', at_id='$at', kurir_id='$kurir',no_resi='$resi', mp_id='$mp', biaya_ongkir='$ongkir', note='$note', username = '$username' WHERE pemesanan_id='$pemesanan_id'");
+        	return $hsl;
+		}
+		function edit_pesanan_reseller($nama_pemesan, $nama_akun_pemesan, $email, $no_hp, $tanggal, $alamat, $admin,$disc, $kembalian, $at, $kurir, $resi, $ongkir, $mp, $note, $username, $pemesanan_id){
+			$hsl = $this->db->query("UPDATE pemesanan SET pemesanan_nama='$nama_pemesan', pemesanan_nama_akun='$nama_akun_pemesan', email_pemesan='$email', pemesanan_hp='$no_hp', pemesanan_tanggal='$tanggal', pemesanan_alamat='$alamat', biaya_admin='$admin',diskon='$disc', uang_kembalian='$kembalian', at_id='$at', kurir_id='$kurir',no_resi='$resi', biaya_ongkir='$ongkir', mp_id='$mp', note='$note', username = '$username' WHERE pemesanan_id='$pemesanan_id'");
+        	return $hsl;
+		}
+		function edit_pesanan_produksi($no_hp, $tanggal, $alamat, $note, $username, $pemesanan_id){
+			$hsl = $this->db->query("UPDATE pemesanan SET pemesanan_hp='$no_hp', pemesanan_tanggal='$tanggal', pemesanan_alamat='$alamat', note='$note', username = '$username' WHERE pemesanan_id='$pemesanan_id'");
         	return $hsl;
 		}
 

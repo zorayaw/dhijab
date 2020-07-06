@@ -1254,19 +1254,19 @@
 			$pemesanan_id = $i['pemesanan_id'];
 			$pemesanan_nama = $i['pemesanan_nama'];
 			$nama_akun = $i['pemesanan_nama_akun'];
-			$tanggal = $i['tanggal'];
+			$tanggal =  date("Y-m-d", strtotime($i['tanggal']));
 
 			$hp = $i['pemesanan_hp'];
 			$alamat = $i['pemesanan_alamat'];
 			$email = $i['email_pemesan'];
-			$kurir_id = $i['kurir_id'];
+			$kurir_id1 = $i['kurir_id'];
 			$resi = $i['no_resi'];
 			$ongkir = $i['biaya_ongkir'];
 			$mp_id1 = $i['mp_id'];
 			$mp_nama = $i['mp_nama'];
 			$level = $i['status_customer'];
 			$kurir_nama = $i['kurir_nama'];
-			$at_id = $i['at_id'];
+			$at_id1 = $i['at_id'];
 			$at_nama = $i['at_nama'];
 			$status = $i['status_pemesanan'];
 			$biaya_admin = $i['biaya_admin'];
@@ -1287,7 +1287,7 @@
 								<div class="row">
 									<input value="<?php echo $this->session->userdata('nama') ?>" type="hidden" name="username" required />
 									<input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>">
-									<input type="hidden" name="status" value="<?php echo $status ?>">
+									<input type="hidden" name="status" value="<?php echo $level ?>">
 									<?php if ($level != 3) : ?>
 										<div class="col-md-12">
 											<label class="control-label">Nama Pemesan</label>
@@ -1381,7 +1381,7 @@
 
 										<div class="col-md-12">
 											<label class="control-label">Biaya Ongkir</label>
-											<input class="form-control form-white" type="text" name="biaya_ongkir" required />
+											<input class="form-control form-white" type="text" name="biaya_ongkir" value="<?=$ongkir?>" required />
 										</div>
 
 										<div class="col-md-12">
