@@ -148,7 +148,18 @@ $cur_date = date("d-m-Y");?>
 </body>
 </html>
 
-<script type="text/javascript">
- window.print();
- window.close();
+<script>
+  var is_chrome = function () {
+    return Boolean(window.chrome);
+  }
+  if (is_chrome) {
+    window.print();
+    setTimeout(function () {
+      window.close();
+    }, 10000);
+    //give them 10 seconds to print, then close
+  } else {
+    window.print();
+    window.close();
+  }
 </script>
