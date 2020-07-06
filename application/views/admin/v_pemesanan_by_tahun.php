@@ -178,23 +178,32 @@
       </div>
       
       <?php
-      $no = 0;
-      foreach ($datapesanan->result_array() as $i) :
-        $no++;
-        $pemesanan_id = $i['pemesanan_id'];
-        $pemesanan_nama = $i['pemesanan_nama'];
-        $tanggal = $i['tanggal'];
-        $hp = $i['pemesanan_hp'];
-        $alamat = $i['pemesanan_alamat'];
-        $kurir_id1 = $i['kurir_id'];
-        $level = $i['status_customer'];
-        $kurir_nama = $i['kurir_nama'];
-        $resi = $i['no_resi'];
-        $at_id1 = $i['at_id'];
-        $at_nama = $i['at_nama'];
-        $mp_id1 = $i['mp_id'];
-        $mp_nama = $i['mp_nama'];
-      ?>
+        $no = 0;
+        foreach ($datapesanan->result_array() as $i) :
+            $no++;
+            $pemesanan_id = $i['pemesanan_id'];
+            $pemesanan_nama = $i['pemesanan_nama'];
+            $nama_akun = $i['pemesanan_nama_akun'];
+            $tanggal =  date("Y-m-d", strtotime($i['tanggal']));
+
+            $hp = $i['pemesanan_hp'];
+            $alamat = $i['pemesanan_alamat'];
+            $email = $i['email_pemesan'];
+            $kurir_id1 = $i['kurir_id'];
+            $resi = $i['no_resi'];
+            $ongkir = $i['biaya_ongkir'];
+            $mp_id1 = $i['mp_id'];
+            $mp_nama = $i['mp_nama'];
+            $level = $i['status_customer'];
+            $kurir_nama = $i['kurir_nama'];
+            $at_id1 = $i['at_id'];
+            $at_nama = $i['at_nama'];
+            $status = $i['status_pemesanan'];
+            $biaya_admin = $i['biaya_admin'];
+            $diskon = $i['diskon'];
+            $uang = $i['uang_kembalian'];
+            $note = $i['note'];
+        ?>
         <!-- Modal edit Data -->
         <div class="modal" tabindex="-1" role="dialog" id="editdata<?php echo $pemesanan_id ?>">
           <div class="modal-dialog modal-lg">
@@ -222,96 +231,137 @@
                               <?php } elseif($stsp==3) { ?>
                                 <form action="<?php echo base_url() ?>admin/PemesananProduksiByBulan/edit_pesanan?bulan=<?=$bulan?>" method="post" enctype="multipart/form-data">
                                 <?php }} ?>
-                <div class="modal-body p-20">
-                  <div class="row">
-                  <input value="<?php echo $this->session->userdata('nama')?>" type="hidden" name="username" required />
-                    <div class="col-md-12">
-                      <label class="control-label">Nama Pemesan</label>
-                      <input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>">
-                      <input class="form-control form-white" type="text" name="nama_pemesan" value="<?php echo $pemesanan_nama ?>" required />
-                    </div>
-                    <div class="col-md-12">
-                      <label class="control-label">No HP</label>
-                      <input class="form-control form-white" type="number" min=1 name="hp" value="<?php echo $hp ?>" required />
-                    </div>
-                    <!--                                <div class="col-md-12">
-                                                    <label class="control-label">Tanggal</label>
-                                                    <input class="form-control form-white" type="date" name="tanggal"/>
-                                                </div> -->
-                    <div class="col-md-12">
-                      <label class="control-label">Alamat</label>
-                      <input class="form-control form-white" type="text" name="alamat" value="<?php echo $alamat ?>" required />
-                    </div>
-                    <div class="col-md-12">
-                      <label class="control-label">Asal Transaksi</label>
-                      <select class="form-control" name="at" required>
-                        <option value="">Pilih</option>
-                        <?php
-                        foreach ($asal_transaksi->result_array() as $i) :
-                          $at_id = $i['at_id'];
-                          $at_nama = $i['at_nama'];
-                          $at_tanggal = $i['at_tanggal'];
-                          if ($at_id1 == $at_id) {
-                            echo "<option selected value='$at_id'>$at_nama</option>";
-                          } else {
-                            echo "<option value='$at_id'>$at_nama</option>";
-                          }
-                        endforeach;
-                        ?>
-    
-                      </select>
-                    </div>
-                    <div class="col-md-12">
-                      <label class="control-label">Kurir</label>
-                      <select class="form-control" name="kurir" required>
-                        <option selected value="">Pilih</option>
-                        <?php
-                        foreach ($kurir->result_array() as $i) :
-                          $kurir_id = $i['kurir_id'];
-                          $kurir_nama = $i['kurir_nama'];
-                          $kurir_tanggal = $i['kurir_tanggal'];
-                          if ($kurir_id1 == $kurir_id) {
-                            echo "<option selected value='$kurir_id'>$kurir_nama</option>";
-                            $kn = $kurir_id;
-                          } else {
-                            echo "<option value='$kurir_id'>$kurir_nama</option>";
-                          }
-                        endforeach;
-                        ?>
-                    </select>
-                    </div>
-    
-                    <div class="col-md-12 resi<?=$pemesanan_id?>" id="c">
-                                <br>
-                                <label class="control-label">Nomor Resi</label>
-                                <input value="<?php echo $resi ?>" class="form-control form-white" type="text" name="no_resi" />
-                                <br>
-                    </div>
-                    
-                    <div class="col-md-12">
-                      <label class="control-label">Metode Pembayaran</label>
-                      <select class="form-control" name="mp" required>
-                        <option selected value="">Pilih</option>
-                        <?php
-                        foreach ($metode_pembayaran->result_array() as $i) :
-                          $mp_id = $i['mp_id'];
-                          $mp_nama = $i['mp_nama'];
-                          $mp_tanggal = $i['mp_tanggal'];
-                          if ($mp_id1 == $mp_id) {
-                            echo "<option selected value='$mp_id'>$mp_nama</option>";
-                          } else {
-                            echo "<option value='$mp_id'>$mp_nama</option>";
-                          }
-                        endforeach;
-                        ?>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-success ripple save-category" id="simpan">Save</button>
-                </div>
+                                <div class="modal-body p-20">
+								<div class="row">
+									<input value="<?php echo $this->session->userdata('nama') ?>" type="hidden" name="username" required />
+									<input type="hidden" name="pemesanan_id" value="<?php echo $pemesanan_id ?>">
+									<input type="hidden" name="status" value="<?php echo $status ?>">
+									<?php if ($level != 3) : ?>
+										<div class="col-md-12">
+											<label class="control-label">Nama Pemesan</label>
+											<input class="form-control form-white" type="text" name="nama_pemesan" value="<?php echo $pemesanan_nama ?>" required />
+										</div>
+										<?php if ($level == 2) : ?>
+											<div class="col-md-12">
+												<label class="control-label">Nama Akun Pemesan</label>
+												<input class="form-control form-white" type="text" name="nama_akun_pemesan" value="<?= $nama_akun ?>" required />
+											</div>
+										<?php endif ?>
+										<div class="col-md-12">
+											<label class="control-label">Email Pemesan</label>
+											<input class="form-control form-white" type="text" name="email_pemesanan" value="<?= $email ?>" required />
+										</div>
+									<?php endif ?>
+									<div class="col-md-12">
+										<label class="control-label">No HP</label>
+										<input class="form-control form-white" type="number" min=1 name="hp" value="<?php echo $hp ?>" required />
+									</div>
+									<!--                                <div class="col-md-12">
+							  <label class="control-label">Tanggal</label>
+							  <input class="form-control form-white" type="date" name="tanggal"/>
+						  </div> -->
+									<div class="col-md-12">
+										<label class="control-label">Tanggal</label>
+										<input class="form-control form-white" type="date" name="tanggal" value="<?= $tanggal ?>" required />
+									</div>
+									<div class="col-md-12">
+										<label class="control-label">Alamat</label>
+										<input class="form-control form-white" type="text" name="alamat" value="<?php echo $alamat ?>" required />
+									</div>
+									<?php if ($level != 3) : ?>
+										<div class="col-md-12">
+											<label class="control-label">Biaya Admin</label>
+											<input class="form-control form-white" type="text" name="biaya_admin" value="<?php echo $biaya_admin ?>" required />
+										</div>
+										<div class="col-md-12">
+											<label class="control-label">Diskon</label>
+											<input class="form-control form-white" type="text" name="diskon" value="<?php echo $diskon ?>" required />
+										</div>
+										<div class="col-md-12">
+											<label class="control-label">Uang Kembalian</label>
+											<input class="form-control form-white" type="text" name="uang" value="<?php echo $uang ?>" required />
+										</div>
+										<div class="col-md-12">
+											<label class="control-label">Asal Transaksi</label>
+											<select class="form-control" name="at" required>
+												<option value="">Pilih</option>
+												<?php
+												foreach ($asal_transaksi->result_array() as $i) :
+													$at_id = $i['at_id'];
+													$at_nama = $i['at_nama'];
+													$at_tanggal = $i['at_tanggal'];
+													if ($at_id1 == $at_id) {
+														echo "<option selected value='$at_id'>$at_nama</option>";
+													} else {
+														echo "<option value='$at_id'>$at_nama</option>";
+													}
+												endforeach;
+												?>
+
+											</select>
+										</div>
+										<div class="col-md-12">
+											<label class="control-label">Jenis Ekspedisi</label>
+											<select class="form-control" name="kurir" required>
+												<option selected value="">Pilih</option>
+												<?php
+												foreach ($kurir->result_array() as $i) :
+													$kurir_id = $i['kurir_id'];
+													$kurir_nama = $i['kurir_nama'];
+													$kurir_tanggal = $i['kurir_tanggal'];
+													if ($kurir_id1 == $kurir_id) {
+														echo "<option selected value='$kurir_id'>$kurir_nama</option>";
+														$kn = $kurir_id;
+													} else {
+														echo "<option value='$kurir_id'>$kurir_nama</option>";
+													}
+												endforeach;
+												?>
+											</select>
+										</div>
+
+										<div class="col-md-12 resi<?= $pemesanan_id ?>" id="c">
+											<br>
+											<label class="control-label">Nomor Resi</label>
+											<input value="<?php echo $resi ?>" class="form-control form-white" type="text" name="no_resi" />
+											<br>
+										</div>
+
+										<div class="col-md-12">
+											<label class="control-label">Biaya Ongkir</label>
+											<input class="form-control form-white" type="text" name="biaya_ongkir" value="<?=$ongkir?>" required />
+										</div>
+
+										<div class="col-md-12">
+											<label class="control-label">Metode Pembayaran</label>
+											<select class="form-control" name="mp" required>
+												<option selected value="">Pilih</option>
+												<?php
+												foreach ($metode_pembayaran->result_array() as $i) :
+													$mp_id = $i['mp_id'];
+													$mp_nama = $i['mp_nama'];
+													$mp_tanggal = $i['mp_tanggal'];
+													if ($mp_id1 == $mp_id) {
+														echo "<option selected value='$mp_id'>$mp_nama</option>";
+													} else {
+														echo "<option value='$mp_id'>$mp_nama</option>";
+													}
+												endforeach;
+												?>
+											</select>
+										</div>
+									<?php endif; ?>
+									<div class="col-md-12">
+										<label class="control-label">Note</label>
+										<input class="form-control form-white" type="text" name="note" value="<?= $note ?>" required />
+									</div>
+
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger ripple" data-dismiss="modal">Close</button>
+								<button type="submit" class="btn btn-success ripple save-category" id="simpan">Save</button>
+							</div>
               </form>
             </div>
           </div>
