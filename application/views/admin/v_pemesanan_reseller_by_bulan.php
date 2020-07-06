@@ -1185,7 +1185,7 @@
             $pemesanan_id = $i['pemesanan_id'];
             $pemesanan_nama = $i['pemesanan_nama'];
             $nama_akun = $i['pemesanan_nama_akun'];
-            $tanggal =  date("Y-m-d", strtotime($i['tanggal']));
+            $tanggal =  date("Y-d-m", strtotime($i['tanggal']));
 
 
             $hp = $i['pemesanan_hp'];
